@@ -1,0 +1,114 @@
+<?php
+/**
+ * StartBox Upgrade class
+ *
+ * Handles all upgrade checks, notifications and updates
+ *
+ * @package StartBox
+ * @subpackage Upgrades
+ * @since StartBox 2.4.9
+ */
+
+class sb_upgrade {
+	// Check to see if a new version of StartBox is available.
+	function update_check() {
+		global $wpdb;
+
+		// Don't bother checking if updates are disabled
+		if (!sb_get_option('enable_updates'))
+			return;
+		
+		$sb_update = get_transient('sb_update');
+
+		if ( !$sb_update ) {
+			$options = array(
+				'method' => 'POST',
+				'timeout' => 3,
+				'headers' => array(
+					'Content-Type' => 'application/x-www-form-urlencoded; charset=' . get_option('blog_charset'),
+		            'User-Agent' => 'WordPress/' . get_bloginfo("version"),
+		            'Referer' => home_url()
+				)
+			);
+			$key = sb_get_option('sb_license');
+			$sb = SB_VERSION;
+			$wp = get_bloginfo("version") ;
+			$php = phpversion();
+			$mysql = $wpdb->db_version();
+			$url = 'http://wpstartbox.com/updates/index.php?product=StartBox&key=' . urlencode($key) . '&sb_version=' . urlencode($sb) . '&wp_version=' . urlencode($wp) . '&php_version=' . urlencode($php) . '&mysql_version=' . urlencode($mysql);
+			$raw_response = wp_remote_request($url, $options);
+			$sb_update = wp_remote_retrieve_body($raw_response);
+
+			// If an error occurred, return false and store transient for 1 hour
+			// Else, unserialize and store transient for 12hrs
+			if ( is_wp_error($sb_update) || $sb_update == 'error' || !is_serialized($sb_update) ) {
+				set_transient('sb_update', array('new_version' => SB_VERSION), 3600); // cache for 1hr (3600)
+				return false;
+			} else {
+				$sb_update = maybe_unserialize($sb_update);
+				set_transient('sb_update', $sb_update, 43200); // cache for 12hrs (43200)
+			}
+		}
+
+		// If we're already using the latest version, return false
+		if ( version_compare(SB_VERSION, $sb_update['new_version'], '>=') )
+			return false;
+
+		return $sb_update;
+	}
+
+	// Adds upgrade notification to WP's built-in check
+	function update_include($value) {
+		if ( $sb_update = $this->update_check() ) {
+			$value->response['startbox'] = $sb_update;
+		}
+		return $value;
+	}
+
+	// Add an update alert to the dashboard when upgrade is available
+	function update_notification() {
+		
+		// Don't bother checking if updates are disabled
+		if (!sb_get_option('enable_updates') || sb_get_option('disable_update_notifications') )
+			return;
+
+		$sb_update = $this->update_check();
+
+		if ( !is_super_admin() || !$sb_update )
+			return false;
+
+		$update_url = wp_nonce_url('update.php?action=upgrade-theme&amp;theme=startbox', 'upgrade-theme_startbox');
+		$update_onclick = __('Upgrading will overwrite the currently installed version of StartBox. Are you sure you want to upgrade?', 'startbox');
+
+		$output = '<div class="update-nag">';
+		$output .= sprintf( __('An update to StartBox is available. <a href="%s" class="thickbox thickbox-preview">Check out what\'s new in %s</a> or <a href="%s" onclick="return sb_confirm(\'%s\');">upgrade now</a>.', 'startbox'), esc_url( $sb_update['url'] ), esc_html( $sb_update['new_version'] ), $update_url, esc_js( $update_onclick ) );
+		$output .= '</div>';
+
+		echo $output;
+	}
+
+	// Delete the update transient and disable the update notification.
+	function clear_update_transient() {
+		delete_transient('sb_update');
+		remove_action('admin_notices', 'sb_update_notification');
+	}
+	
+	// Updates everything
+	function upgrade() {
+		
+	}
+	
+	// This makes everything work and hooks it where it belongs.
+	public function __construct() {
+		add_filter('site_transient_update_themes', array( $this, 'update_include') );
+		add_filter('transient_update_themes', array( $this, 'update_include') );
+		add_action('admin_notices', array( $this, 'update_notification') );
+		add_action('load-update.php', array( $this, 'clear_update_transient') );
+		add_action('load-themes.php', array( $this, 'clear_update_transient') );
+		add_action( 'sb_upgrade', array( $this, 'upgrade') );
+	}
+	
+}
+$sb_upgrade = new sb_upgrade;
+
+?>

@@ -1,0 +1,285 @@
+<?php
+
+/**
+ * This is the main SB Sidebars class. You can override this via child theme to alter your own widget markup
+ */
+class SB_Sidebars {
+	
+	public $sidebars = array();
+	
+	// Magic method that auto-loads default sidebars and custom sidebars. Don't override this.
+	function SB_Sidebars() {
+		
+		// Add sidebars to the registry
+		$this->default_sidebars();
+		$this->custom_sidebars();
+		
+		// Hook for other functions
+		do_action( 'sb_sidebars_init' );
+		
+		// Register all the sidebars
+		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
+		
+	}
+	
+	// Register Default Sidebars, override this if you'd like to replace the SB defaults with your own
+	function default_sidebars() {
+		$this->register_sidebar( array( 'name' => 'Home Featured', 'id' => 'home_featured', 'description' => __('These widgets will appear above the content on the homepage.', 'startbox'), 'editable' => 0 ) );
+		$this->register_sidebar( array( 'name' => 'Primary Sidebar', 'id' => 'primary_widget_area', 'description' => __('This is the primary sidebar when using two- or three-column layouts.', 'startbox') , 'editable' => 0 ) );
+		$this->register_sidebar( array( 'name' => 'Secondary Sidebar', 'id' => 'secondary_widget_area', 'description' => __('This is the secondary sidebar for three-column layouts.', 'startbox'), 'editable' => 0 ) );
+		if (sb_is_pagetemplate_active('page_tertiarysidebar.php')) { $this->register_sidebar( array( 'name' => 'Tertiary Sidebar', 'id' => 'tertiary_widget_area', 'description' => __('This sidebar replaces Primary Sidebar for the Tertiary page template.', 'startbox'), 'editable' => 0 ) ); }
+		$this->register_sidebar( array( 'name' => 'Footer Aside 1', 'id' => 'footer_widget_area_1', 'description' => __('This is the first footer column. Use this before using any other footer columns.', 'startbox'), 'editable' => 0 ) );
+		$this->register_sidebar( array( 'name' => 'Footer Aside 2', 'id' => 'footer_widget_area_2', 'description' => __('This is the second footer column. Only use this after using Footer Aside 1.', 'startbox'), 'editable' => 0 ) );
+		$this->register_sidebar( array( 'name' => 'Footer Aside 3', 'id' => 'footer_widget_area_3', 'description' => __('This is the third footer column. Only use this after using Footer Aside 2.', 'startbox') , 'editable' => 0 ) );
+		$this->register_sidebar( array( 'name' => 'Footer Aside 4', 'id' => 'footer_widget_area_4', 'description' => __('This is the last footer column. Only use this after using all other columns.', 'startbox'), 'editable' => 0 ) );
+	}
+	
+	// Register Custom Sidebars, don't override this
+	function custom_sidebars() {
+
+		$get_posts = new WP_Query( array(
+			'order' => 'ASC',
+			'orderby' => 'date',
+			'post_type' => 'sidebar',
+			'posts_per_page' => 100
+		));
+
+		while ( $get_posts->have_posts() ) : $get_posts->the_post();
+			global $post;
+			$name = get_the_title();
+			$id = $post->post_name;
+			$description = get_post_meta($post->ID, '_sidebar_description', true);
+			$this->register_sidebar( array( 'name' => $name, 'id' => $id, 'description' => $description, 'editable' => 1 ) );
+		endwhile;
+
+	}
+	
+	// Activate all sidebars, override this to customize sidebar markup
+	function widgets_init() {
+		
+		// If there aren't any sidebars, skip the rest
+		if ( !$this->sidebars || empty($this->sidebars) ) return;
+
+		// Otherwise, lets register all of them
+		foreach ( $this->sidebars as $id => $info ) {
+
+			register_sidebar(array(
+				'name'			=> esc_html( $info['name'] ),
+				'id'			=> $id,
+				'description'	=> esc_html( $info['description'] ),
+				'editable'		=> intval( $info['editable'] ),
+				'before_widget'	=>	"\n\t\t\t" . '<li id="%1$s" class="widget %2$s">',
+				'after_widget'	=>	"\n\t\t\t</li>\n",
+				'before_title'	=>	"\n\t\t\t\t". '<h3 class="widget-title"><span class="widget-title-left"><span class="widget-title-right">',
+				'after_title'	=>	'</span></span></h3>'."\n"
+			));
+
+		}
+	}
+	
+	/**
+	 * Register a sidebar (don't override this)
+	 *
+	 * @since StartBox 2.5
+	 * 
+	 * @param array $args an array of arguments for naming and identifying a sidebar
+	 */
+	function register_sidebar( $args = '' ) {
+		
+		// Setup our defaults (all null, for the most part)
+		$defaults = array(
+			'name'			=> '',
+			'id'			=> '',
+			'description'	=> '',
+			'editable'		=> 1	// Makes this sidebar replaceable via the StartBox Easy Sidebars extension
+		);
+		extract( wp_parse_args( $args, $defaults) );
+		
+		// Rudimentary sanitization for editable var
+		$editable = ($editable) ? 1 : 0;
+		
+		// If the sidebar doesn't already exist, register it
+		if ( !isset($this->sidebars[$id]) )
+			$this->sidebars[$id] = array( 'name' => $name, 'id' => $id, 'description' => $description, 'editable' => $editable );
+	}
+	
+	/**
+	 * Unregister a sidebar (don't override this)
+	 *
+	 * @since StartBox 2.5
+	 * 
+	 * @param string $id the unique ID for the sidebar to unregister
+	 */
+	function unregister_sidebar( $id ) {
+		if ( isset($this->sidebars[$id]) )
+			unset($this->sidebars[$id]);
+	}
+	
+	/**
+	 * Render markup and action hooks for a given sidebar (override this to customize your markup)
+	 *
+	 * @since StartBox 2.5
+	 * 
+	 * @param string $location the unique ID to give the container for this sidebar
+	 * @param string $sidebar the ID of the sidebar to attach to this location by default
+	 * @param string $classes additional custom classes to add to the container for this sidebar
+	 */
+	function do_sidebar( $location = null, $sidebar = null, $classes = null ) {
+		
+		// Grab the stored post types and taxonomies that will display a custom sidebar
+		$post_type = $this->get_custom_sidebars('post_type');
+		$tax = $this->get_custom_sidebars('taxonomy');
+		
+		// Maybe replace the default sidebar with a custom sidebar
+		$sidebar = $this->maybe_replace_current_sidebar( $location, $sidebar );
+		
+		// If the sidebar has widgets, or an action attached to it, commence output
+		if ( is_sidebar_active($sidebar) || has_action("sb_no_{$sidebar}_widgets") ) { ?>
+
+			<?php do_action( "sb_before_{$location}_aside" ); ?>
+			<div id="<?php echo $location; ?>" class="aside <?php echo $location; ?>-aside<?php if ($classes) { echo ' ' . $classes; }?>">
+				<?php do_action( "sb_before_{$location}_widgets" ); ?>
+				<ul class="xoxo">
+					<?php if ( !dynamic_sidebar($sidebar) ) { do_action( "sb_no_{$sidebar}_widgets"); }?>
+				</ul>
+				<?php do_action( "sb_after_{$location}_widgets" ); ?>
+		   </div><!-- #<?php echo $location; ?> .aside-<?php echo $location; ?> .aside -->
+		   <?php do_action( "sb_after_{$location}_aside" ); ?>
+		
+		<?php }
+	}
+	
+	/**
+	 * Loop through all custom sidebars, store them as a multi-deminsional
+	 * array for each post type and taxonomy. Uses transients to reduce queries.
+	 *
+	 * @since StartBox 2.5
+	 * @param string $return the array to return (accepts 'post_type' and 'taxonomy')
+	 */
+	function get_custom_sidebars( $return ) {
+		
+		// See if we've alread run this query and cached the results
+		$post_type = get_transient('sb_sidebars_post_type');
+		$tax = get_transient('sb_sidebars_tax');
+		
+		// If no cached results, run a query for custom sidebars
+		if ( !$post_type || !$tax ) {
+		
+			global $post;
+			
+			// Cache the current query, just for good measure
+			$temp = $post;
+			
+			// Get all sidebar posts
+			$get_posts = new WP_Query( array( 'post_type' => 'sidebar', 'posts_per_page' => -1 ) );
+			$post_type = $tax = array();
+		
+			// If there are no sidebars, return false
+			if ( !$get_posts->have_posts() )
+				return false;
+		
+			// If there are sidbars, loop through them all and store them in arrays for each post and tax type
+			while ( $get_posts->have_posts() ) : $get_posts->the_post();
+		
+				global $post;
+				
+				// The sidebar id is the post slug
+				$sidebar_id = $post->post_name;
+				
+				// The location for this sidebar is based on which sidebar it replaces
+				$location = get_post_meta( $post->ID, '_sidebar_replaced', true);
+				
+				// Grab all the saved posts and taxonomies that should use this sidebar
+				$posts = (array) maybe_unserialize( get_post_meta( $post->ID, '_post', true ) );
+				$taxes = (array) maybe_unserialize( get_post_meta( $post->ID, '_tax', true ) );
+				
+				// Grab all posts associated with this sidebar, add each to the $post_type array
+				foreach ( $posts as $post_id ) {
+					$post_type[$post_id] = array( 'location' => $location, 'sidebar' => $sidebar_id );
+				}
+			
+				// Grab all taxonomies associated with this sidebar, add each to the $tax array
+				foreach ( $taxes as $tax_id ) {
+					$tax[$tax_id] = array( 'location' => $location, 'sidebar' => $sidebar_id );
+				
+				}
+			
+			endwhile;
+			
+			// Restore the cached query, just incase
+			$post = $temp;
+		
+			// Store transient data for the post types and taxonomies for use later
+			set_transient('sb_sidebars_post_type', $post_type, 43200); // cache for 12hrs (43200)
+			set_transient('sb_sidebars_tax', $tax, 43200); // cache for 12hrs (43200)
+		
+		}
+		
+		// Return either post_type or taxonomy, based on what was requested
+		if ( $return == 'post_type' )
+			return $post_type;
+		elseif ( $return == 'taxonomy' )
+			return $tax;
+	}
+	
+	// Check to see if a custom sidebar is attached to a given location and override the default
+	function maybe_replace_current_sidebar( $location, $sidebar ) {
+		global $post;
+		$post_type = (array)$this->get_custom_sidebars('post_type');
+		$tax = (array)$this->get_custom_sidebars('taxonomy');
+		
+		// Set the ID for the page/post to retrive. If a sidebar is set for all- Pages, Posts, Categories or Tags use it instead.
+		if ( is_single() && array_key_exists( 'all-Posts', $post_type ) ) { $pid = 'all-Posts'; }
+		elseif ( is_page() && array_key_exists( 'all-Pages', $post_type) ) { $pid = 'all-Pages'; }
+		elseif ( is_category() && array_key_exists( 'all-category', $tax) ) { $pid = 'all-category'; }
+		elseif ( is_tag() && array_key_exists( 'all-tag', $tax) ) { $pid = 'all-tag'; }
+		elseif ( is_category() ) { $pid = get_query_var('cat'); }
+		elseif ( is_tag() ) { $pid = get_query_var('tag_id'); }
+		else { $pid = $post->ID; }
+		
+		// Confirm which sidebar to output based on current front-end view
+		if ( is_singular() && array_key_exists( $pid, $post_type ) && $sidebar == $post_type[$pid]['location'] ) {
+			$sidebar = $post_type[$pid]['sidebar'];
+		} elseif ( ( is_category() || is_tag() ) && array_key_exists( $pid, $tax ) && $sidebar == $tax[$pid]['location']) {
+			$sidebar = $tax[$pid]['sidebar'];
+		}
+		
+		// Finally, return the given sidebar
+		return $sidebar;
+	}
+}
+
+// Initialize the SB_Sidebars class, store it to the global $sb_sidebars variable
+global $sb_sidebars;
+$sb_sidebars = new SB_Sidebars;
+
+
+/**
+ * Wrapper Function for SB_Sidebars::do_sidebar()
+ *
+ * @since StartBox 2.5
+ * 
+ * @param string $location the unique ID to give the container for this sidebar
+ * @param string $sidebar the ID of the sidebar to attach to this location by default
+ * @param string $classes additional custom classes to add to the container for this sidebar
+ */
+function sb_do_sidebar( $location = null, $sidebar = null, $classes = null ) {
+	global $sb_sidebars;
+	$sb_sidebars->do_sidebar( $location, $sidebar, $classes );
+}
+
+
+/**
+ * Check for widgets in widget-ready areas to confirm if sidebar is active
+ *
+ * @since StartBox 2.3.6
+ */
+if ( !function_exists('is_sidebar_active') ) {
+	function is_sidebar_active( $index ) {
+		global $wp_registered_sidebars;
+		$widgetcolums = wp_get_sidebars_widgets();
+		if ( isset( $widgetcolums[$index] ) && $widgetcolums[$index] == true ) return true;
+		return false;
+	}
+} 
+?>

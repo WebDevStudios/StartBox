@@ -1,0 +1,252 @@
+/****************************************************************************************************************
+
+	Default styles for Shortcodes
+
+****************************************************************************************************************
+
+Table of Contents
+
+****************************************************************************************************************
+
+1. 	Buttons
+2.	Lists
+3.	Content Boxes
+4.	Columns
+5.	Dividers
+
+****************************************************************************************************************
+
+1. Buttons
+
+****************************************************************************************************************/
+
+.button {
+	display:inline-block;
+	background-color: #333;
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(.2, #555), color-stop(1, #222) );
+	background: -moz-linear-gradient( center top, #555 20%, #222 100% );
+	border-color:#444;
+	color:#fff!important;
+	line-height:1em;
+	text-align:center;
+	text-decoration:none!important;
+	padding:6px 15px;
+	margin: 1.4em 0;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	border-radius:15px;
+	border-width:1px;
+	border-style:solid;
+	text-shadow: 0 -1px 0 rgba(0,0,0,.3);
+	-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 
+						inset 0 0 2px rgba(255,255,255,.3), 
+						0 1px 3px rgba(0,0,0,.5);
+	-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 
+					inset 0 0 2px rgba(255,255,255,.3), 
+					0 1px 2px rgba(0,0,0,.3);
+	box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 
+				inset 0 0 2px rgba(255,255,255,.3), 
+				0 1px 2px rgba(0,0,0,.3);
+}
+.button:hover {
+	-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 
+						inset 0 -5px 30px rgba(255,255,255,.25), 
+						0 1px 2px rgba(0,0,0,.3);
+	-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 
+						inset 0 -5px 30px rgba(255,255,255,.25), 
+						0 1px 2px rgba(0,0,0,.3);
+	box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 
+						inset 0 -5px 30px rgba(255,255,255,.25), 
+						0 1px 2px rgba(0,0,0,.3);
+}
+.button:active {
+	border-color: #20559a;
+	-webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.5),
+						0 1px 0 rgba(255,255,255, 0);
+	-moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.5),
+						0 1px 0 rgba(255,255,255, 0);
+	box-box-shadow: inset 0 3px 7px rgba(0,0,0,.5),
+						0 1px 0 rgba(255,255,255, 0);
+}
+.button.small { padding:5px 10px; font-size:0.8em;}
+.button.large { padding:8px 16px; font-size:1.4em;}
+.button.xl { padding:10px 20px; font-size:1.8em;}
+
+/* Default Button Colors */
+.button.red {
+	background-color: #c20;
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(.2, #e40), color-stop(1, #a20) );
+	background: -moz-linear-gradient( center top, #e40 20%, #c20 100% );
+	border-color:#e40;
+}
+.button.orange {
+	background-color: #e70;
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(.2, #f90), color-stop(1, #e70) );
+	background: -moz-linear-gradient( center top, #f90 20%, #e70 100% );
+	border-color:#f90;
+}
+.button.yellow {
+	background-color: #ec0;
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(.2, #fd0), color-stop(1, #db0) );
+	background: -moz-linear-gradient( center top, #fd0 20%, #ec0 100% );
+	border-color:#ec0;
+}
+.button.green {
+	background-color: #4a0;
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(.2, #6c0), color-stop(1, #4a0) );
+	background: -moz-linear-gradient( center top, #6c0 20%, #4a0 100% );
+	border-color:#4a0;
+}
+.button.blue {
+	background-color: #07e;
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(.2, #0af), color-stop(1, #07e) );
+	background: -moz-linear-gradient( center top, #0af 20%, #07e 100% );
+	border-color:#0af;
+}
+.button.purple {
+	background-color: #704;
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(.2, #b06), color-stop(1, #704) );
+	background: -moz-linear-gradient( center top, #b06 20%, #704 100% );
+	border-color:#b06;
+}
+.button.dark {
+	background-color: #333;
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(.2, #555), color-stop(1, #222) );
+	background: -moz-linear-gradient( center top, #555 20%, #222 100% );
+	border-color:#444;
+}
+.button.light {
+	background-color: #eee;
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(.2, #eee), color-stop(1, #bbb) );
+	background: -moz-linear-gradient( center top, #eee 20%, #bbb 100% );
+	color:#111!important;
+	border-color:#ccc;
+}
+
+/****************************************************************************************************************
+
+2. Lists
+
+****************************************************************************************************************/
+.check_list, .arrow_list {
+	list-style:none!important;
+}
+.check_list li, .arrow_list li {
+	padding-left:20px;
+	background-repeat:no-repeat;
+	background-position:0 0;
+}
+.check_list li { background-image:url('../../images/icons/check.png'); }
+.arrow_list li {}
+
+/****************************************************************************************************************
+
+3. Content Boxes
+
+****************************************************************************************************************/
+
+.box {
+	display:block;
+	background:#eeeee7;
+	color:#222;
+	padding:10px 20px;
+	border-width:1px 0;
+	border-style:solid;
+	position:relative;
+	clear:both;
+}
+.box.info {
+	background:#eeeee7;
+	border-color:#ccc;
+}
+.box.dark {
+	background:#333;
+	border:#111;
+	color:#eee;
+}
+.box.alert {
+	background:#f88 url('../../images/icons/alert.png') no-repeat 10px 50%;
+	border-color:#900;
+	padding-left:45px;
+}
+.box.download {
+	background:#ad8 url('../../images/icons/download.png') no-repeat 10px 50%;
+	border-color:#5a2;
+	padding-left:45px;
+}
+.box.check {
+	background:#eeeee7 url('../../images/icons/check.png') no-repeat 10px 50%;
+	border-color:#ccc;
+	padding-left:45px;
+}
+.box.note {
+	background:#ffa url('../../images/icons/note.png') no-repeat 10px 50%;
+	border-color:#cc3;
+	padding-left:45px;
+}
+
+/****************************************************************************************************************
+
+4. Columns
+
+****************************************************************************************************************/
+
+.column { width:100%; margin-right:4%; position:relative; float:left; }
+.column.last { clear:right; margin-right:0; }
+.one_half { width:48%; }
+.one_third { width:30.66%; }
+.two_thirds { width:65.33%; }
+.one_fourth { width:22%; }
+.three_fourths { width:74%; }
+.one_fifth { width:16.8%; }
+.two_fifths { width:37.6%; }
+.three_fifths { width:58.4%; }
+.four_fifths { width:79.2%; }
+.one_sixth { width:13.33%; }
+.five_sixths { width:82.67%; }
+
+/****************************************************************************************************************
+
+5. Dividers
+
+****************************************************************************************************************/
+
+.divider, .hr {
+	background:url('../../images/line.png') repeat-x 0 50%;
+	min-height:1px;
+	position:relative;
+	clear:both;
+	text-align:center;
+}
+.divider .rtt, .hr .rtt {
+	display:inline;
+	background:#fff;
+	padding:5px;
+}
+
+/****************************************************************************************************************
+
+6. Toggles
+
+****************************************************************************************************************/
+
+
+/****************************************************************************************************************
+
+7. Protected Content
+
+****************************************************************************************************************/
+
+.protected {
+	background:#eee;
+	color:#555;
+	font-style:italic;
+	border:1px solid #ddd;
+	border-width:1px 0;
+	margin:0 auto;
+	padding:15px;
+	text-align:center;
+}
+.protected form {
+	margin-top:15px;
+}

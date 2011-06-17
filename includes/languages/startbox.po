@@ -1,0 +1,1195 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: StartBox 2.4.8\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-11-22 01:35-0500\n"
+"PO-Revision-Date: 2010-11-22 01:37-0500\n"
+"Last-Translator: \n"
+"Language-Team: Brian Richards <brian@rzen.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__;_x\n"
+"X-Poedit-Basepath: ./\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: ..\n"
+"X-Poedit-SearchPath-1: ../..\n"
+
+#: ../admin/admin.php:13
+msgid "Theme Options"
+msgstr ""
+
+#: ../admin/admin.php:65
+msgid "Options"
+msgstr ""
+
+#: ../admin/admin.php:65
+#, php-format
+msgid "StartBox Version: %s"
+msgstr ""
+
+#: ../admin/admin.php:69
+msgid "Options Updated."
+msgstr ""
+
+#: ../admin/admin.php:72
+msgid "Options Reset."
+msgstr ""
+
+#: ../admin/admin.php:75
+#, php-format
+msgid "StartBox upgraded to version %s!"
+msgstr ""
+
+#: ../admin/admin.php:113
+msgid "Save All Settings"
+msgstr ""
+
+#: ../admin/admin.php:114
+msgid "Reset All Settings"
+msgstr ""
+
+#: ../admin/admin_settings.php:297
+msgid "Logo Settings"
+msgstr ""
+
+#: ../admin/admin_settings.php:298
+msgid "Logo Image"
+msgstr ""
+
+#: ../admin/admin_settings.php:299
+msgid "Or, use this text instead"
+msgstr ""
+
+#: ../admin/admin_settings.php:300
+msgid "Logo Alignment"
+msgstr ""
+
+#: ../admin/admin_settings.php:300
+msgid "Left"
+msgstr ""
+
+#: ../admin/admin_settings.php:300
+msgid "Right"
+msgstr ""
+
+#: ../admin/admin_settings.php:300
+msgid "Center"
+msgstr ""
+
+#: ../admin/admin_settings.php:301
+msgid "Disable Logo"
+msgstr ""
+
+#: ../admin/admin_settings.php:572
+msgid "Suggested"
+msgstr ""
+
+#: ../admin/analytics.php:5
+msgid "Google Analytics"
+msgstr ""
+
+#: ../admin/analytics.php:12
+#, php-format
+msgid "Enter your %s code below:"
+msgstr ""
+
+#: ../admin/content.php:5
+msgid "Content Settings"
+msgstr ""
+
+#: ../admin/content.php:12
+msgid "Homepage Layout"
+msgstr ""
+
+#: ../admin/content.php:14
+#: ../admin/content.php:29
+msgid "1 Column (no sidebars)"
+msgstr ""
+
+#: ../admin/content.php:15
+#: ../admin/content.php:30
+msgid "2 Columns, sidebar on left"
+msgstr ""
+
+#: ../admin/content.php:16
+#: ../admin/content.php:31
+msgid "2 Columns, sidebar on right"
+msgstr ""
+
+#: ../admin/content.php:17
+#: ../admin/content.php:32
+msgid "3 Columns, sidebars on left"
+msgstr ""
+
+#: ../admin/content.php:18
+#: ../admin/content.php:33
+msgid "3 Columns, sidebars on right"
+msgstr ""
+
+#: ../admin/content.php:19
+#: ../admin/content.php:34
+msgid "3 Columns, sidebar on each side"
+msgstr ""
+
+#: ../admin/content.php:27
+msgid "Interior Page Layout"
+msgstr ""
+
+#: ../admin/content.php:42
+msgid "Post Content on Homepage"
+msgstr ""
+
+#: ../admin/content.php:44
+#: ../admin/content.php:55
+msgid "Excerpt"
+msgstr ""
+
+#: ../admin/content.php:45
+#: ../admin/content.php:56
+msgid "Full Post"
+msgstr ""
+
+#: ../admin/content.php:53
+msgid "Post Content in Archives"
+msgstr ""
+
+#: ../admin/content.php:64
+msgid "Post Thumbnail Width"
+msgstr ""
+
+#: ../admin/content.php:72
+msgid "Post Thumbnail Height"
+msgstr ""
+
+#: ../admin/content.php:80
+msgid "Read More text"
+msgstr ""
+
+#: ../admin/content.php:81
+msgid "Read &amp; Discuss &raquo;"
+msgstr ""
+
+#: ../admin/content.php:87
+msgid "Archive Navigation"
+msgstr ""
+
+#: ../admin/content.php:89
+#: ../admin/content.php:102
+msgid "Disabled"
+msgstr ""
+
+#: ../admin/content.php:90
+#: ../admin/content.php:103
+msgid "Show Above Posts"
+msgstr ""
+
+#: ../admin/content.php:91
+#: ../admin/content.php:104
+msgid "Show Below Posts"
+msgstr ""
+
+#: ../admin/content.php:92
+#: ../admin/content.php:105
+msgid "Show Above & Below Posts"
+msgstr ""
+
+#: ../admin/content.php:100
+msgid "Single Post Navigation"
+msgstr ""
+
+#: ../admin/content.php:113
+msgid "Enable Author Bio on Single posts"
+msgstr ""
+
+#: ../admin/content.php:114
+msgid "Author bio only displays if author provides a description in their profile."
+msgstr ""
+
+#: ../admin/content.php:119
+msgid "Post Meta"
+msgstr ""
+
+#: ../admin/content.php:120
+msgid "The next two text boxes give you control over the meta information displayed on each post. You can use any <a href=\"http://docs.wpstartbox.com/shortcodes\" target=\"_blank\">shortcodes</a> you like, including: [author], [categories], [comments], [date], [time], [tags] and [edit]."
+msgstr ""
+
+#: ../admin/content.php:124
+msgid "Post Header Meta"
+msgstr ""
+
+#: ../admin/content.php:125
+msgid "Published in [categories] on [date]"
+msgstr ""
+
+#: ../admin/content.php:131
+msgid "Post Footer Meta"
+msgstr ""
+
+#: ../admin/content.php:167
+#: ../admin/content.php:186
+msgid "<span class=\"meta-nav\">&laquo;</span> Older posts"
+msgstr ""
+
+#: ../admin/content.php:168
+#: ../admin/content.php:187
+msgid "Newer posts <span class=\"meta-nav\">&raquo;</span>"
+msgstr ""
+
+#: ../admin/feedburner.php:5
+msgid "Feedburner Settings"
+msgstr ""
+
+#: ../admin/feedburner.php:12
+#, php-format
+msgid "Enter your %s feed URL below"
+msgstr ""
+
+#: ../admin/feedburner.php:17
+msgid "Enter your Feedburner Comments URL"
+msgstr ""
+
+#: ../admin/footer.php:5
+msgid "Footer Settings"
+msgstr ""
+
+#: ../admin/footer.php:12
+msgid "Enable Return to Top link"
+msgstr ""
+
+#: ../admin/footer.php:17
+msgid "Enable Copyright"
+msgstr ""
+
+#: ../admin/footer.php:22
+msgid "Enable Designer Credit"
+msgstr ""
+
+#: ../admin/footer.php:27
+msgid "Enable WordPress Credit"
+msgstr ""
+
+#: ../admin/footer.php:32
+msgid "Enable StartBox Credit"
+msgstr ""
+
+#: ../admin/footer.php:37
+msgid "Enable Admin Links"
+msgstr ""
+
+#: ../admin/footer.php:42
+msgid "Original Copyright Year"
+msgstr ""
+
+#: ../admin/footer.php:48
+msgid "Enter any additional footer text below:"
+msgstr ""
+
+#: ../admin/footer.php:49
+msgid "Full HTML is allowed."
+msgstr ""
+
+#: ../admin/header.php:5
+msgid "Header Settings"
+msgstr ""
+
+#: ../admin/header.php:12
+msgid "Upload an image or specify some text to use for your logo."
+msgstr ""
+
+#: ../admin/header.php:17
+msgid "Display Site Tagline"
+msgstr ""
+
+#: ../admin/header.php:18
+#, php-format
+msgid "You can set your site Tagline in %1$sSettings > General%2$s."
+msgstr ""
+
+#: ../admin/header.php:23
+msgid "Favicon"
+msgstr ""
+
+#: ../admin/header.php:24
+msgid "A small logo/icon that displays alongside your URL in most browsers."
+msgstr ""
+
+#: ../admin/header.php:30
+msgid "Primary Navigation"
+msgstr ""
+
+#: ../admin/header.php:35
+#: ../admin/header.php:47
+msgid "Include Home link"
+msgstr ""
+
+#: ../admin/header.php:42
+msgid "Secondary Navigation"
+msgstr ""
+
+#: ../admin/help.php:5
+msgid "Need Help?"
+msgstr ""
+
+#: ../admin/help.php:13
+#, php-format
+msgid "Struggling with some of the theme options or settings? Have a look at the comprehensive %1$stheme documentation%2$s."
+msgstr ""
+
+#: ../admin/help.php:13
+msgid "Theme Documentation"
+msgstr ""
+
+#: ../admin/pushup.php:5
+msgid "Save the Web"
+msgstr ""
+
+#: ../admin/pushup.php:12
+msgid "Help save the internet by letting users of older browsers know that it's time for an upgrade."
+msgstr ""
+
+#: ../admin/pushup.php:16
+msgid "Save the web!"
+msgstr ""
+
+#: ../admin/seo.php:5
+msgid "Basic SEO Settings"
+msgstr ""
+
+#: ../admin/seo.php:13
+msgid "These are only rudimentary options that will disappear as soon as you activate an SEO plugin. I highly recommend you use the <a href=\"http://wordpress.org/extend/plugins/all-in-one-seo-pack/\" target=\"_blank\">All-in-One SEO Pack</a> instead of these."
+msgstr ""
+
+#: ../admin/seo.php:17
+msgid "Site Description"
+msgstr ""
+
+#: ../admin/seo.php:18
+msgid "Try to keep this brief."
+msgstr ""
+
+#: ../admin/seo.php:22
+msgid "Site-wide Keywords"
+msgstr ""
+
+#: ../admin/seo.php:24
+msgid "Comma separated (e.g. WordPress, themes, etc)"
+msgstr ""
+
+#: ../functions/comment_format.php:8
+#, php-format
+msgid "Required fields are marked %s"
+msgstr ""
+
+#: ../functions/comment_format.php:11
+msgid "Name"
+msgstr ""
+
+#: ../functions/comment_format.php:13
+msgid "Email"
+msgstr ""
+
+#: ../functions/comment_format.php:15
+msgid "Website"
+msgstr ""
+
+#: ../functions/comment_format.php:19
+msgid "Add Your Comment"
+msgstr ""
+
+#: ../functions/comment_format.php:23
+msgid "Your email address will <strong>not</strong> be published."
+msgstr ""
+
+#: ../functions/comment_format.php:32
+msgid "Get a Gravatar!"
+msgstr ""
+
+#: ../functions/comment_format.php:40
+msgid "Comment"
+msgstr ""
+
+#: ../functions/comment_format.php:101
+#, php-format
+msgid "%1$s <br/> %2$s"
+msgstr ""
+
+#: ../functions/comment_format.php:103
+msgid "\t\t\t\t\t<span class='unapproved'>Your comment is awaiting moderation.</span>\n"
+msgstr ""
+
+#: ../functions/comment_format.php:111
+msgid "Reply to this Comment"
+msgstr ""
+
+#: ../functions/comment_format.php:112
+msgid "Log in to reply."
+msgstr ""
+
+#: ../functions/comment_format.php:119
+#: ../functions/hooks.php:118
+#: ../functions/shortcodes.php:98
+msgid "Edit"
+msgstr ""
+
+#: ../functions/hooks.php:63
+#, php-format
+msgid "Page %s"
+msgstr ""
+
+#: ../functions/hooks.php:67
+#, php-format
+msgid "Search results for \"%s\""
+msgstr ""
+
+#: ../functions/hooks.php:68
+msgid "Not Found"
+msgstr ""
+
+#: ../functions/hooks.php:87
+msgid "Skip to content"
+msgstr ""
+
+#: ../functions/hooks.php:141
+msgid "Author Archives: "
+msgstr ""
+
+#: ../functions/hooks.php:147
+msgid "Category Archives:"
+msgstr ""
+
+#: ../functions/hooks.php:156
+msgid "Search Results for:"
+msgstr ""
+
+#: ../functions/hooks.php:162
+msgid "Tag Archives:"
+msgstr ""
+
+#: ../functions/hooks.php:168
+#, php-format
+msgid "<span>Daily Archives:</span> %s"
+msgstr ""
+
+#: ../functions/hooks.php:172
+#, php-format
+msgid "<span>Monthly Archives:</span> %s"
+msgstr ""
+
+#: ../functions/hooks.php:176
+#, php-format
+msgid "<span>Yearly Archives:</span> %s"
+msgstr ""
+
+#: ../functions/hooks.php:180
+msgid "Blog Archives"
+msgstr ""
+
+#: ../functions/hooks.php:189
+msgid "404 - File Not Found"
+msgstr ""
+
+#: ../functions/hooks.php:192
+msgid "Sorry, but we were unable to find what you were looking for."
+msgstr ""
+
+#: ../functions/hooks.php:196
+msgid "Try browsing a list of our current pages and categories:"
+msgstr ""
+
+#: ../functions/hooks.php:204
+#, php-format
+msgid "If you're still lost, %s and we'll try to help!"
+msgstr ""
+
+#: ../functions/shortcodes.php:87
+msgid "Return to Top"
+msgstr ""
+
+#: ../functions/shortcodes.php:146
+#, php-format
+msgid "View all posts by %s"
+msgstr ""
+
+#: ../functions/shortcodes.php:162
+msgid "Tagged: "
+msgstr ""
+
+#: ../functions/shortcodes.php:175
+msgid "No Comments"
+msgstr ""
+
+#: ../functions/shortcodes.php:175
+msgid "1 Comment"
+msgstr ""
+
+#: ../functions/shortcodes.php:175
+msgid "% Comments"
+msgstr ""
+
+#: ../functions/shortcodes.php:191
+#, php-format
+msgid "View all posts by %s &raquo;"
+msgstr ""
+
+#: ../functions/shortcodes.php:566
+msgid "Sorry, you must be logged in to view this content."
+msgstr ""
+
+#: ../functions/sidebars.php:23
+msgid "These widgets will appear above the content on the homepage."
+msgstr ""
+
+#: ../functions/sidebars.php:33
+msgid "This is the primary sidebar when using two- or three-column layouts."
+msgstr ""
+
+#: ../functions/sidebars.php:43
+msgid "This is the secondary sidebar for three-column layouts. It appears beneath the primary sidebar on two-column layouts."
+msgstr ""
+
+#: ../functions/sidebars.php:54
+msgid "This sidebar replaces both the primary and secondary sidebars on any pages using the Tertiary Aside layout."
+msgstr ""
+
+#: ../functions/sidebars.php:65
+msgid "This is the primary footer column. Use this before using any other footer columns."
+msgstr ""
+
+#: ../functions/sidebars.php:75
+msgid "This is the second footer column. Use this before using Footer Aside Column 3."
+msgstr ""
+
+#: ../functions/sidebars.php:85
+msgid "This is the third footer column. Use this before using Footer Aside Column 4."
+msgstr ""
+
+#: ../functions/sidebars.php:95
+msgid "This is the fourth footer column. Use this only after using Columns 1-3."
+msgstr ""
+
+#: ../plugins/slideshows.php:16
+msgid "Overlay Arrows"
+msgstr ""
+
+#: ../plugins/slideshows.php:16
+msgid "Bottom Navigation"
+msgstr ""
+
+#: ../plugins/slideshows.php:17
+msgid "Largest Image"
+msgstr ""
+
+#: ../plugins/slideshows.php:17
+msgid "Smallest Image"
+msgstr ""
+
+#: ../plugins/slideshows.php:17
+msgid "Custom"
+msgstr ""
+
+#: ../plugins/slideshows.php:21
+#: ../plugins/slideshows.php:36
+msgid "Slideshows"
+msgstr ""
+
+#: ../plugins/slideshows.php:22
+#: ../plugins/slideshows.php:37
+msgid "Slideshow"
+msgstr ""
+
+#: ../plugins/slideshows.php:23
+msgid "Add New"
+msgstr ""
+
+#: ../plugins/slideshows.php:24
+msgid "Add New Slideshow"
+msgstr ""
+
+#: ../plugins/slideshows.php:25
+msgid "Edit Slideshow"
+msgstr ""
+
+#: ../plugins/slideshows.php:26
+msgid "New Slideshow"
+msgstr ""
+
+#: ../plugins/slideshows.php:27
+msgid "View Slideshow"
+msgstr ""
+
+#: ../plugins/slideshows.php:28
+msgid "Search Slideshows"
+msgstr ""
+
+#: ../plugins/slideshows.php:29
+msgid "No slideshows found"
+msgstr ""
+
+#: ../plugins/slideshows.php:30
+msgid "No slideshows found in Trash"
+msgstr ""
+
+#: ../plugins/slideshows.php:64
+msgid "Slides"
+msgstr ""
+
+#: ../plugins/slideshows.php:65
+msgid "Media Library"
+msgstr ""
+
+#: ../plugins/slideshows.php:66
+msgid "Shortcode"
+msgstr ""
+
+#: ../plugins/slideshows.php:99
+msgid "Pause Timer"
+msgstr ""
+
+#: ../plugins/slideshows.php:100
+msgid "How long, in miliseconds, to pause on a slide before transitioning."
+msgstr ""
+
+#: ../plugins/slideshows.php:101
+msgid "miliseconds"
+msgstr ""
+
+#: ../plugins/slideshows.php:103
+msgid "Transition Effects"
+msgstr ""
+
+#: ../plugins/slideshows.php:107
+msgid "If no transition effect is checked, all effects will be used at random."
+msgstr ""
+
+#: ../plugins/slideshows.php:109
+msgid "Controls"
+msgstr ""
+
+#: ../plugins/slideshows.php:114
+msgid "Slideshow Size"
+msgstr ""
+
+#: ../plugins/slideshows.php:118
+msgid "Width"
+msgstr ""
+
+#: ../plugins/slideshows.php:119
+msgid "Height"
+msgstr ""
+
+#: ../plugins/slideshows.php:190
+msgid "Remove Slide"
+msgstr ""
+
+#: ../plugins/slideshows.php:191
+msgid "Add Slide"
+msgstr ""
+
+#: ../widgets/featuredposts.php:15
+msgid "Display featured content in any widget area"
+msgstr ""
+
+#: ../widgets/featuredposts.php:17
+msgid "SB Featured Content"
+msgstr ""
+
+#: ../widgets/featuredposts.php:98
+#: ../widgets/featuredposts.php:113
+#, php-format
+msgid "Permalink to %s"
+msgstr ""
+
+#: ../widgets/featuredposts.php:223
+#: ../widgets/rsslinks.php:18
+#: ../widgets/search.php:26
+#: ../widgets/slideshows.php:25
+#: ../widgets/social.php:101
+#: ../widgets/tagcloud.php:32
+msgid "Title: "
+msgstr ""
+
+#: ../widgets/featuredposts.php:227
+msgid "Featured Content Type:"
+msgstr ""
+
+#: ../widgets/featuredposts.php:236
+msgid "Category: "
+msgstr ""
+
+#: ../widgets/featuredposts.php:240
+msgid "Order By:"
+msgstr ""
+
+#: ../widgets/featuredposts.php:242
+msgid "Date"
+msgstr ""
+
+#: ../widgets/featuredposts.php:243
+msgid "Post ID"
+msgstr ""
+
+#: ../widgets/featuredposts.php:244
+msgid "Title"
+msgstr ""
+
+#: ../widgets/featuredposts.php:245
+msgid "Author"
+msgstr ""
+
+#: ../widgets/featuredposts.php:246
+msgid "Comment Count"
+msgstr ""
+
+#: ../widgets/featuredposts.php:247
+msgid "Random"
+msgstr ""
+
+#: ../widgets/featuredposts.php:251
+msgid "Sort Order:"
+msgstr ""
+
+#: ../widgets/featuredposts.php:253
+msgid "Descending (3, 2, 1; c, b, a)"
+msgstr ""
+
+#: ../widgets/featuredposts.php:254
+msgid "Ascending (1, 2, 3; a, b, c)"
+msgstr ""
+
+#: ../widgets/featuredposts.php:258
+msgid "Number of posts to display: "
+msgstr ""
+
+#: ../widgets/featuredposts.php:264
+msgid "Display Post Title"
+msgstr ""
+
+#: ../widgets/featuredposts.php:269
+msgid "Display Meta Information"
+msgstr ""
+
+#: ../widgets/featuredposts.php:273
+msgid "Display Meta Information: "
+msgstr ""
+
+#: ../widgets/featuredposts.php:282
+#: ../widgets/featuredposts.php:397
+msgid "Display Featured Image"
+msgstr ""
+
+#: ../widgets/featuredposts.php:286
+#: ../widgets/featuredposts.php:401
+msgid "Image Size: "
+msgstr ""
+
+#: ../widgets/featuredposts.php:292
+#: ../widgets/featuredposts.php:407
+msgid "Image Alignment:"
+msgstr ""
+
+#: ../widgets/featuredposts.php:294
+#: ../widgets/featuredposts.php:409
+msgid "None"
+msgstr ""
+
+#: ../widgets/featuredposts.php:300
+#: ../widgets/featuredposts.php:415
+msgid "Image Position:"
+msgstr ""
+
+#: ../widgets/featuredposts.php:302
+msgid "Before Post Info"
+msgstr ""
+
+#: ../widgets/featuredposts.php:303
+msgid "After Post Info"
+msgstr ""
+
+#: ../widgets/featuredposts.php:311
+msgid "Display Post Content"
+msgstr ""
+
+#: ../widgets/featuredposts.php:315
+msgid "Content:"
+msgstr ""
+
+#: ../widgets/featuredposts.php:317
+msgid "Post Excerpt"
+msgstr ""
+
+#: ../widgets/featuredposts.php:318
+msgid "Full Content"
+msgstr ""
+
+#: ../widgets/featuredposts.php:322
+#: ../widgets/featuredposts.php:429
+#, php-format
+msgid "Limit content to %s characters"
+msgstr ""
+
+#: ../widgets/featuredposts.php:323
+#: ../widgets/featuredposts.php:430
+msgid "Leave blank for no limit."
+msgstr ""
+
+#: ../widgets/featuredposts.php:326
+#: ../widgets/featuredposts.php:433
+msgid "Read More Text: "
+msgstr ""
+
+#: ../widgets/featuredposts.php:328
+#: ../widgets/featuredposts.php:435
+msgid "Leave blank to hide the Read More link."
+msgstr ""
+
+#: ../widgets/featuredposts.php:335
+msgid "Display Link to More Posts"
+msgstr ""
+
+#: ../widgets/featuredposts.php:339
+msgid "Link URL: "
+msgstr ""
+
+#: ../widgets/featuredposts.php:343
+msgid "Link Text: "
+msgstr ""
+
+#: ../widgets/featuredposts.php:347
+msgid "Link Position:"
+msgstr ""
+
+#: ../widgets/featuredposts.php:349
+msgid "Before Posts"
+msgstr ""
+
+#: ../widgets/featuredposts.php:350
+msgid "After Posts"
+msgstr ""
+
+#: ../widgets/featuredposts.php:351
+msgid "Before &amp; After Posts"
+msgstr ""
+
+#: ../widgets/featuredposts.php:359
+msgid "Display Advanced Query Options"
+msgstr ""
+
+#: ../widgets/featuredposts.php:363
+msgid "Display "
+msgstr ""
+
+#: ../widgets/featuredposts.php:365
+msgid " additional posts"
+msgstr ""
+
+#: ../widgets/featuredposts.php:366
+msgid "These posts will display as title-only."
+msgstr ""
+
+#: ../widgets/featuredposts.php:369
+msgid "Exclude these posts: "
+msgstr ""
+
+#: ../widgets/featuredposts.php:371
+#: ../widgets/featuredposts.php:376
+msgid "Comma-separated list of post ID's."
+msgstr ""
+
+#: ../widgets/featuredposts.php:374
+msgid "Include only these posts: "
+msgstr ""
+
+#: ../widgets/featuredposts.php:379
+msgid "Offset posts: "
+msgstr ""
+
+#: ../widgets/featuredposts.php:381
+msgid "Number of posts to skip before displaying."
+msgstr ""
+
+#: ../widgets/featuredposts.php:390
+msgid "Page: "
+msgstr ""
+
+#: ../widgets/featuredposts.php:392
+msgid "Leave widget title blank to use Page Title instead"
+msgstr ""
+
+#: ../widgets/featuredposts.php:417
+msgid "Before Title"
+msgstr ""
+
+#: ../widgets/featuredposts.php:418
+msgid "After Title"
+msgstr ""
+
+#: ../widgets/featuredposts.php:425
+msgid "Display Page Content"
+msgstr ""
+
+#: ../widgets/rsslinks.php:6
+msgid "RSS links for both posts and comments."
+msgstr ""
+
+#: ../widgets/rsslinks.php:8
+msgid "SB RSS Links"
+msgstr ""
+
+#: ../widgets/rsslinks.php:41
+msgid "Posts RSS feed"
+msgstr ""
+
+#: ../widgets/rsslinks.php:41
+msgid "All posts"
+msgstr ""
+
+#: ../widgets/rsslinks.php:42
+msgid "Comments RSS feed"
+msgstr ""
+
+#: ../widgets/rsslinks.php:42
+msgid "All comments"
+msgstr ""
+
+#: ../widgets/search.php:12
+msgid "A search form for your blog."
+msgstr ""
+
+#: ../widgets/search.php:14
+msgid "SB Search"
+msgstr ""
+
+#: ../widgets/search.php:30
+msgid "Input Text: "
+msgstr ""
+
+#: ../widgets/search.php:34
+msgid "Button Text: "
+msgstr ""
+
+#: ../widgets/slideshows.php:12
+msgid "A widget for displaying your slideshows."
+msgstr ""
+
+#: ../widgets/slideshows.php:14
+msgid "SB Slideshow"
+msgstr ""
+
+#: ../widgets/slideshows.php:29
+msgid "Slideshow: "
+msgstr ""
+
+#: ../widgets/slideshows.php:44
+msgid "Edit Slideshow Settings"
+msgstr ""
+
+#: ../widgets/social.php:13
+msgid "Provide visitors with links to your social media profiles."
+msgstr ""
+
+#: ../widgets/social.php:15
+msgid "SB Social"
+msgstr ""
+
+#: ../widgets/social.php:47
+#: ../widgets/social.php:48
+#: ../widgets/social.php:49
+#: ../widgets/social.php:50
+#: ../widgets/social.php:51
+#: ../widgets/social.php:52
+#: ../widgets/social.php:53
+#: ../widgets/social.php:54
+msgid "Connect on "
+msgstr ""
+
+#: ../widgets/social.php:105
+msgid "Intro text: "
+msgstr ""
+
+#: ../widgets/social.php:109
+msgid "Social Media"
+msgstr ""
+
+#: ../widgets/social.php:110
+msgid "Fill in the links for the Social Media tabs you wish to activate, please include http:// on all links except Twitter."
+msgstr ""
+
+#: ../widgets/social.php:113
+msgid "Display RSS Feed"
+msgstr ""
+
+#: ../widgets/social.php:117
+msgid "Display Comment RSS Feed"
+msgstr ""
+
+#: ../widgets/social.php:120
+msgid "Twitter Username: "
+msgstr ""
+
+#: ../widgets/social.php:125
+msgid "Facebook: "
+msgstr ""
+
+#: ../widgets/social.php:129
+msgid "Delicious: "
+msgstr ""
+
+#: ../widgets/social.php:133
+msgid "Flickr: "
+msgstr ""
+
+#: ../widgets/social.php:137
+msgid "YouTube: "
+msgstr ""
+
+#: ../widgets/social.php:141
+msgid "Vimeo: "
+msgstr ""
+
+#: ../widgets/social.php:145
+msgid "Digg: "
+msgstr ""
+
+#: ../widgets/social.php:149
+msgid "LinkedIn: "
+msgstr ""
+
+#: ../widgets/social.php:154
+msgid "Open links in new window "
+msgstr ""
+
+#: ../widgets/social.php:157
+msgid "Link Display:"
+msgstr ""
+
+#: ../widgets/tagcloud.php:12
+msgid "A configurable Tag Cloud."
+msgstr ""
+
+#: ../widgets/tagcloud.php:14
+msgid "SB Tag Cloud"
+msgstr ""
+
+#: ../widgets/tagcloud.php:36
+msgid "Smallest Size:"
+msgstr ""
+
+#: ../widgets/tagcloud.php:41
+msgid "Largest Size:"
+msgstr ""
+
+#: ../widgets/tagcloud.php:46
+msgid "Unit of Measurement:"
+msgstr ""
+
+#: ../widgets/tagcloud.php:55
+msgid "Number of tags:"
+msgstr ""
+
+#: ../widgets/tagcloud.php:59
+msgid "Format:"
+msgstr ""
+
+#: ../widgets/tagcloud.php:66
+msgid "Separator:"
+msgstr ""
+
+#: ../widgets/tagcloud.php:71
+msgid "Order by:"
+msgstr ""
+
+#: ../widgets/tagcloud.php:78
+msgid "Order:"
+msgstr ""
+
+#: ../widgets/tagcloud.php:86
+msgid "Exclude:"
+msgstr ""
+
+#: ../widgets/tagcloud.php:91
+msgid "Include:"
+msgstr ""
+
+#: ../../attachment.php:19
+#, php-format
+msgid "Full size is %s pixels"
+msgstr ""
+
+#: ../../attachment.php:22
+msgid "Link to full-size image"
+msgstr ""
+
+#: ../../attachment.php:72
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: ../../attachment.php:73
+msgid "Pages:"
+msgstr ""
+
+#: ../../comments.php:8
+msgid "This post is protected. Enter the password to view any comments."
+msgstr ""
+
+#: ../../comments.php:21
+#, php-format
+msgid "<span>%d</span> Comments"
+msgstr ""
+
+#: ../../comments.php:21
+msgid "<span>One</span> Comment"
+msgstr ""
+
+#: ../../comments.php:39
+#, php-format
+msgid "<span>%d</span> Trackbacks"
+msgstr ""
+
+#: ../../comments.php:39
+msgid "<span>One</span> Trackback"
+msgstr ""
+
+#: ../../loop.php:25
+#, php-format
+msgid "Continue Reading %s"
+msgstr ""
+
+#: ../../page-archives.php:22
+msgid "Archives by Category"
+msgstr ""
+
+#: ../../page-archives.php:28
+msgid "Archives by Month"
+msgstr ""
+
+#: ../../page-fullwidth.php:20
+#: ../../page-listcategories.php:20
+#: ../../page-listchildren.php:21
+#: ../../page-tertiarysidebar.php:20
+#: ../../page.php:16
+msgid "Pages: "
+msgstr ""
+
+#: ../../page-sitemap.php:23
+msgid "Pages"
+msgstr ""
+
+#: ../../page-sitemap.php:28
+msgid "Categories"
+msgstr ""
+
+#: ../../search.php:19
+msgid "Nothing Found"
+msgstr ""
+
+#: ../../search.php:21
+msgid "Sorry, but nothing matched your search criteria. Please try again with some different keywords."
+msgstr ""
+
+#: ../../single.php:19
+msgid "Read More <span class=\"meta-nav\">&raquo;</span>"
+msgstr ""
+

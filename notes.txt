@@ -1,0 +1,169 @@
+////////////////////////////////////////////////////////////////////////////////////
+Contents
+////////////////////////////////////////////////////////////////////////////////////
+
+1. TODO
+2. Future Releases
+3. Style Options Notes
+4. New Widgets
+
+////////////////////////////////////////////////////////////////////////////////////
+1. TODO
+////////////////////////////////////////////////////////////////////////////////////
+
+add to showcase: http://realbarbq.com/
+add to showcase: http://brochurebeast.com/
+add to showcase: http://jcconline.net/
+
+////////////////////////////////////////////////////////////////////////////////////
+2. Future Releases
+////////////////////////////////////////////////////////////////////////////////////
+
+##### 2.6
+	add Style Options page ( add_theme_support )
+		- helper function to output CSS for font styles
+		- helper function to output CSS for border styles
+	add new layouts
+		- create layouts from separate parts, join via get_template_part()
+		- all templates use stock widget area hooks (featured, primary, secondary, etc)
+		- layout design should be pre-populated, look like demo with no configuration necessary
+
+##### 2.7
+	add import/export
+	add additional short codes for:
+		post photos
+		lists - changing bullets: arrow, check marks
+		[expires] - for hiding expired content
+	add new widgets (see below)
+	update footer copyright info to use filterable shortcodes!
+	include developer/debug tools
+		turn debug mode on
+		beta updates
+		output diff content in header/footer
+		include options (with user caps) for who can see which option panels
+		include options for which theme features to support
+		include option to minify SB JS/CSS (hook default scripts & styles to pre-processor filter)
+
+##### Future Release
+	? build simple metabox creator for posts & pages based on options api? store options vs custom field
+	? look at integrating HTML5 Boilerplate
+	? add image option for search widget submit button
+	add default styles for gforms (or form elements in general)
+	add controls to Featured Content Widget for content rotation
+	add_theme_support
+		galleriffic
+		encouraged commentary
+		colorbox
+	
+////////////////////////////////////////////////////////////////////////////////////
+3. Style Options Notes
+////////////////////////////////////////////////////////////////////////////////////
+	
+	Page only appears for vanilla install of startbox, child themes can include via add_theme_support('sb-styleoptions')
+		
+		== Basic Options ==
+		Select from preset styles
+		Textarea for inputting custom CSS
+		Uploader for uploading custom stylesheet
+		Checkbox to show/hide advanced option panels (below)
+				
+		== Page Body ==
+			Background
+			Font
+			
+		== Page Wrap ==
+			Background
+			Borders
+		
+		== Header ==
+			Background
+			Full-/Wrap-width
+		
+		== Top Navigation/Bottom Navigation ==
+			Background
+			Borders
+			States (background + foreground colors)
+				Default
+				Hover
+				Current
+				Subnav Default
+				Subnav Hover
+				Subnav Current
+		
+		== Content ==
+			Background
+			Font
+			Borders
+			Headings (h1-h6)
+				Font
+				Background color
+				Borders
+				Inherit options
+			Links
+				Font
+				Background Color
+				Hover Color
+				Hover Background
+			
+		== Sidebars ==
+			Background
+			Font
+			Borders
+			Links
+				Font
+				Background Color
+				Hover Color
+				Hover Background
+			Headings
+				Font
+				Background color
+				Borders
+				Inherit options
+		
+		== Footer ==
+			Background
+			Font
+			Links
+			Headings
+			Borders
+			Full-/Wrap-width (footer only)
+
+		== Forms ==
+			Labels
+				Font
+			Inputs
+				Borders
+				Background color
+				Font
+				Padding
+			Buttons
+				Border
+				Background
+				Font
+				Padding
+				
+////////////////////////////////////////////////////////////////////////////////////
+4. Widgets
+////////////////////////////////////////////////////////////////////////////////////
+
+	Twitter Status
+		specify account
+		specify number of posts
+		specify time format (relative/absolute)
+		toggle to display time
+		toggle to display link to account
+		toggle to display @'s
+	Sidebar Ads
+	Tabbed Content
+		Is own sidebar (?)
+		Is also a widget
+
+////////////////////////////////////////////////////////////////////////////////////
+5. Affiliates
+////////////////////////////////////////////////////////////////////////////////////		
+
+Your application has been reviewed and you are eligible to become a StartBox affiliate.
+However, before you are approved, you must complete and return the W9 tax form linked below:
+www.irs.gov/pub/irs-pdf/fw9.pdf
+If you do not live in the US, you must complete and return the W8 tax form linked below:
+www.irs.gov/pub/irs-pdf/fw8ben.pdf

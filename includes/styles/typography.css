@@ -1,0 +1,169 @@
+/****************************************************************************************************************
+
+	Set default typography based on Blueprint CSS
+	http://code.google.com/p/blueprintcss/
+
+****************************************************************************************************************
+
+Table of Contents
+
+****************************************************************************************************************
+
+0.  Notes
+1.	General Styling
+2. 	Headings
+3.	Text Elements
+4.	Pull Quotes
+
+****************************************************************************************************************
+
+0. Notes
+
+****************************************************************************************************************
+
+Adapt the following for use in your Child Themes when using
+different font-sizes and line-heights
+
+body, input, textarea {
+    font: --px Arial,sans-serif;
+    line-height:--px;
+}
+p, ul, ol, dd, pre {
+    margin-bottom:--px;
+}
+pre, code {
+	font:--px Monaco, monospace;
+	line-height:--px;
+}
+
+All other styles can be overridden--or ignored!--in Child Theme stylesheets
+
+****************************************************************************************************************
+
+1. General Styling
+
+****************************************************************************************************************/
+
+body, input, textarea {
+    color:#000;    
+    font: 12px Arial,sans-serif;
+    line-height:18px;
+}
+
+/****************************************************************************************************************
+
+2. Headings
+
+****************************************************************************************************************/
+
+
+h1,h2,h3,h4,h5,h6 { 
+	font-weight:normal;
+	clear:both;
+}
+
+/****************************************************************************************************************
+
+3. Text elements
+
+****************************************************************************************************************/
+
+
+p {
+    margin-bottom:18px;
+}
+ul {
+	margin: 0 0 18px 2.5em;
+}
+ol {
+	margin: 0 0 18px 2.5em;
+}
+ul {
+	list-style:disc;
+}
+ol {
+	list-style-type: decimal;
+}
+ol ol {
+	list-style:upper-alpha;
+}
+ol ol ol {
+	list-style:lower-roman;
+}
+ol ol ol ol {
+	list-style:lower-alpha;
+}
+ul ul, ol ol, ul ol, ol ul {
+	margin-bottom:0;
+}
+dl	{
+    margin:0 1.5em;
+}
+dt {
+    font-weight:bold;
+}
+dd {
+	margin-bottom:18px;
+}
+strong {
+	font-weight: bold;
+}
+cite, em, i {
+	font-style: italic;
+}
+blockquote {
+	margin: 0 3em;
+}
+blockquote em, blockquote i, blockquote cite {
+	font-style:normal;
+}
+pre {
+	font:13px Monaco, monospace;
+	line-height:18px;
+	margin-bottom:18px;
+}
+code {
+	font:13px Monaco, monospace;
+}
+abbr, acronym {
+  border-bottom:1px dotted #333;
+  cursor: help;
+}
+ins {
+	text-decoration:none;
+}
+sup,
+sub {
+	height: 0;
+	line-height: 1;
+	vertical-align: baseline;
+	position: relative;
+	
+}
+sup {
+	bottom: 1ex;
+}
+sub {
+	top: .5ex;
+}
+
+/****************************************************************************************************************
+
+4. Pull Quotes
+
+****************************************************************************************************************/
+
+blockquote.left {
+	float: left;
+	margin-left:0;
+	margin-right:20px;
+	text-align: right;
+	width: 33%;
+}
+blockquote.right {
+	float: right;
+	margin-left:20px;
+	margin-right:0;
+	text-align: left;
+	width: 33%;
+}
