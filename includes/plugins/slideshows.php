@@ -764,9 +764,9 @@ function sb_slideshow_post_admin_head() {
 					filter_library();
 				});
 				// show/hide filter months on year change
-				function filterMonthToggle( class ) {
-					var class = (class != 'all' ? ', option.y' + class : '');
-					$('select#filter_month option').removeAttr( 'selected' ).removeAttr( 'disabled' ).not('option:first' + class).attr( 'disabled', 'disabled' );					
+				function filterMonthToggle( monthClass ) {
+					var monthClass = (monthClass != 'all' ? ', option.y' + monthClass : '');
+					$('select#filter_month option').removeAttr( 'selected' ).removeAttr( 'disabled' ).not('option:first' + monthClass).attr( 'disabled', 'disabled' );					
 					$('select#filter_month option:first').attr( 'selected', 'selected' );
 				}
 				$('select#filter_year').change(function() {

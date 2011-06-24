@@ -2,7 +2,9 @@
 	* new: added sb_before/after_{sidebar}_aside to appear outside of opening/closing div for given sidebar
 	* changed: moved sb_before/after_{sidebar}_widgets to appear inside of opening/closing div for for given sidebar
 	* fixed: removed extra double quote output at end of sb_post_image_url()
-	* fixed: hooked style.css to wp_enqueue_scripts, instead of template_redirect
+	* fixed: hooked style.css to wp_enqueue_scripts, instead of template_redirect, preventing layout override
+	* fixed: JS bug in Slideshows that prevented admin UI from working in IE, FF5 and Safari
+	* fixed: bug that prevented thumbnails from being disabled via Theme Options
 
 2011.06.12 - version 2.5
 	* new: added new Sidebar manager, create custom sidebars via the Appearance menu

@@ -250,12 +250,13 @@
 		// Post Thumbnails
 		function image_settings($defaults) {
 			$options = get_option( THEME_OPTIONS );
+			
 			( isset($options['post_thumbnail_width']) ? $defaults['width'] = $options['post_thumbnail_width'] : '' );
 			( isset($options['post_thumbnail_height']) ? $defaults['height'] = $options['post_thumbnail_height'] : '' );
 			( isset($options['post_thumbnail_align']) ? $defaults['align'] = $options['post_thumbnail_align'] : '' );
 			( isset($options['post_thumbnail_hide_nophoto']) ? $defaults['hide_nophoto'] = $options['post_thumbnail_hide_nophoto'] : '' );
 			( isset($options['post_thumbnail_use_attachments']) ? $defaults['use_attachments'] = $options['post_thumbnail_use_attachments'] : '' );
-			( isset($options['enable_post_thumbnails']) ? $defaults['disabled'] = $options['enable_post_thumbnails'] : '' );
+			( isset($options['enable_post_thumbnails']) ? $defaults['enabled'] = $options['enable_post_thumbnails'] : '' );
 			
 			return $defaults;
 		}

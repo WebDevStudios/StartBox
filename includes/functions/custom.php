@@ -266,7 +266,7 @@ function sb_get_post_image($image_id = null, $post_id = null, $use_attachments =
  *
  * @param integer $w specify image width in pixels. Default: 200
  * @param integer $h specify image height in pixels. Default: 200
- * @param string $c crop location, values: topleft, topcenter, topright, middleleft, center, middleright, bottomleft, bottomcenter, bottomright. Default: topcenter
+ * @param string $a crop alignment, values: tl, t, tr, l, c, r, bl, b, br. Default: t
  * @param boolean $z zoom and cropped to fill (true) or stretched to fit (false). Default: true
  * @param string|array $atts specify additional attributes for the image tag
  *

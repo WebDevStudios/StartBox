@@ -11,14 +11,6 @@ Contents
 1. TODO
 ////////////////////////////////////////////////////////////////////////////////////
 
-add to showcase: http://realbarbq.com/
-add to showcase: http://brochurebeast.com/
-add to showcase: http://jcconline.net/
-
-////////////////////////////////////////////////////////////////////////////////////
-2. Future Releases
-////////////////////////////////////////////////////////////////////////////////////
-
 ##### 2.6
 	add Style Options page ( add_theme_support )
 		- helper function to output CSS for font styles
@@ -27,6 +19,15 @@ add to showcase: http://jcconline.net/
 		- create layouts from separate parts, join via get_template_part()
 		- all templates use stock widget area hooks (featured, primary, secondary, etc)
 		- layout design should be pre-populated, look like demo with no configuration necessary
+	add Ads widget
+		- add/remove banners on-the-fly
+		- control where banners link
+		- control banner WxH
+		- control banner alignment (left, right, center)
+		
+////////////////////////////////////////////////////////////////////////////////////
+2. Future Releases
+////////////////////////////////////////////////////////////////////////////////////
 
 ##### 2.7
 	add import/export
@@ -153,17 +154,6 @@ add to showcase: http://jcconline.net/
 		toggle to display time
 		toggle to display link to account
 		toggle to display @'s
-	Sidebar Ads
 	Tabbed Content
 		Is own sidebar (?)
 		Is also a widget
-
-////////////////////////////////////////////////////////////////////////////////////
-5. Affiliates
-////////////////////////////////////////////////////////////////////////////////////		
-
-Your application has been reviewed and you are eligible to become a StartBox affiliate.
-However, before you are approved, you must complete and return the W9 tax form linked below:
-www.irs.gov/pub/irs-pdf/fw9.pdf
-If you do not live in the US, you must complete and return the W8 tax form linked below:
-www.irs.gov/pub/irs-pdf/fw8ben.pdf
