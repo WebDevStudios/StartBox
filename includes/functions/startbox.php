@@ -91,8 +91,6 @@ class StartBox {
 		
 	}
 	
-	
-	
 	// Setup the environment and register support for various WP features.
 	public function environment() {
 		
@@ -113,10 +111,6 @@ class StartBox {
 		add_theme_support( 'sb-slideshows' ); // StartBox Slideshows
 		add_theme_support( 'sb-sidebars' ); // StartBox Easy Sidebars
 		add_theme_support( 'sb-widgetlogic' ); // Widget Logic
-		
-		
-		
-		
 		
 		// Add theme support for StartBox Layouts, redefine this list using the filter 'sb_layouts_defaults'
 		$sb_default_layouts = array(
@@ -315,13 +309,18 @@ class StartBox {
 		}
 		
 		// Upgrade to 2.5.1
-		// if ( version_compare( get_option('startbox_version'), '2.5.1', '<') ) {
+		if ( version_compare( get_option('startbox_version'), '2.5.1', '<') ) {
+			update_option( 'startbox_version', '2.5.1' );
+		}
+		
+		// Upgrade to 2.5.2
+		// if ( version_compare( get_option('startbox_version'), '2.5.2', '<') ) {
 		// 	
 		// 	$theme_settings = get_option( THEME_OPTIONS );
 		// 	$new_settings = array();
 		// 	$new_settings = wp_parse_args($new_settings, $theme_settings);
 		// 	update_option( THEME_OPTIONS, $new_settings);
-		// 	update_option( 'startbox_version', '2.5.1' );
+		// 	update_option( 'startbox_version', '2.5.2' );
 		// }
 		
 		// Included hook for other things to do during upgrade
