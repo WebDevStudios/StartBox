@@ -1,4 +1,4 @@
-2011.06.12 - version 2.5.1
+2011.06.24 - version 2.5.1
 	* new: added sb_before/after_{sidebar}_aside to appear outside of opening/closing div for given sidebar
 	* changed: moved sb_before/after_{sidebar}_widgets to appear inside of opening/closing div for for given sidebar
 	* fixed: removed extra double quote output at end of sb_post_image_url()

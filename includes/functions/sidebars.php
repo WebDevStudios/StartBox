@@ -1,16 +1,17 @@
 <?php
 
 /**
- * This is the main SB Sidebars class. You can override this via child theme to alter your own widget markup
+ * This is the main SB Sidebars class. You can extend and override this via child theme to alter your own widget markup
  */
 class SB_Sidebars {
 	
+	// Variable for storing all registered sidebars, don't override this.
 	public $sidebars = array();
 	
 	// Magic method that auto-loads default sidebars and custom sidebars. Don't override this.
 	function SB_Sidebars() {
 		
-		// Add sidebars to the registry
+		// Add all registered sidebars to the registry
 		$this->default_sidebars();
 		$this->custom_sidebars();
 		
@@ -20,38 +21,6 @@ class SB_Sidebars {
 		// Register all the sidebars
 		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 		
-	}
-	
-	// Register Default Sidebars, override this if you'd like to replace the SB defaults with your own
-	function default_sidebars() {
-		$this->register_sidebar( array( 'name' => 'Home Featured', 'id' => 'home_featured', 'description' => __('These widgets will appear above the content on the homepage.', 'startbox'), 'editable' => 0 ) );
-		$this->register_sidebar( array( 'name' => 'Primary Sidebar', 'id' => 'primary_widget_area', 'description' => __('This is the primary sidebar when using two- or three-column layouts.', 'startbox') , 'editable' => 0 ) );
-		$this->register_sidebar( array( 'name' => 'Secondary Sidebar', 'id' => 'secondary_widget_area', 'description' => __('This is the secondary sidebar for three-column layouts.', 'startbox'), 'editable' => 0 ) );
-		if (sb_is_pagetemplate_active('page_tertiarysidebar.php')) { $this->register_sidebar( array( 'name' => 'Tertiary Sidebar', 'id' => 'tertiary_widget_area', 'description' => __('This sidebar replaces Primary Sidebar for the Tertiary page template.', 'startbox'), 'editable' => 0 ) ); }
-		$this->register_sidebar( array( 'name' => 'Footer Aside 1', 'id' => 'footer_widget_area_1', 'description' => __('This is the first footer column. Use this before using any other footer columns.', 'startbox'), 'editable' => 0 ) );
-		$this->register_sidebar( array( 'name' => 'Footer Aside 2', 'id' => 'footer_widget_area_2', 'description' => __('This is the second footer column. Only use this after using Footer Aside 1.', 'startbox'), 'editable' => 0 ) );
-		$this->register_sidebar( array( 'name' => 'Footer Aside 3', 'id' => 'footer_widget_area_3', 'description' => __('This is the third footer column. Only use this after using Footer Aside 2.', 'startbox') , 'editable' => 0 ) );
-		$this->register_sidebar( array( 'name' => 'Footer Aside 4', 'id' => 'footer_widget_area_4', 'description' => __('This is the last footer column. Only use this after using all other columns.', 'startbox'), 'editable' => 0 ) );
-	}
-	
-	// Register Custom Sidebars, don't override this
-	function custom_sidebars() {
-
-		$get_posts = new WP_Query( array(
-			'order' => 'ASC',
-			'orderby' => 'date',
-			'post_type' => 'sidebar',
-			'posts_per_page' => 100
-		));
-
-		while ( $get_posts->have_posts() ) : $get_posts->the_post();
-			global $post;
-			$name = get_the_title();
-			$id = $post->post_name;
-			$description = get_post_meta($post->ID, '_sidebar_description', true);
-			$this->register_sidebar( array( 'name' => $name, 'id' => $id, 'description' => $description, 'editable' => 1 ) );
-		endwhile;
-
 	}
 	
 	// Activate all sidebars, override this to customize sidebar markup
@@ -76,6 +45,47 @@ class SB_Sidebars {
 
 		}
 	}
+	
+	/**
+	 * Registers all default sidebars (don't override this)
+	 *
+	 * @since StartBox 2.5
+	 */
+	function default_sidebars() {
+		$this->register_sidebar( array( 'name' => 'Home Featured', 'id' => 'home_featured', 'description' => __('These widgets will appear above the content on the homepage.', 'startbox'), 'editable' => 0 ) );
+		$this->register_sidebar( array( 'name' => 'Primary Sidebar', 'id' => 'primary_widget_area', 'description' => __('This is the primary sidebar when using two- or three-column layouts.', 'startbox') , 'editable' => 0 ) );
+		$this->register_sidebar( array( 'name' => 'Secondary Sidebar', 'id' => 'secondary_widget_area', 'description' => __('This is the secondary sidebar for three-column layouts.', 'startbox'), 'editable' => 0 ) );
+		if (sb_is_pagetemplate_active('page_tertiarysidebar.php')) { $this->register_sidebar( array( 'name' => 'Tertiary Sidebar', 'id' => 'tertiary_widget_area', 'description' => __('This sidebar replaces Primary Sidebar for the Tertiary page template.', 'startbox'), 'editable' => 0 ) ); }
+		$this->register_sidebar( array( 'name' => 'Footer Aside 1', 'id' => 'footer_widget_area_1', 'description' => __('This is the first footer column. Use this before using any other footer columns.', 'startbox'), 'editable' => 0 ) );
+		$this->register_sidebar( array( 'name' => 'Footer Aside 2', 'id' => 'footer_widget_area_2', 'description' => __('This is the second footer column. Only use this after using Footer Aside 1.', 'startbox'), 'editable' => 0 ) );
+		$this->register_sidebar( array( 'name' => 'Footer Aside 3', 'id' => 'footer_widget_area_3', 'description' => __('This is the third footer column. Only use this after using Footer Aside 2.', 'startbox') , 'editable' => 0 ) );
+		$this->register_sidebar( array( 'name' => 'Footer Aside 4', 'id' => 'footer_widget_area_4', 'description' => __('This is the last footer column. Only use this after using all other columns.', 'startbox'), 'editable' => 0 ) );
+	}
+	
+	/**
+	 * Registers all custom sidebars (don't override this)
+	 *
+	 * @since StartBox 2.5
+	 */
+	function custom_sidebars() {
+
+		$get_posts = new WP_Query( array(
+			'order' => 'ASC',
+			'orderby' => 'date',
+			'post_type' => 'sidebar',
+			'posts_per_page' => 100
+		));
+
+		while ( $get_posts->have_posts() ) : $get_posts->the_post();
+			global $post;
+			$name = get_the_title();
+			$id = $post->post_name;
+			$description = get_post_meta($post->ID, '_sidebar_description', true);
+			$this->register_sidebar( array( 'name' => $name, 'id' => $id, 'description' => $description, 'editable' => 1 ) );
+		endwhile;
+
+	}
+	
 	
 	/**
 	 * Register a sidebar (don't override this)
@@ -150,8 +160,8 @@ class SB_Sidebars {
 	}
 	
 	/**
-	 * Loop through all custom sidebars, store them as a multi-deminsional
-	 * array for each post type and taxonomy. Uses transients to reduce queries.
+	 * Loop through all custom sidebars, store them as a multi-deminsional array
+	 * for each post type and taxonomy. Uses transients to reduce queries. (don't override this)
 	 *
 	 * @since StartBox 2.5
 	 * @param string $return the array to return (accepts 'post_type' and 'taxonomy')
@@ -222,7 +232,13 @@ class SB_Sidebars {
 			return $tax;
 	}
 	
-	// Check to see if a custom sidebar is attached to a given location and override the default
+	/**
+	 * Check if a custom sidebar exists to replace the default for a given location. Don't override this.
+	 *
+	 * @since StartBox 2.5
+	 * @param string $location the registered location to check
+	 * @param string $sidebar the sidebar to (maybe) replace
+	 */
 	function maybe_replace_current_sidebar( $location, $sidebar ) {
 		global $post;
 		$post_type = (array)$this->get_custom_sidebars('post_type');
@@ -247,6 +263,7 @@ class SB_Sidebars {
 		// Finally, return the given sidebar
 		return $sidebar;
 	}
+	
 }
 
 // Initialize the SB_Sidebars class, store it to the global $sb_sidebars variable
@@ -270,7 +287,7 @@ function sb_do_sidebar( $location = null, $sidebar = null, $classes = null ) {
 
 
 /**
- * Check for widgets in widget-ready areas to confirm if sidebar is active
+ * Check for widgets in widget-ready areas to confirm if sidebar is active.
  *
  * @since StartBox 2.3.6
  */
