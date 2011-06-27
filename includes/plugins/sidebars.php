@@ -146,7 +146,7 @@ function sb_sidebars_select_meta_box() {
 	
 	// Loop through all registered sidebars, add them to the list
 	foreach ( $sb_sidebars->sidebars as $sidebar => $info ) {
-		$output .= '<option value="' . $sidebar . '"' . selected( $selected, $sidebar, false) . ' >' . $info['name'] . '</option>';
+		if ( $info['editable'] == 1 ) $output .= '<option value="' . $sidebar . '"' . selected( $selected, $sidebar, false) . ' >' . $info['name'] . '</option>';
 	}
 	$output .= '</select>';
 	
@@ -222,6 +222,7 @@ function sb_sidebars_post_type_meta_box( $post, $post_type ) {
 					$posts = $get_posts->query( $args );
 					if ( $get_posts->post_count ) {
 						$output = '<li><label><input type="checkbox" ' . checked( in_array( 'all-' . $post_type['args']->labels->name, $selected), true, false ) . ' name="post[all-' . $post_type['args']->labels->name .']" value="true"/> All ' . $post_type['args']->labels->name . ' (includes all future ' . $post_type['args']->labels->name . ')</label></li>';
+						if ( $post_type['args']->name == 'page' ) { $output .= '<li><label><input type="checkbox" ' . checked( in_array( 'Home', $selected), true, false ) . ' name="post[Home]" value="true"/>Home</label></li>'; }
 						while ( $get_posts->have_posts() ) : $get_posts->the_post();
 							$output .= '<li>';
 							$output .= '<label>';

@@ -1,3 +1,7 @@
+2011.06.26 - version 2.5.2
+	* new: custom sidebars can now be set to appear on just the homepage
+	* new: sb_register_sidebar helper function for easily registering new sidebar within theme/plugin
+	
 2011.06.24 - version 2.5.1
 	* new: added sb_before/after_{sidebar}_aside to appear outside of opening/closing div for given sidebar
 	* changed: moved sb_before/after_{sidebar}_widgets to appear inside of opening/closing div for for given sidebar

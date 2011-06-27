@@ -53,13 +53,13 @@ class SB_Sidebars {
 	 */
 	function default_sidebars() {
 		$this->register_sidebar( array( 'name' => 'Home Featured', 'id' => 'home_featured', 'description' => __('These widgets will appear above the content on the homepage.', 'startbox'), 'editable' => 0 ) );
-		$this->register_sidebar( array( 'name' => 'Primary Sidebar', 'id' => 'primary_widget_area', 'description' => __('This is the primary sidebar when using two- or three-column layouts.', 'startbox') , 'editable' => 0 ) );
-		$this->register_sidebar( array( 'name' => 'Secondary Sidebar', 'id' => 'secondary_widget_area', 'description' => __('This is the secondary sidebar for three-column layouts.', 'startbox'), 'editable' => 0 ) );
-		if (sb_is_pagetemplate_active('page_tertiarysidebar.php')) { $this->register_sidebar( array( 'name' => 'Tertiary Sidebar', 'id' => 'tertiary_widget_area', 'description' => __('This sidebar replaces Primary Sidebar for the Tertiary page template.', 'startbox'), 'editable' => 0 ) ); }
-		$this->register_sidebar( array( 'name' => 'Footer Aside 1', 'id' => 'footer_widget_area_1', 'description' => __('This is the first footer column. Use this before using any other footer columns.', 'startbox'), 'editable' => 0 ) );
-		$this->register_sidebar( array( 'name' => 'Footer Aside 2', 'id' => 'footer_widget_area_2', 'description' => __('This is the second footer column. Only use this after using Footer Aside 1.', 'startbox'), 'editable' => 0 ) );
-		$this->register_sidebar( array( 'name' => 'Footer Aside 3', 'id' => 'footer_widget_area_3', 'description' => __('This is the third footer column. Only use this after using Footer Aside 2.', 'startbox') , 'editable' => 0 ) );
-		$this->register_sidebar( array( 'name' => 'Footer Aside 4', 'id' => 'footer_widget_area_4', 'description' => __('This is the last footer column. Only use this after using all other columns.', 'startbox'), 'editable' => 0 ) );
+		$this->register_sidebar( array( 'name' => 'Primary Sidebar', 'id' => 'primary_widget_area', 'description' => __('This is the primary sidebar when using two- or three-column layouts.', 'startbox') , 'editable' => 1 ) );
+		$this->register_sidebar( array( 'name' => 'Secondary Sidebar', 'id' => 'secondary_widget_area', 'description' => __('This is the secondary sidebar for three-column layouts.', 'startbox'), 'editable' => 1 ) );
+		if (sb_is_pagetemplate_active('page_tertiarysidebar.php')) { $this->register_sidebar( array( 'name' => 'Tertiary Sidebar', 'id' => 'tertiary_widget_area', 'description' => __('This sidebar replaces Primary Sidebar for the Tertiary page template.', 'startbox'), 'editable' => 1 ) ); }
+		$this->register_sidebar( array( 'name' => 'Footer Aside 1', 'id' => 'footer_widget_area_1', 'description' => __('This is the first footer column. Use this before using any other footer columns.', 'startbox'), 'editable' => 1 ) );
+		$this->register_sidebar( array( 'name' => 'Footer Aside 2', 'id' => 'footer_widget_area_2', 'description' => __('This is the second footer column. Only use this after using Footer Aside 1.', 'startbox'), 'editable' => 1 ) );
+		$this->register_sidebar( array( 'name' => 'Footer Aside 3', 'id' => 'footer_widget_area_3', 'description' => __('This is the third footer column. Only use this after using Footer Aside 2.', 'startbox') , 'editable' => 1 ) );
+		$this->register_sidebar( array( 'name' => 'Footer Aside 4', 'id' => 'footer_widget_area_4', 'description' => __('This is the last footer column. Only use this after using all other columns.', 'startbox'), 'editable' => 1 ) );
 	}
 	
 	/**
@@ -81,7 +81,7 @@ class SB_Sidebars {
 			$name = get_the_title();
 			$id = $post->post_name;
 			$description = get_post_meta($post->ID, '_sidebar_description', true);
-			$this->register_sidebar( array( 'name' => $name, 'id' => $id, 'description' => $description, 'editable' => 1 ) );
+			$this->register_sidebar( array( 'name' => $name, 'id' => $id, 'description' => $description, 'editable' => 0 ) );
 		endwhile;
 
 	}
@@ -245,7 +245,8 @@ class SB_Sidebars {
 		$tax = (array)$this->get_custom_sidebars('taxonomy');
 		
 		// Set the ID for the page/post to retrive. If a sidebar is set for all- Pages, Posts, Categories or Tags use it instead.
-		if ( is_single() && array_key_exists( 'all-Posts', $post_type ) ) { $pid = 'all-Posts'; }
+		if ( is_front_page() && array_key_exists( 'Home', $post_type ) ) { $pid = 'Home'; }
+		elseif ( is_single() && array_key_exists( 'all-Posts', $post_type ) ) { $pid = 'all-Posts'; }
 		elseif ( is_page() && array_key_exists( 'all-Pages', $post_type) ) { $pid = 'all-Pages'; }
 		elseif ( is_category() && array_key_exists( 'all-category', $tax) ) { $pid = 'all-category'; }
 		elseif ( is_tag() && array_key_exists( 'all-tag', $tax) ) { $pid = 'all-tag'; }
@@ -254,7 +255,9 @@ class SB_Sidebars {
 		else { $pid = $post->ID; }
 		
 		// Confirm which sidebar to output based on current front-end view
-		if ( is_singular() && array_key_exists( $pid, $post_type ) && $sidebar == $post_type[$pid]['location'] ) {
+		if ( is_front_page() && array_key_exists( $pid, $post_type ) && $sidebar == $post_type[$pid]['location'] ) {
+			$sidebar = $post_type[$pid]['sidebar'];
+		} elseif ( is_singular() && array_key_exists( $pid, $post_type ) && $sidebar == $post_type[$pid]['location'] ) {
 			$sidebar = $post_type[$pid]['sidebar'];
 		} elseif ( ( is_category() || is_tag() ) && array_key_exists( $pid, $tax ) && $sidebar == $tax[$pid]['location']) {
 			$sidebar = $tax[$pid]['sidebar'];
@@ -269,6 +272,22 @@ class SB_Sidebars {
 // Initialize the SB_Sidebars class, store it to the global $sb_sidebars variable
 global $sb_sidebars;
 $sb_sidebars = new SB_Sidebars;
+
+
+/**
+ * Wrapper Function for SB_Sidebars::register_sidebar()
+ *
+ * @since StartBox 2.5.2
+ * 
+ * @param string $name the display name for this sidebar
+ * @param string $id the unique ID for this sidebar
+ * @param string $description a short description for this sidebar
+ * @param boolean $editable if true this sidebar can be overridden via custom sidebars (Default: false)
+ */
+function sb_register_sidebar( $name = null, $id = null, $description = null, $editable = 0 ) {
+	global $sb_sidebars;
+	$sb_sidebars->register_sidebar( array( 'name' => $name, 'id' => $id, 'description' => $description, 'editable' => $editable ) );
+}
 
 
 /**

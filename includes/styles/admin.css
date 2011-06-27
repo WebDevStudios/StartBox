@@ -101,6 +101,6 @@ p.submit { margin: 0 0 10px 0; }
 /* Layout Options */
 .layout-container { float:left; margin-right:5px; margin-bottom:10px; }
 .layout-container input { display:none; }
-.layout-container img { padding:5px; border:1px solid #fff; opacity: 0.5; }
+.layout-container img { padding:5px; border:0px solid #fff; opacity: 0.5; }
 .layout-container img:hover { opacity:1.0; }
-.layout-container input:checked + img { border:1px solid #ddd; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; opacity:1; }
+.layout-container input:checked + img { background:#fff; border:1px solid #ddd; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; opacity:1; }
