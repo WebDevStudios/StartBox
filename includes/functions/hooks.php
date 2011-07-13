@@ -192,6 +192,8 @@ function sb_default_page_title() {
 		$content .= sprintf(__('<span>Yearly Archives:</span> %s', 'startbox'), get_the_time('Y'));
 	} elseif (is_404()) {
 		$content .= __('404 - File Not Found', 'startbox');
+	} elseif (is_post_type_archive()) {
+		$content .= '<span>' . __('Content Archives:', 'startbox') . '</span> ' . post_type_archive_title( '', false );
 	} elseif (isset($_GET['paged']) && !empty($_GET['paged'])) {
 		$content .= __('Blog Archives', 'startbox');
 	}

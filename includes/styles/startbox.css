@@ -751,6 +751,9 @@ div#footer, #wp_footer {
 #admin_links li {
 	display:inline;
 }
+#admin_links li.meta-sep {
+	margin:0 5px;
+}
 
 /****************************************************************************************************************
 

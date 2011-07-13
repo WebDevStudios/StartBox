@@ -56,17 +56,18 @@
 							'label'		=> __( 'Enable Admin Links', 'startbox' ),
 							'default'	=> 'true'
 						),
+					'enable_rtt' => array(
+							'type'		=> 'checkbox',
+							'label'		=> __( 'Enable Return to Top link', 'startbox' ),
+							'default'	=> 'true'
+						),
 					'footer_text' => array(
 							'type'		=> 'textarea',
 							'sanitize'	=> array( 'allowed_html' => array('a' => array('href' => array(),'title' => array()),'br' => array(),'em' => array(),'strong' => array(), 'div' => array(), 'span' => array(), 'ul' => array(), 'ol' => array(), 'li' => array() ) ),
 							'label'		=> __( 'Enter any additional footer text below:', 'startbox'),
 							'desc'		=> __( 'Full HTML and Shortcodes are allowed.', 'startbox' )
-						),
-					'enable_rtt' => array(
-							'type'		=> 'checkbox',
-							'label'		=> __( 'Enable Return to Top link', 'startbox' ),
-							'default'	=> 'true'
 						)
+					
 				);
 			parent::__construct();
 		}
@@ -104,26 +105,50 @@
 
 		// Add Admin links to footer
 		function admin() {
-			$home = home_url();
-			if ( sb_get_option( 'enable_admin' ) ) { ?>
-				<div id="admin_links" class="fine">
-					<?php global $user_ID, $user_identity, $user_level ?>
-					<?php if ( $user_ID ) { ?>
-						<span id="login_identity">Logged in as <strong><?php echo $user_identity ?></strong>.</span>
-						<ul>
-							<li><a href="<?php echo $home; ?>/wp-admin/">Admin Dashboard</a></li>
-							<li class="meta-sep">|</li>
-							<li><a href="<?php echo $home; ?>/wp-admin/widgets.php">Widgets</a></li>
-							<li class="meta-sep">|</li>
-							<li><a href="<?php echo $home; ?>/wp-admin/themes.php?page=sb_admin">Theme Options</a></li>
-							<li class="meta-sep">|</li>
-							<li><a href="<?php echo $home; ?>/wp-login.php?action=logout&amp;redirect_to=<?php echo $home; ?>">Logout</a></li>
-						</ul>
-					<?php } else { ?>
-						<a href="<?php echo $home; ?>/wp-admin/">Admin Login</a>
-					<?php } ?>
-				</div> <!-- #admin_links -->
-			<?php }
+			if ( sb_get_option( 'enable_admin' ) ) { 
+				
+				// Grab global user data
+				global $user_ID, $user_identity;
+				
+				// Our default links, can be overriden using the sb_footer_admin_links filter
+				$loggedin_defaults = array(
+					'Admin Dashboard'	=> admin_url(),
+					'Widgets'			=> admin_url('widgets.php'),
+					'Theme Options'		=> admin_url('themes.php?page=sb_admin'),
+					'Logout'			=> wp_logout_url( get_permalink() )
+				);
+				$loggedout_defaults = array(
+					'Admin Dashboard'	=> admin_url()
+				);
+				
+				// Filter the links arrays so they can be overridden
+				$loggedin_links = apply_filters( 'sb_footer_admin_loggedin_links', $loggedin_defaults );
+				$loggedout_links = apply_filters( 'sb_footer_admin_loggedout_links', $loggedout_defaults );
+				$separator = apply_filters( 'sb_footer_admin_links_separator', '<li class="meta-sep">|</li>' );
+				$links = array();
+				$output = '';
+				
+				// If the user is logged in, use the logged in links, else use the logged out links
+				if ($user_ID) { $links_array = $loggedin_links; }
+				else { $links_array = $loggedout_links; }
+				
+				// Loop through all the links and store them in an array with proper HTML
+				foreach( $links_array as $title => $url ) {
+					$links[] = '<li><a href="' . esc_url( $url ) . '">' . esc_html( $title ) . '</a></li>';
+				}
+				
+				// Begin output
+				$output .= '<div id="admin_links" class="fine">';
+				if ($user_ID) { $output .= '<span id="login_identity">Logged in as <strong>' . $user_identity . '</strong>.</span>'; }
+				$output .= '<ul>';
+				$output .= implode( $separator, $links );
+				$output .= '</ul>';
+				$output .= '</div> <!-- #admin_links -->';
+				
+				// Filter the whole thing, incase someone wants to replace it entirely
+				echo apply_filters( 'sb_footer_admin', $output );
+
+			}
 		}
 		
 		function hooks() {

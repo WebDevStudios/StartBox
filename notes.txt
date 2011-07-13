@@ -11,7 +11,6 @@ Contents
 1. TODO
 ////////////////////////////////////////////////////////////////////////////////////
 
-##### 2.6
 	add Style Options page ( add_theme_support )
 		- helper function to output CSS for font styles
 		- helper function to output CSS for border styles
@@ -20,10 +19,15 @@ Contents
 		- all templates use stock widget area hooks (featured, primary, secondary, etc)
 		- layout design should be pre-populated, look like demo with no configuration necessary
 	add Ads widget
-		- add/remove banners on-the-fly
-		- control where banners link
-		- control banner WxH
-		- control banner alignment (left, right, center)
+		- adWidget Title
+		Banner WxH
+		------
+		Text
+		Image URL (uploader?)
+		Link URL
+		Add/Remove
+		------
+		add/remove banners as needed
 		
 ////////////////////////////////////////////////////////////////////////////////////
 2. Future Releases
@@ -55,6 +59,7 @@ Contents
 		galleriffic
 		encouraged commentary
 		colorbox
+	filter admin links
 	
 ////////////////////////////////////////////////////////////////////////////////////
 3. Style Options Notes

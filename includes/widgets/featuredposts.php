@@ -1,8 +1,6 @@
 <?php
 function load_widget_sb_featured_content() { // Widget: Featured Content
 	register_widget('sb_featured_content_widget');
-	// unregister_widget('WP_Widget_Recent_Posts'); // We're being StartBox-specific; remove WP default
-	if (is_admin()) wp_enqueue_script( 'sb-widgets', SCRIPTS_URL . '/widgets.js', array('jquery') );
 }
 add_action( 'widgets_init', 'load_widget_sb_featured_content', 0 );
 

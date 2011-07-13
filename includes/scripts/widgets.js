@@ -24,5 +24,15 @@ $(document).ready(function(){
 	    ]();
 	});
 	
+	///// Ads Widget ////////////////////////////////////////////////////////////////////////
+	
+	// Add link to add another banner
+	$('a.add').click(function() { 
+		$('<li><p><label for="text">Link Text:</label> <input name="text" type="text" value="" class="text" /> <p><label for="url">Link URL:</label> <input name="url" type="text" value="" class="url" /></p> <p><label for="image">Image URL:</label> <input type="text" value="" class="ads" /></p> <a href="#nogo" class="remove">Remove</a></li>').appendTo($(this).prev('ul.ads')); // append (add) a new input to the form.
+	});
+
+	// Remove link to remove specific banner
+	$('a.remove').live("click", function() { $(this).parent('li').remove(); });
+	
 });
 })(jQuery);

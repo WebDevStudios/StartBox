@@ -289,6 +289,18 @@ function sb_register_sidebar( $name = null, $id = null, $description = null, $ed
 	$sb_sidebars->register_sidebar( array( 'name' => $name, 'id' => $id, 'description' => $description, 'editable' => $editable ) );
 }
 
+/**
+ * Wrapper Function for SB_Sidebars::unregister_sidebar()
+ *
+ * @since StartBox 2.5.2
+ * 
+ * @param string $id the ID of the sidebar to unregister
+ */
+function sb_unregister_sidebar( $id ) {
+	global $sb_sidebars;
+	$sb_sidebars->unregister_sidebar( $id );
+}
+
 
 /**
  * Wrapper Function for SB_Sidebars::do_sidebar()
@@ -303,6 +315,7 @@ function sb_do_sidebar( $location = null, $sidebar = null, $classes = null ) {
 	global $sb_sidebars;
 	$sb_sidebars->do_sidebar( $location, $sidebar, $classes );
 }
+
 
 
 /**

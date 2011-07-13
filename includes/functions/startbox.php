@@ -164,7 +164,7 @@ class StartBox {
 	
 	// Setup default scripts and styles
 	public function sb_default_scripts() {
-		if (is_admin()) return;
+		if (is_admin()) { return; }
 		if ( is_singular() ) wp_enqueue_style( 'print' );
 		if ( is_singular() ) wp_enqueue_script( 'comment-reply' );
 		wp_enqueue_style( 'shortcodes' );
