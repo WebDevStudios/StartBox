@@ -16,7 +16,7 @@
 				'tagline' => array(
 						'type'		=> 'checkbox',
 						'label'		=> __( 'Display Site Tagline', 'startbox' ),
-						'desc'		=> sprintf( __( 'You can set your site Tagline in %1$sSettings > General%2$s.', 'startbox' ), '<a href="options-general.php">', '</a>' )
+						'desc'		=> sprintf( __( 'You can set your site Tagline in %1$sSettings > General%2$s.', 'startbox' ), '<a href="' . admin_url('options-general.php') . '">', '</a>' )
 					),
 				'div2' => array( 'type' => 'divider' ),
 				'favicon' => array(

@@ -43,7 +43,7 @@ class sb_slideshow_widget extends WP_Widget {
 			?>
 		</p>
 		<p>
-			<a href="edit.php?post_type=slideshow"><?php _e( 'Edit Slideshow Settings', 'startbox' ); ?></a>
+			<a href="<?php echo admin_url( 'edit.php?post_type=slideshow' ); ?>"><?php _e( 'Edit Slideshow Settings', 'startbox' ); ?></a>
 		</p>
 	<?php
 	}

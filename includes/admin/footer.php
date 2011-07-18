@@ -82,7 +82,7 @@
 		// Add Copyright, Design Credit and add'l info to footer
 		function copyright() {
 			$site_name = sb_get_option( 'site_name' );
-			$site_url = sb_get_option( 'site_url');
+			$site_url = sb_get_option( 'site_url' );
 			$sb_copyright = ($site_url) ? '<a href="' . $site_url . '">' . $site_name . '</a>' : $site_name;
 			$design_credit = THEME_NAME . ' for <a href="http://wpstartbox.com" title="StartBox Theme Framework for WordPress" target="_blank" class="link-designer">StartBox</a>.';
 			$copyright = sb_get_option( 'enable_copyright' );

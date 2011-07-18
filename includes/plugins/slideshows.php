@@ -28,6 +28,7 @@ if (!current_theme_supports( 'sb-slideshows' )) return;
 
 // Define Globals
 global $wpdb, $sb_slideshow_slides, $sb_slideshow_used_ids, $sb_slideshow_footer_javascript, $sb_slideshow_interface;
+
 $sb_slideshow_slides = $sb_slideshow_used_ids = array();
 $sb_slideshow_footer_javascript = '';
 $sb_slideshow_interface = apply_filters( 'sb_slideshow_interface', array( 
@@ -35,6 +36,9 @@ $sb_slideshow_interface = apply_filters( 'sb_slideshow_interface', array(
 	'controls' 		=> array( 
 						'arrows' 		=> __( 'Show Overlay Arrows', 'startbox' ), 
 						'navigation' 	=> __( 'Show Bottom Navigation', 'startbox' ) ),
+	'ssorris' 		=> array( 
+						'slideshow_on' 		=> __('Slideshow', 'startbox'), 
+						'slideshow_off' 	=> __('Random Image', 'startbox')  ),
 	'sizes' 			=> array( 
 						'max' 	=> __( 'Largest Image', 'startbox' ), 
 						'min' 	=> __( 'Smallest Image', 'startbox' ), 
@@ -246,7 +250,16 @@ function sb_slideshow_options_meta() {
 	$control = get_post_meta( $post->ID, 'control', true );
 	$size = get_post_meta( $post->ID, 'size', true );
 	$size_custom = get_post_meta( $post->ID, 'size_custom', true );
+	$ssorri = get_post_meta($post->ID, 'ssorri', true);
 ?>
+	
+    <p><strong><?php _e('Shortcode Output', 'startbox'); ?></strong></p>
+    <p><?php _e('Should slides be used for a slideshow or single, random image?', 'startbox'); ?></p>
+    <p id="slideshow_radio_buttons">
+    <?php //foreach($slideshow_or_random_image as $key => $value) { echo sb_slideshow_radio($key, $value, 'ssorri', ($ssorri == '' ? 'slideshow_on' : $ssorri)); } ?>
+    <?php foreach ($sb_slideshow_interface['ssorris'] as $key => $value) echo sb_slideshow_radio( $key, $value, 'ssorri', ($ssorri == '' ? 'slideshow_on' : $ssorri) ); ?>
+    </p>
+    
 	<p><strong><?php _e( 'Slideshow Size', 'startbox' ); ?></strong></p>
 	<p id="size_radio_buttons">
 	<?php foreach ($sb_slideshow_interface['sizes'] as $key => $value) echo sb_slideshow_radio( $key, $value, 'size', ($size == '' ? 'min' : $size) ); ?>
@@ -259,7 +272,7 @@ function sb_slideshow_options_meta() {
 			value="<?php echo $size_custom['height']; ?>" /> <code>px</code>
 	</span>
 	</p>
-	
+	<div id="slideshow_on_options">
 	<p><strong><?php _e( 'Pause Timer', 'startbox' ); ?></strong></p>
 	<p><?php _e( 'How long, in miliseconds, to pause on a slide before transitioning.', 'startbox' ); ?></p>
 	<p><input type="text" size="4" name="sb_pause" 
@@ -287,6 +300,7 @@ function sb_slideshow_options_meta() {
 		<p><strong><?php _e( 'Show', 'startbox' ); ?></strong></p>
 		<p><?php foreach ($sb_slideshow_interface['controls'] as $key => $value) 
 			echo sb_slideshow_checkbox( $key, $value, 'control', ($control == '' ? $key : $control) ); ?></p>
+        </div>    
 <?php
 	endif;
 }
@@ -436,6 +450,7 @@ function sb_slideshow_save( $post_id ) {
 	}
 	
 	// update post meta records for all of the options
+	update_post_meta($post_id, 'ssorri', $_POST['sb_ssorri']);
 	update_post_meta( $post_id, 'effect', $_POST['sb_effect'] );
 	update_post_meta( $post_id, 'control', $_POST['sb_control'] );
 	update_post_meta( $post_id, 'pause', (is_numeric( $_POST['sb_pause'] ) ? $_POST['sb_pause'] : $sb_slideshow_interface['pause']) );
@@ -457,6 +472,7 @@ function sb_slideshow_shortcode( $atts, $content = NULL ) {
 	extract( shortcode_atts( array( 'id' => 0 ), $atts ) );
 	
 	// get various options stored as post meta records
+	$ssorri = get_post_meta($id, 'ssorri', true);
 	$effect = get_post_meta( $id, 'effect', true );
 	$control = get_post_meta( $id, 'control', true );
 	if (!$control) $control = array(); // so the in_array() below doesn't error out
@@ -477,6 +493,8 @@ function sb_slideshow_shortcode( $atts, $content = NULL ) {
 			$dimensions = get_post_meta( $id, 'size_min', true );
 		break;
 	}
+	
+	if($ssorri == 'slideshow_on'){
 	
 	// get and sort all slides stored as post meta records
 	$slides = get_post_meta( $id, 'slide', false ); // set single (third parameter) to false to pull ALL records with key "slide"
@@ -514,6 +532,25 @@ function sb_slideshow_shortcode( $atts, $content = NULL ) {
 	$result .= '</div></div>';
 	
 	return apply_filters( 'sb_slideshow_result', $result, $id, $dimensions, $control, $slides ); // finally, output the resulting code
+	
+	} else {
+		$slides = get_post_meta($id, 'slide', false);
+	//usort($slides, 'sb_slide_sort'); // order the elements of the array
+	$total = count($slides); 
+	$random = (mt_rand()%$total);
+	$slide = $slides[$random];
+	
+	$result = '';
+	$result .= '<div class="slider_wrapper" style="width:' . $dimensions['width'] . 'px">';
+	$result .= sb_post_image( $dimensions['width'], $dimensions['height'], null, 1, array( 'image_id' => $slide['attachment_id'], 'title' => strip_tags($slide['caption']), 'alt' => strip_tags($slide['caption']), 'echo' => false ) );
+	
+	$result .= '<span class="slide_caption">'.$slide['caption'].'</span>';
+	$result .= '</div>';
+	
+	$result .= '';
+	
+	return $result;
+	}
 }
 add_shortcode( 'slideshow', 'sb_slideshow_shortcode' );
 
@@ -916,6 +953,16 @@ function sb_slideshow_post_admin_head() {
 				});
 				if( $('#size_radio_buttons input[id="size_custom"]').is(':checked') )
 					$('#custom_size').show(); // initial custom size show/hide
+					
+				// slideshow options view 
+				$('#slideshow_radio_buttons input[type="radio"]').change(function() {
+					if($(this).val() == 'slideshow_on')
+						$('#slideshow_on_options').show();
+					else
+						$('#slideshow_on_options').hide();
+				});
+				if( $('#slideshow_radio_buttons input[id="ssorri_slideshow_off"]').is(':checked') )
+					$('#slideshow_on_options').hide();	
 				
 				// slideshow title is required
 				$('input#publish, input#save-post, a#post-preview').mousedown(function(e) {
@@ -927,6 +974,7 @@ function sb_slideshow_post_admin_head() {
 					}
 				});
 				
+
 				// clear default link
 				$('input.slide-link').live('focus', function() {
 					if ($(this).val() == '<?php echo $sb_slideshow_interface['link_text']; ?>') $(this).val( '' );

@@ -146,15 +146,15 @@ class SB_Sidebars {
 		// If the sidebar has widgets, or an action attached to it, commence output
 		if ( is_sidebar_active($sidebar) || has_action("sb_no_{$sidebar}_widgets") ) { ?>
 
-			<?php do_action( "sb_before_{$location}_aside" ); ?>
+			<?php do_action( "sb_before_{$location}" ); ?>
 			<div id="<?php echo $location; ?>" class="aside <?php echo $location; ?>-aside<?php if ($classes) { echo ' ' . $classes; }?>">
 				<?php do_action( "sb_before_{$location}_widgets" ); ?>
 				<ul class="xoxo">
-					<?php if ( !dynamic_sidebar($sidebar) ) { do_action( "sb_no_{$sidebar}_widgets"); }?>
+					<?php if ( !dynamic_sidebar($sidebar) ) { do_action( "sb_no_{$sidebar}_widgets" ); }?>
 				</ul>
 				<?php do_action( "sb_after_{$location}_widgets" ); ?>
 		   </div><!-- #<?php echo $location; ?> .aside-<?php echo $location; ?> .aside -->
-		   <?php do_action( "sb_after_{$location}_aside" ); ?>
+		   <?php do_action( "sb_after_{$location}" ); ?>
 		
 		<?php }
 	}

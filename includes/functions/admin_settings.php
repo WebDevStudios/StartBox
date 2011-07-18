@@ -733,7 +733,7 @@ function sb_handle_upload($file_id = '')
 // Custom Media Tab: Suggested Files -- Credit: Joel Kuczmarski
 function sb_filter_media_upload_tabs($_default_tabs) {
     if( isset( $_GET['suggested'] ) && $_GET['suggested'] != '')
-        $_default_tabs['suggested'] = __('Suggested');
+        $_default_tabs['suggested'] = __( 'Suggested', 'startbox' );
 
     return $_default_tabs;
 }
