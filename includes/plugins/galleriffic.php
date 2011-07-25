@@ -1,17 +1,15 @@
 <?php
 /**
- * Plugin Name: Galleriffic Gallery
- * Plugin URI: http://rzen.net
- * Description: Replace the default gallery feature with a the Gallerific jQuery gallery plugin, and valid code!
- * Version: 0.0.1
- * Author: Brian Richards
- * Author URI: http://rzen.net
+ * Galleriffic Gallery (outdated, needs to be reviewed and potentially fixed before use)
  *
- * Borrowing most of the logic from Justin Tadlock's Cleaner Gallery plugin,
- * I was able to mesh together a solution for using the Galleriffic jQuery script.
+ * Overrides the [gallery] shortcode to make use of galleriffic. Adapted from Justin Tadlock's Cleaner Gallery plugin.
+ *
+ * @package StartBox
+ * @subpackage Add-ons
+ * @since StartBox 2.x
  *
  * @internal Much of this code has been adopted from Justin Tadlock's Cleaner Gallery plugin
- * @author Justin Tadlock
+ * @author Justin Tadlock (edits by Brian Richards)
  * @link http://justintadlock.com/archives/2008/04/13/cleaner-wordpress-gallery-plugin
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  *

@@ -1,4 +1,13 @@
 <?php
+/**
+ * StartBox Hooks and Filters
+ *
+ * A collection of many of StartBox's default hooks, as well as some default filtration.
+ *
+ * @package StartBox
+ * @subpackage Functions
+ */
+
 // Located in header.php
 function sb_title() { do_action('sb_title'); } // The site title
 function sb_before() { do_action('sb_before'); } // the very first thing inside <body>

@@ -1,4 +1,12 @@
 <?php
+/**
+ * StartBox Comments
+ *
+ * Filters and templates for the WP Comment form
+ *
+ * @package StartBox
+ * @subpackage Comments
+ */
 
 // Filter the default comment form
 function sb_comment_defaults($defaults) {

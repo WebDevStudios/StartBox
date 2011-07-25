@@ -1,4 +1,14 @@
 <?php
+/**
+ * StartBox RSS Links
+ *
+ * Provide RSS links for your posts and comments
+ *
+ * @package StartBox
+ * @subpackage Widgets
+ * @since Unknown
+ */
+
 class sb_rss_widget extends WP_Widget {
 	function sb_rss_widget() {
 		$widget_ops = array(

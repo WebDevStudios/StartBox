@@ -2,7 +2,7 @@
 /**
  * StartBox Upgrade class
  *
- * Handles all upgrade checks, notifications and updates
+ * Handles all upgrade checks, notifications and updates. Major props to Carl Hancock and the Gravity Forms team for helping piece this one together.
  *
  * @package StartBox
  * @subpackage Upgrades

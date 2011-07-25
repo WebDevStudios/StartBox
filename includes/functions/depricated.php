@@ -1,4 +1,12 @@
 <?php
+/**
+ * StartBox Deprecated Functions
+ *
+ * These are functions that have either been replaced or removed.
+ *
+ * @package StartBox
+ * @subpackage Functions
+ */
 
 // After div#primary, before div#secondary
 function sb_between_primary_and_secondary_widgets() {

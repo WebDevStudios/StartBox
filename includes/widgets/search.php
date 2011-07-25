@@ -1,6 +1,16 @@
 <?php
+/**
+ * StartBox Search
+ *
+ * Configurable search widget, set custom input text and submit button text.
+ *
+ * @package StartBox
+ * @subpackage Widgets
+ * @since Unknown
+ */
+
 function load_widget_sb_search_widget() { // Widget: Search Widget
-	unregister_widget('WP_Widget_Search'); // We're being StartBox-specific; remove WP default
+	unregister_widget('WP_Widget_Search'); // We're being StartBox-specific; remove WP default (disabled, there's space for both)
 	register_widget('sb_search_widget');
 }
 add_action( 'widgets_init', 'load_widget_sb_search_widget', 0 );

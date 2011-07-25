@@ -1,4 +1,12 @@
 <?php 
+/**
+ * StartBox Custom Functions
+ *
+ * Lots of misc functions. These should probably be reviewed and moved to more specific files.
+ *
+ * @package StartBox
+ * @subpackage Functions
+ */
 
 // Add filters for the description/meta content in category.php
 add_filter( 'archive_meta', 'wptexturize' );

@@ -1,11 +1,15 @@
 <?php
-/*
-Plugin Name: StartBox Easy Sidebars
-Description: Create additional sidebars to replace any default sidebars in StartBox on any page/post/archive 
-Author: Brian Richards
-Author URI: http://www.wpstartbox.com
-License: GPL2
-*/
+/**
+ * StartBox Sidebar Manager
+ *
+ * Create additional sidebars to replace any default sidebars in StartBox for any post-type or taxonomy.
+ * Uses Custom Post Types to handle sidebar registration. Metabox functionality originally lifted
+ * from WP's Custom Menu admin functions.
+ *
+ * @package StartBox
+ * @subpackage Add-ons
+ * @since StartBox 2.5
+ */
 
 // Check to see if current theme supports sidebars, skip the rest if not
 if (!current_theme_supports( 'sb-sidebars' )) return;

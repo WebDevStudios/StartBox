@@ -6,6 +6,7 @@
 	* changed: added check for is_post_type_archive() to the sb_page_title hook
 	* changed: improved URL scheme for admin links in footer
 	* changed: sb_before/after_{sidebar}_aside to sb_before/after_{sidebar}
+	* removed: removed internal copy of Widget Logic, users are encouraged to install the stand-alone plugin if they still want it.
 	
 2011.06.24 - version 2.5.1
 	* new: added sb_before/after_{sidebar}_aside to appear outside of opening/closing div for given sidebar

@@ -1,4 +1,14 @@
 <?php
+/**
+ * StartBox Social Widget
+ *
+ * List social profiles across several networks.
+ *
+ * @package StartBox
+ * @subpackage Widgets
+ * @since Unknown
+ */
+
 function sb_social_load_widgets() { // Widget: Stay Connected (offers fields/links for social media, rss and e-mail subscriptions)
 	register_widget('sb_widget_social');
 }

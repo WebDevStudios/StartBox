@@ -1,4 +1,14 @@
 <?php
+/**
+ * StartBox Tag Cloud
+ *
+ * A highly configurable tag cloud, more useful than the default widget.
+ *
+ * @package StartBox
+ * @subpackage Widgets
+ * @since Unknown
+ */
+
 function load_widget_sb_tagcloud_widget() { // Widget: Tag Cloud Widget
 	unregister_widget('WP_Widget_Tag_Cloud'); // We're being StartBox-specific; remove WP default
 	register_widget('sb_tagcloud_widget');

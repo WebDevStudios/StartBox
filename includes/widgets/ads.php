@@ -1,13 +1,23 @@
 <?php
+/**
+ * StartBox Ad Widget (unfinished, needs a lot more work and a better strategy)
+ *
+ * Creates and spaces in any widgitized area.
+ *
+ * @package StartBox
+ * @subpackage Widgets
+ * @since StartBox 2.x
+ */
+
 function load_widget_sb_ads_widget() { // Widget: Ads Widget
 	register_widget('sb_ads_widget');
 }
-add_action( 'widgets_init', 'load_widget_sb_ads_widget', 0 );
+// add_action( 'widgets_init', 'load_widget_sb_ads_widget', 0 );
 
 function load_ads_widget_js() {
 	wp_enqueue_script( 'sb-widgets', SCRIPTS_URL . '/widgets.js', array('jquery') );
 }
-add_action( 'sidebar_admin_setup', 'load_ads_widget_js' );
+// add_action( 'sidebar_admin_setup', 'load_ads_widget_js' );
 
 class sb_ads_widget extends WP_Widget {
 	function sb_ads_widget() {

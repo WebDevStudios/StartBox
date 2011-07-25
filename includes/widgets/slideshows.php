@@ -1,4 +1,14 @@
 <?php
+/**
+ * StartBox Slideshows Widget
+ *
+ * Place a sidebar in any widget area.
+ *
+ * @package StartBox
+ * @subpackage Widgets
+ * @since Unknown
+ */
+
 // Check to see if current theme supports slideshows
 if( !current_theme_supports('sb-slideshows') ) return;
 

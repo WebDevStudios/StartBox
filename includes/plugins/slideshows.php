@@ -1,27 +1,18 @@
 <?php
-/*
-Plugin Name: Slideshows
-Description: Feature your image content using JavaScript powered slideshows. Each slideshow can be customized with many options and effects. This plugin creates a custom post type called Slideshows which integrates with the Media Library. To embed a slideshow into a post or page, simply insert <code>[slideshow id=""]</code> anywhere in the post or page content.
-Version: 4.0.8
-Author: Joel KUCZMARSKI
-Author URI: http://www.joelak.com
-License: GPL2
-
-    Copyright 2011  Joel KUCZMARSKI  (email : leoj3n@gmail.com)
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License, version 2, as 
-    published by the Free Software Foundation.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-*/
+/**
+ * StartBox Slideshows
+ *
+ * Feature image content using Javascript-powered slideshows. Each slideshow can be customized to suit your needs.
+ * This plugin creates a custom post type called Slideshows which integrates with the Media Library.
+ * To embed a slideshow into a post or page, simply insert [slideshow id=""] anywhere in the post, page or widget content.
+ *
+ * @package StartBox
+ * @subpackage Widgets
+ * @since StartBox 2.4.8
+ * @author Joel Jcuzmarski
+ * @link http://www.joelak.com
+ * @version 4.0.8
+ */
 
 // Check to see if current theme supports slideshows
 if (!current_theme_supports( 'sb-slideshows' )) return;

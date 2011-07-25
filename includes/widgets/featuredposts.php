@@ -1,4 +1,14 @@
 <?php
+/**
+ * StartBox Featured Content Widget
+ *
+ * List posts, pages, or any other post type. Highly configurable.
+ *
+ * @package StartBox
+ * @subpackage Widgets
+ * @since Unknown
+ */
+
 function load_widget_sb_featured_content() { // Widget: Featured Content
 	register_widget('sb_featured_content_widget');
 }

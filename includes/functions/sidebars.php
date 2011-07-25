@@ -1,4 +1,12 @@
 <?php
+/**
+ * StartBox Sidebars
+ *
+ * A class structure for handling sidebar registration, output, markup, the works.s
+ *
+ * @package StartBox
+ * @subpackage Functions
+ */
 
 /**
  * This is the main SB Sidebars class. You can extend and override this via child theme to alter your own widget markup
