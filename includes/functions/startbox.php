@@ -89,6 +89,8 @@ class StartBox {
 		add_action( 'after_setup_theme', array('StartBox', 'environment'), 5 );
 		add_action( 'after_setup_theme', array('StartBox', 'sb_includes'), 15 );
 		
+		// "God opposes the proud, but gives grace to the humble." - James 4:6b (ESV)
+		
 	}
 	
 	// Setup the environment and register support for various WP features.
@@ -110,7 +112,6 @@ class StartBox {
 		add_theme_support( 'sb-options' ); // StartBox Options API
 		add_theme_support( 'sb-slideshows' ); // StartBox Slideshows
 		add_theme_support( 'sb-sidebars' ); // StartBox Easy Sidebars
-		add_theme_support( 'sb-widgetlogic' ); // Widget Logic
 		
 		// Add theme support for StartBox Layouts, redefine this list using the filter 'sb_layouts_defaults'
 		$sb_default_layouts = array(
@@ -145,7 +146,6 @@ class StartBox {
 		// Include all Widgets, Plugins and Theme Options
 		require_if_theme_supports( 'sb-galleriffic', PLUGINS_PATH .  '/galleriffic.php' ); 	// Galleriffic Slideshows (not supported yet)
 		require_if_theme_supports( 'sb-slideshows', PLUGINS_PATH .  '/slideshows.php' ); 	// Slideshows Post Type
-		require_if_theme_supports( 'sb-widgetlogic', PLUGINS_PATH .  '/widgetlogic.php' ); 	// Widgetlogic Plugin
 		require_if_theme_supports( 'sb-sidebars', PLUGINS_PATH .  '/sidebars.php' );		// Sidebar manager
 		require_if_theme_supports( 'sb-layouts', FUNCTIONS_PATH .  '/layouts.php' );		// Theme Layouts
 		foreach ( glob( WIDGETS_PATH . '/*.php') as $widget ) { require_once( $widget ); }	// Widgets

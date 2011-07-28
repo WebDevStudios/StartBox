@@ -19,15 +19,13 @@ class SB_Sidebars {
 	// Magic method that auto-loads default sidebars and custom sidebars. Don't override this.
 	function SB_Sidebars() {
 		
-		// Add all registered sidebars to the registry
-		$this->default_sidebars();
-		$this->custom_sidebars();
-		
+		// Register and activate all the sidebars
+		add_action( 'after_setup_theme', array( $this, 'default_sidebars'), 10 );
+		add_action( 'after_setup_theme', array( $this, 'custom_sidebars'), 11 );
+		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
+
 		// Hook for other functions
 		do_action( 'sb_sidebars_init' );
-		
-		// Register all the sidebars
-		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 		
 	}
 	

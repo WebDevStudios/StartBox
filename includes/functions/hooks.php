@@ -209,7 +209,7 @@ function sb_default_page_title() {
 	$content .= '</' . $container . '>';
 	$content .= "\n";
 	
-	echo apply_filters('sb_default_page_title', $content );
+	echo apply_filters('sb_default_page_title', $content, $container, $post );
 }
 add_action( 'sb_page_title', 'sb_default_page_title' );
 

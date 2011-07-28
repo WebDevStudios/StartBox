@@ -102,7 +102,7 @@ class sb_settings {
 		add_meta_box( $this->slug, $this->name, array( $this, 'form'), $sb_admin, $this->location, $this->priority);
 	}
 	
-	// This makes everything work. Do NOT override this method.
+	// This makes everything work. Do not override this method.
 	public function __construct() {
 		add_action( 'admin_init', array( $this, '_init' ), 5 );
 		add_action( 'init', array( $this, 'hooks' ), 9 );
@@ -292,8 +292,7 @@ class sb_input {
 			'0' => 'Unlimited',
 			'1' => '1',
 			'2' => '2',
-			'3' => '3',
-			'4' => '4'
+			'3' => '3'
 		));
 		$output .= sb_input::select( array( 'id' => $id . '-depth', 'label' => $label . ' ' . __( 'Depth', 'startbox' ), 'value' => sb_get_option( $id . '-depth' ), 'options' => $depth, 'size' => $size, 'align' => $align ) );
 		
@@ -507,6 +506,7 @@ function sb_set_default_options() {
 			if ( $option['type'] == 'navigation' ) {
 				if ( isset($option['home_default']) ) $defaults[$option_id.'-enable-home'] = $option['home_default'];
 				if ( isset($option['position_default']) ) $defaults[$option_id.'-position'] = $option['position_default'];
+				if ( isset($option['depth_default']) ) $defaults[$option_id.'-depth'] = $option['depth_default'];
 			}
 		}
 	}

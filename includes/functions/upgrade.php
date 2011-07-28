@@ -30,12 +30,12 @@ class sb_upgrade {
 		            'Referer' => home_url()
 				)
 			);
-			$key = sb_get_option('sb_license');
+			// $key = sb_get_option('sb_license'); -- as of 7/26/11 users do not need a key to upgrade
 			$sb = SB_VERSION;
 			$wp = get_bloginfo("version") ;
 			$php = phpversion();
 			$mysql = $wpdb->db_version();
-			$url = 'http://wpstartbox.com/updates/index.php?product=StartBox&key=' . urlencode($key) . '&sb_version=' . urlencode($sb) . '&wp_version=' . urlencode($wp) . '&php_version=' . urlencode($php) . '&mysql_version=' . urlencode($mysql);
+			$url = 'http://wpstartbox.com/updates/index.php?product=StartBox&sb_version=' . urlencode($sb) . '&wp_version=' . urlencode($wp) . '&php_version=' . urlencode($php) . '&mysql_version=' . urlencode($mysql);
 			$raw_response = wp_remote_request($url, $options);
 			$sb_update = wp_remote_retrieve_body($raw_response);
 

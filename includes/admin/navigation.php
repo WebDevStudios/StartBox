@@ -39,7 +39,8 @@
 							'sb_footer_left'	=> __( 'Footer Left (above copyright)', 'startbox' ),
 							'sb_footer_right'	=> __( 'Footer Right (above admin links)', 'startbox' ),
 							'sb_after_footer'	=> __( 'Bottom of Page', 'startbox' ),
-						))
+						)),
+						'depth_default' => 1,
 					),
 				);
 				

@@ -43,6 +43,7 @@ $sb_slideshow_interface = apply_filters( 'sb_slideshow_interface', array(
 	'filter_width'		=> 60,
 	'filter_height' 	=> 60,
 	'mime_types' 		=> array( 'image/jpeg', 'image/png', 'image/gif' ) ) );
+	
 $sb_slideshow_interface['mysql_select'] = "SELECT ID, post_date, post_content, post_excerpt, post_mime_type FROM $wpdb->posts WHERE 
 	post_type = 'attachment' AND post_status != 'trash' AND
 	post_mime_type = '" . implode( "' OR post_mime_type='", $sb_slideshow_interface['mime_types'] ) . "'";
