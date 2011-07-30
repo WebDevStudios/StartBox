@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StartBox 2.4.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-22 01:35-0500\n"
-"PO-Revision-Date: 2010-11-22 01:37-0500\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2011-07-30 02:33-0500\n"
+"PO-Revision-Date: 2011-07-30 02:34-0500\n"
+"Last-Translator: Brian Richards <brian@rzen.net>\n"
 "Language-Team: Brian Richards <brian@rzen.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,81 +17,45 @@ msgstr ""
 "X-Poedit-SearchPath-0: ..\n"
 "X-Poedit-SearchPath-1: ../..\n"
 
-#: ../admin/admin.php:13
+#: ../admin/admin.php:10
+#: ../admin/admin.php:18
 msgid "Theme Options"
 msgstr ""
 
-#: ../admin/admin.php:65
+#: ../admin/admin.php:74
 msgid "Options"
 msgstr ""
 
-#: ../admin/admin.php:65
-#, php-format
-msgid "StartBox Version: %s"
-msgstr ""
-
-#: ../admin/admin.php:69
+#: ../admin/admin.php:78
 msgid "Options Updated."
 msgstr ""
 
-#: ../admin/admin.php:72
+#: ../admin/admin.php:81
 msgid "Options Reset."
 msgstr ""
 
-#: ../admin/admin.php:75
+#: ../admin/admin.php:84
 #, php-format
 msgid "StartBox upgraded to version %s!"
 msgstr ""
 
-#: ../admin/admin.php:113
+#: ../admin/admin.php:122
 msgid "Save All Settings"
 msgstr ""
 
-#: ../admin/admin.php:114
+#: ../admin/admin.php:123
 msgid "Reset All Settings"
-msgstr ""
-
-#: ../admin/admin_settings.php:297
-msgid "Logo Settings"
-msgstr ""
-
-#: ../admin/admin_settings.php:298
-msgid "Logo Image"
-msgstr ""
-
-#: ../admin/admin_settings.php:299
-msgid "Or, use this text instead"
-msgstr ""
-
-#: ../admin/admin_settings.php:300
-msgid "Logo Alignment"
-msgstr ""
-
-#: ../admin/admin_settings.php:300
-msgid "Left"
-msgstr ""
-
-#: ../admin/admin_settings.php:300
-msgid "Right"
-msgstr ""
-
-#: ../admin/admin_settings.php:300
-msgid "Center"
-msgstr ""
-
-#: ../admin/admin_settings.php:301
-msgid "Disable Logo"
-msgstr ""
-
-#: ../admin/admin_settings.php:572
-msgid "Suggested"
 msgstr ""
 
 #: ../admin/analytics.php:5
 msgid "Google Analytics"
 msgstr ""
 
-#: ../admin/analytics.php:12
+#: ../admin/analytics.php:7
+msgid "Paste in your tracking codes for your preferred site statistics software (like Google Analytics)."
+msgstr ""
+
+#: ../admin/analytics.php:13
 #, php-format
 msgid "Enter your %s code below:"
 msgstr ""
@@ -100,154 +64,187 @@ msgstr ""
 msgid "Content Settings"
 msgstr ""
 
-#: ../admin/content.php:12
+#: ../admin/content.php:7
+msgid "Take full control over the content areas of your site. Select your page layout, thumbnail sizes, post navigation options and post meta information."
+msgstr ""
+
+#: ../admin/content.php:13
 msgid "Homepage Layout"
 msgstr ""
 
 #: ../admin/content.php:14
-#: ../admin/content.php:29
-msgid "1 Column (no sidebars)"
+msgid "Select content and sidebar alignment. Choose from any of the available layouts."
 msgstr ""
 
-#: ../admin/content.php:15
-#: ../admin/content.php:30
-msgid "2 Columns, sidebar on left"
-msgstr ""
-
-#: ../admin/content.php:16
-#: ../admin/content.php:31
-msgid "2 Columns, sidebar on right"
-msgstr ""
-
-#: ../admin/content.php:17
-#: ../admin/content.php:32
-msgid "3 Columns, sidebars on left"
-msgstr ""
-
-#: ../admin/content.php:18
-#: ../admin/content.php:33
-msgid "3 Columns, sidebars on right"
-msgstr ""
-
-#: ../admin/content.php:19
-#: ../admin/content.php:34
-msgid "3 Columns, sidebar on each side"
-msgstr ""
-
-#: ../admin/content.php:27
+#: ../admin/content.php:22
 msgid "Interior Page Layout"
 msgstr ""
 
-#: ../admin/content.php:42
+#: ../admin/content.php:23
+msgid "Select content and sidebar alignment. This can be changed on each page/post individually."
+msgstr ""
+
+#: ../admin/content.php:31
+msgid "Post Content"
+msgstr ""
+
+#: ../admin/content.php:35
 msgid "Post Content on Homepage"
 msgstr ""
 
-#: ../admin/content.php:44
-#: ../admin/content.php:55
+#: ../admin/content.php:37
+#: ../admin/content.php:48
 msgid "Excerpt"
 msgstr ""
 
-#: ../admin/content.php:45
-#: ../admin/content.php:56
+#: ../admin/content.php:38
+#: ../admin/content.php:49
 msgid "Full Post"
 msgstr ""
 
-#: ../admin/content.php:53
+#: ../admin/content.php:46
 msgid "Post Content in Archives"
 msgstr ""
 
-#: ../admin/content.php:64
-msgid "Post Thumbnail Width"
-msgstr ""
-
-#: ../admin/content.php:72
-msgid "Post Thumbnail Height"
-msgstr ""
-
-#: ../admin/content.php:80
+#: ../admin/content.php:57
 msgid "Read More text"
 msgstr ""
 
-#: ../admin/content.php:81
+#: ../admin/content.php:58
 msgid "Read &amp; Discuss &raquo;"
 msgstr ""
 
-#: ../admin/content.php:87
-msgid "Archive Navigation"
+#: ../admin/content.php:64
+msgid "Display Author Bio on Single posts"
 msgstr ""
 
-#: ../admin/content.php:89
-#: ../admin/content.php:102
+#: ../admin/content.php:66
+#: ../admin/content.php:172
+#: ../admin/content.php:185
+#: ../functions/admin_settings.php:271
+#: ../functions/admin_settings.php:310
 msgid "Disabled"
 msgstr ""
 
-#: ../admin/content.php:90
-#: ../admin/content.php:103
-msgid "Show Above Posts"
+#: ../admin/content.php:67
+msgid "Show Before Post Content"
 msgstr ""
 
-#: ../admin/content.php:91
-#: ../admin/content.php:104
-msgid "Show Below Posts"
+#: ../admin/content.php:68
+msgid "Show After Post Content"
 msgstr ""
 
-#: ../admin/content.php:92
-#: ../admin/content.php:105
-msgid "Show Above & Below Posts"
-msgstr ""
-
-#: ../admin/content.php:100
-msgid "Single Post Navigation"
-msgstr ""
-
-#: ../admin/content.php:113
-msgid "Enable Author Bio on Single posts"
-msgstr ""
-
-#: ../admin/content.php:114
+#: ../admin/content.php:71
 msgid "Author bio only displays if author provides a description in their profile."
 msgstr ""
 
-#: ../admin/content.php:119
+#: ../admin/content.php:78
 msgid "Post Meta"
 msgstr ""
 
-#: ../admin/content.php:120
-msgid "The next two text boxes give you control over the meta information displayed on each post. You can use any <a href=\"http://docs.wpstartbox.com/shortcodes\" target=\"_blank\">shortcodes</a> you like, including: [author], [categories], [comments], [date], [time], [tags] and [edit]."
+#: ../admin/content.php:79
+msgid "Control the meta information displayed on each post. You can use any <a href=\"http://docs.wpstartbox.com/shortcodes\" target=\"_blank\">shortcodes</a> you like, including: [author], [categories], [comments], [date], [time], [tags] and [edit]."
 msgstr ""
 
-#: ../admin/content.php:124
+#: ../admin/content.php:83
 msgid "Post Header Meta"
 msgstr ""
 
-#: ../admin/content.php:125
-msgid "Published in [categories] on [date]"
+#: ../admin/content.php:84
+msgid "Published in [categories] on [date] [edit]"
 msgstr ""
 
-#: ../admin/content.php:131
+#: ../admin/content.php:90
 msgid "Post Footer Meta"
 msgstr ""
 
-#: ../admin/content.php:167
-#: ../admin/content.php:186
-msgid "<span class=\"meta-nav\">&laquo;</span> Older posts"
+#: ../admin/content.php:98
+msgid "Post Thumbnails"
 msgstr ""
 
-#: ../admin/content.php:168
+#: ../admin/content.php:102
+msgid "Enable Post Thumbnails"
+msgstr ""
+
+#: ../admin/content.php:108
+msgid "Include Post Thumbnails in RSS feed"
+msgstr ""
+
+#: ../admin/content.php:114
+msgid "Use any attached image if no Featured Image specified"
+msgstr ""
+
+#: ../admin/content.php:120
+msgid "Hide thumbnails if no preview available"
+msgstr ""
+
+#: ../admin/content.php:126
+msgid "Default Thumbnail"
+msgstr ""
+
+#: ../admin/content.php:131
+msgid "Thumbnail Width"
+msgstr ""
+
+#: ../admin/content.php:139
+msgid "Thumbnail Height"
+msgstr ""
+
+#: ../admin/content.php:165
+msgid "Post Navigation"
+msgstr ""
+
+#: ../admin/content.php:166
+msgid "Specify how navigation for prev/next posts should appear."
+msgstr ""
+
+#: ../admin/content.php:170
+msgid "Blog & Archives Navigation"
+msgstr ""
+
+#: ../admin/content.php:173
+#: ../admin/content.php:186
+msgid "Show Above Posts"
+msgstr ""
+
+#: ../admin/content.php:174
 #: ../admin/content.php:187
-msgid "Newer posts <span class=\"meta-nav\">&raquo;</span>"
+msgid "Show Below Posts"
+msgstr ""
+
+#: ../admin/content.php:175
+#: ../admin/content.php:188
+msgid "Show Above & Below Posts"
+msgstr ""
+
+#: ../admin/content.php:183
+msgid "Single Post Navigation"
+msgstr ""
+
+#: ../admin/content.php:218
+#, php-format
+msgid "%s Older posts"
+msgstr ""
+
+#: ../admin/content.php:219
+#, php-format
+msgid "Newer posts %s"
 msgstr ""
 
 #: ../admin/feedburner.php:5
 msgid "Feedburner Settings"
 msgstr ""
 
-#: ../admin/feedburner.php:12
+#: ../admin/feedburner.php:7
+msgid "Replace your site's default feed URLs with ones from feedburner (or another feed service)."
+msgstr ""
+
+#: ../admin/feedburner.php:13
 #, php-format
 msgid "Enter your %s feed URL below"
 msgstr ""
 
-#: ../admin/feedburner.php:17
+#: ../admin/feedburner.php:18
 msgid "Enter your Feedburner Comments URL"
 msgstr ""
 
@@ -255,78 +252,89 @@ msgstr ""
 msgid "Footer Settings"
 msgstr ""
 
-#: ../admin/footer.php:12
-msgid "Enable Return to Top link"
+#: ../admin/footer.php:7
+msgid "Select what text (if any) you would like to appear in the footer area of your site. The textbox allows use of full HTML and Shortcodes."
 msgstr ""
 
-#: ../admin/footer.php:17
-msgid "Enable Copyright"
+#: ../admin/footer.php:13
+msgid "Name to use for Copyright"
 msgstr ""
 
-#: ../admin/footer.php:22
-msgid "Enable Designer Credit"
+#: ../admin/footer.php:20
+msgid "Web Address to use for Copyright"
 msgstr ""
 
-#: ../admin/footer.php:27
-msgid "Enable WordPress Credit"
+#: ../admin/footer.php:21
+msgid "Include http://. Leave blank for no link."
 msgstr ""
 
-#: ../admin/footer.php:32
-msgid "Enable StartBox Credit"
-msgstr ""
-
-#: ../admin/footer.php:37
-msgid "Enable Admin Links"
-msgstr ""
-
-#: ../admin/footer.php:42
+#: ../admin/footer.php:28
 msgid "Original Copyright Year"
 msgstr ""
 
-#: ../admin/footer.php:48
+#: ../admin/footer.php:30
+msgid "If prior to this year, theme will automatically display [original year] - [current year]."
+msgstr ""
+
+#: ../admin/footer.php:36
+msgid "Enable Copyright"
+msgstr ""
+
+#: ../admin/footer.php:41
+msgid "Enable Designer Credit"
+msgstr ""
+
+#: ../admin/footer.php:46
+msgid "Enable WordPress Credit"
+msgstr ""
+
+#: ../admin/footer.php:51
+msgid "Enable StartBox Credit"
+msgstr ""
+
+#: ../admin/footer.php:56
+msgid "Enable Admin Links"
+msgstr ""
+
+#: ../admin/footer.php:61
+msgid "Enable Return to Top link"
+msgstr ""
+
+#: ../admin/footer.php:67
 msgid "Enter any additional footer text below:"
 msgstr ""
 
-#: ../admin/footer.php:49
-msgid "Full HTML is allowed."
+#: ../admin/footer.php:68
+msgid "Full HTML and Shortcodes are allowed."
 msgstr ""
 
 #: ../admin/header.php:5
-msgid "Header Settings"
+msgid "Branding"
 msgstr ""
 
-#: ../admin/header.php:12
+#: ../admin/header.php:7
+msgid "Control various aspects of the header area of your site, including logo, site description, favicon and navigation. The logo options allow you to specify a text-based logo to use instead of an image."
+msgstr ""
+
+#: ../admin/header.php:13
 msgid "Upload an image or specify some text to use for your logo."
 msgstr ""
 
-#: ../admin/header.php:17
+#: ../admin/header.php:18
 msgid "Display Site Tagline"
 msgstr ""
 
-#: ../admin/header.php:18
+#: ../admin/header.php:19
 #, php-format
 msgid "You can set your site Tagline in %1$sSettings > General%2$s."
 msgstr ""
 
-#: ../admin/header.php:23
+#: ../admin/header.php:24
 msgid "Favicon"
 msgstr ""
 
-#: ../admin/header.php:24
-msgid "A small logo/icon that displays alongside your URL in most browsers."
-msgstr ""
-
-#: ../admin/header.php:30
-msgid "Primary Navigation"
-msgstr ""
-
-#: ../admin/header.php:35
-#: ../admin/header.php:47
-msgid "Include Home link"
-msgstr ""
-
-#: ../admin/header.php:42
-msgid "Secondary Navigation"
+#: ../admin/header.php:25
+msgid "The favicon is a small logo/icon that displays alongside your URL in most browsers."
 msgstr ""
 
 #: ../admin/help.php:5
@@ -338,8 +346,48 @@ msgstr ""
 msgid "Struggling with some of the theme options or settings? Have a look at the comprehensive %1$stheme documentation%2$s."
 msgstr ""
 
-#: ../admin/help.php:13
-msgid "Theme Documentation"
+#: ../admin/navigation.php:5
+msgid "Navigation Settings"
+msgstr ""
+
+#: ../admin/navigation.php:7
+msgid "Take full control of your navigation. Select which menu to display, where to display it, and whether or not to include a \"Home\" link."
+msgstr ""
+
+#: ../admin/navigation.php:13
+msgid "Primary Navigation"
+msgstr ""
+
+#: ../admin/navigation.php:23
+msgid "Secondary Navigation"
+msgstr ""
+
+#: ../admin/navigation.php:32
+msgid "Footer Navigation"
+msgstr ""
+
+#: ../admin/navigation.php:36
+msgid "Before Footer Wrap"
+msgstr ""
+
+#: ../admin/navigation.php:37
+msgid "Before Footer Widgets"
+msgstr ""
+
+#: ../admin/navigation.php:38
+msgid "After Footer Widgets"
+msgstr ""
+
+#: ../admin/navigation.php:39
+msgid "Footer Left (above copyright)"
+msgstr ""
+
+#: ../admin/navigation.php:40
+msgid "Footer Right (above admin links)"
+msgstr ""
+
+#: ../admin/navigation.php:41
+msgid "Bottom of Page"
 msgstr ""
 
 #: ../admin/pushup.php:5
@@ -347,7 +395,8 @@ msgid "Save the Web"
 msgstr ""
 
 #: ../admin/pushup.php:12
-msgid "Help save the internet by letting users of older browsers know that it's time for an upgrade."
+#, php-format
+msgid "Help save the internet by letting users of older browsers know that it's time for an upgrade. %sSee an example &raquo;%s"
 msgstr ""
 
 #: ../admin/pushup.php:16
@@ -359,757 +408,1080 @@ msgid "Basic SEO Settings"
 msgstr ""
 
 #: ../admin/seo.php:13
-msgid "These are only rudimentary options that will disappear as soon as you activate an SEO plugin. I highly recommend you use the <a href=\"http://wordpress.org/extend/plugins/all-in-one-seo-pack/\" target=\"_blank\">All-in-One SEO Pack</a> instead of these."
+msgid "These are only rudimentary options that will disappear as soon as you activate an SEO plugin. I highly recommend you use the <a href=\"http://wordpress.org/extend/plugins/wordpress-seo/\" target=\"_blank\">WordPress SEO Plugin</a> instead of these."
 msgstr ""
 
 #: ../admin/seo.php:17
 msgid "Site Description"
 msgstr ""
 
-#: ../admin/seo.php:18
+#: ../admin/seo.php:19
 msgid "Try to keep this brief."
 msgstr ""
 
-#: ../admin/seo.php:22
+#: ../admin/seo.php:23
 msgid "Site-wide Keywords"
 msgstr ""
 
-#: ../admin/seo.php:24
+#: ../admin/seo.php:25
 msgid "Comma separated (e.g. WordPress, themes, etc)"
 msgstr ""
 
-#: ../functions/comment_format.php:8
+#: ../admin/upgrade.php:5
+msgid "Version Information"
+msgstr ""
+
+#: ../admin/upgrade.php:7
+msgid "Enable automatic upgrades by checking one box and providing your StartBox license key."
+msgstr ""
+
+#: ../admin/upgrade.php:13
+#, php-format
+msgid "StartBox Version: %s"
+msgstr ""
+
+#: ../admin/upgrade.php:17
+msgid "Enable Automatic Updates"
+msgstr ""
+
+#: ../functions/admin_settings.php:272
+#: ../functions/custom.php:741
+msgid "Pages"
+msgstr ""
+
+#: ../functions/admin_settings.php:273
+#: ../functions/custom.php:768
+msgid "Categories"
+msgstr ""
+
+#: ../functions/admin_settings.php:297
+msgid "Depth"
+msgstr ""
+
+#: ../functions/admin_settings.php:301
+msgid "Top of Page"
+msgstr ""
+
+#: ../functions/admin_settings.php:302
+msgid "Before Header"
+msgstr ""
+
+#: ../functions/admin_settings.php:303
+msgid "Inside Header"
+msgstr ""
+
+#: ../functions/admin_settings.php:304
+msgid "After Header"
+msgstr ""
+
+#: ../functions/admin_settings.php:306
+msgid "Position"
+msgstr ""
+
+#: ../functions/admin_settings.php:311
+msgid "Search Form"
+msgstr ""
+
+#: ../functions/admin_settings.php:312
+#: ../functions/admin_settings.php:339
+msgid "Social Links"
+msgstr ""
+
+#: ../functions/admin_settings.php:314
+msgid "Extras"
+msgstr ""
+
+#: ../functions/admin_settings.php:318
+#, php-format
+msgid "Add \"Home\" Link to %s"
+msgstr ""
+
+#: ../functions/admin_settings.php:328
+msgid "Include RSS Feed"
+msgstr ""
+
+#: ../functions/admin_settings.php:329
+msgid "Twitter"
+msgstr ""
+
+#: ../functions/admin_settings.php:330
+msgid "Facebook"
+msgstr ""
+
+#: ../functions/admin_settings.php:331
+msgid "YouTube"
+msgstr ""
+
+#: ../functions/admin_settings.php:332
+msgid "Vimeo"
+msgstr ""
+
+#: ../functions/admin_settings.php:333
+msgid "Flickr"
+msgstr ""
+
+#: ../functions/admin_settings.php:334
+msgid "del.icio.us"
+msgstr ""
+
+#: ../functions/admin_settings.php:335
+msgid "LinkedIn"
+msgstr ""
+
+#: ../functions/admin_settings.php:339
+msgid "Provide the full URL's (including http://) of whichever social profiles you would like to include in your navigation."
+msgstr ""
+
+#: ../functions/admin_settings.php:378
+msgid "Logo Settings"
+msgstr ""
+
+#: ../functions/admin_settings.php:379
+msgid "Logo Image"
+msgstr ""
+
+#: ../functions/admin_settings.php:380
+msgid "Or, use this text instead"
+msgstr ""
+
+#: ../functions/admin_settings.php:381
+msgid "Logo Alignment"
+msgstr ""
+
+#: ../functions/admin_settings.php:381
+msgid "Left"
+msgstr ""
+
+#: ../functions/admin_settings.php:381
+msgid "Right"
+msgstr ""
+
+#: ../functions/admin_settings.php:381
+msgid "Center"
+msgstr ""
+
+#: ../functions/admin_settings.php:382
+msgid "Disable Logo"
+msgstr ""
+
+#: ../functions/admin_settings.php:736
+msgid "Suggested"
+msgstr ""
+
+#: ../functions/admin_settings.php:849
+#, php-format
+msgid "For more information, try the %sTheme Documentation%s or %sSupport Forum%s"
+msgstr ""
+
+#: ../functions/comment_format.php:16
 #, php-format
 msgid "Required fields are marked %s"
 msgstr ""
 
-#: ../functions/comment_format.php:11
+#: ../functions/comment_format.php:19
 msgid "Name"
 msgstr ""
 
-#: ../functions/comment_format.php:13
+#: ../functions/comment_format.php:21
 msgid "Email"
 msgstr ""
 
-#: ../functions/comment_format.php:15
+#: ../functions/comment_format.php:23
 msgid "Website"
 msgstr ""
 
-#: ../functions/comment_format.php:19
+#: ../functions/comment_format.php:27
 msgid "Add Your Comment"
 msgstr ""
 
-#: ../functions/comment_format.php:23
+#: ../functions/comment_format.php:31
 msgid "Your email address will <strong>not</strong> be published."
 msgstr ""
 
-#: ../functions/comment_format.php:32
+#: ../functions/comment_format.php:41
 msgid "Get a Gravatar!"
 msgstr ""
 
-#: ../functions/comment_format.php:40
+#: ../functions/comment_format.php:49
 msgid "Comment"
 msgstr ""
 
-#: ../functions/comment_format.php:101
+#: ../functions/comment_format.php:111
 #, php-format
 msgid "%1$s <br/> %2$s"
 msgstr ""
 
-#: ../functions/comment_format.php:103
+#: ../functions/comment_format.php:113
 msgid "\t\t\t\t\t<span class='unapproved'>Your comment is awaiting moderation.</span>\n"
 msgstr ""
 
-#: ../functions/comment_format.php:111
+#: ../functions/comment_format.php:121
 msgid "Reply to this Comment"
 msgstr ""
 
-#: ../functions/comment_format.php:112
+#: ../functions/comment_format.php:122
 msgid "Log in to reply."
 msgstr ""
 
-#: ../functions/comment_format.php:119
-#: ../functions/hooks.php:118
-#: ../functions/shortcodes.php:98
+#: ../functions/comment_format.php:129
 msgid "Edit"
 msgstr ""
 
-#: ../functions/hooks.php:63
+#: ../functions/custom.php:684
+#, php-format
+msgid "Connect on %s"
+msgstr ""
+
+#: ../functions/custom.php:687
+msgid "Subscribe via RSS"
+msgstr ""
+
+#: ../functions/custom.php:779
+msgid "Posts by Category"
+msgstr ""
+
+#: ../functions/hooks.php:75
+#, php-format
+msgid "Search Results for: %s"
+msgstr ""
+
+#: ../functions/hooks.php:76
+#, php-format
+msgid "Category Archives: %s"
+msgstr ""
+
+#: ../functions/hooks.php:77
+#, php-format
+msgid "Tag Archives: %s"
+msgstr ""
+
+#: ../functions/hooks.php:78
+msgid "Not Found"
+msgstr ""
+
+#: ../functions/hooks.php:82
 #, php-format
 msgid "Page %s"
 msgstr ""
 
-#: ../functions/hooks.php:67
-#, php-format
-msgid "Search results for \"%s\""
-msgstr ""
-
-#: ../functions/hooks.php:68
-msgid "Not Found"
-msgstr ""
-
-#: ../functions/hooks.php:87
+#: ../functions/hooks.php:127
 msgid "Skip to content"
 msgstr ""
 
-#: ../functions/hooks.php:141
+#: ../functions/hooks.php:177
 msgid "Author Archives: "
 msgstr ""
 
-#: ../functions/hooks.php:147
+#: ../functions/hooks.php:182
 msgid "Category Archives:"
 msgstr ""
 
-#: ../functions/hooks.php:156
+#: ../functions/hooks.php:187
 msgid "Search Results for:"
 msgstr ""
 
-#: ../functions/hooks.php:162
+#: ../functions/hooks.php:192
 msgid "Tag Archives:"
 msgstr ""
 
-#: ../functions/hooks.php:168
+#: ../functions/hooks.php:195
+msgid "Archives:"
+msgstr ""
+
+#: ../functions/hooks.php:197
 #, php-format
 msgid "<span>Daily Archives:</span> %s"
 msgstr ""
 
-#: ../functions/hooks.php:172
+#: ../functions/hooks.php:199
 #, php-format
 msgid "<span>Monthly Archives:</span> %s"
 msgstr ""
 
-#: ../functions/hooks.php:176
+#: ../functions/hooks.php:201
 #, php-format
 msgid "<span>Yearly Archives:</span> %s"
 msgstr ""
 
-#: ../functions/hooks.php:180
-msgid "Blog Archives"
-msgstr ""
-
-#: ../functions/hooks.php:189
+#: ../functions/hooks.php:203
 msgid "404 - File Not Found"
 msgstr ""
 
-#: ../functions/hooks.php:192
-msgid "Sorry, but we were unable to find what you were looking for."
+#: ../functions/hooks.php:205
+msgid "Content Archives:"
 msgstr ""
 
-#: ../functions/hooks.php:196
-msgid "Try browsing a list of our current pages and categories:"
+#: ../functions/hooks.php:207
+msgid "Blog Archives"
 msgstr ""
 
-#: ../functions/hooks.php:204
+#: ../functions/hooks.php:230
 #, php-format
-msgid "If you're still lost, %s and we'll try to help!"
+msgid "Sorry, but we were unable to find what you were looking for. Try searching or browsing our content below. If you still can't find it, %sContact Us%s and we'll try to&nbsp;help!"
 msgstr ""
 
-#: ../functions/shortcodes.php:87
+#: ../functions/layouts.php:106
+msgid "Layout"
+msgstr ""
+
+#: ../functions/layouts.php:154
+msgid "Specify a custom page layout for this content."
+msgstr ""
+
+#: ../functions/layouts.php:158
+#: ../functions/layouts.php:214
+msgid "Default"
+msgstr ""
+
+#: ../functions/layouts.php:211
+msgid "Custom Layout"
+msgstr ""
+
+#: ../functions/shortcodes.php:91
 msgid "Return to Top"
 msgstr ""
 
-#: ../functions/shortcodes.php:146
+#: ../functions/shortcodes.php:167
+#, php-format
+msgid "Continue Reading %s"
+msgstr ""
+
+#: ../functions/shortcodes.php:181
 #, php-format
 msgid "View all posts by %s"
 msgstr ""
 
-#: ../functions/shortcodes.php:162
+#: ../functions/shortcodes.php:197
 msgid "Tagged: "
 msgstr ""
 
-#: ../functions/shortcodes.php:175
+#: ../functions/shortcodes.php:210
 msgid "No Comments"
 msgstr ""
 
-#: ../functions/shortcodes.php:175
+#: ../functions/shortcodes.php:210
 msgid "1 Comment"
 msgstr ""
 
-#: ../functions/shortcodes.php:175
+#: ../functions/shortcodes.php:210
 msgid "% Comments"
 msgstr ""
 
-#: ../functions/shortcodes.php:191
+#: ../functions/shortcodes.php:226
 #, php-format
 msgid "View all posts by %s &raquo;"
 msgstr ""
 
-#: ../functions/shortcodes.php:566
+#: ../functions/shortcodes.php:603
 msgid "Sorry, you must be logged in to view this content."
 msgstr ""
 
-#: ../functions/sidebars.php:23
+#: ../functions/sidebars.php:61
 msgid "These widgets will appear above the content on the homepage."
 msgstr ""
 
-#: ../functions/sidebars.php:33
+#: ../functions/sidebars.php:62
 msgid "This is the primary sidebar when using two- or three-column layouts."
 msgstr ""
 
-#: ../functions/sidebars.php:43
-msgid "This is the secondary sidebar for three-column layouts. It appears beneath the primary sidebar on two-column layouts."
+#: ../functions/sidebars.php:63
+msgid "This is the secondary sidebar for three-column layouts."
 msgstr ""
 
-#: ../functions/sidebars.php:54
-msgid "This sidebar replaces both the primary and secondary sidebars on any pages using the Tertiary Aside layout."
+#: ../functions/sidebars.php:64
+msgid "This sidebar replaces Primary Sidebar for the Tertiary page template."
 msgstr ""
 
 #: ../functions/sidebars.php:65
-msgid "This is the primary footer column. Use this before using any other footer columns."
+msgid "This is the first footer column. Use this before using any other footer columns."
 msgstr ""
 
-#: ../functions/sidebars.php:75
-msgid "This is the second footer column. Use this before using Footer Aside Column 3."
+#: ../functions/sidebars.php:66
+msgid "This is the second footer column. Only use this after using Footer Aside 1."
 msgstr ""
 
-#: ../functions/sidebars.php:85
-msgid "This is the third footer column. Use this before using Footer Aside Column 4."
+#: ../functions/sidebars.php:67
+msgid "This is the third footer column. Only use this after using Footer Aside 2."
 msgstr ""
 
-#: ../functions/sidebars.php:95
-msgid "This is the fourth footer column. Use this only after using Columns 1-3."
+#: ../functions/sidebars.php:68
+msgid "This is the last footer column. Only use this after using all other columns."
 msgstr ""
 
-#: ../plugins/slideshows.php:16
-msgid "Overlay Arrows"
+#: ../functions/upgrade.php:81
+msgid "Upgrading will overwrite the currently installed version of StartBox. Are you sure you want to upgrade?"
 msgstr ""
 
-#: ../plugins/slideshows.php:16
-msgid "Bottom Navigation"
+#: ../functions/upgrade.php:84
+#, php-format
+msgid "An update to StartBox is available. <a href=\"%s\" class=\"thickbox thickbox-preview\">Check out what's new in %s</a> or <a href=\"%s\" onclick=\"return sb_confirm('%s');\">upgrade now</a>."
 msgstr ""
 
-#: ../plugins/slideshows.php:17
-msgid "Largest Image"
+#: ../plugins/sidebars.php:26
+#: ../plugins/sidebars.php:37
+#: ../plugins/sidebars.php:75
+msgid "Sidebars"
 msgstr ""
 
-#: ../plugins/slideshows.php:17
-msgid "Smallest Image"
+#: ../plugins/sidebars.php:27
+#: ../plugins/sidebars.php:38
+msgid "Sidebar"
 msgstr ""
 
-#: ../plugins/slideshows.php:17
-msgid "Custom"
-msgstr ""
-
-#: ../plugins/slideshows.php:21
-#: ../plugins/slideshows.php:36
-msgid "Slideshows"
-msgstr ""
-
-#: ../plugins/slideshows.php:22
-#: ../plugins/slideshows.php:37
-msgid "Slideshow"
-msgstr ""
-
-#: ../plugins/slideshows.php:23
+#: ../plugins/sidebars.php:28
+#: ../plugins/slideshows.php:114
+#: ../plugins/slideshows.php:225
 msgid "Add New"
 msgstr ""
 
-#: ../plugins/slideshows.php:24
-msgid "Add New Slideshow"
+#: ../plugins/sidebars.php:29
+msgid "Add New Sidebar"
 msgstr ""
 
-#: ../plugins/slideshows.php:25
-msgid "Edit Slideshow"
+#: ../plugins/sidebars.php:30
+msgid "Edit Sidebar"
 msgstr ""
 
-#: ../plugins/slideshows.php:26
-msgid "New Slideshow"
+#: ../plugins/sidebars.php:31
+msgid "New Sidebar"
 msgstr ""
 
-#: ../plugins/slideshows.php:27
-msgid "View Slideshow"
+#: ../plugins/sidebars.php:32
+msgid "View Sidebar"
+msgstr ""
+
+#: ../plugins/sidebars.php:33
+msgid "Search Sidebars"
+msgstr ""
+
+#: ../plugins/sidebars.php:34
+msgid "No sidebars found"
+msgstr ""
+
+#: ../plugins/sidebars.php:35
+msgid "No sidebars found in Trash"
+msgstr ""
+
+#: ../plugins/sidebars.php:88
+#, php-format
+msgid "Add additional widget areas via the <a href=\"%s\">Sidebars</a> page."
+msgstr ""
+
+#: ../plugins/sidebars.php:149
+#: ../widgets/featuredposts.php:309
+#: ../widgets/featuredposts.php:424
+msgid "None"
+msgstr ""
+
+#: ../plugins/sidebars.php:220
+#: ../plugins/sidebars.php:286
+#, php-format
+msgid "Select which %s should use this sidebar:"
+msgstr ""
+
+#: ../plugins/sidebars.php:278
+msgid "No items."
+msgstr ""
+
+#: ../plugins/sidebars.php:435
+#: ../plugins/sidebars.php:436
+#, php-format
+msgid "Sidebar saved. <a href=\"%s\">Give it some widgets</a>"
 msgstr ""
 
 #: ../plugins/slideshows.php:28
-msgid "Search Slideshows"
+msgid "Show Overlay Arrows"
 msgstr ""
 
 #: ../plugins/slideshows.php:29
-msgid "No slideshows found"
+msgid "Show Bottom Navigation"
 msgstr ""
 
-#: ../plugins/slideshows.php:30
-msgid "No slideshows found in Trash"
+#: ../plugins/slideshows.php:31
+#: ../plugins/slideshows.php:113
+#: ../plugins/slideshows.php:124
+msgid "Slideshow"
 msgstr ""
 
-#: ../plugins/slideshows.php:64
-msgid "Slides"
+#: ../plugins/slideshows.php:32
+msgid "Random Image"
 msgstr ""
 
-#: ../plugins/slideshows.php:65
-msgid "Media Library"
+#: ../plugins/slideshows.php:34
+msgid "Largest Image"
 msgstr ""
 
-#: ../plugins/slideshows.php:66
-msgid "Shortcode"
+#: ../plugins/slideshows.php:35
+msgid "Smallest Image"
 msgstr ""
 
-#: ../plugins/slideshows.php:99
-msgid "Pause Timer"
+#: ../plugins/slideshows.php:36
+msgid "Custom"
 msgstr ""
 
-#: ../plugins/slideshows.php:100
-msgid "How long, in miliseconds, to pause on a slide before transitioning."
+#: ../plugins/slideshows.php:112
+#: ../plugins/slideshows.php:123
+msgid "Slideshows"
 msgstr ""
 
-#: ../plugins/slideshows.php:101
-msgid "miliseconds"
+#: ../plugins/slideshows.php:115
+msgid "Add New Slideshow"
 msgstr ""
 
-#: ../plugins/slideshows.php:103
-msgid "Transition Effects"
+#: ../plugins/slideshows.php:116
+msgid "Edit Slideshow"
 msgstr ""
 
-#: ../plugins/slideshows.php:107
-msgid "If no transition effect is checked, all effects will be used at random."
-msgstr ""
-
-#: ../plugins/slideshows.php:109
-msgid "Controls"
-msgstr ""
-
-#: ../plugins/slideshows.php:114
-msgid "Slideshow Size"
+#: ../plugins/slideshows.php:117
+msgid "New Slideshow"
 msgstr ""
 
 #: ../plugins/slideshows.php:118
-msgid "Width"
+msgid "View Slideshow"
 msgstr ""
 
 #: ../plugins/slideshows.php:119
-msgid "Height"
+msgid "Search Slideshows"
 msgstr ""
 
-#: ../plugins/slideshows.php:190
-msgid "Remove Slide"
+#: ../plugins/slideshows.php:120
+msgid "No slideshows found"
+msgstr ""
+
+#: ../plugins/slideshows.php:121
+msgid "No slideshows found in Trash"
+msgstr ""
+
+#: ../plugins/slideshows.php:148
+msgid "Slides"
+msgstr ""
+
+#: ../plugins/slideshows.php:149
+msgid "Media Library"
+msgstr ""
+
+#: ../plugins/slideshows.php:150
+msgid "Shortcode"
+msgstr ""
+
+#: ../plugins/slideshows.php:181
+msgid "Library Filters"
+msgstr ""
+
+#: ../plugins/slideshows.php:182
+msgid "Clear"
+msgstr ""
+
+#: ../plugins/slideshows.php:184
+msgid "Year"
 msgstr ""
 
 #: ../plugins/slideshows.php:191
+msgid "Month"
+msgstr ""
+
+#: ../plugins/slideshows.php:200
+msgid "Media Type"
+msgstr ""
+
+#: ../plugins/slideshows.php:209
+#: ../plugins/slideshows.php:259
+msgid "Width"
+msgstr ""
+
+#: ../plugins/slideshows.php:211
+#: ../plugins/slideshows.php:218
+msgid "greater than"
+msgstr ""
+
+#: ../plugins/slideshows.php:212
+#: ../plugins/slideshows.php:219
+msgid "less than"
+msgstr ""
+
+#: ../plugins/slideshows.php:216
+#: ../plugins/slideshows.php:262
+msgid "Height"
+msgstr ""
+
+#: ../plugins/slideshows.php:248
+msgid "Shortcode Output"
+msgstr ""
+
+#: ../plugins/slideshows.php:249
+msgid "Should slides be used for a slideshow or single, random image?"
+msgstr ""
+
+#: ../plugins/slideshows.php:255
+msgid "Slideshow Size"
+msgstr ""
+
+#: ../plugins/slideshows.php:268
+msgid "Pause Timer"
+msgstr ""
+
+#: ../plugins/slideshows.php:269
+msgid "How long, in miliseconds, to pause on a slide before transitioning."
+msgstr ""
+
+#: ../plugins/slideshows.php:271
+msgid "miliseconds"
+msgstr ""
+
+#: ../plugins/slideshows.php:273
+msgid "Caption Opacity"
+msgstr ""
+
+#: ../plugins/slideshows.php:274
+msgid "How opaque to make the slide caption."
+msgstr ""
+
+#: ../plugins/slideshows.php:276
+msgid "1 = 100%. Default: 0.8."
+msgstr ""
+
+#: ../plugins/slideshows.php:282
+msgid "Transition Effects"
+msgstr ""
+
+#: ../plugins/slideshows.php:283
+msgid "If no transition effect is checked, all effects will be used at random."
+msgstr ""
+
+#: ../plugins/slideshows.php:292
+msgid "Show"
+msgstr ""
+
+#: ../plugins/slideshows.php:379
+msgid "Remove Slide"
+msgstr ""
+
+#: ../plugins/slideshows.php:380
 msgid "Add Slide"
 msgstr ""
 
-#: ../widgets/featuredposts.php:15
+#: ../plugins/slideshows.php:384
+msgid "Link to:"
+msgstr ""
+
+#: ../widgets/ads.php:26
+msgid "Display text or banner ads."
+msgstr ""
+
+#: ../widgets/ads.php:28
+msgid "SB Ad Manager"
+msgstr ""
+
+#: ../widgets/ads.php:40
+#: ../widgets/featuredposts.php:234
+#: ../widgets/rsslinks.php:28
+#: ../widgets/search.php:36
+#: ../widgets/slideshows.php:37
+msgid "Title: "
+msgstr ""
+
+#: ../widgets/ads.php:44
+#: ../widgets/featuredposts.php:301
+#: ../widgets/featuredposts.php:416
+msgid "Image Size: "
+msgstr ""
+
+#: ../widgets/featuredposts.php:23
 msgid "Display featured content in any widget area"
 msgstr ""
 
-#: ../widgets/featuredposts.php:17
+#: ../widgets/featuredposts.php:25
 msgid "SB Featured Content"
 msgstr ""
 
-#: ../widgets/featuredposts.php:98
-#: ../widgets/featuredposts.php:113
+#: ../widgets/featuredposts.php:107
+#: ../widgets/featuredposts.php:122
 #, php-format
 msgid "Permalink to %s"
 msgstr ""
 
-#: ../widgets/featuredposts.php:223
-#: ../widgets/rsslinks.php:18
-#: ../widgets/search.php:26
-#: ../widgets/slideshows.php:25
-#: ../widgets/social.php:101
-#: ../widgets/tagcloud.php:32
-msgid "Title: "
-msgstr ""
-
-#: ../widgets/featuredposts.php:227
+#: ../widgets/featuredposts.php:238
 msgid "Featured Content Type:"
 msgstr ""
 
-#: ../widgets/featuredposts.php:236
+#: ../widgets/featuredposts.php:251
 msgid "Category: "
 msgstr ""
 
-#: ../widgets/featuredposts.php:240
+#: ../widgets/featuredposts.php:255
 msgid "Order By:"
 msgstr ""
 
-#: ../widgets/featuredposts.php:242
+#: ../widgets/featuredposts.php:257
 msgid "Date"
 msgstr ""
 
-#: ../widgets/featuredposts.php:243
+#: ../widgets/featuredposts.php:258
 msgid "Post ID"
 msgstr ""
 
-#: ../widgets/featuredposts.php:244
+#: ../widgets/featuredposts.php:259
 msgid "Title"
 msgstr ""
 
-#: ../widgets/featuredposts.php:245
+#: ../widgets/featuredposts.php:260
 msgid "Author"
 msgstr ""
 
-#: ../widgets/featuredposts.php:246
+#: ../widgets/featuredposts.php:261
 msgid "Comment Count"
 msgstr ""
 
-#: ../widgets/featuredposts.php:247
+#: ../widgets/featuredposts.php:262
 msgid "Random"
 msgstr ""
 
-#: ../widgets/featuredposts.php:251
+#: ../widgets/featuredposts.php:266
 msgid "Sort Order:"
 msgstr ""
 
-#: ../widgets/featuredposts.php:253
+#: ../widgets/featuredposts.php:268
 msgid "Descending (3, 2, 1; c, b, a)"
 msgstr ""
 
-#: ../widgets/featuredposts.php:254
+#: ../widgets/featuredposts.php:269
 msgid "Ascending (1, 2, 3; a, b, c)"
 msgstr ""
 
-#: ../widgets/featuredposts.php:258
+#: ../widgets/featuredposts.php:273
 msgid "Number of posts to display: "
 msgstr ""
 
-#: ../widgets/featuredposts.php:264
+#: ../widgets/featuredposts.php:279
 msgid "Display Post Title"
 msgstr ""
 
-#: ../widgets/featuredposts.php:269
+#: ../widgets/featuredposts.php:284
 msgid "Display Meta Information"
 msgstr ""
 
-#: ../widgets/featuredposts.php:273
+#: ../widgets/featuredposts.php:288
 msgid "Display Meta Information: "
 msgstr ""
 
-#: ../widgets/featuredposts.php:282
-#: ../widgets/featuredposts.php:397
+#: ../widgets/featuredposts.php:297
+#: ../widgets/featuredposts.php:412
 msgid "Display Featured Image"
 msgstr ""
 
-#: ../widgets/featuredposts.php:286
-#: ../widgets/featuredposts.php:401
-msgid "Image Size: "
-msgstr ""
-
-#: ../widgets/featuredposts.php:292
-#: ../widgets/featuredposts.php:407
+#: ../widgets/featuredposts.php:307
+#: ../widgets/featuredposts.php:422
 msgid "Image Alignment:"
 msgstr ""
 
-#: ../widgets/featuredposts.php:294
-#: ../widgets/featuredposts.php:409
-msgid "None"
-msgstr ""
-
-#: ../widgets/featuredposts.php:300
-#: ../widgets/featuredposts.php:415
+#: ../widgets/featuredposts.php:315
+#: ../widgets/featuredposts.php:430
 msgid "Image Position:"
 msgstr ""
 
-#: ../widgets/featuredposts.php:302
+#: ../widgets/featuredposts.php:317
 msgid "Before Post Info"
 msgstr ""
 
-#: ../widgets/featuredposts.php:303
+#: ../widgets/featuredposts.php:318
 msgid "After Post Info"
 msgstr ""
 
-#: ../widgets/featuredposts.php:311
+#: ../widgets/featuredposts.php:326
 msgid "Display Post Content"
 msgstr ""
 
-#: ../widgets/featuredposts.php:315
+#: ../widgets/featuredposts.php:330
 msgid "Content:"
 msgstr ""
 
-#: ../widgets/featuredposts.php:317
+#: ../widgets/featuredposts.php:332
 msgid "Post Excerpt"
 msgstr ""
 
-#: ../widgets/featuredposts.php:318
+#: ../widgets/featuredposts.php:333
 msgid "Full Content"
 msgstr ""
 
-#: ../widgets/featuredposts.php:322
-#: ../widgets/featuredposts.php:429
+#: ../widgets/featuredposts.php:337
+#: ../widgets/featuredposts.php:444
 #, php-format
 msgid "Limit content to %s characters"
 msgstr ""
 
-#: ../widgets/featuredposts.php:323
-#: ../widgets/featuredposts.php:430
+#: ../widgets/featuredposts.php:338
+#: ../widgets/featuredposts.php:445
 msgid "Leave blank for no limit."
 msgstr ""
 
-#: ../widgets/featuredposts.php:326
-#: ../widgets/featuredposts.php:433
+#: ../widgets/featuredposts.php:341
+#: ../widgets/featuredposts.php:448
 msgid "Read More Text: "
 msgstr ""
 
-#: ../widgets/featuredposts.php:328
-#: ../widgets/featuredposts.php:435
+#: ../widgets/featuredposts.php:343
+#: ../widgets/featuredposts.php:450
 msgid "Leave blank to hide the Read More link."
 msgstr ""
 
-#: ../widgets/featuredposts.php:335
+#: ../widgets/featuredposts.php:350
 msgid "Display Link to More Posts"
 msgstr ""
 
-#: ../widgets/featuredposts.php:339
+#: ../widgets/featuredposts.php:354
 msgid "Link URL: "
 msgstr ""
 
-#: ../widgets/featuredposts.php:343
+#: ../widgets/featuredposts.php:358
 msgid "Link Text: "
 msgstr ""
 
-#: ../widgets/featuredposts.php:347
+#: ../widgets/featuredposts.php:362
 msgid "Link Position:"
 msgstr ""
 
-#: ../widgets/featuredposts.php:349
+#: ../widgets/featuredposts.php:364
 msgid "Before Posts"
 msgstr ""
 
-#: ../widgets/featuredposts.php:350
+#: ../widgets/featuredposts.php:365
 msgid "After Posts"
 msgstr ""
 
-#: ../widgets/featuredposts.php:351
+#: ../widgets/featuredposts.php:366
 msgid "Before &amp; After Posts"
 msgstr ""
 
-#: ../widgets/featuredposts.php:359
+#: ../widgets/featuredposts.php:374
 msgid "Display Advanced Query Options"
 msgstr ""
 
-#: ../widgets/featuredposts.php:363
+#: ../widgets/featuredposts.php:378
 msgid "Display "
 msgstr ""
 
-#: ../widgets/featuredposts.php:365
+#: ../widgets/featuredposts.php:380
 msgid " additional posts"
 msgstr ""
 
-#: ../widgets/featuredposts.php:366
+#: ../widgets/featuredposts.php:381
 msgid "These posts will display as title-only."
 msgstr ""
 
-#: ../widgets/featuredposts.php:369
+#: ../widgets/featuredposts.php:384
 msgid "Exclude these posts: "
 msgstr ""
 
-#: ../widgets/featuredposts.php:371
-#: ../widgets/featuredposts.php:376
+#: ../widgets/featuredposts.php:386
+#: ../widgets/featuredposts.php:391
 msgid "Comma-separated list of post ID's."
 msgstr ""
 
-#: ../widgets/featuredposts.php:374
+#: ../widgets/featuredposts.php:389
 msgid "Include only these posts: "
 msgstr ""
 
-#: ../widgets/featuredposts.php:379
+#: ../widgets/featuredposts.php:394
 msgid "Offset posts: "
 msgstr ""
 
-#: ../widgets/featuredposts.php:381
+#: ../widgets/featuredposts.php:396
 msgid "Number of posts to skip before displaying."
 msgstr ""
 
-#: ../widgets/featuredposts.php:390
+#: ../widgets/featuredposts.php:405
 msgid "Page: "
 msgstr ""
 
-#: ../widgets/featuredposts.php:392
+#: ../widgets/featuredposts.php:407
 msgid "Leave widget title blank to use Page Title instead"
 msgstr ""
 
-#: ../widgets/featuredposts.php:417
+#: ../widgets/featuredposts.php:432
 msgid "Before Title"
 msgstr ""
 
-#: ../widgets/featuredposts.php:418
+#: ../widgets/featuredposts.php:433
 msgid "After Title"
 msgstr ""
 
-#: ../widgets/featuredposts.php:425
+#: ../widgets/featuredposts.php:440
 msgid "Display Page Content"
 msgstr ""
 
-#: ../widgets/rsslinks.php:6
+#: ../widgets/rsslinks.php:16
 msgid "RSS links for both posts and comments."
 msgstr ""
 
-#: ../widgets/rsslinks.php:8
+#: ../widgets/rsslinks.php:18
 msgid "SB RSS Links"
 msgstr ""
 
-#: ../widgets/rsslinks.php:41
+#: ../widgets/rsslinks.php:51
 msgid "Posts RSS feed"
 msgstr ""
 
-#: ../widgets/rsslinks.php:41
+#: ../widgets/rsslinks.php:51
 msgid "All posts"
 msgstr ""
 
-#: ../widgets/rsslinks.php:42
+#: ../widgets/rsslinks.php:52
 msgid "Comments RSS feed"
 msgstr ""
 
-#: ../widgets/rsslinks.php:42
+#: ../widgets/rsslinks.php:52
 msgid "All comments"
 msgstr ""
 
-#: ../widgets/search.php:12
+#: ../widgets/search.php:22
 msgid "A search form for your blog."
 msgstr ""
 
-#: ../widgets/search.php:14
+#: ../widgets/search.php:24
 msgid "SB Search"
 msgstr ""
 
-#: ../widgets/search.php:30
+#: ../widgets/search.php:40
 msgid "Input Text: "
 msgstr ""
 
-#: ../widgets/search.php:34
+#: ../widgets/search.php:44
 msgid "Button Text: "
 msgstr ""
 
-#: ../widgets/slideshows.php:12
+#: ../widgets/slideshows.php:24
 msgid "A widget for displaying your slideshows."
 msgstr ""
 
-#: ../widgets/slideshows.php:14
+#: ../widgets/slideshows.php:26
 msgid "SB Slideshow"
 msgstr ""
 
-#: ../widgets/slideshows.php:29
+#: ../widgets/slideshows.php:41
 msgid "Slideshow: "
 msgstr ""
 
-#: ../widgets/slideshows.php:44
+#: ../widgets/slideshows.php:56
 msgid "Edit Slideshow Settings"
 msgstr ""
 
-#: ../widgets/social.php:13
+#: ../widgets/social.php:23
 msgid "Provide visitors with links to your social media profiles."
 msgstr ""
 
-#: ../widgets/social.php:15
+#: ../widgets/social.php:25
 msgid "SB Social"
 msgstr ""
 
-#: ../widgets/social.php:47
-#: ../widgets/social.php:48
-#: ../widgets/social.php:49
-#: ../widgets/social.php:50
-#: ../widgets/social.php:51
-#: ../widgets/social.php:52
-#: ../widgets/social.php:53
-#: ../widgets/social.php:54
-msgid "Connect on "
+#: ../widgets/social.php:63
+msgid "Subscribe to Comments RSS"
 msgstr ""
 
-#: ../widgets/social.php:105
+#: ../widgets/social.php:124
 msgid "Intro text: "
 msgstr ""
 
-#: ../widgets/social.php:109
+#: ../widgets/social.php:128
 msgid "Social Media"
 msgstr ""
 
-#: ../widgets/social.php:110
+#: ../widgets/social.php:129
 msgid "Fill in the links for the Social Media tabs you wish to activate, please include http:// on all links except Twitter."
 msgstr ""
 
-#: ../widgets/social.php:113
+#: ../widgets/social.php:132
 msgid "Display RSS Feed"
 msgstr ""
 
-#: ../widgets/social.php:117
+#: ../widgets/social.php:136
 msgid "Display Comment RSS Feed"
 msgstr ""
 
-#: ../widgets/social.php:120
+#: ../widgets/social.php:139
 msgid "Twitter Username: "
 msgstr ""
 
-#: ../widgets/social.php:125
+#: ../widgets/social.php:144
 msgid "Facebook: "
 msgstr ""
 
-#: ../widgets/social.php:129
+#: ../widgets/social.php:148
 msgid "Delicious: "
 msgstr ""
 
-#: ../widgets/social.php:133
+#: ../widgets/social.php:152
 msgid "Flickr: "
 msgstr ""
 
-#: ../widgets/social.php:137
+#: ../widgets/social.php:156
 msgid "YouTube: "
 msgstr ""
 
-#: ../widgets/social.php:141
+#: ../widgets/social.php:160
 msgid "Vimeo: "
 msgstr ""
 
-#: ../widgets/social.php:145
+#: ../widgets/social.php:164
 msgid "Digg: "
 msgstr ""
 
-#: ../widgets/social.php:149
+#: ../widgets/social.php:168
 msgid "LinkedIn: "
 msgstr ""
 
-#: ../widgets/social.php:154
-msgid "Open links in new window "
+#: ../widgets/social.php:173
+msgid "Open all links in new window "
 msgstr ""
 
-#: ../widgets/social.php:157
+#: ../widgets/social.php:176
 msgid "Link Display:"
 msgstr ""
 
-#: ../widgets/tagcloud.php:12
+#: ../widgets/tagcloud.php:22
 msgid "A configurable Tag Cloud."
 msgstr ""
 
-#: ../widgets/tagcloud.php:14
+#: ../widgets/tagcloud.php:24
 msgid "SB Tag Cloud"
 msgstr ""
 
-#: ../widgets/tagcloud.php:36
+#: ../widgets/tagcloud.php:46
 msgid "Smallest Size:"
 msgstr ""
 
-#: ../widgets/tagcloud.php:41
+#: ../widgets/tagcloud.php:51
 msgid "Largest Size:"
 msgstr ""
 
-#: ../widgets/tagcloud.php:46
+#: ../widgets/tagcloud.php:56
 msgid "Unit of Measurement:"
 msgstr ""
 
-#: ../widgets/tagcloud.php:55
+#: ../widgets/tagcloud.php:65
 msgid "Number of tags:"
 msgstr ""
 
-#: ../widgets/tagcloud.php:59
+#: ../widgets/tagcloud.php:69
 msgid "Format:"
 msgstr ""
 
-#: ../widgets/tagcloud.php:66
+#: ../widgets/tagcloud.php:76
 msgid "Separator:"
 msgstr ""
 
-#: ../widgets/tagcloud.php:71
+#: ../widgets/tagcloud.php:81
 msgid "Order by:"
 msgstr ""
 
-#: ../widgets/tagcloud.php:78
+#: ../widgets/tagcloud.php:88
 msgid "Order:"
 msgstr ""
 
-#: ../widgets/tagcloud.php:86
+#: ../widgets/tagcloud.php:96
 msgid "Exclude:"
 msgstr ""
 
-#: ../widgets/tagcloud.php:91
+#: ../widgets/tagcloud.php:101
 msgid "Include:"
 msgstr ""
 
@@ -1152,11 +1524,6 @@ msgstr ""
 msgid "<span>One</span> Trackback"
 msgstr ""
 
-#: ../../loop.php:25
-#, php-format
-msgid "Continue Reading %s"
-msgstr ""
-
 #: ../../page-archives.php:22
 msgid "Archives by Category"
 msgstr ""
@@ -1165,20 +1532,12 @@ msgstr ""
 msgid "Archives by Month"
 msgstr ""
 
+#: ../../page-archives.php:34
+msgid "Archives by Author"
+msgstr ""
+
 #: ../../page-fullwidth.php:20
-#: ../../page-listcategories.php:20
-#: ../../page-listchildren.php:21
-#: ../../page-tertiarysidebar.php:20
-#: ../../page.php:16
 msgid "Pages: "
-msgstr ""
-
-#: ../../page-sitemap.php:23
-msgid "Pages"
-msgstr ""
-
-#: ../../page-sitemap.php:28
-msgid "Categories"
 msgstr ""
 
 #: ../../search.php:19
