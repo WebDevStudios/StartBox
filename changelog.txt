@@ -1,4 +1,4 @@
-2011.07.17 - version 2.5.2
+2011.07.30 - version 2.5.2
 	* new: custom sidebars can now be set to appear on just the homepage
 	* new: sb_register_sidebar helper function for easily registering new sidebar within theme/plugin
 	* new: sb_unregister_sidebar helper function for easily unregistering a default sidebar within theme/plugin
@@ -9,6 +9,7 @@
 	* changed: altered the default search widget styles and gravity form submit button style
 	* changed: nav menu options depth now limited to 3 levels deep
 	* changed: nav menu options can now set a default depth
+	* changed: updated startbox.po and startbox.mo to include all the latest localization strings
 	* removed: removed internal copy of Widget Logic, users are encouraged to install the stand-alone plugin if they still want it.
 	
 2011.06.24 - version 2.5.1

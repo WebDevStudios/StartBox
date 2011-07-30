@@ -314,6 +314,11 @@ class StartBox {
 		}
 		
 		// Upgrade to 2.5.2
+		if ( version_compare( get_option('startbox_version'), '2.5.2', '<') ) {
+			update_option( 'startbox_version', '2.5.2' );
+		}
+		
+		// Upgrade to 2.5.3
 		// if ( version_compare( get_option('startbox_version'), '2.5.2', '<') ) {
 		// 	
 		// 	$theme_settings = get_option( THEME_OPTIONS );
