@@ -308,18 +308,13 @@ class StartBox {
 			update_option( 'startbox_version', '2.5' );
 		}
 		
-		// Upgrade to 2.5.1
-		if ( version_compare( get_option('startbox_version'), '2.5.1', '<') ) {
-			update_option( 'startbox_version', '2.5.1' );
-		}
-		
-		// Upgrade to 2.5.2
-		if ( version_compare( get_option('startbox_version'), '2.5.2', '<') ) {
-			update_option( 'startbox_version', '2.5.2' );
-		}
-		
 		// Upgrade to 2.5.3
-		// if ( version_compare( get_option('startbox_version'), '2.5.2', '<') ) {
+		if ( version_compare( get_option('startbox_version'), '2.5.3', '<') ) {
+			update_option( 'startbox_version', '2.5.3' );
+		}
+		
+		// Upgrade to 2.5.4
+		// if ( version_compare( get_option('startbox_version'), '2.5.4', '<') ) {
 		// 	
 		// 	$theme_settings = get_option( THEME_OPTIONS );
 		// 	$new_settings = array();

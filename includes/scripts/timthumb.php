@@ -14,10 +14,10 @@ define ('CACHE_SIZE', 1000);				// number of files to store before clearing cach
 define ('CACHE_CLEAR', 20);					// maximum number of files to delete on each cache clear
 define ('CACHE_USE', TRUE);					// use the cache files? (mostly for testing)
 define ('CACHE_MAX_AGE', 864000);			// time to cache in the browser
-define ('VERSION', '1.31');					// version number (to force a cache refresh)
-define ('DIRECTORY_CACHE', '../../../../uploads/cache');	// cache directory
-define ('MAX_WIDTH', 2500);					// maximum image width
-define ('MAX_HEIGHT', 2500);				// maximum image height
+define ('VERSION', '1.34');					// version number (to force a cache refresh)
+define ('DIRECTORY_CACHE', '../../../../uploads/cache');		// cache directory
+define ('MAX_WIDTH', 1500);					// maximum image width
+define ('MAX_HEIGHT', 1500);				// maximum image height
 define ('ALLOW_EXTERNAL', FALSE);			// allow external website (override security precaution - not advised!)
 define ('MEMORY_LIMIT', '30M');				// set PHP memory limit
 define ('MAX_FILE_SIZE', 1500000);			// file size limit to prevent possible DOS attacks (roughly 1.5 megabytes)
@@ -27,11 +27,8 @@ define ('CURL_TIMEOUT', 10);				// timeout duration. Tweak as you require (lower
 $allowedSites = array (
 	'flickr.com',
 	'picasa.com',
-	'blogger.com',
-	'wordpress.com',
 	'img.youtube.com',
 	'upload.wikimedia.org',
-	'photobucket.com',
 );
 
 // STOP MODIFYING HERE!
@@ -42,7 +39,6 @@ $src = get_request ('src', '');
 if ($src == '' || strlen ($src) <= 3) {
     display_error ('no image specified');
 }
-
 
 // clean params before use
 $src = clean_source ($src);
@@ -627,9 +623,8 @@ function check_external ($src) {
 	global $allowedSites;
 
 	// work out file details
-	$file_details = pathinfo ($src);
 	$filename = 'external_' . md5 ($src);
-	$local_filepath = DIRECTORY_CACHE . '/' . $filename . '.' . $file_details['extension'];
+	$local_filepath = DIRECTORY_CACHE . '/' . $filename;
 	
 	// only do this stuff the file doesn't already exist
 	if (!file_exists ($local_filepath)) {
@@ -646,17 +641,13 @@ function check_external ($src) {
 				display_error ('source filename invalid');
 			}			
 
-			// convert youtube video urls
-			// need to tidy up the code
-
-			if ($url_info['host'] == 'www.youtube.com' || $url_info['host'] == 'youtube.com') {
-				parse_str ($url_info['query']);
-
-				if (isset ($v)) {
-					$src = 'http://img.youtube.com/vi/' . $v . '/0.jpg';
-					$url_info['host'] = 'img.youtube.com';
-				}
+			if (($url_info['host'] == 'www.youtube.com' || $url_info['host'] == 'youtube.com') && preg_match ('/v=([^&]+)/i', $url_info['query'], $matches)) {
+				$v = $matches[1];
+				$src = 'http://img.youtube.com/vi/' . $v . '/0.jpg';
+				$url_info['host'] = 'img.youtube.com';
 			}
+			
+			$isAllowedSite = false;
 
 			// check allowed sites (if required)
 			if (ALLOW_EXTERNAL) {
@@ -665,9 +656,8 @@ function check_external ($src) {
 
 			} else {
 
-				$isAllowedSite = false;
 				foreach ($allowedSites as $site) {
-					if (strpos (strtolower ($url_info['host']), $site) !== false) {
+					if (preg_match ('/(?:^|\.)' . $site . '$/i', $url_info['host'])) {
 						$isAllowedSite = true;
 					}
 				}
@@ -702,6 +692,16 @@ function check_external ($src) {
 
 					curl_close ($ch);
 					fclose ($fh);
+					
+					// check it's actually an image
+					$file_infos = getimagesize ($local_filepath);
+
+					// no mime type or invalid mime type
+					if (empty ($file_infos['mime']) || !preg_match ("/jpg|jpeg|gif|png/i", $file_infos['mime'])) {
+						unlink ($local_filepath);
+						touch ($local_filepath);
+						display_error ('remote file not a valid image');
+					}					
 
                 } else {
 
@@ -862,5 +862,4 @@ function display_error ($errorString = '') {
     die ();
 
 }
-
 ?>

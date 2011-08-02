@@ -1,3 +1,6 @@
+2011.08.02 - version 2.5.3
+	* fMPORTANT SECURITY UPDATE: patched a zero-day exploit in timthumb.php 
+	
 2011.07.30 - version 2.5.2
 	* new: custom sidebars can now be set to appear on just the homepage
 	* new: sb_register_sidebar helper function for easily registering new sidebar within theme/plugin
