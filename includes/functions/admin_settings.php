@@ -135,37 +135,37 @@ class sb_settings {
 class sb_input {
 	
 	public function intro( $id, $label, $desc ) {
-		$output = '<h4 id="' . THEME_OPTIONS . '[' . $id . ']' . '" class="' . $id . '">' . $label . '</h4>'."\n";
-		$output .= '<p class="' . $id . '">' . $desc . '</p>'."\n";
+		$output = '<h4 id="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" class="' . esc_attr( $id ) . '">' . $label . '</h4>'."\n";
+		$output .= '<p class="' . esc_attr( $id ) . '">' . $desc . '</p>'."\n";
 		return $output;
 	}
 	public function text( $id, $class, $label, $value, $desc, $size = 'default', $align = 'left', $before = null, $after = null ) {
-		$output = "\t" . '<label for="' . THEME_OPTIONS . '[' . $id . ']' . '">' . $label . ':</label> <span class="' .$align . '">' . $before . '<input type="text" value="' . $value . '" name="' . THEME_OPTIONS . '[' . $id . ']' . '" id="' . THEME_OPTIONS . '[' . $id . ']' . '" class="option-field-' . $size . ' ' . $class . '" />' . $after . '</span>';
+		$output = "\t" . '<label for="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '">' . $label . ':</label> <span class="' .esc_attr( $align ) . '">' . $before . '<input type="text" value="' . esc_attr( $value ) . '" name="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" id="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" class="' . esc_attr( 'option-field-' . esc_attr( $size ) . ' ' . $class ) . '" />' . $after . '</span>';
 		if ($desc) { $output .= "\t" . '<br/><span class="desc"> ' . $desc . ' </span>'."\n"; }
 		return $output;
 	}
 	public function textarea( $id, $label, $value, $desc ) {
-		$output = "\t" . '<p class="' . $id . '">'."\n";
-		$output .= "\t" . "\t" . '<label for="' . THEME_OPTIONS . '[' . $id . ']' . '">' . $label . '</label><br/>'."\n";
-		$output .= "\t" . "\t" . '<textarea name="' . THEME_OPTIONS . '[' . $id . ']' . '" id="' . THEME_OPTIONS . '[' . $id . ']' . '">' . $value . '</textarea>'."\n";
+		$output = "\t" . '<p class="' . esc_attr( $id ) . '">'."\n";
+		$output .= "\t" . "\t" . '<label for="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '">' . $label . '</label><br/>'."\n";
+		$output .= "\t" . "\t" . '<textarea name="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" id="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '">' . esc_textarea( $value ) . '</textarea>'."\n";
 		if ($desc) { $output .= "\t" . "\t" . '<br/><span class="desc"> ' . $desc . ' </span>'."\n"; }
 		$output .= "\t" . '</p>'."\n";
 		return $output;
 	}
 	public function checkbox( $id, $label, $value, $desc, $align = 'left' ) {
 		if ($value == 'true') { $checked = 'checked="checked"'; } else { $checked = ''; }
-		$output = "\t" . '<p class="' . $id . '">'."\n";
-		$output .= "\t" . "\t" . '<label for="' . THEME_OPTIONS . '[' . $id . ']' . '" class="' . $align . '"><input type="checkbox" class="checkbox" id="' . THEME_OPTIONS . '[' . $id . ']' . '" name="' . THEME_OPTIONS . '[' . $id . ']' . '" value="true" ' . $checked . ' /> ' . $label . '</label><br/>'."\n";
+		$output = "\t" . '<p class="' . esc_attr( $id ) . '">'."\n";
+		$output .= "\t" . "\t" . '<label for="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" class="' . esc_attr( $align ) . '"><input type="checkbox" class="checkbox" id="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" name="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" value="true" ' . $checked . ' /> ' . $label . '</label><br/>'."\n";
 		if ($desc) { $output .= "\t" . "\t" . '<br/><span class="desc"> ' . $desc . ' </span>'."\n"; }
 		$output .= "\t" . '</p>'."\n";
 		return $output;
 	}
 	public function radio( $id, $label, $value, $desc, $options ) {
-		$output = "\t" . '<p class="' . $id . '">';
+		$output = "\t" . '<p class="' . esc_attr( $id ) . '">';
 		$output .= "\t" . "\t" . $label . '<br/>'."\n";
 		foreach ( $options as $option_id => $option ) {
 			if ($value == $option_id) { $checked = 'checked'; } else { $checked = ''; }
-			$output .= "\t" . "\t" . '<input type="radio" id="' . $id . '-' . $option_id . '" value="' . $option_id . '" name="' . THEME_OPTIONS . '[' . $id . ']' . '" ' . $checked . ' /> <label for="' . $id . '-' . $option_id . '">' . $option . '</label><br/>'."\n";
+			$output .= "\t" . "\t" . '<input type="radio" id="' . esc_attr( $id ) . '-' . esc_attr( $option_id ) . '" value="' . esc_attr( $option_id ) . '" name="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" ' . $checked . ' /> <label for="' . esc_attr( $id ) . '-' . esc_attr( $option_id ) . '">' . $option . '</label><br/>'."\n";
 		}
 		if ($desc) { $output .= "\t" . "\t" . '<span class="desc"> ' . $desc . ' </span>'."\n"; }
 		$output .= "\t" . '</p>'."\n";
@@ -176,13 +176,13 @@ class sb_input {
 		if ( !current_theme_supports('sb-layouts') || $options == '')
 			return $output;
 			
-		$output = "\t" . '<p class="' . $id . '">';
+		$output = "\t" . '<p class="' . esc_attr( $id ) . '">';
 		$output .= "\t" . "\t" . $label . '<br/>'."\n";
 		if ($desc) { $output .= "\t" . "\t" . '<span class="desc"> ' . $desc . ' </span>'."\n"; }
 		foreach ( $options as $option_id => $option ) {
 			$layout = $option_id;
 			if ($value == $option_id) { $checked = 'checked'; } else { $checked = ''; }
-			$output .= "\t" . "\t" . '<div class="layout-container"><label for="' . $id . '-' . $option_id . '"><input type="radio" id="' . $id . '-' . $option_id . '" value="' . $option_id . '" name="' . THEME_OPTIONS . '[' . $id . ']' . '" ' . $checked . ' /><img src="' . $option['img'] .'" alt="' . $option['label'] . '"  width="50" height="40" /></label></div>';
+			$output .= "\t" . "\t" . '<div class="layout-container"><label for="' . esc_attr( $id ) . '-' . esc_attr( $option_id ) . '"><input type="radio" id="' . esc_attr( $id ) . '-' . esc_attr( $option_id ) . '" value="' . esc_attr( $option_id ) . '" name="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" ' . $checked . ' /><img src="' . $option['img'] .'" alt="' . $option['label'] . '"  width="50" height="40" /></label></div>';
 		}
 		$output .= "\t" . '</p>'."\n";
 		$output .= "\t" . '<hr/>'."\n";
@@ -205,19 +205,19 @@ class sb_input {
 		$r = wp_parse_args( $args, $defaults );
 		extract( $r, EXTR_SKIP );
 		
-		$output = "\t" . '<p class="' . $id . '">'."\n";
-		$output .= "\t" . "\t" . '<label for="' . THEME_OPTIONS . '[' . $id . ']' . '">' . $label . ':</label> '."\n";
+		$output = "\t" . '<p class="' . esc_attr( $id ) . '">'."\n";
+		$output .= "\t" . "\t" . '<label for="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '">' . $label . ':</label> '."\n";
 		if ( $options == 'categories' ) {
-			$output .= wp_dropdown_categories( array( 'echo' => 0, 'name' => THEME_OPTIONS . '[' . $id . ']', 'id' => THEME_OPTIONS . '[' . $id . ']', 'class' => 'option-select-' . $size . ' ' . $align, 'show_option_none' => 'Select a Category', 'selected' => $value ) );
+			$output .= wp_dropdown_categories( array( 'echo' => 0, 'name' => THEME_OPTIONS . '[' . esc_attr( $id ) . ']', 'id' => THEME_OPTIONS . '[' . esc_attr( $id ) . ']', 'class' => 'option-select-' . esc_attr( $size ) . ' ' . $align, 'show_option_none' => 'Select a Category', 'selected' => $value ) );
 		} elseif ( $options == 'pages' ) {
-			$output .= wp_dropdown_pages( array( 'echo' => 0, 'name' => THEME_OPTIONS . '[' . $id . ']', 'show_option_none' => 'Select a Page', 'selected' => $value ) );
+			$output .= wp_dropdown_pages( array( 'echo' => 0, 'name' => THEME_OPTIONS . '[' . esc_attr( $id ) . ']', 'show_option_none' => 'Select a Page', 'selected' => $value ) );
 		} elseif ( $options == 'posts' ) {
-			$output .= sb_dropdown_posts( array( 'echo' => 0, 'name' => THEME_OPTIONS . '[' . $id . ']', 'id' => THEME_OPTIONS . '[' . $id . ']', 'class' => 'option-select-' . $size . ' ' . $align, 'show_option_none' => 'Select a Post', 'selected' => $value, 'order_by' => $order_by, 'order' => $order, 'limit' => $limit ) );
+			$output .= sb_dropdown_posts( array( 'echo' => 0, 'name' => THEME_OPTIONS . '[' . esc_attr( $id ) . ']', 'id' => THEME_OPTIONS . '[' . esc_attr( $id ) . ']', 'class' => 'option-select-' . esc_attr( $size ) . ' ' . $align, 'show_option_none' => 'Select a Post', 'selected' => $value, 'order_by' => $order_by, 'order' => $order, 'limit' => $limit ) );
 		} else {
-			$output .= "\t" . "\t" . '<select id="' . THEME_OPTIONS . '[' . $id . ']' . '" name="' . THEME_OPTIONS . '[' . $id . ']' . '" class="option-select-' . $size . ' ' . $align . '">'."\n";
+			$output .= "\t" . "\t" . '<select id="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" name="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" class="option-select-' . esc_attr( $size ) . ' ' . esc_attr( $align ) . '">'."\n";
 			foreach ( $options as $option_id => $option ) {
 				if ($value == $option_id) { $select = 'selected="selected"'; } else { $select = ''; }
-				$output .= "\t" . "\t" . "\t" . '<option value="' . $option_id . '" ' . $select . '>' . $option . '</option>'."\n";
+				$output .= "\t" . "\t" . "\t" . '<option value="' . esc_attr( $option_id ) . '" ' . $select . '>' . $option . '</option>'."\n";
 			}
 			$output .= "\t" . "\t" . '</select>'."\n";
 		}
@@ -243,21 +243,21 @@ class sb_input {
 		extract( $r, EXTR_SKIP );
 		
 		if ( sb_get_option( $id . '-enabled' ) == 'true') { $checked = 'checked="checked"'; } else { $checked = ''; }
-		$output = "\t" . '<p class="' . $id . '">'."\n";
-		$output .= "\t" . "\t" . '<label for="' . THEME_OPTIONS . '[' . $id . '-enabled]' . '"><input type="checkbox" class="checkbox" id="' . THEME_OPTIONS . '[' . $id . '-enabled]' . '" name="' . THEME_OPTIONS . '[' . $id . '-enabled]' . '" value="true" ' . $checked . ' /> Enable</label>'."\n";
+		$output = "\t" . '<p class="' . esc_attr( $id ) . '">'."\n";
+		$output .= "\t" . "\t" . '<label for="' . THEME_OPTIONS . '[' . esc_attr( $id ) . '-enabled]' . '"><input type="checkbox" class="checkbox" id="' . THEME_OPTIONS . '[' . esc_attr( $id ) . '-enabled]' . '" name="' . THEME_OPTIONS . '[' . esc_attr( $id ) . '-enabled]' . '" value="true" ' . $checked . ' /> Enable</label>'."\n";
 		$output .= '<span class="right">';
-		if ($label) { $output .= "\t" . "\t" . '<label for="' . THEME_OPTIONS . '[' . $id . ']' . '">' . $label . ':</label> '."\n"; }
+		if ($label) { $output .= "\t" . "\t" . '<label for="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '">' . $label . ':</label> '."\n"; }
 		if ( $options == 'categories' ) {
-			$output .= wp_dropdown_categories( array( 'echo' => 0, 'name' => THEME_OPTIONS . '[' . $id . ']', 'id' => THEME_OPTIONS . '[' . $id . ']', 'show_option_none' => 'Select a Category', 'selected' => $value ) );
+			$output .= wp_dropdown_categories( array( 'echo' => 0, 'name' => THEME_OPTIONS . '[' . esc_attr( $id ) . ']', 'id' => THEME_OPTIONS . '[' . esc_attr( $id ) . ']', 'show_option_none' => 'Select a Category', 'selected' => $value ) );
 		} elseif ( $options == 'pages' ) {
-			$output .= wp_dropdown_pages( array( 'echo' => 0, 'name' => THEME_OPTIONS . '[' . $id . ']', 'show_option_none' => 'Select a Page', 'selected' => $value ) );
+			$output .= wp_dropdown_pages( array( 'echo' => 0, 'name' => THEME_OPTIONS . '[' . esc_attr( $id ) . ']', 'show_option_none' => 'Select a Page', 'selected' => $value ) );
 		} elseif ( $options == 'posts' ) {
-			$output .= sb_dropdown_posts( array( 'echo' => 0, 'name' => THEME_OPTIONS . '[' . $id . ']', 'id' => THEME_OPTIONS . '[' . $id . ']', 'class' => 'option-select-' . $size . ' ' . $align, 'show_option_none' => 'Select a Post', 'selected' => $value, 'order_by' => $order_by, 'order' => $order, 'limit' => $limit ) );
+			$output .= sb_dropdown_posts( array( 'echo' => 0, 'name' => THEME_OPTIONS . '[' . esc_attr( $id ) . ']', 'id' => THEME_OPTIONS . '[' . esc_attr( $id ) . ']', 'class' => 'option-select-' . esc_attr( $size ) . ' ' . $align, 'show_option_none' => 'Select a Post', 'selected' => $value, 'order_by' => $order_by, 'order' => $order, 'limit' => $limit ) );
 		} else {
-			$output .= "\t" . "\t" . '<select id="' . THEME_OPTIONS . '[' . $id . ']' . '" name="' . THEME_OPTIONS . '[' . $id . ']' . '" class="option-select-' . $size . ' ' . $align . '">'."\n";
+			$output .= "\t" . "\t" . '<select id="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" name="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" class="option-select-' . esc_attr( $size ) . ' ' . esc_attr( $align ) . '">'."\n";
 			foreach ( $options as $option_id => $option ) {
 				if ($value == $option_id) { $select = 'selected="selected"'; } else { $select = ''; }
-				$output .= "\t" . "\t" . "\t" . '<option value="' . $option_id . '" ' . $select . '>' . $option . '</option>'."\n";
+				$output .= "\t" . "\t" . "\t" . '<option value="' . esc_attr( $option_id ) . '" ' . $select . '>' . $option . '</option>'."\n";
 			}
 			$output .= "\t" . "\t" . '</select>'."\n";
 		}
@@ -274,16 +274,16 @@ class sb_input {
 		));
 		$menus = get_terms('nav_menu');
 		
-		$output = "\t" . '<p class="' . $id . '">'."\n";
-		$output .= "\t" . "\t" . '<label for="' . THEME_OPTIONS . '[' . $id . ']' . '">' . $label . ':</label> '."\n";
-		$output .= "\t" . "\t" . '<select id="' . THEME_OPTIONS . '[' . $id . ']' . '" name="' . THEME_OPTIONS . '[' . $id . ']' . '"class="option-select-' . $size . ' ' . $align . '">'."\n";
+		$output = "\t" . '<p class="' . esc_attr( $id ) . '">'."\n";
+		$output .= "\t" . "\t" . '<label for="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '">' . $label . ':</label> '."\n";
+		$output .= "\t" . "\t" . '<select id="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" name="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '"class="option-select-' . esc_attr( $size ) . ' ' . esc_attr( $align ) . '">'."\n";
 		foreach ( $menu_opts as $option_id => $option ) {
 			if ($value == $option_id) { $select = 'selected="selected"'; } else { $select = ''; }
-			$output .= "\t" . "\t" . "\t" . '<option value="' . $option_id . '" ' . $select . '>' . $option . '</option>'."\n";
+			$output .= "\t" . "\t" . "\t" . '<option value="' . esc_attr( $option_id ) . '" ' . $select . '>' . $option . '</option>'."\n";
 		}
 		foreach ($menus as $menu ) {
 			if ($value == $menu->term_id) { $select = 'selected="selected"'; } else { $select = ''; }
-			$output .= "\t" . "\t" . "\t" . '<option value="'. $menu->term_id .'" ' . $select . '>'. $menu->name .'</option>'."\n";
+			$output .= "\t" . "\t" . "\t" . '<option value="'. esc_attr( $menu->term_id ) .'" ' . $select . '>'. $menu->name .'</option>'."\n";
 		}
 		$output .= "\t" . "\t" . '</select>' . "\n";
 		
@@ -335,7 +335,7 @@ class sb_input {
 			'linkedin'	=> __( 'LinkedIn', 'startbox' )
 		));
 		
-		$output .= '<div class="' . $id . '-social-extras">';
+		$output .= '<div class="' . esc_attr( $id ) . '-social-extras">';
 		$output .= sb_input::intro( $id . '-social-intro', __( 'Social Links', 'startbox' ), __( 'Provide the full URL\'s (including http://) of whichever social profiles you would like to include in your navigation.', 'startbox' ) );
 		foreach ($social_services as $service => $label) {
 			$value = sb_get_option( $id . '-social-' . $service );
@@ -351,7 +351,7 @@ class sb_input {
 		return $output;
 	}
 	public function color( $id, $label, $value, $desc ) {
-		$output = '<p class="colorpickerinput ' . $id . '">';
+		$output = '<p class="colorpickerinput ' . esc_attr( $id ) . '">';
 		$output .= sb_input::text( $id, 'colorinput', $label, sb_get_option( $id ), null, 'small', null, '<span class="right">' );
 		$output .= '<span class="colorselector"><span></span></span></span>'."\n";
 		if ($desc) { $output .= "\t" . "\t" . '<br/><span class="desc"> ' . $desc . ' </span>'."\n"; } 
@@ -359,9 +359,9 @@ class sb_input {
 		return $output;
 	}
 	public function upload( $id, $label, $value, $desc, $suggested = null ) {
-		$output = "\t" . '<p class="imagepickerinput ' . $id . '">'."\n";
-		$output .= "\t" . "\t" . '<label for="' . THEME_OPTIONS . '[' . $id . ']' . '">' . $label . ':</label> <input type="text" value="' . $value . '" name="' . THEME_OPTIONS . '[' . $id . ']' . '" id="' . THEME_OPTIONS . '[' . $id . ']' . '" class="uploadinput"/>';
-		$output .= ' <a href="' . $value . '" class="previewlink button" title="' . $label . '">Preview</a>';
+		$output = "\t" . '<p class="imagepickerinput ' . esc_attr( $id ) . '">'."\n";
+		$output .= "\t" . "\t" . '<label for="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '">' . $label . ':</label> <input type="text" value="' . esc_attr( $value ) . '" name="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" id="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" class="uploadinput"/>';
+		$output .= ' <a href="' . esc_attr( $value ) . '" class="previewlink button" title="' . $label . '">Preview</a>';
 		if ( $suggested ) {
 			// The URLs for the 'suggested' setting are relative to the active theme's directory. Non-existant images will produce a warning.
 			$output .= '&nbsp;<a href="media-upload.php?type=image&amp;tab=suggested&amp;suggested=' . $suggested . '" class="chooselink button colorbox" title="Choose a previously uploaded file">Media Library</a>';
@@ -394,9 +394,9 @@ class sb_input {
 	}
 	public function font( $id, $label, $desc ) {
 		$output = sb_input::intro( $id, $label, $desc );
-		$output .= '<p class="' . $id . '">' . sb_input::text( $id . '-family', null, 'Font Family', sb_get_option( $id . '-family' ), 'Enter an individual font name a comma-separated font stack (e.g. Georgia,Times,"Times New Roman",serif).', 'large', 'right' ) . "</p>\n";
-		$output .= '<p class="' . $id . '">' . sb_input::text( $id . '-size', null, 'Font Size', sb_get_option( $id . '-size' ), null, 'small', null, '<span class="right">' ) . " <span class='font-unit'>" . sb_get_option( $id . '-unit' ) . "</span></span></p>\n";
-		$output .= '<p class="' . $id . '">' . sb_input::text( $id . '-line-height', null, 'Line Height', sb_get_option( $id . '-line-height'), null, 'small', null, '<span class="right">' ) . " <span class='font-unit'>" . sb_get_option( $id . '-unit' ) . "</span></span></p>\n";
+		$output .= '<p class="' . esc_attr( $id ) . '">' . sb_input::text( $id . '-family', null, 'Font Family', sb_get_option( $id . '-family' ), 'Enter an individual font name a comma-separated font stack (e.g. Georgia,Times,"Times New Roman",serif).', 'large', 'right' ) . "</p>\n";
+		$output .= '<p class="' . esc_attr( $id ) . '">' . sb_input::text( $id . '-size', null, 'Font Size', sb_get_option( $id . '-size' ), null, 'small', null, '<span class="right">' ) . " <span class='font-unit'>" . sb_get_option( $id . '-unit' ) . "</span></span></p>\n";
+		$output .= '<p class="' . esc_attr( $id ) . '">' . sb_input::text( $id . '-line-height', null, 'Line Height', sb_get_option( $id . '-line-height'), null, 'small', null, '<span class="right">' ) . " <span class='font-unit'>" . sb_get_option( $id . '-unit' ) . "</span></span></p>\n";
 		$output .= sb_input::select( array( 'id' => $id . '-unit', 'label' => 'Unit of measurement', 'value' => sb_get_option( $id . '-unit' ), 'options' => array('px' => 'px','pt' => 'pt','em' => 'em','%' => '%'), 'size' => 'medium', 'align' => 'right font-unit' ) );
 		$output .= sb_input::color( $id . '-color', 'Font Color', sb_get_option( $id . '-color' ), null );
 		$output .= sb_input::select( array( 'id' => $id . '-style', 'label' => 'Font Style', 'value' => sb_get_option( $id . '-style' ), 'options' => array('normal' => 'Normal', 'italic' => 'Italic'), 'size' => 'medium', 'align' => 'right' ) );
@@ -408,18 +408,18 @@ class sb_input {
 	public function border( $id, $label, $desc ) {
 		$output = sb_input::intro( $id, $label, $desc );
 		$output .= sb_input::color( $id . '-color', 'Border Color', sb_get_option( $id . '-color' ), null );
-		$output .= '<p class="' . $id . '">' . sb_input::text( $id . '-top', null, 'Border Top Width', sb_get_option( $id . '-top' ), null, 'small', null, '<span class="right">' ) . " px</p>\n";
-		$output .= '<p class="' . $id . '">' . sb_input::text( $id . '-bottom', null, 'Border Bottom Width', sb_get_option( $id . '-bottom' ), null, 'small', null, '<span class="right">' ) . " px</span></p>\n";
-		$output .= '<p class="' . $id . '">' . sb_input::text( $id . '-left', null, 'Border Left Width', sb_get_option( $id . '-left' ), null, 'small', null, '<span class="right">' ) . " px</span></p>\n";
-		$output .= '<p class="' . $id . '">' . sb_input::text( $id . '-right', null, 'Border Right Width', sb_get_option( $id . '-right' ), null, 'small', null, '<span class="right">' ) . " px</span></p>\n";
-		$output .= '<p class="' . $id . '">' . sb_input::text( $id . '-radius', null, 'Border Radius', sb_get_option( $id . '-radius' ), null, 'small', null, '<span class="right">' ) . " px</span></p>\n";
+		$output .= '<p class="' . esc_attr( $id ) . '">' . sb_input::text( $id . '-top', null, 'Border Top Width', sb_get_option( $id . '-top' ), null, 'small', null, '<span class="right">' ) . " px</p>\n";
+		$output .= '<p class="' . esc_attr( $id ) . '">' . sb_input::text( $id . '-bottom', null, 'Border Bottom Width', sb_get_option( $id . '-bottom' ), null, 'small', null, '<span class="right">' ) . " px</span></p>\n";
+		$output .= '<p class="' . esc_attr( $id ) . '">' . sb_input::text( $id . '-left', null, 'Border Left Width', sb_get_option( $id . '-left' ), null, 'small', null, '<span class="right">' ) . " px</span></p>\n";
+		$output .= '<p class="' . esc_attr( $id ) . '">' . sb_input::text( $id . '-right', null, 'Border Right Width', sb_get_option( $id . '-right' ), null, 'small', null, '<span class="right">' ) . " px</span></p>\n";
+		$output .= '<p class="' . esc_attr( $id ) . '">' . sb_input::text( $id . '-radius', null, 'Border Radius', sb_get_option( $id . '-radius' ), null, 'small', null, '<span class="right">' ) . " px</span></p>\n";
 		$output .= "\t" . "\t" . '<p><span class="desc">Note: the Border Radius property does not apply to Internet Explorer users.</p>'."\n"; 
 		return $output;
 	}
 	public function wysiwyg( $id, $label, $value, $desc ) {
-    	$output = "\t" . '<p class=" . $id . ">'."\n";
-        $output .= "\t" . "\t" . '<label for="' . THEME_OPTIONS . '[' . $id . ']' . '">' . $label . '</label><br/>'."\n";
-        $info = THEME_OPTIONS . '[' . $id . ']';
+    	$output = "\t" . '<p class=" . esc_attr( $id ) . ">'."\n";
+        $output .= "\t" . "\t" . '<label for="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '">' . $label . '</label><br/>'."\n";
+        $info = THEME_OPTIONS . '[' . esc_attr( $id ) . ']';
 		ob_start();
         the_editor( $value, $info );
 		$output .= ob_get_clean();
