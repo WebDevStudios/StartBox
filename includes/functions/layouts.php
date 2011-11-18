@@ -149,7 +149,7 @@ function sb_layouts_post_meta_box( $post, $box ) {
 
 	<div class="post-layout">
 
-		<input type="hidden" name="sb_layouts_post_meta_box_nonce" value="<?php echo wp_create_nonce( basename( __FILE__ ) ); ?>" />
+		<input type="hidden" name="sb_layouts_post_meta_box_nonce" value="<?php echo esc_attr( wp_create_nonce( basename( __FILE__ ) ) ); ?>" />
 
 		<p><?php _e( 'Specify a custom page layout for this content.', 'startbox' ); ?></p>
 

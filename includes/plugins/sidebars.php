@@ -220,8 +220,8 @@ function sb_sidebars_post_type_meta_box( $post, $post_type ) {
 	?>
 	<p><?php printf( __('Select which %s should use this sidebar:'), $post_type['args']->labels->name ); ?></p>
 	<div id="posttype-<?php echo $post_type_name; ?>" class="posttypediv">
-		<div id="<?php echo $post_type_name; ?>-all" class="tabs-panel tabs-panel-view-all tabs-panel-active">
-			<ul id="<?php echo $post_type_name; ?>checklist" class="list:<?php echo $post_type_name?> categorychecklist form-no-clear">
+		<div id="<?php echo esc_attr( $post_type_name ); ?>-all" class="tabs-panel tabs-panel-view-all tabs-panel-active">
+			<ul id="<?php echo esc_attr( $post_type_name ); ?>checklist" class="list:<?php echo $post_type_name?> categorychecklist form-no-clear">
 				<?php
 					$get_posts = new WP_Query;
 					$posts = $get_posts->query( $args );
@@ -287,7 +287,7 @@ function sb_sidebars_taxonomy_meta_box( $post, $taxonomy ) {
 	<p><?php printf( __('Select which %s should use this sidebar:'), $taxonomy['args']->label ); ?></p>
 	<div id="taxonomy-<?php echo $taxonomy_name; ?>" class="taxonomydiv">
 		<div id="tabs-panel-<?php echo $taxonomy_name; ?>-all" class="tabs-panel tabs-panel-view-all tabs-panel-active">
-			<ul id="<?php echo $taxonomy_name; ?>checklist" class="list:<?php echo $taxonomy_name?> categorychecklist form-no-clear">
+			<ul id="<?php echo esc_attr( $taxonomy_name ); ?>checklist" class="list:<?php echo $taxonomy_name?> categorychecklist form-no-clear">
 				<?php
 					echo '<li><label><input type="checkbox" ' . checked( in_array( 'all-' . $taxonomy['args']->rewrite['slug'], $selected), true, false ) . ' name="tax[all-' . $taxonomy['args']->rewrite['slug'] .']" value="true"/> All ' . $taxonomy['args']->label . ' (includes all future ' . $taxonomy['args']->label . ')</label></li>';
 					$args['walker'] = $walker;

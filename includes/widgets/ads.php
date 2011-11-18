@@ -47,13 +47,13 @@ class sb_ads_widget extends WP_Widget {
 	?>
 		<p>
 			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e( 'Title: ', 'startbox' ) ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $instance['title']; ?>" />
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id('title') ); ?>" name="<?php echo esc_attr( $this->get_field_name('title') ); ?>" type="text" value="<?php echo esc_attr( $instance['title'] ); ?>" />
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id('width'); ?>"><?php _e( 'Image Size: ', 'startbox' ); ?></label>
-			<input id="<?php echo $this->get_field_id('width'); ?>" name="<?php echo $this->get_field_name('width'); ?>" type="text" size="3" value="<?php echo $instance['width']; ?>" />
+			<input id="<?php echo esc_attr( $this->get_field_id('width') ); ?>" name="<?php echo esc_attr( $this->get_field_name('width') ); ?>" type="text" size="3" value="<?php echo esc_attr( $instance['width'] ); ?>" />
 			x
-			<input id="<?php echo $this->get_field_id('height'); ?>" name="<?php echo $this->get_field_name('height'); ?>" type="text" size="3" value="<?php echo $instance['height']; ?>" />px
+			<input id="<?php echo esc_attr( $this->get_field_id('height') ); ?>" name="<?php echo esc_attr( $this->get_field_name('height') ); ?>" type="text" size="3" value="<?php echo esc_attr( $instance['height'] ); ?>" />px
 		</p>
 		
 		<div>
@@ -88,8 +88,8 @@ class sb_ads_widget extends WP_Widget {
 		
 		<form class="adsform" method="get" action="<?php echo home_url(); ?>">
 			<div>
-				<input name="s" type="text" class="adstext" value="" title="<?php echo $text; ?>" size="10" tabindex="1" />
-				<input type="submit" class="button" value="<?php echo $button; ?>" tabindex="2" />
+				<input name="s" type="text" class="adstext" value="" title="<?php echo esc_attr( $text ); ?>" size="10" tabindex="1" />
+				<input type="submit" class="button" value="<?php echo esc_attr( $button ); ?>" tabindex="2" />
 			</div>
 		</form>
 		

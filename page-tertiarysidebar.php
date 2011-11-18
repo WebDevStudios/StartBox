@@ -36,7 +36,7 @@ Template Name: Tertiary Sidebar
 	if ( is_sidebar_active($sidebar) || has_action("sb_no_{$sidebar}_widgets") ) { ?>
 
 		<?php do_action( "sb_before_{$location}_widgets" ); ?>
-		<div id="<?php echo $location; ?>" class="aside <?php echo $location; ?>-aside<?php if ($classes) { echo ' ' . $classes; }?>">
+		<div id="<?php echo esc_attr( $location ); ?>" class="aside <?php echo $location; ?>-aside<?php if ($classes) { echo ' ' . $classes; }?>">
 			<ul class="xoxo">
 				<?php if ( !dynamic_sidebar($sidebar) ) { do_action( "sb_no_{$sidebar}_widgets"); }?>
 

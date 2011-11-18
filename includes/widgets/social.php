@@ -118,63 +118,63 @@ class sb_widget_social extends WP_Widget {
 			?>
 				<p>
 					<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e( 'Title: ', 'startbox' ) ?></label>
-					<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="textarea" value="<?php echo $instance['title']; ?>" />
+					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id('title') ); ?>" name="<?php echo esc_attr( $this->get_field_name('title') ); ?>" type="textarea" value="<?php echo esc_attr( $instance['title'] ); ?>" />
 				</p>
 				<p>
 					<label for="<?php echo $this->get_field_id('intro'); ?>"><?php _e( 'Intro text: ', 'startbox' ) ?></label>
-					<textarea id="<?php echo $this->get_field_id('intro'); ?>" name="<?php echo $this->get_field_name('intro'); ?>"><?php echo $instance['intro']; ?></textarea>
+					<textarea id="<?php echo esc_attr( $this->get_field_id('intro') ); ?>" name="<?php echo esc_attr( $this->get_field_name('intro') ); ?>"><?php echo $instance['intro']; ?></textarea>
 				</p>
 				
 				<h3><?php _e( 'Social Media', 'startbox' ); ?></h3>
 				<p><?php _e( 'Fill in the links for the Social Media tabs you wish to activate, please include http:// on all links except Twitter.', 'startbox' ); ?></p>				
 				<p>
-					<input class="checkbox" type="checkbox" <?php checked( $instance['rss'], 'on' ); ?> id="<?php echo $this->get_field_id('rss'); ?>" name="<?php echo $this->get_field_name('rss'); ?>" />
+					<input class="checkbox" type="checkbox" <?php checked( $instance['rss'], 'on' ); ?> id="<?php echo esc_attr( $this->get_field_id('rss') ); ?>" name="<?php echo esc_attr( $this->get_field_name('rss') ); ?>" />
 					<label for="<?php echo $this->get_field_id('rss'); ?>"><?php _e( 'Display RSS Feed', 'startbox' ) ?></label>
 				</p>
 				<p>
-					<input class="checkbox" type="checkbox" <?php checked( $instance['comment_rss'], 'on' ); ?> id="<?php echo $this->get_field_id('comment_rss'); ?>" name="<?php echo $this->get_field_name('comment_rss'); ?>" />
+					<input class="checkbox" type="checkbox" <?php checked( $instance['comment_rss'], 'on' ); ?> id="<?php echo esc_attr( $this->get_field_id('comment_rss') ); ?>" name="<?php echo esc_attr( $this->get_field_name('comment_rss') ); ?>" />
 					<label for="<?php echo $this->get_field_id('comment_rss'); ?>"><?php _e( 'Display Comment RSS Feed', 'startbox' ) ?></label>
 				</p>
 				<p>
 					<label for="<?php echo $this->get_field_id('twitter'); ?>"><?php _e( 'Twitter Username: ', 'startbox' ) ?></label>
-					<input class="widefat" id="<?php echo $this->get_field_id('twitter'); ?>" name="<?php echo $this->get_field_name('twitter'); ?>" type="text" value="<?php echo $instance['twitter']; ?>" />
+					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id('twitter') ); ?>" name="<?php echo esc_attr( $this->get_field_name('twitter') ); ?>" type="text" value="<?php echo esc_attr( $instance['twitter'] ); ?>" />
 					<span style="font-size:smaller">Username only, no web address.</span>
 				</p>
 				<p>
 					<label for="<?php echo $this->get_field_id('facebook'); ?>"><?php _e( 'Facebook: ', 'startbox' ) ?></label>
-					<input class="widefat" id="<?php echo $this->get_field_id('facebook'); ?>" name="<?php echo $this->get_field_name('facebook'); ?>" type="text" value="<?php echo $instance['facebook']; ?>" />
+					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id('facebook') ); ?>" name="<?php echo esc_attr( $this->get_field_name('facebook') ); ?>" type="text" value="<?php echo esc_attr( $instance['facebook'] ); ?>" />
 				</p>
 				<p>
 					<label for="<?php echo $this->get_field_id('delicious'); ?>"><?php _e( 'Delicious: ', 'startbox' ) ?></label>
-					<input class="widefat" id="<?php echo $this->get_field_id('delicious'); ?>" name="<?php echo $this->get_field_name('delicious'); ?>" type="text" value="<?php echo $instance['delicious']; ?>" />
+					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id('delicious') ); ?>" name="<?php echo esc_attr( $this->get_field_name('delicious') ); ?>" type="text" value="<?php echo esc_attr( $instance['delicious'] ); ?>" />
 				</p>
 				<p>
 					<label for="<?php echo $this->get_field_id('flickr'); ?>"><?php _e( 'Flickr: ', 'startbox' ) ?></label>
-					<input class="widefat" id="<?php echo $this->get_field_id('flickr'); ?>" name="<?php echo $this->get_field_name('flickr'); ?>" type="text" value="<?php echo $instance['flickr']; ?>" />
+					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id('flickr') ); ?>" name="<?php echo esc_attr( $this->get_field_name('flickr') ); ?>" type="text" value="<?php echo esc_attr( $instance['flickr'] ); ?>" />
 				</p>
 				<p>
 					<label for="<?php echo $this->get_field_id('youtube'); ?>"><?php _e( 'YouTube: ', 'startbox' ) ?></label>
-					<input class="widefat" id="<?php echo $this->get_field_id('youtube'); ?>" name="<?php echo $this->get_field_name('youtube'); ?>" type="text" value="<?php echo $instance['youtube']; ?>" />
+					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id('youtube') ); ?>" name="<?php echo esc_attr( $this->get_field_name('youtube') ); ?>" type="text" value="<?php echo esc_attr( $instance['youtube'] ); ?>" />
 				</p>
 				<p>
 					<label for="<?php echo $this->get_field_id('vimeo'); ?>"><?php _e( 'Vimeo: ', 'startbox' ) ?></label>
-					<input class="widefat" id="<?php echo $this->get_field_id('vimeo'); ?>" name="<?php echo $this->get_field_name('vimeo'); ?>" type="text" value="<?php echo $instance['vimeo']; ?>" />
+					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id('vimeo') ); ?>" name="<?php echo esc_attr( $this->get_field_name('vimeo') ); ?>" type="text" value="<?php echo esc_attr( $instance['vimeo'] ); ?>" />
 				</p>
 				<p>
 					<label for="<?php echo $this->get_field_id('digg'); ?>"><?php _e( 'Digg: ', 'startbox' ) ?></label>
-					<input class="widefat" id="<?php echo $this->get_field_id('digg'); ?>" name="<?php echo $this->get_field_name('digg'); ?>" type="text" value="<?php echo $instance['digg']; ?>" />
+					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id('digg') ); ?>" name="<?php echo esc_attr( $this->get_field_name('digg') ); ?>" type="text" value="<?php echo esc_attr( $instance['digg'] ); ?>" />
 				</p>
 				<p>
 					<label for="<?php echo $this->get_field_id('linkedin'); ?>"><?php _e( 'LinkedIn: ', 'startbox' ) ?></label>
-					<input class="widefat" id="<?php echo $this->get_field_id('linkedin'); ?>" name="<?php echo $this->get_field_name('linkedin'); ?>" type="text" value="<?php echo $instance['linkedin']; ?>" />
+					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id('linkedin') ); ?>" name="<?php echo esc_attr( $this->get_field_name('linkedin') ); ?>" type="text" value="<?php echo esc_attr( $instance['linkedin'] ); ?>" />
 				</p>
 				<p>
-					<input class="checkbox" type="checkbox" <?php checked( $instance['linksopen'], 'on' ); ?> id="<?php echo $this->get_field_id('linksopen'); ?>" name="<?php echo $this->get_field_name('linksopen'); ?>" />
+					<input class="checkbox" type="checkbox" <?php checked( $instance['linksopen'], 'on' ); ?> id="<?php echo esc_attr( $this->get_field_id('linksopen') ); ?>" name="<?php echo esc_attr( $this->get_field_name('linksopen') ); ?>" />
 					<label for="<?php echo $this->get_field_id('linksopen'); ?>"><?php _e( 'Open all links in new window ', 'startbox' ) ?></label>
 				</p>
 				<p>
 					<label for="<?php echo $this->get_field_id('display'); ?>"><?php _e( 'Link Display:', 'startbox' ) ?></label>
-					<select class="widefat" id="<?php echo $this->get_field_id('display'); ?>" name="<?php echo $this->get_field_name('display'); ?>">
+					<select class="widefat" id="<?php echo esc_attr( $this->get_field_id('display') ); ?>" name="<?php echo esc_attr( $this->get_field_name('display') ); ?>">
 						<option value="both" <?php if($instance['display'] == 'both'){ echo 'selected="selected"'; }?>>Text and Icon</option>
 						<option value="icon" <?php if($instance['display'] == 'icon'){ echo 'selected="selected"'; }?>>Icon Only</option>
 						<option value="text" <?php if($instance['display'] == 'text'){ echo 'selected="selected"'; }?>>Text Only</option>

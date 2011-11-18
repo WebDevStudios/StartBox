@@ -120,7 +120,7 @@ function sb_admin_page() { global $sb_admin; ?>
 function sb_admin_buttons() { ?>
 	<div style="position:relative;clear:both; margin-bottom:20px">
 		<input type="submit" name="Submit" value="<?php _e('Save All Settings', 'startbox') ?>" class="button-primary" />
-		<input type="submit" name="<?php echo THEME_OPTIONS . '[reset]'; ?>" value="<?php _e('Reset All Settings', 'startbox') ?>" class="button" onclick="if(confirm('Reset All Theme Settings?')) return true; else return false;" />
+		<input type="submit" name="<?php echo esc_attr( THEME_OPTIONS . '[reset]' ); ?>" value="<?php _e('Reset All Settings', 'startbox') ?>" class="button" onclick="if(confirm('Reset All Theme Settings?')) return true; else return false;" />
 	</div>
 <?php }
 

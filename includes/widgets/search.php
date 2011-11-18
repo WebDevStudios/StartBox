@@ -34,15 +34,15 @@ class sb_search_widget extends WP_Widget {
 	?>
 		<p>
 			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e( 'Title: ', 'startbox' ) ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $instance['title']; ?>" />
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id('title') ); ?>" name="<?php echo esc_attr( $this->get_field_name('title') ); ?>" type="text" value="<?php echo esc_attr( $instance['title'] ); ?>" />
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e( 'Input Text: ', 'startbox' ) ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('search-input'); ?>" name="<?php echo $this->get_field_name('search-input'); ?>" type="text" value="<?php echo $instance['search-input']; ?>" />
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id('search-input') ); ?>" name="<?php echo esc_attr( $this->get_field_name('search-input') ); ?>" type="text" value="<?php echo esc_attr( $instance['search-input'] ); ?>" />
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e( 'Button Text: ', 'startbox' ) ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('search-button'); ?>" name="<?php echo $this->get_field_name('search-button'); ?>" type="text" value="<?php echo $instance['search-button']; ?>" />
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id('search-button') ); ?>" name="<?php echo esc_attr( $this->get_field_name('search-button') ); ?>" type="text" value="<?php echo esc_attr( $instance['search-button'] ); ?>" />
 		</p>
 	<?php
 	}
@@ -70,8 +70,8 @@ class sb_search_widget extends WP_Widget {
 		
 		<form class="searchform" method="get" action="<?php echo home_url(); ?>">
 			<div>
-				<input name="s" type="text" class="searchtext" value="" title="<?php echo $text; ?>" size="10" tabindex="1" />
-				<input type="submit" class="button" value="<?php echo $button; ?>" tabindex="2" />
+				<input name="s" type="text" class="searchtext" value="" title="<?php echo esc_attr( $text ); ?>" size="10" tabindex="1" />
+				<input type="submit" class="button" value="<?php echo esc_attr( $button ); ?>" tabindex="2" />
 			</div>
 		</form>
 		
