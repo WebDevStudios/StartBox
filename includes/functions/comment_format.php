@@ -108,7 +108,7 @@ if ( !function_exists( 'sb_comments' ) ) {
 	    		<div class="comment-wrap">
 					<div class="comment-meta">
 						<div class="comment-author vcard"><?php sb_commenter_link() ?></div>
-		    			<div class="comment-date"><a href="<?php echo '#comment-' . get_comment_ID(); ?>" class="comment-permalink" title="Permalink to this comment"><?php printf(__('%1$s <br/> %2$s', 'startbox'), get_comment_date(), get_comment_time()); ?></a></div>
+		    			<div class="comment-date"><a href="<?php echo esc_url( '#comment-' . get_comment_ID() ); ?>" class="comment-permalink" title="Permalink to this comment"><?php printf(__('%1$s <br/> %2$s', 'startbox'), get_comment_date(), get_comment_time()); ?></a></div>
 					</div>
 		    		<?php if ($comment->comment_approved == '0') _e("\t\t\t\t\t<span class='unapproved'>Your comment is awaiting moderation.</span>\n", 'startbox') ?>
 		            <div class="comment-entry">
