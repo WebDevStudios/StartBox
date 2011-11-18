@@ -40,21 +40,21 @@ class sb_tagcloud_widget extends WP_Widget {
 	?>
 		<p>
 			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e( 'Title: ', 'startbox' ) ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $instance['title']; ?>" />
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id('title') ); ?>" name="<?php echo esc_attr( $this->get_field_name('title') ); ?>" type="text" value="<?php echo esc_attr( $instance['title'] ); ?>" />
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id('smallest'); ?>"><?php _e( 'Smallest Size:', 'startbox' ) ?></label>
-			<input size="3" id="<?php echo $this->get_field_id('smallest'); ?>" name="<?php echo $this->get_field_name('smallest'); ?>" type="text" value="<?php echo $instance['smallest']; ?>" />
+			<input size="3" id="<?php echo esc_attr( $this->get_field_id('smallest') ); ?>" name="<?php echo esc_attr( $this->get_field_name('smallest') ); ?>" type="text" value="<?php echo esc_attr( $instance['smallest'] ); ?>" />
 			<?php echo $instance['unit']; ?>
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id('largest'); ?>"><?php _e( 'Largest Size:', 'startbox' ) ?></label>
-			<input size="3" id="<?php echo $this->get_field_id('largest'); ?>" name="<?php echo $this->get_field_name('largest'); ?>" type="text" value="<?php echo $instance['largest']; ?>" />
+			<input size="3" id="<?php echo esc_attr( $this->get_field_id('largest') ); ?>" name="<?php echo esc_attr( $this->get_field_name('largest') ); ?>" type="text" value="<?php echo esc_attr( $instance['largest'] ); ?>" />
 			<?php echo $instance['unit']; ?>
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id('unit'); ?>"><?php _e( 'Unit of Measurement:', 'startbox' ) ?></label>
-			<select id="<?php echo $this->get_field_id('unit'); ?>" name="<?php echo $this->get_field_name('unit'); ?>">
+			<select id="<?php echo esc_attr( $this->get_field_id('unit') ); ?>" name="<?php echo esc_attr( $this->get_field_name('unit') ); ?>">
 				<option value="pt" <?php if ( $instance['unit'] == 'pt' ) echo 'selected="selected"'; ?>>pt</option>
 				<option value="px" <?php if ( $instance['unit'] == 'px' ) echo 'selected="selected"'; ?>>px</option>
 				<option value="em" <?php if ( $instance['unit'] == 'em' ) echo 'selected="selected"'; ?>>em</option>
@@ -63,30 +63,30 @@ class sb_tagcloud_widget extends WP_Widget {
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id('number'); ?>"><?php _e( 'Number of tags:', 'startbox' ) ?></label>
-			<input size="3" id="<?php echo $this->get_field_id('number'); ?>" name="<?php echo $this->get_field_name('number'); ?>" type="text" value="<?php echo $instance['number']; ?>" />
+			<input size="3" id="<?php echo esc_attr( $this->get_field_id('number') ); ?>" name="<?php echo esc_attr( $this->get_field_name('number') ); ?>" type="text" value="<?php echo esc_attr( $instance['number'] ); ?>" />
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id('format'); ?>"><?php _e( 'Format:', 'startbox' ) ?></label>
-			<select id="<?php echo $this->get_field_id('format'); ?>" name="<?php echo $this->get_field_name('format'); ?>">
+			<select id="<?php echo esc_attr( $this->get_field_id('format') ); ?>" name="<?php echo esc_attr( $this->get_field_name('format') ); ?>">
 				<option value="flat" <?php if ( $instance['format'] == 'flat' ) echo 'selected="selected"'; ?>>Flat</option>
 				<option value="list" <?php if ( $instance['format'] == 'list' ) echo 'selected="selected"'; ?>>List</option>
 			</select>
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id('separator'); ?>"><?php _e( 'Separator:', 'startbox' ) ?></label>
-			<input size="3" id="<?php echo $this->get_field_id('separator'); ?>" name="<?php echo $this->get_field_name('separator'); ?>" type="text" value="<?php echo $instance['separator']; ?>" /><br/>
+			<input size="3" id="<?php echo esc_attr( $this->get_field_id('separator') ); ?>" name="<?php echo esc_attr( $this->get_field_name('separator') ); ?>" type="text" value="<?php echo esc_attr( $instance['separator'] ); ?>" /><br/>
 			<span style="font-size:smaller">Only appears in flat-formatted clouds.<br/>Include any desired spaces.</span>
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id('orderby'); ?>"><?php _e( 'Order by:', 'startbox' ) ?></label>
-			<select id="<?php echo $this->get_field_id('orderby'); ?>" name="<?php echo $this->get_field_name('orderby'); ?>">
+			<select id="<?php echo esc_attr( $this->get_field_id('orderby') ); ?>" name="<?php echo esc_attr( $this->get_field_name('orderby') ); ?>">
 				<option value="name" <?php if ( $instance['orderby'] == 'name' ) echo 'selected="selected"'; ?>>Name</option>
 				<option value="count" <?php if ( $instance['orderby'] == 'count' ) echo 'selected="selected"'; ?>>Count</option>
 			</select>
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id('order'); ?>"><?php _e( 'Order:', 'startbox' ) ?></label>
-			<select id="<?php echo $this->get_field_id('order'); ?>" name="<?php echo $this->get_field_name('order'); ?>">
+			<select id="<?php echo esc_attr( $this->get_field_id('order') ); ?>" name="<?php echo esc_attr( $this->get_field_name('order') ); ?>">
 				<option value="ASC" <?php if ( $instance['order'] == 'ASC' ) echo 'selected="selected"'; ?>>Ascending</option>
 				<option value="DESC" <?php if ( $instance['order'] == 'DESC' ) echo 'selected="selected"'; ?>>Descending</option>
 				<option value="RAND" <?php if ( $instance['order'] == 'RAND' ) echo 'selected="selected"'; ?>>Random</option>
@@ -94,12 +94,12 @@ class sb_tagcloud_widget extends WP_Widget {
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id('exclude'); ?>"><?php _e( 'Exclude:', 'startbox' ) ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('exclude'); ?>" name="<?php echo $this->get_field_name('exclude'); ?>" type="text" value="<?php echo $instance['exclude']; ?>" />
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id('exclude') ); ?>" name="<?php echo esc_attr( $this->get_field_name('exclude') ); ?>" type="text" value="<?php echo esc_attr( $instance['exclude'] ); ?>" />
 			<span style="font-size:smaller">Tag ID(s), separated by comma.<br/>Leave blank to display all tags.</span>
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id('include'); ?>"><?php _e( 'Include:', 'startbox' ) ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('include'); ?>" name="<?php echo $this->get_field_name('include'); ?>" type="text" value="<?php echo $instance['include']; ?>" />
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id('include') ); ?>" name="<?php echo esc_attr( $this->get_field_name('include') ); ?>" type="text" value="<?php echo esc_attr( $instance['include'] ); ?>" />
 			<span style="font-size:smaller">Tag ID(s), separated by comma.<br/>Leave blank to display all tags.</span>
 		</p>
 	<?php

@@ -185,14 +185,14 @@ function sb_slideshow_library_meta() {
 			<select id="filter_year">
 				<option value="all">&infin;&nbsp;</option>
 				<?php foreach ($years as $year) : ?>
-				<option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+				<option value="<?php echo esc_attr( $year ); ?>"><?php echo $year; ?></option>
 				<?php endforeach; ?>
 			</select>
 			<label for="filter_month">&nbsp;<?php _e( 'Month', 'startbox' ); ?>: </label>
 			<select id="filter_month">
 				<option value="all">&infin;&nbsp;</option>
 				<?php foreach ($months as $month) : ?>
-				<option value="<?php echo $month; ?>" class="<?php echo implode( ' ', $month_years[$month] ); ?>"><?php echo $month; ?></option>
+				<option value="<?php echo esc_attr( $month ); ?>" class="<?php echo implode( ' ', $month_years[$month] ); ?>"><?php echo $month; ?></option>
 				<?php endforeach; ?>
 			</select>
 		</div>
@@ -201,7 +201,7 @@ function sb_slideshow_library_meta() {
 			<select id="filter_type">
 				<option value="all">&infin;&nbsp;</option>
 				<?php foreach ($mime_types as $type) : ?>
-				<option value="<?php echo $type; ?>"><?php echo $type; ?></option>
+				<option value="<?php echo esc_attr( $type ); ?>"><?php echo $type; ?></option>
 				<?php endforeach; ?>
 			</select>
 		</div>
@@ -212,14 +212,14 @@ function sb_slideshow_library_meta() {
 				<option value="lt"><?php _e( 'less than', 'startbox' ); ?></option>
 			</select>
 			<input type="text" id="filter_width" class="pixelfield" 
-				value="<?php echo $sb_slideshow_interface['filter_width']; ?>" /><code>px</code>
+				value="<?php echo esc_attr( $sb_slideshow_interface['filter_width'] ); ?>" /><code>px</code>
 			<label for="filter_height_ltgt">&nbsp;<?php _e( 'Height', 'startbox' ); ?>: </label>
 			<select id="filter_height_ltgt">
 				<option value="gt"><?php _e( 'greater than', 'startbox' ); ?>&nbsp;</option>
 				<option value="lt"><?php _e( 'less than', 'startbox' ); ?></option>
 			</select>
 			<input type="text" id="filter_height" class="pixelfield" 
-				value="<?php echo $sb_slideshow_interface['filter_height']; ?>" /><code>px</code>
+				value="<?php echo esc_attr( $sb_slideshow_interface['filter_height'] ); ?>" /><code>px</code>
 		</div>
 	</div>
 	<div id="uploaddiv"> <a title="Upload a file" id="uploadlink" class="button" href="#"><?php _e( 'Add New', 'startbox' ); ?></a> <span id="uploadresult"></span> </div>
@@ -258,22 +258,22 @@ function sb_slideshow_options_meta() {
 	<span id="custom_size" class="hide-if-js">
 	<label for="custom_width"><?php _e( 'Width', 'startbox' ); ?></label> 
 		<input type="text" id="custom_width" class="pixelfield" name="sb_size_custom[width]" 
-			value="<?php echo $size_custom['width']; ?>" /> <code>px</code> 
+			value="<?php echo esc_attr( $size_custom['width'] ); ?>" /> <code>px</code> 
 	<label for="custom_height"><?php _e( 'Height', 'startbox' ); ?></label> 
 		<input type="text" id="custom_height" class="pixelfield" name="sb_size_custom[height]" 
-			value="<?php echo $size_custom['height']; ?>" /> <code>px</code>
+			value="<?php echo esc_attr( $size_custom['height'] ); ?>" /> <code>px</code>
 	</span>
 	</p>
 	<div id="slideshow_on_options">
 	<p><strong><?php _e( 'Pause Timer', 'startbox' ); ?></strong></p>
 	<p><?php _e( 'How long, in miliseconds, to pause on a slide before transitioning.', 'startbox' ); ?></p>
 	<p><input type="text" size="4" name="sb_pause" 
-		value="<?php echo ($pause == '' ? $sb_slideshow_interface['pause'] : $pause); ?>" /> <code><?php _e( 'miliseconds', 'startbox' ); ?></code></p>
+		value="<?php echo esc_attr( ($pause == '' ? $sb_slideshow_interface['pause'] : $pause) ); ?>" /> <code><?php _e( 'miliseconds', 'startbox' ); ?></code></p>
 		
 	<p><strong><?php _e( 'Caption Opacity', 'startbox' ); ?></strong></p>
 	<p><?php _e( 'How opaque to make the slide caption.', 'startbox' ); ?></p>
 	<p><input type="text" size="4" name="sb_opacity" 
-		value="<?php echo ($opacity == '' ? $sb_slideshow_interface['opacity'] : $opacity); ?>" /> <code><?php _e( '1 = 100%. Default: 0.8.', 'startbox' ); ?></code></p>
+		value="<?php echo esc_attr( ($opacity == '' ? $sb_slideshow_interface['opacity'] : $opacity) ); ?>" /> <code><?php _e( '1 = 100%. Default: 0.8.', 'startbox' ); ?></code></p>
 <?php
 	if( isset( $sb_slideshow_interface['transitions'] ) && 
 		is_array( $sb_slideshow_interface['transitions'] ) && 
@@ -383,13 +383,13 @@ function sb_slideshow_sortable_item( $index ) {
 		<textarea name="slide[<?php echo $index; ?>][post_content]"><?php echo $post->post_content; ?></textarea>
 		<label for="slide-link-<?php echo $index; ?>"><?php _e( 'Link to:', 'startbox' ); ?></label>
 		<input type="text" class="slide-link" name="slide[<?php echo $index; ?>][post_excerpt]" id="slide-link-<?php echo $index; ?>" 
-			value="<?php echo ($post->post_excerpt != '' ? $post->post_excerpt : $sb_slideshow_interface['link_text']); ?>" />
+			value="<?php echo esc_attr( ($post->post_excerpt != '' ? $post->post_excerpt : $sb_slideshow_interface['link_text']) ); ?>" />
 		<input type="hidden" name="slide[<?php echo $index; ?>][attachment_id]" 
-			value="<?php echo $post->ID; ?>" />
+			value="<?php echo esc_attr( $post->ID ); ?>" />
 		<input type="hidden" name="slide[<?php echo $index; ?>][box]" class="sb_box" 
-			value="<?php echo $slide['box']; ?>" />
+			value="<?php echo esc_attr( $slide['box'] ); ?>" />
 		<input type="hidden" name="slide[<?php echo $index; ?>][order]" class="sb_order" 
-			value="<?php echo $slide['order']; ?>" />
+			value="<?php echo esc_attr( $slide['order'] ); ?>" />
 	</li>
 <?php
 }

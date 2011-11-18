@@ -26,7 +26,7 @@ class sb_rss_widget extends WP_Widget {
 	?>
 		<p>
 			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e( 'Title: ', 'startbox' ) ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $instance['title']; ?>" />
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id('title') ); ?>" name="<?php echo esc_attr( $this->get_field_name('title') ); ?>" type="text" value="<?php echo esc_attr( $instance['title'] ); ?>" />
 		</p>
 	<?php
 	}
@@ -48,8 +48,8 @@ class sb_rss_widget extends WP_Widget {
 		if ($title) { echo $before_title . $title . $after_title; }	
 	?>
 		<ul>
-			<li><a href="<?php bloginfo('rss2_url') ?>" title="<?php echo esc_html( get_bloginfo('name'), 1 ) ?> <?php _e( 'Posts RSS feed', 'startbox' ); ?>" rel="alternate" type="application/rss+xml"><?php _e( 'All posts', 'startbox' ) ?></a></li>
-			<li><a href="<?php bloginfo('comments_rss2_url') ?>" title="<?php echo esc_html(bloginfo('name'), 1) ?> <?php _e( 'Comments RSS feed', 'startbox' ); ?>" rel="alternate" type="application/rss+xml"><?php _e( 'All comments', 'startbox' ) ?></a></li>
+			<li><a href="<?php bloginfo('rss2_url') ?>" title="<?php echo esc_attr( esc_html( get_bloginfo('name'), 1 ) ); ?> <?php _e( 'Posts RSS feed', 'startbox' ); ?>" rel="alternate" type="application/rss+xml"><?php _e( 'All posts', 'startbox' ) ?></a></li>
+			<li><a href="<?php bloginfo('comments_rss2_url') ?>" title="<?php echo esc_attr( esc_html(bloginfo('name'), 1) ); ?> <?php _e( 'Comments RSS feed', 'startbox' ); ?>" rel="alternate" type="application/rss+xml"><?php _e( 'All comments', 'startbox' ) ?></a></li>
 		</ul>
 	<?php
 		echo $after_widget;
