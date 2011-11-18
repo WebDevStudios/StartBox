@@ -155,7 +155,7 @@ function sb_layouts_post_meta_box( $post, $box ) {
 
 		<div class="post-layout-wrap">
 			<ul style="overflow:hidden;">
-				<li><input type="radio" name="post_layout" id="post_layout_default" value="default" <?php checked( $post_layout, 'default' );?> /> <label for="post_layout_default"><?php _e( 'Default', 'startbox' ); ?> (Set in <a href="<?php echo admin_url( 'themes.php?page=sb_admin' ); ?>">Theme Options</a>)</label></li>
+				<li><input type="radio" name="post_layout" id="post_layout_default" value="default" <?php checked( $post_layout, 'default' );?> /> <label for="post_layout_default"><?php _e( 'Default', 'startbox' ); ?> (Set in <a href="<?php echo esc_url( admin_url( 'themes.php?page=sb_admin' ) ); ?>">Theme Options</a>)</label></li>
 
 				<?php foreach ( $post_layouts as $layout => $key ) { ?>
 					<li style="float:left; margin-right:15px; margin-bottom:10px">
@@ -211,7 +211,7 @@ function sb_layouts_term_meta_box($tag, $taxonomy) {
 		<th scope="row" valign="top"><label><?php _e('Custom Layout', 'startbox'); ?></label></th>
 		<td>
 			<ul style="overflow:hidden;">
-				<li><input type="radio" name="meta[layout]" id="post_layout_default" value="" <?php checked( $tag->meta['layout'], '' ); ?> /> <label for="post_layout_default"><?php _e( 'Default', 'startbox' ); ?> (Set in <a href="<?php echo admin_url( 'themes.php?page=sb_admin' ); ?>">Theme Options</a>)</label></li>
+				<li><input type="radio" name="meta[layout]" id="post_layout_default" value="" <?php checked( $tag->meta['layout'], '' ); ?> /> <label for="post_layout_default"><?php _e( 'Default', 'startbox' ); ?> (Set in <a href="<?php echo esc_url( admin_url( 'themes.php?page=sb_admin' ) ); ?>">Theme Options</a>)</label></li>
 
 				<?php foreach ( $post_layouts as $layout => $key ) { ?>
 					<li style="float:left; margin-right:15px; margin-bottom:10px">

@@ -68,7 +68,7 @@ class sb_search_widget extends WP_Widget {
 		if ($title) { echo $before_title . $title . $after_title; }	
 	?>
 		
-		<form class="searchform" method="get" action="<?php echo home_url(); ?>">
+		<form class="searchform" method="get" action="<?php echo esc_url( home_url() ); ?>">
 			<div>
 				<input name="s" type="text" class="searchtext" value="" title="<?php echo esc_attr( $text ); ?>" size="10" tabindex="1" />
 				<input type="submit" class="button" value="<?php echo esc_attr( $button ); ?>" tabindex="2" />
