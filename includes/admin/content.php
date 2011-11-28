@@ -83,14 +83,16 @@
 						'label'		=> __( 'Post Header Meta', 'startbox' ),
 						'default'	=> __( 'Published in [categories] on [date] [edit]', 'startbox' ),
 						'size'		=> 'large',
-						'align'		=> 'right'
+						'align'		=> 'right',
+						'kses'		=> 'unfiltered_html'
 					),
 				'post_footer_meta' => array(
 						'type'		=> 'text',
 						'label'		=> __( 'Post Footer Meta', 'startbox' ),
 						'default'	=> '[tags] [comments]',
 						'size'		=> 'large',
-						'align'		=> 'right'
+						'align'		=> 'right',
+						'kses'		=> 'unfiltered_html'
 				),
 				'content_div_2' => array( 'type' => 'divider' ),
 				'post_thumbnail_heading' => array(

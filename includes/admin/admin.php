@@ -137,7 +137,11 @@ function sb_sanitize($inputs) {
 			if ($option['type'] == 'checkbox' && !isset($inputs[$option_id])) {
 				$inputs[$option_id] = false;
 			}
-			
+			// Basic KSES sanitization
+			if ( isset( $option['kses'] ) ) {
+				if ( true === $option['kses'] || ( is_string( $option['kses'] ) && !current_user_can( $option['kses'] ) ) )
+					$inputs[$option_id] = wp_kses_post( $inputs[$option_id] );
+			}
 			// Sanitize untrusted textual inputs. Defaults to true. Set 'sanitize' => false for no satitization, or use 'sanitize' => array( 'allowed_html' => '', 'allowed_protocols' => '' ) to allow specific tags.
 			if ( ( $option['type'] == 'text' || $option['type'] == 'textarea') && ( isset($option['sanitize']) && $option['sanitize'] != false ) ) {
 				$inputs[$option_id] = wp_kses( $inputs[$option_id], $option['sanitize']['allowed_html'], ( empty ( $option['sanitize']['allowed_protocols']) ? array() : $option['sanitize']['allowed_protocols'] ) );
