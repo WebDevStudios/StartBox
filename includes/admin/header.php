@@ -46,7 +46,7 @@
 		
 		function favicon() {
 			if ( sb_get_option( 'favicon' ) ) {
-				echo '<link rel="icon" type="image/png" href="' . sb_get_option( 'favicon' ) . '" />'."\n";
+				echo '<link rel="icon" type="image/png" href="' . esc_url( sb_get_option( 'favicon' ) ) . '" />'."\n";
 			} else {
 				echo '<link rel="icon" type="image/png" href="' . IMAGES_URL . '/favicon.png" />'."\n";
 			}
