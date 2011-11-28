@@ -309,11 +309,11 @@ function sb_post_image($w = null, $h = null, $a = null, $zc = 1, $attr = null) {
 	$attr['align'] = $align = ($a != null) ? $a : $align;
 	$attr['zoom'] = $zoom = ($zc != null) ? $zc : $zoom;
 	
-	$output = '<img class="' . $class . $nophoto . '" src="' . SCRIPTS_URL . '/timthumb.php?src=' . sb_get_post_image( $image_id, $post_id, $use_attachments, $image_url ) . '&amp;w=' . $width . '&amp;h=' . $height . '&amp;a=' . $align . '&amp;zc=' . $zoom . '&amp;q=100"';
+	$output = '<img class="' . $class . $nophoto . '" src="' . esc_url( SCRIPTS_URL . '/timthumb.php?src=' . sb_get_post_image( $image_id, $post_id, $use_attachments, $image_url ) . '&amp;w=' . $width . '&amp;h=' . $height . '&amp;a=' . $align . '&amp;zc=' . $zoom . '&amp;q=100"' );
 	foreach ( $attr as $name => $value ) {
 		$exlcude = null;
 		if ( in_array( $name, array( 'post_id', 'image_id', 'align', 'class', 'crop', 'zoom', 'echo', 'image_url', 'use_attachments', 'hide_nophoto', 'enabled' ) ) ) continue;
-		$output .= " $name=" . '"' . $value . '"';
+		$output .= " $name=" . '"' . esc_attr( $value ) . '"';
 	}
 	$output .= ' />';
 	
