@@ -35,10 +35,10 @@
 			if ( !sb_get_option( 'logo-disabled') ) {
 				echo '<div id="logo" class="' . sb_get_option( 'logo-align' ). '">';
 				if ( sb_get_option( 'logo-text') ) {
-					echo '<' . $logo_container . ' id="site-title"><a href="'.get_option( 'home' ).'" title="Home" >'.sb_get_option( 'logo-text' ).'</a></' . $logo_container . '>';
+					echo '<' . $logo_container . ' id="site-title"><a href="'.get_option( 'home' ).'" title="Home" >'.esc_html(sb_get_option( 'logo-text' )).'</a></' . $logo_container . '>';
 				} else {
 					$logo = ( $logo = sb_get_option( 'logo-image' ) ) ? $logo : IMAGES_URL . "/logo.png";
-					echo '<' . $logo_container . ' id="site-title"><a href="'.home_url().'" title="'.get_bloginfo('name').'"><img src="'.$logo.'" alt="'.get_bloginfo('name').'" /><span id="blog-title">'.get_bloginfo('name').'</span></a></' . $logo_container . '>';
+					echo '<' . $logo_container . ' id="site-title"><a href="'.home_url().'" title="'.esc_attr(get_bloginfo('name')).'"><img src="'.esc_url($logo).'" alt="'.esc_attr(get_bloginfo('name')).'" /><span id="blog-title">'.esc_html(get_bloginfo('name')).'</span></a></' . $logo_container . '>';
 				}
 				echo '</div>';
 			}
@@ -55,7 +55,7 @@
 		function tagline() {
 			if ( sb_get_option( 'tagline' ) ) {
 				$tag_container = apply_filters( 'sb_description_container', 'div');
-				echo '<' . $tag_container . ' id="blog-description">' . get_bloginfo( 'description' ) . '</' . $tag_container . '>';
+				echo '<' . $tag_container . ' id="blog-description">' . esc_html( get_bloginfo( 'description' ) ) . '</' . $tag_container . '>';
 			}
 		}
 		
