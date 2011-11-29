@@ -39,6 +39,7 @@ class sb_settings {
 	public $location = 'secondary';		// Column for your settings panel: primary or secondary
 	public $priority = 'default';		// Priority for your settings panel: high, low, default
 	public $options = array();			// A multi-dimensional array for populating the settings panel.
+	public $hide_ui_if_cannot = NULL;
 	
 	// Create the options form to wrap inside metabox. Override this in your own class to create your own form
 	public function form($options) {
@@ -98,8 +99,10 @@ class sb_settings {
 	// This creates the metabox. Do not override this method.
 	public function _init() {
 		global $sb_admin, $sb_style;
-		$this->page = ($this->page == 'sb_style') ? $sb_style : $sb_admin;
-		add_meta_box( $this->slug, $this->name, array( $this, 'form'), $sb_admin, $this->location, $this->priority);
+		if ( empty( $this->hide_ui_if_cannot ) || current_user_can( $this->hide_ui_if_cannot ) ) {
+			$this->page = ($this->page == 'sb_style') ? $sb_style : $sb_admin;
+			add_meta_box( $this->slug, $this->name, array( $this, 'form'), $sb_admin, $this->location, $this->priority);
+		}
 	}
 	
 	// This makes everything work. Do not override this method.

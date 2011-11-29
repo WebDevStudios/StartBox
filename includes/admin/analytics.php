@@ -7,11 +7,13 @@
 			$this->description = __( 'Paste in your tracking codes for your preferred site statistics software (like Google Analytics).', 'startbox' );
 			$this->location = 'secondary';
 			$this->priority = 'core';
+			$this->hide_ui_if_cannot = 'unfiltered_html';
 			$this->options = array(
 				'analytics' => array(
 						'type'	=> 'textarea',
 						'label'	=> sprintf( __('Enter your %s code below:'), '<a href="http://google.com/analytics" target="_blank">analytics</a>' ),
-						'sanitize'	=> false
+						'sanitize'	=> false,
+						'kses'			=> 'unfiltered_html',
 					)
 			);
 			parent::__construct();
