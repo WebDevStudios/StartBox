@@ -92,16 +92,16 @@ function sb_slideshow_verify_id( $id ) {
 
 // Utility: Generate A Checkbox
 function sb_slideshow_checkbox( $value, $key, $name, $checked = array() ) {
-	return '<input type="checkbox" name="sb_' . $name . '[]" id="' . $name . '_' . $value . '" 
-		value="' . $value . '"' . (in_array( $value, (array)$checked ) ? 'checked="checked"' : '') . ' /> 
-		<label for="' . $name . '_' . $value . '">' . $key . '</label><br />';
+	return '<input type="checkbox" name="sb_' . esc_attr( $name ) . '[]" id="' . esc_attr( $name . '_' . $value ) . '" 
+		value="' . esc_attr( $value ) . '"' . (in_array( $value, (array)$checked ) ? 'checked="checked"' : '') . ' /> 
+		<label for="' . esc_attr( $name . '_' . $value ) . '">' . $key . '</label><br />';
 }
 
 // Utility: Generate A Radio Select
 function sb_slideshow_radio( $value, $key, $name, $checked = '' ) {
-	return '<input type="radio" name="sb_' . $name . '" id="' . $name . '_' . $value . '" 
-		value="' . $value . '"' . ($value == $checked ? 'checked="checked"' : '') . ' /> 
-		<label for="' . $name . '_' . $value . '">' . $key . '</label><br />';
+	return '<input type="radio" name="sb_' . esc_attr( $name ) . '" id="' . esc_attr( $name . '_' . $value ) . '" 
+		value="' . esc_attr( $value ) . '"' . ($value == $checked ? 'checked="checked"' : '') . ' /> 
+		<label for="' . esc_attr( $name . '_' . $value ) . '">' . $key . '</label><br />';
 }
 
 // Plugin Initialization
@@ -320,7 +320,7 @@ function sb_slideshow_slides( $sql ) {
 	
 	$slides = get_post_meta( (!isset( $post->ID ) ? $_POST['id'] : $post->ID), 'slide', false ); // set single (third parameter) to false to pull ALL records with key "slide"
 	
-	$attachments = $wpdb->get_results( $wpdb->prepare( $sql ) );
+	$attachments = $wpdb->get_results( $sql );
 	
 	// push all image attachments info into array
 	$indexes = array();
@@ -374,21 +374,21 @@ function sb_slideshow_sortable_item( $index ) {
 	
 	if (isset( $_POST['index_offset'] )) $index += $_POST['index_offset']; // required to properly index ajax uploads
 ?>
-	<li id="attachment_id-<?php echo $post->ID; ?>" class="sb_<?php echo $slide['box']; ?> sb_item">
+	<li id="attachment_id-<?php echo $post->ID; ?>" class="sb_<?php echo esc_attr( $slide['box'] ); ?> sb_item">
 		<div class="sb_right">
 			<a href="#" class="move-to-library"><?php _e( 'Remove Slide', 'startbox' ); ?></a>
 			<a href="#" class="move-to-slides"><?php _e( 'Add Slide', 'startbox' ); ?></a>
 		</div>
 		<?php echo $slide['image']; ?>
-		<textarea name="slide[<?php echo $index; ?>][post_content]"><?php echo $post->post_content; ?></textarea>
+		<textarea name="slide[<?php echo esc_attr( $index ); ?>][post_content]"><?php echo $post->post_content; ?></textarea>
 		<label for="slide-link-<?php echo $index; ?>"><?php _e( 'Link to:', 'startbox' ); ?></label>
-		<input type="text" class="slide-link" name="slide[<?php echo $index; ?>][post_excerpt]" id="slide-link-<?php echo $index; ?>" 
+		<input type="text" class="slide-link" name="slide[<?php echo esc_attr( $index ); ?>][post_excerpt]" id="slide-link-<?php echo $index; ?>" 
 			value="<?php echo esc_attr( ($post->post_excerpt != '' ? $post->post_excerpt : $sb_slideshow_interface['link_text']) ); ?>" />
-		<input type="hidden" name="slide[<?php echo $index; ?>][attachment_id]" 
+		<input type="hidden" name="slide[<?php echo esc_attr( $index ); ?>][attachment_id]" 
 			value="<?php echo esc_attr( $post->ID ); ?>" />
-		<input type="hidden" name="slide[<?php echo $index; ?>][box]" class="sb_box" 
+		<input type="hidden" name="slide[<?php echo esc_attr( $index ); ?>][box]" class="sb_box" 
 			value="<?php echo esc_attr( $slide['box'] ); ?>" />
-		<input type="hidden" name="slide[<?php echo $index; ?>][order]" class="sb_order" 
+		<input type="hidden" name="slide[<?php echo esc_attr( $index ); ?>][order]" class="sb_order" 
 			value="<?php echo esc_attr( $slide['order'] ); ?>" />
 	</li>
 <?php
@@ -508,12 +508,12 @@ function sb_slideshow_shortcode( $atts, $content = NULL ) {
 	
 	// create the code for the slideshow
 	$result = '';
-	$result .= '<div class="slider-wrapper' . ($controlNav ? ' with-controlNav' : '') . '" style="width:' . $dimensions['width'] . 'px;">
+	$result .= '<div class="slider-wrapper' . ($controlNav ? ' with-controlNav' : '') . '" style="width:' . absint( $dimensions['width'] ) . 'px;">
 		<div class="slider" id="slider-' . $id . '">';
 	foreach( $slides as $slide ) {
 		$attachment = get_post( $slide['attachment_id'] );
 		$description = $attachment->post_content;
-		if ($attachment->post_excerpt != '') $result .= '<a href="' . $attachment->post_excerpt . '">';
+		if ($attachment->post_excerpt != '') $result .= '<a href="' . esc_url( $attachment->post_excerpt ) . '">';
 		$result .= sb_post_image( $dimensions['width'], $dimensions['height'], NULL, 1, array( 
 			'image_id' 	=> $slide['attachment_id'], 
 			'title' 		=> $description, 
@@ -533,7 +533,7 @@ function sb_slideshow_shortcode( $atts, $content = NULL ) {
 	$slide = $slides[$random];
 	
 	$result = '';
-	$result .= '<div class="slider_wrapper" style="width:' . $dimensions['width'] . 'px">';
+	$result .= '<div class="slider_wrapper" style="width:' . absint( $dimensions['width'] ) . 'px">';
 	$result .= sb_post_image( $dimensions['width'], $dimensions['height'], null, 1, array( 'image_id' => $slide['attachment_id'], 'title' => strip_tags($slide['caption']), 'alt' => strip_tags($slide['caption']), 'echo' => false ) );
 	
 	$result .= '<span class="slide_caption">'.$slide['caption'].'</span>';
