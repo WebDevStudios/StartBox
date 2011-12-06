@@ -414,7 +414,7 @@ function sb_slideshow_save( $post_id ) {
 					'width' 	=> 100, 
 					'height' 	=> 100 ) );
 	
-	foreach( $_POST['slide'] as $slide ) {
+	foreach( (array) $_POST['slide'] as $slide ) {
 		// update attachment details for any slide
 		wp_update_post( array( 
 			'ID' 			=> $slide['attachment_id'], 
