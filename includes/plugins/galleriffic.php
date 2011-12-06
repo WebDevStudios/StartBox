@@ -117,8 +117,8 @@ function galleriffic_gallery() {
 		* Open each gallery item
 		*/
 		$output .= "\n\t\t\t\t\t<li class='gallery-item'>";
-			$output .= '<a class="thumb" href="' .  wp_get_attachment_url( $id ) . '" title="' . $title . '">';
-				$output .= '<img src="' . $img[0] . '" alt="' . $title . '" title="' . $title . '" />';
+			$output .= '<a class="thumb" href="' . esc_url( wp_get_attachment_url( $id ) ) . '" title="' . esc_attr( $title ) . '">';
+				$output .= '<img src="' . esc_url( $img[0] ) . '" alt="' . esc_attr( $title ) . '" title="' . esc_attr( $title ) . '" />';
 			$output .= '</a>';
 
 		/*
