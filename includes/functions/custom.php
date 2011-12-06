@@ -465,21 +465,23 @@ function sb_dropdown_posts($args = '') {
 	// Query the Posts
 	global $wpdb;
 	$table_prefix = $wpdb->prefix;
-	$limit = ( $limit ) ? ' LIMIT '.$limit : '';
+	$limit = ( $limit ) ? ' LIMIT '.absint( $limit ) : '';
 	$id = esc_attr($id);
 	$name = esc_attr($name);
 	$output = '';
+	$order_by = sanitize_sql_orderby( $order_by . ' ' . $order );
 	
-	$post_list = (array)$wpdb->get_results("
+	$post_list = (array)$wpdb->get_results(
+		$wpdb->prepare("
 		SELECT ID, post_title, post_date
-		FROM {$table_prefix}posts
-		WHERE post_type = '{$post_type}'
-		AND post_status = '{$post_status}'
-		ORDER BY {$order_by} {$order}
+		FROM $wpdb->posts
+		WHERE post_type = %s
+		AND post_status = %s
+		ORDER BY {$order_by}
 		{$limit}
-	");
+	", $post_type, $post_status ) );
 	
-	$output .= "\t" . "\t" . '<select style="width:100%;" id="' . $id . '" name="' . $name . '" class="' . $class . '">'."\n";
+	$output .= "\t" . "\t" . '<select style="width:100%;" id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '" class="' . esc_attr( $class ) . '">'."\n";
 	if ( !empty($post_list) ) {
 		if ( $show_option_none ) $output .= "\t" . "\t" . "\t" . '<option value="">' . $option_none_value . '</option>';
 		foreach ($post_list as $posts) {
