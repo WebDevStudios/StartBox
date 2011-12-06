@@ -45,6 +45,7 @@ class sb_widget_social extends WP_Widget {
 				'comment_rss'	=> $comment_rss,
 				'twitter'		=> $twitter,
 				'facebook'		=> $instance['facebook'],
+				'gplus'			=> $instance['gplus'],
 				'youtube'		=> $instance['youtube'],
 				'vimeo'			=> $instance['vimeo'],
 				'flickr'		=> $instance['flickr'],
@@ -61,6 +62,7 @@ class sb_widget_social extends WP_Widget {
 				if ( isset($url) && $url != '' ) {
 					if ( $service == 'rss' ) $text = apply_filters( 'sb_social_rss', __( 'Subscribe via RSS', 'startbox') );
 					elseif ( $service == 'comment_rss' ) $text = apply_filters( 'sb_social_comment_rss', __( 'Subscribe to Comments RSS', 'startbox') );
+					elseif ( $service == 'gplus' ) $text = apply_filters( 'sb_social_gplus', __( 'Connect on Google+', 'startbox' ) );
 					else $text = apply_filters( "sb_social_{$service}", sprintf( __( 'Connect on %s', 'startbox'), $service ), $instance );
 
 					echo '<li class="listing listing-' . $service . '">';
@@ -84,6 +86,7 @@ class sb_widget_social extends WP_Widget {
 			$instance['comment_rss'] = $new_instance['comment_rss'];
 			$instance['twitter'] = strip_tags( $new_instance['twitter'] );
 			$instance['facebook'] = strip_tags( $new_instance['facebook'] );
+			$instance['gplus'] = strip_tags( $new_instance['gplus'] );
 			$instance['delicious'] = strip_tags( $new_instance['delicious'] );
 			$instance['flickr'] = strip_tags( $new_instance['flickr'] );
 			$instance['youtube'] = strip_tags( $new_instance['youtube'] );
@@ -105,6 +108,7 @@ class sb_widget_social extends WP_Widget {
 				'comment_rss' => '',
 				'twitter' => '',
 				'facebook' => '',
+				'gplus' => '',
 				'delicious' => '',
 				'flickr' => '',
 				'youtube' => '',
@@ -143,6 +147,10 @@ class sb_widget_social extends WP_Widget {
 				<p>
 					<label for="<?php echo $this->get_field_id('facebook'); ?>"><?php _e( 'Facebook: ', 'startbox' ) ?></label>
 					<input class="widefat" id="<?php echo $this->get_field_id('facebook'); ?>" name="<?php echo $this->get_field_name('facebook'); ?>" type="text" value="<?php echo $instance['facebook']; ?>" />
+				</p>
+				<p>
+					<label for="<?php echo $this->get_field_id('gplus'); ?>"><?php _e( 'Google+: ', 'startbox' ) ?></label>
+					<input class="widefat" id="<?php echo $this->get_field_id('gplus'); ?>" name="<?php echo $this->get_field_name('gplus'); ?>" type="text" value="<?php echo $instance['gplus']; ?>" />
 				</p>
 				<p>
 					<label for="<?php echo $this->get_field_id('delicious'); ?>"><?php _e( 'Delicious: ', 'startbox' ) ?></label>
