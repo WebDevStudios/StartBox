@@ -285,11 +285,11 @@ function sb_sidebars_taxonomy_meta_box( $post, $taxonomy ) {
 
 	?>
 	<p><?php printf( __('Select which %s should use this sidebar:'), $taxonomy['args']->label ); ?></p>
-	<div id="taxonomy-<?php echo $taxonomy_name; ?>" class="taxonomydiv">
-		<div id="tabs-panel-<?php echo $taxonomy_name; ?>-all" class="tabs-panel tabs-panel-view-all tabs-panel-active">
-			<ul id="<?php echo esc_attr( $taxonomy_name ); ?>checklist" class="list:<?php echo $taxonomy_name?> categorychecklist form-no-clear">
+	<div id="taxonomy-<?php echo esc_attr( $taxonomy_name ); ?>" class="taxonomydiv">
+		<div id="tabs-panel-<?php echo esc_attr( $taxonomy_name ); ?>-all" class="tabs-panel tabs-panel-view-all tabs-panel-active">
+			<ul id="<?php echo esc_attr( $taxonomy_name ); ?>checklist" class="list:<?php echo esc_attr( $taxonomy_name ) ?> categorychecklist form-no-clear">
 				<?php
-					echo '<li><label><input type="checkbox" ' . checked( in_array( 'all-' . $taxonomy['args']->rewrite['slug'], $selected), true, false ) . ' name="tax[all-' . $taxonomy['args']->rewrite['slug'] .']" value="true"/> All ' . $taxonomy['args']->label . ' (includes all future ' . $taxonomy['args']->label . ')</label></li>';
+					echo '<li><label><input type="checkbox" ' . checked( in_array( 'all-' . $taxonomy['args']->rewrite['slug'], $selected), true, false ) . ' name="tax[all-' . esc_attr( $taxonomy['args']->rewrite['slug'] ) .']" value="true"/> All ' . $taxonomy['args']->label . ' (includes all future ' . $taxonomy['args']->label . ')</label></li>';
 					$args['walker'] = $walker;
 					echo walk_nav_menu_tree( array_map('wp_setup_nav_menu_item', $terms), 0, (object) $args );
 				?>
