@@ -533,7 +533,7 @@ function sb_facebook( $atts, $content = null ) {
 	elseif ( $style == "box" ) { $style = "box_count"; }
 	else { $style = "standard";	}
 
-	return '<div id="fb-root" class="facebook ' . $float . '"></div><script src="http://connect.facebook.net/en_US/all.js#appId=251140598259252&amp;xfbml=1"></script><fb:like href="' . $url . '" send="' . $send . '" width="' . $width . '" show_faces="' . $faces . '" action="' . $action . '" colorscheme="' . $colorscheme . '" layout="' . $style . '" font="' . $font . '"  class="facebook ' . $float . '"></fb:like>';
+	return '<div id="fb-root" class="facebook ' . esc_attr( $float ) . '"></div><script src="http://connect.facebook.net/en_US/all.js#appId=251140598259252&amp;xfbml=1"></script><fb:like href="' . esc_url( $url ) . '" send="' . esc_attr( $send ) . '" width="' . esc_attr( $width ) . '" show_faces="' . esc_attr( $faces ) . '" action="' . esc_attr( $action ) . '" colorscheme="' . esc_attr( $colorscheme ) . '" layout="' . esc_attr( $style ) . '" font="' . esc_attr( $font ) . '"  class="facebook ' . esc_attr( $float ) . '"></fb:like>';
 }
 
 /**
