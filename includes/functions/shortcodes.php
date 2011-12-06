@@ -574,7 +574,7 @@ function sb_digg( $atts, $content = null ) {
 	elseif ( $style == "icon" ) { $style = "Icon"; }
 	else { $style = "Medium"; }
 		
-	$output .= '<div class="digg ' . $float . '"><a class="DiggThisButton Digg'.$style.'"'.$link.'></a></div>';
+	$output .= '<div class="digg ' . esc_attr( $float ) . '"><a class="DiggThisButton Digg'.esc_attr( $style ).'"'.$link.'></a></div>';
 	return $output;
 
 }
@@ -598,7 +598,7 @@ function sb_stumble( $atts, $content = null ) {
 	else { $s = $style; }
 	if ( $link ) { $link = ' &r=' . $link; }
 		
-	return '<div class="stumble ' . $float . '"><script src="http://www.stumbleupon.com/hostedbadge.php?s=' . $s . $link . '"></script></div>';
+	return '<div class="stumble ' . esc_attr( $float ) . '"><script src="http://www.stumbleupon.com/hostedbadge.php?s=' . $s . $link . '"></script></div>';
 }
 
 
