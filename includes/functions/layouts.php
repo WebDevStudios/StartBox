@@ -161,7 +161,7 @@ function sb_layouts_post_meta_box( $post, $box ) {
 					<li style="float:left; margin-right:15px; margin-bottom:10px">
 						<label for="post_layout_<?php echo esc_attr( $layout ); ?>">
 							<input type="radio" name="post_layout" id="post_layout_<?php echo esc_attr( $layout ); ?>" value="<?php echo esc_attr( $layout ); ?>" <?php checked( $post_layout, $layout ); ?>  style="float:left; margin-right:5px; margin-top:20px"/>
-							<img src="<?php echo $key['img']; ?>" alt="<?php echo esc_html( $key['label'] ); ?>"  width="50" height="40" />
+							<img src="<?php echo esc_url( $key['img'] ); ?>" alt="<?php echo esc_attr( $key['label'] ); ?>"  width="50" height="40" />
 						</label>
 					</li>
 				<?php } ?>
@@ -217,7 +217,7 @@ function sb_layouts_term_meta_box($tag, $taxonomy) {
 					<li style="float:left; margin-right:15px; margin-bottom:10px">
 						<label for="post_layout_<?php echo esc_attr( $layout ); ?>">
 							<input type="radio" name="meta[layout]" id="post_layout_<?php echo esc_attr( $layout ); ?>" value="<?php echo esc_attr( $layout ); ?>" <?php checked( $tag->meta['layout'], $layout ); ?>  style="float:left; margin-right:5px; margin-top:20px"/>
-							<img src="<?php echo $key[img]; ?>" alt="<?php echo esc_html( $key[label] ); ?>"  width="50" height="40" />
+							<img src="<?php echo esc_url( $key[img] ); ?>" alt="<?php echo esc_html( $key[label] ); ?>"  width="50" height="40" />
 						</label>
 					</li>
 				<?php } ?>
