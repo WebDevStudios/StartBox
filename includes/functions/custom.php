@@ -178,9 +178,7 @@ function sb_in_descendant_category( $cats, $_post = null )
 */
 function sb_is_pagetemplate_active($pagetemplate = '') {
 	global $wpdb;
-	$sql = "select meta_key from $wpdb->postmeta where meta_key like '_wp_page_template' and meta_value like '" . $pagetemplate . "'";
-	$result = $wpdb->query($sql);
-	if ($result) {
+	if ( $wpdb->get_var( $wpdb->prepare( "SELECT meta_key FROM $wpdb->postmeta WHERE meta_key LIKE '_wp_page_template' AND meta_value = %s", $pagetemplate ) ) ) {
 		return TRUE;
 	} else {
 		return FALSE;
