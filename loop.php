@@ -11,7 +11,7 @@
 	<?php sb_before_post_content(); ?>
 	
 	<div class="entry-content">
-		<a class="entry-photo" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>">
+		<a class="entry-photo" href="<?php the_permalink() ?>" rel="bookmark" title="<?php echo esc_attr( get_the_title() ); ?>">
 			<?php sb_post_image(); ?>
 		</a>
 		
