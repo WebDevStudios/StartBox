@@ -475,9 +475,9 @@ function sb_toggle( $atts, $content = null ) {
 	if (!$id) { $id = 'toggle-' . $i; $i++; }
 
 	$output = '';
-	if ($position == 'before') { $output .= '<a href="#' . $id . '" class="toggle ' . $class . '">' . $title . '</a>'; }
-	$output .= '<' . $container . ' id="' . $id . '" class="toggled ' . $container_class . '">' . do_shortcode( $content ) . '</' . $container . '>';
-	if ($position != 'before') { $output .= '<a href="#' . $id . '" class="toggle ' . $class . '">' . $title . '</a>'; }
+	if ($position == 'before') { $output .= '<a href="#' . $id . '" class="toggle ' . esc_attr( $class ) . '">' . $title . '</a>'; }
+	$output .= '<' . $container . ' id="' . esc_attr( $id ) . '" class="toggled ' . esc_attr( $container_class ) . '">' . do_shortcode( $content ) . '</' . $container . '>';
+	if ($position != 'before') { $output .= '<a href="#' . esc_attr( $id ) . '" class="toggle ' . esc_attr( $class ) . '">' . $title . '</a>'; }
 	return $output; 
 }
 
