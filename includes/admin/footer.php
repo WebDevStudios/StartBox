@@ -83,8 +83,8 @@
 		function copyright() {
 			$site_name = sb_get_option( 'site_name' );
 			$site_url = sb_get_option( 'site_url' );
-			$sb_copyright = ($site_url) ? '<a href="' . $site_url . '">' . $site_name . '</a>' : $site_name;
-			$design_credit = THEME_NAME . ' for <a href="http://wpstartbox.com" title="StartBox Theme Framework for WordPress" target="_blank" class="link-designer">StartBox</a>.';
+			$sb_copyright = ($site_url) ? '<a href="' . esc_url( $site_url ) . '">' . esc_html( $site_name ) . '</a>' : esc_html( $site_name );
+			$design_credit = THEME_NAME . ' for <a href="http://wpstartbox.com/" title="StartBox Theme Framework for WordPress" target="_blank" class="link-designer">StartBox</a>.';
 			$copyright = sb_get_option( 'enable_copyright' );
 			$copyright_year = ( sb_get_option( 'copyright_year' ) ) ? sb_get_option( 'copyright_year' ) : date(Y);
 			$current_year = date('Y');
@@ -95,7 +95,7 @@
 
 			if ($copyright || $designer || $text) { ?>
 				<div id="credits" class="fine">
-					<?php if ($copyright) { ?><span class="copyright">&copy;<?php if ($copyright_year == $current_year) { echo $current_year; } else { echo $copyright_year.'-'.$current_year;} ?> <?php echo apply_filters( 'sb_copyright', $sb_copyright ); ?>. <span class="rights">All Rights Reserved.</span></span><?php } ?>
+					<?php if ($copyright) { ?><span class="copyright">&copy;<?php if ($copyright_year == $current_year) { echo $current_year; } else { echo esc_html( $copyright_year.'-'.$current_year );} ?> <?php echo apply_filters( 'sb_copyright', $sb_copyright ); ?>. <span class="rights">All Rights Reserved.</span></span><?php } ?>
 					<?php if ($designer) { ?><span class="design_credit"><?php echo apply_filters( 'sb_design_credit', $design_credit ); ?></span><?php } ?>
 					<?php if ($wordpress || $startbox) { ?><span class="wp_credit">Powered by <?php if ($wordpress) { ?><a href="http://www.wordpress.org/" title="WordPress" target="_blank" class="link-wordpress">WordPress</a><?php } if ($wordpress && $startbox) { ?> and <?php } if ($startbox) { ?><a href="http://wpstartbox.com" class="link-startbox">StartBox</a><?php } ?>.</span><?php } ?>
 					<?php if ($text) { ?><span class="footer_text"><?php echo do_shortcode( $text ); ?></span><?php } ?>
