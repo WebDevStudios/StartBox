@@ -270,7 +270,7 @@
 		// Post Thumbnail in RSS feed
 		function post_image_feeds($content) {
 			global $post;
-			$content = '<div><a href="' . the_permalink() . '" title="' . esc_attr( the_title() ) . '">' . sb_post_image() . '</a></div>' . $content;
+			$content = '<div><a href="' . the_permalink() . '" title="' . esc_attr( get_the_title() ) . '">' . sb_post_image() . '</a></div>' . $content;
 			return $content;
 		}
 		
