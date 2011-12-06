@@ -499,12 +499,12 @@ function sb_twitter( $atts, $content = null ) {
 	);
 	
 	$output = '';
-	if ( $url ) { $output .= ' data-url="'.$url.'"'; }
-	if ( $source ) { $output .= ' data-via="'.$source.'"'; }
-	if ( $text ) { $output .= ' data-text="'.$text.'"'; }
-	if ( $related ) { $output .= ' data-related="'.$related.'"'; }
-	if ( $lang ) { $output .= ' data-lang="'.$lang.'"'; }
-	$output = '<div class="twitter ' . $float . '"><a href="http://twitter.com/share" class="twitter-share-button"'.$output.' data-count="'.$style.'">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></div>';	
+	if ( $url ) { $output .= ' data-url="'.esc_attr( $url ).'"'; }
+	if ( $source ) { $output .= ' data-via="'.esc_attr( $source ).'"'; }
+	if ( $text ) { $output .= ' data-text="'.esc_attr( $text ).'"'; }
+	if ( $related ) { $output .= ' data-related="'.esc_attr( $related ).'"'; }
+	if ( $lang ) { $output .= ' data-lang="'.esc_attr( $lang ).'"'; }
+	$output = '<div class="twitter ' . esc_attr( $float ) . '"><a href="http://twitter.com/share" class="twitter-share-button"'.$output.' data-count="'.esc_attr( $style ).'">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></div>';	
 
 	return $output;
 }
