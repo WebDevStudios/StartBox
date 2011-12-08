@@ -195,11 +195,11 @@ class StartBox {
 	public function upgrade() {
 		
 		// Make sure we're not on the current version
-		if ( version_compare(get_option('startbox_version'), SB_VERSION, '>=') )
+		if ( version_compare( get_option('startbox_version'), SB_VERSION, '>=' ) )
 			return;
 			
 		// Upgrade to 2.4.8
-		if ( version_compare( get_option('startbox_version'), '2.4.8', '<') ) {
+		if ( version_compare( get_option('startbox_version'), '2.4.8', '<' ) ) {
 
 			$theme_settings = get_option( THEME_OPTIONS );
 			$new_settings = array(
@@ -308,19 +308,19 @@ class StartBox {
 			update_option( 'startbox_version', '2.5' );
 		}
 		
-		// Upgrade to 2.5.3
-		if ( version_compare( get_option('startbox_version'), '2.5.3', '<') ) {
-			update_option( 'startbox_version', '2.5.3' );
+		// Upgrade to 2.5.4
+		if ( version_compare( get_option('startbox_version'), '2.5.4', '<') ) {
+			update_option( 'startbox_version', '2.5.4' );
 		}
 		
-		// Upgrade to 2.5.4
-		// if ( version_compare( get_option('startbox_version'), '2.5.4', '<') ) {
+		// Upgrade to 2.5.5
+		// if ( version_compare( get_option('startbox_version'), '2.5.5', '<') ) {
 		// 	
 		// 	$theme_settings = get_option( THEME_OPTIONS );
 		// 	$new_settings = array();
 		// 	$new_settings = wp_parse_args($new_settings, $theme_settings);
 		// 	update_option( THEME_OPTIONS, $new_settings);
-		// 	update_option( 'startbox_version', '2.5.2' );
+		// 	update_option( 'startbox_version', '2.5.5' );
 		// }
 		
 		// Included hook for other things to do during upgrade

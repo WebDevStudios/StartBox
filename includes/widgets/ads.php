@@ -1,12 +1,21 @@
 <?php
 /**
- * StartBox Ad Widget (unfinished, needs a lot more work and a better strategy)
+ * StartBox Ad Widget (unfinished, needs a lot more work and a better strategy, might be scrapped completely)
  *
- * Creates and spaces in any widgitized area.
+ * Creates ad spaces in any widgitized area.
+ *
+ *		Widget Title
+ *  	Banner WxH
+ *  	---Settings Per Ad---
+ *  		Text
+ *		  	Image URL (uploader?)
+ *  		Link URL
+ *  		Remove
+ *		Add New
  *
  * @package StartBox
  * @subpackage Widgets
- * @since StartBox 2.x
+ * @since Unknown
  */
 
 function load_widget_sb_ads_widget() { // Widget: Ads Widget

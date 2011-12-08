@@ -55,7 +55,7 @@
 				'more_text' => array(
 						'type'		=> 'text',
 						'label'		=> __( 'Read More text', 'startbox' ),
-						'default'	=> __( 'Read &amp; Discuss &raquo;', 'startbox' ),
+						'default'	=> __( 'Continue Reading: [title] &rarr;', 'startbox' ),
 						'size'		=> 'medium',
 						'align'		=> 'right'
 					),

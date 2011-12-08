@@ -54,7 +54,7 @@
 					'enable_admin' => array(
 							'type'		=> 'checkbox',
 							'label'		=> __( 'Enable Admin Links', 'startbox' ),
-							'default'	=> 'true'
+							'default'	=> 'false'
 						),
 					'enable_rtt' => array(
 							'type'		=> 'checkbox',

@@ -22,7 +22,7 @@
 					the_content( apply_filters( "sb_read_more", "Read &amp; Discuss &raquo;" ) ); 				// Display the full content using a filterable read-more tag when necessary
 				}
 			else { // Otherwise, display the excerpt with a fliterable read-more tag
-				the_excerpt(); echo '<a href="' . get_permalink() . '" title="' . sprintf(__("Continue Reading %s", "startbox"), esc_html(get_the_title(), 1)) . '" rel="nofollow" class="more-link">' . apply_filters( "sb_read_more", "Read &amp; Discuss &raquo;" ) . '</a>'; 
+				the_excerpt(); echo '<a href="' . get_permalink() . '" title="' . sprintf(__("Continue Reading: %s", "startbox"), esc_html(get_the_title(), 1)) . '" class="more-link">' . do_shortcode( apply_filters( "sb_read_more", sprintf( __("Continue Reading: %s &rarr;", "startbox"), get_the_title() ) ) ) . '</a>'; 
 			}
 		?>
 		

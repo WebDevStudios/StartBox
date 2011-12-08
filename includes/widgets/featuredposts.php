@@ -14,6 +14,11 @@ function load_widget_sb_featured_content() { // Widget: Featured Content
 }
 add_action( 'widgets_init', 'load_widget_sb_featured_content', 0 );
 
+function load_featured_widget_js() {
+	wp_enqueue_script( 'sb-widgets', SCRIPTS_URL . '/widgets.js', array('jquery') );
+}
+add_action( 'sidebar_admin_setup', 'load_featured_widget_js' );
+
 class sb_featured_content_widget extends WP_Widget {
 
 	function sb_featured_content_widget() {
@@ -22,7 +27,7 @@ class sb_featured_content_widget extends WP_Widget {
 			'classname'    =>  'sb_featured_content_widget',
 			'description'  =>  __( "Display featured content in any widget area", "startbox" )
 		);
-		$this->WP_Widget( 'featured-centent-widget', __('SB Featured Content', 'startbox'), $widget_ops);
+		$this->WP_Widget( 'featured-content-widget', __('SB Featured Content', 'startbox'), $widget_ops);
 		
 	}
 

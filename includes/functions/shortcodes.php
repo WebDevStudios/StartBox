@@ -18,6 +18,7 @@ add_shortcode( 'divider', 'sb_divider' );
 add_shortcode( 'rtt', 'sb_rtt' );
 add_shortcode( 'toggle', 'sb_toggle' );
 
+add_shortcode( 'title', 'sb_entry_title' );
 add_shortcode( 'author_bio', 'sb_author_bio' );
 add_shortcode( 'author', 'sb_entry_author' );
 add_shortcode( 'categories', 'sb_entry_categories' );
@@ -99,12 +100,13 @@ function sb_rtt() {
  */
 function sb_sidebar_shortcode ( $atts ) {
 	extract ( shortcode_atts ( array (
-		'location'	=> 'shortcode',
+		'location'	=> null,
 		'id' 		=> null,
 		'classes'	=> null
 	), $atts ) );
 	
 	if ( is_null ( $id ) ) return null;
+	if ( is_null ( $location ) ) $location = 'shortcode-'.$id; // prevents multiple shortcodes from using the same ID 
 	
 	ob_start();
 	sb_do_sidebar( $location , $id, $classes );
@@ -167,6 +169,15 @@ function sb_readmore() {
 	return '<a href="' . get_permalink() . '" title="' . sprintf(__("Continue Reading %s", "startbox"), esc_html(get_the_title(), 1)) . '" rel="nofollow" class="more-link">' . apply_filters( "sb_read_more", "Read &amp; Discuss &raquo;" ) . '</a>';
 }
 
+/**
+ * Displays the current post title.
+ *
+ * @since StartBox 2.5.4
+ *
+ */
+function sb_entry_title() {
+	return get_the_title();
+}
 
 /**
  * Displays the current post author.
@@ -238,8 +249,9 @@ function sb_author_bio( $atts, $content = null ) {
  * @since StartBox 2.4.7
  */
 function sb_box( $atts, $content = null ) {
-	extract( shortcode_atts( array( 'type' => 'info', 'width' => '' ), $atts ) );
-	return '<span class="box ' . $type . ' ' . $width . '">' . do_shortcode($content) . '</span>';
+	extract( shortcode_atts( array( 'type' => 'info', 'style' => false ), $atts ) );
+	if ($style == false) { $style = $type; }
+	return '<div class="box ' . $style . '">' . do_shortcode($content) . '</div>';
 }
 
 /**
@@ -504,19 +516,24 @@ function sb_twitter( $atts, $content = null ) {
  * @link http://developers.facebook.com/docs/reference/plugins/like
  */
 function sb_facebook( $atts, $content = null ) {
-   	extract(shortcode_atts(array(
-		'float' => 'left',
-		'send'	=> 'true',
-		'style' => 'standard'), $atts)
-	);
-	
 	global $post;
+   	extract(shortcode_atts(array(
+		'float'		=> 'left',
+		'width' 	=> 450,
+		'action' 	=> 'like',
+		'send'		=> 'true',
+		'faces'		=> 'false',
+		'colorscheme' => 'light',
+		'font'		=> 'arial',
+		'url'		=> urlencode(get_permalink($post->ID)),
+		'style' 	=> 'standard'
+	), $atts));
+	
 	if ( $style == "button" ) { $style = "button_count"; }
 	elseif ( $style == "box" ) { $style = "box_count"; }
 	else { $style = "standard";	}
 
-	return '<div class="facebook ' . $float . '"><iframe src="http://www.facebook.com/plugins/like.php?href='. urlencode(get_permalink($post->ID)) . '&amp;send='.$send.'&amp;layout='.$style.'&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light" scrolling="no" frameborder="0" allowTransparency="true" style="border:none; overflow:hidden; width:450px; height:40px" allowTransparency="true"></iframe></div>';
-
+	return '<div id="fb-root" class="facebook ' . $float . '"></div><script src="http://connect.facebook.net/en_US/all.js#appId=251140598259252&amp;xfbml=1"></script><fb:like href="' . $url . '" send="' . $send . '" width="' . $width . '" show_faces="' . $faces . '" action="' . $action . '" colorscheme="' . $colorscheme . '" layout="' . $style . '" font="' . $font . '"  class="facebook ' . $float . '"></fb:like>';
 }
 
 /**

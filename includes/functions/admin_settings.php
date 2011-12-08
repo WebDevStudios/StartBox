@@ -352,7 +352,7 @@ class sb_input {
 	}
 	public function color( $id, $label, $value, $desc ) {
 		$output = '<p class="colorpickerinput ' . $id . '">';
-		$output .= sb_input::text( $id, null, $label, sb_get_option( $id ), null, 'small', 'colorinput', '<span class="right">' );
+		$output .= sb_input::text( $id, 'colorinput', $label, sb_get_option( $id ), null, 'small', null, '<span class="right">' );
 		$output .= '<span class="colorselector"><span></span></span></span>'."\n";
 		if ($desc) { $output .= "\t" . "\t" . '<br/><span class="desc"> ' . $desc . ' </span>'."\n"; } 
 		$output .= '</p>';

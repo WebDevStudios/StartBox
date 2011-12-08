@@ -30,7 +30,8 @@
 		}
 		
 		function logo() {
-			$logo_container = apply_filters( 'sb_logo_container', 'h2');
+			$logo_container = apply_filters( 'sb_logo_container', (is_front_page()) ? 'h1' : 'h2' );
+				
 			if ( !sb_get_option( 'logo-disabled') ) {
 				echo '<div id="logo" class="' . sb_get_option( 'logo-align' ). '">';
 				if ( sb_get_option( 'logo-text') ) {

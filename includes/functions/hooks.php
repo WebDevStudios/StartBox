@@ -65,6 +65,16 @@ function sb_after() { do_action('sb_after'); } // the very last thing before </b
 
 ////////////////////////////////////////////////// Items To Hook into Header //////////////////////////////////////////////////
 
+// Header Wrap
+function sb_header_wrap() {
+	if ( !did_action( 'sb_header') )
+		echo '<div id="header_wrap">'."\n";
+	else
+		echo '</div><!-- #header_wrap -->'."\n";
+}
+add_action( 'sb_before_header', 'sb_header_wrap', 1 );
+add_action( 'sb_after_header', 'sb_header_wrap', 9999 );
+
 // The default site title
 function sb_default_title( $title, $sep, $seplocation) {
 	$site_name = get_bloginfo('name');

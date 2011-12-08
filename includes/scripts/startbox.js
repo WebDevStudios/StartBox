@@ -11,6 +11,7 @@ $(document).ready(function(){
 
 	// Slider Toggle -- an anchor tag with class '.toggle' will expand it's href target.
 	$(".toggle")
+		.addClass("noscroll")
 		.each( function() { $($(this).attr('href')).hide(); } )
 		.toggle(
 		function () {
@@ -44,7 +45,7 @@ $(document).ready(function(){
 	autoFill($("#url"), "Your Website (Optional)"); // Comment Author Website
 	
 	// Smooth Scrolling
-	$('a[href*=#]').smoothScroll();
+	$('a[href*=#]').not('.noscroll').smoothScroll();
 	
 	// Dynamically replace default "Your Name" with user's name (textchange function courtesy of ZURB: http://www.zurb.com/playground/jquery-text-change-custom-event)
 	(function(a){a.event.special.textchange={setup:function(){a(this).bind("keyup.textchange",a.event.special.textchange.handler);a(this).bind("cut.textchange paste.textchange input.textchange",a.event.special.textchange.delayedHandler)},teardown:function(){a(this).unbind(".textchange")},handler:function(){a.event.special.textchange.triggerIfChanged(a(this))},delayedHandler:function(){var b=a(this);setTimeout(function(){a.event.special.textchange.triggerIfChanged(b)},25)},triggerIfChanged:function(b){var c=

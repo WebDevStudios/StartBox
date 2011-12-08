@@ -140,7 +140,7 @@ function sb_sanitize($inputs) {
 			
 			// Sanitize untrusted textual inputs. Defaults to true. Set 'sanitize' => false for no satitization, or use 'sanitize' => array( 'allowed_html' => '', 'allowed_protocols' => '' ) to allow specific tags.
 			if ( ( $option['type'] == 'text' || $option['type'] == 'textarea') && ( isset($option['sanitize']) && $option['sanitize'] != false ) ) {
-				$inputs[$option_id] = wp_kses( $inputs[$option_id], $option['sanitize']['allowed_html'], $option['sanitize']['allowed_protocols'] );
+				$inputs[$option_id] = wp_kses( $inputs[$option_id], $option['sanitize']['allowed_html'], ( empty ( $option['sanitize']['allowed_protocols']) ? array() : $option['sanitize']['allowed_protocols'] ) );
 			}
 			
 		}

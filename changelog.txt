@@ -1,5 +1,21 @@
+2011.11.17 - version 2.5.4
+	* added: [title] shortcode to simply return get_the_title()
+	* changed: updated TimThumb to version 2.8.2
+	* changed: updated [box] shortcode so you can use style="" or type="" to specify box style
+	* changed: updated sidebar hook sb_no_{$sidebar}_widgets to use $location instead of $sidebar, as intended
+	* changed: updated filter sb_logo_container to use h1 on front page, h2 elsewhere (Joost SEO tip)
+	* changed: removed nofollow settings on read more links in loop.php (Joost SEO tip)
+	* changed: Set default "Read More" text to "Read More: [title] &rarr;" (Joost SEO tip)
+	* changed: set Show Admin Links (footer settings) to false by default (Joost SEO tip)
+	* changed: added title attribute to entry photo to match alt attribute (Joost SEO tip)
+	* fixed: corrected a javascript bug while viewing the Widgets page
+	* fixed: corrected a bug with the [box] shortcode, now correctly uses <div> instead of <span>
+	* fixed: minor bug (php warning) with layout thumbnails in /includes/functions/layouts.php
+	* fixed: minor bug (php warning) with sanitization and wp_kses in /includes/admin/admin.php (hat-tip: John Bloch and Ryan Duff)
+	* fixed: minor bug from earlier release that broke the color type options
+
 2011.08.02 - version 2.5.3
-	* fMPORTANT SECURITY UPDATE: patched a zero-day exploit in timthumb.php 
+	* IMPORTANT SECURITY UPDATE: patched a zero-day exploit in timthumb.php 
 	
 2011.07.30 - version 2.5.2
 	* new: custom sidebars can now be set to appear on just the homepage

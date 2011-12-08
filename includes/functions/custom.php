@@ -8,14 +8,14 @@
  * @subpackage Functions
  */
 
-// Add filters for the description/meta content in category.php
+// Add filters for the description/meta content in archive.php
 add_filter( 'archive_meta', 'wptexturize' );
 add_filter( 'archive_meta', 'convert_smilies' );
 add_filter( 'archive_meta', 'convert_chars' );
 add_filter( 'archive_meta', 'wpautop' );
 
 
-// Filter body_class to include a browser, category, and date classes
+// Filter body_class to include user browser, category, and date classes
 function sb_body_classes($classes) {
 	global $wp_query;
 	
@@ -209,7 +209,7 @@ function sb_is_child_page( $parent_id = null, $page_id = null ) {
 }
 
 /**
- * Return URL of image based on Post ID
+ * Return URL of an image based on Post ID
  *
  * First checks for featured image, then checks for any attached image, finally defaults to IMAGES_URL/nophoto.jpg
  *
@@ -293,6 +293,7 @@ function sb_post_image($w = null, $h = null, $a = null, $zc = 1, $attr = null) {
 		'zoom'	=> apply_filters( 'sb_post_image_zoom', 1 ),
 		'class'	=> apply_filters( 'sb_post_image_class', 'post-image' ),
 		'alt'	=> apply_filters( 'sb_post_image_alt', get_the_title() ),
+		'title' => apply_filters( 'sb_post_image_title', get_the_title() ),
 		'hide_nophoto' => apply_filters( 'sb_post_image_hide_nophoto', false ),
 		'enabled' => apply_filters( 'sb_post_image_enabled', true ),
 		'echo'	=> apply_filters( 'sb_post_image_echo', true )
@@ -313,7 +314,7 @@ function sb_post_image($w = null, $h = null, $a = null, $zc = 1, $attr = null) {
 	$output = '<img class="' . $class . $nophoto . '" src="' . SCRIPTS_URL . '/timthumb.php?src=' . sb_get_post_image( $image_id, $post_id, $use_attachments, $image_url ) . '&amp;w=' . $width . '&amp;h=' . $height . '&amp;a=' . $align . '&amp;zc=' . $zoom . '&amp;q=100"';
 	foreach ( $attr as $name => $value ) {
 		$exlcude = null;
-		if ( in_array( $name, array( 'post_id', 'image_id', 'class', 'crop', 'zoom', 'echo', 'image_url', 'use_attachments', 'hide_nophoto', 'disabled' ) ) ) continue;
+		if ( in_array( $name, array( 'post_id', 'image_id', 'align', 'class', 'crop', 'zoom', 'echo', 'image_url', 'use_attachments', 'hide_nophoto', 'enabled' ) ) ) continue;
 		$output .= " $name=" . '"' . $value . '"';
 	}
 	$output .= ' />';
@@ -718,6 +719,11 @@ add_filter( 'wp_nav_menu_items', 'sb_nav_menu_items', 10, 2 );
  *
  */
 function sb_sitemap( $args = '' ) {
+	global $wp_query, $post;
+	$cached_query = $wp_query;
+	$cached_post = $post;
+	$output = '';
+	
 	$defaults = array(
 		'show_pages'		=> true,
 		'show_categories'	=> true,
@@ -734,7 +740,6 @@ function sb_sitemap( $args = '' ) {
 	);
 	$r = wp_parse_args( $args, apply_filters( 'sb_sitemap_defaults', $defaults ) );
 	extract( $r, EXTR_SKIP );
-	$output = '';
 	
 	if ( $show_pages ) {
 		$output .= '<div class="' . $container_class . ' ' . $container_class . '-page">' . "\n";
@@ -771,8 +776,7 @@ function sb_sitemap( $args = '' ) {
 		$output .= "\t" . '</ul>' . "\n";
 		$output .= '</div><!-- ' . $container_class . ' ' . $container_class . '-category -->' . "\n";
 	} if ( $show_posts ) {
-		global $wp_query;
-		$cached = $wp_query;
+		
         $categories = get_categories( 'exclude=' . $exclude_categories );
 		
 		$output .= '<div class="' . $container_class . ' ' . $container_class . '-post">' . "\n";
@@ -789,8 +793,10 @@ function sb_sitemap( $args = '' ) {
 			}
 		}
 		$output .= '</div><!-- ' . $container_class . ' ' . $container_class . '-post -->' . "\n";
-		$wp_query = $cached;
 	}
+	
+	$wp_query = $cached_query;
+	$post = $cached_post;
 	
 	if ( $echo )
 		echo $output;
