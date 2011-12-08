@@ -155,6 +155,7 @@ function sb_sidebars_select_meta_box() {
 	$output .= '</select>';
 	
 	echo $output;
+	wp_nonce_field( 'sb-sidebar-update_' . $post_id, '_sb_sidebars_nonce', false );
 }
 
 /**
@@ -339,7 +340,9 @@ class SB_Sidebars_Checklist extends Walker_Nav_Menu  {
  * @since StartBox 2.5
  */
 function sb_sidebars_save( $post_id ) {
-	
+	if ( !isset( $_POST['_sb_sidebars_nonce'] ) || !wp_verify_nonce( $_POST['_sb_sidebars_nonce'], 'sb-sidebar-update_' . $post_id ) )
+		return $post_id;
+
 	// Verify we should actually be saving any data
 	if (
 		!sb_verify_post_type( 'sidebar' ) || 				// If it's not a sidebar post type,
