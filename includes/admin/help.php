@@ -10,7 +10,7 @@
 		}
 
 		function form() {
-			echo '<p>' . sprintf( __( 'Struggling with some of the theme options or settings? Have a look at the comprehensive %1$stheme documentation%2$s.', 'startbox' ), '<a href="http://docs.wpstartbox.com" target="_blank">', '</a>' ) . '</p>';
+			echo '<p>' . __( 'Struggling with some of the theme options or settings? Click on the "Help" tab above.', 'startbox' ) . '</p>';
 		}
 
 	}

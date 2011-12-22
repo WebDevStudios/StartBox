@@ -72,7 +72,7 @@ add_action( 'load-post-new.php', 'sb_sidebars_includes' );
  */
 function sb_sidebars_bar_init() {
 	global $wp_admin_bar;
-    $wp_admin_bar->add_menu( array( 'parent' => 'appearance', 'title' => __('Sidebars', 'startbox'), 'href' => admin_url( 'edit.php?post_type=sidebar' ) ) );
+    $wp_admin_bar->add_menu( array( 'id' => 'sb-sidebars', 'parent' => 'appearance', 'title' => __('Sidebars', 'startbox'), 'href' => admin_url( 'edit.php?post_type=sidebar' ) ) );
 }
 add_action( 'wp_before_admin_bar_render', 'sb_sidebars_bar_init' );
 

@@ -4,7 +4,7 @@
 		function sb_navigation_settings() {
 			$this->name = __( 'Navigation Settings', 'startbox');
 			$this->slug = 'sb_navigation_settings';
-			$this->description = __( 'Take full control of your navigation. Select which menu to display, where to display it, and whether or not to include a "Home" link.', 'startbox' );
+			$this->description = __( 'These options allow you to take full control of your site\'s navigation. Select which menu to display, where to display it, how deep the drop-down menus should go, whether to include a "Home" link at the beginning, and what (if any) extras to include (e.g. social links, site-wide search).', 'startbox' );
 			$this->location = 'primary';
 			$this->priority = 'high';
 			$this->options = array(
@@ -15,7 +15,8 @@
 						'align'		=> 'left',
 						'home_default' => true,
 						'position_default' => 'sb_after_header',
-						'extras'	=> true
+						'extras'	=> true,
+						'help'		=> __( 'This is the main menu for your site.', 'startbox' )
 					),
 				'div' => array( 'type' => 'divider' ),
 				'secondary_nav' => array(
@@ -24,7 +25,8 @@
 						'default'	=> 'none',
 						'home_default' => false,
 						'position_default' => 'sb_before',
-						'extras'	=> true
+						'extras'	=> true,
+						'help'		=> __( 'This menu should only be used if you want two menus at the top of your site.', 'startbox' )
 					),
 				'div2' => array( 'type' => 'divider' ),
 				'footer_nav' => array(
@@ -41,6 +43,7 @@
 							'sb_after_footer'	=> __( 'Bottom of Page', 'startbox' ),
 						)),
 						'depth_default' => 1,
+						'help'		=> __( 'Use this if you want a menu in the footer of your site.', 'startbox' )
 					),
 				);
 				

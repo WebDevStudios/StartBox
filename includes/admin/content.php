@@ -10,21 +10,23 @@
 			$this->options = array(
 				'home_layout' => array(
 						'type'		=> 'layout',
-						'label'		=> __( 'Homepage Layout', 'startbox' ),
+						'label'		=> __( 'Homepage Layout:', 'startbox' ),
 						'desc'		=> __( 'Select content and sidebar alignment. Choose from any of the available layouts.', 'startbox' ),
 						'options'	=>  sb_supported_layouts('sb-layouts-home'),
 						'default'	=> 'two-col-right',
 						'align'		=> 'right',
-						'size'		=> 'medium'
+						'size'		=> 'medium',
+						'help'		=> __( 'Select which page layout you would like to use for the homepage.', 'startbox' )
 					),
 				'layout' => array(
 						'type'		=> 'layout',
-						'label'		=> __( 'Interior Page Layout', 'startbox' ),
+						'label'		=> __( 'Interior Page Layout:', 'startbox' ),
 						'desc'		=> __( 'Select content and sidebar alignment. This can be changed on each page/post individually.', 'startbox' ),
 						'options'	=> sb_supported_layouts('sb-layouts'),
 						'default'	=> 'two-col-right',
 						'align'		=> 'right',
-						'size'		=> 'medium'
+						'size'		=> 'medium',
+						'help'		=> __( 'Select the default layout for your interior pages.', 'startbox' )
 					),
 				'post_content_heading' => array(
 						'type'		=> 'intro',
@@ -39,7 +41,8 @@
 							),
 						'default'	=> 'excerpt',
 						'align'		=> 'right',
-						'size'		=> 'medium'
+						'size'		=> 'medium',
+						'help'		=> __( 'Choose whether you would like to display the full post, or only an exceprt, on the homepage.', 'startbox' )
 					),
 				'archive_post_content' => array(
 						'type'		=> 'select',
@@ -50,14 +53,16 @@
 							),
 						'default'	=> 'excerpt',
 						'align'		=> 'right',
-						'size'		=> 'medium'
+						'size'		=> 'medium',
+						'help'		=> __( 'Choose whether you would like to display the full post, or only an exceprt, on all other blog pages.', 'startbox' )
 					),
 				'more_text' => array(
 						'type'		=> 'text',
 						'label'		=> __( 'Read More text', 'startbox' ),
 						'default'	=> __( 'Continue Reading: [title] &rarr;', 'startbox' ),
 						'size'		=> 'medium',
-						'align'		=> 'right'
+						'align'		=> 'right',
+						'help'		=> __( 'Specify your own link text for the "Read More" link on posts.', 'startbox' )
 					),
 				'author_bio' => array(
 						'type'		=> 'select',
@@ -70,13 +75,15 @@
 						'align'		=> 'right',
 						'desc'		=> __( 'Author bio only displays if author provides a description in their profile.', 'startbox' ),
 						'default'	=> 'true',
-						'size'		=> 'medium'
+						'size'		=> 'medium',
+						'help'		=> __( 'Select where you would like author bios to appear when viewing a single post (or disable them altogether).', 'startbox' )
 					),
 				'content_div_1' => array( 'type' => 'divider' ),
 				'post_meta_heading' => array(
 						'type'		=> 'intro',
 						'label'		=> __( 'Post Meta', 'startbox' ),
-						'desc'		=> __( 'Control the meta information displayed on each post. You can use any <a href="http://docs.wpstartbox.com/shortcodes" target="_blank">shortcodes</a> you like, including: [author], [categories], [comments], [date], [time], [tags] and [edit].', 'startbox' )
+						'desc'		=> sprintf( __( 'Control the meta information displayed on each post. You can use any %s you like, including: [author], [categories], [comments], [date], [time], [tags] and [edit].', 'startbox' ), '<a href="http://docs.wpstartbox.com/shortcodes" target="_blank">shortcodes</a>' ),
+						'help'		=> __( 'Use shortcodes to control what information you would like to display for each post (e.g. Post author, category, comment count, etc).', 'startbox' )
 					),
 				'post_header_meta' => array(
 						'type'		=> 'text',
@@ -103,30 +110,35 @@
 						'type'		=> 'checkbox',
 						'label'		=> __( 'Enable Post Thumbnails', 'startbox' ),
 						'default'	=> true,
-						'align'		=> 'left'
+						'align'		=> 'left',
+						'help'		=> __( 'Enable thumbnails for posts in archive lists (Default: true).', 'startbox' )
 					),
 				'post_thumbnail_rss' => array(
 						'type'		=> 'checkbox',
 						'label'		=> __( 'Include Post Thumbnails in RSS feed', 'startbox' ),
 						'default'	=> true,
-						'align'		=> 'left'
+						'align'		=> 'left',
+						'help'		=> __( 'Enable thumbnails for posts in RSS feeds (Default: true).', 'startbox' )
 					),
 				'post_thumbnail_use_attachments' => array(
 						'type'		=> 'checkbox',
 						'label'		=> __( 'Use any attached image if no Featured Image specified', 'startbox' ),
 						'default'	=> true,
-						'align'		=> 'left'
+						'align'		=> 'left',
+						'help'		=> __( 'If there is no user-specified "Featured Image" for a particular post, the theme will automatically attempt to use the last attached image (Default: true).', 'startbox' )
 					),
 				'post_thumbnail_hide_nophoto' => array(
 						'type'		=> 'checkbox',
 						'label'		=> __( 'Hide thumbnails if no preview available', 'startbox' ),
 						'default'	=> false,
-						'align'		=> 'left'
+						'align'		=> 'left',
+						'help'		=> __( 'Disable the default "No Preview Available" image that is used when no post thumbnail is found.', 'startbox' )
 					),
 				'post_thumbnail_default_image' => array(
 						'type'		=> 'upload',
 						'label'		=> __( 'Default Thumbnail', 'startbox' ),
-						'default'	=> IMAGES_URL . '/nophoto.jpg'
+						'default'	=> IMAGES_URL . '/nophoto.jpg',
+						'help'		=> __( 'Upload/Select your own custom defoult thumbnail to use when no available post thumbnail is found.', 'startbox' )
 					),
 				'post_thumbnail_width' => array(
 						'type'		=> 'text',
@@ -134,7 +146,8 @@
 						'after'		=> ' px',
 						'align'		=> 'right',
 						'size'		=> 'small',
-						'default'	=> '200'
+						'default'	=> '200',
+						'help'		=> __( 'Specify your own thumbnail width in pixels (Default: 200).', 'startbox' )
 					),
 				'post_thumbnail_height' => array(
 						'type'		=> 'text',
@@ -142,7 +155,8 @@
 						'after'		=> ' px',
 						'align'		=> 'right',
 						'size'		=> 'small',
-						'default'	=> '200'
+						'default'	=> '200',
+						'help'		=> __( 'Specify your own thumbnail height in pixels (Default: 200).', 'startbox' )
 					),
 				'post_thumbnail_align'	=> array(
 						'type'		=> 'select',
@@ -159,13 +173,15 @@
 							'br'	=> 'Bottom Right'
 						),
 						'default'	=> 'tc',
-						'align'		=> 'right'
+						'align'		=> 'right',
+						'help'		=> __( 'Select where you would like the thumbnails to center the crop (Default: Top Center).', 'startbox' )
 					),					
 				'content_div_3' => array( 'type' => 'divider' ),
 				'post_navigation_heading' => array(
 						'type'		=> 'intro',
 						'label'		=> __( 'Post Navigation', 'startbox' ),
-						'desc'		=> __( 'Specify how navigation for prev/next posts should appear.')
+						'desc'		=> __( 'Specify how navigation for prev/next posts should appear.'),
+						'help'		=> __( 'Select where post navigation should appear for Blog, Archive and Single Post views', 'startbox' )
 				),
 				'archive_navigation' => array(
 						'type'		=> 'select',

@@ -4,7 +4,7 @@
 		function sb_feedburner_settings() {
 			$this->name = __( 'Feedburner Settings', 'startbox' );
 			$this->slug = 'sb_feedburner_settings';
-			$this->description = __( 'Replace your site\'s default feed URLs with ones from feedburner (or another feed service).', 'startbox' );
+			$this->description = __( 'Replace your site-wide default feed URLs with ones from feedburner (or another feed service).', 'startbox' );
 			$this->location = 'secondary';
 			$this->priority = 'core';
 			$this->options = array(

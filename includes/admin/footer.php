@@ -4,7 +4,7 @@
 		function sb_footer_settings() {
 			$this->name = __( 'Footer Settings', 'startbox' );
 			$this->slug = 'sb_footer_settings';
-			$this->description = __( 'Select what text (if any) you would like to appear in the footer area of your site. The textbox allows use of full HTML and Shortcodes.', 'startbox' );
+			$this->description = __( 'Select what text (if any) you would like to appear in the footer area of your site.', 'startbox' );
 			$this->location = 'primary';
 			$this->priority = 'core';
 			$this->options = array(
@@ -13,7 +13,8 @@
 						'label'		=> __( 'Name to use for Copyright', 'startbox' ),
 						'default'	=> get_bloginfo('name'),
 						'size'		=> 'medium',
-						'align'		=> 'right'
+						'align'		=> 'right',
+						'help'		=> __( 'The site or company name you would like to display as the copyright owner.', 'startbox' )
 					),
 					'site_url' => array(
 						'type'		=> 'text',
@@ -21,7 +22,8 @@
 						'desc'		=> __( 'Include http://. Leave blank for no link.', 'startbox' ),
 						'default'	=> home_url(),
 						'size'		=> 'medium',
-						'align'		=> 'right'
+						'align'		=> 'right',
+						'help'		=> __( 'The link URL to use for the copyright owner (leave blank for none).', 'startbox' )
 					),
 					'copyright_year' => array(
 						'type'		=> 'text',
@@ -29,43 +31,51 @@
 						'default'	=> '2010',
 						'desc'		=> __( 'If prior to this year, theme will automatically display [original year] - [current year].', 'startbox' ),
 						'size'		=> 'small',
-						'align'		=> 'right'
+						'align'		=> 'right',
+						'help'		=> __( 'The very first year to use for your content copyright.', 'startbox' )
 					),
 					'enable_copyright' => array(
 							'type'		=> 'checkbox',
 							'label'		=> __( 'Enable Copyright', 'startbox' ),
-							'default'	=> 'true'
+							'default'	=> 'true',
+							'help'		=> __( 'Display the copyright information (Default: true).', 'startbox' )
 						),
 					'enable_designer_credit' => array(
 							'type'		=> 'checkbox',
 							'label'		=> __( 'Enable Designer Credit', 'startbox' ),
-							'default'	=> 'true'
+							'default'	=> 'true',
+							'help'		=> __( 'Display the credit for the site designer (Default: true).', 'startbox' )
 						),
 					'enable_wp_credit' => array(
 							'type'		=> 'checkbox',
 							'label'		=> __( 'Enable WordPress Credit', 'startbox' ),
-							'default'	=> 'true'
+							'default'	=> 'true',
+							'help'		=> __( 'Display the "Powered by Wordpress" credit (Default: true).', 'startbox' )
 						),
 					'enable_sb_credit' => array(
 							'type'		=> 'checkbox',
 							'label'		=> __( 'Enable StartBox Credit', 'startbox' ),
-							'default'	=> 'true'
+							'default'	=> 'true',
+							'help'		=> __( 'Display the "Powered by StartBox" credit (Default: true).', 'startbox' )
 						),
 					'enable_admin' => array(
 							'type'		=> 'checkbox',
 							'label'		=> __( 'Enable Admin Links', 'startbox' ),
-							'default'	=> 'false'
+							'default'	=> 'false',
+							'help'		=> __( 'Include admin links in the site footer (Default: false).', 'startbox' )
 						),
 					'enable_rtt' => array(
 							'type'		=> 'checkbox',
 							'label'		=> __( 'Enable Return to Top link', 'startbox' ),
-							'default'	=> 'true'
+							'default'	=> 'true',
+							'help'		=> __( 'Include a link for users to return to the top of the site (Default: true).', 'startbox' )
 						),
 					'footer_text' => array(
 							'type'		=> 'textarea',
 							'sanitize'	=> array( 'allowed_html' => array('a' => array('href' => array(),'title' => array()),'br' => array(),'em' => array(),'strong' => array(), 'div' => array(), 'span' => array(), 'ul' => array(), 'ol' => array(), 'li' => array() ) ),
 							'label'		=> __( 'Enter any additional footer text below:', 'startbox'),
-							'desc'		=> __( 'Full HTML and Shortcodes are allowed.', 'startbox' )
+							'desc'		=> __( 'Full HTML and Shortcodes are allowed.', 'startbox' ),
+							'help'		=> __( 'Display any custom text you would like, including full HTML if your user account permits it.', 'startbox' )
 						)
 					
 				);

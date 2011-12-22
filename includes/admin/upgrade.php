@@ -4,7 +4,6 @@ class sb_upgrade_settings extends sb_settings {
 	function sb_upgrade_settings() {
 		$this->name = __( 'Version Information', 'startbox');
 		$this->slug = 'sb_upgrade_settings';
-		$this->description = __( 'Enable automatic upgrades by checking one box and providing your StartBox license key.', 'startbox' );
 		$this->location = 'secondary';
 		$this->priority = 'high';
 		$this->options = array(

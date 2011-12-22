@@ -4,21 +4,74 @@
  *
  * @since 2.2.8
  */
-
 function sb_admin_init() {
 	global $sb_admin;
 	$sb_admin = add_theme_page( THEME_NAME." Options", __('Theme Options', 'startbox'), 'edit_theme_options', 'sb_admin', 'sb_admin_page' );
 	register_setting( 'sb_admin', THEME_OPTIONS, 'sb_sanitize');
 	add_action( 'load-' . $sb_admin, 'sb_admin_load' );
+    add_action( 'load-' . $sb_admin, 'sb_admin_help');
 }
 add_action( 'admin_menu', 'sb_admin_init' );
 
 function sb_admin_bar_init() {
     global $wp_admin_bar;
-    $wp_admin_bar->add_menu( array( 'parent' => 'appearance', 'title' => __('Theme Options', 'startbox'), 'href' => admin_url( 'themes.php?page=sb_admin' ) ) );
+    $wp_admin_bar->add_menu( array( 'id' => 'theme-options', 'parent' => 'appearance', 'title' => __('Theme Options', 'startbox'), 'href' => admin_url( 'themes.php?page=sb_admin' ) ) );
 }
 add_action( 'wp_before_admin_bar_render', 'sb_admin_bar_init' );
 
+/**
+ * Adds contextual help for all StartBox Options
+ *
+ * @since StartBox 2.5.5
+ */
+function sb_admin_help() {
+    global $sb_admin;
+
+	if ( function_exists('get_current_screen') ) {
+	    $screen = get_current_screen();
+
+	    // Don't add help tab if screen is not sb_admin
+	    if ( $screen->id != $sb_admin ) return;
+
+		// Grab our theme options
+		global $sb_settings_factory;
+		$defaults = $theme_options = get_option( THEME_OPTIONS );
+		$settings = $sb_settings_factory->settings;
+	
+		// Add our generic helper text no matter what
+		$screen->add_help_tab( array(
+			'id'		=> 'sb_need_help',
+			'title'		=> __( 'Additional Resources', 'startbox' ),
+			'content'	=> __( '<h3>Additional Resources</h3>', 'startbox' ) . '<p>' . sprintf( __( 'For more information, try the %s or %s.', 'startbox' ), '<a href="' . apply_filters( 'sb_theme_docs', 'http://docs.wpstartbox.com' ) . '" target="_blank">' . __( 'Theme Documentation', 'startbox') . '</a>',  '<a href="' . apply_filters( 'sb_theme_support', 'http://wpstartbox.com/support/' ) . '" target="_blank" >' . __( 'Support Forum', 'startbox' ) . '</a>' ) . '</p>'
+		) );
+
+		// Loop through each option panel
+		foreach ( $settings as $setting ) {
+
+			// Only include options panels that have a description set
+			if ( isset($setting->description) ) {
+				$output = '';
+				$output .= '<h3>' . $setting->name . '</h3>';
+				$output .= '<p>' . $setting->description . '</p>';
+		
+				// loop through each individual option to find help text, include it in output if found
+				$options = $setting->options;
+				foreach( $options as $option_id => $option ) {
+					if ( isset( $option['help'] ) )
+						$output .= '<p style="padding:8px 0; margin:0; border-top:1px solid #eee;"><strong>' .  rtrim( $option['label'], ':' ) . '</strong> &ndash; ' . $option['help'] . '</p>';
+				}
+		
+				// Add the help tab
+			    $screen->add_help_tab( array(
+			        'id'		=> $setting->slug,
+			        'title'		=> $setting->name,
+			        'content'	=> $output,
+			    ) );
+			} // end if isset
+		} // end foreach
+	} // end if function_exsts
+
+}
 
 function sb_admin_load() {
 	global $sb_admin;
@@ -42,7 +95,6 @@ function sb_admin_load() {
         wp_enqueue_script('editor');
         wp_enqueue_script('media-upload');
         wp_enqueue_style( 'thickbox' );
-        add_action('admin_head', 'wp_tiny_mce');
     }
 	
 	if ( sb_get_option('reset') ) { sb_set_default_options(); wp_redirect( admin_url( 'admin.php?page=sb_admin&reset=true' ) ); }

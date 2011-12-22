@@ -101,12 +101,13 @@ class sb_settings {
 		global $sb_admin, $sb_style;
 		if ( empty( $this->hide_ui_if_cannot ) || current_user_can( $this->hide_ui_if_cannot ) ) {
 			$this->page = ($this->page == 'sb_style') ? $sb_style : $sb_admin;
-			add_meta_box( $this->slug, $this->name, array( $this, 'form'), $sb_admin, $this->location, $this->priority);
+			add_meta_box( $this->slug, $this->name, array( $this, 'form' ), $sb_admin, $this->location, $this->priority);
 		}
 	}
 	
 	// This makes everything work. Do not override this method.
 	public function __construct() {
+		if (is_network_admin()) { return; } // skip the rest if it's a network admin, no need to continue
 		add_action( 'admin_init', array( $this, '_init' ), 5 );
 		add_action( 'init', array( $this, 'hooks' ), 9 );
 	}
@@ -821,39 +822,6 @@ function sb_media_upload_suggested_form($errors) {
     </div>
 <?php
 }
-
-/**
- * Adds contextual help for all StartBox Options
- *
- * @since StartBox 2.4.9
- */
-function sb_admin_help() {
-	global $sb_settings_factory;
-	$defaults = $theme_options = get_option( THEME_OPTIONS );
-	$settings = $sb_settings_factory->settings;
-	
-	$output = '<p>Below you will find contextual help for all the theme options on this page.</p>';
-
-	foreach($settings as $setting){
-		if ( isset($setting->description) ) {
-			$output .= '<div style="width:45%; margin-right:5%; position:relative; float:left;">';
-			$output .= '<h4 style="margin:1em 0 0; display:block;">' . $setting->name . '</h4>';
-			$output .= '<p style="margin:0 0 1em;">' . $setting->description . '</p>';
-			
-			$options = $setting->options;
-			foreach( $options as $option_id => $option ) {
-				if ( isset( $option['help'] ) ) $output .= $option['help'];
-			}
-			
-			$output .= '</div>';
-		}
-	}
-	
-	$output .= '<p style="clear:both;">' . sprintf( __( 'For more information, try the %sTheme Documentation%s or %sSupport Forum%s', 'startbox' ), '<a href="' . apply_filters( 'sb_theme_docs', 'http://docs.wpstartbox.com' ) . '" target="_blank">', '</a>',  '<a href="' . apply_filters( 'sb_theme_support', 'http://wpstartbox.com/support/forum' ) . '" target="_blank" >', '</a>' ) . '</p>';
-	
-	add_contextual_help( 'appearance_page_sb_admin', $output ); 
-}
-add_action( 'admin_init', 'sb_admin_help' );
 
 /**
  * Add a new option to an existing metabox

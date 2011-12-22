@@ -12,12 +12,11 @@
 
 class StartBox {
 	
-	// Initialize StartBox - set all constants, action sb_init available for extending init.
+	// Initialize StartBox -- Available action: sb_init
 	public function init() {
-
-		global $blog_id;
 		
-		// Define Theme-specific variables
+		// Grab and define our variables and constants
+		global $blog_id;
 		$sb_data = get_theme_data( get_template_directory() . '/style.css' );
 		$theme_data = get_theme_data( get_stylesheet_directory() . '/style.css' );
 		define( 'THEME_NAME', $theme_data['Name'] );
@@ -26,8 +25,6 @@ class StartBox {
 		define( 'THEME_PREFIX', 'sb_' );
 		define( 'SB_VERSION', $sb_data['Version'] );
 		define( 'IS_MU', (isset($blog_id) && $blog_id > 0) ? true : false );
-
-		// Define Theme Paths
 		define( 'THEME_PATH', get_stylesheet_directory() );
 		define( 'THEME_URI', get_stylesheet_directory_uri() );
 		define( 'SB_PATH', get_template_directory() );
@@ -42,6 +39,37 @@ class StartBox {
 		define( 'IMAGES_PATH', get_template_directory() . '/images' );
 		define( 'IMAGES_URL', get_template_directory_uri() . '/images' );
 
+		// Translate, if applicable
+		load_theme_textdomain( 'startbox', INCLUDES_PATH . '/languages' );
+		
+		// Register functions, hooks, shortcodes, sidebars and comments
+		require_once( FUNCTIONS_PATH . '/admin_settings.php' );	// Admin Functions
+		require_once( FUNCTIONS_PATH . '/custom.php' );			// Custom Functions
+		require_once( FUNCTIONS_PATH . '/depricated.php' );		// Deprecated Functions
+		require_once( FUNCTIONS_PATH . '/hooks.php' );			// Hooks
+		require_once( FUNCTIONS_PATH . '/shortcodes.php' );		// Shortcodes
+		require_once( FUNCTIONS_PATH . '/sidebars.php' );		// Sidebars
+		require_once( FUNCTIONS_PATH . '/comment_format.php' );	// Comment Structure
+		
+		// Register scripts and styles
+		add_action( 'init', array( 'StartBox', 'register_scripts_and_styles' ), 1 );
+		
+		// Add child theme defaults if child theme is activated for the first time (Credit: Joel Kuczmarski)
+		if ( !get_option('sb_child_install') && SB_PATH != THEME_PATH ) { add_action( 'after_setup_theme', array( 'StartBox', 'child_install' ) ); }
+		
+		// Included hook for other things to do during initialization
+		do_action('sb_init');
+		
+		// Setup the environment
+		add_action( 'after_setup_theme', array('StartBox', 'environment'), 5 );
+		add_action( 'after_setup_theme', array('StartBox', 'sb_includes'), 15 );
+		
+		// "God opposes the proud, but gives grace to the humble." - James 4:6b (ESV)
+		
+	}
+	
+	// Register all of the included scripts and styles
+	public function register_scripts_and_styles() {
 		// Register Default Scripts
 		wp_register_script( 'startbox', SCRIPTS_URL . '/startbox.js', array('jquery', 'colorbox', 'md5', 'smoothScroll') );
 		wp_register_script( 'pushup', SCRIPTS_URL . '/jquery-pushup/jquery.pushup.js', array('jquery'), NULL );
@@ -66,37 +94,12 @@ class StartBox {
 		wp_register_style( 'print', STYLES_URL . '/print.css', null, null, 'print' );
 		wp_register_style( 'nivo_slider', SCRIPTS_URL . '/jquery-nivo/css/nivo-slider.css', null, null, 'screen');
 		wp_register_style( 'nivo_custom', SCRIPTS_URL . '/jquery-nivo/css/custom-nivo-slider.css', array('nivo_slider'), null, 'screen');
-		
-		// Translate, if applicable
-		load_theme_textdomain( 'startbox', INCLUDES_PATH . '/languages' );
-		
-		// Register functions, hooks, shortcodes, sidebars and comments
-		require_once( FUNCTIONS_PATH . '/admin_settings.php' );	// Admin Functions
-		require_once( FUNCTIONS_PATH . '/custom.php' );			// Custom Functions
-		require_once( FUNCTIONS_PATH . '/depricated.php' );		// Deprecated Functions
-		require_once( FUNCTIONS_PATH . '/hooks.php' );			// Hooks
-		require_once( FUNCTIONS_PATH . '/shortcodes.php' );		// Shortcodes
-		require_once( FUNCTIONS_PATH . '/sidebars.php' );		// Sidebars
-		require_once( FUNCTIONS_PATH . '/comment_format.php' );	// Comment Structure
-		
-		// Add child theme defaults if child theme is activated for the first time (Credit: Joel Kuczmarski)
-		if ( !get_option('sb_child_install') && SB_PATH != THEME_PATH ) { add_action( 'after_setup_theme', array( 'StartBox', 'child_install' ) ); }
-		
-		// Included hook for other things to do during initialization
-		do_action('sb_init');
-		
-		// Setup the environment
-		add_action( 'after_setup_theme', array('StartBox', 'environment'), 5 );
-		add_action( 'after_setup_theme', array('StartBox', 'sb_includes'), 15 );
-		
-		// "God opposes the proud, but gives grace to the humble." - James 4:6b (ESV)
-		
 	}
 	
 	// Setup the environment and register support for various WP features.
 	public function environment() {
 		
-		// Add theme support for various WP features
+		// Add theme support for various WP-specific features
 		register_nav_menus( array( 'primary' => __( 'Primary Navigation', 'StartBox' ), 'secondary' => __( 'Secondary Navigation', 'StartBox' ) ) );  // Enables custom menus in the Appearance menu, since WP3.0
 		add_theme_support( 'automatic-feed-links' ); // Adds default posts and comments RSS feeds, since WP3.0
 		add_theme_support( 'post-thumbnails' ); // Enables post thumbnails in the write screens, since WP2.9
@@ -142,23 +145,24 @@ class StartBox {
 		
 	}
 	
+	// Include all Widgets, Plugins and Theme Options
 	public function sb_includes() {
-		// Include all Widgets, Plugins and Theme Options
-		require_if_theme_supports( 'sb-galleriffic', PLUGINS_PATH .  '/galleriffic.php' ); 	// Galleriffic Slideshows (not supported yet)
-		require_if_theme_supports( 'sb-slideshows', PLUGINS_PATH .  '/slideshows.php' ); 	// Slideshows Post Type
-		require_if_theme_supports( 'sb-sidebars', PLUGINS_PATH .  '/sidebars.php' );		// Sidebar manager
-		require_if_theme_supports( 'sb-layouts', FUNCTIONS_PATH .  '/layouts.php' );		// Theme Layouts
-		foreach ( glob( WIDGETS_PATH . '/*.php') as $widget ) { require_once( $widget ); }	// Widgets
-		foreach ( glob( ADMIN_PATH . '/*.php') as $admin ) { require_if_theme_supports( 'sb-options', $admin ); } // Theme Options
-		require_if_theme_supports( 'sb-updates', FUNCTIONS_PATH .  '/upgrade.php' ); 		// Update Manager
+		
+		require_if_theme_supports( 'sb-galleriffic', PLUGINS_PATH .  '/galleriffic.php' );							// Galleriffic Slideshows (not supported yet)
+		require_if_theme_supports( 'sb-slideshows', PLUGINS_PATH .  '/slideshows.php' );  							// Slideshows Post Type
+		require_if_theme_supports( 'sb-sidebars', PLUGINS_PATH .  '/sidebars.php' );	  							// Sidebar manager
+		require_if_theme_supports( 'sb-layouts', FUNCTIONS_PATH .  '/layouts.php' );	  							// Theme Layouts
+		foreach ( glob( WIDGETS_PATH . '/*.php') as $widget ) { require_once( $widget ); }							// Widgets
+		foreach ( glob( ADMIN_PATH . '/*.php') as $admin ) { require_if_theme_supports( 'sb-options', $admin ); }	// Theme Options
+		require_if_theme_supports( 'sb-updates', FUNCTIONS_PATH .  '/upgrade.php' );								// Update Manager
 				
 		// Check installed version, upgrade if needed (Credit: K2, http://getk2.com)
 		$sb_version = get_option( 'startbox_version' );
 		
 		if ( $sb_version === false )
-			StartBox::install();
+			StartBox::install(); // no version set, let's install SB for the first time!
 		elseif ( version_compare($sb_version, SB_VERSION, '<') )
-			StartBox::upgrade($sb_version);
+			StartBox::upgrade($sb_version); // version is out-dated, let's upgrade!
 		
 	}
 	
@@ -173,7 +177,7 @@ class StartBox {
 		wp_enqueue_script( 'startbox' );
 	}
 	
-	// Install StartBox for the first time
+	// Install StartBox for the first time -- Available hook: sb_install
 	public function install() {
 
 		// Setup the main theme options and store them to a variable
@@ -181,17 +185,13 @@ class StartBox {
 		
 		// Set the current StartBox version
 		add_option( 'startbox_version', 'SB_VERSION' );
-		
-		// Update License Key if SB_LICENSE is defined
-		if ( defined('SB_LICENSE') && SB_LICENSE != sb_get_option('sb_license') )
-			sb_update_option( 'sb_license', SB_LICENSE );
 
 		// Included hook for other things to do during install
 		do_action( 'sb_install' );
 
 	}
 	
-	// Upgrade StartBox
+	// Upgrade StartBox -- Available hook: sb_upgrade
 	public function upgrade() {
 		
 		// Make sure we're not on the current version
@@ -328,14 +328,16 @@ class StartBox {
 
 	}
 	
-	// Install Child Theme for the first time
+	// Install Child Theme for the first time -- Available hook: sb_child_install
 	public function child_install() {
 		
+		// Grab all our settings variables
 		global $sb_settings_factory;
 		$defaults = get_option( THEME_OPTIONS );
 		$settings = $sb_settings_factory->settings;
 		$exclude = $sb_settings_factory->defaults;
 		
+		// Loop through all child setting defaults and store them to an array
 		foreach($settings as $setting) {
 			if ( !in_array( $setting->slug, $exclude ) ) {
 				$options = $setting->options;
@@ -355,7 +357,7 @@ class StartBox {
 	    add_option('sb_child_install', true);
 	}
 	
-	// Uninstall StartBox
+	// Uninstall StartBox -- Available hook: sb_uninstall
 	public function uninstall() {
 		
 		// Delete options stored to the database

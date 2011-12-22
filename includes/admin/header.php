@@ -4,26 +4,30 @@
 		function sb_header_settings() {
 			$this->name = __( 'Branding', 'startbox');
 			$this->slug = 'sb_header_settings';
-			$this->description = __( 'Control various aspects of the header area of your site, including logo, site description, favicon and navigation. The logo options allow you to specify a text-based logo to use instead of an image.', 'startbox' );
+			$this->description = __( 'Control various aspects of the header area of your site, including logo, site description, favicon and navigation.', 'startbox' );
 			$this->location = 'primary';
 			$this->priority = 'high';
 			$this->options = array(
 				'logo' => array(
 						'type'		=> 'logo',
+						'label'		=> 'Logo Uploader',
 						'desc'		=> __( 'Upload an image or specify some text to use for your logo.', 'startbox' ),
+						'help'		=> __( 'Upload or select an image to use for the site logo. If you specify any text the site will display that instead of any selected image.', 'startbox' )
 					),
 				'div1' => array( 'type' => 'divider' ),
 				'tagline' => array(
 						'type'		=> 'checkbox',
 						'label'		=> __( 'Display Site Tagline', 'startbox' ),
-						'desc'		=> sprintf( __( 'You can set your site Tagline in %1$sSettings > General%2$s.', 'startbox' ), '<a href="' . admin_url('options-general.php') . '">', '</a>' )
+						'desc'		=> sprintf( __( 'You can set your site Tagline in %1$sSettings > General%2$s.', 'startbox' ), '<a href="' . admin_url('options-general.php') . '">', '</a>' ),
+						'help'		=> __( 'Show your site tagline in the header.', 'startbox' )
 					),
 				'div2' => array( 'type' => 'divider' ),
 				'favicon' => array(
 						'type'		=> 'upload',
 						'label'		=> __( 'Favicon', 'startbox' ),
 						'desc'		=> __( 'The favicon is a small logo/icon that displays alongside your URL in most browsers.', 'startbox' ),
-						'default'	=> '/wp-content/themes/startbox/images/favicon.png'
+						'default'	=> '/wp-content/themes/startbox/images/favicon.png',
+						'help'		=> __( 'Specify a custom favicon (small 16px image) for use in the navigation bar or browser tab for your site', 'startbox' )
 					)
 				);
 				parent::__construct();
