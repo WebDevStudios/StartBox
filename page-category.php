@@ -39,7 +39,7 @@ Template Name: Display Posts
 				$wp_query = $temp_query;
 				$post = $temp_post;
 			?>
-		
+			
 		<?php sb_after_content();?>
 		
 		</div><!-- #content -->

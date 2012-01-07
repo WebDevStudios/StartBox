@@ -2,7 +2,7 @@
 /**
  * StartBox Sidebars
  *
- * A class structure for handling sidebar registration, output, markup, the works.s
+ * A class structure for handling sidebar registration, output, markup, the works.
  *
  * @package StartBox
  * @subpackage Functions
@@ -267,12 +267,13 @@ class SB_Sidebars {
 	 * @param string $sidebar the sidebar to (maybe) replace
 	 */
 	function maybe_replace_current_sidebar( $location, $sidebar ) {
-		global $post;
+		global $post, $wp_query;
 		$post_type = (array)$this->get_custom_sidebars('post_type');
 		$tax = (array)$this->get_custom_sidebars('taxonomy');
 		
 		// Set the ID for the page/post to retrive. If a sidebar is set for all- Pages, Posts, Categories or Tags use it instead.
 		if ( is_front_page() && array_key_exists( 'Home', $post_type ) ) { $pid = 'Home'; }
+		elseif ( is_home() ) { $pid = $wp_query->queried_object_id; } // when the home page is not the front page (e.g. posts display on a page per Settings > Reading)
 		elseif ( is_single() && array_key_exists( 'all-Posts', $post_type ) ) { $pid = 'all-Posts'; }
 		elseif ( is_page() && array_key_exists( 'all-Pages', $post_type) ) { $pid = 'all-Pages'; }
 		elseif ( is_category() && array_key_exists( 'all-category', $tax) ) { $pid = 'all-category'; }
@@ -284,7 +285,7 @@ class SB_Sidebars {
 		// Confirm which sidebar to output based on current front-end view
 		if ( is_front_page() && array_key_exists( $pid, $post_type ) && $sidebar == $post_type[$pid]['location'] ) {
 			$sidebar = $post_type[$pid]['sidebar'];
-		} elseif ( is_singular() && array_key_exists( $pid, $post_type ) && $sidebar == $post_type[$pid]['location'] ) {
+		} elseif ( ( is_singular() || is_home() ) && array_key_exists( $pid, $post_type ) && $sidebar == $post_type[$pid]['location'] ) {
 			$sidebar = $post_type[$pid]['sidebar'];
 		} elseif ( ( is_category() || is_tag() ) && array_key_exists( $pid, $tax ) && $sidebar == $tax[$pid]['location']) {
 			$sidebar = $tax[$pid]['sidebar'];

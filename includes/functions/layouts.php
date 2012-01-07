@@ -35,7 +35,7 @@ function sb_get_layout() {
 	$layout = '';
 
 	/* If viewing a singular post/page, check if a layout has been specified. */
-	if ( is_singular() ) {
+	if ( is_home() || is_singular() ) {
 
 		/* Get the current post ID. */
 		$post_id = $wp_query->get_queried_object_id();

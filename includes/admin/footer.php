@@ -28,7 +28,7 @@
 					'copyright_year' => array(
 						'type'		=> 'text',
 						'label'		=> __( 'Original Copyright Year', 'startbox' ),
-						'default'	=> '2010',
+						'default'	=> date('Y'),
 						'desc'		=> __( 'If prior to this year, theme will automatically display [original year] - [current year].', 'startbox' ),
 						'size'		=> 'small',
 						'align'		=> 'right',

@@ -1,9 +1,13 @@
-2011.12.20 - version 2.5.5
+2012.01.07 - version 2.5.5
 	* added: Complete security audit by Mark Jaquith, lots of minor changes to tighten theme security
 	* added: Options API now supports new contextual Help tab in WP3.3, added help text for relevant panels
 	* changed: updated how admin menu items were registered per WP 3.3 changes
 	* changed: updated when all defaults scripts and styles were registered to better follow WP standards
+	* changed: updated footer settings to load the current year as the default setting
 	* fixed: minor CSS tweaks to Theme Options page to better match WP3.3 style
+	* fixed: bug where layout would not apply to posts page if set to static page via Settings > Reading
+	* fixed: bug where correct sidebar would not apply to posts page if set to static page via Settings > Reading
+	* fixed: annoying bug that would recheck slideshow control settings 
 
 2011.11.17 - version 2.5.4
 	* added: [title] shortcode to simply return get_the_title()

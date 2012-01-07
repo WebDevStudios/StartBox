@@ -291,7 +291,7 @@ function sb_slideshow_options_meta() {
 ?>
 		<p><strong><?php _e( 'Show', 'startbox' ); ?></strong></p>
 		<p><?php foreach ($sb_slideshow_interface['controls'] as $key => $value) 
-			echo sb_slideshow_checkbox( $key, $value, 'control', ($control == '' ? $key : $control) ); ?></p>
+			echo sb_slideshow_checkbox( $key, $value, 'control', $control ); ?></p>
         </div>    
 <?php
 	endif;

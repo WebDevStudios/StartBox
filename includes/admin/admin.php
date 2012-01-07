@@ -27,7 +27,8 @@ add_action( 'wp_before_admin_bar_render', 'sb_admin_bar_init' );
 function sb_admin_help() {
     global $sb_admin;
 
-	if ( function_exists('get_current_screen') ) {
+	// Make sure we're on at least WP3.3
+	if ( version_compare( $wp_version, '3.3', '>=' ) ) {
 	    $screen = get_current_screen();
 
 	    // Don't add help tab if screen is not sb_admin
@@ -69,12 +70,14 @@ function sb_admin_help() {
 			    ) );
 			} // end if isset
 		} // end foreach
-	} // end if function_exsts
+	} // end if version compare
 
 }
 
 function sb_admin_load() {
 	global $sb_admin;
+	
+	add_screen_option( 'layout_columns', array('max' => 2, 'default' => 2) );
 	
 	// Load the scripts for handling metaboxes
 	wp_enqueue_script('common');
@@ -110,7 +113,8 @@ function sb_screen_options($columns, $screen) {
 	}
 	return $columns;
 }
-add_filter('screen_layout_columns', 'sb_screen_options', 10, 2);
+// add_filter('screen_layout_columns', 'sb_screen_options', 10, 2);
+
 
 
 /**
