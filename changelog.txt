@@ -1,4 +1,4 @@
-2012.01.07 - version 2.5.5
+2012.01.23 - version 2.5.5
 	* added: Complete security audit by Mark Jaquith, lots of minor changes to tighten theme security
 	* added: Options API now supports new contextual Help tab in WP3.3, added help text for relevant panels
 	* changed: updated how admin menu items were registered per WP 3.3 changes
