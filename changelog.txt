@@ -4,7 +4,10 @@
 	* changed: updated how admin menu items were registered per WP 3.3 changes
 	* changed: updated when all defaults scripts and styles were registered to better follow WP standards
 	* changed: updated footer settings to load the current year as the default setting
+	* changed: slideshows now use sb_post_image_url() instead of sb_post_image()
+	* changed: updated Nivo Slider from 2.3 to 2.7.1
 	* fixed: minor CSS tweaks to Theme Options page to better match WP3.3 style
+	* fixed: bug in attribute output for sb_post_image()
 	* fixed: bug where layout would not apply to posts page if set to static page via Settings > Reading
 	* fixed: bug where correct sidebar would not apply to posts page if set to static page via Settings > Reading
 	* fixed: annoying bug that would recheck slideshow control settings 

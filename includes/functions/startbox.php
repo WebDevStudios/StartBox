@@ -265,11 +265,6 @@ class StartBox {
 			update_option( 'startbox_version', '2.4.9' );
 		}
 		
-		// Upgrade to 2.4.9.1
-		if ( version_compare( get_option('startbox_version'), '2.4.9.1', '<') ) {
-			update_option( 'startbox_version', '2.4.9.1' );
-		}
-		
 		// Upgrade to 2.4.9.2
 		if ( version_compare( get_option('startbox_version'), '2.4.9.2', '<') ) {
 			
@@ -280,16 +275,6 @@ class StartBox {
 			$new_settings = wp_parse_args($new_settings, $theme_settings);
 			update_option( THEME_OPTIONS, $new_settings);
 			update_option( 'startbox_version', '2.4.9.2' );
-		}
-		
-		// Upgrade to 2.4.9.3
-		if ( version_compare( get_option('startbox_version'), '2.4.9.3', '<') ) {
-			update_option( 'startbox_version', '2.4.9.3' );
-		}
-		
-		// Upgrade to 2.4.9.4
-		if ( version_compare( get_option('startbox_version'), '2.4.9.4', '<') ) {
-			update_option( 'startbox_version', '2.4.9.4' );
 		}
 		
 		// Upgrade to 2.5
@@ -310,6 +295,12 @@ class StartBox {
 		
 		// Upgrade to 2.5.5
 		if ( version_compare( get_option('startbox_version'), '2.5.5', '<') ) {
+			$theme_settings = get_option( THEME_OPTIONS );
+			$new_settings = array(
+				'post_layout' => $theme_settings['layout'],
+			);
+			$new_settings = wp_parse_args($new_settings, $theme_settings);
+			update_option( THEME_OPTIONS, $new_settings);
 			update_option( 'startbox_version', '2.5.5' );
 		}
 		

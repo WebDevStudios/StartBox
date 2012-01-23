@@ -14,19 +14,23 @@
 						'desc'		=> __( 'Select content and sidebar alignment. Choose from any of the available layouts.', 'startbox' ),
 						'options'	=>  sb_supported_layouts('sb-layouts-home'),
 						'default'	=> 'two-col-right',
-						'align'		=> 'right',
-						'size'		=> 'medium',
 						'help'		=> __( 'Select which page layout you would like to use for the homepage.', 'startbox' )
 					),
 				'layout' => array(
 						'type'		=> 'layout',
 						'label'		=> __( 'Interior Page Layout:', 'startbox' ),
-						'desc'		=> __( 'Select content and sidebar alignment. This can be changed on each page/post individually.', 'startbox' ),
+						'desc'		=> __( 'Select content and sidebar alignment. This can be changed on each page individually.', 'startbox' ),
 						'options'	=> sb_supported_layouts('sb-layouts'),
 						'default'	=> 'two-col-right',
-						'align'		=> 'right',
-						'size'		=> 'medium',
 						'help'		=> __( 'Select the default layout for your interior pages.', 'startbox' )
+					),
+				'post_layout' => array(
+						'type'		=> 'layout',
+						'label'		=> __( 'Single Post Layout:', 'startbox' ),
+						'desc'		=> __( 'Select content and sidebar alignment. This can be changed on each post individually.', 'startbox' ),
+						'options'	=> sb_supported_layouts('sb-layouts'),
+						'default'	=> 'two-col-right',
+						'help'		=> __( 'Select the default layout for your single post views.', 'startbox' )
 					),
 				'post_content_heading' => array(
 						'type'		=> 'intro',
@@ -218,6 +222,8 @@
 			$options = get_option( THEME_OPTIONS );
 			if ( is_front_page() )
 				return $options['home_layout'];
+			elseif ( is_single() )
+				return $options['post_layout'];
 			else
 				return $options['layout'];
 		}

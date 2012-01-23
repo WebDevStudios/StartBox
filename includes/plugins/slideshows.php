@@ -343,19 +343,23 @@ function sb_slideshow_slides( $sql ) {
 			'box' 			=> $box,
 			'order'			=> $order,
 			'attachment'		=> array(
-								'id' 	=> $attachment->ID,
-								'year' 	=> mysql2date( 'Y', $attachment->post_date ),
-								'month' 	=> mysql2date( 'm', $attachment->post_date ),
-								'width'	=> $metadata['width'],
-								'height' 	=> $metadata['height'],
-								'type' 	=> $attachment->post_mime_type,
-								'link'	=> $attachment->post_excerpt,
-								'content'	=> $attachment->post_content ),
-			'image' 			=> sb_post_image( $sb_slideshow_interface['slide_width'], $sb_slideshow_interface['slide_height'], NULL, 1, array( 
-								'image_id' 	=> $attachment->ID, 
-								'echo' 		=> false, 
-								'alt' 		=> 'Sortable Image', 
-								'title' 		=> 'Click and drag' ) ) ) );
+				'id' 		=> $attachment->ID,
+				'year' 		=> mysql2date( 'Y', $attachment->post_date ),
+				'month' 	=> mysql2date( 'm', $attachment->post_date ),
+				'width'		=> $metadata['width'],
+				'height' 	=> $metadata['height'],
+				'type' 		=> $attachment->post_mime_type,
+				'link'		=> $attachment->post_excerpt,
+				'content'	=> $attachment->post_content ),
+				'image' 	=> '<img src="' . sb_post_image_url( array( 'width' => $sb_slideshow_interface['slide_width'], 'height' => $sb_slideshow_interface['slide_height'], 'image_id' 	=> $attachment->ID, 'echo' 	=> false ) ) . '" width="' . $sb_slideshow_interface['slide_width'] . '" height="' . $sb_slideshow_interface['slide_height'] . '" />'
+				// 'image' 	=> sb_post_image( $sb_slideshow_interface['slide_width'], $sb_slideshow_interface['slide_height'], NULL, 1, array(
+				// 	'image_id' 	=> $attachment->ID, 
+				// 	'echo' 		=> false, 
+				// 	'alt' 		=> 'Sortable Image', 
+				// 	'title'		=> 'Click and drag' )
+				// )
+			)
+		);
 	}
 	
 	usort( $sb_slideshow_slides, 'sb_slideshow_slide_sort' ); // order the elements of the array
@@ -514,11 +518,12 @@ function sb_slideshow_shortcode( $atts, $content = NULL ) {
 		$attachment = get_post( $slide['attachment_id'] );
 		$description = $attachment->post_content;
 		if ($attachment->post_excerpt != '') $result .= '<a href="' . esc_url( $attachment->post_excerpt ) . '">';
-		$result .= sb_post_image( $dimensions['width'], $dimensions['height'], NULL, 1, array( 
-			'image_id' 	=> $slide['attachment_id'], 
-			'title' 		=> $description, 
-			'alt' 		=> $description,
-			'echo' 		=> false ) );
+		$result .= '<img src="' . sb_post_image_url( array( 'width' => $dimensions['width'], 'height' => $dimensions['height'], 'image_id' 	=> $slide['attachment_id'], 'echo' 	=> false ) ) . '" width="' .  $dimensions['width'] . '" height="' .  $dimensions['height'] . '" alt="' . esc_attr($description) . '" title="' . esc_attr($description) .'" />';
+		// $result .= sb_post_image( $dimensions['width'], $dimensions['height'], NULL, 1, array( 
+		// 			'image_id' 	=> $slide['attachment_id'], 
+		// 			'title' 		=> $description, 
+		// 			'alt' 		=> $description,
+		// 			'echo' 		=> false ) );
 		if ($attachment->post_excerpt != '') $result .= '</a>';
 	}
 	$result .= '</div></div>';
@@ -534,7 +539,8 @@ function sb_slideshow_shortcode( $atts, $content = NULL ) {
 	
 	$result = '';
 	$result .= '<div class="slider_wrapper" style="width:' . absint( $dimensions['width'] ) . 'px">';
-	$result .= sb_post_image( $dimensions['width'], $dimensions['height'], null, 1, array( 'image_id' => $slide['attachment_id'], 'title' => strip_tags($slide['caption']), 'alt' => strip_tags($slide['caption']), 'echo' => false ) );
+	$result .= '<img src="' . sb_post_image_url( array( 'width' => $dimensions['width'], 'height' => $dimensions['height'], 'image_id' 	=> $slide['attachment_id'], 'echo' 	=> false ) ) . '" width="' .  $dimensions['width'] . '" height="' .  $dimensions['height'] . '" alt="' . esc_attr($description) . '" title="' . esc_attr($description) .'" />';
+	// $result .= sb_post_image( $dimensions['width'], $dimensions['height'], null, 1, array( 'image_id' => $slide['attachment_id'], 'title' => strip_tags($slide['caption']), 'alt' => strip_tags($slide['caption']), 'echo' => false ) );
 	
 	$result .= '<span class="slide_caption">'.$slide['caption'].'</span>';
 	$result .= '</div>';

@@ -317,8 +317,8 @@ img, p img {
 	background:#eaeaea;
 	color:#222;
 }
-.nav li:hover li.current-menu-item a, .nav li:hover li.current-menu-item a:visited,
-.nav li:hover li.current-menu-ancestor a, .nav li:hover li.current-menu-ancestor a:visited {
+.nav li li.current-menu-item a, .nav li li.current-menu-item a:visited,
+.nav li li.current-menu-ancestor a, .nav li li.current-menu-ancestor a:visited {
 	background:#f9f9f9;
 	color:#222;
 }

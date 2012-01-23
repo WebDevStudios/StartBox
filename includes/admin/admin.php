@@ -25,7 +25,7 @@ add_action( 'wp_before_admin_bar_render', 'sb_admin_bar_init' );
  * @since StartBox 2.5.5
  */
 function sb_admin_help() {
-    global $sb_admin;
+    global $sb_admin, $wp_version;
 
 	// Make sure we're on at least WP3.3
 	if ( version_compare( $wp_version, '3.3', '>=' ) ) {

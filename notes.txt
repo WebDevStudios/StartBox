@@ -20,6 +20,7 @@ Contents
 		- layout design should be pre-populated, look like demo with no configuration necessary
 	add Feedburner Email widget (per http://wpstartbox.com/support/topic/how-about-a-simple-feedburner-email-widget/)
 	update templates to better use get_template_part() and get_post_format()
+	create table of contents shortcode: auto-pulls h# tags, assigns them ids, uses the heading text for link text
 	
 	make shortcodes use add_theme_support()
 

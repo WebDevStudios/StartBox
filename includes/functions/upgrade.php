@@ -81,7 +81,7 @@ class sb_upgrade {
 		$update_onclick = __('Upgrading will overwrite the currently installed version of StartBox. Are you sure you want to upgrade?', 'startbox');
 
 		$output = '<div class="update-nag">';
-		$output .= sprintf( __('An update to StartBox is available. <a href="%s" class="thickbox thickbox-preview">Check out what\'s new in %s</a> or <a href="%s" onclick="return sb_confirm(\'%s\');">upgrade now</a>.', 'startbox'), esc_url( $sb_update['url'] ), esc_html( $sb_update['new_version'] ), $update_url, esc_js( $update_onclick ) );
+		$output .= sprintf( __('An update to StartBox is available. <a href="%s?KeepThis=true&TB_iframe=true" class="thickbox thickbox-preview">Check out what\'s new in %s</a> or <a href="%s" onclick="return sb_confirm(\'%s\');">upgrade now</a>.', 'startbox'), esc_url( $sb_update['url'] ), esc_html( $sb_update['new_version'] ), $update_url, esc_js( $update_onclick ) );
 		$output .= '</div>';
 
 		echo $output;
