@@ -293,15 +293,15 @@ class StartBox {
 			update_option( 'startbox_version', '2.5' );
 		}
 		
-		// Upgrade to 2.5.5
-		if ( version_compare( get_option('startbox_version'), '2.5.5', '<') ) {
+		// Upgrade to 2.5.6
+		if ( version_compare( get_option('startbox_version'), '2.5.6', '<') ) {
 			$theme_settings = get_option( THEME_OPTIONS );
 			$new_settings = array(
 				'post_layout' => $theme_settings['layout'],
 			);
 			$new_settings = wp_parse_args($new_settings, $theme_settings);
 			update_option( THEME_OPTIONS, $new_settings);
-			update_option( 'startbox_version', '2.5.5' );
+			update_option( 'startbox_version', '2.5.6' );
 		}
 		
 		// Upgrade to 2.5.6

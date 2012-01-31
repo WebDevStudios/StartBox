@@ -93,11 +93,6 @@ class sb_upgrade {
 		remove_action('admin_notices', 'sb_update_notification');
 	}
 	
-	// Updates everything
-	function upgrade() {
-		
-	}
-	
 	// This makes everything work and hooks it where it belongs.
 	public function __construct() {
 		add_filter('site_transient_update_themes', array( $this, 'update_include') );
@@ -105,7 +100,6 @@ class sb_upgrade {
 		add_action('admin_notices', array( $this, 'update_notification') );
 		add_action('load-update.php', array( $this, 'clear_update_transient') );
 		add_action('load-themes.php', array( $this, 'clear_update_transient') );
-		add_action( 'sb_upgrade', array( $this, 'upgrade') );
 	}
 	
 }

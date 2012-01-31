@@ -22,8 +22,6 @@ Contents
 	update templates to better use get_template_part() and get_post_format()
 	create table of contents shortcode: auto-pulls h# tags, assigns them ids, uses the heading text for link text
 	
-	make shortcodes use add_theme_support()
-
 	Joost SEO Tips:
 	- I'd also say that the headings in the right sidebars should be H4 or below, not H3
 	- change comment area h3 tags are now h4 tags (or not heading tags whatsoever)
@@ -54,10 +52,6 @@ Contents
 	? add image option for search widget submit button
 	add default styles for gforms (or form elements in general)
 	add controls to Featured Content Widget for content rotation
-	add_theme_support
-		galleriffic
-		encouraged commentary
-		colorbox
 	filter admin links
 	
 ////////////////////////////////////////////////////////////////////////////////////

@@ -132,8 +132,11 @@ function sb_entry_edit() {
  * @uses sb_time_since
  *
  */
-function sb_entry_date() {
-	return '<span class="published entry-date">' . get_the_time( get_option('date_format') ) . '</span>';
+function sb_entry_date( $atts ) {
+	extract ( shortcode_atts ( array (
+		'format' => get_option('date_format')
+	), $atts ) );
+	return '<span class="published entry-date">' . get_the_time( $format ) . '</span>';
 }
 
 /**

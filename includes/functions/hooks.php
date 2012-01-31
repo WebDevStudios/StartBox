@@ -72,8 +72,8 @@ function sb_header_wrap() {
 	else
 		echo '</div><!-- #header_wrap -->'."\n";
 }
-add_action( 'sb_before_header', 'sb_header_wrap', 1 );
-add_action( 'sb_after_header', 'sb_header_wrap', 9999 );
+add_action( 'sb_before_header', 'sb_header_wrap', 999 );
+add_action( 'sb_after_header', 'sb_header_wrap', 9 );
 
 // The default site title
 function sb_default_title( $title, $sep, $seplocation) {

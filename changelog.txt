@@ -1,3 +1,7 @@
+2012.01.31 - version 2.5.6
+	* changed: updated [date] shortcode so that you can pass a custom PHP date format (e.g. [date format="Y"])
+	* changed: hooked #header_wrap correctly to sb_before_header 999 and sb_after_header 9 (instead of the other way around)
+
 2012.01.23 - version 2.5.5
 	* added: Complete security audit by Mark Jaquith, lots of minor changes to tighten theme security
 	* added: Options API now supports new contextual Help tab in WP3.3, added help text for relevant panels
