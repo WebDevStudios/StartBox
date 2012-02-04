@@ -304,14 +304,34 @@ class StartBox {
 			update_option( 'startbox_version', '2.5.6' );
 		}
 		
-		// Upgrade to 2.5.6
-		// if ( version_compare( get_option('startbox_version'), '2.5.6', '<') ) {
+		// Upgrade to 2.6
+		if ( version_compare( get_option('startbox_version'), '2.6', '<') ) {
+			
+			// Replace the Full Width page template with the one-column layout
+			global $wpdb;
+			$where = array(
+				'meta_key' => '_wp_page_template',
+				'meta_value' => 'page-fullwidth.php' );
+			$new_values = array(
+				'meta_key' => '_wp_page_template', 'meta_value' => '',
+				'meta_key' => '_sb_layout', 'meta_value' => 'one-col' );
+			$wpdb->update( $wpdb->postmeta, $new_values, $where );
+			
+			// $theme_settings = get_option( THEME_OPTIONS );
+			// $new_settings = array();
+			// $new_settings = wp_parse_args($new_settings, $theme_settings);
+			// update_option( THEME_OPTIONS, $new_settings);
+			// update_option( 'startbox_version', '2.6' );
+		}
+		
+		// Upgrade to 2.6.1
+		// if ( version_compare( get_option('startbox_version'), '2.6.1', '<') ) {
 		// 	
 		// 	$theme_settings = get_option( THEME_OPTIONS );
 		// 	$new_settings = array();
 		// 	$new_settings = wp_parse_args($new_settings, $theme_settings);
 		// 	update_option( THEME_OPTIONS, $new_settings);
-		// 	update_option( 'startbox_version', '2.5.5' );
+		// 	update_option( 'startbox_version', '2.6.1' );
 		// }
 		
 		// Included hook for other things to do during upgrade
