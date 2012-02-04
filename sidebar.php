@@ -1,4 +1,4 @@
-<?php 
+Í<?php 
 /**
  * sb_do_sidebar() is defined in /includes/functions/sidebars.php
  *

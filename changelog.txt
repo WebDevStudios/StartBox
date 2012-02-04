@@ -1,3 +1,9 @@
+2012.02.04 - version 2.6
+	* removed: all custom hook functions, replacing them more simply with do_action( 'hook_name' )
+	* removed: page-fullwidth.php (full-width page template) -- use the One Column layout option instead
+	* removed: page-tertiarysidebar.php (tertiary sidebar page template ) -- use sidebar manager instead
+	* removed: sidebar-tertiary.php (tertiary sidebar) -- use sidebar manager instead
+
 2012.01.31 - version 2.5.6
 	* changed: updated [date] shortcode so that you can pass a custom PHP date format (e.g. [date format="Y"])
 	* changed: hooked #header_wrap correctly to sb_before_header 999 and sb_after_header 9 (instead of the other way around)

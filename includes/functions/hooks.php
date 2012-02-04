@@ -8,61 +8,6 @@
  * @subpackage Functions
  */
 
-// Located in header.php
-function sb_title() { do_action('sb_title'); } // The site title
-function sb_before() { do_action('sb_before'); } // the very first thing inside <body>
-function sb_before_header() { do_action('sb_before_header'); } // inside div#wrap, before div#header
-function sb_header() { do_action('sb_header'); } // inside div#header, before any content
-function sb_after_header() { do_action('sb_after_header'); } // inside div#wrap, after div#header
-function sb_before_container() { do_action('sb_before_container'); } // inside div#container_wrap, before div#container
-
-// Located in front-page.php
-function sb_before_featured() { do_action('sb_before_featured'); } // Located just after sb_before_content
-function sb_featured() { do_action('sb_featured'); } // Located just after sb_before_featured
-function sb_after_featured() { do_action('sb_after_featured'); } // Located just after sb_featured
-function sb_home() { do_action('sb_home'); } // Located just after sb_after_featured
-
-// Located in 404.php, archive.php, attachment.php, author.php, category.php, index.php, page.php and all other page templates, search.php, single.php, tag.php
-function sb_before_content() { do_action('sb_before_content'); } // Just before the content
-function sb_page_title() { do_action('sb_page_title'); } // The Page Title, appears immediately after sb_before_content
-function sb_after_content() { do_action('sb_after_content');} // Just after the content
-
-// Located in loop.php
-function sb_before_post() { do_action('sb_before_post'); global $firstpost; if ( !isset( $firstpost ) ) { do_action('sb_before_first_post'); } } // Just before the post
-function sb_after_post() { do_action('sb_after_post'); global $firstpost; if ( !isset( $firstpost ) ) { do_action('sb_after_first_post'); $firstpost = 1; } } // Just after the post
-
-// Located in loop.php and single.php
-function sb_before_post_content() { do_action('sb_before_post_content'); } // Inside div.post, after .entry-header, before .entry-content
-function sb_post_header() { do_action('sb_post_header' ); } // Inside div.entry-meta
-function sb_post_footer() { do_action('sb_post_footer' ); } // Inside div.entry-footer
-function sb_after_post_content() { do_action('sb_after_post_content'); } // Inside div.post, after .entry-content, before .entry-footer
-
-// Located in 404.php
-function sb_404() { do_action('sb_404'); } // Inside div.post, only on 404 page
-
-// Located in sidebar.php
-function sb_no_widgets() { do_action('sb_no_widgets'); } // This is hooked into all sb_no_*_widget hooks
-
-// Located in sidebar-tertiary.php
-function sb_before_tertiary_widgets() { do_action('sb_before_tertiary_widgets'); } // Inside div#container, after div#content, before div#tertiary
-function sb_after_tertiary_widgets() { do_action('sb_after_tertiary_widgets'); } // Inside div#container, after div#tertiary
-
-// Located in sidebar-footer.php
-function sb_before_footer_widgets() { do_action('sb_before_footer_widgets'); } // inside div#footer, before div#footer_sidebar
-function sb_between_footer_widgets() { do_action('sb_between_footer_widgets'); } // inside div#footer_sidebar, between each div.aside
-add_action( 'sb_before_footer_widget_area_2_widgets', 'sb_between_footer_widgets' );
-add_action( 'sb_before_footer_widget_area_3_widgets', 'sb_between_footer_widgets' );
-add_action( 'sb_before_footer_widget_area_4_widgets', 'sb_between_footer_widgets' );
-function sb_after_footer_widgets() { do_action('sb_after_footer_widgets'); } // inside div#footer, after div#footer_sidebar
-
-// Located in footer.php
-function sb_after_container() { do_action('sb_after_container'); } // inside div#container_wrap, after div#container
-function sb_between_content_and_footer() { do_action('sb_between_content_and_footer'); } // after div#wrap, before div#footer_wrap
-function sb_before_footer() { do_action('sb_before_footer'); } // inside div#footer_wrap, before div#footer
-function sb_footer() { do_action('sb_footer'); } // inside div#footer after div#footer_sidebar
-function sb_after_footer() { do_action('sb_after_footer'); } // inside dive#footer_wrap, after div#footer
-function sb_after() { do_action('sb_after'); } // the very last thing before </body>
-
 ////////////////////////////////////////////////// Items To Hook into Header //////////////////////////////////////////////////
 
 // Header Wrap
@@ -244,47 +189,33 @@ function sb_404_content() {
 }
 add_action( 'sb_404', 'sb_404_content' );
 
+// Dynamically create hook for the very first post in a loop
+function sb_before_first_post() { global $firstpost; if ( !isset( $firstpost ) ) { do_action('sb_before_first_post'); } } // Just before the post
+function sb_after_first_post() { global $firstpost; if ( !isset( $firstpost ) ) { do_action('sb_after_first_post'); $firstpost = 1; } } // Just after the post
+add_action( 'sb_before_post', 'sb_before_first_post' );
+add_action( 'sb_after_post', 'sb_after_first_post' );
+
 ////////////////////////////////////////////////// Items To Hook into Sidebars //////////////////////////////////////////////////
 
-function sb_do_primary_widgets() {
-	if ( is_sidebar_active('primary_widget_area') || has_action('sb_no_primary_widgets') ) { ?>
-	<div id="primary" class="aside primary-aside">
-		<ul class="xoxo">
-			
-			<?php if ( !dynamic_sidebar('primary-aside') ) { sb_no_primary_widgets(); } ?>
-			
-		</ul>
-	</div><!-- #primary .aside -->
-<?php }
-}
-add_action( 'sb_primary_widgets', 'sb_do_primary_widgets' );
-
-function sb_do_secondary_widgets() {
-	if ( is_sidebar_active('secondary_widget_area') || has_action('sb_no_secondary_widgets') ) { ?>
-		<div id="secondary" class="aside secondary-aside">
-			<ul class="xoxo">
-
-				<?php if ( !dynamic_sidebar('secondary-aside') ) { sb_no_secondary_widgets(); } ?>
-
-			</ul>
-		</div><!-- #secondary .aside -->
-	<?php }
-}
-add_action( 'sb_secondary_widgets', 'sb_do_secondary_widgets' );
-
 // Hook sb_no_widgets to all default widget areas, but only if it's active
+function sb_no_widgets() { do_action( 'sb_no_widgets' ); }
 function sb_no_widgets_active() {
 	if ( has_action( 'sb_no_widgets' ) ) {
 		add_action( 'sb_no_primary_widgets', 'sb_no_widgets' );
 		add_action( 'sb_no_secondary_widgets', 'sb_no_widgets' );
 		add_action( 'sb_no_featured_widgets', 'sb_no_widgets' );
-		add_action( 'sb_no_footer_aside_widgets', 'sb_no_widgets' );
-		add_action( 'sb_no_footer_aside_2_widgets', 'sb_no_widgets' );
-		add_action( 'sb_no_footer_aside_3_widgets', 'sb_no_widgets' );
-		add_action( 'sb_no_footer_aside_4_widgets', 'sb_no_widgets' );
+		add_action( 'sb_no_footer_widget_area_1_widgets', 'sb_no_widgets' );
+		add_action( 'sb_no_footer_widget_area_2_widgets', 'sb_no_widgets' );
+		add_action( 'sb_no_footer_widget_area_3_widgets', 'sb_no_widgets' );
+		add_action( 'sb_no_footer_widget_area_4_widgets', 'sb_no_widgets' );
 	}
 }
 add_action( 'init', 'sb_no_widgets_active' );
+
+function sb_between_footer_widgets() { do_action('sb_between_footer_widgets'); } // inside div#footer_sidebar, between each div.aside
+add_action( 'sb_before_footer_widget_area_2_widgets', 'sb_between_footer_widgets' );
+add_action( 'sb_before_footer_widget_area_3_widgets', 'sb_between_footer_widgets' );
+add_action( 'sb_before_footer_widget_area_4_widgets', 'sb_between_footer_widgets' );
 
 ////////////////////////////////////////////////// Items To Hook into Footer //////////////////////////////////////////////////
 

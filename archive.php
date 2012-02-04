@@ -3,11 +3,11 @@
 	<div id="container">
 		<div id="content">
 			
-			<?php sb_before_content();?>
+			<?php do_action( 'sb_before_content' );?>
 
 			<?php the_post() ?>
 			
-			<?php sb_page_title(); ?>
+			<?php do_action( 'sb_page_title' ); ?>
 			
 			<?php rewind_posts() ?>
 
@@ -15,7 +15,7 @@
 				<?php get_template_part( 'loop', 'archive' ); ?>
 			<?php endwhile ?>
 			
-			<?php sb_after_content();?>
+			<?php do_action( 'sb_after_content' );?>
 
 		</div><!-- #content .hfeed -->
 	</div><!-- #container -->

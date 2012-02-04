@@ -1,14 +1,14 @@
-<?php sb_before_post();?>
+<?php do_action( 'sb_before_post' );?>
 
 <div id="post-<?php the_ID() ?>" <?php post_class() ?>>
 	<div class="entry-header">
 		<h2 class="entry-title"><a href="<?php the_permalink() ?>" title="<?php printf(__('Permalink to %s', 'startbox'), esc_html(get_the_title(), 1)) ?>" rel="bookmark"><?php the_title() ?></a></h2>
 		<div class="entry-meta">
-			<?php sb_post_header(); ?>
+			<?php do_action( 'sb_post_header' ); ?>
 		</div><!-- .entry-meta -->
 	</div><!-- .entry-header -->
 	
-	<?php sb_before_post_content(); ?>
+	<?php do_action( 'sb_before_post_content' ); ?>
 	
 	<div class="entry-content">
 		<a class="entry-photo" href="<?php the_permalink() ?>" rel="bookmark" title="<?php echo esc_attr( get_the_title() ); ?>">
@@ -28,11 +28,11 @@
 		
 	</div><!-- .entry-content -->
 	
-	<?php sb_after_post_content(); ?>
+	<?php do_action( 'sb_after_post_content' ); ?>
 	
 	<div class="entry-footer">
-		<?php sb_post_footer(); ?>
+		<?php do_action( 'sb_post_footer' ); ?>
 	</div><!-- .entry-footer -->
 </div><!-- .post -->
 
-<?php sb_after_post();?>
+<?php do_action( 'sb_after_post' );?>

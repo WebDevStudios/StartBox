@@ -45,6 +45,10 @@ class StartBox {
 		// Register functions, hooks, shortcodes, sidebars and comments
 		require_once( FUNCTIONS_PATH . '/admin_settings.php' );	// Admin Functions
 		require_once( FUNCTIONS_PATH . '/custom.php' );			// Custom Functions
+		require_once( FUNCTIONS_PATH . '/custom.php' );			// Custom Functions
+		require_once( FUNCTIONS_PATH . '/conditionals.php' );	// Conditional Functions
+		require_once( FUNCTIONS_PATH . '/images.php' );			// Image Functions
+		require_once( FUNCTIONS_PATH . '/menus.php' );			// Menu Functions
 		require_once( FUNCTIONS_PATH . '/depricated.php' );		// Deprecated Functions
 		require_once( FUNCTIONS_PATH . '/hooks.php' );			// Hooks
 		require_once( FUNCTIONS_PATH . '/shortcodes.php' );		// Shortcodes
@@ -129,7 +133,6 @@ class StartBox {
 		add_theme_support( 'sb-layouts', apply_filters( 'sb_layouts_defaults', $sb_default_layouts) ); // Theme Layouts
 		add_theme_support( 'sb-layouts-home', apply_filters( 'sb_layouts_defaults_home', $sb_default_layouts ) ); // Theme Layouts (homepage)
 		
-		
 		// If theme has been switched, unset child defaults
 		add_action( 'switch_theme', array( 'StartBox', 'child_uninstall' ) );
 		
@@ -142,6 +145,12 @@ class StartBox {
 		if ($layout == 'one-col') { $content_width = 940; }
 		elseif ( $layout == 'three-col-left' || $layout == 'three-col-right' || $layout == 'three-col-both' ) { $content_width = 540; }
 		else { $content_width = 640; }
+		
+		// Add filters for the description/meta content in archive.php
+		add_filter( 'archive_meta', 'wptexturize' );
+		add_filter( 'archive_meta', 'convert_smilies' );
+		add_filter( 'archive_meta', 'convert_chars' );
+		add_filter( 'archive_meta', 'wpautop' );
 		
 	}
 	

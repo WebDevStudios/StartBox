@@ -1,4 +1,4 @@
-<?php sb_before_footer_widgets(); ?>
+<?php do_action( 'sb_before_footer_widgets' ); ?>
 <?php 
 	/**
 	 * Footer Aside Widget Areas
@@ -36,4 +36,4 @@
 	
 <?php } ?>
 
-<?php sb_after_footer_widgets(); ?>
+<?php do_action( 'sb_after_footer_widgets' ); ?>
