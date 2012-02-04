@@ -9,7 +9,7 @@
  */
 
 // Located in header.php
-function sb_title() { _deprecated_function( __FUNCTION__, '2.6', 'do_action( \'sb_title\' )' ); do_action('sb_title'); } // The site title
+function sb_title() { _deprecated_function( __FUNCTION__, '2.6', 'wp_title' ); wp_title(); } // The site title
 function sb_before() { _deprecated_function( __FUNCTION__, '2.6', 'do_action( \'sb_before\' )' ); do_action('sb_before'); } // the very first thing inside <body>
 function sb_before_header() { _deprecated_function( __FUNCTION__, '2.6', 'do_action( \'sb_before_header\' )' ); do_action('sb_before_header'); } // inside div#wrap, before div#header
 function sb_header() { _deprecated_function( __FUNCTION__, '2.6', 'do_action( \'sb_header\' )' ); do_action('sb_header'); } // inside div#header, before any content
@@ -38,10 +38,12 @@ function sb_after_post_content() { _deprecated_function( __FUNCTION__, '2.6', 'd
 
 // Located in sidebar.php
 function sb_between_primary_and_secondary_widgets() { _deprecated_function( __FUNCTION__, '2.5', 'do_action( \'sb_after_primary_aside_widgets\' )' ); do_action('sb_between_primary_and_secondary_widgets');}
+function sb_no_widgets() { _deprecated_function( __FUNCTION__, '2.6', 'specific widget location hooks' ); }
 
 // Located in sidebar-footer.php
 function sb_before_footer_widgets() { _deprecated_function( __FUNCTION__, '2.6', 'do_action( \'sb_before_footer_widgets\' )' ); do_action('sb_before_footer_widgets'); } // inside div#footer, before div#footer_sidebar
 function sb_after_footer_widgets() { _deprecated_function( __FUNCTION__, '2.6', 'do_action( \'sb_after_footer_widgets\' )' ); do_action('sb_after_footer_widgets'); } // inside div#footer, after div#footer_sidebar
+function sb_between_footer_widgets() { _deprecated_function( __FUNCTION__, '2.6', 'other footer widget hooks' ); }
 
 // Located in footer.php
 function sb_after_container() { _deprecated_function( __FUNCTION__, '2.6', 'do_action( \'sb_after_container\' )' ); do_action('sb_after_container'); } // inside div#container_wrap, after div#container

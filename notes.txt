@@ -14,6 +14,7 @@ Contents
 		- create [sitemap] shortcode
 		- update page-archive and page-sitemap to use sb_sitemap() function
 	update [date] shortcode to use "time since"
+	improve slideshows code
 		
 ////////////////////////////////////////////////////////////////////////////////////
 2. Future Releases

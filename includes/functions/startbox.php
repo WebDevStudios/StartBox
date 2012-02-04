@@ -61,12 +61,12 @@ class StartBox {
 		// Add child theme defaults if child theme is activated for the first time (Credit: Joel Kuczmarski)
 		if ( !get_option('sb_child_install') && SB_PATH != THEME_PATH ) { add_action( 'after_setup_theme', array( 'StartBox', 'child_install' ) ); }
 		
-		// Included hook for other things to do during initialization
-		do_action('sb_init');
-		
 		// Setup the environment
 		add_action( 'after_setup_theme', array('StartBox', 'environment'), 5 );
 		add_action( 'after_setup_theme', array('StartBox', 'sb_includes'), 15 );
+		
+		// Included hook for other things to do during initialization
+		do_action('sb_init');
 		
 		// "God opposes the proud, but gives grace to the humble." - James 4:6b (ESV)
 		
@@ -74,6 +74,7 @@ class StartBox {
 	
 	// Register all of the included scripts and styles
 	public function register_scripts_and_styles() {
+		
 		// Register Default Scripts
 		wp_register_script( 'startbox', SCRIPTS_URL . '/startbox.js', array('jquery', 'colorbox', 'md5', 'smoothScroll') );
 		wp_register_script( 'pushup', SCRIPTS_URL . '/jquery-pushup/jquery.pushup.js', array('jquery'), NULL );
@@ -98,6 +99,7 @@ class StartBox {
 		wp_register_style( 'print', STYLES_URL . '/print.css', null, null, 'print' );
 		wp_register_style( 'nivo_slider', SCRIPTS_URL . '/jquery-nivo/css/nivo-slider.css', null, null, 'screen');
 		wp_register_style( 'nivo_custom', SCRIPTS_URL . '/jquery-nivo/css/custom-nivo-slider.css', array('nivo_slider'), null, 'screen');
+		
 	}
 	
 	// Setup the environment and register support for various WP features.
@@ -115,12 +117,12 @@ class StartBox {
 		) );
 		
 		// Add theme support for StartBox-specific features
-		add_theme_support( 'sb-updates' ); // StartBox Updates Manager
-		add_theme_support( 'sb-options' ); // StartBox Options API
-		add_theme_support( 'sb-slideshows' ); // StartBox Slideshows
-		add_theme_support( 'sb-sidebars' ); // StartBox Easy Sidebars
+		add_theme_support( 'sb-updates' );		// StartBox Updates Manager
+		add_theme_support( 'sb-options' );		// StartBox Options API
+		add_theme_support( 'sb-slideshows' );	// StartBox Slideshows
+		add_theme_support( 'sb-sidebars' );		// StartBox Easy Sidebars
 		
-		// Add theme support for StartBox Layouts, redefine this list using the filter 'sb_layouts_defaults'
+		// Add theme support for StartBox Layouts, redefine this list of available layouts using the filter 'sb_layouts_defaults'
 		$sb_default_layouts = array(
 			'one-col' 			=> array( 'label' => '1 Column (no sidebars)', 			'img' => IMAGES_URL . '/layouts/one-col.png' ),
 			'two-col-left' 		=> array( 'label' => '2 Columns, sidebar on left', 		'img' => IMAGES_URL . '/layouts/two-col-left.png' ),
@@ -146,29 +148,23 @@ class StartBox {
 		elseif ( $layout == 'three-col-left' || $layout == 'three-col-right' || $layout == 'three-col-both' ) { $content_width = 540; }
 		else { $content_width = 640; }
 		
-		// Add filters for the description/meta content in archive.php
-		add_filter( 'archive_meta', 'wptexturize' );
-		add_filter( 'archive_meta', 'convert_smilies' );
-		add_filter( 'archive_meta', 'convert_chars' );
-		add_filter( 'archive_meta', 'wpautop' );
-		
 	}
 	
 	// Include all Widgets, Plugins and Theme Options
 	public function sb_includes() {
 		
-		require_if_theme_supports( 'sb-galleriffic', PLUGINS_PATH .  '/galleriffic.php' );							// Galleriffic Slideshows (not supported yet)
-		require_if_theme_supports( 'sb-slideshows', PLUGINS_PATH .  '/slideshows.php' );  							// Slideshows Post Type
-		require_if_theme_supports( 'sb-sidebars', PLUGINS_PATH .  '/sidebars.php' );	  							// Sidebar manager
-		require_if_theme_supports( 'sb-layouts', FUNCTIONS_PATH .  '/layouts.php' );	  							// Theme Layouts
-		foreach ( glob( WIDGETS_PATH . '/*.php') as $widget ) { require_once( $widget ); }							// Widgets
-		foreach ( glob( ADMIN_PATH . '/*.php') as $admin ) { require_if_theme_supports( 'sb-options', $admin ); }	// Theme Options
-		require_if_theme_supports( 'sb-updates', FUNCTIONS_PATH .  '/upgrade.php' );								// Update Manager
+		require_if_theme_supports( 'sb-galleriffic', PLUGINS_PATH .  '/galleriffic.php' );	// Galleriffic Slideshows (not supported yet)
+		require_if_theme_supports( 'sb-slideshows', PLUGINS_PATH .  '/slideshows.php' );  	// Slideshows Post Type
+		require_if_theme_supports( 'sb-sidebars', PLUGINS_PATH .  '/sidebars.php' );	  	// Sidebar manager
+		require_if_theme_supports( 'sb-layouts', FUNCTIONS_PATH .  '/layouts.php' );	  	// Theme Layouts
+		foreach ( glob( WIDGETS_PATH . '/*.php') as $sb_widget ) { require_once( $sb_widget ); }						// Widgets
+		foreach ( glob( ADMIN_PATH . '/*.php') as $sb_admin ) { require_if_theme_supports( 'sb-options', $sb_admin ); }	// Theme Options
+		require_if_theme_supports( 'sb-updates', FUNCTIONS_PATH .  '/upgrade.php' );									// Update Manager
 				
 		// Check installed version, upgrade if needed (Credit: K2, http://getk2.com)
 		$sb_version = get_option( 'startbox_version' );
 		
-		if ( $sb_version === false )
+		if ( false === $sb_version )
 			StartBox::install(); // no version set, let's install SB for the first time!
 		elseif ( version_compare($sb_version, SB_VERSION, '<') )
 			StartBox::upgrade($sb_version); // version is out-dated, let's upgrade!
@@ -177,9 +173,11 @@ class StartBox {
 	
 	// Setup default scripts and styles
 	public function sb_default_scripts() {
-		if (is_admin()) { return; }
-		if ( is_singular() ) wp_enqueue_style( 'print' );
-		if ( is_singular() ) wp_enqueue_script( 'comment-reply' );
+		if ( is_admin() ) { return; }
+		if ( is_singular() ) {
+			wp_enqueue_style( 'print' );
+			wp_enqueue_script( 'comment-reply' );
+		}
 		wp_enqueue_style( 'shortcodes' );
 		wp_enqueue_style( 'layouts' );
 		wp_enqueue_script( 'hovercards' );

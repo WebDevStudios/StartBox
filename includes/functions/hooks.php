@@ -8,6 +8,92 @@
  * @subpackage Functions
  */
 
+////////////////////////////////////////////////// Body, Post and Comment class filters //////////////////////////////////////////////////
+
+// Filter body_class to include user browser, category, and date classes
+function sb_body_classes($classes) {
+	global $wp_query;
+	
+	// Determine user browser
+	global $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
+	if($is_lynx) $classes[] = 'lynx';
+	elseif($is_gecko) $classes[] = 'gecko';
+	elseif($is_opera) $classes[] = 'opera';
+	elseif($is_NS4) $classes[] = 'ns4';
+	elseif($is_safari) $classes[] = 'safari';
+	elseif($is_chrome) $classes[] = 'chrome';
+	elseif($is_IE) $classes[] = 'ie';
+	elseif($is_iphone) $classes[] = 'iphone';
+	else $classes[] = 'unknown';
+	
+	// Determine IE version, specifically. Credit: http://wordpress.org/extend/plugins/krusty-msie-body-classes/
+	if(preg_match('/MSIE ([0-9]+)([a-zA-Z0-9.]+)/', $_SERVER['HTTP_USER_AGENT'], $browser_version)){
+		// add a class with the major version number
+		$classes[] = 'ie' . $browser_version[1];
+		
+		// add a class with the major and minor version number, if it's MSIE 5.5
+		if('5' == $browser_version[1] && isset($browser_version[2]) && '5' == $browser_version[2])
+			$classes[] = 'ie' . strtolower(str_replace('.', '-', strtolower($browser_version[0])));
+		
+		// add an ie-old and ie-lt7 classes to match MSIE 6 and older
+		if (7 > $browser_version[1])
+			$classes[] = 'ie-old';
+			$classes[] = 'ie-lt7';
+		
+		// add an ie-lt8 class to match MSIE 7 and older
+		if (8 > $browser_version[1])
+			$classes[] = 'ie-lt8';
+		
+		// add an ie-lt9 class to match MSIE 8 and older
+		if (9 > $browser_version[1])
+			$classes[] = 'ie-lt9';
+	}
+	
+	// Adds category classes for each category on single posts
+	if ( $cats = get_the_category() )
+		foreach ( $cats as $cat )
+			$classes[] = 's-category-' . $cat->slug;
+			
+	// Applies the time- and date-based classes
+    sb_date_classes( time(), $classes, $p = null );
+
+	// Adds classes for the month, day, and hour when the post was published
+	if ( is_single() )
+		sb_date_classes( mysql2date( 'U', $wp_query->post->post_date ), $classes, 's-' );
+	
+	// Adds post and page slug class, prefixed by 'post-' or 'page-', respectively
+	if ( is_single() )
+    	$classes[] = 'post-' . $wp_query->post->post_name;
+	elseif( is_page() )
+		$classes[] = 'page-' . $wp_query->post->post_name;
+		
+	// return the $classes array
+	return $classes;
+}
+add_filter('body_class','sb_body_classes');
+
+
+// Filter post_class to include an author class
+function sb_post_classes($classes) {
+	// Author for the post queried
+	$classes[] = 'author-' . sanitize_title_with_dashes( strtolower( get_the_author() ) );
+	
+	// return the $classes array
+	return $classes;
+}
+add_filter('post_class','sb_post_classes');
+
+
+// Generates time- and date-based classes relative to GMT (UTC)
+function sb_date_classes($t, &$classes, $p) {
+	$t = $t + ( get_option('gmt_offset') * 3600 );
+	$classes[] = $p . 'y' . gmdate( 'Y', $t ); // Year
+	$classes[] = $p . 'm' . gmdate( 'm', $t ); // Month
+	$classes[] = $p . 'd' . gmdate( 'd', $t ); // Day
+	$classes[] = $p . 'h' . gmdate( 'H', $t ); // Hour
+}
+
+
 ////////////////////////////////////////////////// Items To Hook into Header //////////////////////////////////////////////////
 
 // Header Wrap
@@ -59,7 +145,6 @@ function sb_default_title( $title, $sep, $seplocation) {
 	return $title;
 }
 add_filter( 'wp_title', 'sb_default_title', 10, 3 );
-add_action( 'sb_title', 'wp_title' );
 
 // Filter the RSS title to return nothing, otherwise RSS shows dupilicate title
 add_filter( 'wp_title_rss', create_function( '$a', 'return "";' ) );
@@ -67,17 +152,17 @@ add_filter( 'wp_title_rss', create_function( '$a', 'return "";' ) );
 // The default stylesheet
 function sb_default_stylesheet() {
 	if (!is_admin())
-	wp_enqueue_style( 'style', get_stylesheet_uri(), null, null, 'screen' );
+		wp_enqueue_style( 'style', get_stylesheet_uri(), null, null, 'screen' );
 }
 add_action( 'wp_enqueue_scripts', 'sb_default_stylesheet', 15 );
 
-// Insert Top anchor
+// Insert #top anchor at beginning of page
 function sb_topofpage() {
 	echo '<a name="top"></a>'."\n";
 }
 add_action('sb_before', 'sb_topofpage', 1);
 
-// Insert skip-to-content link
+// Insert skip-to-content link for screen reader users
 function sb_skip_to_content() {
 	echo '<a href="#content" title="Skip to content" class="skip-to-content">' . __( 'Skip to content', 'startbox' ) . '</a>'."\n";
 }
@@ -92,11 +177,13 @@ add_action( 'sb_before_content', 'sb_breadcrumb_output', 15 );
 
 ////////////////////////////////////////////////// Items To Hook into home page //////////////////////////////////////////////////
 
+// Add a featured widget area to the home page
 function sb_home_featured_sidebar() {
 	sb_do_sidebar( 'featured_aside', 'home_featured', 'featured-aside' );
 }
 add_action('sb_featured','sb_home_featured_sidebar');
 
+// Hook standard content if front-page is a static page, or a standard loop if using blog posts
 function sb_home_content() {
 	while ( have_posts() ) : the_post();
 		if (is_page()) { ?>
@@ -113,7 +200,7 @@ add_action('sb_home','sb_home_content');
 
 ////////////////////////////////////////////////// Items To Hook into content areas //////////////////////////////////////////////////
 
-// Filter the page title (credit: Ian Stewart)
+// Filter the page title based on the template (credit: Ian Stewart)
 function sb_default_page_title() {
 	global $post;
 	$container = apply_filters( 'sb_page_title_container', 'h1' );
@@ -168,21 +255,27 @@ function sb_default_page_title() {
 }
 add_action( 'sb_page_title', 'sb_default_page_title' );
 
+// Hook archive meta after page title for archive pages
 function sb_archive_meta() {
 	global $post;
-	if ( is_category() || is_tag() && !( category_description() == '' || tag_description() == '' ) ) {
+	if ( ( is_category() || is_tag() || is_tax() ) && term_description() != '' ) {
 		$content = '<div class="archive-meta">';
-		if ( !( category_description() == '' ) ) { $content .= apply_filters('sb_archive_meta', category_description()); }
-		elseif ( !( tag_description() == '' ) ) { $content .= apply_filters('sb_archive_meta', tag_description()); }
+		$content .= apply_filters( 'sb_archive_meta', term_description() );
 		$content .= '</div>';
 		echo $content;
 	}
 }
 add_action( 'sb_page_title', 'sb_archive_meta' );
 
+// Add content filters for the description/meta content
+add_filter( 'archive_meta', 'wptexturize' );
+add_filter( 'archive_meta', 'convert_smilies' );
+add_filter( 'archive_meta', 'convert_chars' );
+add_filter( 'archive_meta', 'wpautop' );
+
 // Default 404 Page
 function sb_404_content() { 
-	echo '<p>' . sprintf( __('Sorry, but we were unable to find what you were looking for. Try searching or browsing our content below. If you still can\'t find it, %sContact Us%s and we\'ll try to&nbsp;help!', 'startbox' ), '<a href="' . apply_filters( 'sb_404_contact', home_url() . '/contact/' ) . '">', '</a>' ) . '</p>';
+	echo '<p>' . __('Sorry, but we were unable to find what you were looking for. Try searching or browsing our content below.', 'startbox' ) . '</p>';
 	get_template_part( 'searchform' );
 	echo '<br/>';
 	sb_sitemap();
@@ -195,35 +288,13 @@ function sb_after_first_post() { global $firstpost; if ( !isset( $firstpost ) ) 
 add_action( 'sb_before_post', 'sb_before_first_post' );
 add_action( 'sb_after_post', 'sb_after_first_post' );
 
-////////////////////////////////////////////////// Items To Hook into Sidebars //////////////////////////////////////////////////
-
-// Hook sb_no_widgets to all default widget areas, but only if it's active
-function sb_no_widgets() { do_action( 'sb_no_widgets' ); }
-function sb_no_widgets_active() {
-	if ( has_action( 'sb_no_widgets' ) ) {
-		add_action( 'sb_no_primary_widgets', 'sb_no_widgets' );
-		add_action( 'sb_no_secondary_widgets', 'sb_no_widgets' );
-		add_action( 'sb_no_featured_widgets', 'sb_no_widgets' );
-		add_action( 'sb_no_footer_widget_area_1_widgets', 'sb_no_widgets' );
-		add_action( 'sb_no_footer_widget_area_2_widgets', 'sb_no_widgets' );
-		add_action( 'sb_no_footer_widget_area_3_widgets', 'sb_no_widgets' );
-		add_action( 'sb_no_footer_widget_area_4_widgets', 'sb_no_widgets' );
-	}
-}
-add_action( 'init', 'sb_no_widgets_active' );
-
-function sb_between_footer_widgets() { do_action('sb_between_footer_widgets'); } // inside div#footer_sidebar, between each div.aside
-add_action( 'sb_before_footer_widget_area_2_widgets', 'sb_between_footer_widgets' );
-add_action( 'sb_before_footer_widget_area_3_widgets', 'sb_between_footer_widgets' );
-add_action( 'sb_before_footer_widget_area_4_widgets', 'sb_between_footer_widgets' );
-
 ////////////////////////////////////////////////// Items To Hook into Footer //////////////////////////////////////////////////
 
 // Auto-hide the address bar in mobile Safari (iPhone)
 function sb_iphone() { echo '<script type="text/javascript">window.scrollTo(0, 1);</script>'; }
 add_action('sb_after','sb_iphone');
 
-// Add left/right hooks
+// Add left/right footer hooks
 function sb_footer_left_right() {
 	if ( has_action( 'sb_footer_left' ) ) { echo '<div id="footer_left" class="left">'; do_action( 'sb_footer_left' ); echo '</div><!-- #footer_left -->'; }
 	if ( has_action( 'sb_footer_right' ) ) { echo '<div id="footer_right" class="right">'; do_action( 'sb_footer_right' ); echo '</div><!-- #footer_right -->'; }
