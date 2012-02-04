@@ -617,7 +617,7 @@ function sb_protected( $atts, $content = null) {
 		'class' => ''), $atts)
 	);
 	
-	if (is_user_logged_in()) { return do_shortcode( $content ); }
+	if ( is_user_logged_in() ) { return do_shortcode( $content ); }
 	else {
 		$output = '<div class="protected ' . $class . '">';
 		$output .= apply_filters( 'sb_protected_text', __( 'Sorry, you must be logged in to view this content.', 'startbox' ) );

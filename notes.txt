@@ -4,147 +4,44 @@ Contents
 
 1. TODO
 2. Future Releases
-3. Style Options Notes
-4. New Widgets
 
 ////////////////////////////////////////////////////////////////////////////////////
 1. TODO
 ////////////////////////////////////////////////////////////////////////////////////
-
-	add Style Options page ( require add_theme_support )
-		- helper function to output CSS for font styles
-		- helper function to output CSS for border styles
-	add new layouts
-		- create layouts from separate parts, join via get_template_part()
-		- all templates use stock widget area hooks (featured, primary, secondary, etc)
-		- layout design should be pre-populated, look like demo with no configuration necessary
-	add Feedburner Email widget (per http://wpstartbox.com/support/topic/how-about-a-simple-feedburner-email-widget/)
-	update templates to better use get_template_part() and get_post_format()
-	create table of contents shortcode: auto-pulls h# tags, assigns them ids, uses the heading text for link text
-	
-	Joost SEO Tips:
-	- I'd also say that the headings in the right sidebars should be H4 or below, not H3
-	- change comment area h3 tags are now h4 tags (or not heading tags whatsoever)
+		
+	update templates to make better use of get_template_part() and get_post_format()
 		
 ////////////////////////////////////////////////////////////////////////////////////
 2. Future Releases
 ////////////////////////////////////////////////////////////////////////////////////
 
 ##### 2.7
-	add import/export
+	add import/export for theme settings
 	add additional short codes for:
-		post photos
-		lists - changing bullets: arrow, check marks
-		[expires] - for hiding expired content
-	add new widgets (see below)
+		- featured photo
+		- lists - changing bullets: arrow, check marks
+		- [expires] - for hiding expired content
+		- create table of contents shortcode: auto-pulls h# tags, assigns them ids, uses the heading text for link text
 	update footer copyright info to use filterable shortcodes!
 	include developer/debug tools
-		turn debug mode on
-		beta updates
-		output diff content in header/footer
-		include options (with user caps) for who can see which option panels
-		include options for which theme features to support
-		include option to minify SB JS/CSS (hook default scripts & styles to pre-processor filter)
+		- turn debug mode on
+		- beta updates
+		- output diff content in header/footer
+		- include options (with user caps) for who can see which option panels
+		- include options for which theme features to support
+		- include option to minify SB JS/CSS (hook default scripts & styles to pre-processor filter)
+	add Style Options (requires add_theme_support)
+		- Select from preset styles
+		- Colorpicker for base color
+		- Colorpicker for accent color
+		- Colorpicker for add'l color #1
+		- Colorpicker for add'l color #2
+		- Textarea for inputting custom CSS
 
 ##### Future Release
+	add default styles for gforms (or form elements in general)
+	add controls to Featured Content Widget for content rotation
+	Feedburner Email widget (per http://wpstartbox.com/support/topic/how-about-a-simple-feedburner-email-widget/)
 	? build simple metabox creator for posts & pages based on options api? store options vs custom field
 	? look at integrating HTML5 Boilerplate
 	? add image option for search widget submit button
-	add default styles for gforms (or form elements in general)
-	add controls to Featured Content Widget for content rotation
-	filter admin links
-	
-////////////////////////////////////////////////////////////////////////////////////
-3. Style Options Notes
-////////////////////////////////////////////////////////////////////////////////////
-	
-	Page only appears for vanilla install of startbox, child themes can include via add_theme_support('sb-styleoptions')
-		
-		== Basic Options ==
-		Select from preset styles
-		Textarea for inputting custom CSS
-		Uploader for uploading custom stylesheet
-		Checkbox to show/hide advanced option panels (below)
-				
-		== Page Body ==
-			Background
-			Font
-			
-		== Page Wrap ==
-			Background
-			Borders
-		
-		== Header ==
-			Background
-			Full-/Wrap-width
-		
-		== Top Navigation/Bottom Navigation ==
-			Background
-			Borders
-			States (background + foreground colors)
-				Default
-				Hover
-				Current
-				Subnav Default
-				Subnav Hover
-				Subnav Current
-		
-		== Content ==
-			Background
-			Font
-			Borders
-			Headings (h1-h6)
-				Font
-				Background color
-				Borders
-				Inherit options
-			Links
-				Font
-				Background Color
-				Hover Color
-				Hover Background
-			
-		== Sidebars ==
-			Background
-			Font
-			Borders
-			Links
-				Font
-				Background Color
-				Hover Color
-				Hover Background
-			Headings
-				Font
-				Background color
-				Borders
-				Inherit options
-		
-		== Footer ==
-			Background
-			Font
-			Links
-			Headings
-			Borders
-			Full-/Wrap-width (footer only)
-
-		== Forms ==
-			Labels
-				Font
-			Inputs
-				Borders
-				Background color
-				Font
-				Padding
-			Buttons
-				Border
-				Background
-				Font
-				Padding
-				
-////////////////////////////////////////////////////////////////////////////////////
-4. Widgets
-////////////////////////////////////////////////////////////////////////////////////
-
-	Tabbed Content
-		Is own sidebar so each tab can be a widget? (?)
-		Is also a widget
