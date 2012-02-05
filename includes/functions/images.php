@@ -160,7 +160,11 @@ function sb_post_image( $args = array(), $depricated_height = null, $depricated_
  *
  * @return string URI containing image path and all parameters
  */
-function sb_post_image_url( $args = array() ) { echo sb_get_post_image_url( $args ); }
+function sb_post_image_url( $args = array() ) {
+	if ($args['echo']) echo sb_get_post_image_url( $args );
+	return sb_get_post_image_url( $args );
+}
+
 function sb_get_post_image_url( $args = null ) {
 	
 	$defaults = array(
@@ -172,7 +176,7 @@ function sb_get_post_image_url( $args = null ) {
 		'height'			=> apply_filters( 'sb_post_image_height', 200 ),
 		'align'				=> apply_filters( 'sb_post_image_align', 't' ),
 		'zoom'				=> apply_filters( 'sb_post_image_zoom', 1 ),
-		'quality'			=> apply_filters( 'sb_post_image_quality', 100 )
+		'quality'			=> apply_filters( 'sb_post_image_quality', 100 ),
 	);
 	extract( $args = wp_parse_args($args, apply_filters( 'sb_post_image_settings', $defaults ) ) );
 	

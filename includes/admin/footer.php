@@ -20,7 +20,7 @@
 						'type'		=> 'text',
 						'label'		=> __( 'Web Address to use for Copyright', 'startbox' ),
 						'desc'		=> __( 'Include http://. Leave blank for no link.', 'startbox' ),
-						'default'	=> home_url(),
+						'default'	=> site_url(),
 						'size'		=> 'medium',
 						'align'		=> 'right',
 						'help'		=> __( 'The link URL to use for the copyright owner (leave blank for none).', 'startbox' )

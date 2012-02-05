@@ -13,14 +13,14 @@ function sb_comment_defaults($defaults) {
 	$commenter = wp_get_current_commenter();
 	$req = get_option( 'require_name_email' );
 	$aria_req = ( $req ? " aria-required='true'" : '' );
-	$required_text = sprintf( ' ' . __('Required fields are marked %s'), '<span class="required">*</span>' );
+	$required_text = sprintf( ' ' . __('Required fields are marked %s', 'startbox'), '<span class="required">*</span>' );
 	
 	$fields =  array(
-		'author' => '<p class="comment-form-author">' . '<label for="author">' . __( 'Name' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) .
+		'author' => '<p class="comment-form-author">' . '<label for="author">' . __( 'Name', 'startbox' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) .
 		            '<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" title="Your Name" size="30"' . $aria_req . ' /></p>',
-		'email'  => '<p class="comment-form-email"><label for="email">' . __( 'Email' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) .
+		'email'  => '<p class="comment-form-email"><label for="email">' . __( 'Email', 'startbox' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) .
 		            '<input id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" title="Your E-mail" size="30"' . $aria_req . ' /></p>',
-		'url'    => '<p class="comment-form-url"><label for="url">' . __( 'Website' ) . '</label>' .
+		'url'    => '<p class="comment-form-url"><label for="url">' . __( 'Website', 'startbox' ) . '</label>' .
 		            '<input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" title="Your Website (optional)" size="30"/></p>',
 	);
 	
@@ -28,7 +28,7 @@ function sb_comment_defaults($defaults) {
 	$defaults['fields'] = apply_filters( 'comment_form_default_fields', $fields );
 	$defaults['comment_field'] = '';
 	$defaults['comment_notes_before'] = '';
-	$defaults['comment_notes_after'] = '<p class="comment-notes">' . __( 'Your email address will <strong>not</strong> be published.' ) . ( $req ? $required_text : '' ) . '.</p>';
+	$defaults['comment_notes_after'] = '<p class="comment-notes">' . __( 'Your email address will <strong>not</strong> be published.', 'startbox' ) . ( $req ? $required_text : '' ) . '.</p>';
 	$defaults['label_submit'] = 'Post Your Comment';
 
 	return $defaults;
@@ -46,7 +46,7 @@ function sb_insert_comment_form() { ?>
 			<span class="comment-arrow"></span>
 		</div>
 	<?php
-	echo '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>';
+	echo '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun', 'startbox' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>';
 }
 add_action( 'comment_form_top', 'sb_insert_comment_form' );
 

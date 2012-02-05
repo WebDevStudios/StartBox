@@ -3,6 +3,7 @@
 	* changed: updated all templates to use get_post_format() and get_post_type() in get_template_part() for post loops. 
 	* changed: moved many custom functions out of /includes/functions/custom.php and into task-specific function files.
 	* changed: renamed plugins to extensions
+	* changed: [date] shortcode now accepts "relative=true" parameter to return a relative date (e.g. 5 hours ago)
 	* fixed: minor (but annoying) bug introduced in 2.5.4 that prevented sidebar settings from being stored on first save.
 	* added: /includes/functions/conditionals.php
 	* added: /includes/functions/images.php	

@@ -184,7 +184,7 @@
 				'post_navigation_heading' => array(
 						'type'		=> 'intro',
 						'label'		=> __( 'Post Navigation', 'startbox' ),
-						'desc'		=> __( 'Specify how navigation for prev/next posts should appear.'),
+						'desc'		=> __( 'Specify how navigation for prev/next posts should appear.', 'startbox' ),
 						'help'		=> __( 'Select where post navigation should appear for Blog, Archive and Single Post views', 'startbox' )
 				),
 				'archive_navigation' => array(

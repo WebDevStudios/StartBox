@@ -12,9 +12,7 @@ Contents
 	improve sb_sitemap() function
 		- create [sitemap] shortcode
 		- update 404, page-archive and page-sitemap to use sb_sitemap() shortcode
-	update [date] shortcode to use "time since"
 	review Options API
-	review featuredposts widget (use loop)
 		
 ////////////////////////////////////////////////////////////////////////////////////
 2. Future Releases

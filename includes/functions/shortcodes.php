@@ -133,10 +133,16 @@ function sb_entry_edit() {
  *
  */
 function sb_entry_date( $atts ) {
+	global $post;
 	extract ( shortcode_atts ( array (
-		'format' => get_option('date_format')
+		'format' => get_option('date_format'),
+		'relative' => false
 	), $atts ) );
-	return '<span class="published entry-date">' . get_the_time( $format ) . '</span>';
+	
+	if ( true == $relative )
+		return '<span class="published entry-date">' . sb_time_since( abs( strtotime( $post->post_date_gmt . " GMT" ) ), time() ) . ' ago</span>';
+	else
+		return '<span class="published entry-date">' . get_the_time( $format ) . '</span>';
 }
 
 /**

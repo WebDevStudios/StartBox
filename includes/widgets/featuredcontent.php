@@ -108,11 +108,11 @@ class sb_featured_content_widget extends WP_Widget {
 			<ul>
 			<?php if ( $posts->have_posts() ) : while ( $posts->have_posts() ) : $posts->the_post(); if ( $i <= $count ) { $i++; ?>	
 				<li class="featured-item">
-					<?php if ($showimage && $imagelocation == 'before') { ?><a class="featured-image align<?php echo $imagealignment; ?>" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php sb_post_image($imagewidth,$imageheight); ?></a><?php } ?>
+					<?php if ($showimage && $imagelocation == 'before') { ?><a class="featured-image align<?php echo $imagealignment; ?>" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php sb_post_image( array( 'width' => $imagewidth, 'height' => $imageheight ) ); ?></a><?php } ?>
 					<?php if ($showtitle ) {?><a class="featured-title" href="<?php the_permalink() ?>" title="<?php printf(__('Permalink to %s', 'startbox'), esc_html(get_the_title(), 1)) ?>" rel="bookmark"><?php the_title() ?></a><?php } ?>
 					<?php if ($showmeta) { echo '<div class="featured-meta">' . do_shortcode($meta) . '</div>'; } ?>
 					<?php  
-						if ($showimage && $imagelocation == 'after') { ?><a class="featured-photo align<?php echo $imagealignment; ?>" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php sb_post_image($imagewidth,$imageheight); ?></a><?php }
+						if ($showimage && $imagelocation == 'after') { ?><a class="featured-photo align<?php echo $imagealignment; ?>" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php sb_post_image( array( 'width' => $imagewidth, 'height' => $imageheight ) ); ?></a><?php }
 						if ( $content != "none" ) {
 							echo '<div class="featured-content">';
 							if ( $limit ) { echo substr( get_the_excerpt(), 0, $limit) . '... '; if ( $readmore ) echo '<a href="'. get_permalink() .'" title="' . $readmore . '" rel="bookmark" class="more-link">' . $readmore . '</a>';}
@@ -136,9 +136,9 @@ class sb_featured_content_widget extends WP_Widget {
 			<ul>
 			<?php if ( $page->have_posts() ) : while ( $page->have_posts() ) : $page->the_post(); ?>	
 				<li class="featured-item">
-					<?php if ($showimage && $imagelocation == 'before') { ?><a class="featured-image align<?php echo $imagealignment; ?>" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php sb_post_image($imagewidth,$imageheight); ?></a><?php } ?>
+					<?php if ($showimage && $imagelocation == 'before') { ?><a class="featured-image align<?php echo $imagealignment; ?>" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php sb_post_image( array( 'width' => $imagewidth, 'height' => $imageheight ) ); ?></a><?php } ?>
 					<?php $title = (!$title) ? apply_filters( 'widget_title', get_the_title() ) : $title; echo $before_title . $title . $after_title; ?>
-					<?php if ($showimage && $imagelocation == 'after') { ?><a class="featured-photo align<?php echo $imagealignment; ?>" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php sb_post_image($imagewidth,$imageheight); ?></a><?php } ?>
+					<?php if ($showimage && $imagelocation == 'after') { ?><a class="featured-photo align<?php echo $imagealignment; ?>" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php sb_post_image( array( 'width' => $imagewidth, 'height' => $imageheight ) ); ?></a><?php } ?>
 					<?php
 						if ( $limit ) { echo substr( get_the_content(), 0, $limit) . '... '; if ( $readmore ) echo '<a href="'. get_permalink() .'" title="' . $readmore . '" rel="bookmark" class="more-link">' . $readmore . '</a>'; }
 						else { the_content( apply_filters( 'sb_read_more', $readmore ) ); }

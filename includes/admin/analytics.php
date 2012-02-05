@@ -11,7 +11,7 @@
 			$this->options = array(
 				'analytics' => array(
 						'type'		=> 'textarea',
-						'label'		=> sprintf( __('Enter your %s code below:'), '<a href="http://google.com/analytics" target="_blank">analytics</a>' ),
+						'label'		=> sprintf( __('Enter your %s code below:', 'startbox'), '<a href="http://google.com/analytics" target="_blank">analytics</a>' ),
 						'sanitize'	=> false,
 						'kses'		=> 'unfiltered_html',
 						'help'		=> __( 'Though intended specifically for analytics code, you can actually paste any code here that you would like to add to the &lt;head&gt; section of all your pages.', 'startbox' )

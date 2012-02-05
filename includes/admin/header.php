@@ -39,7 +39,7 @@
 			if ( !sb_get_option( 'logo-disabled') ) {
 				echo '<div id="logo" class="' . esc_attr( sb_get_option( 'logo-align' ) ). '">';
 				if ( sb_get_option( 'logo-text') ) {
-					echo '<' . $logo_container . ' id="site-title"><a href="'.get_option( 'home' ).'" title="Home" >'.esc_html(sb_get_option( 'logo-text' )).'</a></' . $logo_container . '>';
+					echo '<' . $logo_container . ' id="site-title"><a href="'.home_url().'" title="Home" >'.esc_html(sb_get_option( 'logo-text' )).'</a></' . $logo_container . '>';
 				} else {
 					$logo = ( $logo = sb_get_option( 'logo-image' ) ) ? $logo : IMAGES_URL . "/logo.png";
 					echo '<' . $logo_container . ' id="site-title"><a href="'.home_url().'" title="'.esc_attr(get_bloginfo('name')).'"><img src="'.esc_url($logo).'" alt="'.esc_attr(get_bloginfo('name')).'" /><span id="blog-title">'.esc_html(get_bloginfo('name')).'</span></a></' . $logo_container . '>';
