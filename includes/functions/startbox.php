@@ -80,8 +80,6 @@ class StartBox {
 		wp_register_script( 'pushup', SCRIPTS_URL . '/jquery-pushup/jquery.pushup.js', array('jquery'), NULL );
 		wp_register_script( 'colorbox', SCRIPTS_URL . '/jquery.colorbox.min.js', array('jquery'), NULL );
 		wp_register_script( 'md5', SCRIPTS_URL . '/jquery.md5.js', array('jquery') );
-		wp_register_script( 'galleriffic', SCRIPTS_URL . '/jquery.galleriffic.min.js', array('jquery') );
-		wp_register_script( 'galleries', SCRIPTS_URL . '/galleries.js', array('galleriffic') );
 		wp_register_script( 'hovercards', ( is_ssl() ? 'https://secure' : 'http://s' ) . '.gravatar.com/js/gprofiles.js?u', array('jquery') ); // Gravatar Hovercards
 		wp_register_script( 'smoothScroll', SCRIPTS_URL . '/jquery.smooth-scroll.min.js', array('jquery'), '1.4');
 
@@ -148,7 +146,6 @@ class StartBox {
 	// Include all Widgets, Plugins and Theme Options
 	public function sb_includes() {
 		
-		require_if_theme_supports( 'sb-galleriffic', EXTENSIONS_PATH .  '/galleriffic.php' );	// Galleriffic Slideshows (not supported yet)
 		require_if_theme_supports( 'sb-sidebars', EXTENSIONS_PATH .  '/sidebars.php' );	  	// Sidebar manager
 		require_if_theme_supports( 'sb-layouts', FUNCTIONS_PATH .  '/layouts.php' );	  	// Theme Layouts
 		foreach ( glob( WIDGETS_PATH . '/*.php') as $sb_widget ) { require_once( $sb_widget ); }						// Widgets
@@ -333,12 +330,12 @@ class StartBox {
 					array(
 						'name'     				=> 'StartBox Slideshows', // The plugin name
 						'slug'     				=> 'startbox-slideshows', // The plugin slug (typically the folder name)
-						'source'   				=> null,
+						'source'   				=> EXTENSIONS_PATH . '/startbox-slideshows.zip',
 						'required' 				=> false, // If false, the plugin is only 'recommended' instead of required
 						'version' 				=> '1.0', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
 						'force_activation' 		=> true, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
 						'force_deactivation' 	=> false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
-						'external_url' 			=> 'http://wpstartbox.com/updates/startbox-slideshows.zip', // If set, overrides default API URL and points to an external URL
+						'external_url' 			=> '', // If set, overrides default API URL and points to an external URL
 					)
 			
 				);

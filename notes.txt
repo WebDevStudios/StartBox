@@ -11,9 +11,10 @@ Contents
 
 	improve sb_sitemap() function
 		- create [sitemap] shortcode
-		- update page-archive and page-sitemap to use sb_sitemap() function
+		- update 404, page-archive and page-sitemap to use sb_sitemap() shortcode
 	update [date] shortcode to use "time since"
-	improve slideshows code
+	review Options API
+	review featuredposts widget (use loop)
 		
 ////////////////////////////////////////////////////////////////////////////////////
 2. Future Releases
@@ -35,12 +36,12 @@ Contents
 		- include options for which theme features to support
 		- include option to minify SB JS/CSS (hook default scripts & styles to pre-processor filter)
 	add Style Options (requires add_theme_support)
-		- Select from preset styles
-		- Colorpicker for base color
-		- Colorpicker for accent color
-		- Colorpicker for add'l color #1
-		- Colorpicker for add'l color #2
-		- Textarea for inputting custom CSS
+		- Select from preset styles or custom
+			- Colorpicker for base color
+			- Colorpicker for accent color
+			- Colorpicker for add'l color #1
+			- Colorpicker for add'l color #2
+		- Textarea for inputting straight CSS
 
 ##### Future Release
 	add default styles for gforms (or form elements in general)
