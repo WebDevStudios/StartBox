@@ -154,8 +154,8 @@ function sb_sidebars_select_meta_box() {
 	}
 	$output .= '</select>';
 	
-	echo $output;
-	wp_nonce_field( 'sb-sidebar-update_' . $post_id, '_sb_sidebars_nonce', false );
+	echo $output; echo $post_id;
+	wp_nonce_field( 'sb-sidebar-update', '_sb_sidebars_nonce', false );
 }
 
 /**
@@ -340,15 +340,14 @@ class SB_Sidebars_Checklist extends Walker_Nav_Menu  {
  * @since StartBox 2.5
  */
 function sb_sidebars_save( $post_id ) {
-	if ( !isset( $_POST['_sb_sidebars_nonce'] ) || !wp_verify_nonce( $_POST['_sb_sidebars_nonce'], 'sb-sidebar-update_' . $post_id ) )
-		return $post_id;
-
 	// Verify we should actually be saving any data
 	if (
 		!sb_verify_post_type( 'sidebar' ) || 				// If it's not a sidebar post type,
 		defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ||	// or if it's autosaving,
 		!isset($_POST['sidebar_replaced']) ||				// or we don't have some postdata,
-		!current_user_can('edit_theme_options')				// or the current user can't edit themes,
+		!current_user_can('edit_theme_options')	||			// or the current user can't edit themes,
+		!isset( $_POST['_sb_sidebars_nonce'] ) ||			// or the NONCE is not set,
+		!wp_verify_nonce( $_POST['_sb_sidebars_nonce'], 'sb-sidebar-update' ) // or the NONCE is invalid
 	)
 		return $post_id;									// skip the rest...
 	

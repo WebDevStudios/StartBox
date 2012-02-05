@@ -1,8 +1,15 @@
 2012.02.04 - version 2.6
+	* changed: updated all templates to use get_post_format() and get_post_type() in get_template_part() for post loops. 
+	* changed: moved many custom functions out of /includes/functions/custom.php and into task-specific function files.
+	* fixed: minor (but annoying) bug introduced in 2.5.4 that prevented sidebar settings from being stored on first save.
+	* added: /includes/functions/conditionals.php
+	* added: /includes/functions/images.php	
+	* added: /includes/functions/menus.php	
 	* removed: all custom hook functions, replacing them more simply with do_action( 'hook_name' )
 	* removed: page-fullwidth.php (full-width page template) -- use the One Column layout option instead
 	* removed: page-tertiarysidebar.php (tertiary sidebar page template ) -- use sidebar manager instead
 	* removed: sidebar-tertiary.php (tertiary sidebar) -- use sidebar manager instead
+	* removed: built-in Slideshows functionality and dependencies (/includes/scripts/nivo-slider/)
 
 2012.01.31 - version 2.5.6
 	* changed: updated [date] shortcode so that you can pass a custom PHP date format (e.g. [date format="Y"])

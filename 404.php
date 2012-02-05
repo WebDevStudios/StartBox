@@ -1,9 +1,9 @@
-<?php get_header() ?>
+<?php get_header(); ?>
 
 	<div id="container">
 		<div id="content">
 
-		<?php the_post() ?>
+		<?php the_post(); ?>
 		
 		<?php do_action( 'sb_before_content' );?>
 		
@@ -21,5 +21,5 @@
 		</div><!-- #content -->
 	</div><!-- #container -->
 
-<?php get_sidebar() ?>
-<?php get_footer() ?>
+<?php get_sidebar(); ?>
+<?php get_footer(); ?>

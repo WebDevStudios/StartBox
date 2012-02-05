@@ -193,7 +193,12 @@ function sb_home_content() {
 					<?php edit_post_link(__('Edit', 'startbox'),'<span class="edit-link">','</span>') ?>
 				</div><!-- .entry-content -->
 		<?php }
-		else { get_template_part( 'loop', 'home' ); }
+		else {
+			if ( 'post' != get_post_type() )
+				get_template_part( 'loop', get_post_type() );
+			else
+				get_template_part( 'loop', get_post_format() );
+		}
 	endwhile;
 }
 add_action('sb_home','sb_home_content');

@@ -8,8 +8,7 @@ Contents
 ////////////////////////////////////////////////////////////////////////////////////
 1. TODO
 ////////////////////////////////////////////////////////////////////////////////////
-		
-	update templates to make better use of get_template_part() and get_post_format()
+
 	improve sb_sitemap() function
 		- create [sitemap] shortcode
 		- update page-archive and page-sitemap to use sb_sitemap() function

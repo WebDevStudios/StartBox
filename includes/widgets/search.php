@@ -27,7 +27,7 @@ class sb_search_widget extends WP_Widget {
 	function form($instance) {
 		$defaults = array(
 			'title' => 'Search',
-			'search-input' => 'Type your search and press enter.',
+			'search-input' => 'Search',
 			'search-button' => 'Search'
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults );

@@ -245,7 +245,6 @@ function sb_author_bio( $atts, $content = null ) {
 	return $output;
 }
 
-
 /**
  * Shortcode to create a content box
  *

@@ -8,15 +8,15 @@
 	
 	<div id="footer">
 		
-		<?php get_sidebar('footer') ?>
-		
-		<?php do_action( 'sb_footer' ); ?>
-		
-		<?php if ( has_action( 'wp_footer' ) ) { ?>
-			<div id="wp_footer">
-				<?php wp_footer() ?>
-			</div><!-- #wp_footer -->
-		<?php } ?>
+		<?php
+			get_sidebar('footer');
+			do_action( 'sb_footer' );
+			if ( has_action( 'wp_footer' ) ) { 
+				echo '<div id="wp_footer">';
+				wp_footer();
+				echo '</div><!-- #wp_footer -->';
+			}
+		?>
 		
 	</div><!-- #footer -->
 	

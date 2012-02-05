@@ -9,16 +9,16 @@
 	<!-- END wp_head() -->
 </head>
 
-<body <?php body_class() ?>>
+<body <?php body_class(); ?>>
 <?php do_action( 'sb_before' ); ?>
 <div id="wrap" class="hfeed">
 	
 	<?php do_action( 'sb_before_header' ); ?>
 	
 	<?php if ( has_action( 'sb_header' ) ) { ?>
-	<div id="header">
-		<?php do_action( 'sb_header' ); ?>
-	</div><!-- #header -->
+		<div id="header">
+			<?php do_action( 'sb_header' ); ?>
+		</div><!-- #header -->
 	<?php } ?>
 	
 	<?php do_action( 'sb_after_header' ); ?>

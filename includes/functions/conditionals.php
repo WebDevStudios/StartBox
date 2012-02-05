@@ -75,7 +75,7 @@ function sb_is_child_page( $parent_id = null, $page_id = null ) {
 function sb_verify_post_type( $type ) {
 	global $post_type;
 	
-	if ( isset( $_GET['post_type'] ) && $_GET['post_type'] == $type || isset( $post_type ) && $post_type == $type)
+	if ( ( isset( $_GET['post_type'] ) && $_GET['post_type'] == $type ) || ( isset( $post_type ) && $post_type == $type ) )
 		return true;
 	else
 		return false;

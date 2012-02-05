@@ -32,7 +32,7 @@ class StartBox {
 		define( 'INCLUDES_URL', get_template_directory_uri() . '/includes' );
 		define( 'ADMIN_PATH', INCLUDES_PATH . '/admin' );
 		define( 'FUNCTIONS_PATH', INCLUDES_PATH . '/functions' );
-		define( 'PLUGINS_PATH', INCLUDES_PATH . '/plugins' );
+		define( 'EXTENSIONS_PATH', INCLUDES_PATH . '/extensions' );
 		define( 'SCRIPTS_URL', INCLUDES_URL . '/scripts' );
 		define( 'WIDGETS_PATH', INCLUDES_PATH . '/widgets' );
 		define( 'STYLES_URL', INCLUDES_URL . '/styles' );
@@ -83,7 +83,6 @@ class StartBox {
 		wp_register_script( 'galleriffic', SCRIPTS_URL . '/jquery.galleriffic.min.js', array('jquery') );
 		wp_register_script( 'galleries', SCRIPTS_URL . '/galleries.js', array('galleriffic') );
 		wp_register_script( 'hovercards', ( is_ssl() ? 'https://secure' : 'http://s' ) . '.gravatar.com/js/gprofiles.js?u', array('jquery') ); // Gravatar Hovercards
-		wp_register_script( 'nivoslider',  SCRIPTS_URL . '/jquery-nivo/jquery.nivo.slider.js', array('jquery'), '1.0');
 		wp_register_script( 'smoothScroll', SCRIPTS_URL . '/jquery.smooth-scroll.min.js', array('jquery'), '1.4');
 
 		// Register Default Styles
@@ -96,10 +95,7 @@ class StartBox {
 		wp_register_style( 'images', STYLES_URL . '/images.css' );
 		wp_register_style( 'shortcodes', STYLES_URL . '/shortcodes.css' );
 		wp_register_style( 'typography', STYLES_URL . '/typography.css' );
-		wp_register_style( 'print', STYLES_URL . '/print.css', null, null, 'print' );
-		wp_register_style( 'nivo_slider', SCRIPTS_URL . '/jquery-nivo/css/nivo-slider.css', null, null, 'screen');
-		wp_register_style( 'nivo_custom', SCRIPTS_URL . '/jquery-nivo/css/custom-nivo-slider.css', array('nivo_slider'), null, 'screen');
-		
+		wp_register_style( 'print', STYLES_URL . '/print.css', null, null, 'print' );		
 	}
 	
 	// Setup the environment and register support for various WP features.
@@ -119,7 +115,6 @@ class StartBox {
 		// Add theme support for StartBox-specific features
 		add_theme_support( 'sb-updates' );		// StartBox Updates Manager
 		add_theme_support( 'sb-options' );		// StartBox Options API
-		add_theme_support( 'sb-slideshows' );	// StartBox Slideshows
 		add_theme_support( 'sb-sidebars' );		// StartBox Easy Sidebars
 		
 		// Add theme support for StartBox Layouts, redefine this list of available layouts using the filter 'sb_layouts_defaults'
@@ -153,9 +148,8 @@ class StartBox {
 	// Include all Widgets, Plugins and Theme Options
 	public function sb_includes() {
 		
-		require_if_theme_supports( 'sb-galleriffic', PLUGINS_PATH .  '/galleriffic.php' );	// Galleriffic Slideshows (not supported yet)
-		require_if_theme_supports( 'sb-slideshows', PLUGINS_PATH .  '/slideshows.php' );  	// Slideshows Post Type
-		require_if_theme_supports( 'sb-sidebars', PLUGINS_PATH .  '/sidebars.php' );	  	// Sidebar manager
+		require_if_theme_supports( 'sb-galleriffic', EXTENSIONS_PATH .  '/galleriffic.php' );	// Galleriffic Slideshows (not supported yet)
+		require_if_theme_supports( 'sb-sidebars', EXTENSIONS_PATH .  '/sidebars.php' );	  	// Sidebar manager
 		require_if_theme_supports( 'sb-layouts', FUNCTIONS_PATH .  '/layouts.php' );	  	// Theme Layouts
 		foreach ( glob( WIDGETS_PATH . '/*.php') as $sb_widget ) { require_once( $sb_widget ); }						// Widgets
 		foreach ( glob( ADMIN_PATH . '/*.php') as $sb_admin ) { require_if_theme_supports( 'sb-options', $sb_admin ); }	// Theme Options
@@ -329,6 +323,30 @@ class StartBox {
 			// $new_settings = wp_parse_args($new_settings, $theme_settings);
 			// update_option( THEME_OPTIONS, $new_settings);
 			// update_option( 'startbox_version', '2.6' );
+			
+			// Suggest to the user that they download the StartBox Slideshows plugin
+			require_once EXTENSIONS_PATH . '/class-tgm-plugin-activation.php';
+			add_action( 'tgmpa_register', function() {
+				$plugins = array(
+			
+					// This is an example of how to include a plugin pre-packaged with a theme
+					array(
+						'name'     				=> 'StartBox Slideshows', // The plugin name
+						'slug'     				=> 'startbox-slideshows', // The plugin slug (typically the folder name)
+						'source'   				=> null,
+						'required' 				=> false, // If false, the plugin is only 'recommended' instead of required
+						'version' 				=> '1.0', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
+						'force_activation' 		=> true, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
+						'force_deactivation' 	=> false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
+						'external_url' 			=> 'http://wpstartbox.com/updates/startbox-slideshows.zip', // If set, overrides default API URL and points to an external URL
+					)
+			
+				);
+			
+				tgmpa( $plugins );
+			});
+			
+			
 		}
 		
 		// Upgrade to 2.6.1
