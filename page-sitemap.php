@@ -20,7 +20,7 @@ Template Name: Sitemap
 
 					<?php edit_post_link( __( 'Edit', 'startbox' ), '<span class="edit-link">', '</span>' ); ?>
 					
-					<?php sb_sitemap(); ?>
+					<?php sb_sitemap( get_post_meta( $post->ID, 'sitemap_settings' false ) ); ?>
 					
 				</div><!-- .entry-content -->
 			</div><!-- .post -->

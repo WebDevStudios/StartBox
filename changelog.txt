@@ -1,4 +1,6 @@
 2012.02.04 - version 2.6
+	* added: shortcode [sitemap] to leverage the sitemap/archive functionality anywhere
+	* changed: the Sitemap Page Template now accepts parameters passed through the Custom Field "sitemap_settings"
 	* changed: updated all post image functions to run off a single array or argument string, instead of multiple arguments
 	* changed: updated all templates to use get_post_format() and get_post_type() in get_template_part() for post loops. 
 	* changed: moved many custom functions out of /includes/functions/custom.php and into task-specific function files.
