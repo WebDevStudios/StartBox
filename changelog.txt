@@ -1,4 +1,4 @@
-2012.02.04 - version 2.6
+2012.02.05 - version 2.6
 	* added: shortcode [sitemap] to leverage the sitemap/archive functionality anywhere
 	* changed: the Sitemap Page Template now accepts parameters passed through the Custom Field "sitemap_settings"
 	* changed: updated all post image functions to run off a single array or argument string, instead of multiple arguments
@@ -6,6 +6,7 @@
 	* changed: moved many custom functions out of /includes/functions/custom.php and into task-specific function files.
 	* changed: renamed plugins to extensions
 	* changed: [date] shortcode now accepts "relative=true" parameter to return a relative date (e.g. 5 hours ago)
+	* changed: updated SB Social widget to include Google+ and more gracefully handle output of each network's name
 	* fixed: minor (but annoying) bug introduced in 2.5.4 that prevented sidebar settings from being stored on first save.
 	* added: /includes/functions/conditionals.php
 	* added: /includes/functions/images.php	

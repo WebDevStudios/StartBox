@@ -41,33 +41,32 @@ class sb_widget_social extends WP_Widget {
 			$comment_rss = (isset($instance['comment_rss'])) ? get_bloginfo('comment_rss2_url') : '';
 			$twitter = (isset($instance['twitter']) && $instance['twitter'] != '') ? 'http://twitter.com/' . $instance['twitter'] : '';
 			$services = array(
-				'rss'			=> $rss,
-				'comment_rss'	=> $comment_rss,
-				'twitter'		=> $twitter,
-				'facebook'		=> $instance['facebook'],
-				'gplus'			=> $instance['gplus'],
-				'youtube'		=> $instance['youtube'],
-				'vimeo'			=> $instance['vimeo'],
-				'flickr'		=> $instance['flickr'],
-				'delicious'		=> $instance['delicious'],
-				'linkedin'		=> $instance['linkedin'],
-				'digg'			=> $instance['digg']
+				'rss'			=> array( 'name' => 'RSS', 'url' => $rss ),
+				'comment_rss'	=> array( 'name' => 'Comments RSS', 'url' => $comment_rss ),
+				'twitter'		=> array( 'name' => 'Twitter', 'url' => $twitter ),
+				'facebook'		=> array( 'name' => 'Facebook', 'url' => $instance['facebook'] ),
+				'gplus'			=> array( 'name' => 'Google+', 'url' => $instance['gplus'] ),
+				'youtube'		=> array( 'name' => 'YouTube', 'url' => $instance['youtube'] ),
+				'vimeo'			=> array( 'name' => 'Vimeo', 'url' => $instance['vimeo'] ),
+				'flickr'		=> array( 'name' => 'Flickr', 'url' => $instance['flickr'] ),
+				'delicious'		=> array( 'name' => 'Del.icio.us', 'url' => $instance['delicious'] ),
+				'linkedin'		=> array( 'name' => 'LinkedIn', 'url' => $instance['linkedin'] ),
+				'digg'			=> array( 'name' => 'Digg', 'url' => $instance['digg'] )
 			);
 			
 			echo $before_widget;
 			if ($title) { echo $before_title . $title . $after_title; }
 			if ($intro) { echo '<p>'.$intro.'</p>'; }
 			echo '<ul>';
-			foreach ($services as $service => $url) {
-				if ( isset($url) && $url != '' ) {
-					if ( $service == 'rss' ) $text = apply_filters( 'sb_social_rss', __( 'Subscribe via RSS', 'startbox') );
-					elseif ( $service == 'comment_rss' ) $text = apply_filters( 'sb_social_comment_rss', __( 'Subscribe to Comments RSS', 'startbox') );
-					elseif ( $service == 'gplus' ) $text = apply_filters( 'sb_social_gplus', __( 'Connect on Google+', 'startbox' ) );
-					else $text = apply_filters( "sb_social_{$service}", sprintf( __( 'Connect on %s', 'startbox'), $service ), $instance );
+			foreach ( $services as $service_id => $service ) {
+				if ( isset($service['url']) && $service['url'] != '' ) {
+					if ( $service_id == 'rss' ) $text = apply_filters( 'sb_social_rss', __( 'Subscribe via RSS', 'startbox') );
+					elseif ( $service_id == 'comment_rss' ) $text = apply_filters( 'sb_social_comment_rss', __( 'Subscribe to Comments RSS', 'startbox') );
+					else $text = apply_filters( "sb_social_{$service_id}", sprintf( __( 'Connect on %s', 'startbox'), $service['name'] ), $instance );
 
-					echo '<li class="listing listing-' . $service . '">';
-					echo '<a href="' . $url . '" target="_blank" title="' . $text . '"'. $linksopen .'>';
-					if (!$hideicon) echo '<img src="' . $icon_url . $service . '.png" width="' . $icon_size . 'px" height="' . $icon_size . 'px" alt="' . $text . '" />';
+					echo '<li class="listing listing-' . $service_id . '">';
+					echo '<a href="' . $service['url'] . '" target="_blank" title="' . $text . '"'. $linksopen .'>';
+					if (!$hideicon) echo '<img src="' . $icon_url . $service_id . '.png" width="' . $icon_size . 'px" height="' . $icon_size . 'px" alt="' . $text . '" />';
 					if (!$hidetext) echo '<span>' . $text . '</span>';
 					echo '</a></li>';
 				}
