@@ -7,6 +7,7 @@
 	* changed: renamed plugins to extensions
 	* changed: [date] shortcode now accepts "relative=true" parameter to return a relative date (e.g. 5 hours ago)
 	* changed: updated SB Social widget to include Google+ and more gracefully handle output of each network's name
+	* changed: passed SB and Theme versions through wp_enqueue_style calls
 	* fixed: minor (but annoying) bug introduced in 2.5.4 that prevented sidebar settings from being stored on first save.
 	* added: /includes/functions/conditionals.php
 	* added: /includes/functions/images.php	

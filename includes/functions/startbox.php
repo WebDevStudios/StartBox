@@ -86,14 +86,14 @@ class StartBox {
 		// Register Default Styles
 		wp_register_style( 'startbox', STYLES_URL . '/startbox.css' );
 		wp_register_style( 'layouts', STYLES_URL . '/layouts.css' );
-		wp_register_style( 'pushup', SCRIPTS_URL . '/jquery-pushup/pushup.css', null, null, 'screen' );
-		wp_register_style( 'colorbox', STYLES_URL . '/colorbox.css', null, null, 'screen' );
+		wp_register_style( 'pushup', SCRIPTS_URL . '/jquery-pushup/pushup.css', null, SB_VERSION, 'screen' );
+		wp_register_style( 'colorbox', STYLES_URL . '/colorbox.css', null, SB_VERSION, 'screen' );
 		wp_register_style( 'comments', STYLES_URL . '/comments.css' );
 		wp_register_style( 'reset', STYLES_URL . '/reset.css' );
 		wp_register_style( 'images', STYLES_URL . '/images.css' );
 		wp_register_style( 'shortcodes', STYLES_URL . '/shortcodes.css' );
 		wp_register_style( 'typography', STYLES_URL . '/typography.css' );
-		wp_register_style( 'print', STYLES_URL . '/print.css', null, null, 'print' );		
+		wp_register_style( 'print', STYLES_URL . '/print.css', null, SB_VERSION, 'print' );		
 	}
 	
 	// Setup the environment and register support for various WP features.

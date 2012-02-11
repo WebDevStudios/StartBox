@@ -154,7 +154,7 @@ function sb_sidebars_select_meta_box() {
 	}
 	$output .= '</select>';
 	
-	echo $output; echo $post_id;
+	echo $output;
 	wp_nonce_field( 'sb-sidebar-update', '_sb_sidebars_nonce', false );
 }
 
