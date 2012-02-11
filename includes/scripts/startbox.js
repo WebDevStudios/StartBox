@@ -44,8 +44,8 @@ $(document).ready(function(){
 	autoFill($("#email"), "Your E-mail"); // Comment Author E-mail
 	autoFill($("#url"), "Your Website (Optional)"); // Comment Author Website
 	
-	// Smooth Scrolling
-	$('a[href*=#]').not('.noscroll').smoothScroll();
+	// Add Smooth Scrolling to all links, except those with a class of "noscroll"
+	$('a').smoothScroll({exclude: ['.noscroll']});
 	
 	// Dynamically replace default "Your Name" with user's name (textchange function courtesy of ZURB: http://www.zurb.com/playground/jquery-text-change-custom-event)
 	(function(a){a.event.special.textchange={setup:function(){a(this).bind("keyup.textchange",a.event.special.textchange.handler);a(this).bind("cut.textchange paste.textchange input.textchange",a.event.special.textchange.delayedHandler)},teardown:function(){a(this).unbind(".textchange")},handler:function(){a.event.special.textchange.triggerIfChanged(a(this))},delayedHandler:function(){var b=a(this);setTimeout(function(){a.event.special.textchange.triggerIfChanged(b)},25)},triggerIfChanged:function(b){var c=
