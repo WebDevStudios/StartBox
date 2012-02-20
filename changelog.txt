@@ -9,6 +9,7 @@
 	* changed: updated SB Social widget to include Google+ and more gracefully handle output of each network's name
 	* changed: passed SB and Theme versions through wp_enqueue_style calls
 	* fixed: minor (but annoying) bug introduced in 2.5.4 that prevented sidebar settings from being stored on first save.
+	* fixed: bug that would cause the RSS nav menu extra link to use href="true" instead of href="/your/feed/url/"
 	* added: /includes/functions/conditionals.php
 	* added: /includes/functions/images.php	
 	* added: /includes/functions/menus.php	
