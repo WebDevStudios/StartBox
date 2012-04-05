@@ -96,7 +96,7 @@
 			$sb_copyright = ($site_url) ? '<a href="' . esc_url( $site_url ) . '">' . esc_html( $site_name ) . '</a>' : esc_html( $site_name );
 			$design_credit = THEME_NAME . ' for <a href="http://wpstartbox.com/" title="StartBox Theme Framework for WordPress" target="_blank" class="link-designer">StartBox</a>.';
 			$copyright = sb_get_option( 'enable_copyright' );
-			$copyright_year = ( sb_get_option( 'copyright_year' ) ) ? sb_get_option( 'copyright_year' ) : date(Y);
+			$copyright_year = ( sb_get_option( 'copyright_year' ) ) ? sb_get_option( 'copyright_year' ) : date('Y');
 			$current_year = date('Y');
 			$designer = sb_get_option( 'enable_designer_credit' );
 			$wordpress = sb_get_option( 'enable_wp_credit' );
