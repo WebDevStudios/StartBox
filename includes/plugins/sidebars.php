@@ -23,9 +23,9 @@ function sb_sidebars_init() {
 	// Add custom post type
 	register_post_type( 'sidebar', array(
 		'labels' 				=> array(
-			'name' 				=> _x('Sidebars', 'post type general name'),
-			'singular_name' 	=> _x('Sidebar', 'post type singular name'),
-			'add_new' 			=> _x('Add New', 'startbox' ),
+			'name' 				=> _x( 'Sidebars', 'post type general name', 'startbox' ),
+			'singular_name' 	=> _x( 'Sidebar', 'post type singular name', 'startbox' ),
+			'add_new' 			=> _x( 'Add New', 'post type add link', 'startbox' ),
 			'add_new_item' 		=> __( 'Add New Sidebar', 'startbox' ),
 			'edit_item' 		=> __( 'Edit Sidebar', 'startbox' ),
 			'new_item' 			=> __( 'New Sidebar', 'startbox' ),
@@ -155,7 +155,7 @@ function sb_sidebars_select_meta_box() {
 	$output .= '</select>';
 	
 	echo $output;
-	wp_nonce_field( 'sb-sidebar-update_' . $post_id, '_sb_sidebars_nonce', false );
+	wp_nonce_field( 'sb-sidebar-update', '_sb_sidebars_nonce', false );
 }
 
 /**
@@ -218,7 +218,7 @@ function sb_sidebars_post_type_meta_box( $post, $post_type ) {
 	$selected = (array) maybe_unserialize(get_post_meta($post->ID, '_post', true));
 	
 	?>
-	<p><?php printf( __('Select which %s should use this sidebar:'), $post_type['args']->labels->name ); ?></p>
+	<p><?php printf( __('Select which %s should use this sidebar:', 'startbox'), $post_type['args']->labels->name ); ?></p>
 	<div id="posttype-<?php echo $post_type_name; ?>" class="posttypediv">
 		<div id="<?php echo esc_attr( $post_type_name ); ?>-all" class="tabs-panel tabs-panel-view-all tabs-panel-active">
 			<ul id="<?php echo esc_attr( $post_type_name ); ?>checklist" class="list:<?php echo $post_type_name?> categorychecklist form-no-clear">
@@ -276,7 +276,7 @@ function sb_sidebars_taxonomy_meta_box( $post, $taxonomy ) {
 	$selected = (array) maybe_unserialize( get_post_meta( $post->ID, '_tax', true ) );
 
 	if ( ! $terms || is_wp_error($terms) ) {
-		echo '<p>' . __( 'No items.' ) . '</p>';
+		echo '<p>' . __( 'No items.', 'startbox' ) . '</p>';
 		return;
 	}
 
@@ -284,7 +284,7 @@ function sb_sidebars_taxonomy_meta_box( $post, $taxonomy ) {
 	$walker = new SB_Sidebars_Checklist;
 
 	?>
-	<p><?php printf( __('Select which %s should use this sidebar:'), $taxonomy['args']->label ); ?></p>
+	<p><?php printf( __('Select which %s should use this sidebar:', 'startbox'), $taxonomy['args']->label ); ?></p>
 	<div id="taxonomy-<?php echo esc_attr( $taxonomy_name ); ?>" class="taxonomydiv">
 		<div id="tabs-panel-<?php echo esc_attr( $taxonomy_name ); ?>-all" class="tabs-panel tabs-panel-view-all tabs-panel-active">
 			<ul id="<?php echo esc_attr( $taxonomy_name ); ?>checklist" class="list:<?php echo esc_attr( $taxonomy_name ) ?> categorychecklist form-no-clear">
@@ -340,15 +340,14 @@ class SB_Sidebars_Checklist extends Walker_Nav_Menu  {
  * @since StartBox 2.5
  */
 function sb_sidebars_save( $post_id ) {
-	if ( !isset( $_POST['_sb_sidebars_nonce'] ) || !wp_verify_nonce( $_POST['_sb_sidebars_nonce'], 'sb-sidebar-update_' . $post_id ) )
-		return $post_id;
-
 	// Verify we should actually be saving any data
 	if (
 		!sb_verify_post_type( 'sidebar' ) || 				// If it's not a sidebar post type,
 		defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ||	// or if it's autosaving,
 		!isset($_POST['sidebar_replaced']) ||				// or we don't have some postdata,
-		!current_user_can('edit_theme_options')				// or the current user can't edit themes,
+		!current_user_can('edit_theme_options')	||			// or the current user can't edit themes,
+		!isset( $_POST['_sb_sidebars_nonce'] ) ||			// or the NONCE is not set,
+		!wp_verify_nonce( $_POST['_sb_sidebars_nonce'], 'sb-sidebar-update' ) // or the NONCE is invalid
 	)
 		return $post_id;									// skip the rest...
 	
@@ -435,8 +434,8 @@ add_action( 'trash_post', 'sb_sidebars_delete' );
  * @since StartBox 2.5
  */
 function sb_sidebars_update_messages( $messages ) {
-	$messages['sidebar']['1'] = sprintf( __('Sidebar saved. <a href="%s">Give it some widgets</a>'), esc_url( admin_url( 'widgets.php' ) ) );
-	$messages['sidebar']['6'] = sprintf( __('Sidebar saved. <a href="%s">Give it some widgets</a>'), esc_url( admin_url( 'widgets.php' ) ) );
+	$messages['sidebar']['1'] = sprintf( __('Sidebar saved. <a href="%s">Give it some widgets</a>', 'startbox'), esc_url( admin_url( 'widgets.php' ) ) );
+	$messages['sidebar']['6'] = sprintf( __('Sidebar saved. <a href="%s">Give it some widgets</a>', 'startbox'), esc_url( admin_url( 'widgets.php' ) ) );
 	return $messages;
 }
 add_filter( 'post_updated_messages', 'sb_sidebars_update_messages' );

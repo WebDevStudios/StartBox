@@ -684,13 +684,15 @@ function sb_nav_menu_items($items, $args ) {
 		foreach ($services as $service => $url) {
 			$text = apply_filters( "sb_social_{$service}", sprintf( __( 'Connect on %s', 'startbox'), $service ) );
 			
-			if ( $service == 'rss' && isset($url) && $url === true ) {
-				$rss_text = apply_filters( 'sb_social_rss', __( 'Subscribe via RSS', 'startbox') );
-				$items .= '<li class="menu-item menu-item-type-social menu-item-' . $service . '">';
-				$items .= '<a href="' . get_bloginfo('rss2_url') . '" target="_blank" title="' . $rss_text . '">';
-				$items .= '<img src="' . $icon_url . $service . '.png" width="' . $icon_size . 'px" height="' . $icon_size . 'px" alt="' . $rss_text . '" />';
-				$items .= '<span>RSS Feed</span>';
-				$items .= '</a></li>';
+			if ( $service == 'rss' ) {
+				if ( isset($url) && true == $url ) {
+					$rss_text = apply_filters( 'sb_social_rss', __( 'Subscribe via RSS', 'startbox') );
+					$items .= '<li class="menu-item menu-item-type-social menu-item-' . $service . '">';
+					$items .= '<a href="' . get_bloginfo('rss2_url') . '" target="_blank" title="' . $rss_text . '">';
+					$items .= '<img src="' . $icon_url . $service . '.png" width="' . $icon_size . 'px" height="' . $icon_size . 'px" alt="' . $rss_text . '" />';
+					$items .= '<span>RSS Feed</span>';
+					$items .= '</a></li>';
+				}
 			} elseif (isset($url) && $url != '') {
 				$items .= '<li class="menu-item menu-item-type-social menu-item-' . $service . '">';
 				$items .= '<a href="' . $url . '" target="_blank" title="' . $text . '">';
