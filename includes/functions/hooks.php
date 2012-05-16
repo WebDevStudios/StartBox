@@ -144,7 +144,7 @@ function sb_default_title( $title, $sep, $seplocation) {
 
 	return $title;
 }
-add_filter( 'wp_title', 'sb_default_title', 10, 3 );
+add_filter( 'wp_title', 'sb_default_title', 9, 3 );
 
 // Filter the RSS title to return nothing, otherwise RSS shows dupilicate title
 add_filter( 'wp_title_rss', create_function( '$a', 'return "";' ) );
