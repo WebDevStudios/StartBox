@@ -164,17 +164,17 @@
 					),
 				'post_thumbnail_align'	=> array(
 						'type'		=> 'select',
-						'label'		=> 'Image Crop Alignment',
+						'label'		=> __('Image Crop Alignment','startbox'),
 						'options'	=> array(
-							'tl'	=> 'Top Left',
-							'tc'	=> 'Top Center',
-							'tr'	=> 'Top Right',
-							'l'		=> 'Middle Left',
-							'c'		=> 'Center',
-							'r'		=> 'Middle Right',
-							'bl'	=> 'Bottom Left',
-							'bc'	=> 'Bottom Center',
-							'br'	=> 'Bottom Right'
+							'tl'	=> __('Top Left','startbox'),
+							'tc'	=> __('Top Center','startbox'),
+							'tr'	=> __('Top Right','startbox'),
+							'l'		=> __('Middle Left','startbox'),
+							'c'		=> __('Center','startbox'),
+							'r'		=> __('Middle Right','startbox'),
+							'bl'	=> __('Bottom Left','startbox'),
+							'bc'	=> __('Bottom Center','startbox'),
+							'br'	=> __('Bottom Right','startbox')
 						),
 						'default'	=> 'tc',
 						'align'		=> 'right',
