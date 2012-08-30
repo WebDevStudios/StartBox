@@ -17,8 +17,8 @@ class StartBox {
 		
 		// Grab and define our variables and constants
 		global $blog_id;
-		$sb_data = get_theme_data( get_template_directory() . '/style.css' );
-		$theme_data = get_theme_data( get_stylesheet_directory() . '/style.css' );
+		$sb_data = wp_get_theme( get_template_directory() . '/style.css' );
+		$theme_data = wp_get_theme( get_stylesheet_directory() . '/style.css' );
 		define( 'THEME_NAME', $theme_data['Name'] );
 		define( 'THEME_VERSION', $theme_data['Version'] );
 		define( 'THEME_OPTIONS', 'startbox' );
