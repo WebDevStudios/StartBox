@@ -9,7 +9,7 @@
  * @subpackage Shortcodes
  */
 
-add_shortcode ( 'sidebar', 'sb_sidebar_shortcode' );
+add_shortcode( 'sidebar', 'sb_sidebar_shortcode' );
 add_shortcode( 'sitemap', 'sb_get_sitemap' );
 
 add_shortcode( 'button', 'sb_button' );
@@ -32,10 +32,11 @@ add_shortcode( 'more', 'sb_readmore' );
 
 add_shortcode( 'twitter', 'sb_twitter' );
 add_shortcode( 'facebook', 'sb_facebook' );
-add_shortcode( 'digg', 'sb_digg' );
 add_shortcode( 'stumble', 'sb_stumble' );
 
 add_shortcode( 'protected', 'sb_protected' );
+add_shortcode( 'expires', 'sb_expires' );
+add_shortcode( 'show_after', 'sb_show_after' );
 
 add_shortcode( 'one_half', 'sb_one_half');
 add_shortcode( 'one_third', 'sb_one_third');
@@ -73,21 +74,21 @@ add_shortcode( 'five_sixths_last', 'sb_five_sixths_last');
 /**
  * Enable Shortcodes in widget areas
  *
- * @since StartBox 2.4.8
+ * @since 2.4.8
  */
 add_filter('widget_text', 'do_shortcode');
 
 /**
  * Increase backtrack limit (see http://core.trac.wordpress.org/ticket/8553)
  *
- * @since StartBox 2.4.8
+ * @since 2.4.8
  */
 @ini_set('pcre.backtrack_limit', 500000);
 
 /**
  * Shortcode to display Return To Top link
  *
- * @since StartBox 2.4.3
+ * @since 2.4.3
  */
 function sb_rtt() {
 	$link = '<a href="#top" class="rtt cb" title="Return to top of page">' . apply_filters( 'sb_rtt_text', __( 'Return to Top', 'startbox' ) ) . '</a>';
@@ -97,7 +98,7 @@ function sb_rtt() {
 /**
  * Shortcode to display a sidebar virtually anywhere.
  *
- * @since StartBox 2.5
+ * @since 2.5
  */
 function sb_sidebar_shortcode ( $atts ) {
 	extract ( shortcode_atts ( array (
@@ -117,7 +118,7 @@ function sb_sidebar_shortcode ( $atts ) {
 /**
  * Displays an Edit link for admins
  *
- * @since StartBox 2.4.6
+ * @since 2.4.6
  */
 function sb_entry_edit() {
 	if ( current_user_can('edit_posts') )
@@ -128,7 +129,7 @@ function sb_entry_edit() {
  * Displays the current post date, if time since is installed, it will use that instead.
  * Formatted for hAtom microformat.
  *
- * @since StartBox 2.4.6
+ * @since 2.4.6
  *
  * @uses sb_time_since
  *
@@ -149,7 +150,7 @@ function sb_entry_date( $atts ) {
 /**
  * Displays the current post time
  *
- * @since StartBox 2.4.6
+ * @since 2.4.6
  */
 function sb_entry_time() {
 	return '<span class="entry-time">' . get_the_time( get_option('time_format') ) . '</span>';
@@ -158,7 +159,7 @@ function sb_entry_time() {
 /**
  * Displays the current post categories
  *
- * @since StartBox 2.4.6
+ * @since 2.4.6
  *
  * @uses get_the_category_list
  *
@@ -170,7 +171,7 @@ function sb_entry_categories() {
 /**
  * Displays a Read More link
  *
- * @since StartBox 2.4.9
+ * @since 2.4.9
  *
  * @uses get_permalink
  *
@@ -182,7 +183,7 @@ function sb_readmore() {
 /**
  * Displays the current post title.
  *
- * @since StartBox 2.5.4
+ * @since 2.5.4
  *
  */
 function sb_entry_title() {
@@ -193,7 +194,7 @@ function sb_entry_title() {
  * Displays the current post author.
  * Formatted for hAtom microformat.
  *
- * @since StartBox 2.4.6
+ * @since 2.4.6
  *
  */
 function sb_entry_author() {
@@ -211,7 +212,7 @@ function sb_entry_author() {
 /**
  * Displays the current post tags or blank if none.
  *
- * @since StartBox 2.4.6
+ * @since 2.4.6
  *
  */
 function sb_entry_tags() {
@@ -223,7 +224,7 @@ function sb_entry_tags() {
 /**
  * Displays the number of comments in current post as a link to the comments, wrapped in a <span>.
  *
- * @since StartBox 2.4.6
+ * @since 2.4.6
  *
  */
 function sb_entry_comments() {
@@ -235,7 +236,7 @@ function sb_entry_comments() {
 /**
  * Shortcode to create a content box
  *
- * @since StartBox 2.4.8
+ * @since 2.4.8
  */
 function sb_author_bio( $atts, $content = null ) {
 	
@@ -255,7 +256,7 @@ function sb_author_bio( $atts, $content = null ) {
 /**
  * Shortcode to create a content box
  *
- * @since StartBox 2.4.7
+ * @since 2.4.7
  */
 function sb_box( $atts, $content = null ) {
 	extract( shortcode_atts( array( 'type' => 'info', 'style' => false ), $atts ) );
@@ -275,7 +276,7 @@ function sb_box( $atts, $content = null ) {
  * icon: info, alert, check, download, note (coming soon)
  * class: specify custom classes
  *
- * @since StartBox 2.4.8
+ * @since 2.4.8
  *
  */
 
@@ -321,7 +322,7 @@ function sb_button( $atts, $content = null ) {
 /**
  * Shortcodes to create columns
  *
- * @since StartBox 2.4.8
+ * @since 2.4.8
  *
  */
 function sb_one_half( $atts, $content = null ) {
@@ -440,7 +441,7 @@ function sb_five_sixths_last( $atts, $content = null ) {
 /**
  * Shortcodes for styling lists
  *
- * @since StartBox 2.4.8
+ * @since 2.4.8
  *
  */
 function sb_check_list( $atts, $content = null ) {
@@ -454,7 +455,7 @@ function sb_arrow_list( $atts, $content = null ) {
 /**
  * Shortcode for creating a divider
  *
- * @since StartBox 2.4.8
+ * @since 2.4.8
  *
  */
 function sb_divider( $atts, $content = null ) {
@@ -467,7 +468,7 @@ function sb_divider( $atts, $content = null ) {
 /**
  * Shortcode for creating a jQuery toggle link
  *
- * @since StartBox 2.4.8
+ * @since 2.4.8
  *
  */
 function sb_toggle( $atts, $content = null ) {
@@ -493,7 +494,7 @@ function sb_toggle( $atts, $content = null ) {
 /**
  * Twitter button
  *
- * @since StartBox 2.4.8
+ * @since 2.4.8
  * @link http://twitter.com/goodies/tweetbutton
  */
 function sb_twitter( $atts, $content = null ) {
@@ -521,7 +522,7 @@ function sb_twitter( $atts, $content = null ) {
 /**
  * Facebook Like button
  *
- * @since StartBox 2.4.8
+ * @since 2.4.8
  * @link http://developers.facebook.com/docs/reference/plugins/like
  */
 function sb_facebook( $atts, $content = null ) {
@@ -546,52 +547,9 @@ function sb_facebook( $atts, $content = null ) {
 }
 
 /**
- * Digg button
- *
- * @since StartBox 2.4.8
- * @link http://about.digg.com/downloads/button/smart
- */
-function sb_digg( $atts, $content = null ) {
-   	extract( shortcode_atts( array(
-		'link' => '',
-		'title' => '',
-		'style' => 'Medium',
-		'float' => 'left'), $atts)
-	);
-	
-	$output = "		
-	<script type=\"text/javascript\">
-	(function() {
-	var s = document.createElement('SCRIPT'), s1 = document.getElementsByTagName('SCRIPT')[0];
-	s.type = 'text/javascript';
-	s.async = true;
-	s.src = 'http://widgets.digg.com/buttons.js';
-	s1.parentNode.insertBefore(s, s1);
-	})();
-	</script>		
-	";
-	
-	// Add custom URL
-	if ( $link ) {
-		// Add custom title
-		if ( $title ) { $title = '&amp;title='.urlencode( $title ); }
-		$link = ' href="http://digg.com/submit?url='.urlencode( $link ).$title.'"';
-	}
-	
-	if ( $style == "large" ) { $style = "Large"; }
-	elseif ( $style == "compact" ) { $style = "Compact"; }
-	elseif ( $style == "icon" ) { $style = "Icon"; }
-	else { $style = "Medium"; }
-		
-	$output .= '<div class="digg ' . esc_attr( $float ) . '"><a class="DiggThisButton Digg'.esc_attr( $style ).'"'.$link.'></a></div>';
-	return $output;
-
-}
-
-/**
  * Stumble Upon button
  *
- * @since StartBox 2.4.8
+ * @since 2.4.8
  * @link http://www.stumbleupon.com/badges/
  */
 function sb_stumble( $atts, $content = null ) {
@@ -614,13 +572,14 @@ function sb_stumble( $atts, $content = null ) {
 /**
  * Protect member-only content
  *
- * @since StartBox 2.4.8
+ * @since 2.4.8
  *
  */
-function sb_protected( $atts, $content = null) {
+function sb_protected( $atts, $content = null ) {
 	extract( shortcode_atts( array(
 		'show_login' => 'false',
-		'class' => ''), $atts)
+		'class' => ''
+		), $atts )
 	);
 	
 	if ( is_user_logged_in() ) { return do_shortcode( $content ); }
@@ -635,9 +594,51 @@ function sb_protected( $atts, $content = null) {
 }
 
 /**
+ * Hide content after specific expiration date
+ * 
+ * @since 2.6
+ */
+function sb_expires( $atts, $content = null ) {
+	extract( shortcode_atts( array(
+		'date' => '',
+		'expired_message' => '',
+		), $atts )
+	);
+
+	$today = time();
+	$expiration = strtotime($date);
+
+	if ( $today >= $expiration )
+		return do_shortcode( $expired_message );
+	else
+		return do_shortcode( $content );
+}
+
+/**
+ * Show content after specific teaser date
+ *
+ * @since 2.6
+ */
+function sb_show_after( $atts, $content = null ) {
+	extract( shortcode_atts( array(
+		'date' => '',
+		'teaser' => '',
+		), $atts )
+	);
+
+	$today = time();
+	$teaser_date = strtotime($date);
+
+	if ( $today < $teaser_date )
+		return do_shortcode( $teaser );
+	else
+		return do_shortcode( $content );
+}
+
+/**
  * Function for producing a sitemap.
  *
- * @since StartBox 2.4.9
+ * @since 2.4.9
  *
  * @uses apply_filters() to pass new 'sb_sitemap_defaults' 
  * @uses wp_list_pages()
@@ -656,17 +657,17 @@ function sb_get_sitemap( $args = '' ) {
 	$output = '';
 	
 	$defaults = array(
-		'show_pages'		=> true,
-		'show_categories'	=> true,
-		'show_posts'		=> true,
-		'show_cpts'			=> true,
-		'exclude_pages'		=> '',
-		'exclude_categories' => '',
-		'exclude_post_types' => apply_filters( 'sb_sitemap_exclude_post_types', array('attachment', 'revision', 'nav_menu_item', 'slideshow', 'page', 'post') ),
-		'class'				=> 'sitemap',
-		'container_class'	=> 'sitemap-container',
-		'header_container'	=> 'h3',
-		'subheader_container' => 'h4'
+		'show_pages'		=> true,	// Include Pages in output
+		'show_categories'	=> true,	// Include Categories in output
+		'show_posts'		=> true,	// Include Posts (sorted by category) in output
+		'show_cpts'			=> true,	// Include Custom Post Types in output
+		'exclude_pages'		=> '',		// Comma-separated list of pages to exclude
+		'exclude_categories' => '',		// Comma-separated list of categories to exclude
+		'exclude_post_types' => apply_filters( 'sb_sitemap_exclude_post_types', array('attachment', 'revision', 'nav_menu_item', 'slideshow', 'page', 'post') ), // Array of post-types to exclude
+		'class'				=> 'sitemap',// Custom class(es) to use in ul elements
+		'container_class'	=> 'sitemap-container', // Custom class(es) to use in div wrappers
+		'header_container'	=> 'h3',	// Element type to use for wrapping primary headings
+		'subheader_container' => 'h4'	// Element type to use for wrapping secondary headings
 	);
 	$r = wp_parse_args( $args, apply_filters( 'sb_sitemap_defaults', $defaults ) );
 	extract( $r, EXTR_SKIP );

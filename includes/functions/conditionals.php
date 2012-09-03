@@ -69,7 +69,7 @@ function sb_is_child_page( $parent_id = null, $page_id = null ) {
 /**
  * Utility: Verify a given post type
  *
- * @since StartBox 2.5
+ * @since 2.5
  * @param string $type the post type to verify against
  */
 function sb_verify_post_type( $type ) {

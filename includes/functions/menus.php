@@ -10,7 +10,7 @@
 /**
  * Helper function for building a menu based on user selection with the Options API
  *
- * @since StartBox 2.4.8
+ * @since 2.4.8
  *
  * @uses wp_page_menu()
  * @uses wp_nav_menu()
@@ -74,7 +74,7 @@ if ( !function_exists( 'sb_nav_menu' ) ) {
 /**
  * Fallback function for building menus in the event no custom menus exist -- copied mostly from wp_nav_menu()
  *
- * @since StartBox 2.4.9
+ * @since 2.4.9
 */
 if ( !function_exists('sb_nav_menu_fallback') ) {
 	function sb_nav_menu_fallback( $args = array() ) {
@@ -102,7 +102,7 @@ if ( !function_exists('sb_nav_menu_fallback') ) {
 /**
  * Filter for replacing wp_nav_menu_items with either pages or categories
  *
- * @since StartBox 2.4.9
+ * @since 2.4.9
  *
  */
 function sb_nav_menu_items($items, $args ) {

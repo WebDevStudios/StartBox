@@ -53,7 +53,7 @@ add_action( 'comment_form_top', 'sb_insert_comment_form' );
 /**
  * Adds default StartBox gravatar to the list in Settings > Discussion to replace Mystery Man
  *
- * @since StartBox 2.4.8
+ * @since 2.4.8
  */
 function sb_avatar_defaults($avatar_defaults) {
  	unset($avatar_defaults['mystery']);
@@ -72,7 +72,7 @@ add_filter( 'avatar_defaults', 'sb_avatar_defaults' );
  *
  * Used by sb_comments() for displaying comment author information
  *
- * @since StartBox 1.4
+ * @since 1.4
  */
 function sb_commenter_link() {
 	global $avatar_defaults;
@@ -96,7 +96,7 @@ function sb_commenter_link() {
  *
  * Used as a callback by wp_list_comments() for displaying the comments in comments.php.
  *
- * @since StartBox 1.4
+ * @since 1.4
  * @uses sb_commenter_link()
  *
  */
@@ -140,7 +140,7 @@ if ( !function_exists( 'sb_comments' ) ) {
  *
  * Used as a callback by wp_list_comments() for displaying the comments in comments.php.
  *
- * @since StartBox 1.4
+ * @since 1.4
  */
 if ( !function_exists( 'sb_pings' ) ) {
 	function sb_pings($comment, $args, $depth) {

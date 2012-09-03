@@ -19,7 +19,7 @@ class sb_upgrade_settings extends sb_settings {
 			'use_beta' => array(
 					'type'		=> 'checkbox',
 					'label'		=> __('Use Beta Updates', 'startbox'),
-					'desc'		=> __('Note: Do NOT run beta updates in a production environment', 'startbox'),
+					'desc'		=> __('Note: Do not use beta updates in a production environment. They could break your site.', 'startbox'),
 					'default'	=> false
 			)
 		);

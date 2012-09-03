@@ -2,7 +2,9 @@
 	* added: shortcode [sitemap] to leverage the sitemap/archive functionality anywhere
 	* added: hook "sb_author_before_posts" on author.php after the author's meta information, before their posts are inserted
 	* added: theme option to use beta updates when available
-	* changed: the Sitemap Page Template now accepts parameters passed through the Custom Field "sitemap_settings"
+	* added: shortcode for hiding content after specific date ([expires date="Aug 18, 2012" expired_message="You missed out..."]blah[/expires])
+	* added: shortcode for revealing content after specific date ([show_after date="Aug 18, 2012" teaser="Coming soon..."]blah[/show_after])
+	* changed: the Sitemap Page Template now accepts parameters passed as an array through the Custom Field "sitemap_settings"
 	* changed: updated all post image functions to run off a single array or argument string, instead of multiple arguments
 	* changed: updated all templates to use get_post_format() and get_post_type() in get_template_part() for post loops. 
 	* changed: moved many custom functions out of /includes/functions/custom.php and into task-specific function files.
@@ -11,6 +13,7 @@
 	* changed: updated SB Social widget to include Google+ and more gracefully handle output of each network's name
 	* changed: passed SB and Theme versions through wp_enqueue_style calls
 	* changed: footer widgets now hook into sb_footer_widgets via hooks.php (they were previously hard-coded)
+	* changed: Options API wysiwyg option to use wp_editor functionality introduced in WP3.3
 	* fixed: annoying bug introduced in 2.5.4 that prevented sidebar settings from being stored on first save.
 	* fixed: bug that prevented WordPress SEO (by Yoast) from overwriting page titles
 	* fixed: bug that would cause the RSS nav menu extra link to use href="true" instead of href="/your/feed/url/"
@@ -23,6 +26,7 @@
 	* removed: page-tertiarysidebar.php (tertiary sidebar page template ) -- use sidebar manager instead
 	* removed: sidebar-tertiary.php (tertiary sidebar) -- use sidebar manager instead
 	* removed: built-in Slideshows functionality and dependencies (/includes/scripts/nivo-slider/)
+	* removed: Digg shortcode
 
 2012.08.02 - version 2.5.8
 	* changed: updated /includes/functions/startbox.php to use wp_get_theme instead of get_theme_data (when supported)

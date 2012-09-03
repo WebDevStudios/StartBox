@@ -22,7 +22,7 @@ add_action( 'wp_before_admin_bar_render', 'sb_admin_bar_init' );
 /**
  * Adds contextual help for all StartBox Options
  *
- * @since StartBox 2.5.5
+ * @since 2.5.5
  */
 function sb_admin_help() {
     global $sb_admin, $wp_version;

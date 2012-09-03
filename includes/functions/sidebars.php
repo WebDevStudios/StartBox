@@ -55,7 +55,7 @@ class SB_Sidebars {
 	/**
 	 * Registers all default sidebars (don't override this)
 	 *
-	 * @since StartBox 2.5
+	 * @since 2.5
 	 */
 	function default_sidebars() {
 		$this->register_sidebar( array( 'name' => 'Home Featured', 'id' => 'home_featured', 'description' => __('These widgets will appear above the content on the homepage.', 'startbox'), 'editable' => 0 ) );
@@ -70,7 +70,7 @@ class SB_Sidebars {
 	/**
 	 * Registers all custom sidebars (don't override this)
 	 *
-	 * @since StartBox 2.5
+	 * @since 2.5
 	 */
 	function custom_sidebars() {
 
@@ -95,7 +95,7 @@ class SB_Sidebars {
 	/**
 	 * Register a sidebar (don't override this)
 	 *
-	 * @since StartBox 2.5
+	 * @since 2.5
 	 * 
 	 * @param array $args an array of arguments for naming and identifying a sidebar
 	 */
@@ -121,7 +121,7 @@ class SB_Sidebars {
 	/**
 	 * Unregister a sidebar (don't override this)
 	 *
-	 * @since StartBox 2.5
+	 * @since 2.5
 	 * 
 	 * @param string $id the unique ID for the sidebar to unregister
 	 */
@@ -133,7 +133,7 @@ class SB_Sidebars {
 	/**
 	 * Render markup and action hooks for a given sidebar (override this to customize your markup)
 	 *
-	 * @since StartBox 2.5
+	 * @since 2.5
 	 * 
 	 * @param string $location the unique ID to give the container for this sidebar
 	 * @param string $sidebar the ID of the sidebar to attach to this location by default
@@ -168,7 +168,7 @@ class SB_Sidebars {
 	 * Loop through all custom sidebars, store them as a multi-deminsional array
 	 * for each post type and taxonomy. Uses transients to reduce queries. (don't override this)
 	 *
-	 * @since StartBox 2.5
+	 * @since 2.5
 	 * @param string $return the array to return (accepts 'post_type' and 'taxonomy')
 	 */
 	function get_custom_sidebars( $return ) {
@@ -261,7 +261,7 @@ class SB_Sidebars {
 	/**
 	 * Check if a custom sidebar exists to replace the default for a given location. Don't override this.
 	 *
-	 * @since StartBox 2.5
+	 * @since 2.5
 	 * @param string $location the registered location to check
 	 * @param string $sidebar the sidebar to (maybe) replace
 	 */
@@ -304,7 +304,7 @@ $sb_sidebars = new SB_Sidebars;
 /**
  * Wrapper Function for SB_Sidebars::register_sidebar()
  *
- * @since StartBox 2.5.2
+ * @since 2.5.2
  * 
  * @param string $name the display name for this sidebar
  * @param string $id the unique ID for this sidebar
@@ -319,7 +319,7 @@ function sb_register_sidebar( $name = null, $id = null, $description = null, $ed
 /**
  * Wrapper Function for SB_Sidebars::unregister_sidebar()
  *
- * @since StartBox 2.5.2
+ * @since 2.5.2
  * 
  * @param string $id the ID of the sidebar to unregister
  */
@@ -332,7 +332,7 @@ function sb_unregister_sidebar( $id ) {
 /**
  * Wrapper Function for SB_Sidebars::do_sidebar()
  *
- * @since StartBox 2.5
+ * @since 2.5
  * 
  * @param string $location the unique ID to give the container for this sidebar
  * @param string $sidebar the ID of the sidebar to attach to this location by default
@@ -348,7 +348,7 @@ function sb_do_sidebar( $location = null, $sidebar = null, $classes = null ) {
 /**
  * Check for widgets in widget-ready areas to confirm if sidebar is active.
  *
- * @since StartBox 2.3.6
+ * @since 2.3.6
  */
 if ( !function_exists('is_sidebar_active') ) {
 	function is_sidebar_active( $index ) {

@@ -8,7 +8,7 @@
  *
  * @package StartBox
  * @subpackage Add-ons
- * @since StartBox 2.5
+ * @since 2.5
  */
 
 // Check to see if current theme supports sidebars, skip the rest if not
@@ -17,7 +17,7 @@ if (!current_theme_supports( 'sb-sidebars' )) return;
 /**
  * Creates Sidebar post type
  *
- * @since StartBox 2.5
+ * @since 2.5
  */
 function sb_sidebars_init() {	
 	// Add custom post type
@@ -55,7 +55,7 @@ add_action( 'init', 'sb_sidebars_init' );
 /**
  * Include scripts to make post editor run smoothly
  *
- * @since StartBox 2.5
+ * @since 2.5
  */
 function sb_sidebars_includes() {
 	wp_enqueue_script( 'common' );
@@ -68,7 +68,7 @@ add_action( 'load-post-new.php', 'sb_sidebars_includes' );
 /**
  * Adds Sidebar link to Appearance menu in admin nav bar
  *
- * @since StartBox 2.5
+ * @since 2.5
  */
 function sb_sidebars_bar_init() {
 	global $wp_admin_bar;
@@ -80,7 +80,7 @@ add_action( 'wp_before_admin_bar_render', 'sb_sidebars_bar_init' );
 /**
  * Add a link on the Widgets page to the Sidebars page
  *
- * @since StartBox 2.5
+ * @since 2.5
  */
 function sb_sidebars_widget_page() {
 	// Only display this link if the user can edit theme options
@@ -93,7 +93,7 @@ add_action( 'widgets_admin_page', 'sb_sidebars_widget_page');
 /**
  * Register all metaboxes on sidebar post editor
  *
- * @since StartBox 2.5
+ * @since 2.5
  **/
 function sb_sidebars_setup() {
 	
@@ -132,7 +132,7 @@ function sb_sidebars_setup() {
 /**
  * Creates metabox for selecting a sidebar
  *
- * @since StartBox 2.5
+ * @since 2.5
  */
 function sb_sidebars_select_meta_box() {
 	global $post_id, $sb_sidebars;
@@ -161,7 +161,7 @@ function sb_sidebars_select_meta_box() {
 /**
  * Creates metabox for describing a sidebar
  *
- * @since StartBox 2.5
+ * @since 2.5
  */
 function sb_sidebars_description_meta_box($post) {
 
@@ -177,7 +177,7 @@ function sb_sidebars_description_meta_box($post) {
 /**
  * Creates metabox for displaying sidebar shortcode
  *
- * @since StartBox 2.5
+ * @since 2.5
  */
 function sb_sidebars_shortcode_metabox( $post ) {
 	$output = '';
@@ -190,7 +190,7 @@ function sb_sidebars_shortcode_metabox( $post ) {
 /**
  * Create post type metaboxes
  *
- * @since StartBox 2.5
+ * @since 2.5
  *
  * @param string $object Not used.
  * @param string $post_type The post type object.
@@ -251,7 +251,7 @@ function sb_sidebars_post_type_meta_box( $post, $post_type ) {
 /**
  * Displays taxonomy metaboxes
  *
- * @since StartBox 2.5
+ * @since 2.5
  *
  * @param string $object Not used.
  * @param string $taxonomy The taxonomy object.
@@ -305,14 +305,14 @@ function sb_sidebars_taxonomy_meta_box( $post, $taxonomy ) {
 /**
  * Custom walker class for taxonomy lists
  *
- * @since StartBox 2.5
+ * @since 2.5
  * @uses Walker_Nav_Menu
  */
 class SB_Sidebars_Checklist extends Walker_Nav_Menu  {
 
 	/**
 	 * @see Walker::start_el()
-	 * @since StartBox 2.5
+	 * @since 2.5
 	 *
 	 * @param string $output Passed by reference. Used to append additional content.
 	 * @param object $item Menu item data object.
@@ -337,7 +337,7 @@ class SB_Sidebars_Checklist extends Walker_Nav_Menu  {
 /**
  * Save all the post data
  *
- * @since StartBox 2.5
+ * @since 2.5
  */
 function sb_sidebars_save( $post_id ) {
 	// Verify we should actually be saving any data
@@ -413,7 +413,7 @@ add_action( 'save_post', 'sb_sidebars_save' );
 /**
  * Delete cached sidebars when a sidebar is deleted
  *
- * @since StartBox 2.5
+ * @since 2.5
  */
 function sb_sidebars_delete($post_id) {
 	$post = get_post($post_id);
@@ -431,7 +431,7 @@ add_action( 'trash_post', 'sb_sidebars_delete' );
 /**
  * Filter the "post updated" messages
  *
- * @since StartBox 2.5
+ * @since 2.5
  */
 function sb_sidebars_update_messages( $messages ) {
 	$messages['sidebar']['1'] = sprintf( __('Sidebar saved. <a href="%s">Give it some widgets</a>', 'startbox'), esc_url( admin_url( 'widgets.php' ) ) );

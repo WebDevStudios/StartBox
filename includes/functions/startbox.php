@@ -7,7 +7,7 @@
  *
  * @package StartBox
  * @subpackage Functions
- * @since StartBox 2.4.5
+ * @since 2.4.5
  */
 
 class StartBox {
@@ -118,7 +118,7 @@ class StartBox {
 		add_theme_support( 'post-thumbnails' ); // Enables post thumbnails in the write screens, since WP2.9
 		set_post_thumbnail_size( 200, 200, true ); // Sets the default thumbnail size to 200x200
 		add_editor_style( array(  // This sets up the content editor style to match the front-end design
-			'/includes/styles/reset.css', // Global Reset
+			// '/includes/styles/reset.css', // Global Reset
 			'/includes/styles/typography.css', // Basic Typography
 			'/includes/styles/editor.css' // Content-specific styles (adapted from startbox.css)
 		) );
@@ -421,15 +421,5 @@ class StartBox {
 	public function child_uninstall() { delete_option( 'sb_child_install' ); }
 
 }
-
-/**
- * In his grace, God has given us different gifts for doing certain things well. 
- * So if God has given you the ability to prophesy, speak out with as much faith as
- * God has given you. If your gift is serving others, serve them well. If you are
- * a  teacher, teach well. If your gift is to encourage others, be encouraging. If
- * it is giving, give generously. If God has given you leadership ability, take the
- * responsibility seriously. And if you have a gift for showing kindness to others,
- * do it gladly. - Romans 12:6-8 (http://bit.ly/rom12nlt)
-*/
 
 ?>

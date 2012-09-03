@@ -19,7 +19,7 @@
  * For posts: echo time_since(abs(strtotime($post->post_date_gmt . " GMT")), time()) . ' ago';
  * For comments: echo time_since(abs(strtotime($comment->comment_date_gmt . " GMT")), time()) . ' ago';
  *
- * @since StartBox 2.4.6
+ * @since 2.4.6
  * @param integer $older_date The original date in question
  * @param integer $newer_date Specify a known date to determine elapsed time. Will use current time if false Default: false 
  * @return string Time since 
@@ -84,7 +84,7 @@ function sb_time_since($older_date, $newer_date = false) {
 /**
  * Retrieve or display list of posts as a dropdown (select list).
  *
- * @since StartBox 2.4.7
+ * @since 2.4.7
  *
  * @param array|string $args Optional. Override default arguments.
  * @return string HTML content, if not displaying.
@@ -153,7 +153,7 @@ function sb_dropdown_posts($args = '') {
  *
  * Credits: Ian Stewart and Martin Kopischke for providing this code
  *
- * @since StartBox 2.4.7
+ * @since 2.4.7
  */
 function sb_tag_query() {
 	$nice_tag_query = get_query_var('tag'); // tags in current query
@@ -184,7 +184,7 @@ function sb_tag_query() {
 /**
  * Function for retrieving taxonomy meta information
  *
- * @since StartBox 2.5
+ * @since 2.5
  *
  * @uses get_option()
  * @param string $taxonomy the desired taxonomy name
@@ -200,7 +200,7 @@ if ( !function_exists( 'get_taxonomy_term_type' ) ) {
 /**
  * Function for updating taxonomy meta information
  *
- * @since StartBox 2.5
+ * @since 2.5
  *
  * @uses get_option()
  * @param string $taxonomy the desired taxonomy name
@@ -217,7 +217,7 @@ if ( !function_exists( 'update_taxonomy_term_type' ) ) {
 /**
  * Function for deleting taxonomy meta information
  *
- * @since StartBox 2.5
+ * @since 2.5
  *
  * @uses get_option()
  * @param string $taxonomy the desired taxonomy name
@@ -228,6 +228,145 @@ if ( !function_exists( 'delete_taxonomy_term_type' ) ) {
 	function delete_taxonomy_term_type($taxonomy,$term_id ) {
 		delete_option("_term_type_{$taxonomy}_{$term_id}");
 	}
+}
+
+/**
+ * StartBox Handle Upload AJAX
+ *
+ * Necessary functions for handling the media uploads gracefully.
+ * Currently only supports images.
+ *
+ * @uses sb_handle_upload
+ * @since 2.4.4
+ */
+function sb_handle_upload_ajax()
+{
+	// check_ajax_referer('sb'); // security
+	$thumb = $full = array();
+	$error = '';
+	if( !isset($_REQUEST['file_id']) )
+		$error = htmlentities( sb_error(7, array(), false) ); // no $file_id found, error out (with no html formatting)
+	if($error == '')
+	{
+		$id = sb_handle_upload($_REQUEST['file_id']);
+		if(is_numeric($id))
+		{
+			$thumb = wp_get_attachment_image_src($id, 'thumbnail');
+			$full = wp_get_attachment_image_src($id, 'full');
+			if($thumb[0] == '' || $full[0] == '')
+				$error = 'Error: Could not retrieve uploaded image.';
+		}
+		else
+		{
+			$error = $id;
+		}
+	}
+	die(json_encode( array('thumb' => $thumb[0], 'full' => $full[0], 'error' => $error) ));
+}
+add_action('wp_ajax_sb_action_handle_upload_ajax', 'sb_handle_upload_ajax');
+
+/**
+ * StartBox Upload Handler
+ * 
+ * @param integer $file_id the ID of the media to be uploaded
+ *
+ * @since 2.4.4
+ */
+function sb_handle_upload($file_id = '')
+{	
+	if(empty($_FILES))
+		return 'Error: No file received.';
+
+	return media_handle_upload($file_id, 0, array(), array('test_form' => false)); // returns attachment id
+}
+
+// Custom Media Tab: Suggested Files -- Credit: Joel Kuczmarski
+function sb_filter_media_upload_tabs($_default_tabs) {
+    if( isset( $_GET['suggested'] ) && $_GET['suggested'] != '')
+        $_default_tabs['suggested'] = __( 'Suggested', 'startbox' );
+
+    return $_default_tabs;
+}
+add_filter('media_upload_tabs', 'sb_filter_media_upload_tabs');
+
+function sb_media_upload_suggested() {
+    $errors = array();
+
+    if(!empty($_POST))
+    {
+        $return = media_upload_form_handler();
+
+        if(is_string($return))
+            return $return;
+        if(is_array($return))
+            $errors = $return;
+    }
+
+    return wp_iframe( 'sb_media_upload_suggested_form', $errors );
+}
+add_action('media_upload_suggested', 'sb_media_upload_suggested');
+
+function sb_media_upload_suggested_form($errors) {
+    global $wpdb, $wp_query, $wp_locale, $type, $tab, $post_mime_types, $images;
+
+    media_upload_header();
+
+    $images = explode(', ', $_GET['suggested']);
+
+?>
+    <script type="text/javascript">
+    function doSend(url) {
+        var win = window.dialogArguments || opener || parent || top;
+        window.parent.send_to_editor(url);
+        return false;
+    }
+    </script>
+
+    <div style="margin:1em;">
+        <h3 class="media-title">Use media files suggested by your theme</h3>
+        <div id="media-items">
+<?php
+    $missing = array(); // to store all missing files for later error output
+    foreach($images as $index => $image) :
+        global $blog_id;
+        $replace = explode('/', get_blog_details($blog_id)->path); // necessary for timthumb to play nice with WordPress Multisite
+		if( is_subdomain_install() )
+			$theme_uri = THEME_URI;
+		else
+			$theme_uri = str_replace($replace[2] . '/', '', THEME_URI);
+        $fullimage = $theme_uri . '/' . $image;
+
+        if(!@getimagesize($fullimage)) // doing this funky-ness b.c. file_exists doesn't want to work for these URLs...
+        {
+            array_push($missing, $image);
+            continue;
+        }
+?>
+            <div id="media-item-<?php echo $index; ?>" class="media-item">
+                <div style="float:right; width:30%; text-align:center; padding-top:35px;"><input type="button" value="Insert into Post" class="button" onclick="doSend('<?php echo $fullimage; ?>')"></div>
+                <div style="width:70%; height:100px; overflow:hidden;">
+                    <img src="<?php echo SCRIPTS_URL; ?>/timthumb.php?src=<?php echo $fullimage; ?>&amp;h=100&amp;zc=1&amp;cropfrom=middleleft&amp;q=100" alt="" height="100" />
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+<?php
+	endforeach;
+
+    // error output:
+    if(count($missing) > 0) : ?>
+        <div class="media-item">
+            <div style="padding:1em;">
+                Warning! The following items are missing from the current theme's directory:
+                <ul style="list-style:inside circle; margin-top:1em;">
+                <?php foreach($missing as $index => $url)
+                        echo '<li style="padding-left:1em;">' . $url . '</li>'; ?>
+                </ul>
+            </div>
+        </div>
+<?php endif; ?>
+        </div>
+    </div>
+<?php
 }
 
 ?>

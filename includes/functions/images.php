@@ -11,7 +11,7 @@
  *
  * First checks for featured image, then checks for any attached image, finally defaults to IMAGES_URL/nophoto.jpg
  *
- * @since StartBox 1.5
+ * @since 1.5
  *
  * @uses has_post_thumbnail
  * @uses get_post_thumbnail_id
@@ -85,7 +85,7 @@ function sb_get_post_image( $args = array(), $post_id = null, $use_attachments =
 /**
  * Generates cropped thumbnail of any dimension placed in an <img> tag
  * 
- * @since StartBox 1.5
+ * @since 1.5
  *
  * @uses sb_get_post_image_url
  *
@@ -152,7 +152,7 @@ function sb_post_image( $args = array(), $depricated_height = null, $depricated_
 /**
  * Generates URL for image cropping
  * 
- * @since StartBox 2.5
+ * @since 2.5
  *
  * @uses sb_get_post_image
  *

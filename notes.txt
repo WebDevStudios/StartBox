@@ -1,45 +1,15 @@
-////////////////////////////////////////////////////////////////////////////////////
-Contents
-////////////////////////////////////////////////////////////////////////////////////
-
-1. TODO
-
-////////////////////////////////////////////////////////////////////////////////////
-1. TODO
-////////////////////////////////////////////////////////////////////////////////////
-
 ##### 2.6
 	review Options API
 	change menu options to include searchform.php instead of custom search html
+	Theme customizer integration
 	CSS integration for theme customization? http://wordpress.org/extend/plugins/css/
+
 
 ##### 2.7
 	add import/export for theme settings
-	add additional short codes for:
-		- featured photo
-		- lists - changing bullets: arrow, check marks
-		- [expires] - for hiding expired content
-		- create table of contents shortcode: auto-pulls h# tags, assigns them ids, uses the heading text for link text
-	update footer copyright info to use filterable shortcodes!
-	include developer/debug tools
-		- turn debug mode on
-		- beta updates
-		- output diff content in header/footer
-		- include options (with user caps) for who can see which option panels
-		- include options for which theme features to support
-		- include option to minify SB JS/CSS (hook default scripts & styles to pre-processor filter)
-	add Style Options (requires add_theme_support)
-		- Select from preset styles or custom
-			- Colorpicker for base color
-			- Colorpicker for accent color
-			- Colorpicker for add'l color #1
-			- Colorpicker for add'l color #2
-		- Textarea for inputting straight CSS
+	update footer copyright info to use filterable shortcodes
 
 ##### Future Release
-	add default styles for gforms (or form elements in general)
-	add controls to Featured Content Widget for content rotation
-	Feedburner Email widget (per http://wpstartbox.com/support/topic/how-about-a-simple-feedburner-email-widget/)
 	? build simple metabox creator for posts & pages based on options api? store options vs custom field
 	? look at integrating HTML5 Boilerplate
 	? add image option for search widget submit button

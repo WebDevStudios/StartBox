@@ -1,6 +1,6 @@
 <?php
 /**
- * StartBox Theme Layouts - A WordPress script for creating dynamic layouts.
+ * StartBox Theme Layouts
  *
  * Theme Layouts was originally created by Justin Tadlock for use with Hybrid Core.
  * This allows developers to easily add/remove support for multiple layout structures.
@@ -18,7 +18,7 @@
 /**
  * Gets the layout for the current post, page or taxonomy. If none is specified, use 'layout-default'.
  *
- * @since StartBox 2.5
+ * @since 2.5
  * @return string The layout for the given page.
  */
 
@@ -62,7 +62,7 @@ function sb_get_layout() {
 /**
  * Get the post layout based on the given post ID.
  *
- * @since StartBox 2.5
+ * @since 2.5
  */
 function sb_get_post_layout( $post_id ) {
 	$post_layout = get_post_meta( $post_id, '_sb_layout', true );
@@ -72,7 +72,7 @@ function sb_get_post_layout( $post_id ) {
 /**
  * Update/set the post layout based on the given post ID and layout.
  *
- * @since StartBox 2.5
+ * @since 2.5
  */
 function sb_set_post_layout( $post_id, $layout ) {
 	update_post_meta( $post_id, '_sb_layout', $layout );
@@ -81,7 +81,7 @@ function sb_set_post_layout( $post_id, $layout ) {
 /**
  * Generate an array of supported layouts with their text string
  *
- * @since StartBox 2.5
+ * @since 2.5
  */
 function sb_supported_layouts($instance) {
 	
@@ -96,7 +96,7 @@ function sb_supported_layouts($instance) {
  * Post layouts admin setup.  Registers the post layouts meta box for the post editing screen.  Adds the 
  * metadata save function to the 'save_post' hook.
  *
- * @since StartBox 2.5
+ * @since 2.5
  */
 function sb_layouts_admin_setup() {
 
@@ -119,7 +119,7 @@ add_action( 'admin_menu', 'sb_layouts_admin_setup' );
 /**
  * Adds the post layout class to the WordPress body class in the form of "layout-$layout"
  *
- * @since StartBox 2.5
+ * @since 2.5
  * @param array $classes all the set classes
  */
 function sb_layouts_body_class( $classes ) {
@@ -136,7 +136,7 @@ add_filter( 'body_class', 'sb_layouts_body_class' );
  * Displays a meta box of radio selectors on the post editing screen, which allows theme users to select 
  * the layout they wish to use for the specific post.
  *
- * @since StartBox 2.5
+ * @since 2.5
  */
 function sb_layouts_post_meta_box( $post, $box ) {
 
@@ -173,7 +173,7 @@ function sb_layouts_post_meta_box( $post, $box ) {
 /**
  * Saves the post layout metadata if on the post editing screen in the admin.
  *
- * @since StartBox 2.5
+ * @since 2.5
  */
 function sb_layouts_save_post( $post_id, $post ) {
 
@@ -195,7 +195,7 @@ function sb_layouts_save_post( $post_id, $post ) {
 /**
  * Displays the layout selector form
  *
- * @since StartBox 2.5
+ * @since 2.5
  */
 function sb_layouts_term_meta_box($tag, $taxonomy) {
 	
@@ -234,7 +234,7 @@ function sb_layouts_term_meta_box($tag, $taxonomy) {
 /**
  * Save the taxonomy layout meta when the taxonomy is saved (hat tip to Nathan Rice of Genesis! and Joost DeValk)
  *
- * @since StartBox 2.5
+ * @since 2.5
  */
 function sb_layouts_term_meta_save($term_id, $tt_id, $taxonomy) {
 
@@ -253,7 +253,7 @@ add_action('edit_term', 'sb_layouts_term_meta_save', 10, 3);
 /**
  * Delete the taxonomy layout meta when the taxonomy is deleted (hat tip to Nathan Rice of Genesis! and Joost DeValk)
  *
- * @since StartBox 2.5
+ * @since 2.5
  */
 function sb_layouts_term_meta_delete($term_id, $tt_id, $taxonomy) {
 	
@@ -272,7 +272,7 @@ add_action('delete_term', 'sb_layouts_term_meta_delete', 10, 3);
 /**
  * Filter get_term to attach the layout meta to each taxonomy (hat tip to Nathan Rice of Genesis! and Joost DeValk)
  *
- * @since StartBox 2.5
+ * @since 2.5
  */
 function sb_layouts_term_meta_filter($term, $taxonomy) {
 	

@@ -6,7 +6,7 @@
  *
  * @package StartBox
  * @subpackage Upgrades
- * @since StartBox 2.4.9
+ * @since 2.4.9
  */
 
 class sb_upgrade {

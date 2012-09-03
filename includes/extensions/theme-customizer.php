@@ -6,7 +6,7 @@
  *
  * @package StartBox
  * @subpackage Add-ons
- * @since StartBox 2.6
+ * @since 2.6
  */
 
 // Check to see if current theme supports sidebars, skip the rest if not

@@ -7,7 +7,7 @@
  * should be. When adding widgets, always start with Footer Column and 
  * advance numerically to Footer Column 4. Skipping a column breaks the logic.
  *
- * @since StartBox 2.4.2
+ * @since 2.4.2
  */
 $footer1 = ( is_sidebar_active( 'footer_widget_area_1' ) || has_action( 'sb_no_footer_widget_area_1_widgets' ) );
 $footer2 = ( is_sidebar_active( 'footer_widget_area_2' ) || has_action( 'sb_no_footer_widget_area_2_widgets' ) );
