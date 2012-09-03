@@ -4,6 +4,7 @@
 	* added: theme option to use beta updates when available
 	* added: shortcode for hiding content after specific date ([expires date="Aug 18, 2012" expired_message="You missed out..."]blah[/expires])
 	* added: shortcode for revealing content after specific date ([show_after date="Aug 18, 2012" teaser="Coming soon..."]blah[/show_after])
+	* changed: Refactored most of the Options API code and added better inline documentation (see /includes/functions/admin_settings.php)
 	* changed: the Sitemap Page Template now accepts parameters passed as an array through the Custom Field "sitemap_settings"
 	* changed: updated all post image functions to run off a single array or argument string, instead of multiple arguments
 	* changed: updated all templates to use get_post_format() and get_post_type() in get_template_part() for post loops. 

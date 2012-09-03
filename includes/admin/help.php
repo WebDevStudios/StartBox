@@ -9,7 +9,7 @@
 			parent::__construct();
 		}
 
-		function form() {
+		function admin_form() {
 			echo '<p>' . __( 'Struggling with some of the theme options or settings? Click on the "Help" tab above.', 'startbox' ) . '</p>';
 		}
 

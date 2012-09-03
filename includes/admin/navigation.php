@@ -43,6 +43,7 @@
 							'sb_after_footer'	=> __( 'Bottom of Page', 'startbox' ),
 						)),
 						'depth_default' => 1,
+						'extras'	=> false,
 						'help'		=> __( 'Use this if you want a menu in the footer of your site.', 'startbox' )
 					),
 				);

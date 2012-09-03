@@ -31,80 +31,25 @@
  * @param string $location The column in which to add the metabox, primary or secondary. Default is secondary
  * @param string $priority Priority for displaying the metabox, high, default or low. Default is default.
  * @param array $options The options to be added. See http://docs.wpstartbox.com/child-themes/theme-options/ Using Theme Options
+ * @param string $hide_ui_if_cannot Lowest capability a user must have in order to see this metabox
  */
 class sb_settings {
+
+	// Setup our variables
 	public $name = 'Settings Panel';	// Name for your options panel, displays as a title
 	public $slug = 'settings_panel';	// Nice-name for your options panel
 	public $page = 'sb_admin';			// Page for your settings panel: sb_admin or sb_style
 	public $location = 'secondary';		// Column for your settings panel: primary or secondary
 	public $priority = 'default';		// Priority for your settings panel: high, low, default
 	public $options = array();			// A multi-dimensional array for populating the settings panel.
-	public $hide_ui_if_cannot = NULL;
-	
-	// Create the options form to wrap inside metabox. Override this in your own class to create your own form
-	public function form($options) {
-		$options = ($options) ? $options : $this->options;
-		
-	    $output = '';
-	    foreach ($options as $setting_id => $setting) {
+	public $hide_ui_if_cannot = NULL;	// Lowest capability a user must have in order to see this metabox
 
-	    	$value = sb_get_option( $setting_id );
-			$label = ( isset( $setting['label'] ) ) ? $setting['label'] : '';
-			$class = ( isset( $setting['class'] ) ) ? $setting['class'] : '';
-			$align = ( isset( $setting['align'] ) ) ? $setting['align'] : '';
-			$before = ( isset( $setting['before'] ) ) ? $setting['before'] : '';
-			$after = ( isset( $setting['after'] ) ) ? $setting['after'] : '';
-			$desc = ( isset( $setting['desc'] ) ) ? $setting['desc'] : '';
-			$size = ( isset( $setting['size'] ) ) ? ' option-field-' . $setting['size'] : '' ;
-			$position = ( isset( $setting['position'] ) ) ? $setting['position'] : '' ;
-			$options = ( isset( $setting['options'] ) ) ? $setting['options'] : '';
-			$order_by = ( isset( $setting['order_by'] ) ) ? $setting['order_by'] : '';
-			$order = ( isset( $setting['order'] ) ) ? $setting['order'] : '';
-			$limit = ( isset( $setting['limit'] ) ) ? $setting['limit'] : '';
-			$suggested = ( isset( $setting['suggested'] ) ) ? $setting['suggested'] : '';
-			$extras = ( isset( $setting['extras'] ) ) ? $setting['extras'] : '';
-			
-			if ($setting['type'] == 'intro') { $output .= sb_input::intro( $setting_id, $label, $desc ); }
-			elseif ($setting['type'] == 'divider') { $output .= "\t" . '<hr/>'."\n"; }
-			elseif ($setting['type'] == 'text') { $output .= '<p class="' . $setting_id . '">' . sb_input::text( $setting_id, $class, $label, $value, $desc, $size, $align, $before, $after ) . "</p>\n"; }
-			elseif ($setting['type'] == 'textarea') { $output .= sb_input::textarea( $setting_id, $label, $value, $desc ); }
-			elseif ($setting['type'] == 'checkbox') { $output .= sb_input::checkbox( $setting_id, $label, $value, $desc, $align ); }
-			elseif ($setting['type'] == 'radio') { $output .= sb_input::radio( $setting_id, $label, $value, $desc, $options ); }
-			elseif ($setting['type'] == 'select') { $output .= sb_input::select( array( 'id' => $setting_id, 'label' => $label, 'value' => $value, 'desc' => $desc, 'options' => $options, 'size' => $size, 'align' => $align, 'order_by' => $order_by, 'order' => $order, 'limit' => $limit ) ); }
-			elseif ($setting['type'] == 'enable_select') { $output .= sb_input::enable_select( array( 'id' => $setting_id, 'label' => $label, 'value' => $value, 'desc' => $desc, 'options' => $options, 'size' => $size, 'align' => $align, 'order_by' => $order_by, 'order' => $order, 'limit' => $limit ) ); }
-			elseif ($setting['type'] == 'color') { $output .= sb_input::color( $setting_id, $label, $value, $desc ); }
-			elseif ($setting['type'] == 'upload') { $output .= sb_input::upload( $setting_id, $label, $value, $desc, $suggested ); }
-			elseif ($setting['type'] == 'navigation') { $output .= sb_input::navigation( $setting_id, $label, $value, $desc, $size = 'large', $align ='right', $position, $extras ); }
-			elseif ($setting['type'] == 'logo') { $output .= sb_input::logo( $setting_id, $label, $desc); }
-			elseif ($setting['type'] == 'background') { $output .= sb_input::background( $setting_id, $label, $desc ); }
-			elseif ($setting['type'] == 'font') { $output .= sb_input::font( $setting_id, $label, $desc ); }
-			elseif ($setting['type'] == 'border') { $output .= sb_input::border( $setting_id, $label, $desc ); }
-			elseif ($setting['type'] == 'wysiwyg' || $setting['type'] == 'tinymce') { $output .= sb_input::wysiwyg( $setting_id, $label, $value, $desc ); }
-			elseif ($setting['type'] == 'layout') { $output .= sb_input::layout( $setting_id, $label, $value, $desc, $options ); }
-			
-		}
-	    echo $output;
-	}
-	
 	// Outputting settings as necessary. Note: you can add as many custom functions as you need.
 	public function output() {}
 	
-	// For hooking all your functions elsewhere.
-	// When referencing the function in add_action() use: array( $this, 'function_name' )
+	// For hooking all your functions elsewhere. Note: When referencing the function in add_action() use: array( &$this, 'function_name' )
 	public function hooks() {}
-	
-	// This makes errors more happy
-	public function __call($method, $args) { wp_die( "Your new settings class, <b>" . $this->name . "</b>, is trying to call an unknown method: " . $method ); }
-	
-	// This creates the metabox. Do not override this method.
-	public function _init() {
-		global $sb_admin, $sb_style;
-		if ( empty( $this->hide_ui_if_cannot ) || current_user_can( $this->hide_ui_if_cannot ) ) {
-			$this->page = ($this->page == 'sb_style') ? $sb_style : $sb_admin;
-			add_meta_box( $this->slug, $this->name, array( $this, 'form' ), $sb_admin, $this->location, $this->priority);
-		}
-	}
-	
+
 	// This makes everything work. Do not override this method.
 	public function __construct() {
 		if (is_network_admin()) { return; } // skip the rest if it's a network admin, no need to continue
@@ -112,6 +57,166 @@ class sb_settings {
 		add_action( 'init', array( $this, 'hooks' ), 9 );
 	}
 
+	// This creates the metabox. Do not override this method.
+	public function _init() {
+		global $sb_admin, $sb_style;
+		if ( empty( $this->hide_ui_if_cannot ) || current_user_can( $this->hide_ui_if_cannot ) ) {
+			$this->page = ($this->page == 'sb_style') ? $sb_style : $sb_admin;
+			add_meta_box( $this->slug, $this->name, array( $this, 'admin_form' ), $sb_admin, $this->location, $this->priority);
+		}
+	}
+
+	// This makes errors more happy and less desctructive
+	public function __call($method, $args) { wp_die( "Your new settings class, <b>" . $this->name . "</b>, is trying to call an unknown method: " . $method ); }
+	
+	// Create the options form to wrap inside metabox. Only override this in your own class if you want to create your own form and do a butt-ton of work.
+	public function admin_form( $options ) {
+		$options = ($options) ? $options : $this->options;
+		
+	    $output = '';
+	    foreach ($options as $id => $settings) {
+
+	    	// Assume an empty value for every possible setting
+			$defaults = array(
+				'label'		=> '',		// The label content
+				'desc'		=> '',		// Additional descriptive text
+				'class'		=> '',		// The option class
+				'align'		=> '',		// The alignment for this input (left, right)
+				'size'		=> '',		// The size of this input (small, default, large)
+				'before'	=> '',		// Custom content to include before the input
+				'after'		=> '',		// Custom costent to include after the input
+				'options'	=> array(),	// String: pages, posts, categories: returns a dropdown for common WordPress content; Array: An array of selectable options
+				'order_by'	=> '',		// For post options: the order to display the results
+				'order'		=> '',		// For post options: the order to display the results
+				'limit'		=> '', 		// For post and page options: how many results to retrieve
+				'suggested'	=> '',		// For post options: the order to display the results
+				'position'	=> array(),	// Array of possible menue positions
+				'extras'	=> array(),	// Array of additional menu extras
+			);
+
+			// Parse the values we were given and extract them for individual use
+			$r = wp_parse_args( $settings, $defaults );
+			extract( $r, EXTR_OVERWRITE );
+
+			// Grab our current setting value
+			$value = sb_get_option( $id );
+	    	
+			// Loop through each option type and begin concatenate our form elements
+			if 	   ( 'intro' == $settings['type'] )   $output .= sb_input::intro( array(
+						'id'		=> $id,
+						'label'		=> $label,
+						'desc'		=> $desc
+					) );
+			elseif ( 'divider' == $settings['type'] ) $output .= '<hr/>'."\n";
+			elseif ( 'text' == $settings['type'] ) $output .= sb_input::text( array(
+						'id'		=> $id,
+						'class'		=> $class,
+						'label'		=> $label,
+						'value' 	=> $value,
+						'desc'		=> $desc,
+						'size' 		=> $size,
+						'align'		=> $align,
+						'before'	=> $before,
+						'after'		=> $after
+					) );
+			elseif ( 'textarea' == $settings['type'] ) $output .= sb_input::textarea( array(
+						'id'		=> $id,
+						'label'		=> $label,
+						'value'		=> $value,
+						'desc'		=> $desc
+					) );
+			elseif ( 'checkbox' == $settings['type'] ) $output .= sb_input::checkbox( array(
+						'id'		=> $id,
+						'label'		=> $label,
+						'value'		=> $value,
+						'desc'		=> $desc,
+						'align' 	=> $align
+					) );
+			elseif ( 'radio' == $settings['type'] ) $output .= sb_input::radio( array(
+						'id'		=> $id,
+						'label'		=> $label,
+						'value'		=> $value,
+						'desc'		=> $desc,
+						'options'	=> $options
+					) );
+			elseif ( 'select' == $settings['type'] ) $output .= sb_input::select( array(
+						'id'		=> $id,
+						'label'		=> $label,
+						'value'		=> $value,
+						'desc'		=> $desc,
+						'options'	=> $options,
+						'size'		=> $size,
+						'align'		=> $align,
+						'order_by'	=> $order_by,
+						'order'		=> $order,
+						'limit'		=> $limit
+					) );
+			elseif ( 'enable_select' == $settings['type'] ) $output .= sb_input::enable_select( array(
+						'id'		=> $id,
+						'label'		=> $label,
+						'value'		=> $value,
+						'desc'		=> $desc,
+						'options'	=> $options,
+						'size' 		=> $size,
+						'align'		=> $align,
+						'order_by'	=> $order_by,
+						'order'		=> $order,
+						'limit'		=> $limit
+					) );
+			elseif ( 'layout' == $settings['type'] ) $output .= sb_input::layout( array(
+						'id' 		=> $id,
+						'label'		=> $label,
+						'value'		=> $value,
+						'desc'		=> $desc,
+						'options'	=> $options
+					) );
+			elseif ( 'navigation' == $settings['type'] ) $output .= sb_input::navigation( array(
+						'id'		=> $id,
+						'label'		=> $label,
+						'value'		=> $value,
+						'desc'		=> $desc,
+						'size'		=> 'large',
+						'align'		=> 'right',
+						'position'	=> $position,
+						'extras'	=> $extras
+					) );
+			elseif ( 'upload' == $settings['type'] ) $output .= sb_input::upload( array(
+						'id'		=> $id,
+						'label'		=> $label,
+						'value'		=> $value,
+						'desc'		=> $desc,
+						'suggested'	=> $suggested
+					) );
+			elseif ( 'logo' == $settings['type'] ) $output .= sb_input::logo( array(
+						'id'		=> $id,
+						'label'		=> $label,
+						'desc'		=> $desc
+					) );
+			elseif ( 'wysiwyg' == $settings['type'] ) $output .= sb_input::wysiwyg( array( 
+						'id'		=> $id,
+						'label'		=> $label,
+						'value'		=> $value,
+						'desc'		=> $desc,
+						'options'	=> $options
+					) );
+			elseif ( 'color' == $settings['type'] ) $output .= sb_input::color( array(
+						'id'		=> $id,
+						'label'		=> $label,
+						'value'		=> $value,
+						'desc'		=> $desc
+					) );
+			elseif ( 'background' == $settings['type'] ) $output .= sb_input::background( array(
+						'id'		=> $id,
+						'label'		=> $label,
+						'desc'		=> $desc
+				) );
+			
+		}
+
+		// Finally, echo our output
+	    echo $output;
+	}
+	
 }
 
 /**
@@ -124,95 +229,189 @@ class sb_settings {
 class sb_input {
 	
 	/**
+	 * Helper function for outputting descriptive text for each option
+	 * 
+	 * @param  string $desc The descriptive text
+	 * @return string       The concatenated descriptive text
+	 */
+	public function descriptive_text( $desc ) {
+		return '<br/><span class="desc"> ' . $desc . ' </span>'."\n";
+	}
+
+	/**
 	 * Introduction setting
 	 * 
-	 * @param  string $id    Unique ID for this option
-	 * @param  string $label The content to be displayed as a heading
-	 * @param  string $desc  The content to be displayed as paragraph text
+	 * @param  array $args The array of arguments for building this input
 	 * @return string        The concatenated introduction output
 	 */
-	public function intro( $id, $label, $desc ) {
-		$output = '<h4 id="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" class="' . esc_attr( $id ) . '">' . $label . '</h4>'."\n";
+	public function intro( $args ='' ) {
+
+		// Setup our defaults
+		$defaults = array(
+			'id'		=> '',			// Unique ID for this option
+			'label'		=> '',			// The content to display as the input label
+			'desc'		=> '',			// Descriptive text
+		);
+
+		// Get our variables ready to go
+		$r = wp_parse_args( $args, $defaults );
+		extract( $r, EXTR_OVERWRITE );
+		$output = '';
+
+		// Concatenate our output
+		$output = '<h4 id="' . $id . '" class="' . esc_attr( $id ) . '">' . $label . '</h4>'."\n";
 		$output .= '<p class="' . esc_attr( $id ) . '">' . $desc . '</p>'."\n";
+		
+		// Return our output
 		return $output;
 	}
 
 	/**
 	 * Text Input
 	 * 
-	 * @param  string $id     Unique ID for this option
-	 * @param  string $class  Optional CSS classes for input
-	 * @param  string $label  The content to display as the input label
-	 * @param  string $value  The option value
-	 * @param  string $desc   The content to display as small descriptive text
-	 * @param  string $size   The size of the input (small, default, large; default: default)
-	 * @param  string $align  The alignment of the input (left, right; default: left)
-	 * @param  string $before Custom content to place before the input
-	 * @param  string $after  Custom content to place after the input
-	 * @return string         The concatenated text option output
+	 * @param  array $args The array of arguments for building this input
+	 * @return string      The concatenated text option output
 	 */
-	public function text( $id, $class, $label, $value, $desc, $size = 'default', $align = 'left', $before = null, $after = null ) {
-		$output = "\t" . '<label for="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '">' . $label . ':</label> <span class="' .esc_attr( $align ) . '">' . $before . '<input type="text" value="' . esc_attr( $value ) . '" name="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" id="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" class="' . esc_attr( 'option-field-' . esc_attr( $size ) . ' ' . $class ) . '" />' . $after . '</span>';
-		if ($desc) { $output .= "\t" . '<br/><span class="desc"> ' . $desc . ' </span>'."\n"; }
+	public function text( $args = '' ) {
+
+		// Setup our defaults
+		$defaults = array(
+			'id'		=> '',			// Unique ID for this option
+			'class'		=> '',			// Optional CSS classes for input
+			'label'		=> '',			// The content to display as the input label
+			'value'		=> '',			// The option value
+			'desc'		=> '',			// Descriptive text
+			'size'		=> 'default',	// The size of the input (small, default, large; default: default)
+			'align'		=> 'left',		// The alignment of the input (left, right; default: left)
+			'before'	=> '', // Custom content to place before the input
+			'after'		=> ''	// Custom content to place after the input
+		);
+
+		// Get our variables ready to go
+		$r = wp_parse_args( $args, $defaults );
+		extract( $r, EXTR_OVERWRITE );
+		$sb_id = THEME_OPTIONS . '[' . esc_attr( $id ) . ']';
+		$output = '';
+
+		// Concatenate our output
+		$output .= '<p class="' . esc_attr( $args['id'] ) . '">';
+		if ($label) $output .= '<label for="' . $sb_id . '">' . $label . ':</label> ';
+		$output .= '<span class="' .esc_attr( $align ) . '">';
+		$output .= $before;
+		$output .= '<input type="text" value="' . esc_attr( $value ) . '" name="' . $sb_id . '" id="' . $sb_id . '" class="' . esc_attr( 'option-field-' . esc_attr( $size ) . ' ' . $class ) . '" />';
+		$output .= $after;
+		$output .= '</span>';
+		if ($desc) $output .= sb_input::descriptive_text( $desc );
+		$output .= '</p>'."\n";
+
+		// Return our output
 		return $output;
 	}
 
 	/**
 	 * Textarea Input
 	 * 
-	 * @param  string $id    Unique ID for this option
-	 * @param  string $label The content to use as the input label
-	 * @param  string $value The option value
-	 * @param  string $desc  The content to display as a small descriptive text
-	 * @return string        The concatenated textarea option output
+	 * @param  array $args  The array of arguments for building this input
+	 * @return string       The concatenated textarea option output
 	 */
-	public function textarea( $id, $label, $value, $desc ) {
-		$output = "\t" . '<p class="' . esc_attr( $id ) . '">'."\n";
-		$output .= "\t" . "\t" . '<label for="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '">' . $label . '</label><br/>'."\n";
-		$output .= "\t" . "\t" . '<textarea name="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" id="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '">' . esc_textarea( $value ) . '</textarea>'."\n";
-		if ($desc) { $output .= "\t" . "\t" . '<br/><span class="desc"> ' . $desc . ' </span>'."\n"; }
-		$output .= "\t" . '</p>'."\n";
+	public function textarea( $args = '' ) {
+
+		// Setup our defaults
+		$defaults = array(
+			'id'		=> '',			// Unique ID for this option
+			'label'		=> '',			// The content to display as the input label
+			'value'		=> '',			// The option value
+			'desc'		=> '',			// Descriptive text
+			'before'	=> '<p class="' . esc_attr( $args['id'] ) . '">', // Custom content to place before the input
+			'after'		=> '</p>'."\n"	// Custom content to place after the input
+		);
+
+		// Get our variables ready to go
+		$r = wp_parse_args( $args, $defaults );
+		extract( $r, EXTR_OVERWRITE );
+		$sb_id = THEME_OPTIONS . '[' . esc_attr( $id ) . ']';
+		$output = '';
+
+		// Concatenate our output
+		$output .= $before;
+		$output .= '<label for="' . $sb_id . '">' . $label . '</label><br/>'."\n";
+		$output .= '<textarea name="' . $sb_id . '" id="' . $sb_id . '">' . esc_textarea( $value ) . '</textarea>'."\n";
+		if ($desc) $output .= sb_input::descriptive_text( $desc );
+		$output .= $after;
+
+		// Return our output
 		return $output;
 	}
 
 	/**
 	 * Checkbox Input
 	 * 
-	 * @param  string $id    Unique ID for this option
-	 * @param  string $label The content to use as the input label
-	 * @param  string $value The option value
-	 * @param  string $desc  The content to display as a small descriptive text
-	 * @param  string $align The alignment of the input (left, right; default: left)
-	 * @return string        The concatenated checkbox option output
+	 * @param  array $args  The array of arguments for building this input
+	 * @return string       The concatenated checkbox option output
 	 */
-	public function checkbox( $id, $label, $value, $desc, $align = 'left' ) {
-		if ($value == 'true') { $checked = 'checked="checked"'; } else { $checked = ''; }
-		$output = "\t" . '<p class="' . esc_attr( $id ) . '">'."\n";
-		$output .= "\t" . "\t" . '<label for="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" class="' . esc_attr( $align ) . '"><input type="checkbox" class="checkbox" id="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" name="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" value="true" ' . $checked . ' /> ' . $label . '</label><br/>'."\n";
-		if ($desc) { $output .= "\t" . "\t" . '<br/><span class="desc"> ' . $desc . ' </span>'."\n"; }
-		$output .= "\t" . '</p>'."\n";
+	public function checkbox( $args = '' ) {
+		
+		// Setup our defaults
+		$defaults = array(
+			'id'		=> '',			// Unique ID for this option
+			'label'		=> '',			// The content to display as the input label
+			'value'		=> '',			// The option value
+			'desc'		=> '',			// Descriptive text
+			'align'		=> 'left',		// Alignment for input
+			'before'	=> '<p class="' . esc_attr( $args['id'] ) . '">', // Custom content to place before the input
+			'after'		=> '</p>'."\n"	// Custom content to place after the input
+		);
+
+		// Get our variables ready to go
+		$r = wp_parse_args( $args, $defaults );
+		extract( $r, EXTR_OVERWRITE );
+		$sb_id = THEME_OPTIONS . '[' . esc_attr( $id ) . ']';
+		$output = '';
+
+		// Concatenate our output
+		$output .= $before ;
+		$output .= '<label for="' . $sb_id . '" class="' . esc_attr( $align ) . '"><input type="checkbox" class="checkbox" id="' . $sb_id . '" name="' . $sb_id . '" value="true" ' . checked( $value, 'true', false ) . ' /> ' . $label . '</label>'."\n";
+		if ($desc) $output .= sb_input::descriptive_text( $desc );
+		$output .= $after;
+
+		// Return our output
 		return $output;
 	}
 
 	/**
 	 * Radio Input
 	 * 
-	 * @param  string $id     Unique ID for this option
-	 * @param  string $label  The content to use as the input label
-	 * @param  string $value  The option value
-	 * @param  string $desc   The content to display as a small descriptive text
-	 * @param  array $options An array of selectable radio options
+	 * @param  array $args  The array of arguments for building this input
 	 * @return string         The concatenated radio option output
 	 */
-	public function radio( $id, $label, $value, $desc, $options ) {
-		$output = "\t" . '<p class="' . esc_attr( $id ) . '">';
-		$output .= "\t" . "\t" . $label . '<br/>'."\n";
+	public function radio( $args = '' ) {
+		
+		// Setup our defaults
+		$defaults = array(
+			'id'		=> '',		// Unique ID for this option
+			'label'		=> '',		// The content to display as the input label
+			'value'		=> '',		// The option value
+			'desc'		=> '',		// Descriptive text
+			'options'	=> array(),	// Array of radio options ('id' => 'value')
+		);
+
+		// Get our variables ready to go
+		$r = wp_parse_args( $args, $defaults );
+		extract( $r, EXTR_OVERWRITE );
+		$sb_id = THEME_OPTIONS . '[' . esc_attr( $id ) . ']';
+		$output = '';
+
+		// Concatenate our output
+		$output .= '<p class="' . esc_attr( $id ) . '">';
+		$output .= $label . '<br/>'."\n";
 		foreach ( $options as $option_id => $option ) {
-			if ($value == $option_id) { $checked = 'checked'; } else { $checked = ''; }
-			$output .= "\t" . "\t" . '<input type="radio" id="' . esc_attr( $id ) . '-' . esc_attr( $option_id ) . '" value="' . esc_attr( $option_id ) . '" name="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" ' . $checked . ' /> <label for="' . esc_attr( $id ) . '-' . esc_attr( $option_id ) . '">' . $option . '</label><br/>'."\n";
+			$output .= '<input type="radio" id="' . esc_attr( $id ) . '-' . esc_attr( $option_id ) . '" value="' . esc_attr( $option_id ) . '" name="' . $sb_id . '" ' . checked( $value, $option_id, false ) . ' />';
+			$output .= '<label for="' . esc_attr( $id ) . '-' . esc_attr( $option_id ) . '">' . $option . '</label><br/>'."\n";
 		}
-		if ($desc) { $output .= "\t" . "\t" . '<span class="desc"> ' . $desc . ' </span>'."\n"; }
-		$output .= "\t" . '</p>'."\n";
+		if ($desc) $output .= sb_input::descriptive_text( $desc );
+		$output .= '</p>'."\n";
+
+		// Return our output
 		return $output;
 	}
 
@@ -226,21 +425,43 @@ class sb_input {
 	 * @param  array $options An array of selectable radio options
 	 * @return string         The concatenated layout option output
 	 */
-	public function layout( $id, $label, $value, $desc, $options ) {
+	public function layout( $args = '' ) {
+		
 		// If themes don't support layouts, don't return any layout options
-		if ( !current_theme_supports('sb-layouts') || $options == '')
+		if ( !current_theme_supports('sb-layouts') || $args['options'] == '')
 			return $output;
 			
-		$output = "\t" . '<p class="' . esc_attr( $id ) . '">';
-		$output .= "\t" . "\t" . $label . '<br/>'."\n";
-		if ($desc) { $output .= "\t" . "\t" . '<span class="desc"> ' . $desc . ' </span>'."\n"; }
-		foreach ( $options as $option_id => $option ) {
-			$layout = $option_id;
-			if ($value == $option_id) { $checked = 'checked'; } else { $checked = ''; }
-			$output .= "\t" . "\t" . '<div class="layout-container"><label for="' . esc_attr( $id ) . '-' . esc_attr( $option_id ) . '"><input type="radio" id="' . esc_attr( $id ) . '-' . esc_attr( $option_id ) . '" value="' . esc_attr( $option_id ) . '" name="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" ' . $checked . ' /><img src="' . $option['img'] .'" alt="' . $option['label'] . '"  width="50" height="40" /></label></div>';
+		// Setup our defaults
+		$defaults = array(
+			'id'		=> '',		// Unique ID for this option
+			'label'		=> '',		// The content to display as the input label
+			'value'		=> '',		// The option value
+			'desc'		=> '',		// Descriptive text
+			'options'	=> array(),	// Array of radio options ('id' => 'value')
+		);
+
+		// Get our variables ready to go
+		$r = wp_parse_args( $args, $defaults );
+		extract( $r, EXTR_OVERWRITE );
+		$sb_id = THEME_OPTIONS . '[' . esc_attr( $id ) . ']';
+		$output = '';
+
+		// Concatenate our output
+		$output .= '<p class="' . esc_attr( $id ) . '">';
+		$output .= $label . '<br/>'."\n";
+		if ($desc) $output .= sb_input::descriptive_text( $desc );
+		foreach ( $options as $layout => $option ) {
+			$output .= '<div class="layout-container">';
+			$output .= '<label for="' . esc_attr( $id ) . '-' . esc_attr( $layout ) . '">';
+			$output .= '<input type="radio" id="' . esc_attr( $id ) . '-' . esc_attr( $layout ) . '" value="' . esc_attr( $layout ) . '" name="' . $sb_id . '" ' . checked( $value, $layout, false ) . ' />';
+			$output .= '<img src="' . $option['img'] .'" alt="' . $option['label'] . '"  width="50" height="40" />';
+			$output .= '</label>';
+			$output .= '</div>';
 		}
-		$output .= "\t" . '</p>'."\n";
-		$output .= "\t" . '<hr/>'."\n";
+		$output .= '</p>'."\n";
+		$output .= '<hr/>'."\n";
+
+		// Return our output
 		return $output;
 	}
 
@@ -251,46 +472,72 @@ class sb_input {
 	 * @return string      The concatenated select option output
 	 */
 	public function select( $args = '' ) {
+		
+		// Setup our defaults
 		$defaults = array(
-			'id' => 'option-select',	// The unique ID for this input
-			'label' => 'Select',		// The content to use as the input label
-			'value' => '',				// The option value
-			'desc' => '',				// The content to display as a small descriptive text
-			'options' => '',			// String: pages, posts, categories: returns a dropdown for common WordPress content; Array: An array of selectable options
-			'size' => 'large',			// The size of this input (small, default, large; default: large)
-			'align' => 'right',			// The alignment for this input (left, right; default: right)
-			'before' => '',				// Custom content to include before the input
-			'after' => '',				// Custom costent to include after the input
-			'order_by' => 'post_date',	// For post options: how posts should be ordered
-			'order' => 'DESC',			// For post options: the order to display the results
-			'limit' => 30 				// For post and page options: how many results to retrieve
+			'id'		=> 'option-select',	// The unique ID for this input
+			'label'		=> 'Select',		// The content to use as the input label
+			'value'		=> '',				// The option value
+			'desc'		=> '',				// The content to display as a small descriptive text
+			'options'	=> '',				// String: pages, posts, categories: returns a dropdown for common WordPress content; Array: An array of selectable options
+			'size'		=> 'large',			// The size of this input (small, default, large; default: large)
+			'align'		=> 'right',			// The alignment for this input (left, right; default: right)
+			'order_by'	=> 'post_date',		// For post options: how posts should be ordered
+			'order'		=> 'DESC',			// For post options: the order to display the results
+			'limit'		=> 30, 				// For post and page options: how many results to retrieve
+			'before'	=> '<p class="' . esc_attr( $args['id'] ) . '">', // Custom content to place before the input
+			'after'		=> '</p>'."\n"	// Custom content to place after the input
 		);
 
+		// Get our variables ready to go
 		$r = wp_parse_args( $args, $defaults );
-		extract( $r, EXTR_SKIP );
-
+		extract( $r, EXTR_OVERWRITE );
+		$sb_id = THEME_OPTIONS . '[' . esc_attr( $id ) . ']';
 		$output = '';
 		
-		if ( $before == '' ) $output .= "\t" . '<p class="' . esc_attr( $id ) . '">'."\n";
+		// Concatenate our output
 		$output .= $before;
-		if ($label) $output .= "\t" . "\t" . '<label for="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '">' . $label . ':</label> '."\n";
-		if ( $options == 'categories' ) {
-			$output .= wp_dropdown_categories( array( 'echo' => 0, 'name' => THEME_OPTIONS . '[' . esc_attr( $id ) . ']', 'id' => THEME_OPTIONS . '[' . esc_attr( $id ) . ']', 'class' => 'option-select-' . esc_attr( $size ) . ' ' . $align, 'show_option_none' => 'Select a Category', 'selected' => $value ) );
-		} elseif ( $options == 'pages' ) {
-			$output .= wp_dropdown_pages( array( 'echo' => 0, 'name' => THEME_OPTIONS . '[' . esc_attr( $id ) . ']', 'show_option_none' => 'Select a Page', 'selected' => $value ) );
-		} elseif ( $options == 'posts' ) {
-			$output .= sb_dropdown_posts( array( 'echo' => 0, 'name' => THEME_OPTIONS . '[' . esc_attr( $id ) . ']', 'id' => THEME_OPTIONS . '[' . esc_attr( $id ) . ']', 'class' => 'option-select-' . esc_attr( $size ) . ' ' . $align, 'show_option_none' => 'Select a Post', 'selected' => $value, 'order_by' => $order_by, 'order' => $order, 'limit' => $limit ) );
-		} else {
-			$output .= "\t" . "\t" . '<select id="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" name="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" class="option-select-' . esc_attr( $size ) . ' ' . esc_attr( $align ) . '">'."\n";
+		$output .= ($label) ? '<label for="' . $sb_id . '">' . $label . ':</label> '."\n" : '';
+		if ( 'categories' == $options )
+			$output .= wp_dropdown_categories( array(
+				'echo'		=> 0,
+				'name'		=> $sb_id,
+				'id'		=> $sb_id,
+				'class'		=> 'option-select-' . esc_attr( $size ) . ' ' . $align,
+				'selected'	=> $value,
+				'show_option_none' => 'Select a Category'
+			) );
+		elseif ( 'pages' == $options )
+			$output .= wp_dropdown_pages( array(
+				'echo'		=> 0,
+				'name'		=> $sb_id,
+				'id'		=> $sb_id,
+				'selected'	=> $value,
+				'show_option_none' => 'Select a Page'
+			) );
+		elseif ( 'posts' == $options )
+			$output .= sb_dropdown_posts( array(
+				'echo'		=> 0,
+				'name'		=> $sb_id,
+				'id'		=> $sb_id,
+				'class'		=> 'option-select-' . esc_attr( $size ) . ' ' . $align,
+				'selected'	=> $value,
+				'order_by'	=> $order_by,
+				'order'		=> $order,
+				'limit'		=> $limit,
+				'show_option_none' => 'Select a Post'
+			) );
+		elseif ( $options ) {
+			$output .= '<select id="' . $sb_id . '" name="' . $sb_id . '" class="option-select-' . esc_attr( $size ) . ' ' . esc_attr( $align ) . '">'."\n";
 			foreach ( $options as $option_id => $option ) {
-				if ($value == $option_id) { $select = 'selected="selected"'; } else { $select = ''; }
-				$output .= "\t" . "\t" . "\t" . '<option value="' . esc_attr( $option_id ) . '" ' . $select . '>' . $option . '</option>'."\n";
+				$output .= '<option value="' . esc_attr( $option_id ) . '" ' . selected( $value, $option_id, false ) . '>' . $option . '</option>'."\n";
 			}
-			$output .= "\t" . "\t" . '</select>'."\n";
+			$output .= '</select>'."\n";
 		}
+		if ($desc) $output .= sb_input::descriptive_text( $desc );
 		$output .= $after;
-		if ($desc) { $output .= "\t" . "\t" . '<br/><span class="desc"> ' . $desc . ' </span>'."\n"; }
-		if ( $after == '' ) $output .= "\t" . '</p>'."\n";
+
+		// Return our output
 		return $output;
 	}
 
@@ -301,65 +548,90 @@ class sb_input {
 	 * @return string      The concatenated select option output
 	 */
 	public function enable_select( $args = '' ) {
+		
+		// Setup our defaults
 		$defaults = array(
-			'id' => 'option-select',	// The unique ID for this input
-			'label' => 'Select',		// The content to use as the input label
-			'value' => '',				// The option value
-			'desc' => '',				// The content to display as a small descriptive text
-			'options' => '',			// String: pages, posts, categories: returns a dropdown for common WordPress content; Array: An array of selectable options
-			'size' => 'large',			// The size of this input (small, default, large; default: large)
-			'align' => 'right',			// The alignment for this input (left, right; default: right)
-			'before' => '<span class="right">',	// Custom content to include before the input
-			'after' => '</span>',		// Custom costent to include after the input
-			'order_by' => 'post_date',	// For post options: how posts should be ordered
-			'order' => 'DESC',			// For post options: the order to display the results
-			'limit' => 30 				// For post and page options: how many results to retrieve
+			'id'		=> 'option-select',	// The unique ID for this input
+			'label'		=> 'Select',		// The content to use as the input label
+			'value'		=> '',				// The option value
+			'desc'		=> '',				// The content to display as a small descriptive text
+			'options'	=> '',				// String: pages, posts, categories: returns a dropdown for common WordPress content; Array: An array of selectable options
+			'size'		=> 'large',			// The size of this input (small, default, large; default: large)
+			'align'		=> 'right',			// The alignment for this input (left, right; default: right)
+			'before'	=> '<span class="right">',	// Custom content to include before the input
+			'after'		=> '</span>',		// Custom costent to include after the input
+			'order_by'	=> 'post_date',		// For post options: how posts should be ordered
+			'order'		=> 'DESC',			// For post options: the order to display the results
+			'limit'		=> 30 				// For post and page options: how many results to retrieve
 		);
 		
+		// Get our variables ready to go
 		$r = wp_parse_args( $args, $defaults );
-		extract( $r, EXTR_SKIP );
-		
-		if ( sb_get_option( $id . '-enabled' ) == 'true') { $checked = 'checked="checked"'; } else { $checked = ''; }
-		$output = "\t" . '<p class="' . esc_attr( $id ) . '">'."\n";
-		$output .= "\t" . "\t" . '<label for="' . THEME_OPTIONS . '[' . esc_attr( $id ) . '-enabled]' . '"><input type="checkbox" class="checkbox" id="' . THEME_OPTIONS . '[' . esc_attr( $id ) . '-enabled]' . '" name="' . THEME_OPTIONS . '[' . esc_attr( $id ) . '-enabled]' . '" value="true" ' . $checked . ' /> Enable</label>'."\n";
+		extract( $r, EXTR_OVERWRITE );
+		$output = '';
+
+		// Concatenate our output
+		$output .= sb_input::checkbox( array(
+			'id'	=> $id . '-enabled',
+			'value'	=> sb_get_option( $id . '-enabled' ),
+			'label'	=> 'Enable',
+			'align'	=> 'left',
+			'after' => ' '
+			));
 		$output .= sb_input::select( $r );
-		$output .= "\t" . '</p>'."\n";
+		if ($desc) $output .= sb_input::descriptive_text( $desc );
+		$output .= '</p>'."\n";
+
+		// Return our output
 		return $output;
 	}
 
 	/**
 	 * Navigation Option
 	 * 
-	 * @param  string $id       The unique ID for this input
-	 * @param  string $label    The content to use as the input label
-	 * @param  string $value    The option value
-	 * @param  string $desc     The content to display as small descriptive text
-	 * @param  string $size     The size of this input (small, default,large; default: large)
-	 * @param  string $align    The alignment for this input (left,right; default:right)
-	 * @param  array $position  An array of selectable position options
-	 * @param  array $extras    An array of selectable extra options
+	 * @param  array $args An array of arguments
 	 * @return string           The concatenated navigation option output
 	 */
-	public function navigation( $id, $label, $value, $desc, $size = 'large', $align = 'right', $position = null, $extras ) {
+	public function navigation( $args = '' ) {
+		
+		// Setup our defaults
+		$defaults = array(
+			'id'		=> 'option-select',	// The unique ID for this input
+			'label'		=> 'Select',		// The content to use as the input label
+			'value'		=> '',				// The option value
+			'desc'		=> '',				// The content to display as a small descriptive text
+			'options'	=> '',				// String: pages, posts, categories: returns a dropdown for common WordPress content; Array: An array of selectable options
+			'size'		=> 'large',			// The size of this input (small, default, large; default: large)
+			'align'		=> 'right',			// The alignment for this input (left, right; default: right)
+			'position'	=> '',				// An array of selectable position options
+			'extras'	=> '',				// An array of selectable extra options
+		);
+		
+		// Get our variables ready to go
+		$r = wp_parse_args( $args, $defaults );
+		extract( $r, EXTR_OVERWRITE );
+		$sb_id = THEME_OPTIONS . '[' . esc_attr( $id ) . ']';
 		$menu_opts = apply_filters( "sb_nav_types", array(
 			'none' 		 => __( 'Disabled', 'startbox' ),
 			'pages'		 => __( 'Pages', 'startbox' ),
 			'categories' => __( 'Categories', 'startbox' )
 		));
 		$menus = get_terms('nav_menu');
-		
-		$output = "\t" . '<p class="' . esc_attr( $id ) . '">'."\n";
-		$output .= "\t" . "\t" . '<label for="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '">' . $label . ':</label> '."\n";
-		$output .= "\t" . "\t" . '<select id="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" name="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '"class="option-select-' . esc_attr( $size ) . ' ' . esc_attr( $align ) . '">'."\n";
+		$output = '';
+
+		// Concatenate our output
+		$output .= '<p class="' . esc_attr( $id ) . '">'."\n";
+		$output .= '<label for="' . $sb_id . '">' . $label . ':</label> '."\n";
+		$output .= '<select id="' . $sb_id . '" name="' . $sb_id . '"class="option-select-' . esc_attr( $size ) . ' ' . esc_attr( $align ) . '">'."\n";
 		foreach ( $menu_opts as $option_id => $option ) {
 			if ($value == $option_id) { $select = 'selected="selected"'; } else { $select = ''; }
-			$output .= "\t" . "\t" . "\t" . '<option value="' . esc_attr( $option_id ) . '" ' . $select . '>' . $option . '</option>'."\n";
+			$output .= '<option value="' . esc_attr( $option_id ) . '" ' . $select . '>' . $option . '</option>'."\n";
 		}
 		foreach ($menus as $menu ) {
 			if ($value == $menu->term_id) { $select = 'selected="selected"'; } else { $select = ''; }
-			$output .= "\t" . "\t" . "\t" . '<option value="'. esc_attr( $menu->term_id ) .'" ' . $select . '>'. $menu->name .'</option>'."\n";
+			$output .= '<option value="'. esc_attr( $menu->term_id ) .'" ' . $select . '>'. $menu->name .'</option>'."\n";
 		}
-		$output .= "\t" . "\t" . '</select>' . "\n";
+		$output .= '</select>' . "\n";
 		
 		// Depth Options
 		$depth = apply_filters( 'sb_nav_depth', array(
@@ -388,12 +660,12 @@ class sb_input {
 		if ($extras) $output .= sb_input::select( array( 'id' => $id . '-extras', 'label' => $label . ' ' . __( 'Extras', 'startbox' ), 'value' => sb_get_option( $id . '-extras' ), 'options' => $extras, 'size' => $size, 'align' => $align ) );
 		
 		// Add "Home" link to menu items
-		if ( sb_get_option( $id . '-enable-home' ) == 'true') { $checked = true; } else { $checked = false; }
-		$output .= sb_input::checkbox( $id . '-enable-home', sprintf( __( 'Add "Home" Link to %s', 'startbox'), $label ), $checked, null, $align );
+		$output .= sb_input::checkbox( array( 'id' => $id . '-enable-home', 'label' => sprintf( __( 'Add "Home" Link to %s', 'startbox'), $label ), 'value' => sb_get_option( $id . '-enable-home' ), 'align' => $align ) ) ;
 		
-		if ($desc) { $output .= "\t" . "\t" . '<br/><span class="desc"> ' . $desc . ' </span>'."\n"; }
-		$output .= "\t" . '</p>'."\n";
-		
+		if ($desc) $output .= sb_input::descriptive_text( $desc );
+		$output .= '</p>'."\n";
+
+		// If we have no extras, we can stop here
 		if (!$extras)
 			return $output;
 
@@ -410,81 +682,157 @@ class sb_input {
 		));
 		
 		$output .= '<div class="' . esc_attr( $id ) . '-social-extras">';
-		$output .= sb_input::intro( $id . '-social-intro', __( 'Social Links', 'startbox' ), __( 'Provide the full URL\'s (including http://) of whichever social profiles you would like to include in your navigation.', 'startbox' ) );
+		$output .= sb_input::intro( array( 'id' => $id . '-social-intro', 'label' => __( 'Social Links', 'startbox' ), 'desc' => __( 'Provide the full URL\'s (including http://) of whichever social profiles you would like to include in your navigation.', 'startbox' ) ) );
 		foreach ($social_services as $service => $label) {
 			$value = sb_get_option( $id . '-social-' . $service );
 			if ($service == 'rss') {
 				if ( sb_get_option( $id . '-social-rss' ) == 'true') { $checked = true; } else { $checked = false; }
-				$output .= sb_input::checkbox( $id . '-social-rss', $label, $checked, null, $align );
+				$output .= sb_input::checkbox( array( 'id' => $id . '-social-rss', 'label' => $label, 'value' => $checked, 'align' => $align ) );
 			} else {
-				$output .= '<p>' . sb_input::text( $id . '-social-' . $service, $id . '-social-' . $service, $label, $value, null, 'medium', 'right') . '</p>';
+				$output .= sb_input::text( array( 'id' => $id . '-social-' . $service, 'class' => $id . '-social-' . $service, 'label' => $label, 'value' => $value, 'size' => 'medium', 'align' => 'right' ) );
 			}
 		}
 		$output .= '</div>';
 		
-		return $output;
-	}
-
-	/**
-	 * Color Input
-	 * 
-	 * @param  string $id    The unique ID for this input
-	 * @param  string $label The content to use as the input label
-	 * @param  string $value The option value
-	 * @param  string $desc  The content to display as small descriptive text
-	 * @return string        The concatenated color option output
-	 */
-	public function color( $id, $label, $value, $desc ) {
-		$output = '<p class="colorpickerinput ' . esc_attr( $id ) . '">';
-		$output .= sb_input::text( $id, 'colorinput', $label, sb_get_option( $id ), null, 'small', null, '<span class="right">' );
-		$output .= '<span class="colorselector"><span></span></span></span>'."\n";
-		if ($desc) { $output .= "\t" . "\t" . '<br/><span class="desc"> ' . $desc . ' </span>'."\n"; } 
-		$output .= '</p>';
+		// Return our output
 		return $output;
 	}
 
 	/**
 	 * Upload Input
 	 * 
-	 * @param  string $id    The unique ID for this input
-	 * @param  string $label The content to use as the input label
-	 * @param  string $value The option value
-	 * @param  string $desc  The content to display as small descriptive text
-	 * @param  string $suggested Comma-separated list of URLs to display in a "Suggested" tab in the media window
-	 * @return string        The concatenated upload option output
+	 * @param  array $args An array of arguments
+	 * @return string      The concatenated upload option output
 	 */
-	public function upload( $id, $label, $value, $desc, $suggested = null ) {
-		$output = "\t" . '<p class="imagepickerinput ' . esc_attr( $id ) . '">'."\n";
-		$output .= "\t" . "\t" . '<label for="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '">' . $label . ':</label> <input type="text" value="' . esc_attr( $value ) . '" name="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" id="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" class="uploadinput"/>';
-		$output .= ' <a href="' . esc_attr( $value ) . '" class="previewlink button" title="' . $label . '">'.__('Preview','startbox').'</a>';
-		if ( $suggested ) {
-			// The URLs for the 'suggested' setting are relative to the active theme's directory. Non-existant images will produce a warning.
-			$output .= '&nbsp;<a href="media-upload.php?type=image&amp;tab=suggested&amp;suggested=' . $suggested . '" class="chooselink button colorbox" title="' . __('Choose a previously uploaded file','startbox') . '">' . __('Media Library','startbox') . '</a>';
-		} else {
-			$output .= '&nbsp;<a href="media-upload.php?type=image&amp;tab=library" class="chooselink button colorbox" title="'.__('Choose a previously uploaded file','startbox').'">'.__('Media Library','startbox').'</a>';
-		}
-		$output .= '&nbsp;<a href="#" class="uploadlink button" title="'.__('Upload a file','startbox').'">'.__('Upload','startbox').'</a>';
-		$output .= '';
-		$output .= "\t" . "\t" . '<br/><span class="desc"> ' . $desc . ' <span class="uploadresult"></span></span>'."\n";
-		$output .= "\t" . '</p>'."\n";
+	public function upload( $args = '' ) {
+
+		// Setup our defaults
+		$defaults = array(
+			'id'		=> '',		// The unique ID for this input
+			'label'		=> '',		// The content to use as the input label
+			'value'		=> '',		// The option value
+			'desc'		=> '',		// The content to display as a small descriptive text
+			'suggested'	=> null,	// Comma-sepparated list of URLs (relative to the active theme's directory). Non-existant images will produce a warning.
+		);
+
+		// Get our variables ready to go
+		$r = wp_parse_args( $args, $defaults );
+		extract( $r, EXTR_OVERWRITE );
+		$sb_id = THEME_OPTIONS . '[' . esc_attr( $id ) . ']';
+		$output = '';
+		
+		// Concatenate our output
+		$output .= '<p class="imagepickerinput ' . esc_attr( $id ) . '">'."\n";
+		$output .= '<label for="' . $sb_id . '">' . $label . ':</label> <input type="text" value="' . esc_attr( $value ) . '" name="' . $sb_id . '" id="' . $sb_id . '" class="uploadinput"/>' ;
+		$output .= '<a href="' . esc_attr( $value ) . '" class="previewlink button" title="' . $label . '">'.__('Preview','startbox').'</a>&nbsp;';
+		if ( $suggested )
+			$output .= '<a href="media-upload.php?type=image&amp;tab=suggested&amp;suggested=' . $suggested . '" class="chooselink button colorbox" title="' . __('Choose a previously uploaded file','startbox') . '">' . __('Media Library','startbox') . '</a>&nbsp;';
+		else
+			$output .= '<a href="media-upload.php?type=image&amp;tab=library" class="chooselink button colorbox" title="'.__('Choose a previously uploaded file','startbox').'">'.__('Media Library','startbox').'</a>&nbsp;';
+		$output .= '<a href="#" class="uploadlink button" title="'.__('Upload a file','startbox').'">'.__('Upload','startbox').'</a><br/>';
+		$output .= '<span class="desc"> ' . $desc . ' <span class="uploadresult"></span></span>'."\n";
+		$output .= '</p>'."\n";
+
+		// Return our output
 		return $output;
 	}
 
 	/**
 	 * Logo Options
 	 * 
-	 * @param  string $id    The unique Id for this input
-	 * @param  string $label The content to use as the input label
-	 * @param  string $desc  Small descriptive text
+	 * @param  array $args An array of arguments
 	 * @return string        The concatenated logo option output
 	 */
-	public function logo($id, $label, $desc) {
-		$output = sb_input::intro( $id, __( 'Logo Settings', 'startbox' ), $desc );
-		$output .= sb_input::upload( $id . '-image', __( 'Logo Image', 'startbox' ), sb_get_option( $id . '-image' ), null );
-		$output .= "<p>" . sb_input::text( $id . '-text', null, __( 'Or, use this text instead', 'startbox' ), sb_get_option( $id . '-text' ), null, 'medium' ) . "</p>\n";
+	public function logo( $args = '' ) {
+
+		// Setup our defaults
+		$defaults = array(
+			'id'	=> '',	// The unique ID for this input
+			'label'	=> '',	// The content to use as the input label
+			'desc'	=> ''	// The content to display as a small descriptive text
+		);
+
+		// Get our variables ready to go
+		$r = wp_parse_args( $args, $defaults );
+		extract( $r, EXTR_OVERWRITE );
+		$output = '';
+		
+		// Concatenate our output
+		$output .= sb_input::intro( array( 'id' => $id, 'label' => __( 'Logo Settings', 'startbox' ), 'desc' => $desc ) );
+		$output .= sb_input::upload( array( 'id' => $id . '-image', 'label' => __( 'Logo Image', 'startbox' ), 'value' => sb_get_option( $id . '-image' ), ) );
+		$output .= sb_input::text( array( 'id' => $id . '-text', 'label' => __( 'Or, use this text instead', 'startbox' ), 'value' => sb_get_option( $id . '-text' ), 'size' => 'medium' ) );
 		$output .= sb_input::select( array( 'id' => $id . '-align', 'label' => __( 'Logo Alignment', 'startbox' ), 'value' => sb_get_option( $id . '-align' ), 'options' => array( 'left' => __( 'Left', 'startbox' ), 'right' => __( 'Right', 'startbox' ), 'center' => __( 'Center', 'startbox' )), 'size' => 'default', 'align' => 'left' ) );
-		$output .= sb_input::checkbox( $id . '-disabled', __( 'Disable Logo', 'startbox' ), sb_get_option( $id . '-disabled' ), null );
+		$output .= sb_input::checkbox( array( 'id' => $id . '-disabled', 'label' => __( 'Disable Logo', 'startbox' ), 'value' => sb_get_option( $id . '-disabled' ) ) );
+		
+		// Return our output
 		return $output;
+	}
+
+	/**
+	 * WYSIWYG Options
+	 * 
+	 * @param  array $args An array of arguments
+	 * @return string      The concatenated WYSIWYG option output
+	 */
+	public function wysiwyg( $args = '' ) {
+		
+		// Setup our defaults
+		$defaults = array(
+			'id'		=> '',		// Unique ID for this option
+			'label'		=> '',		// The content to display as the input label
+			'value'		=> '',		// The option value
+			'desc'		=> '',		// Descriptive text
+			'options'	=> array(	// Options specific to the wp_editor() function
+        		'textarea_name'	=> THEME_OPTIONS . '[' . esc_attr( $args['id'] ) . ']',
+	        	'media_buttons'	=> false,
+    	    	'teeny'			=> true
+        	)
+		);
+
+		// Get our variables ready to go
+		$r = wp_parse_args( $args, $defaults );
+		extract( $r, EXTR_OVERWRITE );
+		$output = '';
+
+		// Concatenate our output
+		$output .= '<p class=" . esc_attr( $id ) . ">'."\n";
+        $output .= '<label for="' . $sb_id . '">' . $label . '</label><br/>'."\n";
+        ob_start();
+        wp_editor( $value, $id, $options );
+		$output .= ob_get_clean();
+        if ($desc) $output .= sb_input::descriptive_text( $desc );
+        $output .= '</p>'."\n";
+
+        // Return our output
+        return $output;
+    }
+
+    /**
+	 * Color Input
+	 * 
+	 * @param  array $args An array of arguments
+	 * @return string      The concatenated color option output
+	 */
+	public function color( $args = '' ) {
+
+		// Setup our defaults
+		$defaults = array(
+			'id'		=> '',
+			'label'		=> '',
+			'value'		=> '',
+			'desc'		=> '',
+			'class'		=> 'colorinput',
+			'size'		=> 'small',
+			'align'		=> 'right',
+			'before'	=> '<span class="colorpickerinput">',
+			'after'		=> '<span class="colorselector"><span></span></span></span>'
+		);
+
+		// Get our variables ready to go
+		$args = wp_parse_args( $args, $defaults );
+		
+		// Return our output
+		return sb_input::text( $args );
 	}
 
 	/**
@@ -495,82 +843,33 @@ class sb_input {
 	 * @param  string $desc  Small descriptive text
 	 * @return string        The concatenated background option output
 	 */
-	public function background( $id, $label, $desc ) {
-		$output .= sb_input::intro( $id, $label, $desc );
-		$output .= sb_input::upload( $id . '-image', 'Background Image', sb_get_option( $id . '-image' ), null );
+	public function background( $args = '' ) {
+		
+		// Setup our defaults
+		$defaults = array(
+			'id'		=> '',		// Unique ID for this option
+			'label'		=> '',		// The content to display as the input label
+			'desc'		=> '',		// Descriptive text
+		);
+
+		// Get our variables ready to go
+		$r = wp_parse_args( $args, $defaults );
+		extract( $r, EXTR_OVERWRITE );
+		$output = '';
+
+		// Concatenate our output
+		$output .= sb_input::intro( array( 'id' => $id, 'label' => $label, 'desc' => $desc ) );
+		$output .= sb_input::upload( array( 'id' => $id . '-image', 'label' => 'Background Image', 'value' => sb_get_option( $id . '-image' ) ) );
 		$output .= sb_input::color( $id . '-color', 'Bacground Color', sb_get_option( $id . '-color' ), null );
 		$output .= sb_input::select( array( 'id' => $id . '-horiz', 'label' => 'Horizontal Alignment', 'value' => sb_get_option( $id . '-horiz' ), 'options' => array( 'left' => 'Left', 'center' => 'Center', 'right' => 'Right'), 'size' => 'medium', 'align' => 'right') );
 		$output .= sb_input::select( array( 'id' => $id . '-vert', 'label' => 'Vertical Alignment', 'value' => sb_get_option( $id . '-vert' ), 'options' => array( 'top' => 'Top', 'middle' => 'Middle', 'bottom' => 'Bottom'), 'size' => 'medium', 'align' => 'right' ) );
 		$output .= sb_input::select( array( 'id' => $id . '-repeat', 'label' => 'Repeat', 'value' => sb_get_option( $id . '-repeat' ), 'options' => array( 'no-repeat' => 'No Repeat', 'repeat-x' => 'Tile Horizontally', 'repeat-y' => 'Tile Vertically', 'repeat' => 'Both'), 'size' => 'medium', 'align' => 'right' ) );
-		$output .= sb_input::checkbox( $id . '-fixed', 'Fixed Position', sb_get_option( $id . '-fixed' ), $setting['desc'], 'right' );
+		$output .= sb_input::checkbox( array( 'id' => $id . '-fixed', 'label' => 'Fixed Position', 'value' => sb_get_option( $id . '-fixed' ), 'align' => 'right' ) );
+		
+		// Return our output
 		return $output;
 	}
 
-	/**
-	 * Font Options
-	 * 
-	 * @param  string $id    The unique Id for this input
-	 * @param  string $label The content to use as the input label
-	 * @param  string $desc  Small descriptive text
-	 * @return string        The concatenated font option output
-	 */
-	public function font( $id, $label, $desc ) {
-		$output = sb_input::intro( $id, $label, $desc );
-		$output .= '<p class="' . esc_attr( $id ) . '">' . sb_input::text( $id . '-family', null, 'Font Family', sb_get_option( $id . '-family' ), 'Enter an individual font name a comma-separated font stack (e.g. Georgia,Times,"Times New Roman",serif).', 'large', 'right' ) . "</p>\n";
-		$output .= '<p class="' . esc_attr( $id ) . '">' . sb_input::text( $id . '-size', null, 'Font Size', sb_get_option( $id . '-size' ), null, 'small', null, '<span class="right">' ) . " <span class='font-unit'>" . sb_get_option( $id . '-unit' ) . "</span></span></p>\n";
-		$output .= '<p class="' . esc_attr( $id ) . '">' . sb_input::text( $id . '-line-height', null, 'Line Height', sb_get_option( $id . '-line-height'), null, 'small', null, '<span class="right">' ) . " <span class='font-unit'>" . sb_get_option( $id . '-unit' ) . "</span></span></p>\n";
-		$output .= sb_input::select( array( 'id' => $id . '-unit', 'label' => 'Unit of measurement', 'value' => sb_get_option( $id . '-unit' ), 'options' => array('px' => 'px','pt' => 'pt','em' => 'em','%' => '%'), 'size' => 'medium', 'align' => 'right font-unit' ) );
-		$output .= sb_input::color( $id . '-color', 'Font Color', sb_get_option( $id . '-color' ), null );
-		$output .= sb_input::select( array( 'id' => $id . '-style', 'label' => 'Font Style', 'value' => sb_get_option( $id . '-style' ), 'options' => array('normal' => 'Normal', 'italic' => 'Italic'), 'size' => 'medium', 'align' => 'right' ) );
-		$output .= sb_input::select( array( 'id' => $id . '-weight', 'label' => 'Font Weight', 'value' => sb_get_option( $id . '-weight' ), 'options' => array('normal' => 'Normal', 'bold' => 'Bold'), 'size' => 'medium', 'align' => 'right' ) );
-		$output .= sb_input::select( array( 'id' => $id . '-decoration', 'label' => 'Text Decoration', 'value' => sb_get_option( $id . '-decoration' ), 'options' => array( 'none' => 'None', 'underline' => 'Underline', 'overline' => 'Overline', 'line-through' => 'Line Through'), 'size' => 'medium', 'align' => 'right' ) );
-		$output .= sb_input::select( array( 'id' => $id . '-transform', 'label' => 'Text Transform', 'value' => sb_get_option( $id . '-transform' ), 'options' => array( 'none' => 'None', 'capitalize' => 'Capitalize', 'uppercase' => 'UPPERCASE', 'lowercase' => 'lowercase'), 'size' => 'medium', 'align' => 'right' ) );
-		return $output;
-	}
-
-	/**
-	 * Border Options
-	 * 
-	 * @param  string $id    The unique Id for this input
-	 * @param  string $label The content to use as the input label
-	 * @param  string $desc  Small descriptive text
-	 * @return string        The concatenated border option output
-	 */
-	public function border( $id, $label, $desc ) {
-		$output = sb_input::intro( $id, $label, $desc );
-		$output .= sb_input::color( $id . '-color', 'Border Color', sb_get_option( $id . '-color' ), null );
-		$output .= '<p class="' . esc_attr( $id ) . '">' . sb_input::text( $id . '-top', null, 'Border Top Width', sb_get_option( $id . '-top' ), null, 'small', null, '<span class="right">' ) . " px</p>\n";
-		$output .= '<p class="' . esc_attr( $id ) . '">' . sb_input::text( $id . '-bottom', null, 'Border Bottom Width', sb_get_option( $id . '-bottom' ), null, 'small', null, '<span class="right">' ) . " px</span></p>\n";
-		$output .= '<p class="' . esc_attr( $id ) . '">' . sb_input::text( $id . '-left', null, 'Border Left Width', sb_get_option( $id . '-left' ), null, 'small', null, '<span class="right">' ) . " px</span></p>\n";
-		$output .= '<p class="' . esc_attr( $id ) . '">' . sb_input::text( $id . '-right', null, 'Border Right Width', sb_get_option( $id . '-right' ), null, 'small', null, '<span class="right">' ) . " px</span></p>\n";
-		$output .= '<p class="' . esc_attr( $id ) . '">' . sb_input::text( $id . '-radius', null, 'Border Radius', sb_get_option( $id . '-radius' ), null, 'small', null, '<span class="right">' ) . " px</span></p>\n";
-		$output .= "\t" . "\t" . '<p><span class="desc">Note: the Border Radius property does not apply to Internet Explorer users.</p>'."\n"; 
-		return $output;
-	}
-
-	/**
-	 * WYSIWYG Options
-	 * 
-	 * @param  string $id      The unique Id for this input. Note that the ID that is passed to the wp_editor() function can only be comprised of lower-case letters. No underscores, no hyphens.
-	 * @param  string $label   The content to use as the input label
-	 * @param  string $content The option content
-	 * @param  string $desc    Small descriptive text
-	 * @return string          The concatenated WYSIWYG option output
-	 */
-	public function wysiwyg( $id, $label, $content, $desc ) {
-    	$output = "\t" . '<p class=" . esc_attr( $id ) . ">'."\n";
-        $output .= "\t" . "\t" . '<label for="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '">' . $label . '</label><br/>'."\n";
-        ob_start();
-        wp_editor( $content, $id, array(
-        	'textarea_name'	=> THEME_OPTIONS . '[' . esc_attr( $id ) . ']',
-        	'media_buttons'	=> false,
-        	'teeny'			=> true
-        	) );
-		$output .= ob_get_clean();
-        if ($desc) { $output .= "\t" . "\t" . '<br/><span class="desc"> ' . $desc . ' </span>'."\n"; }
-        $output .= "\t" . '</p>'."\n";
-        return $output;
-    }
 }
 $sb_input = new sb_input;
 
@@ -582,6 +881,8 @@ $sb_input = new sb_input;
  * @since 2.4.2
  */
 class sb_settings_factory {
+
+	// Setup our variables
 	public $settings = array();
 	public $defaults = array( 'sb_analytics_settings', 'sb_content_settings', 'sb_feedburner_settings', 'sb_footer_settings', 'sb_header_settings', 'sb_settings_help', 'sb_navigation_settings', 'sb_pushup_settings', 'sb_seo_settings', 'sb_upgrade_settings' );
 
@@ -842,7 +1143,7 @@ function sb_add_action( $tag, $class_name, $function_to_add, $priority = 10 ) {
 }
 
 /**
- * Helper function for outputting valid CSS for background-type optionss
+ * Helper function for outputting valid CSS for background-type options
  *
  * @since 2.4.4
  *

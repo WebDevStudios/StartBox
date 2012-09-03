@@ -35,48 +35,48 @@
 						'help'		=> __( 'The very first year to use for your content copyright.', 'startbox' )
 					),
 					'enable_copyright' => array(
-							'type'		=> 'checkbox',
-							'label'		=> __( 'Enable Copyright', 'startbox' ),
-							'default'	=> 'true',
-							'help'		=> __( 'Display the copyright information (Default: true).', 'startbox' )
-						),
+						'type'		=> 'checkbox',
+						'label'		=> __( 'Enable Copyright', 'startbox' ),
+						'default'	=> 'true',
+						'help'		=> __( 'Display the copyright information (Default: true).', 'startbox' )
+					),
 					'enable_designer_credit' => array(
-							'type'		=> 'checkbox',
-							'label'		=> __( 'Enable Designer Credit', 'startbox' ),
-							'default'	=> 'true',
-							'help'		=> __( 'Display the credit for the site designer (Default: true).', 'startbox' )
-						),
+						'type'		=> 'checkbox',
+						'label'		=> __( 'Enable Designer Credit', 'startbox' ),
+						'default'	=> 'true',
+						'help'		=> __( 'Display the credit for the site designer (Default: true).', 'startbox' )
+					),
 					'enable_wp_credit' => array(
-							'type'		=> 'checkbox',
-							'label'		=> __( 'Enable WordPress Credit', 'startbox' ),
-							'default'	=> 'true',
-							'help'		=> __( 'Display the "Powered by Wordpress" credit (Default: true).', 'startbox' )
-						),
+						'type'		=> 'checkbox',
+						'label'		=> __( 'Enable WordPress Credit', 'startbox' ),
+						'default'	=> 'true',
+						'help'		=> __( 'Display the "Powered by Wordpress" credit (Default: true).', 'startbox' )
+					),
 					'enable_sb_credit' => array(
-							'type'		=> 'checkbox',
-							'label'		=> __( 'Enable StartBox Credit', 'startbox' ),
-							'default'	=> 'true',
-							'help'		=> __( 'Display the "Powered by StartBox" credit (Default: true).', 'startbox' )
-						),
+						'type'		=> 'checkbox',
+						'label'		=> __( 'Enable StartBox Credit', 'startbox' ),
+						'default'	=> 'true',
+						'help'		=> __( 'Display the "Powered by StartBox" credit (Default: true).', 'startbox' )
+					),
 					'enable_admin' => array(
-							'type'		=> 'checkbox',
-							'label'		=> __( 'Enable Admin Links', 'startbox' ),
-							'default'	=> 'false',
-							'help'		=> __( 'Include admin links in the site footer (Default: false).', 'startbox' )
-						),
+						'type'		=> 'checkbox',
+						'label'		=> __( 'Enable Admin Links', 'startbox' ),
+						'default'	=> 'false',
+						'help'		=> __( 'Include admin links in the site footer (Default: false).', 'startbox' )
+					),
 					'enable_rtt' => array(
-							'type'		=> 'checkbox',
-							'label'		=> __( 'Enable Return to Top link', 'startbox' ),
-							'default'	=> 'true',
-							'help'		=> __( 'Include a link for users to return to the top of the site (Default: true).', 'startbox' )
-						),
+						'type'		=> 'checkbox',
+						'label'		=> __( 'Enable Return to Top link', 'startbox' ),
+						'default'	=> 'true',
+						'help'		=> __( 'Include a link for users to return to the top of the site (Default: true).', 'startbox' )
+					),
 					'footer_text' => array(
-							'type'		=> 'textarea',
-							'sanitize'	=> array( 'allowed_html' => array('a' => array('href' => array(),'title' => array()),'br' => array(),'em' => array(),'strong' => array(), 'div' => array(), 'span' => array(), 'ul' => array(), 'ol' => array(), 'li' => array() ) ),
-							'label'		=> __( 'Enter any additional footer text below:', 'startbox'),
-							'desc'		=> __( 'Full HTML and Shortcodes are allowed.', 'startbox' ),
-							'help'		=> __( 'Display any custom text you would like, including full HTML if your user account permits it.', 'startbox' )
-						)
+						'type'		=> 'textarea',
+						'sanitize'	=> array( 'allowed_html' => array('a' => array('href' => array(),'title' => array()),'br' => array(),'em' => array(),'strong' => array(), 'div' => array(), 'span' => array(), 'ul' => array(), 'ol' => array(), 'li' => array() ) ),
+						'label'		=> __( 'Enter any additional footer text below:', 'startbox'),
+						'desc'		=> __( 'Full HTML and Shortcodes are allowed.', 'startbox' ),
+						'help'		=> __( 'Display any custom text you would like, including full HTML if your user account permits it.', 'startbox' )
+					)
 					
 				);
 			parent::__construct();

@@ -11,5 +11,4 @@
 
 ##### Future Release
 	? build simple metabox creator for posts & pages based on options api? store options vs custom field
-	? look at integrating HTML5 Boilerplate
 	? add image option for search widget submit button
