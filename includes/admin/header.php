@@ -25,7 +25,7 @@
 				'favicon' => array(
 						'type'		=> 'upload',
 						'label'		=> __( 'Favicon', 'startbox' ),
-						'desc'		=> __( 'The favicon is a small logo/icon that displays alongside your URL in most browsers.', 'startbox' ),
+						'desc'		=> sprintf( __( 'The %s is a small logo/icon that displays alongside your URL or in the page tab of most browsers.', 'startbox' ), '<a href="http://en.wikipedia.org/wiki/Favicon" target="_blank">favicon</a>' ),
 						'default'	=> '/wp-content/themes/startbox/images/favicon.png',
 						'help'		=> __( 'Specify a custom favicon (small 16px image) for use in the navigation bar or browser tab for your site', 'startbox' )
 					)
