@@ -195,9 +195,9 @@ function sb_home_content() {
 		<?php }
 		else {
 			if ( 'post' != get_post_type() )
-				get_template_part( 'loop', get_post_type() );
+				get_template_part( 'loop-home', get_post_type() );
 			else
-				get_template_part( 'loop', get_post_format() );
+				get_template_part( 'loop-home', get_post_format() );
 		}
 	endwhile;
 }
@@ -294,6 +294,12 @@ add_action( 'sb_before_post', 'sb_before_first_post' );
 add_action( 'sb_after_post', 'sb_after_first_post' );
 
 ////////////////////////////////////////////////// Items To Hook into Footer //////////////////////////////////////////////////
+
+// Include our footer widgets
+function sb_footer_widgets() {
+	get_sidebar('footer');
+}
+add_action( 'sb_footer_widgets', 'sb_footer_widgets' );
 
 // Auto-hide the address bar in mobile Safari (iPhone)
 function sb_iphone() { echo '<script type="text/javascript">window.scrollTo(0, 1);</script>'; }

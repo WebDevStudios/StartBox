@@ -17,7 +17,7 @@ class sb_upgrade {
 		// Don't bother checking if updates are disabled
 		if (!sb_get_option('enable_updates'))
 			return;
-		
+
 		$sb_update = get_transient('sb_update');
 
 		if ( !$sb_update ) {
@@ -35,7 +35,8 @@ class sb_upgrade {
 			$wp = get_bloginfo("version") ;
 			$php = phpversion();
 			$mysql = $wpdb->db_version();
-			$url = 'http://wpstartbox.com/updates/index.php?product=StartBox&sb_version=' . urlencode($sb) . '&wp_version=' . urlencode($wp) . '&php_version=' . urlencode($php) . '&mysql_version=' . urlencode($mysql);
+			$use_beta = ( sb_get_option( 'use_beta' ) ) ? "true" : "false";
+			$url = 'http://wpstartbox.com/updates/index.php?product=StartBox&sb_version=' . urlencode($sb) . '&wp_version=' . urlencode($wp) . '&php_version=' . urlencode($php) . '&mysql_version=' . urlencode($mysql) . '&use_beta=' . $use_beta;
 			$raw_response = wp_remote_request($url, $options);
 			$sb_update = wp_remote_retrieve_body($raw_response);
 
@@ -67,7 +68,7 @@ class sb_upgrade {
 
 	// Add an update alert to the dashboard when upgrade is available
 	function update_notification() {
-		
+
 		// Don't bother checking if updates are disabled
 		if (!sb_get_option('enable_updates') || sb_get_option('disable_update_notifications') )
 			return;
@@ -92,7 +93,7 @@ class sb_upgrade {
 		delete_transient('sb_update');
 		remove_action('admin_notices', 'sb_update_notification');
 	}
-	
+
 	// This makes everything work and hooks it where it belongs.
 	public function __construct() {
 		add_filter('site_transient_update_themes', array( $this, 'update_include') );
@@ -101,7 +102,7 @@ class sb_upgrade {
 		add_action('load-update.php', array( $this, 'clear_update_transient') );
 		add_action('load-themes.php', array( $this, 'clear_update_transient') );
 	}
-	
+
 }
 $sb_upgrade = new sb_upgrade;
 

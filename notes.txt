@@ -10,6 +10,8 @@ Contents
 
 ##### 2.6
 	review Options API
+	change menu options to include searchform.php instead of custom search html
+	CSS integration for theme customization? http://wordpress.org/extend/plugins/css/
 
 ##### 2.7
 	add import/export for theme settings

@@ -15,7 +15,7 @@
 
 // Initialize StartBox, but only if a child theme hasn't already
 if( !did_action( 'sb_init' ) ) { 
-	require_once( TEMPLATEPATH . '/includes/functions/startbox.php' );
+	require_once( get_template_directory() . '/includes/functions/startbox.php' );
 	StartBox::init();
 }
 

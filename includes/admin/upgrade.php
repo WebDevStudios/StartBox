@@ -15,6 +15,12 @@ class sb_upgrade_settings extends sb_settings {
 					'type'		=> 'checkbox',
 					'label'		=> __('Enable Automatic Updates', 'startbox'),
 					'default'	=> true
+			),
+			'use_beta' => array(
+					'type'		=> 'checkbox',
+					'label'		=> __('Use Beta Updates', 'startbox'),
+					'desc'		=> __('Note: Do NOT run beta updates in a production environment', 'startbox'),
+					'default'	=> false
 			)
 		);
 		parent::__construct();

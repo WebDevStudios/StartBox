@@ -9,7 +9,7 @@
 	<div id="footer">
 		
 		<?php
-			get_sidebar('footer');
+			do_action( 'sb_footer_widgets' );
 			do_action( 'sb_footer' );
 			if ( has_action( 'wp_footer' ) ) { 
 				echo '<div id="wp_footer">';

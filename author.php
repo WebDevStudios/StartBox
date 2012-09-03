@@ -19,12 +19,18 @@
 				<?php endif; ?>
 			</div><!-- #entry-author-info -->
 			
-			<?php 
+			<?php
+				// Provide a hook for placing content before author posts
+				do_action( 'sb_author_before_posts' ); 
+			
+				// Grab the author's posts
 				rewind_posts();
 				if ( 'post' != get_post_type() )
 					get_template_part( 'loop', get_post_type() );
 				else
 					get_template_part( 'loop', get_post_format() );
+
+				// Standard "after content" hook
 				do_action( 'sb_after_content' );
 			?>
 		

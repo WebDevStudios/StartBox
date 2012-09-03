@@ -1,5 +1,7 @@
 2012.02.05 - version 2.6
 	* added: shortcode [sitemap] to leverage the sitemap/archive functionality anywhere
+	* added: hook "sb_author_before_posts" on author.php after the author's meta information, before their posts are inserted
+	* added: theme option to use beta updates when available
 	* changed: the Sitemap Page Template now accepts parameters passed through the Custom Field "sitemap_settings"
 	* changed: updated all post image functions to run off a single array or argument string, instead of multiple arguments
 	* changed: updated all templates to use get_post_format() and get_post_type() in get_template_part() for post loops. 
@@ -8,7 +10,9 @@
 	* changed: [date] shortcode now accepts "relative=true" parameter to return a relative date (e.g. 5 hours ago)
 	* changed: updated SB Social widget to include Google+ and more gracefully handle output of each network's name
 	* changed: passed SB and Theme versions through wp_enqueue_style calls
-	* fixed: minor (but annoying) bug introduced in 2.5.4 that prevented sidebar settings from being stored on first save.
+	* changed: footer widgets now hook into sb_footer_widgets via hooks.php (they were previously hard-coded)
+	* fixed: annoying bug introduced in 2.5.4 that prevented sidebar settings from being stored on first save.
+	* fixed: bug that prevented WordPress SEO (by Yoast) from overwriting page titles
 	* fixed: bug that would cause the RSS nav menu extra link to use href="true" instead of href="/your/feed/url/"
 	* added: /includes/functions/conditionals.php
 	* added: /includes/functions/images.php	

@@ -17,18 +17,31 @@ class StartBox {
 		
 		// Grab and define our variables and constants
 		global $blog_id;
-		$sb_data = get_theme_data( get_template_directory() . '/style.css' );
-		$theme_data = get_theme_data( get_stylesheet_directory() . '/style.css' );
-		define( 'THEME_NAME', $theme_data['Name'] );
-		define( 'THEME_VERSION', $theme_data['Version'] );
+		
+		if ( function_exists('wp_get_theme') ) {
+			// wp_get_theme was introduced in WP3.4
+			$startbox = wp_get_theme( 'startbox' );
+			$current_theme = wp_get_theme();
+			$sb_version = $startbox->version;
+			$theme_version = $current_theme->version;
+		} else {
+			$startbox = get_theme_data( get_template_directory() . '/style.css' );
+			$theme_data = get_theme_data( get_stylesheet_directory() . '/style.css' );
+			$sb_version = $sb_data['version'];
+			$theme_version = $theme_data['version'];
+			$current_theme = $theme_data['Name'];
+		}
+		
+		define( 'THEME_NAME', $current_theme );
+		define( 'THEME_VERSION', $theme_version );
 		define( 'THEME_OPTIONS', 'startbox' );
 		define( 'THEME_PREFIX', 'sb_' );
-		define( 'SB_VERSION', $sb_data['Version'] );
+		define( 'SB_VERSION', $sb_version );
 		define( 'IS_MU', (isset($blog_id) && $blog_id > 0) ? true : false );
 		define( 'THEME_PATH', get_stylesheet_directory() );
 		define( 'THEME_URI', get_stylesheet_directory_uri() );
 		define( 'SB_PATH', get_template_directory() );
-		define( 'INCLUDES_PATH', TEMPLATEPATH . '/includes' );
+		define( 'INCLUDES_PATH', get_template_directory() . '/includes' );
 		define( 'INCLUDES_URL', get_template_directory_uri() . '/includes' );
 		define( 'ADMIN_PATH', INCLUDES_PATH . '/admin' );
 		define( 'FUNCTIONS_PATH', INCLUDES_PATH . '/functions' );
@@ -114,6 +127,7 @@ class StartBox {
 		add_theme_support( 'sb-updates' );		// StartBox Updates Manager
 		add_theme_support( 'sb-options' );		// StartBox Options API
 		add_theme_support( 'sb-sidebars' );		// StartBox Easy Sidebars
+		add_theme_support( 'sb-theme-customizer' ); // StartBox Theme Customizer Settings
 		
 		// Add theme support for StartBox Layouts, redefine this list of available layouts using the filter 'sb_layouts_defaults'
 		$sb_default_layouts = array(
@@ -146,11 +160,12 @@ class StartBox {
 	// Include all Widgets, Plugins and Theme Options
 	public function sb_includes() {
 		
-		require_if_theme_supports( 'sb-sidebars', EXTENSIONS_PATH .  '/sidebars.php' );	  	// Sidebar manager
-		require_if_theme_supports( 'sb-layouts', FUNCTIONS_PATH .  '/layouts.php' );	  	// Theme Layouts
-		foreach ( glob( WIDGETS_PATH . '/*.php') as $sb_widget ) { require_once( $sb_widget ); }						// Widgets
-		foreach ( glob( ADMIN_PATH . '/*.php') as $sb_admin ) { require_if_theme_supports( 'sb-options', $sb_admin ); }	// Theme Options
 		require_if_theme_supports( 'sb-updates', FUNCTIONS_PATH .  '/upgrade.php' );									// Update Manager
+		require_if_theme_supports( 'sb-sidebars', EXTENSIONS_PATH .  '/sidebars.php' );	  								// Sidebar manager
+		require_if_theme_supports( 'sb-layouts', FUNCTIONS_PATH .  '/layouts.php' );	  								// Theme Layouts
+		require_if_theme_supports( 'sb-theme-customizer', EXTENSIONS_PATH .  '/theme-customizer.php' );	 			 	// Theme Customizer settings
+		foreach ( glob( ADMIN_PATH . '/*.php') as $sb_admin ) { require_if_theme_supports( 'sb-options', $sb_admin ); }	// Theme Options
+		foreach ( glob( WIDGETS_PATH . '/*.php') as $sb_widget ) { require_once( $sb_widget ); }						// Widgets
 				
 		// Check installed version, upgrade if needed (Credit: K2, http://getk2.com)
 		$sb_version = get_option( 'startbox_version' );

@@ -31,10 +31,12 @@ function sb_after_content() { _deprecated_function( __FUNCTION__, '2.6', 'do_act
 function sb_404() { _deprecated_function( __FUNCTION__, '2.6', 'do_action( \'sb_404\' )' ); do_action('sb_404'); } // Inside div.post, only on 404 page
 
 // Located in loop.php and single.php
+function sb_before_post() { _deprecated_function( __FUNCTION__, '2.6', 'do_action( \'sb_before_post\' )' ); do_action('sb_before_post'); } // Before div.post
 function sb_before_post_content() { _deprecated_function( __FUNCTION__, '2.6', 'do_action( \'sb_before_post_content\' )' ); do_action('sb_before_post_content'); } // Inside div.post, after .entry-header, before .entry-content
 function sb_post_header() { _deprecated_function( __FUNCTION__, '2.6', 'do_action( \'sb_post_header\' )' ); do_action('sb_post_header' ); } // Inside div.entry-meta
 function sb_post_footer() { _deprecated_function( __FUNCTION__, '2.6', 'do_action( \'sb_post_footer\' )' ); do_action('sb_post_footer' ); } // Inside div.entry-footer
 function sb_after_post_content() { _deprecated_function( __FUNCTION__, '2.6', 'do_action( \'sb_after_post_content\' )' ); do_action('sb_after_post_content'); } // Inside div.post, after .entry-content, before .entry-footer
+function sb_after_post() { _deprecated_function( __FUNCTION__, '2.6', 'do_action( \'sb_after_post\' )' ); do_action('sb_after_post'); } // Inside div.post, after .entry-content, before .entry-footer
 
 // Located in sidebar.php
 function sb_between_primary_and_secondary_widgets() { _deprecated_function( __FUNCTION__, '2.5', 'do_action( \'sb_after_primary_aside_widgets\' )' ); do_action('sb_between_primary_and_secondary_widgets');}
