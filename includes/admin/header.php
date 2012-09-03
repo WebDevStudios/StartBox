@@ -36,9 +36,9 @@
 		function logo() {
 			$logo_container = apply_filters( 'sb_logo_container', (is_front_page()) ? 'h1' : 'h2' );
 				
-			if ( !sb_get_option( 'logo-disabled') ) {
+			if ( 'disabled' != sb_get_option( 'logo-select') ) {
 				echo '<div id="logo" class="' . esc_attr( sb_get_option( 'logo-align' ) ). '">';
-				if ( sb_get_option( 'logo-text') ) {
+				if ( 'text' == sb_get_option( 'logo-select') ) {
 					echo '<' . $logo_container . ' id="site-title"><a href="'.home_url().'" title="Home" >'.esc_html(sb_get_option( 'logo-text' )).'</a></' . $logo_container . '>';
 				} else {
 					$logo = ( $logo = sb_get_option( 'logo-image' ) ) ? $logo : IMAGES_URL . "/logo.png";

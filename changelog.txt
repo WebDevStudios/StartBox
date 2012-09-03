@@ -15,6 +15,7 @@
 	* changed: passed SB and Theme versions through wp_enqueue_style calls
 	* changed: footer widgets now hook into sb_footer_widgets via hooks.php (they were previously hard-coded)
 	* changed: Options API wysiwyg option to use wp_editor functionality introduced in WP3.3
+	* changed: Options API logo option is now cleaner and simpler
 	* fixed: annoying bug introduced in 2.5.4 that prevented sidebar settings from being stored on first save.
 	* fixed: bug that prevented WordPress SEO (by Yoast) from overwriting page titles
 	* fixed: bug that would cause the RSS nav menu extra link to use href="true" instead of href="/your/feed/url/"

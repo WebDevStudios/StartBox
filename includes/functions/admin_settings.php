@@ -102,12 +102,12 @@ class sb_settings {
 			$value = sb_get_option( $id );
 	    	
 			// Loop through each option type and begin concatenate our form elements
-			if 	   ( 'intro' == $settings['type'] )   $output .= sb_input::intro( array(
+			if ( 'divider' == $settings['type'] ) $output .= '<hr/>'."\n";
+			elseif ( 'intro' == $settings['type'] ) $output .= sb_input::intro( array(
 						'id'		=> $id,
 						'label'		=> $label,
 						'desc'		=> $desc
 					) );
-			elseif ( 'divider' == $settings['type'] ) $output .= '<hr/>'."\n";
 			elseif ( 'text' == $settings['type'] ) $output .= sb_input::text( array(
 						'id'		=> $id,
 						'class'		=> $class,
@@ -283,8 +283,8 @@ class sb_input {
 			'desc'		=> '',			// Descriptive text
 			'size'		=> 'default',	// The size of the input (small, default, large; default: default)
 			'align'		=> 'left',		// The alignment of the input (left, right; default: left)
-			'before'	=> '', // Custom content to place before the input
-			'after'		=> ''	// Custom content to place after the input
+			'before'	=> '', 			// Custom content to place before the input
+			'after'		=> ''			// Custom content to place after the input
 		);
 
 		// Get our variables ready to go
@@ -723,7 +723,7 @@ class sb_input {
 		
 		// Concatenate our output
 		$output .= '<p class="imagepickerinput ' . esc_attr( $id ) . '">'."\n";
-		$output .= '<label for="' . $sb_id . '">' . $label . ':</label> <input type="text" value="' . esc_attr( $value ) . '" name="' . $sb_id . '" id="' . $sb_id . '" class="uploadinput"/>' ;
+		$output .= '<label for="' . $sb_id . '">' . $label . ':</label> <input type="text" value="' . esc_attr( $value ) . '" name="' . $sb_id . '" id="' . $sb_id . '" class="uploadinput"/> ' ;
 		$output .= '<a href="' . esc_attr( $value ) . '" class="previewlink button" title="' . $label . '">'.__('Preview','startbox').'</a>&nbsp;';
 		if ( $suggested )
 			$output .= '<a href="media-upload.php?type=image&amp;tab=suggested&amp;suggested=' . $suggested . '" class="chooselink button colorbox" title="' . __('Choose a previously uploaded file','startbox') . '">' . __('Media Library','startbox') . '</a>&nbsp;';
@@ -758,11 +758,43 @@ class sb_input {
 		$output = '';
 		
 		// Concatenate our output
-		$output .= sb_input::intro( array( 'id' => $id, 'label' => __( 'Logo Settings', 'startbox' ), 'desc' => $desc ) );
-		$output .= sb_input::upload( array( 'id' => $id . '-image', 'label' => __( 'Logo Image', 'startbox' ), 'value' => sb_get_option( $id . '-image' ), ) );
-		$output .= sb_input::text( array( 'id' => $id . '-text', 'label' => __( 'Or, use this text instead', 'startbox' ), 'value' => sb_get_option( $id . '-text' ), 'size' => 'medium' ) );
-		$output .= sb_input::select( array( 'id' => $id . '-align', 'label' => __( 'Logo Alignment', 'startbox' ), 'value' => sb_get_option( $id . '-align' ), 'options' => array( 'left' => __( 'Left', 'startbox' ), 'right' => __( 'Right', 'startbox' ), 'center' => __( 'Center', 'startbox' )), 'size' => 'default', 'align' => 'left' ) );
-		$output .= sb_input::checkbox( array( 'id' => $id . '-disabled', 'label' => __( 'Disable Logo', 'startbox' ), 'value' => sb_get_option( $id . '-disabled' ) ) );
+		$output .= sb_input::intro( array(
+			'id'		=> $id,
+			'label'		=> __( 'Logo Settings', 'startbox' ),
+			'desc'		=> $desc
+			) );
+		$output .= sb_input::select( array(
+			'id'		=> $id . '-select',
+			'label'		=> __( 'Logo Type', 'startbox' ),
+			'value'		=> sb_get_option( $id . '-select' ),
+			'options'	=> array(
+				'image'		=> __( 'Image', 'startbox' ),
+				'text'		=> __( 'Text', 'startbox' ),
+				'disabled'	=> __( 'Disabled', 'startbox' )
+				)
+			) );
+		$output .= sb_input::select( array(
+			'id'		=> $id . '-align',
+			'label'		=> __( 'Alignment', 'startbox' ),
+			'value'		=> sb_get_option( $id . '-align' ),
+			'options'	=> array(
+				'left'		=> __( 'Left', 'startbox' ),
+				'center'	=> __( 'Center', 'startbox' ),
+				'right'		=> __( 'Right', 'startbox' )
+				)
+			) );
+		$output .= sb_input::text( array(
+			'id'		=> $id . '-text',
+			'label'		=> __( 'Use This Text', 'startbox' ),
+			'value'		=> sb_get_option( $id . '-text' ),
+			'size'		=> 'medium',
+			'align'		=> 'right'
+			) );
+		$output .= sb_input::upload( array(
+			'id'		=> $id . '-image',
+			'label'		=> __( 'Use This Image', 'startbox' ),
+			'value'		=> sb_get_option( $id . '-image' ),
+			) );
 		
 		// Return our output
 		return $output;
@@ -858,13 +890,62 @@ class sb_input {
 		$output = '';
 
 		// Concatenate our output
-		$output .= sb_input::intro( array( 'id' => $id, 'label' => $label, 'desc' => $desc ) );
-		$output .= sb_input::upload( array( 'id' => $id . '-image', 'label' => 'Background Image', 'value' => sb_get_option( $id . '-image' ) ) );
-		$output .= sb_input::color( $id . '-color', 'Bacground Color', sb_get_option( $id . '-color' ), null );
-		$output .= sb_input::select( array( 'id' => $id . '-horiz', 'label' => 'Horizontal Alignment', 'value' => sb_get_option( $id . '-horiz' ), 'options' => array( 'left' => 'Left', 'center' => 'Center', 'right' => 'Right'), 'size' => 'medium', 'align' => 'right') );
-		$output .= sb_input::select( array( 'id' => $id . '-vert', 'label' => 'Vertical Alignment', 'value' => sb_get_option( $id . '-vert' ), 'options' => array( 'top' => 'Top', 'middle' => 'Middle', 'bottom' => 'Bottom'), 'size' => 'medium', 'align' => 'right' ) );
-		$output .= sb_input::select( array( 'id' => $id . '-repeat', 'label' => 'Repeat', 'value' => sb_get_option( $id . '-repeat' ), 'options' => array( 'no-repeat' => 'No Repeat', 'repeat-x' => 'Tile Horizontally', 'repeat-y' => 'Tile Vertically', 'repeat' => 'Both'), 'size' => 'medium', 'align' => 'right' ) );
-		$output .= sb_input::checkbox( array( 'id' => $id . '-fixed', 'label' => 'Fixed Position', 'value' => sb_get_option( $id . '-fixed' ), 'align' => 'right' ) );
+		$output .= sb_input::intro( array(
+			'id'		=> $id,
+			'label'		=> $label,
+			'desc'		=> $desc
+			) );
+		$output .= sb_input::upload( array(
+			'id'		=> $id . '-image', 
+			'label'		=> 'Background Image', 
+			'value'		=> sb_get_option( $id . '-image' )
+			) );
+		$output .= sb_input::color( array(
+			'id'		=> $id . '-color', 
+			'label'		=> 'Bacground Color', 
+			'value'		=> sb_get_option( $id . '-color' )
+			) );
+		$output .= sb_input::select( array(
+			'id'		=> $id . '-horiz',
+			'label'		=> 'Horizontal Alignment',
+			'value'		=> sb_get_option( $id . '-horiz' ),
+			'options'	=> array(
+				'left'		=> 'Left',
+				'center'	=> 'Center',
+				'right'		=> 'Right'),
+			'size'		=> 'medium',
+			'align'		=> 'right'
+			) );
+		$output .= sb_input::select( array(
+			'id'		=> $id . '-vert',
+			'label'		=> 'Vertical Alignment',
+			'value'		=> sb_get_option( $id . '-vert' ),
+			'options'	=> array(
+				'top'		=> 'Top',
+				'middle'	=> 'Middle',
+				'bottom'	=> 'Bottom'
+				),
+			'size'		=> 'medium',
+			'align'		=> 'right'
+			) );
+		$output .= sb_input::select( array( 'id' => $id . '-repeat',
+			'label'		=> 'Repeat',
+			'value'		=> sb_get_option( $id . '-repeat' ),
+			'options'	=> array(
+				'no-repeat'	=> 'No Repeat',
+				'repeat-x'	=> 'Tile Horizontally',
+				'repeat-y'	=> 'Tile Vertically',
+				'repeat'	=> 'Both'
+				),
+			'size'		=> 'medium',
+			'align'		=> 'right'
+			) );
+		$output .= sb_input::checkbox( array(
+			'id'		=> $id . '-fixed',
+			'label'		=> 'Fixed Position',
+			'value'		=> sb_get_option( $id . '-fixed' ),
+			'align'		=> 'right'
+			) );
 		
 		// Return our output
 		return $output;
@@ -884,7 +965,18 @@ class sb_settings_factory {
 
 	// Setup our variables
 	public $settings = array();
-	public $defaults = array( 'sb_analytics_settings', 'sb_content_settings', 'sb_feedburner_settings', 'sb_footer_settings', 'sb_header_settings', 'sb_settings_help', 'sb_navigation_settings', 'sb_pushup_settings', 'sb_seo_settings', 'sb_upgrade_settings' );
+	public $defaults = array(
+		'sb_analytics_settings',
+		'sb_content_settings',
+		'sb_feedburner_settings',
+		'sb_footer_settings',
+		'sb_header_settings',
+		'sb_settings_help',
+		'sb_navigation_settings',
+		'sb_pushup_settings',
+		'sb_seo_settings',
+		'sb_upgrade_settings'
+	);
 
 	// Register a new options panel
 	public function register($class_name) {

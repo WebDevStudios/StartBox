@@ -1,14 +1,14 @@
 ##### 2.6
-	review Options API
 	change menu options to include searchform.php instead of custom search html
-	Theme customizer integration
-	CSS integration for theme customization? http://wordpress.org/extend/plugins/css/
-
-
-##### 2.7
-	add import/export for theme settings
 	update footer copyright info to use filterable shortcodes
 
+##### 2.7
+	Theme customizer integration
+		review current options api setup, see if it can integrate with customizer
+		asses background theme option and helper function, delete if unhelpful
+		add custom CSS setting
+
 ##### Future Release
+	? add import/export for theme settings
 	? build simple metabox creator for posts & pages based on options api? store options vs custom field
 	? add image option for search widget submit button

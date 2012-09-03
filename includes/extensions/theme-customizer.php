@@ -9,7 +9,7 @@
  * @since 2.6
  */
 
-// Check to see if current theme supports sidebars, skip the rest if not
+// Check to see if current theme supports the customizer, skip the rest if not
 if (!current_theme_supports( 'sb-theme-customizer' )) return;
 
 $header_defaults = array(
@@ -111,7 +111,6 @@ function sb_customize_register($wp_customize) {
 			'center'	=> 'Center',
 			'right'		=> 'Right'
 		)
-
 	) );
 	
 	$wp_customize->add_control( 'startbox[logo-disabled]', array(

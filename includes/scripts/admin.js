@@ -15,6 +15,26 @@ $(document).ready(function(){
 	var thumbnails = ".post_thumbnail_rss, .post_thumbnail_use_attachments, .post_thumbnail_align, .post_thumbnail_hide_nophoto, .post_thumbnail_width, .post_thumbnail_height, .post_thumbnail_default_image";
 	$(thumbnails).hide();
 	
+	// Show/Hide Logo Options
+	$("#startbox\\[logo-select\\]").change(function(){
+		
+		if ( $(this).val() == 'image' ) {
+			$('.logo-align').slideDown(300);
+			$('.logo-text').slideUp(300);
+			$('.logo-image').slideDown(300);
+		} else if ( $(this).val() == 'text' ) {
+			$('.logo-align').slideDown(300);
+			$('.logo-text').slideDown(300);
+			$('.logo-image').slideUp(300);
+		} else {
+			$('.logo-align').slideUp(300);
+			$('.logo-text').slideUp(300);
+			$('.logo-image').slideUp(300);
+		}
+		
+	});
+	$("#startbox\\[logo-select\\]").change();
+
 	// Show/Hide Thumbnail options
 	$("#startbox\\[enable_post_thumbnails\\]").change(function(){
 		
