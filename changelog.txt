@@ -24,12 +24,20 @@
 	* removed: sidebar-tertiary.php (tertiary sidebar) -- use sidebar manager instead
 	* removed: built-in Slideshows functionality and dependencies (/includes/scripts/nivo-slider/)
 
+2012.08.02 - version 2.5.8
+	* changed: updated /includes/functions/startbox.php to use wp_get_theme instead of get_theme_data (when supported)
+	* chonged: merged in a number of translation fixes from github. Props Koncept-Web
+
+2012.05.16 - version 2.5.7
+	* fixed: annoying bug introduced in 2.5.4 that prevented sidebar settings from being stored on first save.
+	* fixed: bug that would cause the RSS nav menu extra link to use href="true" instead of href="/your/feed/url/"
+	* fixed: bug that prevented WordPress SEO plugin (by Yoast) from rewriting page titles correctly
+
 2012.01.31 - version 2.5.6
 	* changed: updated [date] shortcode so that you can pass a custom PHP date format (e.g. [date format="Y"])
 	* changed: hooked #header_wrap correctly to sb_before_header 999 and sb_after_header 9 (instead of the other way around)
 
 2012.01.23 - version 2.5.5
-	* added: Complete security audit by Mark Jaquith, lots of minor changes to tighten theme security
 	* added: Options API now supports new contextual Help tab in WP3.3, added help text for relevant panels
 	* changed: updated how admin menu items were registered per WP 3.3 changes
 	* changed: updated when all defaults scripts and styles were registered to better follow WP standards
@@ -43,6 +51,7 @@
 	* fixed: annoying bug that would recheck slideshow control settings 
 
 2011.11.17 - version 2.5.4
+	* added: Complete security audit by Mark Jaquith, lots of minor changes to tighten theme security
 	* added: [title] shortcode to simply return get_the_title()
 	* changed: updated TimThumb to version 2.8.2
 	* changed: updated [box] shortcode so you can use style="" or type="" to specify box style
