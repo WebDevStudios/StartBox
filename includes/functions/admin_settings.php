@@ -365,14 +365,14 @@ class sb_input {
 	public function upload( $id, $label, $value, $desc, $suggested = null ) {
 		$output = "\t" . '<p class="imagepickerinput ' . esc_attr( $id ) . '">'."\n";
 		$output .= "\t" . "\t" . '<label for="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '">' . $label . ':</label> <input type="text" value="' . esc_attr( $value ) . '" name="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" id="' . THEME_OPTIONS . '[' . esc_attr( $id ) . ']' . '" class="uploadinput"/>';
-		$output .= ' <a href="' . esc_attr( $value ) . '" class="previewlink button" title="' . $label . '">Preview</a>';
+		$output .= ' <a href="' . esc_attr( $value ) . '" class="previewlink button" title="' . $label . '">'.__('Preview','startbox').'</a>';
 		if ( $suggested ) {
 			// The URLs for the 'suggested' setting are relative to the active theme's directory. Non-existant images will produce a warning.
-			$output .= '&nbsp;<a href="media-upload.php?type=image&amp;tab=suggested&amp;suggested=' . $suggested . '" class="chooselink button colorbox" title="Choose a previously uploaded file">Media Library</a>';
+			$output .= '&nbsp;<a href="media-upload.php?type=image&amp;tab=suggested&amp;suggested=' . $suggested . '" class="chooselink button colorbox" title="'__('Choose a previously uploaded file','startbox').'">'.__('Media Library','startbox').'</a>';
 		} else {
-			$output .= '&nbsp;<a href="media-upload.php?type=image&amp;tab=library" class="chooselink button colorbox" title="Choose a previously uploaded file">Media Library</a>';
+			$output .= '&nbsp;<a href="media-upload.php?type=image&amp;tab=library" class="chooselink button colorbox" title="'.__('Choose a previously uploaded file','startbox').'">'.__('Media Library','startbox').'</a>';
 		}
-		$output .= '&nbsp;<a href="#" class="uploadlink button" title="Upload a file">Upload</a>';
+		$output .= '&nbsp;<a href="#" class="uploadlink button" title="'.__('Upload a file','startbox').'">'.__('Upload','startbox').'</a>';
 		$output .= '';
 		$output .= "\t" . "\t" . '<br/><span class="desc"> ' . $desc . ' <span class="uploadresult"></span></span>'."\n";
 		$output .= "\t" . '</p>'."\n";
