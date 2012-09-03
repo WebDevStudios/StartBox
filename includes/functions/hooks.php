@@ -195,9 +195,9 @@ function sb_home_content() {
 		<?php }
 		else {
 			if ( 'post' != get_post_type() )
-				get_template_part( 'loop-home', get_post_type() );
+				get_template_part( 'loop', get_post_type() );
 			else
-				get_template_part( 'loop-home', get_post_format() );
+				get_template_part( 'loop', get_post_format() );
 		}
 	endwhile;
 }
