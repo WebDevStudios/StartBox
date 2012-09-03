@@ -368,7 +368,7 @@ class sb_input {
 		$output .= ' <a href="' . esc_attr( $value ) . '" class="previewlink button" title="' . $label . '">'.__('Preview','startbox').'</a>';
 		if ( $suggested ) {
 			// The URLs for the 'suggested' setting are relative to the active theme's directory. Non-existant images will produce a warning.
-			$output .= '&nbsp;<a href="media-upload.php?type=image&amp;tab=suggested&amp;suggested=' . $suggested . '" class="chooselink button colorbox" title="'__('Choose a previously uploaded file','startbox').'">'.__('Media Library','startbox').'</a>';
+			$output .= '&nbsp;<a href="media-upload.php?type=image&amp;tab=suggested&amp;suggested=' . $suggested . '" class="chooselink button colorbox" title="' . __('Choose a previously uploaded file','startbox') . '">' . __('Media Library','startbox') . '</a>';
 		} else {
 			$output .= '&nbsp;<a href="media-upload.php?type=image&amp;tab=library" class="chooselink button colorbox" title="'.__('Choose a previously uploaded file','startbox').'">'.__('Media Library','startbox').'</a>';
 		}
