@@ -23,7 +23,7 @@ global $wpdb, $sb_slideshow_slides, $sb_slideshow_used_ids, $sb_slideshow_footer
 $sb_slideshow_slides = $sb_slideshow_used_ids = array();
 $sb_slideshow_footer_javascript = '';
 $sb_slideshow_interface = apply_filters( 'sb_slideshow_interface', array( 
-	'transitions' 		=> array( 'sliceDown', 'sliceDownLeft', 'sliceUp', 'sliceUpLeft', 'sliceUpDown', 'sliceUpDownLeft', 'fold', 'fade' ),
+	'transitions' 		=> array( __('sliceDown', 'startbox' ), __('sliceDownLeft', 'startbox' ), __('sliceUp', 'startbox' ), __('sliceUpLeft', 'startbox' ), __('sliceUpDown', 'startbox' ), __('sliceUpDownLeft', 'startbox' ), __('fold', 'startbox' ), __('fade', 'startbox' ) ),
 	'controls' 		=> array( 
 						'arrows' 		=> __( 'Show Overlay Arrows', 'startbox' ), 
 						'navigation' 	=> __( 'Show Bottom Navigation', 'startbox' ) ),
@@ -109,9 +109,9 @@ function sb_slideshow_init() {
 	// Add custom post type
 	register_post_type( 'slideshow', array(
 		'labels' 				=> array(
-								'name' 				=> _x('Slideshows', 'post type general name'),
-								'singular_name' 		=> _x('Slideshow', 'post type singular name'),
-								'add_new' 			=> _x('Add New', 'startbox' ),
+								'name' 				=> __('Slideshows', 'startbox'),
+								'singular_name' 		=> __('Slideshow', 'startbox'),
+								'add_new' 			=> __('Add New', 'startbox' ),
 								'add_new_item' 		=> __( 'Add New Slideshow', 'startbox' ),
 								'edit_item' 			=> __( 'Edit Slideshow', 'startbox' ),
 								'new_item' 			=> __( 'New Slideshow', 'startbox' ),
