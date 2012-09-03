@@ -17,8 +17,14 @@ class StartBox {
 		
 		// Grab and define our variables and constants
 		global $blog_id;
-		$sb_data = get_theme_data( get_template_directory() . '/style.css' );
-		$theme_data = get_theme_data( get_stylesheet_directory() . '/style.css' );
+		if ( function_exists('wp_get_theme') ) {
+			// wp_get_theme was introduced in WP3.4
+			$sb_data = wp_get_theme( 'startbox' );
+			$theme_data = wp_get_theme();
+		} else {
+			$sb_data = get_theme_data( get_template_directory() . '/style.css' );
+			$theme_data = get_theme_data( get_stylesheet_directory() . '/style.css' );
+		}
 		define( 'THEME_NAME', $theme_data['Name'] );
 		define( 'THEME_VERSION', $theme_data['Version'] );
 		define( 'THEME_OPTIONS', 'startbox' );

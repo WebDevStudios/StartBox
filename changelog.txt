@@ -1,3 +1,7 @@
+2012.08.02 - version 2.5.8
+	* changed: updated /includes/functions/startbox.php to use wp_get_theme instead of get_theme_data (when supported)
+	* chonged: merged in a number of translation fixes from github. Props Koncept-Web
+
 2012.05.16 - version 2.5.7
 	* fixed: annoying bug introduced in 2.5.4 that prevented sidebar settings from being stored on first save.
 	* fixed: bug that would cause the RSS nav menu extra link to use href="true" instead of href="/your/feed/url/"

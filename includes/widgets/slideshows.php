@@ -12,6 +12,9 @@
 // Check to see if current theme supports slideshows
 if( !current_theme_supports('sb-slideshows') ) return;
 
+// Conditional check to make sure we're not declaring these functions elsewhere (foreshadowing) :)
+if ( !function_exists('load_widget_sb_slideshow_widget')) {
+
 function load_widget_sb_slideshow_widget() { // Widget: Search Widget
 	register_widget('sb_slideshow_widget');
 }
@@ -79,5 +82,5 @@ class sb_slideshow_widget extends WP_Widget {
 		echo $after_widget;
 	}
 }
-
+}
 ?>

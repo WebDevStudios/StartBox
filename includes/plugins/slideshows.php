@@ -17,6 +17,9 @@
 // Check to see if current theme supports slideshows
 if (!current_theme_supports( 'sb-slideshows' )) return;
 
+// Conditional check to make sure we're not declaring these functions elsewhere (foreshadowing) :)
+if ( !function_exists('sb_slideshow_embed_input')) {
+
 // Define Globals
 global $wpdb, $sb_slideshow_slides, $sb_slideshow_used_ids, $sb_slideshow_footer_javascript, $sb_slideshow_interface;
 
@@ -1138,4 +1141,5 @@ function sb_slideshow_edit_admin_style() {
 }
 add_action( 'admin_print_styles-edit.php', 'sb_slideshow_edit_admin_style' );
 
+}
 ?>
