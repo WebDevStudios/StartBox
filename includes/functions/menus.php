@@ -133,10 +133,9 @@ function sb_nav_menu_items($items, $args ) {
 	// Add extras
 	if ( $extras == 'search' ) {
 		$items .= '<li class="menu-item menu-item-type-search">';
-		$items .= '<form class="searchform" method="get" action="' . home_url() . '">';
-		$items .= '<input name="s" type="text" class="searchtext" value="" title="' . apply_filters( 'sb_search_text', 'Type your search and press Enter.' ) . '" size="10" tabindex="1" />';
-		$items .= '<input type="submit" class="searchbutton button" value="Search" tabindex="2" />';
-		$items .= '</form>';
+		ob_start();
+		get_template_part( 'searchform', 'menu' );
+		$items .= ob_get_clean();
 		$items .= '</li>';
 	} elseif ( $extras == 'social' ) {
 		$options = get_option(THEME_OPTIONS);

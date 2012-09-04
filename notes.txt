@@ -1,6 +1,7 @@
 ##### 2.6
-	change menu options to include searchform.php instead of custom search html
 	update footer copyright info to use filterable shortcodes
+	review slider stripping functionality
+	review get_template_part alteration
 
 ##### 2.7
 	Theme customizer integration
