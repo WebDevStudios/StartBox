@@ -27,7 +27,7 @@
  * @uses add_action()
  *
  * @param string $name Name of the options panel for use as metabox title
- * @param string $slug Nice-name of options panel, used for identifying when creating metabox 
+ * @param string $slug Nice-name of options panel, used for identifying when creating metabox
  * @param string $location The column in which to add the metabox, primary or secondary. Default is secondary
  * @param string $priority Priority for displaying the metabox, high, default or low. Default is default.
  * @param array $options The options to be added. See http://docs.wpstartbox.com/child-themes/theme-options/ Using Theme Options
@@ -46,7 +46,7 @@ class sb_settings {
 
 	// Outputting settings as necessary. Note: you can add as many custom functions as you need.
 	public function output() {}
-	
+
 	// For hooking all your functions elsewhere. Note: When referencing the function in add_action() use: array( &$this, 'function_name' )
 	public function hooks() {}
 
@@ -68,11 +68,11 @@ class sb_settings {
 
 	// This makes errors more happy and less desctructive
 	public function __call($method, $args) { wp_die( "Your new settings class, <b>" . $this->name . "</b>, is trying to call an unknown method: " . $method ); }
-	
+
 	// Create the options form to wrap inside metabox. Only override this in your own class if you want to create your own form and do a butt-ton of work.
 	public function admin_form( $options ) {
 		$options = ($options) ? $options : $this->options;
-		
+
 	    $output = '';
 	    foreach ($options as $id => $settings) {
 
@@ -100,7 +100,7 @@ class sb_settings {
 
 			// Grab our current setting value
 			$value = sb_get_option( $id );
-	    	
+
 			// Loop through each option type and begin concatenate our form elements
 			if ( 'divider' == $settings['type'] ) $output .= '<hr/>'."\n";
 			elseif ( 'intro' == $settings['type'] ) $output .= sb_input::intro( array(
@@ -192,7 +192,7 @@ class sb_settings {
 						'label'		=> $label,
 						'desc'		=> $desc
 					) );
-			elseif ( 'wysiwyg' == $settings['type'] ) $output .= sb_input::wysiwyg( array( 
+			elseif ( 'wysiwyg' == $settings['type'] ) $output .= sb_input::wysiwyg( array(
 						'id'		=> $id,
 						'label'		=> $label,
 						'value'		=> $value,
@@ -210,27 +210,27 @@ class sb_settings {
 						'label'		=> $label,
 						'desc'		=> $desc
 				) );
-			
+
 		}
 
 		// Finally, echo our output
 	    echo $output;
 	}
-	
+
 }
 
 /**
  * StartBox Input Class
  *
  * Creates input fields for use in sb_settings classes. Currently used to produce the following:
- * 
+ *
  * @since 2.4.4
  */
 class sb_input {
-	
+
 	/**
 	 * Helper function for outputting descriptive text for each option
-	 * 
+	 *
 	 * @param  string $desc The descriptive text
 	 * @return string       The concatenated descriptive text
 	 */
@@ -240,7 +240,7 @@ class sb_input {
 
 	/**
 	 * Introduction setting
-	 * 
+	 *
 	 * @param  array $args The array of arguments for building this input
 	 * @return string        The concatenated introduction output
 	 */
@@ -261,14 +261,14 @@ class sb_input {
 		// Concatenate our output
 		$output = '<h4 id="' . $id . '" class="' . esc_attr( $id ) . '">' . $label . '</h4>'."\n";
 		$output .= '<p class="' . esc_attr( $id ) . '">' . $desc . '</p>'."\n";
-		
+
 		// Return our output
 		return $output;
 	}
 
 	/**
 	 * Text Input
-	 * 
+	 *
 	 * @param  array $args The array of arguments for building this input
 	 * @return string      The concatenated text option output
 	 */
@@ -310,7 +310,7 @@ class sb_input {
 
 	/**
 	 * Textarea Input
-	 * 
+	 *
 	 * @param  array $args  The array of arguments for building this input
 	 * @return string       The concatenated textarea option output
 	 */
@@ -345,12 +345,12 @@ class sb_input {
 
 	/**
 	 * Checkbox Input
-	 * 
+	 *
 	 * @param  array $args  The array of arguments for building this input
 	 * @return string       The concatenated checkbox option output
 	 */
 	public function checkbox( $args = '' ) {
-		
+
 		// Setup our defaults
 		$defaults = array(
 			'id'		=> '',			// Unique ID for this option
@@ -380,12 +380,12 @@ class sb_input {
 
 	/**
 	 * Radio Input
-	 * 
+	 *
 	 * @param  array $args  The array of arguments for building this input
 	 * @return string         The concatenated radio option output
 	 */
 	public function radio( $args = '' ) {
-		
+
 		// Setup our defaults
 		$defaults = array(
 			'id'		=> '',		// Unique ID for this option
@@ -417,7 +417,7 @@ class sb_input {
 
 	/**
 	 * Layout Options
-	 * 
+	 *
 	 * @param  string $id     Unique ID for this option
 	 * @param  string $label  The content to use as the input label
 	 * @param  string $value  The option value
@@ -426,11 +426,11 @@ class sb_input {
 	 * @return string         The concatenated layout option output
 	 */
 	public function layout( $args = '' ) {
-		
+
 		// If themes don't support layouts, don't return any layout options
 		if ( !current_theme_supports('sb-layouts') || $args['options'] == '')
 			return $output;
-			
+
 		// Setup our defaults
 		$defaults = array(
 			'id'		=> '',		// Unique ID for this option
@@ -467,12 +467,12 @@ class sb_input {
 
 	/**
 	 * Select Input
-	 * 
+	 *
 	 * @param  array $args An array of arguments
 	 * @return string      The concatenated select option output
 	 */
 	public function select( $args = '' ) {
-		
+
 		// Setup our defaults
 		$defaults = array(
 			'id'		=> 'option-select',	// The unique ID for this input
@@ -494,7 +494,7 @@ class sb_input {
 		extract( $r, EXTR_OVERWRITE );
 		$sb_id = THEME_OPTIONS . '[' . esc_attr( $id ) . ']';
 		$output = '';
-		
+
 		// Concatenate our output
 		$output .= $before;
 		$output .= ($label) ? '<label for="' . $sb_id . '">' . $label . ':</label> '."\n" : '';
@@ -543,12 +543,12 @@ class sb_input {
 
 	/**
 	 * Enable Select Input - a select input with a checkbox input
-	 * 
+	 *
 	 * @param  array $args An array of arguments
 	 * @return string      The concatenated select option output
 	 */
 	public function enable_select( $args = '' ) {
-		
+
 		// Setup our defaults
 		$defaults = array(
 			'id'		=> 'option-select',	// The unique ID for this input
@@ -564,7 +564,7 @@ class sb_input {
 			'order'		=> 'DESC',			// For post options: the order to display the results
 			'limit'		=> 30 				// For post and page options: how many results to retrieve
 		);
-		
+
 		// Get our variables ready to go
 		$r = wp_parse_args( $args, $defaults );
 		extract( $r, EXTR_OVERWRITE );
@@ -588,12 +588,12 @@ class sb_input {
 
 	/**
 	 * Navigation Option
-	 * 
+	 *
 	 * @param  array $args An array of arguments
 	 * @return string           The concatenated navigation option output
 	 */
 	public function navigation( $args = '' ) {
-		
+
 		// Setup our defaults
 		$defaults = array(
 			'id'		=> 'option-select',	// The unique ID for this input
@@ -606,7 +606,7 @@ class sb_input {
 			'position'	=> '',				// An array of selectable position options
 			'extras'	=> '',				// An array of selectable extra options
 		);
-		
+
 		// Get our variables ready to go
 		$r = wp_parse_args( $args, $defaults );
 		extract( $r, EXTR_OVERWRITE );
@@ -632,7 +632,7 @@ class sb_input {
 			$output .= '<option value="'. esc_attr( $menu->term_id ) .'" ' . $select . '>'. $menu->name .'</option>'."\n";
 		}
 		$output .= '</select>' . "\n";
-		
+
 		// Depth Options
 		$depth = apply_filters( 'sb_nav_depth', array(
 			'0' => 'Unlimited',
@@ -641,7 +641,7 @@ class sb_input {
 			'3' => '3'
 		));
 		$output .= sb_input::select( array( 'id' => $id . '-depth', 'label' => $label . ' ' . __( 'Depth', 'startbox' ), 'value' => sb_get_option( $id . '-depth' ), 'options' => $depth, 'size' => $size, 'align' => $align ) );
-		
+
 		// Position Options
 		if ( !$position ) $position = apply_filters( "sb_{$id}_positions", array(
 			'sb_before'		=> __( 'Top of Page', 'startbox' ),
@@ -658,10 +658,10 @@ class sb_input {
 			'social'	=> __( 'Social Links', 'startbox' )
 		));
 		if ($extras) $output .= sb_input::select( array( 'id' => $id . '-extras', 'label' => $label . ' ' . __( 'Extras', 'startbox' ), 'value' => sb_get_option( $id . '-extras' ), 'options' => $extras, 'size' => $size, 'align' => $align ) );
-		
+
 		// Add "Home" link to menu items
 		$output .= sb_input::checkbox( array( 'id' => $id . '-enable-home', 'label' => sprintf( __( 'Add "Home" Link to %s', 'startbox'), $label ), 'value' => sb_get_option( $id . '-enable-home' ), 'align' => $align ) ) ;
-		
+
 		if ($desc) $output .= sb_input::descriptive_text( $desc );
 		$output .= '</p>'."\n";
 
@@ -680,7 +680,7 @@ class sb_input {
 			'delicious'	=> __( 'del.icio.us', 'startbox' ),
 			'linkedin'	=> __( 'LinkedIn', 'startbox' )
 		));
-		
+
 		$output .= '<div class="' . esc_attr( $id ) . '-social-extras">';
 		$output .= sb_input::intro( array( 'id' => $id . '-social-intro', 'label' => __( 'Social Links', 'startbox' ), 'desc' => __( 'Provide the full URL\'s (including http://) of whichever social profiles you would like to include in your navigation.', 'startbox' ) ) );
 		foreach ($social_services as $service => $label) {
@@ -693,14 +693,14 @@ class sb_input {
 			}
 		}
 		$output .= '</div>';
-		
+
 		// Return our output
 		return $output;
 	}
 
 	/**
 	 * Upload Input
-	 * 
+	 *
 	 * @param  array $args An array of arguments
 	 * @return string      The concatenated upload option output
 	 */
@@ -720,7 +720,7 @@ class sb_input {
 		extract( $r, EXTR_OVERWRITE );
 		$sb_id = THEME_OPTIONS . '[' . esc_attr( $id ) . ']';
 		$output = '';
-		
+
 		// Concatenate our output
 		$output .= '<p class="imagepickerinput ' . esc_attr( $id ) . '">'."\n";
 		$output .= '<label for="' . $sb_id . '">' . $label . ':</label> <input type="text" value="' . esc_attr( $value ) . '" name="' . $sb_id . '" id="' . $sb_id . '" class="uploadinput"/> ' ;
@@ -739,7 +739,7 @@ class sb_input {
 
 	/**
 	 * Logo Options
-	 * 
+	 *
 	 * @param  array $args An array of arguments
 	 * @return string        The concatenated logo option output
 	 */
@@ -756,7 +756,7 @@ class sb_input {
 		$r = wp_parse_args( $args, $defaults );
 		extract( $r, EXTR_OVERWRITE );
 		$output = '';
-		
+
 		// Concatenate our output
 		$output .= sb_input::intro( array(
 			'id'		=> $id,
@@ -766,6 +766,7 @@ class sb_input {
 		$output .= sb_input::select( array(
 			'id'		=> $id . '-select',
 			'label'		=> __( 'Logo Type', 'startbox' ),
+			'align'		=> 'left',
 			'value'		=> sb_get_option( $id . '-select' ),
 			'options'	=> array(
 				'image'		=> __( 'Image', 'startbox' ),
@@ -776,6 +777,7 @@ class sb_input {
 		$output .= sb_input::select( array(
 			'id'		=> $id . '-align',
 			'label'		=> __( 'Alignment', 'startbox' ),
+			'align'		=> 'left',
 			'value'		=> sb_get_option( $id . '-align' ),
 			'options'	=> array(
 				'left'		=> __( 'Left', 'startbox' ),
@@ -788,26 +790,26 @@ class sb_input {
 			'label'		=> __( 'Use This Text', 'startbox' ),
 			'value'		=> sb_get_option( $id . '-text' ),
 			'size'		=> 'medium',
-			'align'		=> 'right'
+			'align'		=> 'left'
 			) );
 		$output .= sb_input::upload( array(
 			'id'		=> $id . '-image',
 			'label'		=> __( 'Use This Image', 'startbox' ),
 			'value'		=> sb_get_option( $id . '-image' ),
 			) );
-		
+
 		// Return our output
 		return $output;
 	}
 
 	/**
 	 * WYSIWYG Options
-	 * 
+	 *
 	 * @param  array $args An array of arguments
 	 * @return string      The concatenated WYSIWYG option output
 	 */
 	public function wysiwyg( $args = '' ) {
-		
+
 		// Setup our defaults
 		$defaults = array(
 			'id'		=> '',		// Unique ID for this option
@@ -841,7 +843,7 @@ class sb_input {
 
     /**
 	 * Color Input
-	 * 
+	 *
 	 * @param  array $args An array of arguments
 	 * @return string      The concatenated color option output
 	 */
@@ -862,21 +864,21 @@ class sb_input {
 
 		// Get our variables ready to go
 		$args = wp_parse_args( $args, $defaults );
-		
+
 		// Return our output
 		return sb_input::text( $args );
 	}
 
 	/**
 	 * Background Options
-	 * 
+	 *
 	 * @param  string $id    The unique Id for this input
 	 * @param  string $label The content to use as the input label
 	 * @param  string $desc  Small descriptive text
 	 * @return string        The concatenated background option output
 	 */
 	public function background( $args = '' ) {
-		
+
 		// Setup our defaults
 		$defaults = array(
 			'id'		=> '',		// Unique ID for this option
@@ -896,13 +898,13 @@ class sb_input {
 			'desc'		=> $desc
 			) );
 		$output .= sb_input::upload( array(
-			'id'		=> $id . '-image', 
-			'label'		=> 'Background Image', 
+			'id'		=> $id . '-image',
+			'label'		=> 'Background Image',
 			'value'		=> sb_get_option( $id . '-image' )
 			) );
 		$output .= sb_input::color( array(
-			'id'		=> $id . '-color', 
-			'label'		=> 'Bacground Color', 
+			'id'		=> $id . '-color',
+			'label'		=> 'Bacground Color',
 			'value'		=> sb_get_option( $id . '-color' )
 			) );
 		$output .= sb_input::select( array(
@@ -946,7 +948,7 @@ class sb_input {
 			'value'		=> sb_get_option( $id . '-fixed' ),
 			'align'		=> 'right'
 			) );
-		
+
 		// Return our output
 		return $output;
 	}
@@ -991,7 +993,7 @@ class sb_settings_factory {
 			unset($this->settings[$class_name]);
 		}
 	}
-	
+
 	// Unregister ALL option panels
 	public function unregister_all_defaults($defaults) {
 		$defaults = $this->defaults;
@@ -1048,7 +1050,7 @@ function sb_set_default_options() {
 			}
 		}
 	}
-	
+
 	// Set the default logo
 	$defaults['logo-image'] = IMAGES_URL . '/logo.png';
 
@@ -1181,11 +1183,11 @@ function sb_register_option( $metabox, $option_name, $args ) {
  */
 function sb_unregister_option( $metabox, $option, $new_value = '') {
 	global $sb_settings_factory;
-	
+
 	// Remove the option if it exsits
 	if ( isset($sb_settings_factory->settings[$metabox]->options[$option]) )
 		unset( $sb_settings_factory->settings[$metabox]->options[$option] );
-	
+
 	// If we're setting a new, permanant value
 	if ($new_value)
 		sb_update_option( $option, $new_value);
@@ -1204,7 +1206,7 @@ function sb_unregister_option( $metabox, $option, $new_value = '') {
  * @param integer $priority Level of priority (default: 10)
  * @return bool True on success, false if the function does not exist.
  */
-// 
+//
 function sb_remove_action( $tag, $class_name, $function_to_remove, $priority = 10 ) {
 	if ($class_name) {
 		global $sb_settings_factory;
@@ -1253,9 +1255,9 @@ function sb_get_background_output( $option_name ) {
 	$vert = $options[ $option_name . '-vert' ];
 	$fixed = ($options[ $option_name . '-fixed' ]) ? ' fixed' : '';
 	$url = ($image) ? "url('" . $image . "') " : ' ' ;
-	
+
 	$output = $color . ' ' . $url . $repeat . ' ' . $horiz . ' ' . $vert . $fixed;
-	
+
 	return $output;
 }
 ?>

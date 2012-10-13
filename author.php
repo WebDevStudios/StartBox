@@ -4,9 +4,9 @@
 		<div id="content">
 
 		<?php the_post(); ?>
-		
+
 		<?php do_action( 'sb_before_content' ); ?>
-			
+
 			<div id="entry-author-info">
 				<?php sb_page_title(); ?>
 				<?php if ( get_the_author_meta( 'description' ) ) : ?>
@@ -18,22 +18,19 @@
 					</div><!-- #author-description	-->
 				<?php endif; ?>
 			</div><!-- #entry-author-info -->
-			
+
 			<?php
 				// Provide a hook for placing content before author posts
-				do_action( 'sb_author_before_posts' ); 
-			
+				do_action( 'sb_author_before_posts' );
+
 				// Grab the author's posts
 				rewind_posts();
-				if ( 'post' != get_post_type() )
-					get_template_part( 'loop', get_post_type() );
-				else
-					get_template_part( 'loop', get_post_format() );
+				get_template_part( 'loop', 'author' );
 
 				// Standard "after content" hook
 				do_action( 'sb_after_content' );
 			?>
-		
+
 		</div><!-- #content -->
 	</div><!-- #container -->
 

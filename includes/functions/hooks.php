@@ -13,8 +13,8 @@
 // Filter body_class to include user browser, category, and date classes
 function sb_body_classes($classes) {
 	global $wp_query;
-	
-	// Determine user browser
+
+	// Determine user's browser and adds appropriate class
 	global $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
 	if($is_lynx) $classes[] = 'lynx';
 	elseif($is_gecko) $classes[] = 'gecko';
@@ -25,48 +25,43 @@ function sb_body_classes($classes) {
 	elseif($is_IE) $classes[] = 'ie';
 	elseif($is_iphone) $classes[] = 'iphone';
 	else $classes[] = 'unknown';
-	
-	// Determine IE version, specifically. Credit: http://wordpress.org/extend/plugins/krusty-msie-body-classes/
-	if(preg_match('/MSIE ([0-9]+)([a-zA-Z0-9.]+)/', $_SERVER['HTTP_USER_AGENT'], $browser_version)){
+
+	// Include user's IE version for version-specific hacking. Credit: http://wordpress.org/extend/plugins/krusty-msie-body-classes/
+	if( preg_match( '/MSIE ([0-9]+)([a-zA-Z0-9.]+)/', $_SERVER['HTTP_USER_AGENT'], $browser_version ) ){
+
 		// add a class with the major version number
 		$classes[] = 'ie' . $browser_version[1];
-		
-		// add a class with the major and minor version number, if it's MSIE 5.5
-		if('5' == $browser_version[1] && isset($browser_version[2]) && '5' == $browser_version[2])
-			$classes[] = 'ie' . strtolower(str_replace('.', '-', strtolower($browser_version[0])));
-		
-		// add an ie-old and ie-lt7 classes to match MSIE 6 and older
-		if (7 > $browser_version[1])
-			$classes[] = 'ie-old';
-			$classes[] = 'ie-lt7';
-		
-		// add an ie-lt8 class to match MSIE 7 and older
-		if (8 > $browser_version[1])
-			$classes[] = 'ie-lt8';
-		
+
 		// add an ie-lt9 class to match MSIE 8 and older
-		if (9 > $browser_version[1])
+		if ( 9 > $browser_version[1] )
 			$classes[] = 'ie-lt9';
+
+		// add an ie-lt8 and ie-old class to match MSIE 7 and older
+		if ( 8 > $browser_version[1] ) {
+			$classes[] = 'ie-lt8';
+			$classes[] = 'ie-old';
+		}
+
 	}
-	
+
 	// Adds category classes for each category on single posts
 	if ( $cats = get_the_category() )
 		foreach ( $cats as $cat )
 			$classes[] = 's-category-' . $cat->slug;
-			
+
 	// Applies the time- and date-based classes
     sb_date_classes( time(), $classes, $p = null );
 
 	// Adds classes for the month, day, and hour when the post was published
 	if ( is_single() )
 		sb_date_classes( mysql2date( 'U', $wp_query->post->post_date ), $classes, 's-' );
-	
+
 	// Adds post and page slug class, prefixed by 'post-' or 'page-', respectively
 	if ( is_single() )
     	$classes[] = 'post-' . $wp_query->post->post_name;
 	elseif( is_page() )
 		$classes[] = 'page-' . $wp_query->post->post_name;
-		
+
 	// return the $classes array
 	return $classes;
 }
@@ -77,7 +72,7 @@ add_filter('body_class','sb_body_classes');
 function sb_post_classes($classes) {
 	// Author for the post queried
 	$classes[] = 'author-' . sanitize_title_with_dashes( strtolower( get_the_author() ) );
-	
+
 	// return the $classes array
 	return $classes;
 }
@@ -118,7 +113,7 @@ function sb_default_title( $title, $sep, $seplocation) {
     elseif ( is_tag() ) { $title = sprintf( __('Tag Archives: %s', 'startbox'), sb_tag_query() ); }
 	elseif ( is_404() ) { $title = __( 'Not Found', 'startbox' ); }
 	else { $title = get_bloginfo('description'); }
-	
+
 	// Appends current page number (if on page 2 or greater)
     if ( get_query_var('paged') ) { $title .= $sep . sprintf( __( 'Page %s', 'startbox' ), get_query_var('paged') ); }
 
@@ -194,10 +189,13 @@ function sb_home_content() {
 				</div><!-- .entry-content -->
 		<?php }
 		else {
-			if ( 'post' != get_post_type() )
-				get_template_part( 'loop', get_post_type() );
-			else
-				get_template_part( 'loop', get_post_format() );
+			get_template_part( 'loop', 'home' );
+
+			// eventually, use this everywhere:
+			// if ( 'post' != get_post_type() )
+			// 	get_template_part( 'loop', get_post_type() );
+			// else
+			// 	get_template_part( 'loop', get_post_format() );
 		}
 	endwhile;
 }
@@ -209,7 +207,7 @@ add_action('sb_home','sb_home_content');
 function sb_default_page_title() {
 	global $post;
 	$container = apply_filters( 'sb_page_title_container', 'h1' );
-	
+
 	$content = '<' . $container . ' class="page-title">';
 	if (is_attachment()) {
 		$content .= '<a href="';
@@ -255,7 +253,7 @@ function sb_default_page_title() {
 	}
 	$content .= '</' . $container . '>';
 	$content .= "\n";
-	
+
 	echo apply_filters('sb_default_page_title', $content, $container, $post );
 }
 add_action( 'sb_page_title', 'sb_default_page_title' );
@@ -279,7 +277,7 @@ add_filter( 'archive_meta', 'convert_chars' );
 add_filter( 'archive_meta', 'wpautop' );
 
 // Default 404 Page
-function sb_404_content() { 
+function sb_404_content() {
 	echo '<p>' . __('Sorry, but we were unable to find what you were looking for. Try searching or browsing our content below.', 'startbox' ) . '</p>';
 	get_template_part( 'searchform' );
 	echo '<br/>';

@@ -1,37 +1,13 @@
 <?php
 	class sb_content_settings extends sb_settings {
-		
+
 		function sb_content_settings() {
 			$this->name = __( 'Content Settings', 'startbox' );
 			$this->slug = 'sb_content_settings';
-			$this->description = __( 'Take full control over the content areas of your site. Select your page layout, thumbnail sizes, post navigation options and post meta information.', 'startbox' );
+			$this->description = __( 'Take full control over the content portions of your site. Set thumbnail sizes, post navigation options and post meta information.', 'startbox' );
 			$this->location = 'primary';
 			$this->priority = 'core';
 			$this->options = array(
-				'home_layout' => array(
-						'type'		=> 'layout',
-						'label'		=> __( 'Homepage Layout:', 'startbox' ),
-						'desc'		=> __( 'Select content and sidebar alignment. Choose from any of the available layouts.', 'startbox' ),
-						'options'	=>  sb_supported_layouts('sb-layouts-home'),
-						'default'	=> 'two-col-right',
-						'help'		=> __( 'Select which page layout you would like to use for the homepage.', 'startbox' )
-					),
-				'layout' => array(
-						'type'		=> 'layout',
-						'label'		=> __( 'Interior Page Layout:', 'startbox' ),
-						'desc'		=> __( 'Select content and sidebar alignment. This can be changed on each page individually.', 'startbox' ),
-						'options'	=> sb_supported_layouts('sb-layouts'),
-						'default'	=> 'two-col-right',
-						'help'		=> __( 'Select the default layout for your interior pages.', 'startbox' )
-					),
-				'post_layout' => array(
-						'type'		=> 'layout',
-						'label'		=> __( 'Single Post Layout:', 'startbox' ),
-						'desc'		=> __( 'Select content and sidebar alignment. This can be changed on each post individually.', 'startbox' ),
-						'options'	=> sb_supported_layouts('sb-layouts'),
-						'default'	=> 'two-col-right',
-						'help'		=> __( 'Select the default layout for your single post views.', 'startbox' )
-					),
 				'post_content_heading' => array(
 						'type'		=> 'intro',
 						'label'		=> __( 'Post Content', 'startbox' )
@@ -179,7 +155,7 @@
 						'default'	=> 'tc',
 						'align'		=> 'right',
 						'help'		=> __( 'Select where you would like the thumbnails to center the crop (Default: Top Center).', 'startbox' )
-					),					
+					),
 				'content_div_3' => array( 'type' => 'divider' ),
 				'post_navigation_heading' => array(
 						'type'		=> 'intro',
@@ -217,24 +193,13 @@
 			parent::__construct();
 		}
 
-		// Apply selected layout stylesheet
-		function sb_layout() {
-			$options = get_option( THEME_OPTIONS );
-			if ( is_front_page() )
-				return $options['home_layout'];
-			elseif ( is_single() )
-				return $options['post_layout'];
-			else
-				return $options['layout'];
-		}
-
 		// Prev/Next Post Links
 		function sb_post_nav() {
 			$position = ( did_action('sb_after_content') ) ? 'below' : 'above';
-			
+
 			if ( is_attachment() || ( is_page() && !is_page_template('page_category.php') ) )
 				return;
-			
+
 			if ( !is_single() && ( sb_get_option( 'archive_navigation' ) == $position || sb_get_option( 'archive_navigation' ) == 'both' ) ) {
 				echo '<div id="nav-' . $position . '" class="navigation">';
 				if ( function_exists('wp_pagenavi') ) { wp_pagenavi(); }
@@ -250,17 +215,17 @@
 				</div>
 			<?php }
 		}
-		
+
 		// More Text filter
 		function more_text() {
 			return sb_get_option( 'more_text' );
 		}
-		
+
 		// Display Author Bio
 		function sb_author_bio() {
 			if ( get_the_author_meta( 'description' ) && is_single() ) { do_shortcode('[author_bio]'); } // If a user has filled out their description, show a bio on their entries
 		}
-		
+
 		// Post Meta
 		function sb_header_meta() {
 			$content = sb_get_option( 'post_header_meta' ) ;
@@ -270,34 +235,33 @@
 			$content = sb_get_option( 'post_footer_meta' );
 			echo apply_filters( 'sb_footer_meta', do_shortcode($content) );
 		}
-		
+
 		// Post Thumbnails
 		function image_settings($defaults) {
 			$options = get_option( THEME_OPTIONS );
-			
+
 			( isset($options['post_thumbnail_width']) ? $defaults['width'] = $options['post_thumbnail_width'] : '' );
 			( isset($options['post_thumbnail_height']) ? $defaults['height'] = $options['post_thumbnail_height'] : '' );
 			( isset($options['post_thumbnail_align']) ? $defaults['align'] = $options['post_thumbnail_align'] : '' );
 			( isset($options['post_thumbnail_hide_nophoto']) ? $defaults['hide_nophoto'] = $options['post_thumbnail_hide_nophoto'] : '' );
 			( isset($options['post_thumbnail_use_attachments']) ? $defaults['use_attachments'] = $options['post_thumbnail_use_attachments'] : '' );
 			( isset($options['enable_post_thumbnails']) ? $defaults['enabled'] = $options['enable_post_thumbnails'] : '' );
-			
+
 			return $defaults;
 		}
-		
-		
+
+
 		function image_default() { return sb_get_option( 'post_thumbnail_default_image' ); }
-		
-		
+
+
 		// Post Thumbnail in RSS feed
 		function post_image_feeds($content) {
 			global $post;
 			$content = '<div><a href="' . the_permalink() . '" title="' . esc_attr( get_the_title() ) . '">' . sb_post_image() . '</a></div>' . $content;
 			return $content;
 		}
-		
+
 		function hooks() {
-			add_filter( 'sb_get_post_layout_default', array( $this, 'sb_layout' ) );
 			add_filter( 'sb_read_more', array($this, 'more_text' ) );
 			add_action( 'sb_post_header', array($this, 'sb_header_meta' ) );
 			add_action( 'sb_post_footer', array($this, 'sb_footer_meta' ) );
@@ -311,11 +275,11 @@
 			}
 			add_filter( 'sb_post_image_settings', array( $this, 'image_settings' ) );
 			add_filter( 'sb_post_image_none', array( $this, 'image_default' ) );
-			
+
 		}
 
 	}
-	
+
 	sb_register_settings('sb_content_settings');
 
 ?>

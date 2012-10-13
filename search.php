@@ -2,16 +2,13 @@
 
 	<div id="container">
 		<div id="content">
-		
+
 			<?php
 				do_action( 'sb_before_content' );
 				if (have_posts()) :
 					do_action( 'sb_page_title' );
 					while ( have_posts() ) : the_post();
-						if ( 'post' != get_post_type() )
-							get_template_part( 'loop', get_post_type() );
-						else
-							get_template_part( 'loop', get_post_format() );
+						get_template_part( 'loop', 'search' );
 					endwhile;
 				else :
 			?>
@@ -21,15 +18,15 @@
 				<div class="entry-content">
 					<p><?php _e('Sorry, but nothing matched your search criteria. Please try again with some different keywords.', 'startbox') ?></p>
 				</div>
-				
+
 				<?php get_template_part( 'searchform' ); ?>
-				
+
 			</div><!-- .post -->
 
 		<?php endif; ?>
-		
+
 		<?php do_action( 'sb_after_content' ); ?>
-		
+
 		</div><!-- #content -->
 	</div><!-- #container -->
 

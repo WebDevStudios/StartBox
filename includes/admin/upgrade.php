@@ -16,12 +16,12 @@ class sb_upgrade_settings extends sb_settings {
 					'label'		=> __('Enable Automatic Updates', 'startbox'),
 					'default'	=> true
 			),
-			'use_beta' => array(
-					'type'		=> 'checkbox',
-					'label'		=> __('Use Beta Updates', 'startbox'),
-					'desc'		=> __('Note: Do not use beta updates in a production environment. They could break your site.', 'startbox'),
-					'default'	=> false
-			)
+			// 'use_beta' => array(
+			// 		'type'		=> 'checkbox',
+			// 		'label'		=> __('Use Beta Updates', 'startbox'),
+			// 		'desc'		=> __('Note: Do not use beta updates in a production environment. They could break your site.', 'startbox'),
+			// 		'default'	=> false
+			// )
 		);
 		parent::__construct();
 	}
