@@ -17,18 +17,18 @@ add_action( 'widgets_init', 'sb_social_load_widgets' );
 class sb_widget_social extends WP_Widget {
 
 	function sb_widget_social() {
-	
+
 			$widget_ops = array(
 				'classname'    =>  'sb_social_widget',
 				'description'  =>  __( "Provide visitors with links to your social media profiles.", "startbox" )
 			);
 			$this->WP_Widget( 'stay-connected-widget', __('SB Social', 'startbox'), $widget_ops);
-			
+
 		}
 
 		function widget($args, $instance) {
 			extract($args);
-			
+
 			$title = apply_filters('widget_title', $instance['title'] );
 			$intro = $instance['intro'];
 			$display = $instance['display'];
@@ -53,7 +53,7 @@ class sb_widget_social extends WP_Widget {
 				'linkedin'		=> array( 'name' => 'LinkedIn', 'url' => $instance['linkedin'] ),
 				'digg'			=> array( 'name' => 'Digg', 'url' => $instance['digg'] )
 			);
-			
+
 			echo $before_widget;
 			if ($title) { echo $before_title . $title . $after_title; }
 			if ($intro) { echo '<p>'.$intro.'</p>'; }
@@ -94,9 +94,9 @@ class sb_widget_social extends WP_Widget {
 			$instance['linkedin'] = strip_tags( $new_instance['linkedin'] );
 			$instance['linksopen'] =  $new_instance['linksopen'];
 			$instance['display'] = $new_instance['display'];
-			
+
 			return $instance;
-			
+
 		}
 
 		function form($instance) {
@@ -127,9 +127,9 @@ class sb_widget_social extends WP_Widget {
 					<label for="<?php echo $this->get_field_id('intro'); ?>"><?php _e( 'Intro text: ', 'startbox' ) ?></label>
 					<textarea id="<?php echo esc_attr( $this->get_field_id('intro') ); ?>" name="<?php echo esc_attr( $this->get_field_name('intro') ); ?>"><?php echo $instance['intro']; ?></textarea>
 				</p>
-				
+
 				<h3><?php _e( 'Social Media', 'startbox' ); ?></h3>
-				<p><?php _e( 'Fill in the links for the Social Media tabs you wish to activate, please include http:// on all links except Twitter.', 'startbox' ); ?></p>				
+				<p><?php _e( 'Fill in the links for the Social Media tabs you wish to activate, please include http:// on all links except Twitter.', 'startbox' ); ?></p>
 				<p>
 					<input class="checkbox" type="checkbox" <?php checked( $instance['rss'], 'on' ); ?> id="<?php echo esc_attr( $this->get_field_id('rss') ); ?>" name="<?php echo esc_attr( $this->get_field_name('rss') ); ?>" />
 					<label for="<?php echo $this->get_field_id('rss'); ?>"><?php _e( 'Display RSS Feed', 'startbox' ) ?></label>
@@ -190,4 +190,3 @@ class sb_widget_social extends WP_Widget {
 			<?php
 	}
 }
-?>

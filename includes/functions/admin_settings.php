@@ -969,13 +969,12 @@ class sb_settings_factory {
 	public $settings = array();
 	public $defaults = array(
 		'sb_analytics_settings',
+		'sb_layout_settings',
 		'sb_content_settings',
-		'sb_feedburner_settings',
 		'sb_footer_settings',
 		'sb_header_settings',
 		'sb_settings_help',
 		'sb_navigation_settings',
-		'sb_pushup_settings',
 		'sb_seo_settings',
 		'sb_upgrade_settings'
 	);
@@ -1034,11 +1033,13 @@ if ( defined('SB_REMOVE_DEFAULT_SETTINGS') ) { sb_remove_default_settings(); }
  * @since 2.4.6
  */
 function sb_set_default_options() {
-	// Loop through all theme options and set the defaults
+
+	// Grab our various settings
 	global $sb_settings_factory;
 	$defaults = $theme_options = get_option( THEME_OPTIONS );
 	$settings = $sb_settings_factory->settings;
 
+	// Loop through all theme options and set the defaults
 	foreach($settings as $setting){
 		$options = $setting->options;
 		foreach( $options as $option_id => $option ) {
@@ -1054,7 +1055,7 @@ function sb_set_default_options() {
 	// Set the default logo
 	$defaults['logo-image'] = IMAGES_URL . '/logo.png';
 
-	// Unset the reset variable
+	// Change our reset value to null
 	$defaults['reset'] = null;
 
 	// Save the options to the database, Allow child themes to filter what defaults are returned
@@ -1260,4 +1261,3 @@ function sb_get_background_output( $option_name ) {
 
 	return $output;
 }
-?>

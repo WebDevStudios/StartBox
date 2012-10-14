@@ -54,5 +54,3 @@ function sb_before_footer() { _deprecated_function( __FUNCTION__, '2.6', 'do_act
 function sb_footer() { _deprecated_function( __FUNCTION__, '2.6', 'do_action( \'sb_footer\' )' ); do_action('sb_footer'); } // inside div#footer after div#footer_sidebar
 function sb_after_footer() { _deprecated_function( __FUNCTION__, '2.6', 'do_action( \'sb_after_footer\' )' ); do_action('sb_after_footer'); } // inside dive#footer_wrap, after div#footer
 function sb_after() { _deprecated_function( __FUNCTION__, '2.6', 'do_action( \'sb_after\' )' ); do_action('sb_after'); } // the very last thing before </body>
-
-?>

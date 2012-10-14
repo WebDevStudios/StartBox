@@ -4,8 +4,8 @@
  *
  * Theme Layouts was originally created by Justin Tadlock for use with Hybrid Core.
  * This allows developers to easily add/remove support for multiple layout structures.
- * It gives users the ability to control how each post type is displayed on the 
- * front end of the site.  The layout can also be filtered for any page of a WordPress site.  
+ * It gives users the ability to control how each post type is displayed on the
+ * front end of the site.  The layout can also be filtered for any page of a WordPress site.
  *
  * @package StartBox
  * @subpackage Theme Layouts
@@ -29,7 +29,7 @@ function sb_get_layout() {
 	foreach ( get_theme_support( 'sb-layouts' ) as $layout => $key ) {
 		$layouts[] = $layout;
 	}
-	
+
 
 	/* Set the layout to an empty string. */
 	$layout = '';
@@ -43,7 +43,7 @@ function sb_get_layout() {
 		/* Get the post layout. */
 		$layout = sb_get_post_layout( $post_id );
 	}
-	
+
 	/* If viewing a taxonomy, check if a layout has been specified */
 	if ( is_category() || is_tag() || is_tax() || is_archive() ) {
 		global $wp_query;
@@ -84,16 +84,16 @@ function sb_set_post_layout( $post_id, $layout ) {
  * @since 2.5
  */
 function sb_supported_layouts($instance) {
-	
+
 	/* Get theme-supported theme layouts. */
 	$supported_layouts = get_theme_support( $instance );
 	$post_layouts = $supported_layouts[0];
-	
+
 	return $post_layouts;
 }
 
 /**
- * Post layouts admin setup.  Registers the post layouts meta box for the post editing screen.  Adds the 
+ * Post layouts admin setup.  Registers the post layouts meta box for the post editing screen.  Adds the
  * metadata save function to the 'save_post' hook.
  *
  * @since 2.5
@@ -105,10 +105,10 @@ function sb_layouts_admin_setup() {
 		if ($type->name != 'slideshow')
 			add_meta_box( 'theme-layouts-post-meta-box', __( 'Layout', 'startbox' ), 'sb_layouts_post_meta_box', $type->name, 'side', 'default' );
 	}
-	
+
 	// For each available taxonomy, add meta information if it supports 'show_ui'
-	foreach ( get_taxonomies( array( 'show_ui' => true ) ) as $tax_name) { 
-        add_action($tax_name . '_edit_form', 'sb_layouts_term_meta_box', 10, 2); 
+	foreach ( get_taxonomies( array( 'show_ui' => true ) ) as $tax_name) {
+        add_action($tax_name . '_edit_form', 'sb_layouts_term_meta_box', 10, 2);
     }
 
 	/* Saves the post format on the post editing page. */
@@ -133,7 +133,7 @@ function sb_layouts_body_class( $classes ) {
 add_filter( 'body_class', 'sb_layouts_body_class' );
 
 /**
- * Displays a meta box of radio selectors on the post editing screen, which allows theme users to select 
+ * Displays a meta box of radio selectors on the post editing screen, which allows theme users to select
  * the layout they wish to use for the specific post.
  *
  * @since 2.5
@@ -198,15 +198,15 @@ function sb_layouts_save_post( $post_id, $post ) {
  * @since 2.5
  */
 function sb_layouts_term_meta_box($tag, $taxonomy) {
-	
+
 	$tax = get_taxonomy( $taxonomy ); // create an object from the given taxonomy
 	$layouts = get_theme_support( 'sb-layouts' ); // Get theme-supported layouts
 	$post_layouts = $layouts[0]; // Grab the first item in the layouts array (which is the array of supported layouts)
 
 ?>
-	
+
 	<table class="form-table">
-	
+
 	<tr>
 		<th scope="row" valign="top"><label><?php _e('Custom Layout', 'startbox'); ?></label></th>
 		<td>
@@ -225,10 +225,10 @@ function sb_layouts_term_meta_box($tag, $taxonomy) {
 			<p class="description">Select a custom layout for this <?php echo $taxonomy; ?>.</p>
 		</td>
 	</tr>
-	
+
 	</table>
 
-<?php	
+<?php
 }
 
 /**
@@ -246,7 +246,7 @@ function sb_layouts_term_meta_save($term_id, $tt_id, $taxonomy) {
 
 	// Update the saved meta with the new values
 	update_option( 'startbox_termmeta', $term_meta );
-	
+
 }
 add_action('edit_term', 'sb_layouts_term_meta_save', 10, 3);
 
@@ -256,16 +256,16 @@ add_action('edit_term', 'sb_layouts_term_meta_save', 10, 3);
  * @since 2.5
  */
 function sb_layouts_term_meta_delete($term_id, $tt_id, $taxonomy) {
-	
+
 	// Grab the saved meta from the stored option
 	$term_meta = (array) get_option( 'startbox_termmeta' );
-	
+
 	// Unset the meta for the given term ID
 	unset( $term_meta[$term_id] );
-	
+
 	// Update the saved meta, now one value lighter
 	update_option( 'startbox_termmeta', (array) $term_meta );
-	
+
 }
 add_action('delete_term', 'sb_layouts_term_meta_delete', 10, 3);
 
@@ -275,27 +275,25 @@ add_action('delete_term', 'sb_layouts_term_meta_delete', 10, 3);
  * @since 2.5
  */
 function sb_layouts_term_meta_filter($term, $taxonomy) {
-	
+
 	// Grab the saved meta from the stored option
 	$meta = get_option( 'startbox_termmeta' );
-	
+
 	// If meta is already stored for the given term, use it. Else, use an empty array
 	$term_meta = isset( $meta[$term->term_id] ) ? $meta[$term->term_id] : array();
-	
+
 	// Parse all the meta items, stacked against a null default
 	$term->meta = wp_parse_args( $term_meta, array(
 			'layout' => ''
 	) );
-	
+
 	// Sanitize each term meta with a simple kses
 	foreach ( $term->meta as $field => $value ) {
 		$term->meta[$field] = stripslashes( wp_kses_decode_entities( $value ) );
 	}
-	
+
 	// Return the meta (but you already knew that)
 	return $term;
-	
+
 }
 add_filter('get_term', 'sb_layouts_term_meta_filter', 10, 2);
-
-?>

@@ -14,7 +14,7 @@ function sb_comment_defaults($defaults) {
 	$req = get_option( 'require_name_email' );
 	$aria_req = ( $req ? " aria-required='true'" : '' );
 	$required_text = sprintf( ' ' . __('Required fields are marked %s', 'startbox'), '<span class="required">*</span>' );
-	
+
 	$fields =  array(
 		'author' => '<p class="comment-form-author">' . '<label for="author">' . __( 'Name', 'startbox' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) .
 		            '<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" title="Your Name" size="30"' . $aria_req . ' /></p>',
@@ -23,7 +23,7 @@ function sb_comment_defaults($defaults) {
 		'url'    => '<p class="comment-form-url"><label for="url">' . __( 'Website', 'startbox' ) . '</label>' .
 		            '<input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" title="Your Website (optional)" size="30"/></p>',
 	);
-	
+
 	$defaults['title_reply'] =  __( 'Add Your Comment', 'startbox' ).' <a href="http://gravatar.com" class="h3-link">(Get a Gravatar)</a>';
 	$defaults['fields'] = apply_filters( 'comment_form_default_fields', $fields );
 	$defaults['comment_field'] = '';
@@ -42,7 +42,7 @@ function sb_insert_comment_form() { ?>
 				<cite id="authorname" class="fn n comment-author-name"><?php if ( $user_ID ) {$user_info = get_userdata($user_ID); echo esc_html( $user_info->display_name ); } else { echo 'Your Name'; } ?></cite>
 			</div>
 			<div class="comment-date comment-permalink"><?php echo date('M jS, Y'); ?><br/><?php echo date('g:ia'); ?></div>
-			
+
 			<span class="comment-arrow"></span>
 		</div>
 	<?php
@@ -59,7 +59,7 @@ function sb_avatar_defaults($avatar_defaults) {
  	unset($avatar_defaults['mystery']);
 	$sb_mystery = IMAGES_URL . '/comments/gravatar.png';
 	$avatar_defaults[$sb_mystery] = 'Mystery Man (enhanced)';
-	
+
 	if (get_option('avatar_default') === 'mystery') { update_option('avatar_default', $sb_mystery); }
 	return $avatar_defaults;
 }
@@ -118,10 +118,10 @@ if ( !function_exists( 'sb_comments' ) ) {
 							<?php // echo the comment reply link with help from Justin Tadlock http://justintadlock.com/ and Will Norris http://willnorris.com/
 								if($args['type'] == 'all' || get_comment_type() == 'comment') :
 									comment_reply_link(array_merge($args, array(
-										'reply_text' => __('Reply to this Comment','startbox'), 
+										'reply_text' => __('Reply to this Comment','startbox'),
 										'login_text' => __('Log in to reply.','startbox'),
 										'depth' => $depth,
-										'before' => '<span class="comment-reply-link">', 
+										'before' => '<span class="comment-reply-link">',
 										'after' => '</span>'
 									)));
 								endif;
@@ -147,6 +147,5 @@ if ( !function_exists( 'sb_pings' ) ) {
 	       $GLOBALS['comment'] = $comment;
 	        ?>
 	    		<li><?php comment_author_link() ?></li>
-	<?php } 
+	<?php }
 }
-?>

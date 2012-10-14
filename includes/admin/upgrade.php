@@ -1,4 +1,7 @@
 <?php
+/**
+ * Settings for controlling automatic upgrades
+ */
 class sb_upgrade_settings extends sb_settings {
 
 	function sb_upgrade_settings() {
@@ -28,5 +31,6 @@ class sb_upgrade_settings extends sb_settings {
 
 }
 
-if ( current_theme_supports('sb-updates') ) sb_register_settings('sb_upgrade_settings');
-?>
+// Only register this panel if the theme supports upgrades
+if ( current_theme_supports('sb-updates') )
+	sb_register_settings('sb_upgrade_settings');

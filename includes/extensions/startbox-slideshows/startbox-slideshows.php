@@ -8,7 +8,6 @@ Author: Joel Jcuzmarski, Brian Richards
 Author URI: http://www.joelak.com
 Requires at least: 3.3.1
 Tested up to: 3.4.2
-
 */
 
 // register_activation_hook( __FILE__, 'sb_slideshow_activation' );

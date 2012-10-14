@@ -19,7 +19,7 @@ if (!current_theme_supports( 'sb-sidebars' )) return;
  *
  * @since 2.5
  */
-function sb_sidebars_init() {	
+function sb_sidebars_init() {
 	// Add custom post type
 	register_post_type( 'sidebar', array(
 		'labels' 				=> array(
@@ -32,7 +32,7 @@ function sb_sidebars_init() {
 			'view_item' 		=> __( 'View Sidebar', 'startbox' ),
 			'search_items' 		=> __( 'Search Sidebars', 'startbox' ),
 			'not_found' 		=> __( 'No sidebars found', 'startbox' ),
-			'not_found_in_trash'=> __( 'No sidebars found in Trash', 'startbox' ), 
+			'not_found_in_trash'=> __( 'No sidebars found in Trash', 'startbox' ),
 			'parent_item_colon' => '' ),
 		'label' 				=> __( 'Sidebars', 'startbox' ),
 		'singular_label' 		=> __( 'Sidebar', 'startbox' ),
@@ -47,7 +47,7 @@ function sb_sidebars_init() {
 		'capability_type'		=> 'post',
 		'show_in_nav_menus' 	=> false,
 		'register_meta_box_cb' 	=> 'sb_sidebars_setup' ));
-	
+
 }
 add_action( 'init', 'sb_sidebars_init' );
 
@@ -96,16 +96,16 @@ add_action( 'widgets_admin_page', 'sb_sidebars_widget_page');
  * @since 2.5
  **/
 function sb_sidebars_setup() {
-	
+
 	// Select box for sidebars to replace
 	add_meta_box( "sidebar-select", 'Select Sidebar to Replace', 'sb_sidebars_select_meta_box', 'sidebar', 'normal', 'default' );
-	
+
 	// Description box
 	add_meta_box( "sidebar-description", 'Describe this Sidebar', 'sb_sidebars_description_meta_box', 'sidebar', 'normal', 'default' );
-	
+
 	// Shortcode metabox
 	add_meta_box( "sidebar-shortcode", 'Shortcode', 'sb_sidebars_shortcode_metabox', 'sidebar', 'side', 'default' );
-	
+
 	// Get all post types, but only if they appear in nav menus
 	if ( $post_types = get_post_types( array( 'show_in_nav_menus' => true ), 'object' ) ) {
 		foreach ( $post_types as $post_type ) {
@@ -116,7 +116,7 @@ function sb_sidebars_setup() {
 			}
 		}
 	}
-		
+
 	// Get all taxonomies, but only if they appear in nav menus
 	if ( $taxonomies = get_taxonomies( array( 'show_in_nav_menus' => true ), 'object' ) ) {
 		foreach ( $taxonomies as $tax ) {
@@ -136,24 +136,24 @@ function sb_sidebars_setup() {
  */
 function sb_sidebars_select_meta_box() {
 	global $post_id, $sb_sidebars;
-	
+
 	// If there aren't any sidebars, skip the rest
 	if ( !$sb_sidebars->sidebars || empty($sb_sidebars->sidebars) ) return;
-	
+
 	// Grab the current selection
 	$selected = get_post_meta( $post_id, '_sidebar_replaced', true );
-	
+
 	$output = '<select name="sidebar_replaced">';
-	
+
 	// Include the option to replace none, so sidebar can simply be displayed via shortcode
 	$output .= '<option value="none"' . selected( $selected, 'none', false) . ' >' . __( 'None', 'startbox') . '</option>';
-	
+
 	// Loop through all registered sidebars, add them to the list
 	foreach ( $sb_sidebars->sidebars as $sidebar => $info ) {
 		if ( $info['editable'] == 1 ) $output .= '<option value="' . $sidebar . '"' . selected( $selected, $sidebar, false) . ' >' . $info['name'] . '</option>';
 	}
 	$output .= '</select>';
-	
+
 	echo $output;
 	wp_nonce_field( 'sb-sidebar-update', '_sb_sidebars_nonce', false );
 }
@@ -167,10 +167,10 @@ function sb_sidebars_description_meta_box($post) {
 
 	// Grab the saved description
 	$description = get_post_meta( $post->ID, '_sidebar_description', true );
-	
+
 	$output = '<textarea class="" name="description" id="excerpt">' . $description . '</textarea>';
 	$output .= '<p class="description">A short description. This appears on the <a href="' . admin_url( 'widgets.php' ) . '">Widgets</a> page.</p>';
-	
+
 	echo $output;
 }
 
@@ -183,7 +183,7 @@ function sb_sidebars_shortcode_metabox( $post ) {
 	$output = '';
 	$output .= '<p class="description">Paste this shortcode anywhere you want this sidebar to appear:</p>';
 	$output .= '<input class="text urlfield widefat" readonly="readonly" value="[sidebar id=&quot;' . $post->post_name . '&quot;]" type="text">';
-	
+
 	echo $output;
 }
 
@@ -196,7 +196,7 @@ function sb_sidebars_shortcode_metabox( $post ) {
  * @param string $post_type The post type object.
  */
 function sb_sidebars_post_type_meta_box( $post, $post_type ) {
-	
+
 	$post_type_name = $post_type['args']->name;
 
 	// Arguments for quering posts
@@ -214,9 +214,9 @@ function sb_sidebars_post_type_meta_box( $post, $post_type ) {
 		$args = array_merge($args, (array) $post_type['args']->_default_query );
 
 	$post_type_object = get_post_type_object($post_type_name);
-	
+
 	$selected = (array) maybe_unserialize(get_post_meta($post->ID, '_post', true));
-	
+
 	?>
 	<p><?php printf( __('Select which %s should use this sidebar:', 'startbox'), $post_type['args']->labels->name ); ?></p>
 	<div id="posttype-<?php echo $post_type_name; ?>" class="posttypediv">
@@ -321,10 +321,10 @@ class SB_Sidebars_Checklist extends Walker_Nav_Menu  {
 	 */
 	function start_el(&$output, $item, $depth, $args) {
 		global $post_id;
-		
+
 		$selected = (array) maybe_unserialize( get_post_meta( $post_id, '_tax', true ) );
 		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
-		
+
 		$output .= $indent . '<li>';
 		$output .= '<label>';
 		$output .= '<input type="checkbox" ' . checked( in_array( esc_attr( $item->object_id ) , $selected), true, false ) . ' name="tax[' . esc_attr( $item->object_id )  . ']" value="true" /> ';
@@ -350,13 +350,13 @@ function sb_sidebars_save( $post_id ) {
 		!wp_verify_nonce( $_POST['_sb_sidebars_nonce'], 'sb-sidebar-update' ) // or the NONCE is invalid
 	)
 		return $post_id;									// skip the rest...
-	
+
 	// update post meta for the sidebar we're replacing
 	update_post_meta( $post_id, '_sidebar_replaced', $_POST['sidebar_replaced'] );
-	
+
 	// update post meta for the sidebar we're replacing
 	update_post_meta( $post_id, '_sidebar_description', $_POST['description'] );
-	
+
 	// save checked status for all post types
 	delete_post_meta( $post_id, '_post' );
 	if ($_POST['post']) {
@@ -375,9 +375,9 @@ function sb_sidebars_save( $post_id ) {
 				$data = array();
 				$data[0] = $post;
 				$data = serialize($data);
-				update_post_meta($post_id, '_post', $data);  
+				update_post_meta($post_id, '_post', $data);
 			}
-		}		
+		}
 	}
 
 	// save checked status for all taxonomies
@@ -397,15 +397,15 @@ function sb_sidebars_save( $post_id ) {
 				$data = array();
 				$data[0] = $tax;
 				$data = serialize($data);
-				update_post_meta($post_id, '_tax', $data);  
+				update_post_meta($post_id, '_tax', $data);
 			}
 		}
 	}
-	
+
 	// Delete transient data (used to cache all sidebars for front-end display)
 	delete_transient( 'sb_sidebars_post_type' );
 	delete_transient( 'sb_sidebars_tax' );
-	
+
 	return $post_id;
 }
 add_action( 'save_post', 'sb_sidebars_save' );
@@ -417,7 +417,7 @@ add_action( 'save_post', 'sb_sidebars_save' );
  */
 function sb_sidebars_delete($post_id) {
 	$post = get_post($post_id);
-	
+
 	// Verify we're actually deleting a sidebar
 	if ( $post->post_type == 'sidebar' ) {
         // Delete transient data (used to cache all sidebars for front-end display)
@@ -439,5 +439,3 @@ function sb_sidebars_update_messages( $messages ) {
 	return $messages;
 }
 add_filter( 'post_updated_messages', 'sb_sidebars_update_messages' );
-
-?>

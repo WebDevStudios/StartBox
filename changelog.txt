@@ -3,10 +3,10 @@
 	* added: shortcode [sitemap] to leverage the sitemap/archive functionality anywhere
 	* added: shortcode [expires] for hiding content after specific date ([expires date="Aug 18, 2012" expired_message="You missed out..."]blah[/expires])
 	* added: shortcode [show_after] for revealing content after specific date ([show_after date="Aug 18, 2012" teaser="Coming soon..."]blah[/show_after])
-	* added: /includes/functions/conditionals.php
-	* added: /includes/functions/images.php
-	* added: /includes/functions/menus.php
-	* fixed: bug introduced in 2.5.4 that prevented sidebar settings from being stored on first save.
+	* added: /includes/functions/conditionals.php (migrated functions from the increasingly ambiguous /includes/functions/custom.php)
+	* added: /includes/functions/images.php (migrated functions from the increasingly ambiguous /includes/functions/custom.php)
+	* added: /includes/functions/menus.php (migrated functions from the increasingly ambiguous /includes/functions/custom.php)
+	* fixed: annoying bug introduced in 2.5.4 that prevented sidebar settings from being stored on first save.
 	* fixed: bug that prevented WordPress SEO (by Yoast) from overwriting page titles
 	* fixed: bug that would cause the RSS nav menu extra link to use href="true" instead of href="/your/feed/url/"
 	* changed: Options API: Refactored most of the code and added better inline documentation (see /includes/functions/admin_settings.php)

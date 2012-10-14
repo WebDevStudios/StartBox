@@ -256,5 +256,3 @@ add_action( 'customize_register', 'sb_customizer_controls', 0 );
 function sb_customizer_controls() {
 
 }
-
-?>

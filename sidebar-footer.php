@@ -4,7 +4,7 @@
  *
  * Each StartBox-based theme can have up to 4 aside columns in the footer.
  * The logic below determines which to include and what the proper widths
- * should be. When adding widgets, always start with Footer Column and 
+ * should be. When adding widgets, always start with Footer Column and
  * advance numerically to Footer Column 4. Skipping a column breaks the logic.
  *
  * @since 2.4.2
@@ -15,7 +15,7 @@ $footer3 = ( is_sidebar_active( 'footer_widget_area_3' ) || has_action( 'sb_no_f
 $footer4 = ( is_sidebar_active( 'footer_widget_area_4' ) || has_action( 'sb_no_footer_widget_area_4_widgets' ) );
 
 if ( $footer1 || $footer2 || $footer3 || $footer4 ) {
-	
+
 	$column = $column1 = $column2 = $column3 = $column4 = null;
 
 	if ( $footer1 && $footer3 && $footer3 && $footer4 ) { $column = 'column one_fourth'; $column4 = ' last'; }
@@ -35,4 +35,3 @@ if ( $footer1 || $footer2 || $footer3 || $footer4 ) {
 	do_action( 'sb_after_footer_widgets' );
 
 }
-?>

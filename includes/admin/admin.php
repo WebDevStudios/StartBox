@@ -5,11 +5,20 @@
  * @since 2.2.8
  */
 function sb_admin_init() {
+
+	// Setup our global admin variable
 	global $sb_admin;
+
+	// Create our settings page and add it to the menu
 	$sb_admin = add_theme_page( THEME_NAME." Options", __('Theme Options', 'startbox'), 'edit_theme_options', 'sb_admin', 'sb_admin_page' );
+
+	// Register our custom settings field
 	register_setting( 'sb_admin', THEME_OPTIONS, 'sb_sanitize');
+
+	// Load in our custom JS and help content
 	add_action( 'load-' . $sb_admin, 'sb_admin_load' );
-    add_action( 'load-' . $sb_admin, 'sb_admin_help');
+	add_action( 'load-' . $sb_admin, 'sb_admin_help');
+
 }
 add_action( 'admin_menu', 'sb_admin_init' );
 
@@ -101,12 +110,14 @@ function sb_admin_load() {
 
 	// Load scripts for TinyMCE (Credit: Lee Doel)
 	if ( user_can_richedit() ){
-        wp_enqueue_script('editor');
-        wp_enqueue_script('media-upload');
-        wp_enqueue_style( 'thickbox' );
-    }
+		wp_enqueue_script('editor');
+		wp_enqueue_script('media-upload');
+		wp_enqueue_style( 'thickbox' );
+	}
 
-	if ( sb_get_option('reset') ) { sb_set_default_options(); wp_redirect( admin_url( 'admin.php?page=sb_admin&reset=true' ) ); }
+	// Reset our theme options back to default
+	if ( sb_get_option('reset') ) { sb_set_default_options(); wp_redirect( admin_url( 'themes.php?page=sb_admin&reset=true' ) ); }
+
 }
 
 /**
@@ -138,12 +149,6 @@ function sb_admin_page() { global $sb_admin; ?>
 	<?php
 		if ( isset($_REQUEST['settings-updated']) && $_REQUEST['settings-updated'] == true ) {
 			echo '<div id="message" class="updated fade"><p>' . THEME_NAME . ' ' . __( 'Options Updated.', 'startbox') . '</p></div>';
-		}
-		elseif ( isset($_REQUEST['reset']) && $_REQUEST['reset'] == true ) {
-			echo '<div id="message" class="updated fade"><p>' . THEME_NAME . ' ' . __( 'Options Reset.', 'startbox') . '</p></div>';
-		}
-		if ( isset($_REQUEST['upgrade']) && $_REQUEST['upgrade'] == 'true') {
-			echo '<div id="message" class="updated fade"><p>' . sprintf( __('StartBox upgraded to version %s!', 'startbox'), get_option('startbox_version') ) . '</p></div>';
 		}
 	?>
 
@@ -186,7 +191,7 @@ function sb_admin_buttons() { ?>
 	</div>
 <?php }
 
-// This callback's sole responsibility is to set checkboxes to "false" if unchecked
+// Perform some basic sanitization to our options on save
 function sb_sanitize($inputs) {
 	global $sb_settings_factory;
 	$settings = $sb_settings_factory->settings;
@@ -195,7 +200,7 @@ function sb_sanitize($inputs) {
 		$options = $setting->options;
 		foreach ( $options as $option_id => $option ) {
 
-			// Set unchecked checkboxes to false, otherwise their value is unset and the default gets set on every save
+			// Forcefully set unchecked checkboxes to false so they retain a vailue when unchecked
 			if ($option['type'] == 'checkbox' && !isset($inputs[$option_id])) {
 				$inputs[$option_id] = false;
 			}
@@ -213,5 +218,3 @@ function sb_sanitize($inputs) {
 	}
 	return $inputs;
 }
-
-?>

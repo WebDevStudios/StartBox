@@ -788,6 +788,3 @@ function sb_copyright( $atts ) {
 		return '&copy;' . $year . '-' . $current_year;
 
 }
-
-
-?>

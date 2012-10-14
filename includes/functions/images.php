@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * StartBox Image Functions
  *
@@ -30,10 +30,10 @@ function sb_get_post_image( $args = array(), $post_id = null, $use_attachments =
 			'image_id'			=> $args,
 			'post_id'			=> $post_id,
 			'use_attachments'	=> $use_attachments,
-			'url'				=> $url	
+			'url'				=> $url
 		);
 	}
-	
+
 	$defaults = array(
 		'image_id'			=> null,
 		'post_id'			=> $id,
@@ -41,7 +41,7 @@ function sb_get_post_image( $args = array(), $post_id = null, $use_attachments =
 		'url'				=> null
 	);
 	extract( wp_parse_args( $args, $defaults ) );
-	
+
 	// if a URL is specified, return that
 	if ($url)
 		return $url;
@@ -49,11 +49,11 @@ function sb_get_post_image( $args = array(), $post_id = null, $use_attachments =
 	// if image_id is specified, use that
 	elseif ($image_id)
 		$attachment = wp_get_attachment_image_src( $image_id, 'full' );
-		
+
 	// if not, let's use the post's featured image
 	elseif ( has_post_thumbnail( $post_id) )
 		$attachment = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'full' );
-		
+
 	// otherwise, and only if we want to, just use the last image attached to the post
 	elseif ( true == $use_attachments ) {
 		$images = get_children(array(
@@ -61,16 +61,16 @@ function sb_get_post_image( $args = array(), $post_id = null, $use_attachments =
 			'post_type' => 'attachment',
 			'numberposts' => 1,
 			'post_mime_type' => 'image'));
-		foreach($images as $image) { $attachment = wp_get_attachment_image_src( $image->ID, 'full' ); } 
+		foreach($images as $image) { $attachment = wp_get_attachment_image_src( $image->ID, 'full' ); }
 	}
-	
+
 	// If there is no image, use the default image (available filter: sb_post_image_none)
 	$post_image_uri = (isset($attachment[0])) ? $attachment[0] : apply_filters( 'sb_post_image_none', IMAGES_URL . '/nophoto.jpg' );
-	
+
 	// If no image, return now
 	if ( $post_image_uri == apply_filters( 'sb_post_image_none', IMAGES_URL . '/nophoto.jpg' ) )
 		return $post_image_uri;
-	
+
 	// If MU/MS install, we need to dig a little deeper and link through the blogs.dir
 	if ('IS_MU') {
 		$imageParts = explode('/files/', $post_image_uri);
@@ -78,13 +78,13 @@ function sb_get_post_image( $args = array(), $post_id = null, $use_attachments =
 			$post_image_uri = '/blogs.dir/' . $blog_id . '/files/' . $imageParts[1];
 		}
 	}
-	
+
 	return $post_image_uri;
 }
 
 /**
  * Generates cropped thumbnail of any dimension placed in an <img> tag
- * 
+ *
  * @since 1.5
  *
  * @uses sb_get_post_image_url
@@ -94,7 +94,7 @@ function sb_get_post_image( $args = array(), $post_id = null, $use_attachments =
  * @return string <img> tag containing image path and all parameters
  */
 function sb_post_image( $args = array(), $depricated_height = null, $depricated_align = null, $depricated_zoom = null, $depricated_atts = array() ) {
-	
+
 	// Check to see if $args value is an array or if the depricated args are used
 	if ( !is_array($args) || !empty( $depricated_height ) || !empty( $depricated_align ) || !empty( $depricated_zoom ) || !empty( $depricated_atts ) ) {
 		// Throw a warning for anyone using the old format
@@ -104,10 +104,10 @@ function sb_post_image( $args = array(), $depricated_height = null, $depricated_
 			'width'		=> $args,
 			'height'	=> $depricated_height,
 			'align'		=> $depricated_align,
-			'zoom'		=> $depricated_zoom,	
+			'zoom'		=> $depricated_zoom,
 		), $depricated_atts);
 	}
-	
+
 	// Setup our defaults and merge them with the passed arguments
 	$defaults = array(
 		'post_id' 			=> null,
@@ -128,11 +128,11 @@ function sb_post_image( $args = array(), $depricated_height = null, $depricated_
 		'echo'				=> apply_filters( 'sb_post_image_echo', true )
 	);
 	extract( $args = wp_parse_args($args, apply_filters( 'sb_post_image_settings', $defaults ) ) );
-	
+
 	// If thumbnails are disabled, or we're hiding thumbnails when no preview is available, stop here.
 	if ( false == $enabled || ( $hide_nophoto && sb_get_post_image( $args ) === $nophoto_url ) )
 		return false;
-	
+
 	// String together the output
 	$output = '<img src="' . sb_get_post_image_url( $args ) . '" ';
 	foreach ( $args as $name => $value ) {
@@ -141,7 +141,7 @@ function sb_post_image( $args = array(), $depricated_height = null, $depricated_
 		$output .= $name . '="' . esc_attr( $value ) . '" ';
 	}
 	$output .= '/>';
-	
+
 	// Echo output if applicable
 	if ($echo)
 		echo $output;
@@ -151,7 +151,7 @@ function sb_post_image( $args = array(), $depricated_height = null, $depricated_
 
 /**
  * Generates URL for image cropping
- * 
+ *
  * @since 2.5
  *
  * @uses sb_get_post_image
@@ -166,7 +166,7 @@ function sb_post_image_url( $args = array() ) {
 }
 
 function sb_get_post_image_url( $args = null ) {
-	
+
 	$defaults = array(
 		'post_id' 			=> null,
 		'image_id'			=> null,
@@ -179,12 +179,10 @@ function sb_get_post_image_url( $args = null ) {
 		'quality'			=> apply_filters( 'sb_post_image_quality', 100 ),
 	);
 	extract( $args = wp_parse_args($args, apply_filters( 'sb_post_image_settings', $defaults ) ) );
-	
+
 	// Combine all our options into the proper URI string
 	$output = esc_url( SCRIPTS_URL . '/timthumb.php?src=' . sb_get_post_image( $args ) . '&amp;w=' . $width . '&amp;h=' . $height . '&amp;a=' . $align . '&amp;zc=' . $zoom . '&amp;q=' . $quality );
 
 	// Return the string
 	return $output;
 }
-
-?>

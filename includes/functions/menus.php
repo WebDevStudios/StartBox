@@ -25,9 +25,9 @@ if ( !function_exists( 'sb_nav_menu' ) ) {
 				'class'			=> 'nav',
 				'show_home'		=> 1,
 				'echo'			=> false,
-				'container'		=> 'div', 
-				'container_id'	=> '', 
-				'menu_class'	=> '', 
+				'container'		=> 'div',
+				'container_id'	=> '',
+				'menu_class'	=> '',
 				'menu_id'		=> '',
 				'before'		=> '',
 				'after'			=> '',
@@ -41,15 +41,15 @@ if ( !function_exists( 'sb_nav_menu' ) ) {
 		$r = wp_parse_args( $args, apply_filters( "sb_nav_menu_defaults", $defaults ) );
 		extract( $r, EXTR_SKIP );
 
-		if ( $type == 'none' || $type == '' ) 
+		if ( $type == 'none' || $type == '' )
 			return;
-		
-		$output = wp_nav_menu( array( 
+
+		$output = wp_nav_menu( array(
 			'menu' 				=> $type,
-			'container'			=> $container, 
-			'container_class'	=> $class, 
-			'container_id'		=> $container_id, 
-			'menu_class'		=> $menu_class, 
+			'container'			=> $container,
+			'container_class'	=> $class,
+			'container_id'		=> $container_id,
+			'menu_class'		=> $menu_class,
 			'menu_id'			=> $menu_id,
 			'before'			=> $before,
 			'after'				=> $after,
@@ -61,7 +61,7 @@ if ( !function_exists( 'sb_nav_menu' ) ) {
 			'extras'			=> $extras,
 			'walker'			=> $walker,
 			'echo'				=> false ) );
-	
+
 		$nav_menu = apply_filters( "sb_{$menu_id}_menu", $output );
 
 		if ($echo)
@@ -80,10 +80,10 @@ if ( !function_exists('sb_nav_menu_fallback') ) {
 	function sb_nav_menu_fallback( $args = array() ) {
 		$args = apply_filters( 'wp_nav_menu_args', $args );
 		$args = (object) $args;
-	
+
 		$id = $args->container_id ? ' id="' . esc_attr( $args->container_id ) . '"' : '';
 		$class = $args->container_class ? ' class="' . esc_attr( $args->container_class ) . '"' : ' class="menu-'. $menu->slug .'-container"';
-	
+
 		$nav_menu = $items = '';
 		$nav_menu .= '<'. $args->container . $id . $class . '>';
 		$nav_menu .= '<ul id="' . $args->menu_id . '">';
@@ -111,7 +111,7 @@ function sb_nav_menu_items($items, $args ) {
 	// Include Link to homepage based on user selection
 	$is_home = ( is_front_page() ) ? ' current-menu-item' : '' ;
 	$home = ( $show_home ) ? '<li class="menu-item menu-item-home' . $is_home . '"><a href="' . home_url('/') . '">Home</a></li>' : '' ;
-	
+
 	// Change menu contents based on user selection
 	if ( $menu == 'pages' ) {
 		$exclude = (get_option('show_on_front') == 'page') ? get_option('page_on_front') : '';
@@ -125,11 +125,11 @@ function sb_nav_menu_items($items, $args ) {
 	} else {
 		$items = $home . $items;
 	}
-	
+
 	// Adds .first and .last classes to respective menu items
     if( $first = strpos( $items, 'class=' ) ) { $items = substr_replace( $items, 'first ', $first+7, 0 ); }
     if( $last = strripos( $items, 'class=') ) { $items = substr_replace( $items, 'last ', $last+7, 0 ); }
-	
+
 	// Add extras
 	if ( $extras == 'search' ) {
 		$items .= '<li class="menu-item menu-item-type-search">';
@@ -152,10 +152,10 @@ function sb_nav_menu_items($items, $args ) {
 		);
 		$icon_url = apply_filters( 'sb_nav_social_images_url', IMAGES_URL.'/social/' );
 		$icon_size = apply_filters( 'sb_nav_social_images_size', 24 );
-		
+
 		foreach ($services as $service => $url) {
 			$text = apply_filters( "sb_social_{$service}", sprintf( __( 'Connect on %s', 'startbox'), $service ) );
-			
+
 			if ( $service == 'rss' ) {
 				if ( isset($url) && true == $url ) {
 					$rss_text = apply_filters( 'sb_social_rss', __( 'Subscribe via RSS', 'startbox') );
@@ -178,5 +178,3 @@ function sb_nav_menu_items($items, $args ) {
     return $items;
 }
 add_filter( 'wp_nav_menu_items', 'sb_nav_menu_items', 10, 2 );
-
-?>

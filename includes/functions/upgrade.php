@@ -50,7 +50,7 @@ class sb_upgrade {
 			$wp = get_bloginfo("version") ;
 			$php = phpversion();
 			$mysql = $wpdb->db_version();
-			$use_beta = ( sb_get_option( 'use_beta' ) ) ? "true" : "false";
+			$use_beta = "false";
 			$url = 'http://wpstartbox.com/updates/index.php?product=StartBox&sb_version=' . urlencode($sb) . '&wp_version=' . urlencode($wp) . '&php_version=' . urlencode($php) . '&mysql_version=' . urlencode($mysql) . '&use_beta=' . $use_beta;
 			$raw_response = wp_remote_request($url, $options);
 			$sb_update = wp_remote_retrieve_body($raw_response);
@@ -134,6 +134,8 @@ class sb_upgrade {
 				elseif ( $theme_settings['home_layout'] == '3cl' ) { $new_settings['home_layout'] = 'three-col-left'; }
 				elseif ( $theme_settings['home_layout'] == '3cr' ) { $new_settings['home_layout'] = 'three-col-right'; }
 				elseif ( $theme_settings['home_layout'] == '3cb' ) { $new_settings['home_layout'] = 'three-col-both'; }
+			} else {
+				$theme_settings['home_layout'] = 'two-col-right';
 			}
 
 			if ( isset( $theme_settings['layout'] ) ) {
@@ -143,6 +145,8 @@ class sb_upgrade {
 				elseif ( $theme_settings['layout'] == '3cl' ) { $new_settings['layout'] = 'three-col-left'; }
 				elseif ( $theme_settings['layout'] == '3cr' ) { $new_settings['layout'] = 'three-col-right'; }
 				elseif ( $theme_settings['layout'] == '3cb' ) { $new_settings['layout'] = 'three-col-both'; }
+			} else {
+				$theme_settings['layout'] = 'two-col-right';
 			}
 
 			$new_settings = wp_parse_args($new_settings, $theme_settings);
@@ -215,9 +219,8 @@ class sb_upgrade {
 		// Upgrade to 2.5.6
 		if ( version_compare( get_option('startbox_version'), '2.5.6', '<') ) {
 			$theme_settings = get_option( THEME_OPTIONS );
-			$new_settings = array(
-				'post_layout' => $theme_settings['layout'],
-			);
+			$theme_settings['layout'] = isset( $theme_settings['layout']) ? $theme_settings['layout'] : '';
+			$new_settings = array( 'post_layout' => $theme_settings['layout'] );
 			$new_settings = wp_parse_args($new_settings, $theme_settings);
 			update_option( THEME_OPTIONS, $new_settings);
 			update_option( 'startbox_version', '2.5.6' );
@@ -225,8 +228,6 @@ class sb_upgrade {
 
 		// Upgrade to 2.6
 		if ( version_compare( get_option('startbox_version'), '2.6', '<') ) {
-
-			return;
 
 			// Replace the Full Width page template with the one-column layout
 			global $wpdb;
@@ -246,6 +247,7 @@ class sb_upgrade {
 			$old_footer_text	= sb_get_option('footer_text');
 
 			// Build new footer text content
+			// Roughly: [copyright year="2012"] [site_link].<br/>Proudly powered by [WordPress] and [StartBox].
 			$new_footer_text = '';
 			if ( $enable_copyright ) { $new_footer_text .= '[copyright year="' . $copyright_year . '"] [site_link].'; }
 			if ( $enable_copyright && ( $enable_wp_credit || $enable_sb_credit ) ) { $new_footer_text .= '<br/>'; }
@@ -262,18 +264,17 @@ class sb_upgrade {
 			sb_update_option( 'footer_text', $new_footer_text);
 
 			// Finally, delete our old footer options
-			// sb_delete_option('enable_copyright');
-			// sb_delete_option('copyright_year');
-			// sb_delete_option('enable_wp_credit');
-			// sb_delete_option('enable_sb_credit');
-			// sb_delete_option('enable_designer_credit');
-			// sb_delete_option('site_name');
-			// sb_delete_option('site_url');
-			// sb_delete_option('footer_text');
+			sb_delete_option('enable_copyright');
+			sb_delete_option('copyright_year');
+			sb_delete_option('enable_wp_credit');
+			sb_delete_option('enable_sb_credit');
+			sb_delete_option('enable_designer_credit');
+			sb_delete_option('site_name');
+			sb_delete_option('site_url');
+			sb_delete_option('footer_text');
 
-			// [copyright year="2012"] [site_link].<br/>Proudly powered by [WordPress] and [StartBox].
-
-			// update_option( 'startbox_version', '2.6' );
+			// Update our working version to 2.6
+			update_option( 'startbox_version', '2.6' );
 
 		}
 

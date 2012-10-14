@@ -20,17 +20,17 @@ class StartBox {
 
 		// If we're on on 3.4, use the handy wp_get_theme function
 		if ( function_exists('wp_get_theme') ) {
-			$startbox = wp_get_theme( 'startbox' );
-			$current_theme = wp_get_theme();
-			$sb_version = $startbox->version;
-			$theme_version = $current_theme->version;
+			$startbox		= wp_get_theme( 'startbox' );
+			$current_theme	= wp_get_theme();
+			$sb_version		= $startbox->version;
+			$theme_version	= $current_theme->version;
 		// Otherwise, stick with the old way of doing things
 		} else {
-			$startbox = get_theme_data( get_template_directory() . '/style.css' );
-			$theme_data = get_theme_data( get_stylesheet_directory() . '/style.css' );
-			$sb_version = $sb_data['version'];
-			$theme_version = $theme_data['version'];
-			$current_theme = $theme_data['Name'];
+			$startbox		= get_theme_data( get_template_directory() . '/style.css' );
+			$theme_data		= get_theme_data( get_stylesheet_directory() . '/style.css' );
+			$sb_version		= $sb_data['version'];
+			$theme_version	= $theme_data['version'];
+			$current_theme	= $theme_data['Name'];
 		}
 
 		// Setup our theme constants
@@ -79,7 +79,7 @@ class StartBox {
 		do_action('sb_init');
 
 		// If no version information exists in the database, run our installer
-		if ( !get_option( 'startbox_version' ) )
+		if ( ! get_option( 'startbox_version' ) )
 			StartBox::install();
 
 		// Add child theme defaults if child theme is activated for the first time (Credit: Joel Kuczmarski)
@@ -94,24 +94,22 @@ class StartBox {
 	public function register_scripts_and_styles() {
 
 		// Register Default Scripts
-		wp_register_script( 'startbox', SCRIPTS_URL . '/startbox.js', array('jquery', 'colorbox', 'md5', 'smoothScroll') );
-		wp_register_script( 'pushup', SCRIPTS_URL . '/jquery-pushup/jquery.pushup.js', array('jquery'), NULL );
-		wp_register_script( 'colorbox', SCRIPTS_URL . '/jquery.colorbox.min.js', array('jquery'), NULL );
-		wp_register_script( 'md5', SCRIPTS_URL . '/jquery.md5.js', array('jquery') );
-		wp_register_script( 'hovercards', ( is_ssl() ? 'https://secure' : 'http://s' ) . '.gravatar.com/js/gprofiles.js?u', array('jquery') ); // Gravatar Hovercards
-		wp_register_script( 'smoothScroll', SCRIPTS_URL . '/jquery.smooth-scroll.min.js', array('jquery'), '1.4');
+		wp_register_script( 'startbox',		SCRIPTS_URL . '/startbox.js', array('jquery', 'colorbox', 'md5', 'smoothScroll') );
+		wp_register_script( 'colorbox',		SCRIPTS_URL . '/jquery.colorbox.min.js', array('jquery'), NULL );
+		wp_register_script( 'md5',			SCRIPTS_URL . '/jquery.md5.js', array('jquery') );
+		wp_register_script( 'hovercards',	( is_ssl() ? 'https://secure' : 'http://s' ) . '.gravatar.com/js/gprofiles.js?u', array('jquery') ); // Gravatar Hovercards
+		wp_register_script( 'smoothScroll',	SCRIPTS_URL . '/jquery.smooth-scroll.min.js', array('jquery'), '1.4');
 
 		// Register Default Styles
-		wp_register_style( 'startbox', STYLES_URL . '/startbox.css' );
-		wp_register_style( 'layouts', STYLES_URL . '/layouts.css' );
-		wp_register_style( 'pushup', SCRIPTS_URL . '/jquery-pushup/pushup.css', null, SB_VERSION, 'screen' );
-		wp_register_style( 'colorbox', STYLES_URL . '/colorbox.css', null, SB_VERSION, 'screen' );
-		wp_register_style( 'comments', STYLES_URL . '/comments.css' );
-		wp_register_style( 'reset', STYLES_URL . '/reset.css' );
-		wp_register_style( 'images', STYLES_URL . '/images.css' );
-		wp_register_style( 'shortcodes', STYLES_URL . '/shortcodes.css' );
-		wp_register_style( 'typography', STYLES_URL . '/typography.css' );
-		wp_register_style( 'print', STYLES_URL . '/print.css', null, SB_VERSION, 'print' );
+		wp_register_style( 'startbox',		STYLES_URL . '/startbox.css' );
+		wp_register_style( 'layouts',		STYLES_URL . '/layouts.css' );
+		wp_register_style( 'colorbox',		STYLES_URL . '/colorbox.css', null, SB_VERSION, 'screen' );
+		wp_register_style( 'comments',		STYLES_URL . '/comments.css' );
+		wp_register_style( 'reset',			STYLES_URL . '/reset.css' );
+		wp_register_style( 'images',		STYLES_URL . '/images.css' );
+		wp_register_style( 'shortcodes',	STYLES_URL . '/shortcodes.css' );
+		wp_register_style( 'typography',	STYLES_URL . '/typography.css' );
+		wp_register_style( 'print',			STYLES_URL . '/print.css', null, SB_VERSION, 'print' );
 	}
 
 	// Setup the environment and register support for various WP features.
@@ -249,5 +247,3 @@ class StartBox {
 	public function child_uninstall() { delete_option( 'sb_child_install' ); }
 
 }
-
-?>

@@ -309,5 +309,3 @@ function sb_footer_left_right() {
 	if ( has_action( 'sb_footer_right' ) ) { echo '<div id="footer_right" class="right">'; do_action( 'sb_footer_right' ); echo '</div><!-- #footer_right -->'; }
 }
 add_action( 'sb_footer', 'sb_footer_left_right', 15 );
-
-?>

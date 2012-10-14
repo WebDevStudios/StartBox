@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * StartBox Custom Functions
  *
@@ -9,7 +9,7 @@
  */
 
 
-/** 
+/**
  * Display Relative Timestamps
  *
  * This plugin is based on code from Dunstan Orchard's Blog. Pluginiffied by Michael Heilemann:
@@ -21,8 +21,8 @@
  *
  * @since 2.4.6
  * @param integer $older_date The original date in question
- * @param integer $newer_date Specify a known date to determine elapsed time. Will use current time if false Default: false 
- * @return string Time since 
+ * @param integer $newer_date Specify a known date to determine elapsed time. Will use current time if false Default: false
+ * @return string Time since
 */
 
 function sb_time_since($older_date, $newer_date = false) {
@@ -36,13 +36,13 @@ function sb_time_since($older_date, $newer_date = false) {
 	array(60 * 60 , 'hour'),
 	array(60 , 'minute'),
 	);
-	
+
 	// Newer Date (false to use current time)
 	$newer_date = ($newer_date == false) ? (time()+(60*60*get_settings("gmt_offset"))) : $newer_date;
-	
+
 	// difference in seconds
 	$since = $newer_date - $older_date;
-	
+
 	// we only want to output two chunks of time here, eg:
 	// x years, xx months
 	// x days, xx hours
@@ -69,18 +69,18 @@ function sb_time_since($older_date, $newer_date = false) {
 		{
 		$seconds2 = $chunks[$i + 1][0];
 		$name2 = $chunks[$i + 1][1];
-		
+
 		if (($count2 = floor(($since - ($seconds * $count)) / $seconds2)) != 0)
 			{
 			// add to output var
 			$output .= ($count2 == 1) ? ', 1 '.$name2 : ", $count2 {$name2}s";
 			}
 		}
-	
+
 	return $output;
 }
 
-	
+
 /**
  * Retrieve or display list of posts as a dropdown (select list).
  *
@@ -117,7 +117,7 @@ function sb_dropdown_posts($args = '') {
 	$name = esc_attr($name);
 	$output = '';
 	$order_by = sanitize_sql_orderby( $order_by . ' ' . $order );
-	
+
 	$post_list = (array)$wpdb->get_results(
 		$wpdb->prepare("
 		SELECT ID, post_title, post_date
@@ -127,7 +127,7 @@ function sb_dropdown_posts($args = '') {
 		ORDER BY {$order_by}
 		{$limit}
 	", $post_type, $post_status ) );
-	
+
 	$output .= "\t" . "\t" . '<select style="width:100%;" id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '" class="' . esc_attr( $class ) . '">'."\n";
 	if ( !empty($post_list) ) {
 		if ( $show_option_none ) $output .= "\t" . "\t" . "\t" . '<option value="">' . $option_none_value . '</option>';
@@ -164,7 +164,7 @@ function sb_tag_query() {
 	$tag_ops_counter = 0;
 	$nice_tag_query = '';
 
-	foreach ($tag_slugs as $tag_slug) { 
+	foreach ($tag_slugs as $tag_slug) {
 		$tag = get_term_by('slug', $tag_slug ,'post_tag');
 		// prettify tag operator, if any
 		if ( isset( $tag_ops[$tag_ops_counter] ) &&  $tag_ops[$tag_ops_counter] == ',') {
@@ -267,13 +267,13 @@ add_action('wp_ajax_sb_action_handle_upload_ajax', 'sb_handle_upload_ajax');
 
 /**
  * StartBox Upload Handler
- * 
+ *
  * @param integer $file_id the ID of the media to be uploaded
  *
  * @since 2.4.4
  */
 function sb_handle_upload($file_id = '')
-{	
+{
 	if(empty($_FILES))
 		return 'Error: No file received.';
 
@@ -368,5 +368,3 @@ function sb_media_upload_suggested_form($errors) {
     </div>
 <?php
 }
-
-?>

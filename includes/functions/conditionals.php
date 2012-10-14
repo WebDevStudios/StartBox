@@ -56,7 +56,7 @@ function sb_is_pagetemplate_active($pagetemplate = '') {
 function sb_is_child_page( $parent_id = null, $page_id = null ) {
 	global $post;
 	$pid = ($page_id) ? $page_id : $post->ID;
-	
+
 	if ( is_page($pid) && $post->post_parent ) { // Verify we're working with a page and it has a parent
 		if ( isset( $parent_id ) && !in_array( $parent_id, get_post_ancestors($pid) ) ) { return false; }// If the specified parent_id is not an ancestor of the current page, return false
 		else { return true; } // Otherwise, it has a parent and the specified parent id match. Return true.
@@ -74,11 +74,9 @@ function sb_is_child_page( $parent_id = null, $page_id = null ) {
  */
 function sb_verify_post_type( $type ) {
 	global $post_type;
-	
+
 	if ( ( isset( $_GET['post_type'] ) && $_GET['post_type'] == $type ) || ( isset( $post_type ) && $post_type == $type ) )
 		return true;
 	else
 		return false;
 }
-
-?>
