@@ -1,24 +1,25 @@
-<?php get_header() ?>
+<?php get_header(); ?>
 
 	<div id="container">
 		<div id="content">
-			
-			<?php sb_before_content();?>
 
-			<?php the_post() ?>
-			
-			<?php sb_page_title(); ?>
-			
-			<?php rewind_posts() ?>
+			<?php
+				do_action( 'sb_before_content' );
+				the_post();
+				do_action( 'sb_page_title' );
+				rewind_posts();
 
-			<?php while ( have_posts() ) : the_post() ?>
-				<?php get_template_part( 'loop', 'archive' ); ?>
-			<?php endwhile ?>
-			
-			<?php sb_after_content();?>
+				while ( have_posts() ) : the_post();
+
+					get_template_part( 'loop', 'archive' );
+
+				endwhile;
+
+				do_action( 'sb_after_content' );
+			?>
 
 		</div><!-- #content .hfeed -->
 	</div><!-- #container -->
 
-<?php get_sidebar() ?>
-<?php get_footer() ?>
+<?php get_sidebar(); ?>
+<?php get_footer(); ?>

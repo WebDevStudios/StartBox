@@ -3,7 +3,7 @@
 Template Name: Links Page
 */
 ?>
-<?php get_header() ?>
+<?php get_header(); ?>
 	
 	<div id="container">
 		<div id="content">
@@ -14,10 +14,10 @@ Template Name: Links Page
 			$rtt = ( $toc ) ? '<li><a class="rtt" href="#top">Return to Top</a></li><hr/>' : '' ;
 			$category = get_post_meta($post->ID, 'links_categoryid', true)
 		?>
-		<?php sb_before_content();?>
+		<?php do_action( 'sb_before_content' ); ?>
 		
-			<div id="post-<?php the_ID(); ?>" <?php post_class() ?>>
-				<?php sb_page_title(); ?>
+			<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+				<?php do_action( 'sb_page_title' ); ?>
 				<div class="entry-content">
 					<?php the_content() ?>
 					<?php if ($toc) { ?>
@@ -84,17 +84,17 @@ Template Name: Links Page
 						?>
 					</ul>
 					
-					<?php edit_post_link(__('Edit', 'startbox'),'<span class="edit-link">','</span>') ?>
+					<?php edit_post_link( __('Edit', 'startbox'),'<span class="edit-link">','</span>'); ?>
 
 				</div>
 			</div><!-- .post -->
 
-			<?php sb_after_content();?>
+			<?php do_action( 'sb_after_content' ); ?>
 			
 			<?php comments_template( '', true ); ?>
 
 		</div><!-- #content -->
 	</div><!-- #container -->
 
-<?php get_sidebar() ?>
-<?php get_footer() ?>
+<?php get_sidebar(); ?>
+<?php get_footer(); ?>

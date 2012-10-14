@@ -1,17 +1,17 @@
-<?php get_header() ?>
+<?php get_header(); ?>
 
 	<div id="container">
 		<div id="content">
 
 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 		
-		<?php sb_before_content(); ?>
+			<?php do_action( 'sb_before_content' ); ?>
 
-			<?php sb_page_title(); ?>
-			<div id="post-<?php the_ID(); ?>" <?php post_class() ?>>
-				<h2 class="entry-title"><?php the_title() ?></h2>
+			<?php do_action( 'sb_page_title' ); ?>
+			<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+				<h2 class="entry-title"><?php the_title(); ?></h2>
 				<div class="entry-meta">
-					<?php sb_post_header(); ?>
+					<?php do_action( 'sb_post_header' ); ?>
 					<?php
 						if ( wp_attachment_is_image() ) {
 							echo ' <span class="meta-sep">|</span> ';
@@ -76,7 +76,7 @@
 
 			</div><!-- .post -->
 
-		<?php sb_after_content(); ?>
+		<?php do_action( 'sb_after_content' ); ?>
 			
 		<?php comments_template(); ?>
 			
@@ -85,5 +85,5 @@
 		</div><!-- #content -->
 	</div><!-- #container -->
 
-<?php get_sidebar() ?>
-<?php get_footer() ?>
+<?php get_sidebar(); ?>
+<?php get_footer(); ?>

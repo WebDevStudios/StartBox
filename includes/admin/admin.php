@@ -1,18 +1,32 @@
-<?php 
+<?php
 /**
  * Creates Theme Options page and enqueues all necessary scripts
  *
  * @since 2.2.8
  */
 function sb_admin_init() {
+
+	// Setup our global admin variable
 	global $sb_admin;
+
+	// Create our settings page and add it to the menu
 	$sb_admin = add_theme_page( THEME_NAME." Options", __('Theme Options', 'startbox'), 'edit_theme_options', 'sb_admin', 'sb_admin_page' );
+
+	// Register our custom settings field
 	register_setting( 'sb_admin', THEME_OPTIONS, 'sb_sanitize');
+
+	// Load in our custom JS and help content
 	add_action( 'load-' . $sb_admin, 'sb_admin_load' );
-    add_action( 'load-' . $sb_admin, 'sb_admin_help');
+	add_action( 'load-' . $sb_admin, 'sb_admin_help');
+
 }
 add_action( 'admin_menu', 'sb_admin_init' );
 
+/**
+ * Add a menu item for Theme Options to the admin bar
+ *
+ * @since 2.4
+ */
 function sb_admin_bar_init() {
     global $wp_admin_bar;
     $wp_admin_bar->add_menu( array( 'id' => 'theme-options', 'parent' => 'appearance', 'title' => __('Theme Options', 'startbox'), 'href' => admin_url( 'themes.php?page=sb_admin' ) ) );
@@ -22,7 +36,7 @@ add_action( 'wp_before_admin_bar_render', 'sb_admin_bar_init' );
 /**
  * Adds contextual help for all StartBox Options
  *
- * @since StartBox 2.5.5
+ * @since 2.5.5
  */
 function sb_admin_help() {
     global $sb_admin, $wp_version;
@@ -38,7 +52,7 @@ function sb_admin_help() {
 		global $sb_settings_factory;
 		$defaults = $theme_options = get_option( THEME_OPTIONS );
 		$settings = $sb_settings_factory->settings;
-	
+
 		// Add our generic helper text no matter what
 		$screen->add_help_tab( array(
 			'id'		=> 'sb_need_help',
@@ -54,14 +68,14 @@ function sb_admin_help() {
 				$output = '';
 				$output .= '<h3>' . $setting->name . '</h3>';
 				$output .= '<p>' . $setting->description . '</p>';
-		
+
 				// loop through each individual option to find help text, include it in output if found
 				$options = $setting->options;
 				foreach( $options as $option_id => $option ) {
 					if ( isset( $option['help'] ) )
 						$output .= '<p style="padding:8px 0; margin:0; border-top:1px solid #eee;"><strong>' .  rtrim( $option['label'], ':' ) . '</strong> &ndash; ' . $option['help'] . '</p>';
 				}
-		
+
 				// Add the help tab
 			    $screen->add_help_tab( array(
 			        'id'		=> $setting->slug,
@@ -75,15 +89,16 @@ function sb_admin_help() {
 }
 
 function sb_admin_load() {
+
 	global $sb_admin;
-	
+
 	add_screen_option( 'layout_columns', array('max' => 2, 'default' => 2) );
-	
+
 	// Load the scripts for handling metaboxes
 	wp_enqueue_script('common');
 	wp_enqueue_script('wp-lists');
 	wp_enqueue_script('postbox');
-	
+
 	// Load StartBox-specific scripts and styles
 	wp_enqueue_script( 'colorbox' );
 	wp_enqueue_script( 'jquery-ajaxuploader', SCRIPTS_URL . '/jquery.ajaxupload.js' );
@@ -92,15 +107,17 @@ function sb_admin_load() {
 	wp_enqueue_style( 'colorpicker', SCRIPTS_URL . '/colorpicker/css/colorpicker.css' );
 	wp_enqueue_style( 'sb-admin', STYLES_URL . '/admin.css' );
 	wp_enqueue_style( 'colorbox' );
-	
+
 	// Load scripts for TinyMCE (Credit: Lee Doel)
 	if ( user_can_richedit() ){
-        wp_enqueue_script('editor');
-        wp_enqueue_script('media-upload');
-        wp_enqueue_style( 'thickbox' );
-    }
-	
-	if ( sb_get_option('reset') ) { sb_set_default_options(); wp_redirect( admin_url( 'admin.php?page=sb_admin&reset=true' ) ); }
+		wp_enqueue_script('editor');
+		wp_enqueue_script('media-upload');
+		wp_enqueue_style( 'thickbox' );
+	}
+
+	// Reset our theme options back to default
+	if ( sb_get_option('reset') ) { sb_set_default_options(); wp_redirect( admin_url( 'themes.php?page=sb_admin&reset=true' ) ); }
+
 }
 
 /**
@@ -129,30 +146,24 @@ function sb_admin_page() { global $sb_admin; ?>
 
     <h2><?php echo THEME_NAME; ?> <?php _e( 'Options', 'startbox'); ?></h2>
 
-	<?php 
+	<?php
 		if ( isset($_REQUEST['settings-updated']) && $_REQUEST['settings-updated'] == true ) {
 			echo '<div id="message" class="updated fade"><p>' . THEME_NAME . ' ' . __( 'Options Updated.', 'startbox') . '</p></div>';
 		}
-		elseif ( isset($_REQUEST['reset']) && $_REQUEST['reset'] == true ) {
-			echo '<div id="message" class="updated fade"><p>' . THEME_NAME . ' ' . __( 'Options Reset.', 'startbox') . '</p></div>';
-		}
-		if ( isset($_REQUEST['upgrade']) && $_REQUEST['upgrade'] == 'true') {
-			echo '<div id="message" class="updated fade"><p>' . sprintf( __('StartBox upgraded to version %s!', 'startbox'), get_option('startbox_version') ) . '</p></div>';
-		}
 	?>
-	
+
     <div id="poststuff" class="metabox-holder<?php global $screen_layout_columns; echo 2 == $screen_layout_columns ? ' has-right-sidebar' : ''; ?>">
     	<form method="post" enctype="multipart/form-data" action="options.php" id="sb_options">
 		<?php
 			// Include Save/Reset buttons in header
 			sb_admin_buttons();
-			
+
 			// Make metaboxes work proper
-			wp_nonce_field('sb-admin-metaboxes');
+			wp_nonce_field( 'sb-admin-metaboxes' );
 			wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false );
 			wp_nonce_field( 'meta-box-order', 'meta-box-order-nonce', false );
-			
-			// Make settings usoable
+
+			// Make settings usable
 			settings_fields( 'sb_admin' );
 		?>
         <div id="post-body" class="has-sidebar">
@@ -160,11 +171,11 @@ function sb_admin_page() { global $sb_admin; ?>
             	<?php do_meta_boxes( $sb_admin, 'primary', null ); ?>
 			</div>
         </div>  <!-- postbox-container -->
-        
+
         <div id="side-info-column" class="inner-sidebar">
         	<?php do_meta_boxes( $sb_admin, 'secondary', null ); ?>
         </div>  <!-- postbox-container -->
-		
+
 		<?php sb_admin_buttons(); ?>
         </form>
     </div>  <!-- metabox-holder -->
@@ -180,7 +191,7 @@ function sb_admin_buttons() { ?>
 	</div>
 <?php }
 
-// This callback's sole responsibility is to set checkboxes to "false" if unchecked
+// Perform some basic sanitization to our options on save
 function sb_sanitize($inputs) {
 	global $sb_settings_factory;
 	$settings = $sb_settings_factory->settings;
@@ -188,8 +199,8 @@ function sb_sanitize($inputs) {
 	foreach ( $settings as $setting ) {
 		$options = $setting->options;
 		foreach ( $options as $option_id => $option ) {
-			
-			// Set unchecked checkboxes to false, otherwise their value is unset and the default gets set on every save
+
+			// Forcefully set unchecked checkboxes to false so they retain a vailue when unchecked
 			if ($option['type'] == 'checkbox' && !isset($inputs[$option_id])) {
 				$inputs[$option_id] = false;
 			}
@@ -202,10 +213,8 @@ function sb_sanitize($inputs) {
 			if ( ( $option['type'] == 'text' || $option['type'] == 'textarea') && ( isset($option['sanitize']) && $option['sanitize'] != false ) ) {
 				$inputs[$option_id] = wp_kses( $inputs[$option_id], $option['sanitize']['allowed_html'], ( empty ( $option['sanitize']['allowed_protocols']) ? array() : $option['sanitize']['allowed_protocols'] ) );
 			}
-			
+
 		}
 	}
 	return $inputs;
 }
-
-?>

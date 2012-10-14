@@ -2,13 +2,15 @@
 
 	<div id="container">
 		<div id="content">
-			
-			<?php sb_before_content(); ?>
-			<?php sb_before_featured(); ?>
-			<?php sb_featured(); ?>
-			<?php sb_after_featured(); ?>
-			<?php sb_home(); ?>
-			<?php sb_after_content();?>
+
+			<?php
+				do_action( 'sb_before_content' );
+				do_action( 'sb_before_featured' );
+				do_action( 'sb_featured' );
+				do_action( 'sb_after_featured' );
+				do_action( 'sb_home' );
+				do_action( 'sb_after_content' );
+			?>
 
 		</div><!-- #content -->
 	</div><!-- #container -->

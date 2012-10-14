@@ -27,7 +27,7 @@ class sb_search_widget extends WP_Widget {
 	function form($instance) {
 		$defaults = array(
 			'title' => 'Search',
-			'search-input' => 'Type your search and press enter.',
+			'search-input' => 'Search',
 			'search-button' => 'Search'
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults );
@@ -49,35 +49,33 @@ class sb_search_widget extends WP_Widget {
 
 	function update($new_instance, $old_instance) {
 		$instance = $old_instance;
-		
+
 		$instance['title'] = strip_tags( $new_instance['title'] );
 		$instance['search-input'] = strip_tags( $new_instance['search-input'] );
 		$instance['search-button'] = strip_tags( $new_instance['search-button'] );
-		
+
 		return $instance;
 	}
 
 	function widget($args, $instance) {
 		extract($args);
-		
+
 		$title = apply_filters('widget_title', $instance['title'] );
 		$text = $instance['search-input'];
 		$button = $instance['search-button'];
-		
+
 		echo $before_widget;
-		if ($title) { echo $before_title . $title . $after_title; }	
+		if ($title) { echo $before_title . $title . $after_title; }
 	?>
-		
+
 		<form class="searchform" method="get" action="<?php echo esc_url( home_url() ); ?>">
 			<div>
 				<input name="s" type="text" class="searchtext" value="" title="<?php echo esc_attr( $text ); ?>" size="10" tabindex="1" />
 				<input type="submit" class="button" value="<?php echo esc_attr( $button ); ?>" tabindex="2" />
 			</div>
 		</form>
-		
+
 	<?php
 		echo $after_widget;
 	}
 }
-
-?>

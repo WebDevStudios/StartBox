@@ -1,6 +1,38 @@
+2012.10.13 - version 2.6
+	* Added: hook "sb_author_before_posts" on author.php after the author's meta information, before their posts are inserted
+	* Added: shortcode [sitemap] to leverage the sitemap/archive functionality anywhere
+	* Added: shortcode [expires] for hiding content after specific date ([expires date="Aug 18, 2012" expired_message="You missed out..."]blah[/expires])
+	* Added: shortcode [show_after] for revealing content after specific date ([show_after date="Aug 18, 2012" teaser="Coming soon..."]blah[/show_after])
+	* Added: /includes/functions/conditionals.php (migrated functions from the increasingly ambiguous /includes/functions/custom.php)
+	* Added: /includes/functions/images.php (migrated functions from the increasingly ambiguous /includes/functions/custom.php)
+	* Added: /includes/functions/menus.php (migrated functions from the increasingly ambiguous /includes/functions/custom.php)
+	* Fixed: annoying bug introduced in 2.5.4 that prevented sidebar settings from being stored on first save.
+	* Fixed: bug that prevented WordPress SEO (by Yoast) from overwriting page titles
+	* Fixed: bug that would cause the RSS nav menu extra link to use href="true" instead of href="/your/feed/url/"
+	* Changed: Options API: Refactored most of the code and added better inline documentation (see /includes/functions/admin_settings.php)
+	* Changed: Options API: WYSIWYG option to use wp_editor functionality introduced in WP3.3
+	* Changed: Options API: Logo option is now cleaner and simpler
+	* Changed: Options API: Layout Options are now in their own separate section
+	* Changed: the Sitemap Page Template now accepts parameters passed as an array through the Custom Field "sitemap_settings"
+	* Changed: updated all post image functions to run off a single array or argument string, instead of multiple arguments
+	* Changed: renamed /plugins/ to /extensions/
+	* Changed: [date] shortcode now accepts "relative=true" parameter to return a relative date (e.g. 5 hours ago)
+	* Changed: updated SB Social widget to include Google+ and more gracefully handle output of each network's name
+	* Changed: wp_enqueue_style calls now pass through theme version numbers (for chache-busting purposes)
+	* Changed: footer widgets now hook into sb_footer_widgets via hooks.php (they were previously hard-coded)
+	* Changed: replaced custom, unfilterable search form extra in Menus to use get_template_part() and searchform.php or searchform-menu.php (if present)
+	* Removed: deprecated ALL custom hook functions, replacing them more simply with do_action( 'hook_name' )
+	* Removed: deprecated sb_title() function, since it's only use was having wp_title hooked directly to it
+	* Removed: /page-fullwidth.php (full-width page template) -- use the One Column layout option instead
+	* Removed: /page-tertiarysidebar.php (tertiary sidebar page template ) -- use sidebar manager instead
+	* Removed: /sidebar-tertiary.php (tertiary sidebar file) -- use sidebar manager instead
+	* Removed: Digg shortcode (not as relevant as it once was)
+	* Removed: Options API: Feedburner Settings (Google is eliminating their feedburner service, in the mean time you can still use the official Feedburner plugin)
+	* Removed: Options API: "Save the Web" Settings (The PushUpTheWeb service no longer exists)
+
 2012.08.02 - version 2.5.8
 	* changed: updated /includes/functions/startbox.php to use wp_get_theme instead of get_theme_data (when supported)
-	* chonged: merged in a number of translation fixes from github. Props Koncept-Web
+	* changed: merged in a number of translation fixes from github. Props Koncept-Web
 
 2012.05.16 - version 2.5.7
 	* fixed: annoying bug introduced in 2.5.4 that prevented sidebar settings from being stored on first save.
@@ -22,7 +54,7 @@
 	* fixed: bug in attribute output for sb_post_image()
 	* fixed: bug where layout would not apply to posts page if set to static page via Settings > Reading
 	* fixed: bug where correct sidebar would not apply to posts page if set to static page via Settings > Reading
-	* fixed: annoying bug that would recheck slideshow control settings 
+	* fixed: annoying bug that would recheck slideshow control settings
 
 2011.11.17 - version 2.5.4
 	* added: Complete security audit by Mark Jaquith, lots of minor changes to tighten theme security
@@ -42,8 +74,8 @@
 	* fixed: minor bug from earlier release that broke the color type options
 
 2011.08.02 - version 2.5.3
-	* IMPORTANT SECURITY UPDATE: patched a zero-day exploit in timthumb.php 
-	
+	* IMPORTANT SECURITY UPDATE: patched a zero-day exploit in timthumb.php
+
 2011.07.30 - version 2.5.2
 	* new: custom sidebars can now be set to appear on just the homepage
 	* new: sb_register_sidebar helper function for easily registering new sidebar within theme/plugin
@@ -57,7 +89,7 @@
 	* changed: nav menu options can now set a default depth
 	* changed: updated startbox.po and startbox.mo to include all the latest localization strings
 	* removed: removed internal copy of Widget Logic, users are encouraged to install the stand-alone plugin if they still want it.
-	
+
 2011.06.24 - version 2.5.1
 	* new: added sb_before/after_{sidebar}_aside to appear outside of opening/closing div for given sidebar
 	* changed: moved sb_before/after_{sidebar}_widgets to appear inside of opening/closing div for for given sidebar
@@ -94,7 +126,7 @@
 	* fixed: minor bug in sb_post_image that improperly applied class .nophoto when use_attachments was set to true and post had attachments
 	* fixed: minor bug that prevented "THEMENAME Options Updated" from appearing after saving theme options
 	* fixed: minor bug that broke smooth scrolling in "Return to Top" links
-	
+
 2011.03.13 - version 2.4.9.4
 	* new: added a wysiwyg option type to Options API, credit: Lee Doel
 	* changed: set sb_default_page_title to include titles for custom post types
@@ -102,14 +134,14 @@
 	* fixed: corrected a bug with setting a custom class in the [toggle] shortcode
 	* fixed: corrected a bug in SB Social widget that would force twitter link to appear even when blank
 	* fixed: corrected a bug in SB Social widget that produced a malformed twitter URL
-	
+
 2011.03.07 - version 2.4.9.3
 	* new: Added Theme Options menu item to Appearance menu in admin bar (introduced in WP 3.1)
 	* fixed: removed the non-validating attributes from the image tag generated via sb_post_image()
 	* fixed: corrected the hooks for including post thumbnails via RSS
 	* fixed: corrected a bug with SB Social widget where twitter would always show
 	* changed: upgraded Colorbox to 1.3.16
-	
+
 2011.01.26 - version 2.4.9.2
 	* MAJOR overhaul to the Slideshows feature, much thanks to Joel Kuczmarski for that
 	* added "Links To" option to slides so they can now be linked to pages/posts
@@ -119,7 +151,7 @@
 	* added sb_post_image_use_attachments filter to optionally enable post attachments as fallback if no featured image is specified
 	* bugfix: changed Featured Posts widget to filter post excerpts when limiting content to specific number of characters
 	* bugfix: added filter to wp_title_rss to prevent RSS feed from displaying double title
-	
+
 2011.01.19 - version 2.4.9.1
 	* added default comment-reply script to queue for singular items (posts/pages)
 	* added wp_kses() filter to all text-based inputs in theme options (security)
@@ -147,7 +179,7 @@
 	* moved /includes/admin/admin_settings.php to /includes/functions/
 	* enabled shortcodes in textbox for footer output in theme options
 	* reorganized /includes/functions/startbox.php to better accommodate after_setup_theme hook and add_theme_support functionality
-	
+
 2010.12.1 - version 2.4.8.5
 	* changed body_class to include version number for all IE browsers, and ie-old for anything older than 7
 	* changed SB Social widget's text filters to use less overhead, added filter for sb_social_twitter
@@ -190,7 +222,7 @@
 	* moved /includes/functions/galleriffic.php to /includes/plugins/
 	* moved /includes/widgets/widgetlogic.php to /includes/plugins/
 	* functions.php - removed SB_CURRENT constant
-	* header.php 
+	* header.php
 		- fixed issue with content-type meta tag
 		- added filter sb_description to the description meta tag
 	* /includes/admin/admin_settings.php
@@ -198,7 +230,7 @@
 		- added sb_option_defaults filter to sb_set_default_options();
 	* /includes/admin/header.php - changed nav options to use sb_nav_menu() helper function
 	* /includes/admin/footer.php - removed an extra </span>, corrected a malformed <?php tag
-	* /includes/admin/content.php 
+	* /includes/admin/content.php
 		- changed layout options to use new stylesheet handles
 		- set post author bio option to use new shortcode
 		- added options for post thumbnail width and height
@@ -236,7 +268,7 @@
 		- added check for current_theme_supports()
 		- fixed a couple of debug issues
 	* /includes/scripts/jquery-pushup/pushup.css - fixed margin-right misspelling (L50)
-	* /includes/scripts/startbox.js 
+	* /includes/scripts/startbox.js
 		- removed toggle parser for More/Less text
 		- improved toggle parser in several minor aspects
 	* /includes/styles/defaults/print.css - removed unnecessary box-shadow rules
@@ -248,12 +280,12 @@
 		- added hooks for primary and secondary widget areas
 		- moved all sidebar code to /includes/functions/hooks.php
 	* style.css - added import for shortcodes.css
-	
+
 2010.09.09 - version 2.4.7
 	* added /includes/scripts/widgets.js
 	* /includes/admin/footer.php - Added a link to Widgets for admin links
 	* /includes/admin/admin_settings.php - Added 'posts' as an available option for 'select' type settings
-	* /includes/functions/custom.php 
+	* /includes/functions/custom.php
 		- Added sb_dropdown_posts() for creating a select input of posts
 		- Added sb_tag_query() for handling titles on tag archives
 	* /includes/widgets/featuredposts.php - Completely overhauled widget to handle featured pages and posts, renamed to SB Featured Content
@@ -287,7 +319,7 @@
 		- updated sb_settings class to include variable for page
 		- fixed a bug that prevented sb_unregister_settings from working
 	* /includes/admin/content.php - added options for setting post meta
-	* /includes/functions/custom.php 
+	* /includes/functions/custom.php
 		- added post- and page-slugs to body class
 		- removed [rtt] shortcode
 	* /includes/functions/hooks.php
@@ -313,11 +345,11 @@
 	* loop.php
 		- fixed bug that forced content to use the_excerpt
 		- added hooks for sb_post_header and sb_post_footer
-	* search.php 
+	* search.php
 		- added reference to sb_page_title filter
 		- added reference for searchform.php
 	* tag.php - added reference to sb_page_title filter
-	
+
 2010.07.28 - version 2.4.5
 	* added /includes/functions/startbox.php - main function class
 	* added /includes/widgets/widgetlogic.php
@@ -352,7 +384,7 @@
 		-added default value for input text
 	* page-fullwidth.php - added get_sidebar back into template
 	* single.php - added hooks for sb_before_post_content(), sb_after_post_content()
-	
+
 2010.07.03 - version 2.4.4
 	* added /includes/scripts/jquery.ajaxupload.js
 	* added /includes/scripts/admin.js
@@ -399,12 +431,12 @@
 	* improved custom functions comments
 	* author.php - updated bio area to include gravatar
 	* /includes/admin/analytics.php - added line breaks before code is inserted
-	* /includes/admin/content.php 
+	* /includes/admin/content.php
 		- added select box for homepage layout
 		- added text box for setting "read more" text
 	* /includes/admin/footer.php - corrected default value for all checkboxes
 	* /includes/admin/header.php - corrected label for navigation after header
-	* /includes/functions/comment_format.php 
+	* /includes/functions/comment_format.php
 		- updated default gravatar image to use full URL
 		- updated comment_form() to reflect original SB style
 	* /includes/functions/custom.php - added shortcode [rtt] to insert return to top link
@@ -449,8 +481,8 @@
 	* /includes/functions/sidebars.php - added home_featured aside
 	* /includes/scripts/defaults.js - added a function to ease scrolling on anchor tags (e.g. return to top)
 	* /includes/styles/defaults/startbox.css - added new rules for featured_aside
-	* sidebar-footer.php - updated asides to have proper dynamic margins 
-	
+	* sidebar-footer.php - updated asides to have proper dynamic margins
+
 2010.06.12 - version 2.4.1
 	* added notes.txt - temporary notes repo for emptying brain
 	* renamed /includes/widgets/stayconnected.php to /includes/widgets/social.php
@@ -462,7 +494,7 @@
 		- added metabox functionality to use in place of hooks
 		- added sb_admin_submit() to produce submit buttons in panels
 	* /includes/admin/layout.php - added toggles for home links in nav
-	* /includes/functions/hooks.php 
+	* /includes/functions/hooks.php
 		- added sb_title hook
 		- removed sb_admin_left
 		- removed sb_admin_right
@@ -478,7 +510,7 @@
 	* sidebar-footer.php
 		- added footer aside column 4
 		- added dynamic widths to sidebars
- 
+
 2010.06.08 - version 2.4.0
 	* added /includes/styles/defaults/print.css
 	* author.php - replaced $article.php variable with new get_template_part() function
@@ -503,7 +535,7 @@
 2010.05.12 - version 2.3.9
 	* added /includes/admin/feedburner.php
 	* /includes/admin/logo_options.php - added image uploader
-	* /includes/admin/admin.php 
+	* /includes/admin/admin.php
 		- updated form type to accomodate uploads
 		- added validator for uploads
 	* /includes/admin/footer.php
@@ -531,7 +563,7 @@
 	* removed page_redirect.php
 	* /includes/widgets/connected.php - corrected spelling of youtube for one variable
 	* /includes/widgets/latestposts.php - renamed all classes from entry- to latest- to avoid style mismatch
-	* /includes/functions/hooks.php 
+	* /includes/functions/hooks.php
 		- added 25 new hooks
 		- renamed sb_header_before to sb_before_header
 		- renamed sb_header_after to sb_after_header
@@ -541,7 +573,7 @@
 		- renamed sb_post_after to sb_after_post
 	* 404.php - added reference to new hook
 	* header.php - added reference to new hooks
-	* footer.php 
+	* footer.php
 		- added reference to new hooks
 		- removed footer sidebar and placed into sidebar-footer.php
 
@@ -550,7 +582,7 @@
 	* added /includes/admin/sb-options.php
 	* /includes/admin/admin.php - added jquery calls to make UI draggable and collapsible
 	* /includes/styles/defaults/admin.css - added styles to accommodate UI updates
-	
+
 2010.05.01 - version 2.3.4
 	* renamed /includes/admin/footer_text.php to /includes/admin/footer.php
 	* footer.php - removed some javascript, moved to hooks.php
@@ -560,14 +592,14 @@
 		- moved stylesheet reference to before wp_head so add_custom_background gets priority
 	* readme.html - updated the documentation a bit
 	* /includes/admin/footer.php - added options to enable startbox credit
-	* /includes/funcitons/hooks.php 
+	* /includes/funcitons/hooks.php
 		- renamed sb_content_above to sb_content_before
 		- renamed sb_content_below to sb_content_after
 		- added sb_post_before and sb_post_after
 		- added javascript from footer.php
 	* removed post navigation (prev/next) from individual template files, added back in via hooks.php
 	* added default options to all theme options
-	
+
 2010.04.29 - version 2.3.3
 	* removed /includes/functions/custom_metaboxes.php
 	* removed /includes/styles/layouts/18px.css
@@ -582,10 +614,10 @@
 	* removed /includes/admin/featured_categories.php
 	* functions.php - switched admin reference to an all-inclusive model (like widgets)
 	* /includes/functions/custom.php - updated functions to reference new admin options
-	* /includes/admin/admin.php 
+	* /includes/admin/admin.php
 		- stripped all direct references to option panels
 		- added references for Options API introduced in WP2.7
-	* /includes/admin/analytics.php 
+	* /includes/admin/analytics.php
 		- hooked into sb_admin_right
 		- added references for Options API introduced in WP2.7
 	* /includes/admin/footer_text.php
@@ -615,7 +647,7 @@
 	* /includes/scripts/timthumb.php - replaced with modified version to allow crop location
 	* /includes/functions/custom - updated sb_post_image() to include cropfrom variable
 	* started using git for versioning
-	
+
 2010.04.16 - version 2.2.9
 	* moved /includes/functions/admin.php to /includes/admin/admin.php
 	* includes/functions/startbox.php - removed sandbox_body_class() and sandbox_post_class() functions
@@ -656,10 +688,10 @@
 	* removed /includes/scripts/jquery.md5.js
 	* removed /includes/scripts/jquery.scrollTo-min.js
 	* removed /includes/scripts/menu.js
-	
+
 2010.04.07 - version 2.2.7
 	* includes/functions/custom.php - revised sb_the_post_image() and sb_get_post_image() functions to better reference the_post_image
-	
+
 2010.04.05 - version 2.2.6
 	* added /includes/widgets/connected.php
 	* added images/social/ (8 social icons)
@@ -672,10 +704,10 @@
 		- added IMAGES_URL
 		- added thumbnail size of 60x60
 		- added reference to new comments stylesheet
-	* includes/functions/custom.php 
+	* includes/functions/custom.php
 		- updated sb_get_post_image function to reference IMAGES_URL
 		- updated sb_post_image to pass W and H variables for the_post_image
-	
+
 2010.03.03 - version 2.2.5
 	* added /includes/functions/custom_metaboxes.php
 	* custom.php
@@ -699,7 +731,7 @@
 	* includes/styles/defaults/startbox.css
 		- updated #nav li a color
 		- updated widget li a styles
-	* functions.php 
+	* functions.php
 		- added global definition for $editor_css (child themes can create style-editor.css to override SB's style)
 		- added glob() function to include all widgets within includes/widgets/ folder
 		- removed reference to widgets.php
@@ -717,7 +749,7 @@
 		- added reference to sb_header() action
 	* style.css - replaced all navigation reference of #nav with .menu ul
 	* includes/scripts/defaults.js - commented out all dynamic commenter info (name, gravatar, etc), conflict with wp-e-commerce
-	
+
 2010.02.02 - version 2.2.2
 	* hooks.php
 		- combined sp_page_before() and sb_post_before() into sb_content_before()
@@ -732,13 +764,13 @@
 	* search.php - references new global $article_path
 	* tag.php - references new global $article_path
 	* page_category.php - references new global $article_path
-	
+
 2010.01.26 - version 2.2.0
 	* functions.php - made use of wp_register_script and wp_register_style to better serve child themes
 	* functions.php - apparently wp_register_script/style doesn't recognize variables for src file
 	* style.css - added notes about new wp_enque_style capabilities and gave nod to sandbox in description
 	* changelog.txt - decided to switch to a 3-digit versioning system
-	
+
 2010.01.21 - version 2.1
 	* added /includes/scripts/jquery.colorbox.min.js
 	* added page_rediect.php - automatically redirects page to a given link
@@ -746,7 +778,7 @@
 	* renamed /includes/scripts/dropdown.js to /includes/scripts/menu.js
 	* renamed /includes/scripts/base.js to /includes/scripts/defaults.js
 	* functions.php - updated references for new scripts
-	
+
 2009.12.20 - version 2.0
 	* massive reformation to better facilitate startbox as a framework
 	* added /includes/ to house all referenced files in single library
@@ -754,7 +786,7 @@
 	* moved /styles/ to /includes/styles/
 	* moved /functions/ to /includes/functions/
 	* functions.php - updated to better reference theme library, hopefully future-proofed for future alterations
-	
+
 2009.12.15 - version 1.9
 	* added sidebar-tertiary.php for new widget area
 	* added page_tertiarysidebar.php to include new tertiary sidebar
@@ -770,7 +802,7 @@
 	* moved /layouts/ to /styles/layouts/
 	* style.css - removed all startbox defaults
 	* style.css - updated to reference new stylesheets
-	
+
 2009.07.17 - version 1.7
 	* functions.php - created new function for displaying copyright, design credit and user login
 
@@ -780,7 +812,7 @@
 	* listchildren.php - renamed to page_listchildren.php to better identify as page template
 	* updated 404 template to be vastly more helpful
 
-2009.04.15 - version 1.5	
+2009.04.15 - version 1.5
 	* added new images to compliment new comment styles
 	* added /scripts/ to contain several commonly used scripts
 	* added /scripts/dropdown.js

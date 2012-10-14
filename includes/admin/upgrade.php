@@ -1,4 +1,7 @@
 <?php
+/**
+ * Settings for controlling automatic upgrades
+ */
 class sb_upgrade_settings extends sb_settings {
 
 	function sb_upgrade_settings() {
@@ -15,12 +18,19 @@ class sb_upgrade_settings extends sb_settings {
 					'type'		=> 'checkbox',
 					'label'		=> __('Enable Automatic Updates', 'startbox'),
 					'default'	=> true
-			)
+			),
+			// 'use_beta' => array(
+			// 		'type'		=> 'checkbox',
+			// 		'label'		=> __('Use Beta Updates', 'startbox'),
+			// 		'desc'		=> __('Note: Do not use beta updates in a production environment. They could break your site.', 'startbox'),
+			// 		'default'	=> false
+			// )
 		);
 		parent::__construct();
 	}
 
 }
 
-if ( current_theme_supports('sb-updates') ) sb_register_settings('sb_upgrade_settings');
-?>
+// Only register this panel if the theme supports upgrades
+if ( current_theme_supports('sb-updates') )
+	sb_register_settings('sb_upgrade_settings');

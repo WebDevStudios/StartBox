@@ -107,7 +107,7 @@ class sb_tagcloud_widget extends WP_Widget {
 
 	function update($new_instance, $old_instance) {
 		$instance = $old_instance;
-		
+
 		$instance['title'] = strip_tags( $new_instance['title'] );
 		$instance['smallest'] = strip_tags( $new_instance['smallest'] );
 		$instance['largest'] = strip_tags( $new_instance['largest'] );
@@ -119,13 +119,13 @@ class sb_tagcloud_widget extends WP_Widget {
 		$instance['order'] = strip_tags( $new_instance['order'] );
 		$instance['include'] = strip_tags( $new_instance['include'] );
 		$instance['exclude'] = strip_tags( $new_instance['exclude'] );
-		
+
 		return $instance;
 	}
 
 	function widget($args, $instance) {
 		extract($args);
-		
+
 		$title = apply_filters('widget_title', $instance['title'] );
 		$smallest = $instance['smallest'];
 		$largest = $instance['largest'];
@@ -137,7 +137,7 @@ class sb_tagcloud_widget extends WP_Widget {
 		$order = $instance['order'];
 		$exclude = $instance['exclude'];
 		$include = $instance['include'];
-		
+
 		$settings = array(
 			'smallest'	=> $smallest,
 			'largest'	=> $largest,
@@ -152,12 +152,10 @@ class sb_tagcloud_widget extends WP_Widget {
 			'taxonomy'	=> 'post_tag',
 			'echo'		=> true
 		);
-		
+
 		echo $before_widget;
-		if ($title) { echo $before_title . $title . $after_title; }	
+		if ($title) { echo $before_title . $title . $after_title; }
 		wp_tag_cloud($settings);
 		echo $after_widget;
 	}
 }
-
-?>

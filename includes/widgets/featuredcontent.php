@@ -28,14 +28,14 @@ class sb_featured_content_widget extends WP_Widget {
 			'description'  =>  __( "Display featured content in any widget area", "startbox" )
 		);
 		$this->WP_Widget( 'featured-content-widget', __('SB Featured Content', 'startbox'), $widget_ops);
-		
+
 	}
 
 	function widget($args, $instance) {
 		extract($args);
-		
+
 		global $post;
-		
+
 		$title = apply_filters('widget_title', $instance['title'] );
 		if ( $instance['content_type'] != 'page' ) {
 			$category = $instance['post_categories'];
@@ -44,7 +44,7 @@ class sb_featured_content_widget extends WP_Widget {
 			$count = $instance['post_count'];
 
 			$showtitle = $instance['post_showtitle'];
-			
+
 			if ( $showmeta = $instance['post_showmeta'] ) { $meta = $instance['post_meta']; }
 
 			if ( $showimage = $instance['post_showimage'] ) {
@@ -67,7 +67,7 @@ class sb_featured_content_widget extends WP_Widget {
 				$moretext = $instance['post_moretext'];
 				$morelocation = $instance['post_morelocation'];
 			}
-			
+
 			$morecount = $offset = $include = $exclude = '';
 			if ( $showadvanced = $instance['post_showadvanced'] ) {
 				$offset = $instance['post_offset'];
@@ -75,7 +75,7 @@ class sb_featured_content_widget extends WP_Widget {
 				$include = ($instance['post_include']) ? array($instance['post_include']) : '' ;
 				$morecount = $instance['post_morecount'];
 			}
-			
+
 		} else {
 			$page_id = $instance['page'];
 			$showimage = $instance['page_showimage'];
@@ -87,9 +87,9 @@ class sb_featured_content_widget extends WP_Widget {
 			$limit = $instance['page_limit'];
 			$readmore = $instance['page_readmore'];
 		}
-		
+
 		echo $before_widget;
-		
+
 		if ( $instance['content_type'] != 'page' ) {
 			if ($title && $instance['content_type'] != 'page') { echo $before_title . $title . $after_title; }
 			if ($showmore && ( $morelocation == 'before' || $morelocation == 'before_after' ) ) { echo '<a href="'.$morelink.'" class="more-link">'.$moretext.'</a>'; }
@@ -106,13 +106,13 @@ class sb_featured_content_widget extends WP_Widget {
 				) );
 			?>
 			<ul>
-			<?php if ( $posts->have_posts() ) : while ( $posts->have_posts() ) : $posts->the_post(); if ( $i <= $count ) { $i++; ?>	
+			<?php if ( $posts->have_posts() ) : while ( $posts->have_posts() ) : $posts->the_post(); if ( $i <= $count ) { $i++; ?>
 				<li class="featured-item">
-					<?php if ($showimage && $imagelocation == 'before') { ?><a class="featured-image align<?php echo $imagealignment; ?>" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php sb_post_image($imagewidth,$imageheight); ?></a><?php } ?>
+					<?php if ($showimage && $imagelocation == 'before') { ?><a class="featured-image align<?php echo $imagealignment; ?>" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php sb_post_image( array( 'width' => $imagewidth, 'height' => $imageheight ) ); ?></a><?php } ?>
 					<?php if ($showtitle ) {?><a class="featured-title" href="<?php the_permalink() ?>" title="<?php printf(__('Permalink to %s', 'startbox'), esc_html(get_the_title(), 1)) ?>" rel="bookmark"><?php the_title() ?></a><?php } ?>
 					<?php if ($showmeta) { echo '<div class="featured-meta">' . do_shortcode($meta) . '</div>'; } ?>
-					<?php  
-						if ($showimage && $imagelocation == 'after') { ?><a class="featured-photo align<?php echo $imagealignment; ?>" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php sb_post_image($imagewidth,$imageheight); ?></a><?php }
+					<?php
+						if ($showimage && $imagelocation == 'after') { ?><a class="featured-photo align<?php echo $imagealignment; ?>" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php sb_post_image( array( 'width' => $imagewidth, 'height' => $imageheight ) ); ?></a><?php }
 						if ( $content != "none" ) {
 							echo '<div class="featured-content">';
 							if ( $limit ) { echo substr( get_the_excerpt(), 0, $limit) . '... '; if ( $readmore ) echo '<a href="'. get_permalink() .'" title="' . $readmore . '" rel="bookmark" class="more-link">' . $readmore . '</a>';}
@@ -128,17 +128,17 @@ class sb_featured_content_widget extends WP_Widget {
 				</li>
 			<?php } endwhile; endif; ?>
 			</ul>
-			<?php 
+			<?php
 			if ($showmore && ( $morelocation == 'after' || $morelocation == 'before_after' ) ) { echo '<a href="'.$morelink.'" class="more-link">'.$moretext.'</a>'; }
 		} else {
 			$page = new WP_query( 'page_id='.$page_id );
 		?>
 			<ul>
-			<?php if ( $page->have_posts() ) : while ( $page->have_posts() ) : $page->the_post(); ?>	
+			<?php if ( $page->have_posts() ) : while ( $page->have_posts() ) : $page->the_post(); ?>
 				<li class="featured-item">
-					<?php if ($showimage && $imagelocation == 'before') { ?><a class="featured-image align<?php echo $imagealignment; ?>" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php sb_post_image($imagewidth,$imageheight); ?></a><?php } ?>
+					<?php if ($showimage && $imagelocation == 'before') { ?><a class="featured-image align<?php echo $imagealignment; ?>" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php sb_post_image( array( 'width' => $imagewidth, 'height' => $imageheight ) ); ?></a><?php } ?>
 					<?php $title = (!$title) ? apply_filters( 'widget_title', get_the_title() ) : $title; echo $before_title . $title . $after_title; ?>
-					<?php if ($showimage && $imagelocation == 'after') { ?><a class="featured-photo align<?php echo $imagealignment; ?>" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php sb_post_image($imagewidth,$imageheight); ?></a><?php } ?>
+					<?php if ($showimage && $imagelocation == 'after') { ?><a class="featured-photo align<?php echo $imagealignment; ?>" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php sb_post_image( array( 'width' => $imagewidth, 'height' => $imageheight ) ); ?></a><?php } ?>
 					<?php
 						if ( $limit ) { echo substr( get_the_content(), 0, $limit) . '... '; if ( $readmore ) echo '<a href="'. get_permalink() .'" title="' . $readmore . '" rel="bookmark" class="more-link">' . $readmore . '</a>'; }
 						else { the_content( apply_filters( 'sb_read_more', $readmore ) ); }
@@ -154,7 +154,7 @@ class sb_featured_content_widget extends WP_Widget {
 		$instance = $old_instance;
 
 		$instance['content_type'] = $new_instance['content_type'];
-		
+
 		$instance['title'] = strip_tags( $new_instance['title'] );
 		$instance['post_categories'] = $new_instance['post_categories'];
 		$instance['post_orderby'] = $new_instance['post_orderby'];
@@ -180,29 +180,29 @@ class sb_featured_content_widget extends WP_Widget {
 		$instance['post_morelink'] = strip_tags( $new_instance['post_morelink'] );
 		$instance['post_moretext'] = strip_tags( $new_instance['post_moretext'] );
 		$instance['post_morelocation'] = strip_tags( $new_instance['post_morelocation'] );
-		
+
 		$instance['post_showadvanced'] = strip_tags( $new_instance['post_showadvanced'] );
 		$instance['post_morecount'] = strip_tags( $new_instance['post_morecount'] );
 		$instance['post_include'] = strip_tags( $new_instance['post_include'] );
 		$instance['post_exclude'] = strip_tags( $new_instance['post_exclude'] );
 		$instance['post_offset'] = strip_tags( $new_instance['post_offset'] );
-		
+
 		$instance['page'] = $new_instance['page'];
-		
+
 		$instance['page_showimage'] = $new_instance['page_showimage'];
 		$instance['page_imagewidth'] = strip_tags( $new_instance['page_imagewidth'] );
 		$instance['page_imageheight'] = strip_tags( $new_instance['page_imageheight'] );
 		$instance['page_imagealignment'] = $new_instance['page_imagealignment'];
 		$instance['page_imagelocation'] = $new_instance['page_imagelocation'];
-		
+
 		$instance['page_showcontent'] = $new_instance['page_showcontent'];
 		$instance['page_limit'] = strip_tags( $new_instance['page_limit'] );
 		$instance['page_readmore'] = strip_tags( $new_instance['page_readmore'] );
-		
+
 		return $instance;
-		
+
 	}
-	
+
 	function advanced_hide( $selector ) {
 		if ( $selector != 'on' ) { echo ' style="display:none;"'; }
 	}
@@ -232,8 +232,8 @@ class sb_featured_content_widget extends WP_Widget {
 			'page_readmore'		=> 'Continue Reading &raquo;'
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults );
-		$post_types = get_post_types( array('public'=>true),'objects'); 
-		
+		$post_types = get_post_types( array('public'=>true),'objects');
+
 	?>
 		<p>
 			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e( 'Title: ', 'startbox' ) ?></label>
@@ -250,7 +250,7 @@ class sb_featured_content_widget extends WP_Widget {
 				?>
 			</select>
 		</p>
-		
+
 		<div id="<?php echo esc_attr( $this->get_field_id('post_options') ); ?>" class="content-settings post-settings"<?php if( $instance['content_type'] == 'page' ){ echo ' style="display:none;"'; }?>>
 			<p>
 				<label for="<?php echo $this->get_field_id('post_categories'); ?>"><?php _e( 'Category: ', 'startbox' ) ?></label>
@@ -278,12 +278,12 @@ class sb_featured_content_widget extends WP_Widget {
 				<label for="<?php echo $this->get_field_id('post_count'); ?>"><?php _e( 'Number of posts to display: ', 'startbox' ) ?></label>
 				<input id="<?php echo esc_attr( $this->get_field_id('post_count') ); ?>" name="<?php echo esc_attr( $this->get_field_name('post_count') ); ?>" type="text" value="<?php echo esc_attr( $instance['post_count'] ); ?>" size="3" />
 			</p>
-			
+
 			<p>
 				<input class="checkbox advanced-toggle" type="checkbox" <?php checked( $instance['post_showtitle'], 'on' ); ?> id="<?php echo esc_attr( $this->get_field_id('post_showtitle') ); ?>" name="<?php echo esc_attr( $this->get_field_name('post_showtitle') ); ?>'); ?>" />
 				<label for="<?php echo $this->get_field_id('post_showtitle'); ?>"><?php _e( 'Display Post Title', 'startbox' ) ?></label>
 			</p>
-			
+
 			<p>
 				<input class="checkbox advanced-toggle" type="checkbox" <?php checked( $instance['post_showmeta'], 'on' ); ?> id="<?php echo esc_attr( $this->get_field_id('post_showmeta') ); ?>" name="<?php echo esc_attr( $this->get_field_name('post_showmeta') ); ?>'); ?>" />
 				<label for="<?php echo $this->get_field_id('post_showmeta'); ?>"><?php _e( 'Display Meta Information', 'startbox' ) ?></label>
@@ -296,7 +296,7 @@ class sb_featured_content_widget extends WP_Widget {
 				</p>
 				<hr/>
 			</div>
-			
+
 			<p>
 				<input class="checkbox advanced-toggle" type="checkbox" <?php checked( $instance['post_showimage'], 'on' ); ?> id="<?php echo esc_attr( $this->get_field_id('post_showimage') ); ?>" name="<?php echo esc_attr( $this->get_field_name('post_showimage') ); ?>'); ?>" />
 				<label for="<?php echo $this->get_field_id('post_showimage'); ?>"> <?php _e( 'Display Featured Image', 'startbox' ); ?></label>
@@ -325,7 +325,7 @@ class sb_featured_content_widget extends WP_Widget {
 				</p>
 				<hr/>
 			</div>
-			
+
 			<p>
 				<input class="checkbox advanced-toggle" type="checkbox" <?php checked( $instance['post_showcontent'], 'on' ); ?> id="<?php echo esc_attr( $this->get_field_id('post_showcontent') ); ?>" name="<?php echo esc_attr( $this->get_field_name('post_showcontent') ); ?>" />
 				<label for="<?php echo $this->get_field_id('post_showcontent'); ?>"><?php _e( 'Display Post Content', 'startbox' ); ?></label>
@@ -349,7 +349,7 @@ class sb_featured_content_widget extends WP_Widget {
 				</p>
 				<hr/>
 			</div>
-			
+
 			<p>
 				<input class="checkbox advanced-toggle" type="checkbox" <?php checked( $instance['post_showmore'], 'on' ); ?> id="<?php echo esc_attr( $this->get_field_id('post_showmore') ); ?>" name="<?php echo esc_attr( $this->get_field_name('post_showmore') ); ?>'); ?>" />
 				<label for="<?php echo $this->get_field_id('post_showmore'); ?>"><?php _e( 'Display Link to More Posts', 'startbox' ); ?></label>
@@ -373,7 +373,7 @@ class sb_featured_content_widget extends WP_Widget {
 				</p>
 				<hr/>
 			</div>
-			
+
 			<p>
 				<input class="checkbox advanced-toggle" type="checkbox" <?php checked( $instance['post_showadvanced'], 'on' ); ?> id="<?php echo esc_attr( $this->get_field_id('post_showadvanced') ); ?>" name="<?php echo esc_attr( $this->get_field_name('post_showadvanced') ); ?>'); ?>" />
 				<label for="<?php echo $this->get_field_id('post_showadvanced'); ?>"><?php _e('Display Advanced Query Options', 'startbox' ) ?></label>
@@ -400,11 +400,11 @@ class sb_featured_content_widget extends WP_Widget {
 					<input id="<?php echo esc_attr( $this->get_field_id('post_offset') ); ?>" name="<?php echo esc_attr( $this->get_field_name('post_offset') ); ?>" type="text" value="<?php echo esc_attr( $instance['post_offset'] ); ?>" /><br/>
 					<span style="font-size:smaller"><?php _e( 'Number of posts to skip before displaying.', 'startbox' ) ?></span>
 				</p>
-				
+
 				<hr/>
 			</div>
 		</div>
-		
+
 		<div id="<?php echo esc_attr( $this->get_field_id('page_options') ); ?>" class="content-settings page-settings"<?php if($instance['content_type'] == 'posts'){ echo ' style="display:none;"'; }?>>
 			<p>
 				<label for="<?php echo $this->get_field_id('page'); ?>"><?php _e( 'Page: ', 'startbox' ) ?></label>
@@ -457,8 +457,7 @@ class sb_featured_content_widget extends WP_Widget {
 			</div>
 			<hr/>
 		</div>
-		
+
 	<?php
 	}
 }
-?>

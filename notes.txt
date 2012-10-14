@@ -1,47 +1,18 @@
-////////////////////////////////////////////////////////////////////////////////////
-Contents
-////////////////////////////////////////////////////////////////////////////////////
-
-1. TODO
-2. Future Releases
-
-////////////////////////////////////////////////////////////////////////////////////
-1. TODO
-////////////////////////////////////////////////////////////////////////////////////
-		
-	update templates to make better use of get_template_part() and get_post_format()
-		
-////////////////////////////////////////////////////////////////////////////////////
-2. Future Releases
-////////////////////////////////////////////////////////////////////////////////////
-
 ##### 2.7
-	add import/export for theme settings
-	add additional short codes for:
-		- featured photo
-		- lists - changing bullets: arrow, check marks
-		- [expires] - for hiding expired content
-		- create table of contents shortcode: auto-pulls h# tags, assigns them ids, uses the heading text for link text
-	update footer copyright info to use filterable shortcodes!
-	include developer/debug tools
-		- turn debug mode on
-		- beta updates
-		- output diff content in header/footer
-		- include options (with user caps) for who can see which option panels
-		- include options for which theme features to support
-		- include option to minify SB JS/CSS (hook default scripts & styles to pre-processor filter)
-	add Style Options (requires add_theme_support)
-		- Select from preset styles
-		- Colorpicker for base color
-		- Colorpicker for accent color
-		- Colorpicker for add'l color #1
-		- Colorpicker for add'l color #2
-		- Textarea for inputting custom CSS
+	Theme customizer integration
+		review current options api setup, see if it can integrate with customizer
+		asses background theme option and helper function, delete if unhelpful
+		add custom CSS setting
 
 ##### Future Release
-	add default styles for gforms (or form elements in general)
-	add controls to Featured Content Widget for content rotation
-	Feedburner Email widget (per http://wpstartbox.com/support/topic/how-about-a-simple-feedburner-email-widget/)
-	? build simple metabox creator for posts & pages based on options api? store options vs custom field
-	? look at integrating HTML5 Boilerplate
+	? add import/export for theme settings
 	? add image option for search widget submit button
+	? strip out shortcodes into stand-alone plugin
+	? strip out slideshows into stand-alone plugin
+	? strip out sidebar management into stand-alone plugin
+	? build better SB Hooks plugin
+
+#### From the forum
+	In the sb_next_post_link and sb_previous_post_link filters, I don't think there's a way to filter in arguments for the in_same_cat or excluded_categories options if the default function (http://codex.wordpress.org/Function_Reference/next_post_link)
+	Chad Warner asked about using in_same_cat on the forums and I ended up having him turn off the default before/after post nav and just use the WP functions in single.php.
+	So support for that in the filter would be cool. I didn't even know about the in_same_cat argument until he mentioned it. Would have been useful more than once in the past...
