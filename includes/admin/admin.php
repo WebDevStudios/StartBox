@@ -117,7 +117,6 @@ function sb_admin_load() {
 
 	// Reset our theme options back to default
 	if ( sb_get_option('reset') ) { sb_set_default_options(); wp_redirect( admin_url( 'themes.php?page=sb_admin&reset=true' ) ); }
-
 }
 
 /**

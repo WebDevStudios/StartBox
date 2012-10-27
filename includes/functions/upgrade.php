@@ -112,8 +112,6 @@ class sb_upgrade {
 	// Upgrade StartBox core -- Available hook: sb_upgrade
 	public function perform_upgrade() {
 
-		// wp_die( 'running upgrade' );
-
 		// Make sure we're not on the current version
 		if ( version_compare( get_option('startbox_version'), SB_VERSION, '>=' ) )
 			return;
