@@ -747,9 +747,9 @@ class sb_input {
 
 		// Setup our defaults
 		$defaults = array(
-			'id'	=> '',	// The unique ID for this input
-			'label'	=> '',	// The content to use as the input label
-			'desc'	=> ''	// The content to display as a small descriptive text
+			'id'		=> '',	// The unique ID for this input
+			'label'		=> '',	// The content to use as the input label
+			'desc'		=> '',	// The content to display as a small descriptive text
 		);
 
 		// Get our variables ready to go
@@ -1036,30 +1036,42 @@ function sb_set_default_options() {
 
 	// Grab our various settings
 	global $sb_settings_factory;
-	$defaults = $theme_options = get_option( THEME_OPTIONS );
+	$defaults = $current = get_option( THEME_OPTIONS );
 	$settings = $sb_settings_factory->settings;
 
-	// Loop through all theme options and set the defaults
-	foreach($settings as $setting){
+	// Loop through all settings panels
+	foreach( $settings as $setting ){
+
+		// Grab the options for the panel
 		$options = $setting->options;
+
+		// Loop through each option
 		foreach( $options as $option_id => $option ) {
+
+			// If the setting has a default, set it
 			if ( isset( $option['default'] ) ) $defaults[$option_id] = $option['default'];
+
+			// If we're working with navigation options specifically, we need to handle them differently
 			if ( $option['type'] == 'navigation' ) {
-				if ( isset($option['home_default']) ) $defaults[$option_id.'-enable-home'] = $option['home_default'];
-				if ( isset($option['position_default']) ) $defaults[$option_id.'-position'] = $option['position_default'];
-				if ( isset($option['depth_default']) ) $defaults[$option_id.'-depth'] = $option['depth_default'];
+				if ( isset($option['home_default']) )		$defaults[$option_id.'-enable-home']	= $option['home_default'];
+				if ( isset($option['position_default']) )	$defaults[$option_id.'-position']		= $option['position_default'];
+				if ( isset($option['depth_default']) )		$defaults[$option_id.'-depth']			= $option['depth_default'];
+			}
+
+			// And same is true with logo options
+			if ( $option['type'] == 'logo' ) {
+				$defaults['logo-image'] = IMAGES_URL . '/logo.png';
 			}
 		}
 	}
 
-	// Set the default logo
-	$defaults['logo-image'] = IMAGES_URL . '/logo.png';
-
-	// Change our reset value to null
-	$defaults['reset'] = null;
+	// If this was a reset, drop the reset value
+	if ( isset( $current['reset'] ) && isset( $defaults['reset'] ) )
+		$defaults['reset'] = false;
 
 	// Save the options to the database, Allow child themes to filter what defaults are returned
 	update_option( THEME_OPTIONS, apply_filters( 'sb_option_defaults', $defaults ) );
+
 }
 add_action( 'sb_install', 'sb_set_default_options' );
 
@@ -1123,7 +1135,7 @@ function sb_update_option( $name, $value ) {
  */
 function sb_get_option( $name ) {
 	$options = get_option( THEME_OPTIONS );
-	if ( isset($options[$name]) ) {
+	if ( is_array($options) && isset($options[$name]) ) {
 		return $options[$name];
 	} else {
 		return false;

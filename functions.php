@@ -19,7 +19,6 @@ if( !did_action( 'sb_init' ) ) {
 	StartBox::init();
 }
 
-
 /**
  * In his grace, God has given us different gifts for doing certain things well.
  * So if God has given you the ability to prophesy, speak out with as much faith as

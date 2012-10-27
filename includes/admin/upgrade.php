@@ -17,7 +17,7 @@ class sb_upgrade_settings extends sb_settings {
 			'enable_updates' => array(
 					'type'		=> 'checkbox',
 					'label'		=> __('Enable Automatic Updates', 'startbox'),
-					'default'	=> true
+					'default'	=> 'true'
 			),
 			// 'use_beta' => array(
 			// 		'type'		=> 'checkbox',

@@ -72,19 +72,19 @@ class StartBox {
 		add_action( 'init', array( 'StartBox', 'register_scripts_and_styles' ), 1 );
 
 		// Setup our theme environment
-		add_action( 'after_setup_theme', array('StartBox', 'environment'), 5 );
-		add_action( 'after_setup_theme', array('StartBox', 'sb_includes'), 15 );
+		add_action( 'after_setup_theme', array( 'StartBox', 'environment' ), 5 );
+		add_action( 'after_setup_theme', array( 'StartBox', 'sb_includes' ), 15 );
 
 		// Included hook for other things to do during initialization
 		do_action('sb_init');
 
 		// If no version information exists in the database, run our installer
 		if ( ! get_option( 'startbox_version' ) )
-			StartBox::install();
+			add_action( 'after_setup_theme', array( 'StartBox', 'install' ), 20 );
 
 		// Add child theme defaults if child theme is activated for the first time (Credit: Joel Kuczmarski)
-		if ( !get_option('sb_child_install') && SB_PATH != THEME_PATH )
-			add_action( 'after_setup_theme', array( 'StartBox', 'child_install' ) );
+		if ( ! get_option( 'sb_child_install' ) && SB_PATH != THEME_PATH )
+			add_action( 'after_setup_theme', array( 'StartBox', 'child_install' ), 25 );
 
 		// "God opposes the proud, but gives grace to the humble." - James 4:6b (ESV)
 
@@ -195,7 +195,7 @@ class StartBox {
 		add_option( THEME_OPTIONS );
 
 		// Set the current StartBox version
-		add_option( 'startbox_version', 'SB_VERSION' );
+		add_option( 'startbox_version', SB_VERSION );
 
 		// Included hook for other things to do during install
 		do_action( 'sb_install' );

@@ -20,7 +20,7 @@ class sb_upgrade {
 		add_action('load-update.php', array( $this, 'clear_update_transient') );
 		add_action('load-themes.php', array( $this, 'clear_update_transient') );
 
-		// If we're running an older version, perform an upgrade
+		// If we already have a version set, and it's older than current, update!
 		if ( version_compare( get_option( 'startbox_version' ), SB_VERSION, '<') )
 			$this->perform_upgrade();
 	}
@@ -45,7 +45,6 @@ class sb_upgrade {
 		            'Referer' => home_url()
 				)
 			);
-			// $key = sb_get_option('sb_license'); -- as of 7/26/11 users do not need a key to upgrade
 			$sb = SB_VERSION;
 			$wp = get_bloginfo("version") ;
 			$php = phpversion();
@@ -112,6 +111,8 @@ class sb_upgrade {
 
 	// Upgrade StartBox core -- Available hook: sb_upgrade
 	public function perform_upgrade() {
+
+		// wp_die( 'running upgrade' );
 
 		// Make sure we're not on the current version
 		if ( version_compare( get_option('startbox_version'), SB_VERSION, '>=' ) )
@@ -239,39 +240,44 @@ class sb_upgrade {
 				'meta_key' => '_sb_layout', 'meta_value' => 'one-col' );
 			$wpdb->update( $wpdb->postmeta, $new_values, $where );
 
-			// Grab our legacy footer text settings
-			$enable_copyright	= sb_get_option('enable_copyright');
-			$copyright_year		= sb_get_option('copyright_year') ? sb_get_option('copyright_year') : date('Y');
-			$enable_wp_credit	= sb_get_option('enable_wp_credit');
-			$enable_sb_credit	= sb_get_option('enable_sb_credit');
-			$old_footer_text	= sb_get_option('footer_text');
+			// If we have existing copyright information in the site
+			if ( sb_get_option('enable_copyright') ) {
 
-			// Build new footer text content
-			// Roughly: [copyright year="2012"] [site_link].<br/>Proudly powered by [WordPress] and [StartBox].
-			$new_footer_text = '';
-			if ( $enable_copyright ) { $new_footer_text .= '[copyright year="' . $copyright_year . '"] [site_link].'; }
-			if ( $enable_copyright && ( $enable_wp_credit || $enable_sb_credit ) ) { $new_footer_text .= '<br/>'; }
-			if ( $enable_wp_credit || $enable_sb_credit ) {
-				$new_footer_text .= 'Proudly powered by ';
-				if ( $enable_wp_credit ) { $new_footer_text .= '[WordPress]'; }
-				if ( $enable_wp_credit && $enable_sb_credit ) { $new_footer_text .= ' and '; }
-				if ( $enable_sb_credit ) { $new_footer_text .= '[StartBox]'; }
-				$new_footer_text .= '.';
+				// Grab our legacy footer text settings
+				$enable_copyright	= sb_get_option('enable_copyright');
+				$copyright_year		= sb_get_option('copyright_year') ? sb_get_option('copyright_year') : date('Y');
+				$enable_wp_credit	= sb_get_option('enable_wp_credit');
+				$enable_sb_credit	= sb_get_option('enable_sb_credit');
+				$old_footer_text	= sb_get_option('footer_text');
+
+				// Build new footer text content
+				// Roughly: [copyright year="2012"] [site_link].<br/>Proudly powered by [WordPress] and [StartBox].
+				$new_footer_text = '';
+				if ( $enable_copyright ) { $new_footer_text .= '[copyright year="' . $copyright_year . '"] [site_link].'; }
+				if ( $enable_copyright && ( $enable_wp_credit || $enable_sb_credit ) ) { $new_footer_text .= '<br/>'; }
+				if ( $enable_wp_credit || $enable_sb_credit ) {
+					$new_footer_text .= 'Proudly powered by ';
+					if ( $enable_wp_credit ) { $new_footer_text .= '[WordPress]'; }
+					if ( $enable_wp_credit && $enable_sb_credit ) { $new_footer_text .= ' and '; }
+					if ( $enable_sb_credit ) { $new_footer_text .= '[StartBox]'; }
+					$new_footer_text .= '.';
+				}
+				if ( $old_footer_text ) { $new_footer_text .= '<br/>' . $old_footer_text; }
+
+				// Update our new footer text option
+				sb_update_option( 'footer_text', $new_footer_text);
+
+				// Finally, delete our old footer options
+				sb_delete_option('enable_copyright');
+				sb_delete_option('copyright_year');
+				sb_delete_option('enable_wp_credit');
+				sb_delete_option('enable_sb_credit');
+				sb_delete_option('enable_designer_credit');
+				sb_delete_option('site_name');
+				sb_delete_option('site_url');
+				sb_delete_option('footer_text');
+
 			}
-			if ( $old_footer_text ) { $new_footer_text .= '<br/>' . $old_footer_text; }
-
-			// Update our new footer text option
-			sb_update_option( 'footer_text', $new_footer_text);
-
-			// Finally, delete our old footer options
-			sb_delete_option('enable_copyright');
-			sb_delete_option('copyright_year');
-			sb_delete_option('enable_wp_credit');
-			sb_delete_option('enable_sb_credit');
-			sb_delete_option('enable_designer_credit');
-			sb_delete_option('site_name');
-			sb_delete_option('site_url');
-			sb_delete_option('footer_text');
 
 			// Update our working version to 2.6
 			update_option( 'startbox_version', '2.6' );

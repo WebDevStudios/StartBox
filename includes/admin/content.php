@@ -51,9 +51,9 @@ class sb_content_settings extends sb_settings {
 					'type'		=> 'select',
 					'label'		=> __( 'Display Author Bio on Single posts', 'startbox' ),
 					'options'	=> array(
-								'disabled' 	=> __( 'Disabled', 'startbox' ),
-								'before' => __( 'Show Before Post Content', 'startbox' ),
-								'after' => __( 'Show After Post Content', 'startbox' ),
+								'disabled'	=> __( 'Disabled', 'startbox' ),
+								'before'	=> __( 'Show Before Post Content', 'startbox' ),
+								'after'		=> __( 'Show After Post Content', 'startbox' ),
 						),
 					'align'		=> 'right',
 					'desc'		=> __( 'Author bio only displays if author provides a description in their profile.', 'startbox' ),
