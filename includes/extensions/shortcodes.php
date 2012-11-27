@@ -770,7 +770,7 @@ function sb_wp_link( $atts ) {
 function sb_footer_link( $atts ) {
 	extract( shortcode_atts( array( 'target' => '_blank', 'affiliate_link' => '' ), $atts ) );
 
-	return '<a href="http://wpstortbox.com/" target="' . $target . '">StartBox</a>';
+	return '<a href="http://wpstartbox.com/" target="' . $target . '">StartBox</a>';
 }
 
 /**
