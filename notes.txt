@@ -12,7 +12,26 @@
 	? strip out sidebar management into stand-alone plugin
 	? build better SB Hooks plugin
 
-#### From the forum
-	In the sb_next_post_link and sb_previous_post_link filters, I don't think there's a way to filter in arguments for the in_same_cat or excluded_categories options if the default function (http://codex.wordpress.org/Function_Reference/next_post_link)
-	Chad Warner asked about using in_same_cat on the forums and I ended up having him turn off the default before/after post nav and just use the WP functions in single.php.
-	So support for that in the filter would be cool. I didn't even know about the in_same_cat argument until he mentioned it. Would have been useful more than once in the past...
+
+##### Sb Elements
+	Theme Options API (written, needs refactoring)
+	Theme Customizer Integration (pending refoctoring from theme options)
+	Metabox Creator (pending refactoring from theme options)
+	Layout Management (done)
+	Sidebar Management (done)
+	Custom Template Tags and Conditionals (done)
+	Automatic Updates (needs refactoring to be universally friendly)
+	Custom Widgets (done)
+
+	// Add the power of StartBox to your theme!
+	require_once( get_template_directory() . '/startbox/startbox.php' );
+
+	// Pick and choose which modules to include
+	add_theme_support( 'Sb-Options' );
+	add_theme_support( 'Sb-Customizer' );
+	add_theme_support( 'Sb-Metaboxes' );
+	add_theme_support( 'Sb-Layouts' );
+	add_theme_support( 'Sb-Sidebars' );
+	add_theme_support( 'Sb-Functions' );
+	add_theme_support( 'Sb-Updates' );
+	add_theme_support( 'Sb-Widgets' );

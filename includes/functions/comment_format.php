@@ -17,11 +17,11 @@ function sb_comment_defaults($defaults) {
 
 	$fields =  array(
 		'author' => '<p class="comment-form-author">' . '<label for="author">' . __( 'Name', 'startbox' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) .
-		            '<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" title="Your Name" size="30"' . $aria_req . ' /></p>',
+		            '<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" title="' . __( 'Your Name', 'startbox' ) . '" size="30"' . $aria_req . ' /></p>',
 		'email'  => '<p class="comment-form-email"><label for="email">' . __( 'Email', 'startbox' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) .
-		            '<input id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" title="Your E-mail" size="30"' . $aria_req . ' /></p>',
+		            '<input id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" title="' . __( 'Your Email', 'startbox' ) . '" size="30"' . $aria_req . ' /></p>',
 		'url'    => '<p class="comment-form-url"><label for="url">' . __( 'Website', 'startbox' ) . '</label>' .
-		            '<input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" title="Your Website (optional)" size="30"/></p>',
+		            '<input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" title="' . __( 'Your Website (optional)', 'startbox' ) . '" size="30"/></p>',
 	);
 
 	$defaults['title_reply'] =  __( 'Add Your Comment', 'startbox' ).' <a href="http://gravatar.com" class="h3-link">(Get a Gravatar)</a>';
@@ -29,7 +29,7 @@ function sb_comment_defaults($defaults) {
 	$defaults['comment_field'] = '';
 	$defaults['comment_notes_before'] = '';
 	$defaults['comment_notes_after'] = '<p class="comment-notes">' . __( 'Your email address will <strong>not</strong> be published.', 'startbox' ) . ( $req ? $required_text : '' ) . '.</p>';
-	$defaults['label_submit'] = 'Post Your Comment';
+	$defaults['label_submit'] = __( 'Post Your Comment', 'startbox' );
 
 	return $defaults;
 }

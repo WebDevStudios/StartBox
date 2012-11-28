@@ -116,7 +116,7 @@ class StartBox {
 	public function environment() {
 
 		// Add theme support for various WP-specific features
-		register_nav_menus( array( 'primary' => __( 'Primary Navigation', 'StartBox' ), 'secondary' => __( 'Secondary Navigation', 'StartBox' ) ) );  // Enables custom menus in the Appearance menu, since WP3.0
+		register_nav_menus( array( 'primary' => __( 'Primary Navigation', 'startbox' ), 'secondary' => __( 'Secondary Navigation', 'startbox' ) ) );  // Enables custom menus in the Appearance menu, since WP3.0
 		add_theme_support( 'automatic-feed-links' );	// Adds default posts and comments RSS feeds, since WP3.0
 		add_theme_support( 'post-thumbnails' );			// Enables post thumbnails in the write screens, since WP2.9
 		set_post_thumbnail_size( 200, 200, true );		// Sets the default thumbnail size to 200x200
