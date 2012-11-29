@@ -39,7 +39,7 @@ class StartBox {
 		define( 'THEME_OPTIONS',	'startbox' );
 		define( 'THEME_PREFIX',		'sb_' );
 		define( 'SB_VERSION',		$sb_version );
-		define( 'IS_MU',			(isset($blog_id) && $blog_id > 0) ? true : false );
+		define( 'IS_MU',			( is_multisite() ) ? true : false );
 		define( 'THEME_PATH',		get_stylesheet_directory() );
 		define( 'THEME_URI',		get_stylesheet_directory_uri() );
 		define( 'SB_PATH',			get_template_directory() );
