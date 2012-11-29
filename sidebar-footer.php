@@ -18,7 +18,7 @@ if ( $footer1 || $footer2 || $footer3 || $footer4 ) {
 
 	$column = $column1 = $column2 = $column3 = $column4 = null;
 
-	if ( $footer1 && $footer3 && $footer3 && $footer4 ) { $column = 'column one_fourth'; $column4 = ' last'; }
+	if ( $footer1 && $footer2 && $footer3 && $footer4 ) { $column = 'column one_fourth'; $column4 = ' last'; }
 	elseif ( $footer1 && $footer2 && $footer3 ) { $column = 'column one_third'; $column3 = ' last'; }
 	elseif ( $footer1 && $footer2 ) { $column = 'column one_half'; $column2 = ' last'; }
 	else { $column = 'column last'; }
