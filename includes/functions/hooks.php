@@ -101,7 +101,10 @@ function sb_header_wrap() {
 add_action( 'sb_before_header', 'sb_header_wrap', 999 );
 add_action( 'sb_after_header', 'sb_header_wrap', 9 );
 
-// The default site title
+/**
+ * Filter the site title to be more dynamic.
+ *
+ */
 function sb_default_title( $title, $sep, $seplocation) {
 	$site_name = get_bloginfo('name');
 	$sep = ' | ';
