@@ -368,3 +368,32 @@ function sb_media_upload_suggested_form($errors) {
     </div>
 <?php
 }
+
+/**
+ * Forever eliminate "Startbox" from the planet (or at least the little bit we can influence).
+ *
+ * Violating our coding standards for a good function name.
+ *
+ * @since 2.7.0
+ */
+function capital_B_dangit( $text ) {
+	
+	// Simple replacement for titles
+	if ( 'the_title' === current_filter() )
+		return str_replace( 'Startbox', 'StartBox', $text );
+	
+	// Still here? Use the more judicious replacement
+	static $dblq = false;
+	if ( false === $dblq )
+		$dblq = _x( '&#8220;', 'opening curly quote' );
+	return str_replace(
+		array( ' Startbox', '&#8216;Startbox', $dblq . 'Startbox', '>Startbox', '(Startbox' ),
+		array( ' StartBox', '&#8216;StartBox', $dblq . 'StartBox', '>StartBox', '(StartBox' ),
+	$text );
+
+}
+
+// Format StartBox
+foreach ( array( 'the_content', 'the_title' ) as $filter )
+	add_filter( $filter, 'capital_B_dangit', 11 );
+add_filter( 'comment_text', 'capital_B_dangit', 31 );
