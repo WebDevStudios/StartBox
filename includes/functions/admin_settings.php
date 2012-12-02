@@ -259,7 +259,7 @@ class sb_input {
 		$output = '';
 
 		// Concatenate our output
-		$output = '<h4 id="' . $id . '" class="' . esc_attr( $id ) . '">' . $label . '</h4>'."\n";
+		$output = '<h4 id="' . esc_attr( $id ) . '" class="' . esc_attr( $id ) . '">' . $label . '</h4>'."\n";
 		$output .= '<p class="' . esc_attr( $id ) . '">' . $desc . '</p>'."\n";
 
 		// Return our output
@@ -295,10 +295,10 @@ class sb_input {
 
 		// Concatenate our output
 		$output .= '<p class="' . esc_attr( $args['id'] ) . '">';
-		if ($label) $output .= '<label for="' . $sb_id . '">' . $label . ':</label> ';
+		if ($label) $output .= '<label for="' . esc_attr( $sb_id ) . '">' . $label . ':</label> ';
 		$output .= '<span class="' .esc_attr( $align ) . '">';
 		$output .= $before;
-		$output .= '<input type="text" value="' . esc_attr( $value ) . '" name="' . $sb_id . '" id="' . $sb_id . '" class="' . esc_attr( 'option-field-' . esc_attr( $size ) . ' ' . $class ) . '" />';
+		$output .= '<input type="text" value="' . esc_attr( $value ) . '" name="' . esc_attr( $sb_id ) . '" id="' . esc_attr( $sb_id ) . '" class="' . esc_attr( 'option-field-' . esc_attr( $size ) . ' ' . $class ) . '" />';
 		$output .= $after;
 		$output .= '</span>';
 		if ($desc) $output .= sb_input::descriptive_text( $desc );
@@ -334,8 +334,8 @@ class sb_input {
 
 		// Concatenate our output
 		$output .= $before;
-		$output .= '<label for="' . $sb_id . '">' . $label . '</label><br/>'."\n";
-		$output .= '<textarea name="' . $sb_id . '" id="' . $sb_id . '">' . esc_textarea( $value ) . '</textarea>'."\n";
+		$output .= '<label for="' . esc_attr( $sb_id ) . '">' . $label . '</label><br/>'."\n";
+		$output .= '<textarea name="' . esc_attr( $sb_id ) . '" id="' . esc_attr( $sb_id ) . '">' . esc_textarea( $value ) . '</textarea>'."\n";
 		if ($desc) $output .= sb_input::descriptive_text( $desc );
 		$output .= $after;
 
@@ -370,7 +370,7 @@ class sb_input {
 
 		// Concatenate our output
 		$output .= $before ;
-		$output .= '<label for="' . $sb_id . '" class="' . esc_attr( $align ) . '"><input type="checkbox" class="checkbox" id="' . $sb_id . '" name="' . $sb_id . '" value="true" ' . checked( $value, 'true', false ) . ' /> ' . $label . '</label>'."\n";
+		$output .= '<label for="' . esc_attr( $sb_id ) . '" class="' . esc_attr( $align ) . '"><input type="checkbox" class="checkbox" id="' . esc_attr( $sb_id ) . '" name="' . esc_attr( $sb_id ) . '" value="true" ' . checked( $value, 'true', false ) . ' /> ' . $label . '</label>'."\n";
 		if ($desc) $output .= sb_input::descriptive_text( $desc );
 		$output .= $after;
 
@@ -405,7 +405,7 @@ class sb_input {
 		$output .= '<p class="' . esc_attr( $id ) . '">';
 		$output .= $label . '<br/>'."\n";
 		foreach ( $options as $option_id => $option ) {
-			$output .= '<input type="radio" id="' . esc_attr( $id ) . '-' . esc_attr( $option_id ) . '" value="' . esc_attr( $option_id ) . '" name="' . $sb_id . '" ' . checked( $value, $option_id, false ) . ' />';
+			$output .= '<input type="radio" id="' . esc_attr( $id ) . '-' . esc_attr( $option_id ) . '" value="' . esc_attr( $option_id ) . '" name="' . esc_attr( $sb_id ) . '" ' . checked( $value, $option_id, false ) . ' />';
 			$output .= '<label for="' . esc_attr( $id ) . '-' . esc_attr( $option_id ) . '">' . $option . '</label><br/>'."\n";
 		}
 		if ($desc) $output .= sb_input::descriptive_text( $desc );
@@ -453,8 +453,8 @@ class sb_input {
 		foreach ( $options as $layout => $option ) {
 			$output .= '<div class="layout-container">';
 			$output .= '<label for="' . esc_attr( $id ) . '-' . esc_attr( $layout ) . '">';
-			$output .= '<input type="radio" id="' . esc_attr( $id ) . '-' . esc_attr( $layout ) . '" value="' . esc_attr( $layout ) . '" name="' . $sb_id . '" ' . checked( $value, $layout, false ) . ' />';
-			$output .= '<img src="' . $option['img'] .'" alt="' . $option['label'] . '"  width="50" height="40" />';
+			$output .= '<input type="radio" id="' . esc_attr( $id ) . '-' . esc_attr( $layout ) . '" value="' . esc_attr( $layout ) . '" name="' . esc_attr( $sb_id ) . '" ' . checked( $value, $layout, false ) . ' />';
+			$output .= '<img src="' . $option['img'] .'" alt="' . esc_attr( $option['label'] ) . '"  width="50" height="40" />';
 			$output .= '</label>';
 			$output .= '</div>';
 		}
@@ -497,7 +497,7 @@ class sb_input {
 
 		// Concatenate our output
 		$output .= $before;
-		$output .= ($label) ? '<label for="' . $sb_id . '">' . $label . ':</label> '."\n" : '';
+		$output .= ($label) ? '<label for="' . esc_attr( $sb_id ) . '">' . $label . ':</label> '."\n" : '';
 		if ( 'categories' == $options )
 			$output .= wp_dropdown_categories( array(
 				'echo'		=> 0,
@@ -528,7 +528,7 @@ class sb_input {
 				'show_option_none' => 'Select a Post'
 			) );
 		elseif ( $options ) {
-			$output .= '<select id="' . $sb_id . '" name="' . $sb_id . '" class="option-select-' . esc_attr( $size ) . ' ' . esc_attr( $align ) . '">'."\n";
+			$output .= '<select id="' . esc_attr( $sb_id ) . '" name="' . esc_attr( $sb_id ) . '" class="option-select-' . esc_attr( $size ) . ' ' . esc_attr( $align ) . '">'."\n";
 			foreach ( $options as $option_id => $option ) {
 				$output .= '<option value="' . esc_attr( $option_id ) . '" ' . selected( $value, $option_id, false ) . '>' . $option . '</option>'."\n";
 			}
@@ -621,8 +621,8 @@ class sb_input {
 
 		// Concatenate our output
 		$output .= '<p class="' . esc_attr( $id ) . '">'."\n";
-		$output .= '<label for="' . $sb_id . '">' . $label . ':</label> '."\n";
-		$output .= '<select id="' . $sb_id . '" name="' . $sb_id . '"class="option-select-' . esc_attr( $size ) . ' ' . esc_attr( $align ) . '">'."\n";
+		$output .= '<label for="' . esc_attr( $sb_id ) . '">' . $label . ':</label> '."\n";
+		$output .= '<select id="' . esc_attr( $sb_id ) . '" name="' . esc_attr( $sb_id ) . '"class="option-select-' . esc_attr( $size ) . ' ' . esc_attr( $align ) . '">'."\n";
 		foreach ( $menu_opts as $option_id => $option ) {
 			if ($value == $option_id) { $select = 'selected="selected"'; } else { $select = ''; }
 			$output .= '<option value="' . esc_attr( $option_id ) . '" ' . $select . '>' . $option . '</option>'."\n";
@@ -723,8 +723,8 @@ class sb_input {
 
 		// Concatenate our output
 		$output .= '<p class="imagepickerinput ' . esc_attr( $id ) . '">'."\n";
-		$output .= '<label for="' . $sb_id . '">' . $label . ':</label> <input type="text" value="' . esc_attr( $value ) . '" name="' . $sb_id . '" id="' . $sb_id . '" class="uploadinput"/> ' ;
-		$output .= '<a href="' . esc_attr( $value ) . '" class="previewlink button" title="' . $label . '">'.__('Preview','startbox').'</a>&nbsp;';
+		$output .= '<label for="' . esc_attr( $sb_id ) . '">' . $label . ':</label> <input type="text" value="' . esc_attr( $value ) . '" name="' . esc_attr( $sb_id ) . '" id="' . esc_attr( $sb_id ) . '" class="uploadinput"/> ' ;
+		$output .= '<a href="' . esc_attr( $value ) . '" class="previewlink button" title="' . esc_attr( $label ) . '">'.__('Preview','startbox').'</a>&nbsp;';
 		if ( $suggested )
 			$output .= '<a href="media-upload.php?type=image&amp;tab=suggested&amp;suggested=' . $suggested . '" class="chooselink button colorbox" title="' . __('Choose a previously uploaded file','startbox') . '">' . __('Media Library','startbox') . '</a>&nbsp;';
 		else
@@ -830,7 +830,7 @@ class sb_input {
 
 		// Concatenate our output
 		$output .= '<p class=" . esc_attr( $id ) . ">'."\n";
-        $output .= '<label for="' . $sb_id . '">' . $label . '</label><br/>'."\n";
+        $output .= '<label for="' . esc_attr( $sb_id ) . '">' . $label . '</label><br/>'."\n";
         ob_start();
         wp_editor( $value, $id, $options );
 		$output .= ob_get_clean();
