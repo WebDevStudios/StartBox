@@ -88,6 +88,8 @@ class SB_Sidebars {
 			$description = get_post_meta($post->ID, '_sidebar_description', true);
 			$this->register_sidebar( array( 'name' => $name, 'id' => $id, 'description' => $description, 'editable' => 0 ) );
 		endwhile;
+		
+		wp_reset_postdata();
 
 	}
 
