@@ -42,7 +42,7 @@ class sb_content_settings extends sb_settings {
 			'more_text' => array(
 					'type'		=> 'text',
 					'label'		=> __( 'Read More text', 'startbox' ),
-					'default'	=> __( 'Continue Reading: [title] &rarr;', 'startbox' ),
+					'default'	=> __( 'Continue Reading: [title]', 'startbox' ),
 					'size'		=> 'medium',
 					'align'		=> 'right',
 					'help'		=> __( 'Specify your own link text for the "Read More" link on posts.', 'startbox' )
