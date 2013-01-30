@@ -25,7 +25,9 @@
 
 				// Grab the author's posts
 				rewind_posts();
-				get_template_part( 'loop', 'author' );
+				while ( have_posts() ) : the_post();
+					get_template_part( 'loop', 'author' );
+				endwhile;
 
 				// Standard "after content" hook
 				do_action( 'sb_after_content' );

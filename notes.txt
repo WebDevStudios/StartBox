@@ -1,37 +1,31 @@
 ##### 2.7
-	Theme customizer integration
-		review current options api setup, see if it can integrate with customizer
-		asses background theme option and helper function, delete if unhelpful
-		add custom CSS setting
+	Make responsive stylesheet
+	Simplify base CSS for navigation
+	Add import/export for theme settings
+	Eliminate dependence on Timthumb (https://gist.github.com/2853431)
 
-##### Future Release
-	? add import/export for theme settings
-	? add image option for search widget submit button
-	? strip out shortcodes into stand-alone plugin
-	? strip out slideshows into stand-alone plugin
-	? strip out sidebar management into stand-alone plugin
-	? build better SB Hooks plugin
+##### 3.0
+	Update to HTML5
+	Simplify Hook Names
+	Refactor Options API to use more modular classes
+	Integrate Theme Customizer (based on Options API)
+		add custom CSS setting for theme customizer
+	Add Metabox creator (based on Options API)
+	Move some core features to plugins:
+		Shortcodes (?)
+		Slideshows
+	Update the Theme Updater to make it universally friendly
 
-
-##### Sb Elements
-	Theme Options API (written, needs refactoring)
-	Theme Customizer Integration (pending refoctoring from theme options)
-	Metabox Creator (pending refactoring from theme options)
-	Layout Management (done)
-	Sidebar Management (done)
-	Custom Template Tags and Conditionals (done)
-	Automatic Updates (needs refactoring to be universally friendly)
-	Custom Widgets (done)
-
+##### StartBox Core (SBX)
 	// Add the power of StartBox to your theme!
 	require_once( get_template_directory() . '/startbox/startbox.php' );
 
 	// Pick and choose which modules to include
-	add_theme_support( 'Sb-Options' );
-	add_theme_support( 'Sb-Customizer' );
-	add_theme_support( 'Sb-Metaboxes' );
-	add_theme_support( 'Sb-Layouts' );
-	add_theme_support( 'Sb-Sidebars' );
-	add_theme_support( 'Sb-Functions' );
-	add_theme_support( 'Sb-Updates' );
-	add_theme_support( 'Sb-Widgets' );
+	add_theme_support( 'sb-options' );
+	add_theme_support( 'sb-customizer' );
+	add_theme_support( 'sb-metaboxes' );
+	add_theme_support( 'sb-layouts' );
+	add_theme_support( 'sb-sidebars' );
+	add_theme_support( 'sb-functions' );
+	add_theme_support( 'sb-updates' );
+	add_theme_support( 'sb-widgets' );
