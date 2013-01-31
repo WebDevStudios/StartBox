@@ -36,18 +36,18 @@ class SB_Sidebars {
 		if ( !$this->sidebars || empty($this->sidebars) ) return;
 
 		// Otherwise, lets register all of them
-		foreach ( $this->sidebars as $id => $info ) {
+		foreach ( $this->sidebars as $sidebar_id => $sidebar_info ) {
 
-			register_sidebar(array(
-				'name'			=> esc_html( $info['name'] ),
-				'id'			=> $id,
-				'description'	=> esc_html( $info['description'] ),
-				'editable'		=> intval( $info['editable'] ),
-				'before_widget'	=>	"\n\t\t\t" . '<li id="%1$s" class="widget %2$s">',
-				'after_widget'	=>	"\n\t\t\t</li>\n",
-				'before_title'	=>	"\n\t\t\t\t". '<h3 class="widget-title"><span class="widget-title-left"><span class="widget-title-right">',
-				'after_title'	=>	'</span></span></h3>'."\n"
-			));
+			register_sidebar( apply_filters( 'sb_register_sidebar_defaults', array(
+				'name'          => esc_html( $sidebar_info['name'] ),
+				'id'            => $sidebar_id,
+				'description'   => esc_html( $info['description'] ),
+				'editable'      => intval( $info['editable'] ),
+				'before_widget' => "\n\t\t\t" . '<li id="%1$s" class="widget %2$s">',
+				'after_widget'  => "\n\t\t\t</li>\n",
+				'before_title'  => "\n\t\t\t\t". '<h3 class="widget-title"><span class="widget-title-left"><span class="widget-title-right">',
+				'after_title'   => '</span></span></h3>'."\n"
+			), $sidebar_id, $sidebar_info ) );
 
 		}
 	}
@@ -88,7 +88,7 @@ class SB_Sidebars {
 			$description = get_post_meta($post->ID, '_sidebar_description', true);
 			$this->register_sidebar( array( 'name' => $name, 'id' => $id, 'description' => $description, 'editable' => 0 ) );
 		endwhile;
-		
+
 		wp_reset_postdata();
 
 	}
