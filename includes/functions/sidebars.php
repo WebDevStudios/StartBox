@@ -41,8 +41,8 @@ class SB_Sidebars {
 			register_sidebar( apply_filters( 'sb_register_sidebar_defaults', array(
 				'name'          => esc_html( $sidebar_info['name'] ),
 				'id'            => $sidebar_id,
-				'description'   => esc_html( $info['description'] ),
-				'editable'      => intval( $info['editable'] ),
+				'description'   => esc_html( $sidebar_info['description'] ),
+				'editable'      => intval( $sidebar_info['editable'] ),
 				'before_widget' => "\n\t\t\t" . '<li id="%1$s" class="widget %2$s">',
 				'after_widget'  => "\n\t\t\t</li>\n",
 				'before_title'  => "\n\t\t\t\t". '<h3 class="widget-title"><span class="widget-title-left"><span class="widget-title-right">',
