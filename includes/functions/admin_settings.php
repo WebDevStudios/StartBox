@@ -708,11 +708,10 @@ class sb_input {
 
 		// Setup our defaults
 		$defaults = array(
-			'id'		=> '',		// The unique ID for this input
-			'label'		=> '',		// The content to use as the input label
-			'value'		=> '',		// The option value
-			'desc'		=> '',		// The content to display as a small descriptive text
-			'suggested'	=> null,	// Comma-sepparated list of URLs (relative to the active theme's directory). Non-existant images will produce a warning.
+			'id'    => '', // The unique ID for this input
+			'label' => '', // The content to use as the input label
+			'value' => '', // The option value
+			'desc'  => ''  // The content to display as a small descriptive text
 		);
 
 		// Get our variables ready to go
@@ -721,15 +720,15 @@ class sb_input {
 		$sb_id = THEME_OPTIONS . '[' . esc_attr( $id ) . ']';
 		$output = '';
 
+		// Load up the dependinces for WP's media browser, if they're not already loaded
+		wp_enqueue_media();
+
 		// Concatenate our output
 		$output .= '<p class="imagepickerinput ' . esc_attr( $id ) . '">'."\n";
 		$output .= '<label for="' . esc_attr( $sb_id ) . '">' . $label . ':</label> <input type="text" value="' . esc_attr( $value ) . '" name="' . esc_attr( $sb_id ) . '" id="' . esc_attr( $sb_id ) . '" class="uploadinput"/> ' ;
-		$output .= '<a href="' . esc_attr( $value ) . '" class="previewlink button" title="' . esc_attr( $label ) . '">'.__('Preview','startbox').'</a>&nbsp;';
-		if ( $suggested )
-			$output .= '<a href="media-upload.php?type=image&amp;tab=suggested&amp;suggested=' . $suggested . '" class="chooselink button colorbox" title="' . __('Choose a previously uploaded file','startbox') . '">' . __('Media Library','startbox') . '</a>&nbsp;';
-		else
-			$output .= '<a href="media-upload.php?type=image&amp;tab=library" class="chooselink button colorbox" title="'.__('Choose a previously uploaded file','startbox').'">'.__('Media Library','startbox').'</a>&nbsp;';
-		$output .= '<a href="#" class="uploadlink button" title="'.__('Upload a file','startbox').'">'.__('Upload','startbox').'</a><br/>';
+		$output .= '<a href="' . esc_attr( $value ) . '" class="previewlink button" title="' . esc_attr( $label ) . '">' . __( 'Preview', 'startbox' ) . '</a>&nbsp;';
+		$output .= '<a href="#" class="chooselink button" title="' . __( 'Choose a previously uploaded file', 'startbox' ) . '">' . __( 'Media Library', 'startbox' ) . '</a>&nbsp;';
+		$output .= '<a href="#" class="uploadlink button" title="'.__('Upload a file','startbox').'">' . __( 'Upload', 'startbox' ) . '</a><br/>';
 		$output .= '<span class="desc"> ' . $desc . ' <span class="uploadresult"></span></span>'."\n";
 		$output .= '</p>'."\n";
 
