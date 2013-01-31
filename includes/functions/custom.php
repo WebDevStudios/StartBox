@@ -377,11 +377,11 @@ function sb_media_upload_suggested_form($errors) {
  * @since 2.7.0
  */
 function capital_B_dangit( $text ) {
-	
+
 	// Simple replacement for titles
 	if ( 'the_title' === current_filter() )
 		return str_replace( 'Startbox', 'StartBox', $text );
-	
+
 	// Still here? Use the more judicious replacement
 	static $dblq = false;
 	if ( false === $dblq )
@@ -392,8 +392,64 @@ function capital_B_dangit( $text ) {
 	$text );
 
 }
-
-// Format StartBox
-foreach ( array( 'the_content', 'the_title' ) as $filter )
-	add_filter( $filter, 'capital_B_dangit', 11 );
+add_filter( 'the_content', 'capital_B_dangit', 11 );
+add_filter( 'the_title', 'capital_B_dangit', 11 );
 add_filter( 'comment_text', 'capital_B_dangit', 31 );
+
+/**
+ * Introduces a new column to the 'Page' dashboard that will be used to render the page template
+ * for the given page.
+ *
+ * Credit: @tommcfarlin, http://tommcfarlin.com/view-page-templates/
+ *
+ * @since	2.7
+ * @param	array	$page_columns	The array of columns rendering page meta data./
+ * @return	array					The update array of page columns.
+ */
+function sb_add_template_column( $page_columns ) {
+	$page_columns['template'] = __( 'Page Template', 'startbox' );
+	return $page_columns;
+}
+add_filter( 'manage_edit-page_columns', 'sb_add_template_column' );
+
+/**
+ * Renders the name of the template applied to the current page. Will use 'Default' if no
+ * template is used, but will use the friendly name of the template if one is applied.
+ *
+ * Credit: @tommcfarlin, http://tommcfarlin.com/view-page-templates/
+ *
+ * @since	2.7
+ * @param	string	$column_name	The name of the column being rendered
+ */
+function sb_add_template_data( $column_name ) {
+
+	// Grab a reference to the post that's currently being rendered
+	global $post;
+
+	// If we're looking at our custom column, then let's get ready to render some information.
+	if( 'template' == $column_name ) {
+
+		// First, the get name of the template
+		$template_name = get_post_meta( $post->ID, '_wp_page_template', true );
+
+		// If the file name is empty or the template file doesn't exist (because, say, meta data is left from a previous theme)...
+		if( 0 == strlen( trim( $template_name ) ) || ! file_exists( get_template_directory() . '/' . $template_name ) ) {
+
+			// ...then we'll set it as default
+			$template_name = __( 'Default', 'startbox' );
+
+		// Otherwise, let's actually get the friendly name of the file rather than the name of the file itself
+		// by using the WordPress `get_file_description` function
+		} else {
+
+			$template_name = get_file_description( get_template_directory() . '/' . $template_name );
+
+		}
+
+	}
+
+	// Finally, render the template name
+	echo $template_name;
+
+}
+add_action( 'manage_page_posts_custom_column', 'sb_add_template_data' );
