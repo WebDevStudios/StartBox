@@ -238,6 +238,17 @@ class sb_upgrade {
 				'meta_key' => '_sb_layout', 'meta_value' => 'one-col' );
 			$wpdb->update( $wpdb->postmeta, $new_values, $where );
 
+			// Update our old logo settings based on old preference
+			$logo_disabled = sb_get_option('logo-disabled');
+			$logo_text     = sb_get_option('logo-text');
+			$logo_image    = sb_get_option('logo-image');
+			if ( $logo_disabled )
+				sb_update_option( 'logo-select', 'disabled' );
+			elseif ( ! empty( $logo_text ) )
+				sb_update_option( 'logo-select', 'text' );
+			else
+				sb_update_option( 'logo-select', 'image' );
+
 			// If we have existing copyright information in the site
 			if ( sb_get_option('enable_copyright') ) {
 
@@ -282,14 +293,26 @@ class sb_upgrade {
 
 		}
 
-		// Upgrade to 2.6.1
-		// if ( version_compare( get_option('startbox_version'), '2.6.1', '<') ) {
-		//
-		// 	$theme_settings = get_option( THEME_OPTIONS );
-		// 	$new_settings = array();
-		// 	$new_settings = wp_parse_args($new_settings, $theme_settings);
-		// 	update_option( THEME_OPTIONS, $new_settings);
-		// 	update_option( 'startbox_version', '2.6.1' );
+		// Upgrade to 2.7
+		// if ( version_compare( get_option('startbox_version'), '2.7', '<') ) {
+
+			// Grab our current theme settings
+			// $theme_settings = get_option( THEME_OPTIONS );
+
+			// Update our old logo settings based on old preference
+			// $theme_settings['whatever'] = 'value';
+
+			// Add in our new settings
+			// $new_settings = array();
+
+			// Splice the updates together
+			// $new_settings = wp_parse_args( $new_settings, $theme_settings );
+
+			// Upadate our settings
+			// update_option( THEME_OPTIONS, $new_settings);
+
+			// Update our theme version
+			// update_option( 'startbox_version', '2.7' );
 		// }
 
 		// Included hook for other things to do during upgrade
