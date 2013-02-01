@@ -1,7 +1,8 @@
 ##### 2.7
 	Make responsive stylesheet
-	Simplify base CSS for navigation
-	Add import/export for theme settings
+	Simplify base CSS selectors for navigation
+	Tweak/improve CSS for Typography
+	Add import/export feature for theme settings
 	Eliminate dependence on Timthumb
 
 ##### 3.0
