@@ -101,7 +101,6 @@ function sb_admin_load() {
 
 	// Load StartBox-specific scripts and styles
 	wp_enqueue_script( 'colorbox' );
-	wp_enqueue_script( 'jquery-ajaxuploader', SCRIPTS_URL . '/jquery.ajaxupload.js' );
 	wp_enqueue_script( 'jquery-colorpicker', SCRIPTS_URL . '/colorpicker/js/colorpicker.js' );
 	wp_enqueue_script( 'sb-admin', SCRIPTS_URL . '/admin.js', array('jquery-colorpicker') );
 	wp_enqueue_style( 'colorpicker', SCRIPTS_URL . '/colorpicker/css/colorpicker.css' );

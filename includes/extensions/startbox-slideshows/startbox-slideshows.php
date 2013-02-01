@@ -173,6 +173,9 @@ function sb_slideshow_library_meta() {
 	sort( $months, SORT_NUMERIC );
 
 	sb_slideshow_meta_box( 'library' );
+
+	// Load up the dependinces for WP's media browser, if they're not already loaded
+	wp_enqueue_media();
 ?>
 	<div id="libraryFilters">
 		<div> <em><?php _e( 'Library Filters', 'startbox' ); ?></em> </div>
@@ -219,7 +222,7 @@ function sb_slideshow_library_meta() {
 				value="<?php echo esc_attr( $sb_slideshow_interface['filter_height'] ); ?>" /><code>px</code>
 		</div>
 	</div>
-	<div id="uploaddiv"> <a title="Upload a file" id="uploadlink" class="button" href="#"><?php _e( 'Add New', 'startbox' ); ?></a> <span id="uploadresult"></span> </div>
+	<div id="uploaddiv"> <a id="uploadlink" class="add-new button" href="#"><?php _e( 'Add New', 'startbox' ); ?></a></div>
 <?php
 }
 
@@ -623,7 +626,6 @@ function sb_slideshow_post_admin_print_scripts() {
 	wp_enqueue_script( 'jquery-ui-core' );
 	wp_enqueue_script( 'jquery-ui-sortable' );
 	wp_enqueue_script( 'jquery-ui-widget' );
-	wp_enqueue_script( 'jquery-ajaxuploader', SCRIPTS_URL . '/jquery.ajaxupload.js' );
 }
 add_action( 'admin_print_scripts-post.php', 'sb_slideshow_post_admin_print_scripts' );
 add_action( 'admin_print_scripts-post-new.php', 'sb_slideshow_post_admin_print_scripts' );
@@ -897,44 +899,26 @@ function sb_slideshow_post_admin_head() {
 					return false;
 				});
 
-				// file upload
-				var fid = 'userfile';
-				new AjaxUpload($('a#uploadlink'), {
-					action: ajaxurl,
-					name: fid,
-					data: { action: 'sb_action_handle_upload_ajax', file_id: fid },
-					responseType: 'json',
-					onSubmit: function( file , ext ){
-						if( ext && /^(jpg|png|jpeg|gif)$/.test(ext) ) {
-							$('span#uploadresult').html( 'Uploading ' + file + '...' );
-						} else {
-							// extension is not allowed
-							$('span#uploadresult').html( 'Error: Only images are allowed.' );
-							return false;	// cancel upload
-						}
-					},
-					onComplete: function( file, response ){
-						if( response.error != '' ) {
-							$('span#uploadresult').html( response.error ); // show user the error
-						} else {
-							$('span#uploadresult').html( file + ' has been uploaded!' );
+				// Add New link
+				$('.add-new').click(function(event) {
+					event.preventDefault();
+					wp.media.editor.open($(this));
+					wp.media.editor.send.attachment = function(props, attachment){
+						var offset = $(attachments).length;
+						$.post(ajaxurl, { action: 'sb_slideshow_upload', id: '<?php echo $post->ID; ?>', index_offset: offset }, function(response) {
+							attachments[offset] = $.parseJSON( response.object ); // append to attachments array
+							addToSelect( 'type', attachments[offset]['type'], null ); // add mime type to filter area if not already present
 
-							var offset = $(attachments).length;
-							$.post(ajaxurl, { action: 'sb_slideshow_upload', id: '<?php echo $post->ID; ?>', index_offset: offset }, function(response) {
-								attachments[offset] = $.parseJSON( response.object ); // append to attachments array
-								addToSelect( 'type', attachments[offset]['type'], null ); // add mime type to filter area if not already present
+							// add year and month to filter if not already present
+							var year = attachments[offset]['year'];
+							addToSelect( 'year', year, null );
+							addToSelect( 'month', attachments[offset]['month'], year );
 
-								// add year and month to filter if not already present
-								var year = attachments[offset]['year'];
-								addToSelect( 'year', year, null );
-								addToSelect( 'month', attachments[offset]['month'], year );
-
-								$('select#filter_month option').sort( sortNum ).appendTo( 'select#filter_month' ); // sort the months to make sure they are in order
-								filterMonthToggle( $('select#filter_year').val() ); // enable/disable months based on year value
-								prepend_to( 'library', response.html ); // prepend to library
-							}, 'json');
-						}
-					}
+							$('select#filter_month option').sort( sortNum ).appendTo( 'select#filter_month' ); // sort the months to make sure they are in order
+							filterMonthToggle( $('select#filter_year').val() ); // enable/disable months based on year value
+							prepend_to( 'library', response.html ); // prepend to library
+						}, 'json');
+					};
 				});
 
 				// this is stupid, but it works for now

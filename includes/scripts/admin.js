@@ -140,61 +140,26 @@ $(document).ready(function(){
 				var instance = this; // because this function has a strange structure and the this gets overwritten
 
 				// Hide the Preview link if the input value is empty, show it as soon as there is a value
-				if(!$('.uploadinput', instance).val())
-				{
-					$('.previewlink', instance).hide();
-				}
 				$('.uploadinput', instance).change(function() {
-					if(!$('.uploadinput', instance).val())
-					{
+					if ( ! $('.uploadinput', instance).val() ) {
 						$('.previewlink', instance).hide();
 					} else {
 						$('.previewlink', instance).show();
 					}
-				});
+				}).change();
 
-				// Preview
+				// Preview Button
 				$('.previewlink', instance).click(function() {
 					$(this).colorbox({href: $('.uploadinput', instance).val(), maxWidth:"90%", maxHeight:"90%", opacity:0.6});
 				});
 
-				// Choose (Media Library handler)
+				// Upload/Choose File Button (Media Library handler)
 				$('.chooselink', instance).click(function(event) {
 					event.preventDefault();
 					wp.media.editor.open($(this));
 					wp.media.editor.send.attachment = function(props, attachment){
 						$('.uploadinput', instance).val(attachment.url);
 					};
-				});
-
-				// Upload
-				var fid = 'userfile'; // used to find file like $_FILES[fid]
-				new AjaxUpload($('.uploadlink', instance), {
-					action: ajaxurl,
-					name: fid,
-					data: { action: 'sb_action_handle_upload_ajax', _ajax_nonce: '<?php echo $NONCE; ?>', file_id: fid },
-					responseType: 'json',
-					onSubmit: function(file , ext){
-						//if (ext && new RegExp('^(' + allowed.join('|') + ')$').test(ext)){
-						if (ext && /^(jpg|png|jpeg|gif|ico)$/.test(ext)){
-							$('.uploadresult', instance).html('Uploading ' + file + '...');
-						} else {
-							// extension is not allowed
-							$('.uploadresult', instance).html('<span class="error">Error: Only images are allowed.</span>');
-							// cancel upload
-							return false;
-						}
-
-					},
-					onComplete: function(file, response){
-						if(response.error !== '') {
-							$('.uploadresult', instance).html(response.error); // show user the error
-						} else {
-							$('.uploadresult', instance).html('<a href="' + response.full + '" target="_blank" class="previewlink">' + file + '</a> has been uploaded!');
-							$('.uploadinput', instance).val(response.full);
-							$('.previewlink', instance).show().attr('href', response.full);
-						}
-					}
 				});
 
 				this.hasEventHander = true;

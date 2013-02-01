@@ -726,9 +726,8 @@ class sb_input {
 		// Concatenate our output
 		$output .= '<p class="imagepickerinput ' . esc_attr( $id ) . '">'."\n";
 		$output .= '<label for="' . esc_attr( $sb_id ) . '">' . $label . ':</label> <input type="text" value="' . esc_attr( $value ) . '" name="' . esc_attr( $sb_id ) . '" id="' . esc_attr( $sb_id ) . '" class="uploadinput"/> ' ;
-		$output .= '<a href="' . esc_attr( $value ) . '" class="previewlink button" title="' . esc_attr( $label ) . '">' . __( 'Preview', 'startbox' ) . '</a>&nbsp;';
-		$output .= '<a href="#" class="chooselink button" title="' . __( 'Choose a previously uploaded file', 'startbox' ) . '">' . __( 'Media Library', 'startbox' ) . '</a>&nbsp;';
-		$output .= '<a href="#" class="uploadlink button" title="'.__('Upload a file','startbox').'">' . __( 'Upload', 'startbox' ) . '</a><br/>';
+		$output .= '<a class="previewlink button" href="' . esc_attr( $value ) . '">' . __( 'Preview', 'startbox' ) . '</a>&nbsp;';
+		$output .= '<a class="chooselink button" href="#">' . __( 'Upload/Choose File', 'startbox' ) . '</a>&nbsp;';
 		$output .= '<span class="desc"> ' . $desc . ' <span class="uploadresult"></span></span>'."\n";
 		$output .= '</p>'."\n";
 
