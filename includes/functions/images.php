@@ -26,18 +26,18 @@ function sb_get_post_image( $args = array(), $deprecated_post_id = null, $deprec
 		_deprecated_argument( __FUNCTION__, '2.6', 'Please pass all attributes as a single array instead.' );
 		// Create an array of attributes from the deprecated fields
 		$args = array(
-			'image_id'			=> $args, // Note: this should be an integer,
-			'post_id'			=> $deprecated_post_id,
-			'use_attachments'	=> $deprecated_use_attachments,
-			'url'				=> $deprecated_url
+			'image_id'        => $args, // Note: this should be an integer,
+			'post_id'         => $deprecated_post_id,
+			'use_attachments' => $deprecated_use_attachments,
+			'url'             => $deprecated_url
 		);
 	}
 
 	$defaults = array(
-		'image_id'			=> null,
-		'post_id'			=> $id,
-		'use_attachments'	=> false,
-		'url'				=> null
+		'image_id'        => null,
+		'post_id'         => $id,
+		'use_attachments' => false,
+		'url'             => null
 	);
 	extract( wp_parse_args( $args, $defaults ) );
 
@@ -56,9 +56,9 @@ function sb_get_post_image( $args = array(), $deprecated_post_id = null, $deprec
 	// otherwise, and only if we want to, just use the last image attached to the post
 	elseif ( true == $use_attachments ) {
 		$images = get_children(array(
-			'post_parent' => $post_id,
-			'post_type' => 'attachment',
-			'numberposts' => 1,
+			'post_parent'    => $post_id,
+			'post_type'      => 'attachment',
+			'numberposts'    => 1,
 			'post_mime_type' => 'image'));
 		foreach( $images as $image ) { $attachment = wp_get_attachment_image_src( $image->ID, 'full' ); }
 	}
@@ -100,31 +100,31 @@ function sb_post_image( $args = array(), $depricated_height = null, $depricated_
 		_deprecated_argument( __FUNCTION__, '2.6', 'Please pass all attributes as a single array instead.' );
 		// Create an array of attributes from the deprecated fields
 		$args = array_merge( array(
-			'width'		=> $args,
-			'height'	=> $depricated_height,
-			'align'		=> $depricated_align,
-			'zoom'		=> $depricated_zoom,
+			'width'  => $args,
+			'height' => $depricated_height,
+			'align'  => $depricated_align,
+			'zoom'   => $depricated_zoom,
 		), $depricated_atts);
 	}
 
 	// Setup our defaults and merge them with the passed arguments
 	$defaults = array(
-		'post_id' 			=> $post->ID,
-		'image_id'			=> null,
-		'image_url'			=> null,
-		'use_attachments'	=> apply_filters( 'sb_post_image_use_attachments', false ),
-		'width'				=> apply_filters( 'sb_post_image_width', 200 ),
-		'height'			=> apply_filters( 'sb_post_image_height', 200 ),
-		'align'				=> apply_filters( 'sb_post_image_align', 't' ),
-		'zoom'				=> apply_filters( 'sb_post_image_zoom', 1 ),
-		'quality'			=> apply_filters( 'sb_post_image_quality', 100 ),
-		'class'				=> apply_filters( 'sb_post_image_class', 'post-image' ),
-		'alt'				=> apply_filters( 'sb_post_image_alt', get_the_title() ),
-		'title' 			=> apply_filters( 'sb_post_image_title', get_the_title() ),
-		'nophoto_url'		=> apply_filters( 'sb_post_image_none', IMAGES_URL . '/nophoto.jpg' ),
-		'hide_nophoto'		=> apply_filters( 'sb_post_image_hide_nophoto', false ),
-		'enabled'			=> apply_filters( 'sb_post_image_enabled', true ),
-		'echo'				=> apply_filters( 'sb_post_image_echo', true )
+		'post_id'         => $post->ID,
+		'image_id'        => null,
+		'image_url'       => null,
+		'use_attachments' => apply_filters( 'sb_post_image_use_attachments', false ),
+		'width'           => apply_filters( 'sb_post_image_width', 200 ),
+		'height'          => apply_filters( 'sb_post_image_height', 200 ),
+		'align'           => apply_filters( 'sb_post_image_align', 't' ),
+		'zoom'            => apply_filters( 'sb_post_image_zoom', 1 ),
+		'quality'         => apply_filters( 'sb_post_image_quality', 100 ),
+		'class'           => apply_filters( 'sb_post_image_class', 'post-image' ),
+		'alt'             => apply_filters( 'sb_post_image_alt', get_the_title() ),
+		'title'           => apply_filters( 'sb_post_image_title', get_the_title() ),
+		'nophoto_url'     => apply_filters( 'sb_post_image_none', IMAGES_URL . '/nophoto.jpg' ),
+		'hide_nophoto'    => apply_filters( 'sb_post_image_hide_nophoto', false ),
+		'enabled'         => apply_filters( 'sb_post_image_enabled', true ),
+		'echo'            => apply_filters( 'sb_post_image_echo', true )
 	);
 	extract( $args = wp_parse_args($args, apply_filters( 'sb_post_image_settings', $defaults ) ) );
 
@@ -149,7 +149,7 @@ function sb_post_image( $args = array(), $depricated_height = null, $depricated_
 }
 
 /**
- * Generates URL for image cropping
+ * Grab the URL for an image to use as featured for a given post and given dimensions
  *
  * @since  2.5
  * @uses   sb_get_post_image
@@ -158,7 +158,7 @@ function sb_post_image( $args = array(), $depricated_height = null, $depricated_
  */
 function sb_post_image_url( $args = array() ) {
 
-	// This is a legacy function that didn't actually echo by default.
+	// This is a legacy function that didn't originally echo by default.
 	// So, we need to check if our intent is to echo to maintain backwards compatibility.
 	if ( $args['echo'] ) echo sb_get_post_image_url( $args );
 
@@ -173,20 +173,26 @@ function sb_get_post_image_url( $args = null ) {
 
 	// Setup our default args
 	$defaults = array(
-		'post_id' 			=> $post->ID,
-		'image_id'			=> null,
-		'image_url'			=> null,
-		'use_attachments'	=> apply_filters( 'sb_post_image_use_attachments', false ),
-		'width'				=> apply_filters( 'sb_post_image_width', 200 ),
-		'height'			=> apply_filters( 'sb_post_image_height', 200 ),
-		'align'				=> apply_filters( 'sb_post_image_align', 't' ),
-		'zoom'				=> apply_filters( 'sb_post_image_zoom', 1 ),
-		'quality'			=> apply_filters( 'sb_post_image_quality', 100 ),
+		'post_id'         => $post->ID,
+		'image_id'        => null,
+		'image_url'       => null,
+		'use_attachments' => apply_filters( 'sb_post_image_use_attachments', false ),
+		'width'           => apply_filters( 'sb_post_image_width', 200 ),
+		'height'          => apply_filters( 'sb_post_image_height', 200 ),
+		'align'           => apply_filters( 'sb_post_image_align', 't' ),
+		'zoom'            => apply_filters( 'sb_post_image_zoom', 1 )
 	);
 	extract( $args = wp_parse_args($args, apply_filters( 'sb_post_image_settings', $defaults ) ) );
 
-	// Combine all our options into the proper URI string
-	$output = esc_url( SCRIPTS_URL . '/timthumb.php?src=' . sb_get_post_image( $args ) . '&amp;w=' . $width . '&amp;h=' . $height . '&amp;a=' . $align . '&amp;zc=' . $zoom . '&amp;q=' . $quality );
+	// Fire up the WP Image editor to generate our correctly sized image
+	// @TODO: confirm that this method checks if file exsts first, if not add in some sanity checks for speed
+	// @TODO: this method doesn't support any given URL, update it so that at least the default no-image-available thumb will work
+	$image = wp_get_image_editor( sb_get_post_image( $args ) );
+	if ( ! is_wp_error( $image ) ) {
+		$image->resize( $args['width'], $args['height'], $args['zoom'] );
+		$image->save();
+		$output = $image->generate_filename();
+	}
 
 	// Return the string
 	return $output;

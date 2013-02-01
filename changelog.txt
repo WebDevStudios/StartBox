@@ -6,6 +6,7 @@
 	* Fixed: Default settings for post thumbnails in theme options
 	* Changed: Updated Upload option types to use WP3.5 media manager
 	* Removed: Eliminated AJAXUpload scripts and all references
+	* Removed: Timthumb.php and dependence on Timthumb entirely
 
 2012.10.13 - version 2.6
 	* Added: hook "sb_author_before_posts" on author.php after the author's meta information, before their posts are inserted

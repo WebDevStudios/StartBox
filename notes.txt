@@ -2,7 +2,7 @@
 	Make responsive stylesheet
 	Simplify base CSS for navigation
 	Add import/export for theme settings
-	Eliminate dependence on Timthumb (https://gist.github.com/2853431)
+	Eliminate dependence on Timthumb
 
 ##### 3.0
 	Update to HTML5
