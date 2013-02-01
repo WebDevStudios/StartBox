@@ -1,0 +1,2177 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: StartBox v2.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2012-12-11 02:52:14+0000\n"
+"Last-Translator: lswilson <lisa@convertiv.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n>1;\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: ../../\n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: attachment.php:19
+#, php-format
+#@ startbox
+msgid "Full size is %s pixels"
+msgstr "Pleine grandeur est %s pixels"
+
+#: attachment.php:22
+#@ startbox
+msgid "Link to full-size image"
+msgstr "Lien vers l'image en taille réelle"
+
+#: attachment.php:72
+#@ startbox
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Continuer la lecture <span class=\"meta-na\\\">$rarr;</span>"
+
+#: attachment.php:73
+#@ startbox
+msgid "Pages:"
+msgstr "Pages :"
+
+#: comments.php:8
+#@ startbox
+msgid "This post is protected. Enter the password to view any comments."
+msgstr "Ce poste est protégé. Entrez le mot de passe pour afficher tous les commentaires."
+
+#: comments.php:21
+#, php-format
+#@ startbox
+msgid "<span>%d</span> Comments"
+msgstr "<span>%d</span> Commentaires"
+
+#: comments.php:21
+#@ startbox
+msgid "<span>One</span> Comment"
+msgstr "<span>Un</span> Commentaire"
+
+#: comments.php:39
+#, php-format
+#@ startbox
+msgid "<span>%d</span> Trackbacks"
+msgstr "<span>% d </span> Trackbacks"
+
+#: comments.php:39
+#@ startbox
+msgid "<span>One</span> Trackback"
+msgstr "<span>Un</span> Trackback"
+
+#: includes/admin/admin.php:13
+#: includes/admin/admin.php:32
+#: includes/extensions/layouts.php:158
+#@ startbox
+msgid "Theme Options"
+msgstr "Options de thème"
+
+#: includes/admin/admin.php:59
+#@ startbox
+msgid "Additional Resources"
+msgstr "Ressources supplémentaires"
+
+#: includes/admin/admin.php:60
+#@ startbox
+msgid "<h3>Additional Resources</h3>"
+msgstr "<h3> Ressources supplémentaires </h3>"
+
+#: includes/admin/admin.php:60
+#, php-format
+#@ startbox
+msgid "For more information, try the %s or %s."
+msgstr "Pour plus d'informations, essayez s% s ou%."
+
+#: includes/admin/admin.php:60
+#@ startbox
+msgid "Theme Documentation"
+msgstr "Documentation thème"
+
+#: includes/admin/admin.php:60
+#@ startbox
+msgid "Support Forum"
+msgstr "Forum"
+
+#: includes/admin/admin.php:146
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:148
+#@ startbox
+msgid "Options"
+msgstr "Options de"
+
+#: includes/admin/admin.php:150
+#@ startbox
+msgid "Options Updated."
+msgstr "Options de mise à jour."
+
+#: includes/admin/admin.php:188
+#@ startbox
+msgid "Save All Settings"
+msgstr "Enregistrer tous les paramètres"
+
+#: includes/admin/admin.php:189
+#@ startbox
+msgid "Reset All Settings"
+msgstr "Réinitialiser tous les paramètres"
+
+#: includes/admin/analytics.php:9
+#@ startbox
+msgid "Google Analytics"
+msgstr "Google Analytics"
+
+#: includes/admin/analytics.php:11
+#@ startbox
+msgid "Allows you to include the tracking codes for your preferred site statistics software (like Google Analytics, Woopra, etc)."
+msgstr "Vous permet d'inclure les codes de suivi de votre logiciel préféré statistiques du site (comme Google Analytics, Woopra, etc.)"
+
+#: includes/admin/analytics.php:18
+#, php-format
+#@ startbox
+msgid "Enter your %s code below:"
+msgstr "Entrez le code de votre% s ci-dessous:"
+
+#: includes/admin/analytics.php:21
+#@ startbox
+msgid "Though intended specifically for analytics code, you can actually paste any code here that you would like to add to the &lt;head&gt; section of all your pages."
+msgstr "Bien que conçu spécifiquement pour le code d'analyse, vous pouvez réellement coller n'importe quel code ici que vous souhaitez ajouter à la section &lt;head&gt; de toutes vos pages."
+
+#: includes/admin/content.php:8
+#@ startbox
+msgid "Content Settings"
+msgstr "Paramètres de contenu"
+
+#: includes/admin/content.php:10
+#@ startbox
+msgid "Take full control over the content portions of your site. Set thumbnail sizes, post navigation options and post meta information."
+msgstr "Prenez le contrôle total sur les parties de contenu de votre site. Fixer une taille miniature, afficher les options de navigation et publier des informations de métadonnées."
+
+#: includes/admin/content.php:16
+#@ startbox
+msgid "Post Content"
+msgstr "poster contenu"
+
+#: includes/admin/content.php:20
+#@ startbox
+msgid "Post Content on Homepage"
+msgstr "Poster contenu sur le site Internet"
+
+#: includes/admin/content.php:22
+#: includes/admin/content.php:34
+#@ startbox
+msgid "Excerpt"
+msgstr "extrait"
+
+#: includes/admin/content.php:23
+#: includes/admin/content.php:35
+#@ startbox
+msgid "Full Post"
+msgstr "Message complet"
+
+#: includes/admin/content.php:28
+#@ startbox
+msgid "Choose whether you would like to display the full post, or only an exceprt, on the homepage."
+msgstr "Choisissez si vous souhaitez afficher le message complet ou seulement une exceprt, sur la page d'accueil."
+
+#: includes/admin/content.php:32
+#@ startbox
+msgid "Post Content in Archives"
+msgstr "Poster contenu dans les archives"
+
+#: includes/admin/content.php:40
+#@ startbox
+msgid "Choose whether you would like to display the full post, or only an exceprt, on all other blog pages."
+msgstr "Choisissez si vous souhaitez afficher le message complet ou seulement une exceprt, sur tous les autres pages de blog."
+
+#: includes/admin/content.php:44
+#@ startbox
+msgid "Read More text"
+msgstr "Lire la suite du texte"
+
+#: includes/admin/content.php:45
+#@ startbox
+msgid "Continue Reading: [title] &rarr;"
+msgstr "Lire la suite: [title] &rarr;"
+
+#: includes/admin/content.php:48
+#@ startbox
+msgid "Specify your own link text for the \"Read More\" link on posts."
+msgstr "Spécifiez votre propre texte du lien pour le fichier \"Lire la suite\" sur les messages."
+
+#: includes/admin/content.php:52
+#@ startbox
+msgid "Display Author Bio on Single posts"
+msgstr "Afficher Bio Auteur de messages simples"
+
+#: includes/admin/content.php:54
+#: includes/admin/content.php:173
+#: includes/admin/content.php:186
+#: includes/functions/admin_settings.php:615
+#: includes/functions/admin_settings.php:656
+#: includes/functions/admin_settings.php:774
+#@ startbox
+msgid "Disabled"
+msgstr "handicapé"
+
+#: includes/admin/content.php:55
+#@ startbox
+msgid "Show Before Post Content"
+msgstr "Voir Avant Contenu Message"
+
+#: includes/admin/content.php:56
+#@ startbox
+msgid "Show After Post Content"
+msgstr "Montrer Après Contenu Message"
+
+#: includes/admin/content.php:59
+#@ startbox
+msgid "Author bio only displays if author provides a description in their profile."
+msgstr "Biographie de l'auteur ne s'affiche que si l'auteur donne une description de leur profil."
+
+#: includes/admin/content.php:62
+#@ startbox
+msgid "Select where you would like author bios to appear when viewing a single post (or disable them altogether)."
+msgstr "Sélectionnez l'endroit où vous souhaitez bios auteur d'apparaître lors de l'affichage d'un message unique (ou les désactiver complètement)."
+
+#: includes/admin/content.php:67
+#@ startbox
+msgid "Post Meta"
+msgstr "poster Meta"
+
+#: includes/admin/content.php:68
+#, php-format
+#@ startbox
+msgid "Control the meta information displayed on each post. You can use any %s you like, including: [author], [categories], [comments], [date], [time], [tags] and [edit]."
+msgstr "Contrôler les méta-informations affichées sur chaque poste. Vous pouvez utiliser n'importe% s vous voulez, y compris: [auteur], [catégories] [commentaires], le [date], [HEURE], [tags] et [edit]."
+
+#: includes/admin/content.php:69
+#@ startbox
+msgid "Use shortcodes to control what information you would like to display for each post (e.g. Post author, category, comment count, etc)."
+msgstr "Utilisez shortcodes de contrôler les informations que vous souhaitez afficher pour chaque poste (p. ex post l'auteur, la catégorie, le nombre de commentaires, etc.)"
+
+#: includes/admin/content.php:73
+#@ startbox
+msgid "Post Header Meta"
+msgstr "Poster Meta-tête"
+
+#: includes/admin/content.php:74
+#@ startbox
+msgid "Published in [categories] on [date] [edit]"
+msgstr "Publié dans [catégories] au [date] [modifier]"
+
+#: includes/admin/content.php:81
+#@ startbox
+msgid "Post Footer Meta"
+msgstr "Poster Meta Footer"
+
+#: includes/admin/content.php:90
+#@ startbox
+msgid "Post Thumbnails"
+msgstr "poster Miniatures"
+
+#: includes/admin/content.php:94
+#@ startbox
+msgid "Enable Post Thumbnails"
+msgstr "Activer Vignettes postales"
+
+#: includes/admin/content.php:97
+#@ startbox
+msgid "Enable thumbnails for posts in archive lists (Default: true)."
+msgstr "Activer les vignettes pour les messages dans les listes d'archive (par défaut: true)."
+
+#: includes/admin/content.php:101
+#@ startbox
+msgid "Include Post Thumbnails in RSS feed"
+msgstr "Inclure les vignettes Poste Flux RSS"
+
+#: includes/admin/content.php:104
+#@ startbox
+msgid "Enable thumbnails for posts in RSS feeds (Default: true)."
+msgstr "Activer les vignettes pour les messages en flux RSS (par défaut: true)."
+
+#: includes/admin/content.php:108
+#@ startbox
+msgid "Use any attached image if no Featured Image specified"
+msgstr "Utilisez n'importe quelle image ci-jointe si aucune image spécifiée en vedette"
+
+#: includes/admin/content.php:111
+#@ startbox
+msgid "If there is no user-specified \"Featured Image\" for a particular post, the theme will automatically attempt to use the last attached image (Default: true)."
+msgstr "Si aucun utilisateur n'est spécifié par \"Image en vedette\" pour un poste donné, le thème sera automatiquement essayer d'utiliser la dernière image ci-jointe (par défaut: true)."
+
+#: includes/admin/content.php:115
+#@ startbox
+msgid "Hide thumbnails if no preview available"
+msgstr "Masquer les vignettes si aucun aperçu disponible"
+
+#: includes/admin/content.php:118
+#@ startbox
+msgid "Disable the default \"No Preview Available\" image that is used when no post thumbnail is found."
+msgstr "Désactivez l'option par défaut \"Aucun aperçu disponible\" image qui est utilisée lorsque aucune miniature poste est à pourvoir."
+
+#: includes/admin/content.php:122
+#@ startbox
+msgid "Default Thumbnail"
+msgstr "Vignette par défaut"
+
+#: includes/admin/content.php:124
+#@ startbox
+msgid "Upload/Select your own custom defoult thumbnail to use when no available post thumbnail is found."
+msgstr "Upload / Choisissez votre propre miniature defoult personnalisée à utiliser quand aucun post thumbnail disponible a été détecté."
+
+#: includes/admin/content.php:128
+#@ startbox
+msgid "Thumbnail Width"
+msgstr "Largeur Vignette"
+
+#: includes/admin/content.php:133
+#@ startbox
+msgid "Specify your own thumbnail width in pixels (Default: 200)."
+msgstr "Spécifiez la largeur de votre propre miniature en pixels (par défaut: 200)."
+
+#: includes/admin/content.php:137
+#@ startbox
+msgid "Thumbnail Height"
+msgstr "Hauteur Vignette"
+
+#: includes/admin/content.php:142
+#@ startbox
+msgid "Specify your own thumbnail height in pixels (Default: 200)."
+msgstr "Précisez votre taille miniature propre en pixels (par défaut: 200)."
+
+#: includes/admin/content.php:146
+#@ startbox
+msgid "Image Crop Alignment"
+msgstr "Alignement recadrer l'image"
+
+#: includes/admin/content.php:148
+#@ startbox
+msgid "Top Left"
+msgstr "En haut à gauche"
+
+#: includes/admin/content.php:149
+#@ startbox
+msgid "Top Center"
+msgstr "En haut au centre"
+
+#: includes/admin/content.php:150
+#@ startbox
+msgid "Top Right"
+msgstr "En haut à droite"
+
+#: includes/admin/content.php:151
+#@ startbox
+msgid "Middle Left"
+msgstr "Moyen-Gauche"
+
+#: includes/admin/content.php:152
+#: includes/functions/admin_settings.php:784
+#@ startbox
+msgid "Center"
+msgstr "centre"
+
+#: includes/admin/content.php:153
+#@ startbox
+msgid "Middle Right"
+msgstr "droit Orient"
+
+#: includes/admin/content.php:154
+#@ startbox
+msgid "Bottom Left"
+msgstr "En bas à gauche"
+
+#: includes/admin/content.php:155
+#@ startbox
+msgid "Bottom Center"
+msgstr "En bas au centre"
+
+#: includes/admin/content.php:156
+#@ startbox
+msgid "Bottom Right"
+msgstr "En bas à droite"
+
+#: includes/admin/content.php:160
+#@ startbox
+msgid "Select where you would like the thumbnails to center the crop (Default: Top Center)."
+msgstr "Sélectionnez l'emplacement où vous souhaitez les vignettes pour centre de la culture (par défaut: En haut au centre)."
+
+#: includes/admin/content.php:165
+#@ startbox
+msgid "Post Navigation"
+msgstr "Message navigation"
+
+#: includes/admin/content.php:166
+#@ startbox
+msgid "Specify how navigation for prev/next posts should appear."
+msgstr "Spécifiez la manière dont la navigation pour diff / messages prochaines devrait apparaître."
+
+#: includes/admin/content.php:167
+#@ startbox
+msgid "Select where post navigation should appear for Blog, Archive and Single Post views"
+msgstr "Sélectionnez l'emplacement où doit apparaître poste de navigation pour les écrits, archives et vues poste unique"
+
+#: includes/admin/content.php:171
+#@ startbox
+msgid "Blog & Archives Navigation"
+msgstr "Blog & Archives navigation"
+
+#: includes/admin/content.php:174
+#: includes/admin/content.php:187
+#@ startbox
+msgid "Show Above Posts"
+msgstr "Montrer les messages-dessus"
+
+#: includes/admin/content.php:175
+#: includes/admin/content.php:188
+#@ startbox
+msgid "Show Below Posts"
+msgstr "Voir ci-dessous les messages"
+
+#: includes/admin/content.php:176
+#: includes/admin/content.php:189
+#@ startbox
+msgid "Show Above & Below Posts"
+msgstr "Voir Above & Below messages"
+
+#: includes/admin/content.php:184
+#@ startbox
+msgid "Single Post Navigation"
+msgstr "Single Post navigation"
+
+#: includes/admin/content.php:210
+#, php-format
+#@ startbox
+msgid "%s Older posts"
+msgstr "%s Articles plus anciens"
+
+#: includes/admin/content.php:211
+#, php-format
+#@ startbox
+msgid "Newer posts %s"
+msgstr "Newer posts %s"
+
+#: includes/admin/footer.php:8
+#@ startbox
+msgid "Footer Settings"
+msgstr "Paramètres de pied de page"
+
+#: includes/admin/footer.php:10
+#@ startbox
+msgid "Select what text (if any) you would like to appear in the footer area of your site."
+msgstr "Sélectionnez ce texte (le cas échéant) que vous souhaitez voir apparaître dans la zone de pied de page de votre site."
+
+#: includes/admin/footer.php:16
+#@ startbox
+msgid "Enable Return to Top link"
+msgstr "Activer Revenez au lien de Haut"
+
+#: includes/admin/footer.php:18
+#@ startbox
+msgid "Include a link for users to return to the top of the site (Default: true)."
+msgstr "Inclure un lien permettant aux utilisateurs de revenir au début du site (par défaut: true)."
+
+#: includes/admin/footer.php:22
+#: includes/extensions/theme-customizer.php:233
+#@ startbox
+#@ default
+msgid "Enable Admin Links"
+msgstr "Activer Liens de l'Admin"
+
+#: includes/admin/footer.php:24
+#@ startbox
+msgid "Include admin links in the site footer (Default: false)."
+msgstr "Inclure des liens admin dans le pied de page (par défaut: false)."
+
+#: includes/admin/footer.php:29
+#@ startbox
+msgid "Footer Text:"
+msgstr "Pied de page du texte:"
+
+#: includes/admin/footer.php:30
+#@ startbox
+msgid "Full HTML and Shortcodes are allowed."
+msgstr "HTML complets et abrégés sont autorisés."
+
+#: includes/admin/footer.php:31
+#, php-format
+#@ startbox
+msgid "[copyright year=\"%s\"] [site_link].<br/>Proudly powered by [WordPress] and [StartBox]."
+msgstr "[copyright year = \"% s\"] [site_link]. <br/> Fièrement propulsé par [WordPress] et [StartBox]."
+
+#: includes/admin/footer.php:32
+#@ startbox
+msgid "Display any custom text you would like, including full HTML if your user account permits it."
+msgstr "Afficher le texte personnalisé que vous souhaitez, y compris HTML complet que si votre compte d'utilisateur le permet."
+
+#: includes/admin/header.php:8
+#@ startbox
+msgid "Branding"
+msgstr "Branding"
+
+#: includes/admin/header.php:10
+#@ startbox
+msgid "Control various aspects of the header area of your site, including logo, site description, favicon and navigation."
+msgstr "Contrôler divers aspects de l'en-tête de votre site, y compris le logo, description du site, favicon et la navigation."
+
+#: includes/admin/header.php:17
+#@ startbox
+msgid "Upload an image or specify some text to use for your logo."
+msgstr "Téléchargez une image ou spécifier le texte à utiliser pour votre logo."
+
+#: includes/admin/header.php:18
+#@ startbox
+msgid "Upload or select an image to use for the site logo. If you specify any text the site will display that instead of any selected image."
+msgstr "Télécharger ou sélectionner une image à utiliser pour le logo du site. Si vous spécifiez un texte sur le site s'affichera au lieu d'une image sélectionnée."
+
+#: includes/admin/header.php:23
+#@ startbox
+msgid "Display Site Tagline"
+msgstr "Afficher Slogan du site"
+
+#: includes/admin/header.php:24
+#, php-format
+#@ startbox
+msgid "You can set your site Tagline in %1$sSettings > General%2$s."
+msgstr "Vous pouvez configurer votre site dans %1$sSettings > General%2%s."
+
+#: includes/admin/header.php:25
+#@ startbox
+msgid "Show your site tagline in the header."
+msgstr "Montrez votre slogan site dans l'en-tête."
+
+#: includes/admin/header.php:30
+#@ startbox
+msgid "Favicon"
+msgstr "favicon"
+
+#: includes/admin/header.php:31
+#, php-format
+#@ startbox
+msgid "The %s is a small logo/icon that displays alongside your URL or in the page tab of most browsers."
+msgstr "Le% s est une petite icône logo/qui affiche à côté de votre URL ou dans l'onglet page de la plupart des navigateurs."
+
+#: includes/admin/header.php:33
+#@ startbox
+msgid "Specify a custom favicon (small 16px image) for use in the navigation bar or browser tab for your site"
+msgstr "Spécifier un favicon personnalisé (16px petite image) pour utilisation dans la barre de navigation ou le navigateur onglet pour votre site"
+
+#: includes/admin/help.php:8
+#@ startbox
+msgid "Need Help?"
+msgstr "Besoin d'aide ?"
+
+#: includes/admin/help.php:16
+#@ startbox
+msgid "Struggling with some of the theme options or settings? Click on the \"Help\" tab above."
+msgstr "Aux prises avec certains des paramètres ou options de thème ? Cliquez sur l'onglet « Aide » ci-dessus."
+
+#: includes/admin/layout.php:8
+#@ startbox
+msgid "Layout Settings"
+msgstr "Paramètres de mise en page"
+
+#: includes/admin/layout.php:10
+#@ startbox
+msgid "Take full control over the layout throughout your site."
+msgstr "Prendre le contrôle complet sur la mise en page tout au long de votre site."
+
+#: includes/admin/layout.php:16
+#@ startbox
+msgid "Homepage Layout:"
+msgstr "Mise en page page d'accueil :"
+
+#: includes/admin/layout.php:17
+#@ startbox
+msgid "Select content and sidebar alignment. Choose from any of the available layouts."
+msgstr "Sélectionnez le contenu et l'alignement latéral. Choisissez parmi les modèles disponibles."
+
+#: includes/admin/layout.php:20
+#@ startbox
+msgid "Select which page layout you would like to use for the homepage."
+msgstr "Sélectionnez la mise en page que vous souhaitez utiliser pour la page d'accueil."
+
+#: includes/admin/layout.php:24
+#@ startbox
+msgid "Interior Page Layout:"
+msgstr "Intérieur de la mise en Page :"
+
+#: includes/admin/layout.php:25
+#@ startbox
+msgid "Select content and sidebar alignment. This can be changed on each page individually."
+msgstr "Sélectionnez alignement de contenu et de la barre latérale. Cela peut être changé à chaque page individuellement."
+
+#: includes/admin/layout.php:28
+#@ startbox
+msgid "Select the default layout for your interior pages."
+msgstr "Sélectionnez la disposition par défaut pour les pages intérieures."
+
+#: includes/admin/layout.php:32
+#@ startbox
+msgid "Single Post Layout:"
+msgstr "Mise en page unique :"
+
+#: includes/admin/layout.php:33
+#@ startbox
+msgid "Select content and sidebar alignment. This can be changed on each post individually."
+msgstr "Sélectionnez alignement de contenu et de la barre latérale. Ceci peut être modifié sur chaque poste individuellement."
+
+#: includes/admin/layout.php:36
+#@ startbox
+msgid "Select the default layout for your single post views."
+msgstr "Sélectionnez la disposition par défaut pour votre point de vue un message."
+
+#: includes/admin/navigation.php:8
+#@ startbox
+msgid "Navigation Settings"
+msgstr "Paramètres de navigation"
+
+#: includes/admin/navigation.php:10
+#@ startbox
+msgid "These options allow you to take full control of your site's navigation. Select which menu to display, where to display it, how deep the drop-down menus should go, whether to include a \"Home\" link at the beginning, and what (if any) extras to include (e.g. social links, site-wide search)."
+msgstr "Ces options vous permettent de prendre le contrôle total de la navigation de votre site. Sélectionner quel menu d'affichage, où pour l'afficher, comment profondément les menus déroulants doivent aller, s'il faut inclure un lien « Accueil » au début et ce que (le cas échéant) options à inclure (p. ex. sociales liens, recherche de l'ensemble du site)."
+
+#: includes/admin/navigation.php:16
+#: includes/functions/startbox.php:119
+#@ startbox
+#@ StartBox
+msgid "Primary Navigation"
+msgstr "navigation principale"
+
+#: includes/admin/navigation.php:22
+#@ startbox
+msgid "This is the main menu for your site."
+msgstr "Ceci est le menu principal de votre site."
+
+#: includes/admin/navigation.php:27
+#: includes/functions/startbox.php:119
+#@ startbox
+#@ StartBox
+msgid "Secondary Navigation"
+msgstr "navigation secondaire"
+
+#: includes/admin/navigation.php:32
+#@ startbox
+msgid "This menu should only be used if you want two menus at the top of your site."
+msgstr "Ce menu ne doit être utilisée que si vous voulez que deux menus en haut de votre site."
+
+#: includes/admin/navigation.php:37
+#@ startbox
+msgid "Footer Navigation"
+msgstr "Footer Navigation"
+
+#: includes/admin/navigation.php:41
+#@ startbox
+msgid "Before Footer Wrap"
+msgstr "Avant Wrap Footer"
+
+#: includes/admin/navigation.php:42
+#@ startbox
+msgid "Before Footer Widgets"
+msgstr "Avant Widgets Footer"
+
+#: includes/admin/navigation.php:43
+#@ startbox
+msgid "After Footer Widgets"
+msgstr "Après Widgets Footer"
+
+#: includes/admin/navigation.php:44
+#@ startbox
+msgid "Footer Left (above copyright)"
+msgstr "Pied gauche (au-dessus du droit d'auteur)"
+
+#: includes/admin/navigation.php:45
+#@ startbox
+msgid "Footer Right (above admin links)"
+msgstr "Pied droit (au-dessus des liens d'admin)"
+
+#: includes/admin/navigation.php:46
+#@ startbox
+msgid "Bottom of Page"
+msgstr "Bas de la page"
+
+#: includes/admin/navigation.php:50
+#@ startbox
+msgid "Use this if you want a menu in the footer of your site."
+msgstr "Utilisez cette option si vous voulez un menu en bas de page de votre site."
+
+#: includes/admin/seo.php:5
+#@ startbox
+msgid "Basic SEO Settings"
+msgstr "Réglages de base SEO"
+
+#: includes/admin/seo.php:13
+#@ startbox
+msgid "These are only rudimentary options that will disappear as soon as you activate an SEO plugin. I highly recommend you use the <a href=\"http://wordpress.org/extend/plugins/wordpress-seo/\" target=\"_blank\">WordPress SEO Plugin</a> instead of these."
+msgstr "Ce ne sont que des options rudimentaires qui disparaîtront dès que vous activez un plugin SEO. Je vous recommande fortement d'utiliser la <a href=\"http://wordpress.org/extend/plugins/wordpress-seo/\" target=\"_blank\">WordPress SEO plugin </a> à la place de ceux-ci."
+
+#: includes/admin/seo.php:17
+#@ startbox
+msgid "Site Description"
+msgstr "description du site"
+
+#: includes/admin/seo.php:19
+#@ startbox
+msgid "Try to keep this brief."
+msgstr "Essayez d'être bref."
+
+#: includes/admin/seo.php:23
+#@ startbox
+msgid "Site-wide Keywords"
+msgstr "L'ensemble du site Mots-clés"
+
+#: includes/admin/seo.php:25
+#@ startbox
+msgid "Comma separated (e.g. WordPress, themes, etc)"
+msgstr "Séparés par des virgules (par exemple WordPress, thèmes, etc)"
+
+#: includes/admin/upgrade.php:8
+#@ startbox
+msgid "Version Information"
+msgstr "Informations sur la version"
+
+#: includes/admin/upgrade.php:15
+#, php-format
+#@ startbox
+msgid "StartBox Version: %s"
+msgstr "Version STARTBOX: %s"
+
+#: includes/admin/upgrade.php:19
+#@ startbox
+msgid "Enable Automatic Updates"
+msgstr "Activer Mises à jour automatiques"
+
+#: includes/extensions/layouts.php:106
+#@ startbox
+msgid "Layout"
+msgstr "disposition"
+
+#: includes/extensions/layouts.php:154
+#@ startbox
+msgid "Specify a custom page layout for this content."
+msgstr "Spécifiez une mise en page personnalisée pour ce contenu."
+
+#: includes/extensions/layouts.php:158
+#: includes/extensions/layouts.php:214
+#@ startbox
+msgid "Default"
+msgstr ""
+
+#: includes/extensions/layouts.php:211
+#@ startbox
+msgid "Custom Layout"
+msgstr ""
+
+#: includes/extensions/shortcodes.php:98
+#@ startbox
+msgid "Return to Top"
+msgstr ""
+
+#: includes/extensions/shortcodes.php:129
+#: includes/functions/comment_format.php:129
+#: includes/functions/hooks.php:188
+#: page-archives.php:40
+#: page-category.php:17
+#: page-links.php:87
+#: page-listcategories.php:22
+#: page-listchildren.php:21
+#: page-sitemap.php:21
+#: page.php:17
+#@ startbox
+msgid "Edit"
+msgstr ""
+
+#: includes/extensions/shortcodes.php:184
+#, php-format
+#@ startbox
+msgid "Continue Reading %s"
+msgstr "Continuer la lecture %s"
+
+#: includes/extensions/shortcodes.php:207
+#, php-format
+#@ startbox
+msgid "View all posts by %s"
+msgstr "Voir tous les messages de %s"
+
+#: includes/extensions/shortcodes.php:223
+#@ startbox
+msgid "Tagged: "
+msgstr "Tagged:"
+
+#: includes/extensions/shortcodes.php:236
+#@ startbox
+msgid "No Comments"
+msgstr "Pas de commentaire"
+
+#: includes/extensions/shortcodes.php:236
+#@ startbox
+msgid "1 Comment"
+msgstr "1 Commentaire"
+
+#: includes/extensions/shortcodes.php:236
+#@ startbox
+msgid "% Comments"
+msgstr "% Commentaires"
+
+#: includes/extensions/shortcodes.php:249
+#, php-format
+#@ startbox
+msgid "About %s"
+msgstr "À propos de %s"
+
+#: includes/extensions/shortcodes.php:252
+#, php-format
+#@ startbox
+msgid "View all posts by %s &raquo;"
+msgstr "Voir tous les messages de %s &raquo;"
+
+#: includes/extensions/shortcodes.php:592
+#@ startbox
+msgid "Sorry, you must be logged in to view this content."
+msgstr "Désolé, vous devez être connecté pour voir ce contenu."
+
+#: includes/extensions/shortcodes.php:681
+#: includes/functions/admin_settings.php:616
+#@ startbox
+msgid "Pages"
+msgstr "Pages"
+
+#: includes/extensions/shortcodes.php:708
+#: includes/functions/admin_settings.php:617
+#@ startbox
+msgid "Categories"
+msgstr "catégories"
+
+#: includes/extensions/shortcodes.php:718
+#@ startbox
+msgid "Posts by Category"
+msgstr "Messages par catégorie"
+
+#: includes/extensions/sidebars.php:26
+#@ startbox
+msgctxt "post type general name"
+msgid "Sidebars"
+msgstr ""
+
+#: includes/extensions/sidebars.php:27
+#@ startbox
+msgctxt "post type singular name"
+msgid "Sidebar"
+msgstr ""
+
+#: includes/extensions/sidebars.php:28
+#@ startbox
+msgctxt "post type add link"
+msgid "Add New"
+msgstr ""
+
+#: includes/extensions/sidebars.php:29
+#@ startbox
+msgid "Add New Sidebar"
+msgstr ""
+
+#: includes/extensions/sidebars.php:30
+#@ startbox
+msgid "Edit Sidebar"
+msgstr ""
+
+#: includes/extensions/sidebars.php:31
+#@ startbox
+msgid "New Sidebar"
+msgstr ""
+
+#: includes/extensions/sidebars.php:32
+#@ startbox
+msgid "View Sidebar"
+msgstr ""
+
+#: includes/extensions/sidebars.php:33
+#@ startbox
+msgid "Search Sidebars"
+msgstr ""
+
+#: includes/extensions/sidebars.php:34
+#@ startbox
+msgid "No sidebars found"
+msgstr ""
+
+#: includes/extensions/sidebars.php:35
+#@ startbox
+msgid "No sidebars found in Trash"
+msgstr ""
+
+#: includes/extensions/sidebars.php:37
+#: includes/extensions/sidebars.php:75
+#@ startbox
+msgid "Sidebars"
+msgstr ""
+
+#: includes/extensions/sidebars.php:38
+#@ startbox
+msgid "Sidebar"
+msgstr ""
+
+#: includes/extensions/sidebars.php:88
+#, php-format
+#@ startbox
+msgid "Add additional widget areas via the <a href=\"%s\">Sidebars</a> page."
+msgstr ""
+
+#: includes/extensions/sidebars.php:149
+#: includes/widgets/featuredcontent.php:314
+#: includes/widgets/featuredcontent.php:429
+#@ startbox
+msgid "None"
+msgstr ""
+
+#: includes/extensions/sidebars.php:221
+#: includes/extensions/sidebars.php:287
+#, php-format
+#@ startbox
+msgid "Select which %s should use this sidebar:"
+msgstr ""
+
+#: includes/extensions/sidebars.php:279
+#@ startbox
+msgid "No items."
+msgstr ""
+
+#: includes/extensions/sidebars.php:437
+#: includes/extensions/sidebars.php:438
+#, php-format
+#@ startbox
+msgid "Sidebar saved. <a href=\"%s\">Give it some widgets</a>"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:35
+#@ startbox
+msgid "Show Overlay Arrows"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:36
+#@ startbox
+msgid "Show Bottom Navigation"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:38
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:121
+#@ startbox
+msgid "Slideshow"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:39
+#@ startbox
+msgid "Random Image"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:41
+#@ startbox
+msgid "Largest Image"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:42
+#@ startbox
+msgid "Smallest Image"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:43
+#@ startbox
+msgid "Custom"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:109
+#@ default
+msgctxt "post type general name"
+msgid "Slideshows"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:110
+#@ default
+msgctxt "post type singular name"
+msgid "Slideshow"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:111
+#@ default
+msgctxt "startbox"
+msgid "Add New"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:112
+#@ startbox
+msgid "Add New Slideshow"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:113
+#@ startbox
+msgid "Edit Slideshow"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:114
+#@ startbox
+msgid "New Slideshow"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:115
+#@ startbox
+msgid "View Slideshow"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:116
+#@ startbox
+msgid "Search Slideshows"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:117
+#@ startbox
+msgid "No slideshows found"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:118
+#@ startbox
+msgid "No slideshows found in Trash"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:120
+#@ startbox
+msgid "Slideshows"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:145
+#@ startbox
+msgid "Slides"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:146
+#: includes/functions/admin_settings.php:729
+#: includes/functions/admin_settings.php:731
+#@ startbox
+msgid "Media Library"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:147
+#@ startbox
+msgid "Shortcode"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:178
+#@ startbox
+msgid "Library Filters"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:179
+#@ startbox
+msgid "Clear"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:181
+#@ startbox
+msgid "Year"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:188
+#@ startbox
+msgid "Month"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:197
+#@ startbox
+msgid "Media Type"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:206
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:256
+#@ startbox
+msgid "Width"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:208
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:215
+#@ startbox
+msgid "greater than"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:209
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:216
+#@ startbox
+msgid "less than"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:213
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:259
+#@ startbox
+msgid "Height"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:222
+#@ startbox
+msgid "Add New"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:245
+#@ startbox
+msgid "Shortcode Output"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:246
+#@ startbox
+msgid "Should slides be used for a slideshow or single, random image?"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:252
+#@ startbox
+msgid "Slideshow Size"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:265
+#@ startbox
+msgid "Pause Timer"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:266
+#@ startbox
+msgid "How long, in miliseconds, to pause on a slide before transitioning."
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:268
+#@ startbox
+msgid "miliseconds"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:270
+#@ startbox
+msgid "Caption Opacity"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:271
+#@ startbox
+msgid "How opaque to make the slide caption."
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:273
+#@ startbox
+msgid "1 = 100%. Default: 0.8."
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:279
+#@ startbox
+msgid "Transition Effects"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:280
+#@ startbox
+msgid "If no transition effect is checked, all effects will be used at random."
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:289
+#@ startbox
+msgid "Show"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:374
+#@ startbox
+msgid "Remove Slide"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:375
+#@ startbox
+msgid "Add Slide"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:379
+#@ startbox
+msgid "Link to:"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:1175
+#@ startbox
+msgid "A widget for displaying your slideshows."
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:1177
+#@ startbox
+msgid "SB Slideshow"
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:1188
+#: includes/widgets/featuredcontent.php:239
+#: includes/widgets/search.php:36
+#: includes/widgets/social.php:123
+#: includes/widgets/tagcloud.php:42
+#@ startbox
+msgid "Title: "
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:1192
+#@ startbox
+msgid "Slideshow: "
+msgstr ""
+
+#: includes/extensions/startbox-slideshows/startbox-slideshows.php:1207
+#@ startbox
+msgid "Edit Slideshow Settings"
+msgstr ""
+
+#: includes/extensions/theme-customizer.php:70
+#@ startbox
+msgid "Title, Tagline & Branding"
+msgstr ""
+
+#: includes/extensions/theme-customizer.php:81
+#@ default
+msgid "Site Title"
+msgstr ""
+
+#: includes/extensions/theme-customizer.php:93
+#@ default
+msgid "Site Tagline"
+msgstr ""
+
+#: includes/extensions/theme-customizer.php:104
+#@ default
+msgid "Display Site Tagline in Header"
+msgstr ""
+
+#: includes/extensions/theme-customizer.php:117
+#@ default
+msgid "Logo Display"
+msgstr ""
+
+#: includes/extensions/theme-customizer.php:135
+#@ default
+msgid "Logo Alignment"
+msgstr ""
+
+#: includes/extensions/theme-customizer.php:153
+#@ default
+msgid "Logo Image"
+msgstr ""
+
+#: includes/extensions/theme-customizer.php:175
+#@ startbox
+msgid "Colors & Styles"
+msgstr ""
+
+#: includes/extensions/theme-customizer.php:188
+#@ default
+msgid "Page Background Color"
+msgstr ""
+
+#: includes/extensions/theme-customizer.php:201
+#@ default
+msgid "Header Background Color"
+msgstr ""
+
+#: includes/extensions/theme-customizer.php:209
+#@ startbox
+msgid "Footer"
+msgstr ""
+
+#: includes/extensions/theme-customizer.php:220
+#@ default
+msgid "Enable \"Return to Top\" Link"
+msgstr ""
+
+#: includes/extensions/theme-customizer.php:247
+#@ default
+msgid "Footer Text"
+msgstr ""
+
+#: includes/functions/admin_settings.php:643
+#@ startbox
+msgid "Depth"
+msgstr ""
+
+#: includes/functions/admin_settings.php:647
+#@ startbox
+msgid "Top of Page"
+msgstr ""
+
+#: includes/functions/admin_settings.php:648
+#@ startbox
+msgid "Before Header"
+msgstr ""
+
+#: includes/functions/admin_settings.php:649
+#@ startbox
+msgid "Inside Header"
+msgstr ""
+
+#: includes/functions/admin_settings.php:650
+#@ startbox
+msgid "After Header"
+msgstr ""
+
+#: includes/functions/admin_settings.php:652
+#@ startbox
+msgid "Position"
+msgstr ""
+
+#: includes/functions/admin_settings.php:657
+#@ startbox
+msgid "Search Form"
+msgstr ""
+
+#: includes/functions/admin_settings.php:658
+#: includes/functions/admin_settings.php:685
+#@ startbox
+msgid "Social Links"
+msgstr ""
+
+#: includes/functions/admin_settings.php:660
+#@ startbox
+msgid "Extras"
+msgstr ""
+
+#: includes/functions/admin_settings.php:663
+#, php-format
+#@ startbox
+msgid "Add \"Home\" Link to %s"
+msgstr ""
+
+#: includes/functions/admin_settings.php:674
+#@ startbox
+msgid "Include RSS Feed"
+msgstr ""
+
+#: includes/functions/admin_settings.php:675
+#@ startbox
+msgid "Twitter"
+msgstr ""
+
+#: includes/functions/admin_settings.php:676
+#@ startbox
+msgid "Facebook"
+msgstr ""
+
+#: includes/functions/admin_settings.php:677
+#@ startbox
+msgid "YouTube"
+msgstr ""
+
+#: includes/functions/admin_settings.php:678
+#@ startbox
+msgid "Vimeo"
+msgstr ""
+
+#: includes/functions/admin_settings.php:679
+#@ startbox
+msgid "Flickr"
+msgstr ""
+
+#: includes/functions/admin_settings.php:680
+#@ startbox
+msgid "del.icio.us"
+msgstr ""
+
+#: includes/functions/admin_settings.php:681
+#@ startbox
+msgid "LinkedIn"
+msgstr ""
+
+#: includes/functions/admin_settings.php:685
+#@ startbox
+msgid "Provide the full URL's (including http://) of whichever social profiles you would like to include in your navigation."
+msgstr ""
+
+#: includes/functions/admin_settings.php:727
+#@ startbox
+msgid "Preview"
+msgstr ""
+
+#: includes/functions/admin_settings.php:729
+#: includes/functions/admin_settings.php:731
+#@ startbox
+msgid "Choose a previously uploaded file"
+msgstr ""
+
+#: includes/functions/admin_settings.php:732
+#@ startbox
+msgid "Upload a file"
+msgstr ""
+
+#: includes/functions/admin_settings.php:732
+#@ startbox
+msgid "Upload"
+msgstr ""
+
+#: includes/functions/admin_settings.php:763
+#@ startbox
+msgid "Logo Settings"
+msgstr ""
+
+#: includes/functions/admin_settings.php:768
+#@ startbox
+msgid "Logo Type"
+msgstr ""
+
+#: includes/functions/admin_settings.php:772
+#@ startbox
+msgid "Image"
+msgstr ""
+
+#: includes/functions/admin_settings.php:773
+#@ startbox
+msgid "Text"
+msgstr ""
+
+#: includes/functions/admin_settings.php:779
+#@ startbox
+msgid "Alignment"
+msgstr ""
+
+#: includes/functions/admin_settings.php:783
+#: includes/widgets/featuredcontent.php:315
+#: includes/widgets/featuredcontent.php:430
+#@ startbox
+msgid "Left"
+msgstr ""
+
+#: includes/functions/admin_settings.php:785
+#: includes/widgets/featuredcontent.php:316
+#: includes/widgets/featuredcontent.php:431
+#@ startbox
+msgid "Right"
+msgstr ""
+
+#: includes/functions/admin_settings.php:790
+#@ startbox
+msgid "Use This Text"
+msgstr ""
+
+#: includes/functions/admin_settings.php:797
+#@ startbox
+msgid "Use This Image"
+msgstr ""
+
+#: includes/functions/comment_format.php:16
+#, php-format
+#@ startbox
+msgid "Required fields are marked %s"
+msgstr "Les champs obligatoires sont indiqués %s"
+
+#: includes/functions/comment_format.php:19
+#@ startbox
+msgid "Name"
+msgstr "Nom"
+
+#: includes/functions/comment_format.php:21
+#@ startbox
+msgid "Email"
+msgstr "Email"
+
+#: includes/functions/comment_format.php:23
+#@ startbox
+msgid "Website"
+msgstr "site Web"
+
+#: includes/functions/comment_format.php:27
+#@ startbox
+msgid "Add Your Comment"
+msgstr "Ajouter un commentaire"
+
+#: includes/functions/comment_format.php:31
+#@ startbox
+msgid "Your email address will <strong>not</strong> be published."
+msgstr "Votre adresse email ne sera pas être publié."
+
+#: includes/functions/comment_format.php:41
+#@ startbox
+msgid "Get a Gravatar!"
+msgstr "Obtenir un Gravatar!"
+
+#: includes/functions/comment_format.php:49
+#@ startbox
+msgctxt "noun"
+msgid "Comment"
+msgstr "commenter"
+
+#: includes/functions/comment_format.php:111
+#, php-format
+#@ startbox
+msgid "%1$s <br/> %2$s"
+msgstr ""
+
+#: includes/functions/comment_format.php:113
+#@ startbox
+msgid "\\t\\t\\t\\t\\t<span class='unapproved'>Your comment is awaiting moderation.</span>\n"
+msgstr "\\t\\t\\t\\t\\t<span class='unapproved'>Votre commentaire est en attente de modération.</span>\n"
+
+#: includes/functions/comment_format.php:121
+#@ startbox
+msgid "Reply to this Comment"
+msgstr "Répondre à ce commentaire"
+
+#: includes/functions/comment_format.php:122
+#@ startbox
+msgid "Log in to reply."
+msgstr "Connectez-vous pour répondre."
+
+#: includes/functions/custom.php:286
+#@ startbox
+msgid "Suggested"
+msgstr "suggéré"
+
+#: includes/functions/hooks.php:111
+#, php-format
+#@ startbox
+msgid "Search Results for: %s"
+msgstr "Résultats de la recherche pour: %s"
+
+#: includes/functions/hooks.php:112
+#, php-format
+#@ startbox
+msgid "Category Archives: %s"
+msgstr "Archives de catégorie: %s"
+
+#: includes/functions/hooks.php:113
+#, php-format
+#@ startbox
+msgid "Tag Archives: %s"
+msgstr "Tag Archives: %s"
+
+#: includes/functions/hooks.php:114
+#@ startbox
+msgid "Not Found"
+msgstr "Introuvable"
+
+#: includes/functions/hooks.php:118
+#, php-format
+#@ startbox
+msgid "Page %s"
+msgstr "Cette page %s"
+
+#: includes/functions/hooks.php:162
+#@ startbox
+msgid "Skip to content"
+msgstr "Passer au contenu"
+
+#: includes/functions/hooks.php:222
+#@ startbox
+msgid "Author Archives: "
+msgstr "Archives Auteur:"
+
+#: includes/functions/hooks.php:227
+#@ startbox
+msgid "Category Archives:"
+msgstr "Archives de catégorie:"
+
+#: includes/functions/hooks.php:232
+#@ startbox
+msgid "Search Results for:"
+msgstr "Résultats de la recherche pour:"
+
+#: includes/functions/hooks.php:237
+#@ startbox
+msgid "Tag Archives:"
+msgstr "Tag Archives:"
+
+#: includes/functions/hooks.php:240
+#@ startbox
+msgid "Archives:"
+msgstr "Archives:"
+
+#: includes/functions/hooks.php:242
+#, php-format
+#@ startbox
+msgid "<span>Daily Archives:</span> %s"
+msgstr "<span>Archives quotidiennes:</span> %s"
+
+#: includes/functions/hooks.php:244
+#, php-format
+#@ startbox
+msgid "<span>Monthly Archives:</span> %s"
+msgstr "<span>Archives mensuelles: </span> %s"
+
+#: includes/functions/hooks.php:246
+#, php-format
+#@ startbox
+msgid "<span>Yearly Archives:</span> %s"
+msgstr "<span>Archives annuel:</span> %s"
+
+#: includes/functions/hooks.php:248
+#@ startbox
+msgid "404 - File Not Found"
+msgstr "404 - Fichier introuvable"
+
+#: includes/functions/hooks.php:250
+#@ startbox
+msgid "Content Archives:"
+msgstr "Archives Contenu:"
+
+#: includes/functions/hooks.php:252
+#@ startbox
+msgid "Blog Archives"
+msgstr "Archives du blog"
+
+#: includes/functions/hooks.php:281
+#@ startbox
+msgid "Sorry, but we were unable to find what you were looking for. Try searching or browsing our content below."
+msgstr "Désolé, mais nous n'avons pas pu trouver ce que vous recherchez. Essayez ou naviguez sur notre contenu ci-dessous."
+
+#: includes/functions/menus.php:157
+#: includes/widgets/social.php:65
+#, php-format
+#@ startbox
+msgid "Connect on %s"
+msgstr "Connectez-vous sur %s"
+
+#: includes/functions/menus.php:161
+#: includes/widgets/social.php:63
+#@ startbox
+msgid "Subscribe via RSS"
+msgstr "S'abonner via RSS"
+
+#: includes/functions/sidebars.php:61
+#@ startbox
+msgid "These widgets will appear above the content on the homepage."
+msgstr ""
+
+#: includes/functions/sidebars.php:62
+#@ startbox
+msgid "This is the primary sidebar when using two- or three-column layouts."
+msgstr ""
+
+#: includes/functions/sidebars.php:63
+#@ startbox
+msgid "This is the secondary sidebar for three-column layouts."
+msgstr ""
+
+#: includes/functions/sidebars.php:64
+#@ startbox
+msgid "This is the first footer column. Use this before using any other footer columns."
+msgstr ""
+
+#: includes/functions/sidebars.php:65
+#@ startbox
+msgid "This is the second footer column. Only use this after using Footer Aside 1."
+msgstr ""
+
+#: includes/functions/sidebars.php:66
+#@ startbox
+msgid "This is the third footer column. Only use this after using Footer Aside 2."
+msgstr ""
+
+#: includes/functions/sidebars.php:67
+#@ startbox
+msgid "This is the last footer column. Only use this after using all other columns."
+msgstr ""
+
+#: includes/functions/upgrade.php:96
+#@ startbox
+msgid "Upgrading will overwrite the currently installed version of StartBox. Are you sure you want to upgrade?"
+msgstr ""
+
+#: includes/functions/upgrade.php:99
+#, php-format
+#@ startbox
+msgid "An update to StartBox is available. <a href=\"%s?KeepThis=true&TB_iframe=true\" class=\"thickbox thickbox-preview\">Check out what's new in %s</a> or <a href=\"%s\" onclick=\"return sb_confirm('%s');\">upgrade now</a>."
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:28
+#@ startbox
+msgid "Display featured content in any widget area"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:30
+#@ startbox
+msgid "SB Featured Content"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:112
+#: includes/widgets/featuredcontent.php:127
+#: loop.php:5
+#, php-format
+#@ startbox
+msgid "Permalink to %s"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:243
+#@ startbox
+msgid "Featured Content Type:"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:256
+#@ startbox
+msgid "Category: "
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:260
+#@ startbox
+msgid "Order By:"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:262
+#@ startbox
+msgid "Date"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:263
+#@ startbox
+msgid "Post ID"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:264
+#@ startbox
+msgid "Title"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:265
+#@ startbox
+msgid "Author"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:266
+#@ startbox
+msgid "Comment Count"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:267
+#@ startbox
+msgid "Random"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:271
+#@ startbox
+msgid "Sort Order:"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:273
+#@ startbox
+msgid "Descending (3, 2, 1; c, b, a)"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:274
+#@ startbox
+msgid "Ascending (1, 2, 3; a, b, c)"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:278
+#@ startbox
+msgid "Number of posts to display: "
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:284
+#@ startbox
+msgid "Display Post Title"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:289
+#@ startbox
+msgid "Display Meta Information"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:293
+#@ startbox
+msgid "Display Meta Information: "
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:302
+#: includes/widgets/featuredcontent.php:417
+#@ startbox
+msgid "Display Featured Image"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:306
+#: includes/widgets/featuredcontent.php:421
+#@ startbox
+msgid "Image Size: "
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:312
+#: includes/widgets/featuredcontent.php:427
+#@ startbox
+msgid "Image Alignment:"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:320
+#: includes/widgets/featuredcontent.php:435
+#@ startbox
+msgid "Image Position:"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:322
+#@ startbox
+msgid "Before Post Info"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:323
+#@ startbox
+msgid "After Post Info"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:331
+#@ startbox
+msgid "Display Post Content"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:335
+#@ startbox
+msgid "Content:"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:337
+#@ startbox
+msgid "Post Excerpt"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:338
+#@ startbox
+msgid "Full Content"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:342
+#: includes/widgets/featuredcontent.php:449
+#, php-format
+#@ startbox
+msgid "Limit content to %s characters"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:343
+#: includes/widgets/featuredcontent.php:450
+#@ startbox
+msgid "Leave blank for no limit."
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:346
+#: includes/widgets/featuredcontent.php:453
+#@ startbox
+msgid "Read More Text: "
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:348
+#: includes/widgets/featuredcontent.php:455
+#@ startbox
+msgid "Leave blank to hide the Read More link."
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:355
+#@ startbox
+msgid "Display Link to More Posts"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:359
+#@ startbox
+msgid "Link URL: "
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:363
+#@ startbox
+msgid "Link Text: "
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:367
+#@ startbox
+msgid "Link Position:"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:369
+#@ startbox
+msgid "Before Posts"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:370
+#@ startbox
+msgid "After Posts"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:371
+#@ startbox
+msgid "Before &amp; After Posts"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:379
+#@ startbox
+msgid "Display Advanced Query Options"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:383
+#@ startbox
+msgid "Display "
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:385
+#@ startbox
+msgid " additional posts"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:386
+#@ startbox
+msgid "These posts will display as title-only."
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:389
+#@ startbox
+msgid "Exclude these posts: "
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:391
+#: includes/widgets/featuredcontent.php:396
+#@ startbox
+msgid "Comma-separated list of post ID's."
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:394
+#@ startbox
+msgid "Include only these posts: "
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:399
+#@ startbox
+msgid "Offset posts: "
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:401
+#@ startbox
+msgid "Number of posts to skip before displaying."
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:410
+#@ startbox
+msgid "Page: "
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:412
+#@ startbox
+msgid "Leave widget title blank to use Page Title instead"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:437
+#@ startbox
+msgid "Before Title"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:438
+#@ startbox
+msgid "After Title"
+msgstr ""
+
+#: includes/widgets/featuredcontent.php:445
+#@ startbox
+msgid "Display Page Content"
+msgstr ""
+
+#: includes/widgets/search.php:22
+#@ startbox
+msgid "A search form for your blog."
+msgstr ""
+
+#: includes/widgets/search.php:24
+#@ startbox
+msgid "SB Search"
+msgstr ""
+
+#: includes/widgets/search.php:40
+#@ startbox
+msgid "Input Text: "
+msgstr ""
+
+#: includes/widgets/search.php:44
+#@ startbox
+msgid "Button Text: "
+msgstr ""
+
+#: includes/widgets/social.php:23
+#@ startbox
+msgid "Provide visitors with links to your social media profiles."
+msgstr ""
+
+#: includes/widgets/social.php:25
+#@ startbox
+msgid "SB Social"
+msgstr ""
+
+#: includes/widgets/social.php:64
+#@ startbox
+msgid "Subscribe to Comments RSS"
+msgstr ""
+
+#: includes/widgets/social.php:127
+#@ startbox
+msgid "Intro text: "
+msgstr ""
+
+#: includes/widgets/social.php:131
+#@ startbox
+msgid "Social Media"
+msgstr ""
+
+#: includes/widgets/social.php:132
+#@ startbox
+msgid "Fill in the links for the Social Media tabs you wish to activate, please include http:// on all links except Twitter."
+msgstr ""
+
+#: includes/widgets/social.php:135
+#@ startbox
+msgid "Display RSS Feed"
+msgstr ""
+
+#: includes/widgets/social.php:139
+#@ startbox
+msgid "Display Comment RSS Feed"
+msgstr ""
+
+#: includes/widgets/social.php:142
+#@ startbox
+msgid "Twitter Username: "
+msgstr ""
+
+#: includes/widgets/social.php:147
+#@ startbox
+msgid "Facebook: "
+msgstr ""
+
+#: includes/widgets/social.php:151
+#@ startbox
+msgid "Google+: "
+msgstr ""
+
+#: includes/widgets/social.php:155
+#@ startbox
+msgid "Delicious: "
+msgstr ""
+
+#: includes/widgets/social.php:159
+#@ startbox
+msgid "Flickr: "
+msgstr ""
+
+#: includes/widgets/social.php:163
+#@ startbox
+msgid "YouTube: "
+msgstr ""
+
+#: includes/widgets/social.php:167
+#@ startbox
+msgid "Vimeo: "
+msgstr ""
+
+#: includes/widgets/social.php:171
+#@ startbox
+msgid "Digg: "
+msgstr ""
+
+#: includes/widgets/social.php:175
+#@ startbox
+msgid "LinkedIn: "
+msgstr ""
+
+#: includes/widgets/social.php:180
+#@ startbox
+msgid "Open all links in new window "
+msgstr ""
+
+#: includes/widgets/social.php:183
+#@ startbox
+msgid "Link Display:"
+msgstr ""
+
+#: includes/widgets/tagcloud.php:22
+#@ startbox
+msgid "A configurable Tag Cloud."
+msgstr ""
+
+#: includes/widgets/tagcloud.php:24
+#@ startbox
+msgid "SB Tag Cloud"
+msgstr ""
+
+#: includes/widgets/tagcloud.php:46
+#@ startbox
+msgid "Smallest Size:"
+msgstr ""
+
+#: includes/widgets/tagcloud.php:51
+#@ startbox
+msgid "Largest Size:"
+msgstr ""
+
+#: includes/widgets/tagcloud.php:56
+#@ startbox
+msgid "Unit of Measurement:"
+msgstr ""
+
+#: includes/widgets/tagcloud.php:65
+#@ startbox
+msgid "Number of tags:"
+msgstr ""
+
+#: includes/widgets/tagcloud.php:69
+#@ startbox
+msgid "Format:"
+msgstr ""
+
+#: includes/widgets/tagcloud.php:76
+#@ startbox
+msgid "Separator:"
+msgstr ""
+
+#: includes/widgets/tagcloud.php:81
+#@ startbox
+msgid "Order by:"
+msgstr ""
+
+#: includes/widgets/tagcloud.php:88
+#@ startbox
+msgid "Order:"
+msgstr ""
+
+#: includes/widgets/tagcloud.php:96
+#@ startbox
+msgid "Exclude:"
+msgstr ""
+
+#: includes/widgets/tagcloud.php:101
+#@ startbox
+msgid "Include:"
+msgstr ""
+
+#: loop.php:22
+#: loop.php:25
+#, php-format
+#@ startbox
+msgid "Continue Reading: %s &rarr;"
+msgstr ""
+
+#: loop.php:25
+#, php-format
+#@ startbox
+msgid "Continue Reading: %s"
+msgstr ""
+
+#: page-archives.php:22
+#@ startbox
+msgid "Archives by Category"
+msgstr ""
+
+#: page-archives.php:28
+#@ startbox
+msgid "Archives by Month"
+msgstr ""
+
+#: page-archives.php:34
+#@ startbox
+msgid "Archives by Author"
+msgstr "Archives par auteur"
+
+#: page-listcategories.php:20
+#: page.php:16
+#@ startbox
+msgid "Pages: "
+msgstr "Pages:"
+
+#: search.php:17
+#@ startbox
+msgid "Nothing Found"
+msgstr "rien trouvé"
+
+#: search.php:19
+#@ startbox
+msgid "Sorry, but nothing matched your search criteria. Please try again with some different keywords."
+msgstr "Désolé, mais rien ne correspond à vos critères de recherche. S'il vous plaît essayez de nouveau avec quelques mots clés différents."
+
