@@ -92,28 +92,27 @@ class sb_content_settings extends sb_settings {
 			'enable_post_thumbnails' => array(
 					'type'		=> 'checkbox',
 					'label'		=> __( 'Enable Post Thumbnails', 'startbox' ),
-					'default'	=> true,
+					'default'	=> 'true',
 					'align'		=> 'left',
 					'help'		=> __( 'Enable thumbnails for posts in archive lists (Default: true).', 'startbox' )
 				),
 			'post_thumbnail_rss' => array(
 					'type'		=> 'checkbox',
 					'label'		=> __( 'Include Post Thumbnails in RSS feed', 'startbox' ),
-					'default'	=> true,
+					'default'	=> 'true',
 					'align'		=> 'left',
 					'help'		=> __( 'Enable thumbnails for posts in RSS feeds (Default: true).', 'startbox' )
 				),
 			'post_thumbnail_use_attachments' => array(
 					'type'		=> 'checkbox',
 					'label'		=> __( 'Use any attached image if no Featured Image specified', 'startbox' ),
-					'default'	=> true,
+					'default'	=> 'true',
 					'align'		=> 'left',
 					'help'		=> __( 'If there is no user-specified "Featured Image" for a particular post, the theme will automatically attempt to use the last attached image (Default: true).', 'startbox' )
 				),
 			'post_thumbnail_hide_nophoto' => array(
 					'type'		=> 'checkbox',
 					'label'		=> __( 'Hide thumbnails if no preview available', 'startbox' ),
-					'default'	=> false,
 					'align'		=> 'left',
 					'help'		=> __( 'Disable the default "No Preview Available" image that is used when no post thumbnail is found.', 'startbox' )
 				),

@@ -1,7 +1,9 @@
 2013.02.01 - version 2.7
 	* Added: Language support for German, French, Italian, Spanish and Russian
 	* Added: Filter 'sb_register_sidebar_defaults' to allow easy override of default sidebar markup
+	* Added: Post content pagination to loop.php and single.php
 	* Fixed: Author template now properly loops through all of an author's posts
+	* Fixed: Default settings for post thumbnails in theme options
 	* Changed: Updated Upload option types to use WP3.5 media manager
 	* Removed: Eliminated AJAXUpload scripts and all references
 
