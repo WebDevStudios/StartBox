@@ -25,9 +25,9 @@ class sb_footer_settings extends sb_settings {
 				),
 				'footer_text' => array(
 					'type'		=> 'textarea',
-					'sanitize'	=> array( 'allowed_html' => array('a' => array('href' => array(),'title' => array(), 'target' => array()),'br' => array(),'em' => array(),'strong' => array(), 'div' => array(), 'span' => array(), 'ul' => array(), 'ol' => array(), 'li' => array() ) ),
+					'sanitize'	=> array( 'allowed_html' => array( 'a' => array( 'href' => array(), 'title' => array(), 'target' => array(), 'id' => array(), 'class' => array(), 'style' => array() ),'br' => array(),'em' => array( 'id' => array(), 'class' => array(), 'style' => array() ),'strong' => array( 'id' => array(), 'class' => array(), 'style' => array() ), 'div' => array( 'id' => array(), 'class' => array(), 'style' => array() ), 'span' => array( 'id' => array(), 'class' => array(), 'style' => array() ), 'ul' => array( 'id' => array(), 'class' => array(), 'style' => array() ), 'ol' => array( 'id' => array(), 'class' => array(), 'style' => array() ), 'li' => array( 'id' => array(), 'class' => array(), 'style' => array() ) ), 'style' => array() ),
 					'label'		=> __( 'Footer Text:', 'startbox'),
-					'desc'		=> __( 'Full HTML and Shortcodes are allowed.', 'startbox' ),
+					'desc'		=> __( 'Shortcodes and some HTML is allowed.', 'startbox' ),
 					'default'	=> sprintf( __( '[copyright year="%s"] [site_link].<br/>Proudly powered by [WordPress] and [StartBox].', 'startbox' ), date('Y') ),
 					'help'		=> __( 'Display any custom text you would like, including full HTML if your user account permits it.', 'startbox' )
 				)
