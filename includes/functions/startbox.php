@@ -39,7 +39,6 @@ class StartBox {
 		define( 'THEME_OPTIONS',	'startbox' );
 		define( 'THEME_PREFIX',		'sb_' );
 		define( 'SB_VERSION',		$sb_version );
-		define( 'IS_MU',			( is_multisite() ) ? true : false );
 		define( 'THEME_PATH',		get_stylesheet_directory() );
 		define( 'THEME_URI',		get_stylesheet_directory_uri() );
 		define( 'SB_PATH',			get_template_directory() );
@@ -51,7 +50,6 @@ class StartBox {
 		define( 'SCRIPTS_URL',		INCLUDES_URL . '/scripts' );
 		define( 'WIDGETS_PATH',		INCLUDES_PATH . '/widgets' );
 		define( 'STYLES_URL',		INCLUDES_URL . '/styles' );
-		define( 'IMAGES_PATH',		get_template_directory() . '/images' );
 		define( 'IMAGES_URL',		get_template_directory_uri() . '/images' );
 
 		// Translate, if applicable
