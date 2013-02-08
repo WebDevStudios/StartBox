@@ -7,104 +7,97 @@
  */
 
 /**
- * Return URL of an image based on Post ID
+ * Returns an image URI for any given post ID or attachment ID.
  *
- * First checks for featured image, then checks for any attached image, finally defaults to IMAGES_URL/nophoto.jpg
+ * This function will intelligently select a photo to use for the post based
+ * on its featured image setting. If no featured image is set it will attempt
+ * to use the latest attached image. If no images can be found it will default
+ * to a custom "no preview available" image.
  *
  * @since 1.5
- * @uses has_post_thumbnail
- * @uses get_post_thumbnail_id
- * @uses wp_get_attachment_image_src
- *
+ * @param  array  $args  An array of possible args to use for finding our image
+ * @return string        The URL of our desired image
  */
-function sb_get_post_image( $args = array(), $deprecated_post_id = null, $deprecated_use_attachments = null, $deprecated_url = null ) {
+function sb_get_post_image( $args = array(), $deprecated_post_id = null, $deprecated_use_attachments = null ) {
 	global $id, $blog_id;
 
-	// If $args isn't an array, we're working with deprecated settings
-	if ( !is_array( $args )  ) {
+	// Back compat
+	if ( !is_array( $args ) || $deprecated_post_id || $deprecated_use_attachments ) {
+
 		// Throw a warning for anyone using the old format
-		_deprecated_argument( __FUNCTION__, '2.6', 'Please pass all attributes as a single array instead.' );
+		_deprecated_argument( __FUNCTION__, '2.6', 'Please pass all parameters in a single array.' );
+
 		// Create an array of attributes from the deprecated fields
 		$args = array(
-			'image_id'        => $args, // Note: this should be an integer,
-			'post_id'         => $deprecated_post_id,
-			'use_attachments' => $deprecated_use_attachments,
-			'url'             => $deprecated_url
+			'image_id'        => absint( $args ),
+			'post_id'         => absint( $deprecated_post_id ),
+			'use_attachments' => $deprecated_use_attachments
 		);
 	}
 
+	// Setup our defaults
 	$defaults = array(
-		'image_id'        => null,
 		'post_id'         => $id,
+		'image_id'        => null,
 		'use_attachments' => false,
-		'url'             => null
+		'nophoto_url'     => apply_filters( 'sb_post_image_none', IMAGES_URL . '/nophoto.jpg' )
 	);
-	extract( wp_parse_args( $args, $defaults ) );
+	$args = wp_parse_args( $args, $defaults );
 
-	// if a URL is specified, return that
-	if ($url)
-		return $url;
+	// If we have an explicit image ID, let's use it
+	if ( $args['image_id'] ) {
+		$attachment = wp_get_attachment_image_src( $args['image_id'], 'full' );
 
-	// if image_id is specified, use that
-	elseif ( $image_id )
-		$attachment = wp_get_attachment_image_src( $image_id, 'full' );
+	// Otherwise, let's use our post's featured image
+	} elseif ( has_post_thumbnail( $args['post_id'] ) ) {
+		$attachment = wp_get_attachment_image_src( get_post_thumbnail_id( $args['post_id'] ), 'full' );
 
-	// if not, let's use the post's featured image
-	elseif ( has_post_thumbnail( $post_id) )
-		$attachment = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'full' );
-
-	// otherwise, and only if we want to, just use the last image attached to the post
-	elseif ( true == $use_attachments ) {
-		$images = get_children(array(
-			'post_parent'    => $post_id,
+	// If we have no featured image, and we've elected to use ANY attached image, grab the newest image
+	} elseif ( true == $args['use_attachments'] ) {
+		$images = get_children( array(
+			'post_parent'    => $args['post_id'],
 			'post_type'      => 'attachment',
-			'numberposts'    => 1,
-			'post_mime_type' => 'image'));
-		foreach( $images as $image ) { $attachment = wp_get_attachment_image_src( $image->ID, 'full' ); }
+			'post_mime_type' => 'image',
+			'numberposts'    => 1
+		) );
+		foreach ( $images as $image ) { $attachment = wp_get_attachment_image_src( $image->ID, 'full' ); }
 	}
 
-	// If there is no image, use the default image (available filter: sb_post_image_none)
-	$post_image_uri = ( isset( $attachment[0] ) ) ? $attachment[0] : apply_filters( 'sb_post_image_none', IMAGES_URL . '/nophoto.jpg' );
+	// If we have no attachment image, fallback to our 'sb_post_image_none' image
+	$post_image_uri = isset( $attachment[0] ) ? $attachment[0] : $args['nophoto_url'];
 
-	// If no image, return now
-	if ( $post_image_uri == apply_filters( 'sb_post_image_none', IMAGES_URL . '/nophoto.jpg' ) )
-		return $post_image_uri;
-
-	// If MU/MS install, we need to dig a little deeper and link through the blogs.dir
-	if ( 'IS_MU' ) {
-		$imageParts = explode( '/files/', $post_image_uri );
-		if ( isset( $imageParts[1] ) ) {
-			$post_image_uri = '/blogs.dir/' . $blog_id . '/files/' . $imageParts[1];
-		}
-	}
-
+	// Finally, return the URI for our image
 	return $post_image_uri;
 }
 
 /**
- * Generates cropped thumbnail of any dimension placed in an <img> tag
+ * Generates an <img> tag for use as post thumbnail.
+ *
+ * Uses sb_get_post_image_url to resize and crop the image to any specified
+ * dimension on-the-fly, using entirely naitive WP functionality.
  *
  * @since  1.5
- * @uses   sb_get_post_image_url
- * @param  string|array   $args         Specify additional attributes for the image tag
- * @return string                       An <img> tag containing image path and all parameters
+ * @param  sarray  $args  Specify additional attributes for the image tag
+ * @return string         An <img> tag containing image path and all parameters
  */
 function sb_post_image( $args = array(), $depricated_height = null, $depricated_align = null, $depricated_zoom = null, $depricated_atts = array() ) {
 
 	// Grab our global $post object
 	global $post;
 
-	// Check to see if $args value is an array or if the depricated args are used
-	if ( !is_array($args) || !empty( $depricated_height ) || !empty( $depricated_align ) || !empty( $depricated_zoom ) || !empty( $depricated_atts ) ) {
+	// Back compat
+	if ( !is_array($args) || $depricated_height || $depricated_align || $depricated_zoom || $depricated_atts ) {
+
 		// Throw a warning for anyone using the old format
-		_deprecated_argument( __FUNCTION__, '2.6', 'Please pass all attributes as a single array instead.' );
+		_deprecated_argument( __FUNCTION__, '2.6', 'Please pass all parameters in a single array.' );
+
 		// Create an array of attributes from the deprecated fields
 		$args = array_merge( array(
-			'width'  => $args,
-			'height' => $depricated_height,
+			'width'  => absint( $args ),
+			'height' => absint( $depricated_height ),
 			'align'  => $depricated_align,
 			'zoom'   => $depricated_zoom,
-		), $depricated_atts);
+		), $depricated_atts );
 	}
 
 	// Setup our defaults and merge them with the passed arguments
@@ -120,52 +113,39 @@ function sb_post_image( $args = array(), $depricated_height = null, $depricated_
 		'quality'         => apply_filters( 'sb_post_image_quality', 100 ),
 		'class'           => apply_filters( 'sb_post_image_class', 'post-image' ),
 		'alt'             => apply_filters( 'sb_post_image_alt', get_the_title() ),
-		'title'           => apply_filters( 'sb_post_image_title', get_the_title() ),
 		'nophoto_url'     => apply_filters( 'sb_post_image_none', IMAGES_URL . '/nophoto.jpg' ),
 		'hide_nophoto'    => apply_filters( 'sb_post_image_hide_nophoto', false ),
 		'enabled'         => apply_filters( 'sb_post_image_enabled', true ),
 		'echo'            => apply_filters( 'sb_post_image_echo', true )
 	);
-	extract( $args = wp_parse_args($args, apply_filters( 'sb_post_image_settings', $defaults ) ) );
+	$args = wp_parse_args( $args, apply_filters( 'sb_post_image_settings', $defaults ) );
 
-	// If thumbnails are disabled, or we're hiding thumbnails when no preview is available, stop here.
-	if ( false == $enabled || ( $hide_nophoto && sb_get_post_image( $args ) === $nophoto_url ) )
+	// If post thumbnails are disabled, or we're electing to hide our "no photo" fallback image, bail here.
+	if ( false == $args['enabled'] || ( $args['hide_nophoto'] && sb_get_post_image( $args ) === $args['nophoto_url'] ) )
 		return false;
 
-	// String together the output
-	$output = '<img src="' . sb_get_post_image_url( $args ) . '" ';
-	foreach ( $args as $name => $value ) {
-		if ( in_array( $name, array( 'post_id', 'image_id', 'image_url', 'use_attachments', 'align', 'zoom', 'quality', 'nophoto_url', 'hide_nophoto', 'echo', 'enabled' ) ) )
-			continue;
-		$output .= $name . '="' . esc_attr( $value ) . '" ';
-	}
-	$output .= '/>';
+	// Otherwise, setup our image tag
+	$image = '<img src="' . sb_get_post_image_url( $args ) . '" width="' . $args['width'] . '" height="' . $args['height'] . '" class="' . $args['class'] . '" alt="' . $args['alt'] . '" />';
 
-	// Echo output if applicable
-	if ($echo)
-		echo $output;
+	// Echo our image if applicable
+	if ( $args['echo'] )
+		echo $image;
 
-	return $output;
+	return $image;
 }
+
 
 /**
- * Grab the URL for an image to use as featured for a given post and given dimensions
+ * Grab the URL for an image to use for a given post and dimensions
  *
- * @since  2.5
- * @uses   sb_get_post_image
- * @param  mixed   $args         Specify an array or pass the arguments straight through
- * @return string                URI containing image path and all parameters
+ * Uses sb_get_post_image to intelligently determine which image to show.
+ * Uses wp_get_image_editor, introduced in WP3.5, to resize and save a
+ * new cropped image on-the-fly.
+ *
+ * @since  2.6
+ * @param  array  $args  An array of all our sizing arguments
+ * @return string        URI of our final image
  */
-function sb_post_image_url( $args = array() ) {
-
-	// This is a legacy function that didn't originally echo by default.
-	// So, we need to check if our intent is to echo to maintain backwards compatibility.
-	if ( $args['echo'] ) echo sb_get_post_image_url( $args );
-
-	// Return our post image URL
-	return sb_get_post_image_url( $args );
-}
-
 function sb_get_post_image_url( $args = null ) {
 
 	// Grab our global $post object
@@ -177,23 +157,36 @@ function sb_get_post_image_url( $args = null ) {
 		'image_id'        => null,
 		'image_url'       => null,
 		'use_attachments' => apply_filters( 'sb_post_image_use_attachments', false ),
-		'width'           => apply_filters( 'sb_post_image_width', 200 ),
-		'height'          => apply_filters( 'sb_post_image_height', 200 ),
+		'width'           => absint( apply_filters( 'sb_post_image_width', 200 ) ),
+		'height'          => absint( apply_filters( 'sb_post_image_height', 200 ) ),
 		'align'           => apply_filters( 'sb_post_image_align', 't' ),
 		'zoom'            => apply_filters( 'sb_post_image_zoom', 1 )
 	);
-	extract( $args = wp_parse_args($args, apply_filters( 'sb_post_image_settings', $defaults ) ) );
+	$args = wp_parse_args($args, apply_filters( 'sb_post_image_settings', $defaults ) );
 
 	// Fire up the WP Image editor to generate our correctly sized image
-	// @TODO: confirm that this method checks if file exsts first, if not add in some sanity checks for speed
-	// @TODO: this method doesn't support any given URL, update it so that at least the default no-image-available thumb will work
 	$image = wp_get_image_editor( sb_get_post_image( $args ) );
 	if ( ! is_wp_error( $image ) ) {
-		$image->resize( $args['width'], $args['height'], $args['zoom'] );
-		$image->save();
-		$output = $image->generate_filename();
-	}
 
-	// Return the string
-	return $output;
+		// Resize our image based on our args
+		// @TODO: setup handler for simple crop alignment
+		$image->resize( $args['width'], $args['height'], $args['zoom'] );
+
+		// Save the file to the uploads dir, but only if it doesn't already exist
+		$uploads_dir = wp_upload_dir( get_the_time( 'Y/m', $args['post_id'] ) );
+		$filename    = $image->generate_filename( null, $uploads_dir['path'] );
+		if ( ! file_exists( $filename ) )
+			$image->save( $filename );
+
+		// Build our image URL from the uploads dir and our saved filename
+		$image_url = trailingslashit( $uploads_dir['url'] ) . wp_basename( $filename );
+
+		// Return our final image
+		return $image_url;
+
+	} else {
+
+		// If we make it here, there was a problem with our image, so return the original file
+		return sb_get_post_image( $args );
+	}
 }

@@ -4,9 +4,13 @@
 	* Added: Post content pagination to loop.php and single.php
 	* Fixed: Author template now properly loops through all of an author's posts
 	* Fixed: Default settings for post thumbnails in theme options
+	* Fixed: Added support for id, class and style attributes in the footer text input settings.
 	* Changed: Updated Upload option types to use WP3.5 media manager
+	* Changed: Improved inline documentation for sb_get_post_image, sb_post_image and sb_get_post_image_url
+	* Changed: Updated sb_get_post_image, sb_post_image and sb_get_post_image_url to not use extract()
 	* Removed: Eliminated AJAXUpload scripts and all references
-	* Removed: Timthumb.php and dependence on Timthumb entirely
+	* Removed: Timthumb.php and dependence on Timthumb entirely. Yay! \o/
+	* Removed: Deprecated sb_post_image_url
 
 2012.10.13 - version 2.6
 	* Added: hook "sb_author_before_posts" on author.php after the author's meta information, before their posts are inserted
