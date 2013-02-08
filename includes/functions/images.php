@@ -173,7 +173,7 @@ function sb_get_post_image_url( $args = null ) {
 
 			// Determine crop start and end points based on our desired alignment
 			$current_size = $image->get_size();
-			$crop_points  = sb_image_crop_points( $current_size['width'], $current_size['height'], $args['width'], $args['height'], $args['align'] );
+			$crop_points  = sb_image_crop_dimensions( $current_size['width'], $current_size['height'], $args['width'], $args['height'], $args['align'] );
 			$image->crop( $crop_points['start_x'], $crop_points['start_y'], $crop_points['max_width'], $crop_points['max_height'], $args['width'], $args['height'] );
 
 		// Otherwise, just resize to a maximum height or width
@@ -213,7 +213,7 @@ function sb_get_post_image_url( $args = null ) {
  * @param  string  $alignment       The alignment position for our cropped image (accepts: tl, tc, tr, l, c, r, bl, bc, br)
  * @return array                    An associative array of our relevant data (start_x, start_y, max_width, max_height)
  */
-function sb_image_crop_points( $original_width = 0, $original_height = 0, $desired_width = 0, $desired_height = 0, $alignment = '' ) {
+function sb_image_crop_dimensions( $original_width = 0, $original_height = 0, $desired_width = 0, $desired_height = 0, $alignment = '' ) {
 
 	// Setup our Image Dimesnions
 	$dimensions = image_resize_dimensions( $original_width, $original_height, $desired_width, $desired_height, true );
