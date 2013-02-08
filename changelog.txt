@@ -2,6 +2,7 @@
 	* Added: Language support for German, French, Italian, Spanish and Russian
 	* Added: Filter 'sb_register_sidebar_defaults' to allow easy override of default sidebar markup
 	* Added: Post content pagination to loop.php and single.php
+	* Added: sb_image_crop_points() for determining the crop coordinates for an image
 	* Fixed: Author template now properly loops through all of an author's posts
 	* Fixed: Default settings for post thumbnails in theme options
 	* Fixed: Added support for id, class and style attributes in the footer text input settings.

@@ -108,7 +108,7 @@ function sb_post_image( $args = array(), $depricated_height = null, $depricated_
 		'use_attachments' => apply_filters( 'sb_post_image_use_attachments', false ),
 		'width'           => apply_filters( 'sb_post_image_width', 200 ),
 		'height'          => apply_filters( 'sb_post_image_height', 200 ),
-		'align'           => apply_filters( 'sb_post_image_align', 't' ),
+		'align'           => apply_filters( 'sb_post_image_align', 'tc' ),
 		'zoom'            => apply_filters( 'sb_post_image_zoom', 1 ),
 		'quality'         => apply_filters( 'sb_post_image_quality', 100 ),
 		'class'           => apply_filters( 'sb_post_image_class', 'post-image' ),
@@ -159,7 +159,7 @@ function sb_get_post_image_url( $args = null ) {
 		'use_attachments' => apply_filters( 'sb_post_image_use_attachments', false ),
 		'width'           => absint( apply_filters( 'sb_post_image_width', 200 ) ),
 		'height'          => absint( apply_filters( 'sb_post_image_height', 200 ) ),
-		'align'           => apply_filters( 'sb_post_image_align', 't' ),
+		'align'           => apply_filters( 'sb_post_image_align', 'tc' ),
 		'zoom'            => apply_filters( 'sb_post_image_zoom', 1 )
 	);
 	$args = wp_parse_args($args, apply_filters( 'sb_post_image_settings', $defaults ) );
@@ -168,13 +168,23 @@ function sb_get_post_image_url( $args = null ) {
 	$image = wp_get_image_editor( sb_get_post_image( $args ) );
 	if ( ! is_wp_error( $image ) ) {
 
-		// Resize our image based on our args
-		// @TODO: setup handler for simple crop alignment
-		$image->resize( $args['width'], $args['height'], $args['zoom'] );
+		// If zoom is true, we want to crop and fill...
+		if ( $args['zoom'] ) {
+
+			// Determine crop start and end points based on our desired alignment
+			$current_size = $image->get_size();
+			$crop_points  = sb_image_crop_points( $current_size['width'], $current_size['height'], $args['width'], $args['height'], $args['align'] );
+			$image->crop( $crop_points['start_x'], $crop_points['start_y'], $crop_points['max_width'], $crop_points['max_height'], $args['width'], $args['height'] );
+
+		// Otherwise, just resize to a maximum height or width
+		} else {
+			$image->resize( $args['width'], $args['height'], false );
+		}
 
 		// Save the file to the uploads dir, but only if it doesn't already exist
 		$uploads_dir = wp_upload_dir( get_the_time( 'Y/m', $args['post_id'] ) );
-		$filename    = $image->generate_filename( null, $uploads_dir['path'] );
+		$suffix      = $args['zoom'] ? $image->get_suffix() . '-' . $args['align'] : null;
+		$filename    = $image->generate_filename( $suffix, $uploads_dir['path'] );
 		if ( ! file_exists( $filename ) )
 			$image->save( $filename );
 
@@ -189,4 +199,80 @@ function sb_get_post_image_url( $args = null ) {
 		// If we make it here, there was a problem with our image, so return the original file
 		return sb_get_post_image( $args );
 	}
+}
+
+/**
+ * Determine the starting coordinates and maximum dimensions of an image
+ * given its original dimensions and a desired final size and alignment.
+ *
+ * @since  2.7
+ * @param  integer $original_width  The original width of the given image
+ * @param  integer $original_height The original height of the given image
+ * @param  integer $desired_width   The desired width of the final image
+ * @param  integer $desired_height  The desired height of the final image
+ * @param  string  $alignment       The alignment position for our cropped image (accepts: tl, tc, tr, l, c, r, bl, bc, br)
+ * @return array                    An associative array of our relevant data (start_x, start_y, max_width, max_height)
+ */
+function sb_image_crop_points( $original_width = 0, $original_height = 0, $desired_width = 0, $desired_height = 0, $alignment = '' ) {
+
+	// Setup our Image Dimesnions
+	$dimensions = image_resize_dimensions( $original_width, $original_height, $desired_width, $desired_height, true );
+	if ( $dimensions )
+		list( $origin_x, $origin_y, $start_x, $start_y, $new_width, $new_height, $max_width, $max_height ) = $dimensions;
+	else
+		return false;
+
+	// Determine our center-based starting points
+	$x_center_start = floor( absint( ( $original_width / 2 ) - ( $max_width / 2 ) ) );
+	$y_center_start = floor( absint( ( $original_height / 2 ) - ( $max_height / 2 ) ) );
+	$x_far_right = $original_width - $max_width;
+	$bottom = $original_height - $max_height;
+
+	// Setup our starting coordinates based on our alignment
+	switch ( $alignment ) {
+		case 'tl' :
+			$start_x = 0;
+			$start_y = 0;
+			break;
+		case 'tc' :
+			$start_x = $x_center_start;
+			$start_y = 0;
+			break;
+		case 'tr' :
+			$start_x = $x_far_right;
+			$start_y = 0;
+			break;
+		case 'l' :
+			$start_x = 0;
+			$start_y = $y_center_start;
+			break;
+		case 'c' :
+			$start_x = $x_center_start;
+			$start_y = $y_center_start;
+			break;
+		case 'r' :
+			$start_x = $x_far_right;
+			$start_y = $y_center_start;
+			break;
+		case 'bl' :
+			$start_x = 0;
+			$start_y = $bottom;
+			break;
+		case 'bc' :
+			$start_x = $x_center_start;
+			$start_y = $bottom;
+			break;
+		case 'br' :
+			$start_x = $x_far_right;
+			$start_y = $bottom;
+			break;
+		default :
+			$start_x = 0;
+			$start_y = 0;
+			break;
+	}
+
+	// Return all our relevant data
+	return array( 'start_x' => absint( $start_x ), 'start_y' => absint( $start_y ), 'max_width' => absint( $max_width ), 'max_height' => absint( $max_height ) );
+
 }
