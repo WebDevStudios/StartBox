@@ -46,3 +46,47 @@ function sb_post_image_url( $args = array() ) {
 	_deprecated_function( __FUNCTION__, '2.7', 'sb_get_post_image_url()' );
 	return sb_get_post_image_url( $args );
 }
+
+/**
+ * Deprecated. Registering Tag Cloud widget.
+ *
+ * @deprecated 2.7.0
+ *
+ * @see sb_load_widgets()
+ */
+function load_widget_sb_tagcloud_widget() {
+	_deprecated_function( __FUNCTION__, '2.7.0', 'sb_load_widgets' );
+}
+
+/**
+ * Deprecated. Registering Social widget.
+ *
+ * @deprecated 2.7.0
+ *
+ * @see sb_load_widgets()
+ */
+function sb_social_load_widget() {
+	_deprecated_function( __FUNCTION__, '2.7.0', 'sb_load_widgets' );
+}
+
+/**
+ * Deprecated. Register Search widget.
+ *
+ * @deprecated 2.7.0
+ *
+ * @see sb_load_widgets()
+ */
+function load_widget_sb_search_widget() {
+	_deprecated_function( __FUNCTION__, '2.7.0', 'sb_load_widgets' );
+}
+
+/**
+ * Deprecated. Register Featured Content widget.
+ *
+ * @deprecated 2.7.0
+ *
+ * @see sb_load_widgets()
+ */
+function load_widget_sb_featured_content() {
+	_deprecated_function( __FUNCTION__, '2.7.0', 'sb_load_widgets' );
+}
