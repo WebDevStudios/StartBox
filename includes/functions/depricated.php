@@ -54,3 +54,47 @@ function sb_before_footer() { _deprecated_function( __FUNCTION__, '2.6', 'do_act
 function sb_footer() { _deprecated_function( __FUNCTION__, '2.6', 'do_action( \'sb_footer\' )' ); do_action('sb_footer'); } // inside div#footer after div#footer_sidebar
 function sb_after_footer() { _deprecated_function( __FUNCTION__, '2.6', 'do_action( \'sb_after_footer\' )' ); do_action('sb_after_footer'); } // inside dive#footer_wrap, after div#footer
 function sb_after() { _deprecated_function( __FUNCTION__, '2.6', 'do_action( \'sb_after\' )' ); do_action('sb_after'); } // the very last thing before </body>
+
+/**
+ * Deprecated. Registering Tag Cloud widget.
+ * 
+ * @deprecated 2.7.0
+ * 
+ * @see sb_load_widgets()
+ */
+function load_widget_sb_tagcloud_widget() {
+	_deprecated_function( __FUNCTION__, '2.7.0', 'sb_load_widgets' );
+}
+
+/**
+ * Deprecated. Registering Social widget.
+ * 
+ * @deprecated 2.7.0
+ * 
+ * @see sb_load_widgets()
+ */
+function sb_social_load_widget() {
+	_deprecated_function( __FUNCTION__, '2.7.0', 'sb_load_widgets' );
+}
+
+/**
+ * Deprecated. Register Search widget.
+ * 
+ * @deprecated 2.7.0
+ * 
+ * @see sb_load_widgets()
+ */
+function load_widget_sb_search_widget() {
+	_deprecated_function( __FUNCTION__, '2.7.0', 'sb_load_widgets' );
+}
+
+/**
+ * Deprecated. Register Featured Content widget.
+ * 
+ * @deprecated 2.7.0
+ * 
+ * @see sb_load_widgets()
+ */
+function load_widget_sb_featured_content() {
+	_deprecated_function( __FUNCTION__, '2.7.0', 'sb_load_widgets' );
+}
