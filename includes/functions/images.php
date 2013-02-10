@@ -19,7 +19,9 @@
  * @return string        The URL of our desired image
  */
 function sb_get_post_image( $args = array(), $deprecated_post_id = null, $deprecated_use_attachments = null ) {
-	global $id, $blog_id;
+
+	// Grab our global $post object, incase we aren't given an explicit post ID
+	global $id;
 
 	// Back compat
 	if ( !is_array( $args ) || $deprecated_post_id || $deprecated_use_attachments ) {
@@ -80,13 +82,13 @@ function sb_get_post_image( $args = array(), $deprecated_post_id = null, $deprec
  * @param  sarray  $args  Specify additional attributes for the image tag
  * @return string         An <img> tag containing image path and all parameters
  */
-function sb_post_image( $args = array(), $depricated_height = null, $depricated_align = null, $depricated_zoom = null, $depricated_atts = array() ) {
+function sb_post_image( $args = array(), $depricated_height = null, $depricated_align = null, $depricated_crop = null, $depricated_atts = array() ) {
 
-	// Grab our global $post object
+	// Grab our global $post object, incase we aren't given an explicit post ID
 	global $post;
 
 	// Back compat
-	if ( !is_array($args) || $depricated_height || $depricated_align || $depricated_zoom || $depricated_atts ) {
+	if ( !is_array($args) || $depricated_height || $depricated_align || $depricated_crop || $depricated_atts ) {
 
 		// Throw a warning for anyone using the old format
 		_deprecated_argument( __FUNCTION__, '2.6', 'Please pass all parameters in a single array.' );
@@ -96,7 +98,7 @@ function sb_post_image( $args = array(), $depricated_height = null, $depricated_
 			'width'  => absint( $args ),
 			'height' => absint( $depricated_height ),
 			'align'  => $depricated_align,
-			'zoom'   => $depricated_zoom,
+			'crop'   => $depricated_crop,
 		), $depricated_atts );
 	}
 
@@ -104,15 +106,14 @@ function sb_post_image( $args = array(), $depricated_height = null, $depricated_
 	$defaults = array(
 		'post_id'         => $post->ID,
 		'image_id'        => null,
-		'image_url'       => null,
 		'use_attachments' => apply_filters( 'sb_post_image_use_attachments', false ),
 		'width'           => apply_filters( 'sb_post_image_width', 200 ),
 		'height'          => apply_filters( 'sb_post_image_height', 200 ),
-		'align'           => apply_filters( 'sb_post_image_align', 'tc' ),
-		'zoom'            => apply_filters( 'sb_post_image_zoom', 1 ),
-		'quality'         => apply_filters( 'sb_post_image_quality', 100 ),
+		'crop'            => apply_filters( 'sb_post_image_crop', 1 ),
+		'align'           => apply_filters( 'sb_post_image_align', 't' ),
 		'class'           => apply_filters( 'sb_post_image_class', 'post-image' ),
 		'alt'             => apply_filters( 'sb_post_image_alt', get_the_title() ),
+		'title'           => apply_filters( 'sb_post_image_alt', get_the_title() ),
 		'nophoto_url'     => apply_filters( 'sb_post_image_none', IMAGES_URL . '/nophoto.jpg' ),
 		'hide_nophoto'    => apply_filters( 'sb_post_image_hide_nophoto', false ),
 		'enabled'         => apply_filters( 'sb_post_image_enabled', true ),
@@ -125,7 +126,7 @@ function sb_post_image( $args = array(), $depricated_height = null, $depricated_
 		return false;
 
 	// Otherwise, setup our image tag
-	$image = '<img src="' . sb_get_post_image_url( $args ) . '" width="' . $args['width'] . '" height="' . $args['height'] . '" class="' . $args['class'] . '" alt="' . $args['alt'] . '" />';
+	$image = '<img src="' . sb_get_post_image_url( $args ) . '" width="' . $args['width'] . '" height="' . $args['height'] . '" class="' . $args['class'] . '" alt="' . $args['alt'] . '" title="' . $args['title'] . '" />';
 
 	// Echo our image if applicable
 	if ( $args['echo'] )
@@ -148,131 +149,109 @@ function sb_post_image( $args = array(), $depricated_height = null, $depricated_
  */
 function sb_get_post_image_url( $args = null ) {
 
-	// Grab our global $post object
+	// Grab our global $post object, incase we aren't given an explicit post ID
 	global $post;
 
 	// Setup our default args
 	$defaults = array(
 		'post_id'         => $post->ID,
 		'image_id'        => null,
-		'image_url'       => null,
 		'use_attachments' => apply_filters( 'sb_post_image_use_attachments', false ),
 		'width'           => absint( apply_filters( 'sb_post_image_width', 200 ) ),
 		'height'          => absint( apply_filters( 'sb_post_image_height', 200 ) ),
-		'align'           => apply_filters( 'sb_post_image_align', 'tc' ),
-		'zoom'            => apply_filters( 'sb_post_image_zoom', 1 )
+		'crop'            => absint( apply_filters( 'sb_post_image_crop', 1 ) ),
+		'align'           => apply_filters( 'sb_post_image_align', 't' )
 	);
 	$args = wp_parse_args($args, apply_filters( 'sb_post_image_settings', $defaults ) );
 
-	// Fire up the WP Image editor to generate our correctly sized image
-	$image = wp_get_image_editor( sb_get_post_image( $args ) );
-	if ( ! is_wp_error( $image ) ) {
+	// Setup our image details
+	$current_image  = sb_get_post_image( $args );
+	$current_size   = getimagesize( $current_image );
+	$current_width  = $current_size[0];
+	$current_height = $current_size[1];
 
-		// If zoom is true, we want to crop and fill...
-		if ( $args['zoom'] ) {
+	// Setup our location and filename details
+	$uploads_dir    = wp_upload_dir( get_the_time( 'Y/m', $args['post_id'] ) );
+	$image_info     = pathinfo( $current_image );
+	$filename       = $image_info['filename'];
+	$ext            = $image_info['extension'];
+	$suffix         = $args['width'] . 'x' . $args['height'] . ( $args['crop'] ? '-' . $args['align'] : '' );
+	$file           = trailingslashit( $uploads_dir['path'] ) . "{$filename}-{$suffix}.{$ext}";
+	$image_url      = trailingslashit( $uploads_dir['url'] ) . "{$filename}-{$suffix}.{$ext}";
 
-			// Determine crop start and end points based on our desired alignment
-			$current_size = $image->get_size();
-			$crop_points  = sb_image_crop_dimensions( $current_size['width'], $current_size['height'], $args['width'], $args['height'], $args['align'] );
-			$image->crop( $crop_points['start_x'], $crop_points['start_y'], $crop_points['max_width'], $crop_points['max_height'], $args['width'], $args['height'] );
+	// If we don't already have a file for our desired dimensions and alignment...
+	if ( ! file_exists( $file ) ) {
 
-		// Otherwise, just resize to a maximum height or width
-		} else {
-			$image->resize( $args['width'], $args['height'], false );
+		// Fire up the WP Image editor to generate our correctly sized image
+		$image = wp_get_image_editor( $current_image );
+		if ( ! is_wp_error( $image ) ) {
+
+			// If crop is true, then we want to fill our new width and height
+			if ( $args['crop'] ) {
+				$crop_dimensions = sb_image_crop_dimensions( $current_width, $current_height, $args['width'], $args['height'], $args['align'] );
+				$image->crop( $crop_dimensions['start_x'], $crop_dimensions['start_y'], $crop_dimensions['max_width'], $crop_dimensions['max_height'], $args['width'], $args['height'] );
+
+			// Otherwise, just resize to a maximum height or width
+			} else {
+				$image->resize( $args['width'], $args['height'], false );
+			}
+
+			// Save our newly resized image
+			$image->save( $file );
+
 		}
 
-		// Save the file to the uploads dir, but only if it doesn't already exist
-		$uploads_dir = wp_upload_dir( get_the_time( 'Y/m', $args['post_id'] ) );
-		$suffix      = $args['zoom'] ? $image->get_suffix() . '-' . $args['align'] : null;
-		$filename    = $image->generate_filename( $suffix, $uploads_dir['path'] );
-		if ( ! file_exists( $filename ) )
-			$image->save( $filename );
-
-		// Build our image URL from the uploads dir and our saved filename
-		$image_url = trailingslashit( $uploads_dir['url'] ) . wp_basename( $filename );
-
-		// Return our final image
-		return $image_url;
-
-	} else {
-
-		// If we make it here, there was a problem with our image, so return the original file
-		return sb_get_post_image( $args );
 	}
+
+	// Finally, return the image URL for our correctly sized image
+	return $image_url;
+
 }
 
 /**
  * Determine the starting coordinates and maximum dimensions of an image
  * given its original dimensions and a desired final size and alignment.
  *
+ * Credit for calculating our alignment and ratios goes to TimThumb (http://code.google.com/p/timthumb/).
+ *
  * @since  2.7
  * @param  integer $original_width  The original width of the given image
  * @param  integer $original_height The original height of the given image
- * @param  integer $desired_width   The desired width of the final image
- * @param  integer $desired_height  The desired height of the final image
- * @param  string  $alignment       The alignment position for our cropped image (accepts: tl, tc, tr, l, c, r, bl, bc, br)
+ * @param  integer $new_width       The desired width of the final image
+ * @param  integer $new_height      The desired height of the final image
+ * @param  string  $alignment       The alignment position for our cropped image (accepts: t, b, l, r, c, or any combination thereof)
  * @return array                    An associative array of our relevant data (start_x, start_y, max_width, max_height)
  */
-function sb_image_crop_dimensions( $original_width = 0, $original_height = 0, $desired_width = 0, $desired_height = 0, $alignment = '' ) {
+function sb_image_crop_dimensions( $original_width = 0, $original_height = 0, $new_width = 0, $new_height = 0, $alignment = '' ) {
 
 	// Setup our Image Dimesnions
-	$dimensions = image_resize_dimensions( $original_width, $original_height, $desired_width, $desired_height, true );
-	if ( $dimensions )
-		list( $origin_x, $origin_y, $start_x, $start_y, $new_width, $new_height, $max_width, $max_height ) = $dimensions;
-	else
-		return false;
+	$start_x      = $start_y = 0;
+	$max_width    = absint( $original_width );
+	$max_height   = absint( $original_height );
+	$width_ratio  = absint( $original_width ) / absint( $new_width );
+	$height_ratio = absint( $original_height ) / absint( $new_height );
 
-	// Determine our center-based starting points
-	$x_center_start = floor( absint( ( $original_width / 2 ) - ( $max_width / 2 ) ) );
-	$y_center_start = floor( absint( ( $original_height / 2 ) - ( $max_height / 2 ) ) );
-	$x_far_right = $original_width - $max_width;
-	$bottom = $original_height - $max_height;
+	// calculate x or y coordinate and width or height of source
+	if ($width_ratio > $height_ratio) {
+		$max_width = round ($original_width / $width_ratio * $height_ratio);
+		$start_x = round (($original_width - ($original_width / $width_ratio * $height_ratio)) / 2);
+	} else if ($height_ratio > $width_ratio) {
+		$max_height = round ($original_height / $height_ratio * $width_ratio);
+		$start_y = round (($original_height - ($original_height / $height_ratio * $width_ratio)) / 2);
+	}
 
 	// Setup our starting coordinates based on our alignment
-	switch ( $alignment ) {
-		case 'tl' :
-			$start_x = 0;
+	if ( !empty( $alignment ) ) {
+		if ( strpos ($alignment, 't') )
 			$start_y = 0;
-			break;
-		case 'tc' :
-			$start_x = $x_center_start;
-			$start_y = 0;
-			break;
-		case 'tr' :
-			$start_x = $x_far_right;
-			$start_y = 0;
-			break;
-		case 'l' :
+		if ( strpos ($alignment, 'b') )
+			$start_y = $original_height - $max_height;
+		if ( strpos ($alignment, 'l') )
 			$start_x = 0;
-			$start_y = $y_center_start;
-			break;
-		case 'c' :
-			$start_x = $x_center_start;
-			$start_y = $y_center_start;
-			break;
-		case 'r' :
-			$start_x = $x_far_right;
-			$start_y = $y_center_start;
-			break;
-		case 'bl' :
-			$start_x = 0;
-			$start_y = $bottom;
-			break;
-		case 'bc' :
-			$start_x = $x_center_start;
-			$start_y = $bottom;
-			break;
-		case 'br' :
-			$start_x = $x_far_right;
-			$start_y = $bottom;
-			break;
-		default :
-			$start_x = 0;
-			$start_y = 0;
-			break;
+		if ( strpos ($alignment, 'r') )
+			$start_x = $original_width - $max_width;
 	}
 
 	// Return all our relevant data
 	return array( 'start_x' => absint( $start_x ), 'start_y' => absint( $start_y ), 'max_width' => absint( $max_width ), 'max_height' => absint( $max_height ) );
-
 }

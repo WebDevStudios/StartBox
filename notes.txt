@@ -1,9 +1,3 @@
-##### 2.7
-	Make responsive stylesheet
-	Simplify base CSS selectors for navigation
-	Tweak/improve CSS for Typography
-	Add import/export feature for theme settings
-
 ##### 3.0
 	Update to HTML5
 	Simplify Hook Names
