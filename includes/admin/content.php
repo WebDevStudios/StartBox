@@ -121,7 +121,7 @@ class sb_content_settings extends sb_settings {
 					'type'		=> 'upload',
 					'label'		=> __( 'Default Thumbnail', 'startbox' ),
 					'default'	=> IMAGES_URL . '/nophoto.jpg',
-					'help'		=> __( 'Upload/Select your own custom defoult thumbnail to use when no available post thumbnail is found.', 'startbox' )
+					'help'		=> __( 'Upload/Select your own custom default thumbnail to use when no available post thumbnail is found.', 'startbox' )
 				),
 			'post_thumbnail_width' => array(
 					'type'		=> 'text',
