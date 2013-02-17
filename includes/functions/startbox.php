@@ -15,9 +15,6 @@ class StartBox {
 	// Initialize StartBox -- Available action: sb_init
 	public function init() {
 
-		// Grab and define our variables and constants
-		global $blog_id;
-
 		// If we're on on 3.4, use the handy wp_get_theme function
 		if ( function_exists('wp_get_theme') ) {
 			$startbox		= wp_get_theme( 'startbox' );
