@@ -35,6 +35,21 @@ function sb_comment_defaults($defaults) {
 }
 add_filter( 'comment_form_defaults', 'sb_comment_defaults' );
 
+/**
+ * Clear comment website value if default value not changed
+ *
+ * @since 2.7
+ */
+function sb_comment_save( $comment_content ) {
+	
+	if ( $comment_content['comment_author_url'] == 'Your Website (Optional)' )
+		$comment_content['comment_author_url'] = '';
+		
+	return $comment_content;
+	
+}
+add_filter( 'preprocess_comment', 'sb_comment_save');
+
 function sb_insert_comment_form() { ?>
 		<div class="comment-meta">
 			<div class="comment-author vcard">
