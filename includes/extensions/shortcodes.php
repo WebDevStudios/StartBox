@@ -687,10 +687,12 @@ function sb_get_sitemap( $args = '' ) {
 		$post_types = get_post_types( array('public'=>true),'objects');
 		foreach ( $post_types as $cpt ) {
 			if ( !in_array( $cpt->name, $exclude_post_types ) ) {
+				
         		$posts = new WP_query( array(
 					'posts_per_page' => 500,
 					'post_type'	=> $cpt->name
 					) );
+				
 				if ( $posts->have_posts() ) {
 					$output .= '<div class="' . $container_class . ' ' . $container_class . '-cpt ' . $container_class . '-' . $cpt->name . '">' . "\n";
 					$output .= "\t" . '<' . $header_container . '>' . $cpt->label . '</' . $header_container . '>' . "\n";
@@ -701,6 +703,8 @@ function sb_get_sitemap( $args = '' ) {
 					$output .= "\t" . '</ul>' . "\n";
 					$output .= '</div><!-- ' . $container_class . ' ' . $container_class . '-cpt ' . $container_class . '-' . $cpt->name . ' -->' . "\n";
 				}
+				
+				wp_reset_postdata();
 			}
 		}
 	} if ( $show_categories ) {
@@ -717,15 +721,26 @@ function sb_get_sitemap( $args = '' ) {
 		$output .= '<div class="' . $container_class . ' ' . $container_class . '-post">' . "\n";
 		$output .= "\t" . '<' . $header_container . '>' . __( 'Posts by Category', 'startbox' ) . '</' . $header_container . '>' . "\n";
 		foreach ( $categories as $cat ) {
-        	query_posts( 'cat=' . $cat->cat_ID );
-			if ( have_posts() ) {
+        	
+			$args = array(
+				'cat'	=>	$cat->cat_ID
+			);
+			
+			$cat_posts = new WP_Query( $args );
+			
+			if ( $cat_posts->have_posts() ) {
+				
 	            $output .= "\t" . '<' . $subheader_container . '>' . $cat->cat_name . '</' . $subheader_container . '>' . "\n";
-	            $output .= "\t" . '<ul id="postlist" class="' . $class . '">' . "\n";
-				while (have_posts()) : the_post();
+	            $output .= "\t" . '<ul id="postlist" class="' . esc_attr( $class ) . '">' . "\n";
+				while ( $cat_posts->have_posts()) : $cat_posts->the_post();
 					$output .= "\t\t" . '<li><a href="' . get_permalink() . '">' . get_the_title() . '</a> (' . get_comments_number() . ')</li>' . "\n";
 				endwhile;
 				$output .= "\t" . '</ul>' . "\n";
+				
 			}
+			
+			wp_reset_postdata();
+			
 		}
 		$output .= '</div><!-- ' . $container_class . ' ' . $container_class . '-post -->' . "\n";
 	}
