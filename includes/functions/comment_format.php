@@ -48,7 +48,7 @@ function sb_comment_save( $comment_content ) {
 	return $comment_content;
 	
 }
-add_filter( 'preprocess_comment', 'sb_comment_save');
+add_filter( 'preprocess_comment', 'sb_comment_save' );
 
 function sb_insert_comment_form() { ?>
 		<div class="comment-meta">
