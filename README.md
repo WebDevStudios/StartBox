@@ -10,7 +10,7 @@ StartBox can be installed like any other WordPress theme, either via the built-i
 
 Usage
 -----
-We highly recommend that you use a Child Theme instead of running StartBox directly. We've created a pretty simple [StartBox Child](https://github.com/WebDevStudios/StartBox-Child) for you to modify and destroy as you see fit.
+We highly recommend that you use a Child Theme instead of running StartBox directly. We've created a pretty simple [StartBox Child Theme](https://github.com/WebDevStudios/StartBox-Child) for you to modify and destroy as you see fit.
 
 If you're looking for a more high-caliber design, we recommend one of these [excellent themes](http://wpstartbox.com/themes/).
 
@@ -20,7 +20,7 @@ Full documentation can be found at http://docs.wpstartbox.com/
 
 Bugs & Feature Requests
 -------
-Please use the Issues feature here in Github to report any bugs or feature requests you may have
+Please open an [Issue](https://github.com/WebDevStudios/StartBox/issues) to report any bugs or feature requests.
 
 Support
 -------
@@ -31,10 +31,9 @@ Contributing
 Want to contribute? That's great! Patches are always welcome. Open an Issue and make a Pull Request.
 
 1. [Open an Issue](https://github.com/WebDevStudios/StartBox/issues) (or claim an open Issue).
-2. [Fork it.](https://github.com/WebDevStudios/StartBox/fork_select).
+2. [Fork StartBox.](https://github.com/WebDevStudios/StartBox/fork_select)
 3. Create a branch (`git checkout -b MyBox`).
 4. Commit your changes (`git commit -am "Added the best feature ever!"`).
 5. Push to the branch (`git push origin MyBox`).
 6. Open a [Pull Request](https://github.com/WebDevStudios/StartBox/pulls).
 7. Enjoy a refreshing beverage and wait.
-
