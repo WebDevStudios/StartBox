@@ -39,10 +39,10 @@ class SB_Sidebars {
 		foreach ( $this->sidebars as $sidebar_id => $sidebar_info ) {
 
 			register_sidebar( apply_filters( 'sb_register_sidebar_defaults', array(
-				'name'          => esc_html( $sidebar_info['name'] ),
-				'id'            => $sidebar_id,
-				'description'   => esc_html( $sidebar_info['description'] ),
-				'editable'      => intval( $sidebar_info['editable'] ),
+				'name'          => esc_attr( $sidebar_info['name'] ),
+				'id'            => esc_attr( $sidebar_id ),
+				'description'   => esc_attr( $sidebar_info['description'] ),
+				'editable'      => absint( $sidebar_info['editable'] ),
 				'before_widget' => "\n\t\t\t" . '<li id="%1$s" class="widget %2$s">',
 				'after_widget'  => "\n\t\t\t</li>\n",
 				'before_title'  => "\n\t\t\t\t". '<h3 class="widget-title"><span class="widget-title-left"><span class="widget-title-right">',
@@ -55,7 +55,7 @@ class SB_Sidebars {
 	/**
 	 * Registers all default sidebars (don't override this)
 	 *
-	 * @since 2.5
+	 * @since 2.5.0
 	 */
 	function default_sidebars() {
 		$this->register_sidebar( array( 'name' => 'Primary Sidebar', 'id' => 'primary_widget_area', 'description' => __('This is the primary sidebar when using two- or three-column layouts.', 'startbox') , 'editable' => 1 ) );
@@ -70,7 +70,7 @@ class SB_Sidebars {
 	/**
 	 * Registers all custom sidebars (don't override this)
 	 *
-	 * @since 2.5
+	 * @since 2.5.0
 	 */
 	function custom_sidebars() {
 
@@ -96,18 +96,17 @@ class SB_Sidebars {
 	/**
 	 * Register a sidebar (don't override this)
 	 *
-	 * @since 2.5
-	 *
+	 * @since 2.5.0
 	 * @param array $args an array of arguments for naming and identifying a sidebar
 	 */
 	function register_sidebar( $args = '' ) {
 
 		// Setup our defaults (all null, for the most part)
 		$defaults = array(
-			'name'			=> '',
-			'id'			=> '',
-			'description'	=> '',
-			'editable'		=> 1	// Makes this sidebar replaceable via the StartBox Easy Sidebars extension
+			'name'        => '',
+			'id'          => '',
+			'description' => '',
+			'editable'    => 1   // Makes this sidebar replaceable via the StartBox Easy Sidebars extension
 		);
 		extract( wp_parse_args( $args, $defaults) );
 
@@ -122,8 +121,7 @@ class SB_Sidebars {
 	/**
 	 * Unregister a sidebar (don't override this)
 	 *
-	 * @since 2.5
-	 *
+	 * @since 2.5.0
 	 * @param string $id the unique ID for the sidebar to unregister
 	 */
 	function unregister_sidebar( $id ) {
@@ -134,8 +132,7 @@ class SB_Sidebars {
 	/**
 	 * Render markup and action hooks for a given sidebar (override this to customize your markup)
 	 *
-	 * @since 2.5
-	 *
+	 * @since 2.5.0
 	 * @param string $location the unique ID to give the container for this sidebar
 	 * @param string $sidebar the ID of the sidebar to attach to this location by default
 	 * @param string $classes additional custom classes to add to the container for this sidebar
@@ -169,7 +166,7 @@ class SB_Sidebars {
 	 * Loop through all custom sidebars, store them as a multi-deminsional array
 	 * for each post type and taxonomy. Uses transients to reduce queries. (don't override this)
 	 *
-	 * @since 2.5
+	 * @since 2.5.0
 	 * @param string $return the array to return (accepts 'post_type' and 'taxonomy')
 	 */
 	function get_custom_sidebars( $return ) {
@@ -262,7 +259,7 @@ class SB_Sidebars {
 	/**
 	 * Check if a custom sidebar exists to replace the default for a given location. Don't override this.
 	 *
-	 * @since 2.5
+	 * @since 2.5.0
 	 * @param string $location the registered location to check
 	 * @param string $sidebar the sidebar to (maybe) replace
 	 */
@@ -306,7 +303,6 @@ $sb_sidebars = new SB_Sidebars;
  * Wrapper Function for SB_Sidebars::register_sidebar()
  *
  * @since 2.5.2
- *
  * @param string $name the display name for this sidebar
  * @param string $id the unique ID for this sidebar
  * @param string $description a short description for this sidebar
@@ -321,7 +317,6 @@ function sb_register_sidebar( $name = null, $id = null, $description = null, $ed
  * Wrapper Function for SB_Sidebars::unregister_sidebar()
  *
  * @since 2.5.2
- *
  * @param string $id the ID of the sidebar to unregister
  */
 function sb_unregister_sidebar( $id ) {
@@ -333,8 +328,7 @@ function sb_unregister_sidebar( $id ) {
 /**
  * Wrapper Function for SB_Sidebars::do_sidebar()
  *
- * @since 2.5
- *
+ * @since 2.5.0
  * @param string $location the unique ID to give the container for this sidebar
  * @param string $sidebar the ID of the sidebar to attach to this location by default
  * @param string $classes additional custom classes to add to the container for this sidebar
