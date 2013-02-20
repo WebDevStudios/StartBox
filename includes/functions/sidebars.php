@@ -74,22 +74,21 @@ class SB_Sidebars {
 	 */
 	function custom_sidebars() {
 
-		$get_posts = new WP_Query( array(
-			'order' => 'ASC',
-			'orderby' => 'date',
-			'post_type' => 'sidebar',
-			'posts_per_page' => 100
-		));
+		$custom_sidebars = get_posts( array(
+			'order'          => 'ASC',
+			'orderby'        => 'date',
+			'post_type'      => 'sidebar',
+			'posts_per_page' => -1
+		) );
 
-		while ( $get_posts->have_posts() ) : $get_posts->the_post();
-			global $post;
-			$name = get_the_title();
-			$id = $post->post_name;
-			$description = get_post_meta($post->ID, '_sidebar_description', true);
-			$this->register_sidebar( array( 'name' => $name, 'id' => $id, 'description' => $description, 'editable' => 0 ) );
-		endwhile;
-
-		wp_reset_postdata();
+		foreach( $custom_sidebars as $sidebar ) {
+			$this->register_sidebar( array(
+				'name'        => $sidebar->post_title,
+				'id'          => $sidebar->post_name,
+				'description' => get_post_meta( $sidebar->ID, '_sidebar_description', true ),
+				'editable'    => 0
+			) );
+		}
 
 	}
 
