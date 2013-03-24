@@ -163,97 +163,55 @@ class SB_Sidebars {
 	}
 
 	/**
-	 * Loop through all custom sidebars, store them as a multi-deminsional array
-	 * for each post type and taxonomy. Uses transients to reduce queries. (don't override this)
+	 * Get all custom sidebars registered for a given scope (don't override this)
 	 *
-	 * @since 2.5.0
-	 * @param string $return the array to return (accepts 'post_type' and 'taxonomy')
+	 * @since  2.5.0
+	 * @param  string $scope The query scope we're calling (accepts 'post_type' and 'taxonomy')
+	 * @return array         An array of registered sidebars for the given scope
 	 */
-	function get_custom_sidebars( $return ) {
+	function get_custom_sidebars( $scope = 'post_type' ) {
 
 		// See if we've alread run this query and cached the results
-		$post_type = get_transient('sb_sidebars_post_type');
-		$tax = get_transient('sb_sidebars_tax');
+		$sidebars = get_transient( 'sb_sidebars_' . $scope );
 
 		// If no cached results, run a query for custom sidebars
-		if ( ! $post_type || !$tax ) {
-			$stored_post_type = $post_type;	// prevent needless updates, see below (kevinB)
-			$stored_tax = $tax;
+		if ( empty( $sidebars ) ) {
 
-			// prevent excess queries when no record stored (kevinB)
-			// NOTE: these options should also be set to autoload
-			if ( ! is_array($post_type) )
-				set_transient('sb_sidebars_post_type', array(), 86400 );
+			// Get all sidebar posts
+			$sidebar_posts = get_posts( array( 'post_type' => 'sidebar', 'no_paging' => true ) );
+			$sidebars = array();
 
-			if ( ! is_array($tax) )
-				set_transient('sb_sidebars_tax', array(), 86400 );
+			// If we have sidebars, loop through each and add relevant ones to our array
+			if ( ! empty( $sidebar_posts ) ) { foreach ( $sidebar_posts as $sidebar ) {
 
-			static $all_post_type, $all_tax; // avoid multiple queries for all posts/taxonomies (kevinB)
-			if ( ! isset($all_post_type) ) {
+				// Grab our sidebar_id and location
+				$sidebar_name = $sidebar->post_name;
+				$location     = get_post_meta( $sidebar->ID, '_sidebar_replaced', true);
 
-				global $post;
-
-				// Cache the current query, just for good measure
-				$temp = $post;
-
-				// Get all sidebar posts
-				$get_posts = new WP_Query( array( 'post_type' => 'sidebar', 'posts_per_page' => -1 ) );
-				$all_post_type = $all_tax = array();
-
-				// If there are no sidebars, return false
-				if ( !$get_posts->have_posts() ) {
-					return false;
+				// If we're querying for posts
+				if ( 'post_type' == $scope ) {
+					// Grab all posts associated with this sidebar and add them to our array
+					$post_types = (array) maybe_unserialize( get_post_meta( $sidebar->ID, '_post', true ) );
+					foreach ( $post_types as $post_id ) {
+						$sidebars[$post_id] = array( 'location' => $location, 'sidebar' => $sidebar_name );
+					}
+				} elseif ( 'taxonomy' == $scope ) {
+					// Grab all taxonomies associated with this sidebar and add them to our array
+					$taxonomies = (array) maybe_unserialize( get_post_meta( $sidebar->ID, '_tax', true ) );
+					foreach ( $taxonomies as $tax_id ) {
+						$sidebars[$tax_id] = array( 'location' => $location, 'sidebar' => $sidebar_name );
+					}
 				}
 
-				// If there are sidbars, loop through them all and store them in arrays for each post and tax type
-				while ( $get_posts->have_posts() ) : $get_posts->the_post();
+			} }
 
-					global $post;
+			// Cache our query for one week
+			set_transient( 'sb_sidebars_' . $scope, $sidebars, (60*60*24*7) );
 
-					// The sidebar id is the post slug
-					$sidebar_id = $post->post_name;
+		}
 
-					// The location for this sidebar is based on which sidebar it replaces
-					$location = get_post_meta( $post->ID, '_sidebar_replaced', true);
-
-					// Grab all the saved posts and taxonomies that should use this sidebar
-					$posts = (array) maybe_unserialize( get_post_meta( $post->ID, '_post', true ) );
-					$taxes = (array) maybe_unserialize( get_post_meta( $post->ID, '_tax', true ) );
-
-					// Grab all posts associated with this sidebar, add each to the $post_type array
-					foreach ( $posts as $post_id ) {
-						$all_post_type[$post_id] = array( 'location' => $location, 'sidebar' => $sidebar_id );
-					}
-
-					// Grab all taxonomies associated with this sidebar, add each to the $tax array
-					foreach ( $taxes as $tax_id ) {
-						$all_tax[$tax_id] = array( 'location' => $location, 'sidebar' => $sidebar_id );
-					}
-
-				endwhile;
-
-				// Restore the cached query, just incase
-				$post = $temp;
-
-			} // endif all_post_type and all_tax cached as static vars here
-
-			$post_type = $all_post_type;
-			$tax = $all_tax;
-
-			// Store transient data for the post types and taxonomies for use later
-			if ( $stored_post_type != $post_type )	// otherwise options are re-updated on every site load (kevinB)
-				set_transient('sb_sidebars_post_type', $post_type, 259200); // cache for three days (259200)
-
-			if ( $stored_tax != $tax )
-				set_transient('sb_sidebars_tax', $tax, 259200); // cache for three days (259200)
-
-		} // end if any transient-cached results
-
-		// Return either post_type or taxonomy, based on what was requested
-		if ( $return == 'post_type' )
-			return $post_type;
-		elseif ( $return == 'taxonomy' )
-			return $tax;
+		// Return our scoped sidebars array
+		return $sidebars;
 	}
 
 	/**
