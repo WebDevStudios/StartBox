@@ -453,7 +453,8 @@ class StartBox {
 			$wpdb->update( $wpdb->postmeta, array( 'meta_value' => 'secondary' ), array( 'meta_value' => 'secondary_widget_area' ) );
 
 			// Update our theme version
-			// update_option( 'startbox_version', '2.7' );
+			update_option( 'startbox_version', '2.7' );
+
 		}
 
 		// Included hook for other things to do during upgrade
