@@ -139,10 +139,6 @@ class SB_Sidebars {
 	 */
 	function do_sidebar( $location = null, $sidebar = null, $classes = null ) {
 
-		// Grab the stored post types and taxonomies that will display a custom sidebar
-		$post_type = $this->get_custom_sidebars('post_type');
-		$tax = $this->get_custom_sidebars('taxonomy');
-
 		// Maybe replace the default sidebar with a custom sidebar
 		$sidebar = $this->maybe_replace_current_sidebar( $location, $sidebar );
 
@@ -169,49 +165,44 @@ class SB_Sidebars {
 	 * @param  string $scope The query scope we're calling (accepts 'post_type' and 'taxonomy')
 	 * @return array         An array of registered sidebars for the given scope
 	 */
-	function get_custom_sidebars( $scope = 'post_type' ) {
+	function get_custom_sidebars() {
 
 		// See if we've alread run this query and cached the results
-		$sidebars = get_transient( 'sb_sidebars_' . $scope );
+		$sidebars = get_transient( 'sb_custom_sidebars' );
 
 		// If no cached results, run a query for custom sidebars
 		if ( empty( $sidebars ) ) {
 
 			// Get all sidebar posts
 			$sidebar_posts = get_posts( array( 'post_type' => 'sidebar', 'no_paging' => true ) );
+
+			// Setup our custom sidebars array
 			$sidebars = array();
 
 			// If we have sidebars, loop through each and add relevant ones to our array
 			if ( ! empty( $sidebar_posts ) ) { foreach ( $sidebar_posts as $sidebar ) {
 
 				// Grab our sidebar_id and location
-				$sidebar_name = $sidebar->post_name;
-				$location     = get_post_meta( $sidebar->ID, '_sidebar_replaced', true);
+				$name     = $sidebar->post_name;
+				$location = get_post_meta( $sidebar->ID, '_sidebar_replaced', true);
+				$posts    = (array) maybe_unserialize( get_post_meta( $sidebar->ID, '_post', true ) );
+				$terms    = (array) maybe_unserialize( get_post_meta( $sidebar->ID, '_tax', true ) );
+				$keys     = array_merge( $posts, $terms );
 
-				// If we're querying for posts
-				if ( 'post_type' == $scope ) {
-					// Grab all posts associated with this sidebar and add them to our array
-					$post_types = (array) maybe_unserialize( get_post_meta( $sidebar->ID, '_post', true ) );
-					foreach ( $post_types as $post_id ) {
-						$sidebars[$post_id] = array( 'location' => $location, 'sidebar' => $sidebar_name );
-					}
-				} elseif ( 'taxonomy' == $scope ) {
-					// Grab all taxonomies associated with this sidebar and add them to our array
-					$taxonomies = (array) maybe_unserialize( get_post_meta( $sidebar->ID, '_tax', true ) );
-					foreach ( $taxonomies as $tax_id ) {
-						$sidebars[$tax_id] = array( 'location' => $location, 'sidebar' => $sidebar_name );
-					}
+				// Loop through every key Store all the associated IDs in our multidimensional array
+				foreach ( $keys as $key ) {
+					$sidebars[$key]['locations'][$location] = $name;
 				}
 
 			} }
 
 			// Cache our query for one week
-			set_transient( 'sb_sidebars_' . $scope, $sidebars, (60*60*24*7) );
+			set_transient( 'sb_custom_sidebars', $sidebars, (60*60*24*7) );
 
 		}
 
-		// Return our scoped sidebars array
-		return $sidebars;
+		// Return our scoped sidebars (cast to an array for good measure)
+		return (array) $sidebars;
 	}
 
 	/**
@@ -222,28 +213,38 @@ class SB_Sidebars {
 	 * @param string $sidebar the sidebar to (maybe) replace
 	 */
 	function maybe_replace_current_sidebar( $location, $sidebar ) {
+
+		// Grab our globals (so we know what we're querying)
 		global $post, $wp_query;
-		$post_type = (array)$this->get_custom_sidebars('post_type');
-		$tax = (array)$this->get_custom_sidebars('taxonomy');
 
-		// Set the ID for the page/post to retrive. If a sidebar is set for all- Pages, Posts, Categories or Tags use it instead.
-		if ( is_front_page() && array_key_exists( 'Home', $post_type ) ) { $pid = 'Home'; }
-		elseif ( is_home() ) { $pid = $wp_query->queried_object_id; } // when the home page is not the front page (e.g. posts display on a page per Settings > Reading)
-		elseif ( is_single() && array_key_exists( 'all-Posts', $post_type ) ) { $pid = 'all-Posts'; }
-		elseif ( is_page() && array_key_exists( 'all-Pages', $post_type) ) { $pid = 'all-Pages'; }
-		elseif ( is_category() && array_key_exists( 'all-category', $tax) ) { $pid = 'all-category'; }
-		elseif ( is_tag() && array_key_exists( 'all-tag', $tax) ) { $pid = 'all-tag'; }
-		elseif ( is_category() ) { $pid = get_query_var('cat'); }
-		elseif ( is_tag() ) { $pid = get_query_var('tag_id'); }
-		else { $pid = $post->ID; }
+		// Grab our custom sidebars
+		$custom_sidebars = $this->get_custom_sidebars();
 
-		// Confirm which sidebar to output based on current front-end view
-		if ( is_front_page() && array_key_exists( $pid, $post_type ) && $sidebar == $post_type[$pid]['location'] ) {
-			$sidebar = $post_type[$pid]['sidebar'];
-		} elseif ( ( is_singular() || is_home() ) && array_key_exists( $pid, $post_type ) && $sidebar == $post_type[$pid]['location'] ) {
-			$sidebar = $post_type[$pid]['sidebar'];
-		} elseif ( ( is_category() || is_tag() ) && array_key_exists( $pid, $tax ) && $sidebar == $tax[$pid]['location']) {
-			$sidebar = $tax[$pid]['sidebar'];
+		// If we actually have custom sidebars, lets look deeper
+		if ( !empty( $custom_sidebars ) ) {
+
+			// Determine which key we're testing based on what we're viewing
+			if ( array_key_exists( 'Home', $custom_sidebars ) && is_front_page() ) { $key = 'Home'; }
+			elseif ( array_key_exists( 'all-Posts', $custom_sidebars ) && is_single() ) { $key = 'all-Posts'; }
+			elseif ( array_key_exists( 'all-Pages', $custom_sidebars ) && is_page() ) { $key = 'all-Pages'; }
+			elseif ( array_key_exists( 'all-category', $custom_sidebars ) && is_category() ) { $key = 'all-category'; }
+			elseif ( array_key_exists( 'all-tag', $custom_sidebars ) && is_tag() ) { $key = 'all-tag'; }
+			elseif ( is_home() ) { $key = $wp_query->queried_object_id; } // Refers to the blog page if front page is set to static page
+			elseif ( is_category() ) { $key = get_query_var('cat'); }
+			elseif ( is_tag() ) { $key = get_query_var('tag_id'); }
+			elseif ( is_tax() ) { $key = get_query_var('term_id'); }
+			else { $key = $post->ID; }
+
+			// Determine if we should override the current sidebar
+			if (
+				array_key_exists( $key, $custom_sidebars )
+				&& array_key_exists( $location, $custom_sidebars[$key]['locations'] )
+			) {
+				// @TODO: This doesn't accomodate primary/secondary because their name and location do not match
+				// @TODO: Rename the registered sidebars for primary/secondary AND find a way to re-route their widgets
+				$sidebar = $custom_sidebars[$key]['locations'][$location];
+			}
+
 		}
 
 		// Finally, return the given sidebar
