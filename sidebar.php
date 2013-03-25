@@ -13,5 +13,5 @@
  * </div>
  * hook: sb_after_{$location}
  */
-sb_do_sidebar( 'primary', 'primary_widget_area');
-sb_do_sidebar( 'secondary', 'secondary_widget_area');
+sb_do_sidebar( 'primary', 'primary');
+sb_do_sidebar( 'secondary', 'secondary');

@@ -58,8 +58,8 @@ class SB_Sidebars {
 	 * @since 2.5.0
 	 */
 	function default_sidebars() {
-		$this->register_sidebar( array( 'name' => 'Primary Sidebar', 'id' => 'primary_widget_area', 'description' => __('This is the primary sidebar when using two- or three-column layouts.', 'startbox') , 'editable' => 1 ) );
-		$this->register_sidebar( array( 'name' => 'Secondary Sidebar', 'id' => 'secondary_widget_area', 'description' => __('This is the secondary sidebar for three-column layouts.', 'startbox'), 'editable' => 1 ) );
+		$this->register_sidebar( array( 'name' => 'Primary Sidebar', 'id' => 'primary', 'description' => __('This is the primary sidebar when using two- or three-column layouts.', 'startbox') , 'editable' => 1 ) );
+		$this->register_sidebar( array( 'name' => 'Secondary Sidebar', 'id' => 'secondary', 'description' => __('This is the secondary sidebar for three-column layouts.', 'startbox'), 'editable' => 1 ) );
 		$this->register_sidebar( array( 'name' => 'Home Featured', 'id' => 'home_featured', 'description' => __('These widgets will appear above the content on the homepage.', 'startbox'), 'editable' => 0 ) );
 		$this->register_sidebar( array( 'name' => 'Footer Aside 1', 'id' => 'footer_widget_area_1', 'description' => __('This is the first footer column. Use this before using any other footer columns.', 'startbox'), 'editable' => 1 ) );
 		$this->register_sidebar( array( 'name' => 'Footer Aside 2', 'id' => 'footer_widget_area_2', 'description' => __('This is the second footer column. Only use this after using Footer Aside 1.', 'startbox'), 'editable' => 1 ) );
@@ -240,8 +240,6 @@ class SB_Sidebars {
 				array_key_exists( $key, $custom_sidebars )
 				&& array_key_exists( $location, $custom_sidebars[$key]['locations'] )
 			) {
-				// @TODO: This doesn't accomodate primary/secondary because their name and location do not match
-				// @TODO: Rename the registered sidebars for primary/secondary AND find a way to re-route their widgets
 				$sidebar = $custom_sidebars[$key]['locations'][$location];
 			}
 
