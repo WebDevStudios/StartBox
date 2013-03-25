@@ -434,7 +434,7 @@ function sb_sidebars_save( $post_id ) {
 
 	// Delete transient data (used to cache all sidebars for front-end display)
 	delete_transient( 'sb_sidebars_post_type' );
-	delete_transient( 'sb_sidebars_tax' );
+	delete_transient( 'sb_sidebars_taxonomy' );
 
 	return $post_id;
 }
@@ -452,7 +452,7 @@ function sb_sidebars_delete($post_id) {
 	if ( $post->post_type == 'sidebar' ) {
         // Delete transient data (used to cache all sidebars for front-end display)
 		delete_transient( 'sb_sidebars_post_type' );
-		delete_transient( 'sb_sidebars_tax' );
+		delete_transient( 'sb_sidebars_taxonomy' );
 	}
 
 }
