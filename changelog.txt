@@ -3,6 +3,7 @@
 	* Added: Filter 'sb_register_sidebar_defaults' to allow easy override of default sidebar markup
 	* Added: Post content pagination to loop.php and single.php
 	* Added: sb_image_crop_dimensions() for determining the crop coordinates for an image
+	* Fixed: Multiple custom sidebars can now appear on a single page (e.g. replacing both Primary and Footer Aside 1 is possible)
 	* Fixed: Author template now properly loops through all of an author's posts
 	* Fixed: Default settings for post thumbnails in theme options
 	* Fixed: Added support for id, class and style attributes in the footer text input settings.
