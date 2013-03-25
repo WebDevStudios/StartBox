@@ -7,6 +7,7 @@
 	* Fixed: Author template now properly loops through all of an author's posts
 	* Fixed: Default settings for post thumbnails in theme options
 	* Fixed: Added support for id, class and style attributes in the footer text input settings.
+	* Fixed: Updated startbox.css to better style heading elements (h1, h2, etc) for handling line-height and bottom margin
 	* Changed: Updated Upload option types to use WP3.5 media manager
 	* Changed: Improved inline documentation for sb_get_post_image, sb_post_image and sb_get_post_image_url
 	* Changed: Updated sb_get_post_image, sb_post_image and sb_get_post_image_url to not use extract()
