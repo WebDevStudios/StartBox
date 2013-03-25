@@ -4,7 +4,7 @@
  *
  * Default Output:
  * hook: sb_before_{$location}
- * <div id="$location" class="aside $location-aside">
+ * <div id="{$location}" class="aside {$location}-aside">
  * 	hook: sb_before_{$location}_widgets
  * 	<ul class="xoxo">
  * 		sidebar contents, or hook: sb_no_{$location}_widgets
