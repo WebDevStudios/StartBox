@@ -761,9 +761,6 @@ div#footer, #wp_footer {
 
 ****************************************************************************************************************/
 
-.gform_wrapper {
-	width:490px;
-}
 body .gform_wrapper input[type=text],
 body .gform_wrapper textarea {
 	color:#333;
