@@ -3,13 +3,14 @@ msgstr ""
 "Project-Id-Version: StartBox v2.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2012-11-14 03:45:32+0000\n"
+"PO-Revision-Date: 2013-02-22 05:52:02+0000\n"
 "Last-Translator: lswilson <lisa@convertiv.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: CSL v1.x\n"
 "X-Poedit-Language: German\n"
 "X-Poedit-Country: GERMANY\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -2174,4 +2175,34 @@ msgstr "nichts gefunden"
 #@ startbox
 msgid "Sorry, but nothing matched your search criteria. Please try again with some different keywords."
 msgstr "Sorry, aber nichts Ihren Suchkriterien entsprechen. Bitte versuchen Sie es erneut mit einigen anderen Suchbegriffen."
+
+#: includes/functions/startbox.php:251
+#@ startbox
+msgid "Next <span>&gt;</span>"
+msgstr ""
+
+#: includes/functions/startbox.php:252
+#@ startbox
+msgid "<span>&lt;</span> Previous"
+msgstr ""
+
+#: includes/functions/startbox.php:253
+#@ startbox
+msgid "more"
+msgstr "weitere"
+
+#: includes/functions/startbox.php:254
+#@ startbox
+msgid "Less"
+msgstr ""
+
+#: includes/functions/startbox.php:255
+#@ startbox
+msgid "Follow"
+msgstr "Folgen"
+
+#: includes/functions/startbox.php:256
+#@ startbox
+msgid "More: "
+msgstr "Mehr: "
 

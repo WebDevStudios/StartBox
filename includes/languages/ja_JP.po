@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: StartBox v2.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-02-22 05:59:40+0000\n"
+"PO-Revision-Date: 2013-02-22 18:41:12+0000\n"
 "Last-Translator: lswilson <lisa@convertiv.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n>1;\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: CSL v1.x\n"
-"X-Poedit-Language: French\n"
-"X-Poedit-Country: FRANCE\n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: JAPAN\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
 "X-Poedit-Basepath: ../../\n"
@@ -24,191 +24,191 @@ msgstr ""
 #, php-format
 #@ startbox
 msgid "Full size is %s pixels"
-msgstr "Pleine grandeur est %s pixels"
+msgstr "フルサイズ：％s はピクセルです"
 
 #: attachment.php:22
 #@ startbox
 msgid "Link to full-size image"
-msgstr "Lien vers l'image en taille réelle"
+msgstr "フルサイズ画像へのリンク"
 
 #: attachment.php:72
 #@ startbox
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
-msgstr "Continuer la lecture <span class=\"meta-na\\\">$rarr;</span>"
+msgstr "<span class=\"meta-nav\">&rarr;</ span>を読み続ける"
 
 #: attachment.php:73
 #@ startbox
 msgid "Pages:"
-msgstr "Pages :"
+msgstr "ページ："
 
 #: comments.php:8
 #@ startbox
 msgid "This post is protected. Enter the password to view any comments."
-msgstr "Ce poste est protégé. Entrez le mot de passe pour afficher tous les commentaires."
+msgstr "この投稿は保護されています。任意のコメントを表示するには、パスワードを入力します。"
 
 #: comments.php:21
 #, php-format
 #@ startbox
 msgid "<span>%d</span> Comments"
-msgstr "<span>%d</span> Commentaires"
+msgstr "<span>%d</span>のコメント"
 
 #: comments.php:21
 #@ startbox
 msgid "<span>One</span> Comment"
-msgstr "<span>Un</span> Commentaire"
+msgstr "<span>1</span>の感想"
 
 #: comments.php:39
 #, php-format
 #@ startbox
 msgid "<span>%d</span> Trackbacks"
-msgstr "<span>% d </span> Trackbacks"
+msgstr "<span>％d </span>のトラックバック"
 
 #: comments.php:39
 #@ startbox
 msgid "<span>One</span> Trackback"
-msgstr "<span>Un</span> Trackback"
+msgstr "<span>1 </span>のトラックバック"
 
 #: includes/admin/admin.php:13
 #: includes/admin/admin.php:32
 #: includes/extensions/layouts.php:158
 #@ startbox
 msgid "Theme Options"
-msgstr "Options de thème"
+msgstr "テーマオプション"
 
 #: includes/admin/admin.php:59
 #@ startbox
 msgid "Additional Resources"
-msgstr "Ressources supplémentaires"
+msgstr "その他のリソース"
 
 #: includes/admin/admin.php:60
 #@ startbox
 msgid "<h3>Additional Resources</h3>"
-msgstr "<h3> Ressources supplémentaires </h3>"
+msgstr "<H3>その他のリソース</H3>"
 
 #: includes/admin/admin.php:60
 #, php-format
 #@ startbox
 msgid "For more information, try the %s or %s."
-msgstr "Pour plus d'informations, essayez s% s ou%."
+msgstr "詳細については、試す %s または %s"
 
 #: includes/admin/admin.php:60
 #@ startbox
 msgid "Theme Documentation"
-msgstr "Documentation thème"
+msgstr "テーマドキュメント"
 
 #: includes/admin/admin.php:60
 #@ startbox
 msgid "Support Forum"
-msgstr "Forum"
+msgstr "サポートフォーラム"
 
 #: includes/admin/admin.php:146
 #: includes/extensions/startbox-slideshows/startbox-slideshows.php:148
 #@ startbox
 msgid "Options"
-msgstr "Options de"
+msgstr "オプション"
 
 #: includes/admin/admin.php:150
 #@ startbox
 msgid "Options Updated."
-msgstr "Options de mise à jour."
+msgstr "オプションが更新されました。"
 
 #: includes/admin/admin.php:188
 #@ startbox
 msgid "Save All Settings"
-msgstr "Enregistrer tous les paramètres"
+msgstr "すべての設定を保存する"
 
 #: includes/admin/admin.php:189
 #@ startbox
 msgid "Reset All Settings"
-msgstr "Réinitialiser tous les paramètres"
+msgstr "全設定をリセット"
 
 #: includes/admin/analytics.php:9
 #@ startbox
 msgid "Google Analytics"
-msgstr "Google Analytics"
+msgstr "Google Analyticsの"
 
 #: includes/admin/analytics.php:11
 #@ startbox
 msgid "Allows you to include the tracking codes for your preferred site statistics software (like Google Analytics, Woopra, etc)."
-msgstr "Vous permet d'inclure les codes de suivi de votre logiciel préféré statistiques du site (comme Google Analytics, Woopra, etc.)"
+msgstr "あなたの好みのサイトの統計ソフトウェア用のトラッキングコードをツール（Google Analytics Woopra、等のような）を含めることができます。"
 
 #: includes/admin/analytics.php:18
 #, php-format
 #@ startbox
 msgid "Enter your %s code below:"
-msgstr "Entrez le code de votre% s ci-dessous:"
+msgstr "以下にあなたの ％s のコードを入力します。"
 
 #: includes/admin/analytics.php:21
 #@ startbox
 msgid "Though intended specifically for analytics code, you can actually paste any code here that you would like to add to the &lt;head&gt; section of all your pages."
-msgstr "Bien que conçu spécifiquement pour le code d'analyse, vous pouvez réellement coller n'importe quel code ici que vous souhaitez ajouter à la section &lt;head&gt; de toutes vos pages."
+msgstr "Analyticsのコードのために特別に意図されたものの、実際には、あなたが追加したいここで任意のコードを貼り付けることができます &lt;head&gt; すべてのページのセクションを参照してください。"
 
 #: includes/admin/content.php:8
 #@ startbox
 msgid "Content Settings"
-msgstr "Paramètres de contenu"
+msgstr "コンテンツの設定"
 
 #: includes/admin/content.php:10
 #@ startbox
 msgid "Take full control over the content portions of your site. Set thumbnail sizes, post navigation options and post meta information."
-msgstr "Prenez le contrôle total sur les parties de contenu de votre site. Fixer une taille miniature, afficher les options de navigation et publier des informations de métadonnées."
+msgstr "あなたのサイトのコンテンツの一部を完全に制御する。サムネイルのサイズ、ポストのナビゲーションオプションとポストメタ情報を設定します。"
 
 #: includes/admin/content.php:16
 #@ startbox
 msgid "Post Content"
-msgstr "poster contenu"
+msgstr "コンテンツを投稿する"
 
 #: includes/admin/content.php:20
 #@ startbox
 msgid "Post Content on Homepage"
-msgstr "Poster contenu sur le site Internet"
+msgstr "ホームページにコンテンツを投稿"
 
 #: includes/admin/content.php:22
 #: includes/admin/content.php:34
 #@ startbox
 msgid "Excerpt"
-msgstr "extrait"
+msgstr "抜粋"
 
 #: includes/admin/content.php:23
 #: includes/admin/content.php:35
 #@ startbox
 msgid "Full Post"
-msgstr "Message complet"
+msgstr "完全なポスト"
 
 #: includes/admin/content.php:28
 #@ startbox
 msgid "Choose whether you would like to display the full post, or only an exceprt, on the homepage."
-msgstr "Choisissez si vous souhaitez afficher le message complet ou seulement une exceprt, sur la page d'accueil."
+msgstr "あなたがホームページ上で完全なポスト、またはexceprtのみを表示したいかどうかを選択します。"
 
 #: includes/admin/content.php:32
 #@ startbox
 msgid "Post Content in Archives"
-msgstr "Poster contenu dans les archives"
+msgstr "アーカイブにコンテンツを投稿"
 
 #: includes/admin/content.php:40
 #@ startbox
 msgid "Choose whether you would like to display the full post, or only an exceprt, on all other blog pages."
-msgstr "Choisissez si vous souhaitez afficher le message complet ou seulement une exceprt, sur tous les autres pages de blog."
+msgstr "あなたが他のすべてのブログページに完全なポスト、またはexceprtのみを表示したいかどうかを選択します。"
 
 #: includes/admin/content.php:44
 #@ startbox
 msgid "Read More text"
-msgstr "Lire la suite du texte"
+msgstr "より多くのテキストを読む"
 
 #: includes/admin/content.php:45
 #@ startbox
 msgid "Continue Reading: [title] &rarr;"
-msgstr "Lire la suite: [title] &rarr;"
+msgstr "続きを読む: [title] &rarr;"
 
 #: includes/admin/content.php:48
 #@ startbox
 msgid "Specify your own link text for the \"Read More\" link on posts."
-msgstr "Spécifiez votre propre texte du lien pour le fichier \"Lire la suite\" sur les messages."
+msgstr "\\記事のリンク\\\"詳細\\を読む\\\"ための独自のリンクのテキストを指定します。"
 
 #: includes/admin/content.php:52
 #@ startbox
 msgid "Display Author Bio on Single posts"
-msgstr "Afficher Bio Auteur de messages simples"
+msgstr "シングルポストに著者の略歴を表示"
 
 #: includes/admin/content.php:54
 #: includes/admin/content.php:173
@@ -218,544 +218,544 @@ msgstr "Afficher Bio Auteur de messages simples"
 #: includes/functions/admin_settings.php:774
 #@ startbox
 msgid "Disabled"
-msgstr "handicapé"
+msgstr "使用禁止"
 
 #: includes/admin/content.php:55
 #@ startbox
 msgid "Show Before Post Content"
-msgstr "Voir Avant Contenu Message"
+msgstr "記事のコンテンツを表示する前に"
 
 #: includes/admin/content.php:56
 #@ startbox
 msgid "Show After Post Content"
-msgstr "Montrer Après Contenu Message"
+msgstr "投稿内容の後に表示する"
 
 #: includes/admin/content.php:59
 #@ startbox
 msgid "Author bio only displays if author provides a description in their profile."
-msgstr "Biographie de l'auteur ne s'affiche que si l'auteur donne une description de leur profil."
+msgstr "著者は、自分のプロファイルに説明を提供する場合著者略歴にのみ表示されます。"
 
 #: includes/admin/content.php:62
 #@ startbox
 msgid "Select where you would like author bios to appear when viewing a single post (or disable them altogether)."
-msgstr "Sélectionnez l'endroit où vous souhaitez bios auteur d'apparaître lors de l'affichage d'un message unique (ou les désactiver complètement)."
+msgstr "あなたが単一のポストを（またはそれらを完全に無効にする）を表示する場合に著者BIOSが表示したい場所を選択します。"
 
 #: includes/admin/content.php:67
 #@ startbox
 msgid "Post Meta"
-msgstr "poster Meta"
+msgstr "メタを投稿"
 
 #: includes/admin/content.php:68
 #, php-format
 #@ startbox
 msgid "Control the meta information displayed on each post. You can use any %s you like, including: [author], [categories], [comments], [date], [time], [tags] and [edit]."
-msgstr "Contrôler les méta-informations affichées sur chaque poste. Vous pouvez utiliser n'importe% s vous voulez, y compris: [auteur], [catégories] [commentaires], le [date], [HEURE], [tags] et [edit]."
+msgstr "それぞれの投稿に表示されたメタ情報を制御します。次のものを含む、任意の％sはあなたが好きなを使用することができます [author], [categories], [comments], [date], [time], [tags] and [edit]."
 
 #: includes/admin/content.php:69
 #@ startbox
 msgid "Use shortcodes to control what information you would like to display for each post (e.g. Post author, category, comment count, etc)."
-msgstr "Utilisez shortcodes de contrôler les informations que vous souhaitez afficher pour chaque poste (p. ex post l'auteur, la catégorie, le nombre de commentaires, etc.)"
+msgstr "（例えばポスト著者、カテゴリ、コメント数など）は、それぞれのポストのために表示したいと思いますどのような情報を制御するためにショートコードを使用します。"
 
 #: includes/admin/content.php:73
 #@ startbox
 msgid "Post Header Meta"
-msgstr "Poster Meta-tête"
+msgstr "ヘッダのmetaを投稿"
 
 #: includes/admin/content.php:74
 #@ startbox
 msgid "Published in [categories] on [date] [edit]"
-msgstr "Publié dans [catégories] au [date] [modifier]"
+msgstr "に公表 [categories] on [date] [edit]"
 
 #: includes/admin/content.php:81
 #@ startbox
 msgid "Post Footer Meta"
-msgstr "Poster Meta Footer"
+msgstr "フッターメタを投稿"
 
 #: includes/admin/content.php:90
 #@ startbox
 msgid "Post Thumbnails"
-msgstr "poster Miniatures"
+msgstr "サムネイルを投稿する"
 
 #: includes/admin/content.php:94
 #@ startbox
 msgid "Enable Post Thumbnails"
-msgstr "Activer Vignettes postales"
+msgstr "投稿サムネイルを有効に"
 
 #: includes/admin/content.php:97
 #@ startbox
 msgid "Enable thumbnails for posts in archive lists (Default: true)."
-msgstr "Activer les vignettes pour les messages dans les listes d'archive (par défaut: true)."
+msgstr "アーカイブリストの投稿（デフォルト：true）のサムネイルを有効にします。"
 
 #: includes/admin/content.php:101
 #@ startbox
 msgid "Include Post Thumbnails in RSS feed"
-msgstr "Inclure les vignettes Poste Flux RSS"
+msgstr "RSSフィードのポストサムネイルを含める"
 
 #: includes/admin/content.php:104
 #@ startbox
 msgid "Enable thumbnails for posts in RSS feeds (Default: true)."
-msgstr "Activer les vignettes pour les messages en flux RSS (par défaut: true)."
+msgstr "RSSフィード内の投稿（デフォルト：true）のサムネイルを有効にします。"
 
 #: includes/admin/content.php:108
 #@ startbox
 msgid "Use any attached image if no Featured Image specified"
-msgstr "Utilisez n'importe quelle image ci-jointe si aucune image spécifiée en vedette"
+msgstr "全く注目の画像が指定されていない場合は接続されているすべての画像を使用して、"
 
 #: includes/admin/content.php:111
 #@ startbox
 msgid "If there is no user-specified \"Featured Image\" for a particular post, the theme will automatically attempt to use the last attached image (Default: true)."
-msgstr "Si aucun utilisateur n'est spécifié par \"Image en vedette\" pour un poste donné, le thème sera automatiquement essayer d'utiliser la dernière image ci-jointe (par défaut: true)."
+msgstr "存在しない場合には、ユーザが指定した\"注目の画像は\"特定のポストのために、テーマが自動的に最後添付画像（デフォルト：true）を使用しようとします。を"
 
 #: includes/admin/content.php:115
 #@ startbox
 msgid "Hide thumbnails if no preview available"
-msgstr "Masquer les vignettes si aucun aperçu disponible"
+msgstr "サムネイルを非表示にした場合は使用できませんプレビュー"
 
 #: includes/admin/content.php:118
 #@ startbox
 msgid "Disable the default \"No Preview Available\" image that is used when no post thumbnail is found."
-msgstr "Désactivez l'option par défaut \"Aucun aperçu disponible\" image qui est utilisée lorsque aucune miniature poste est à pourvoir."
+msgstr "デフォルトを無効にします\\投稿サムネイルが発見されていない場合に、使用されていません\\\"いやプレビュー可能な\"イメージ。"
 
 #: includes/admin/content.php:122
 #@ startbox
 msgid "Default Thumbnail"
-msgstr "Vignette par défaut"
+msgstr "デフォルトのサムネイル"
 
 #: includes/admin/content.php:124
 #@ startbox
 msgid "Upload/Select your own custom defoult thumbnail to use when no available post thumbnail is found."
-msgstr "Upload / Choisissez votre propre miniature defoult personnalisée à utiliser quand aucun post thumbnail disponible a été détecté."
+msgstr "アップロード/使用可能な投稿サムネイルが見つからないときに使用するために、独自のカスタムdefoultのサムネイルを選択します。"
 
 #: includes/admin/content.php:128
 #@ startbox
 msgid "Thumbnail Width"
-msgstr "Largeur Vignette"
+msgstr "サムネイルの幅"
 
 #: includes/admin/content.php:133
 #@ startbox
 msgid "Specify your own thumbnail width in pixels (Default: 200)."
-msgstr "Spécifiez la largeur de votre propre miniature en pixels (par défaut: 200)."
+msgstr "\tあなた自身の縮小画像の幅 (ピクセル単位) を指定します (既定: 200)。"
 
 #: includes/admin/content.php:137
 #@ startbox
 msgid "Thumbnail Height"
-msgstr "Hauteur Vignette"
+msgstr ""
 
 #: includes/admin/content.php:142
 #@ startbox
 msgid "Specify your own thumbnail height in pixels (Default: 200)."
-msgstr "Précisez votre taille miniature propre en pixels (par défaut: 200)."
+msgstr ""
 
 #: includes/admin/content.php:146
 #@ startbox
 msgid "Image Crop Alignment"
-msgstr "Alignement recadrer l'image"
+msgstr ""
 
 #: includes/admin/content.php:148
 #@ startbox
 msgid "Top Left"
-msgstr "En haut à gauche"
+msgstr ""
 
 #: includes/admin/content.php:149
 #@ startbox
 msgid "Top Center"
-msgstr "En haut au centre"
+msgstr ""
 
 #: includes/admin/content.php:150
 #@ startbox
 msgid "Top Right"
-msgstr "En haut à droite"
+msgstr ""
 
 #: includes/admin/content.php:151
 #@ startbox
 msgid "Middle Left"
-msgstr "Moyen-Gauche"
+msgstr ""
 
 #: includes/admin/content.php:152
 #: includes/functions/admin_settings.php:784
 #@ startbox
 msgid "Center"
-msgstr "centre"
+msgstr ""
 
 #: includes/admin/content.php:153
 #@ startbox
 msgid "Middle Right"
-msgstr "droit Orient"
+msgstr ""
 
 #: includes/admin/content.php:154
 #@ startbox
 msgid "Bottom Left"
-msgstr "En bas à gauche"
+msgstr ""
 
 #: includes/admin/content.php:155
 #@ startbox
 msgid "Bottom Center"
-msgstr "En bas au centre"
+msgstr ""
 
 #: includes/admin/content.php:156
 #@ startbox
 msgid "Bottom Right"
-msgstr "En bas à droite"
+msgstr ""
 
 #: includes/admin/content.php:160
 #@ startbox
 msgid "Select where you would like the thumbnails to center the crop (Default: Top Center)."
-msgstr "Sélectionnez l'emplacement où vous souhaitez les vignettes pour centre de la culture (par défaut: En haut au centre)."
+msgstr ""
 
 #: includes/admin/content.php:165
 #@ startbox
 msgid "Post Navigation"
-msgstr "Message navigation"
+msgstr ""
 
 #: includes/admin/content.php:166
 #@ startbox
 msgid "Specify how navigation for prev/next posts should appear."
-msgstr "Spécifiez la manière dont la navigation pour diff / messages prochaines devrait apparaître."
+msgstr ""
 
 #: includes/admin/content.php:167
 #@ startbox
 msgid "Select where post navigation should appear for Blog, Archive and Single Post views"
-msgstr "Sélectionnez l'emplacement où doit apparaître poste de navigation pour les écrits, archives et vues poste unique"
+msgstr ""
 
 #: includes/admin/content.php:171
 #@ startbox
 msgid "Blog & Archives Navigation"
-msgstr "Blog & Archives navigation"
+msgstr ""
 
 #: includes/admin/content.php:174
 #: includes/admin/content.php:187
 #@ startbox
 msgid "Show Above Posts"
-msgstr "Montrer les messages-dessus"
+msgstr ""
 
 #: includes/admin/content.php:175
 #: includes/admin/content.php:188
 #@ startbox
 msgid "Show Below Posts"
-msgstr "Voir ci-dessous les messages"
+msgstr ""
 
 #: includes/admin/content.php:176
 #: includes/admin/content.php:189
 #@ startbox
 msgid "Show Above & Below Posts"
-msgstr "Voir Above & Below messages"
+msgstr ""
 
 #: includes/admin/content.php:184
 #@ startbox
 msgid "Single Post Navigation"
-msgstr "Single Post navigation"
+msgstr ""
 
 #: includes/admin/content.php:210
 #, php-format
 #@ startbox
 msgid "%s Older posts"
-msgstr "%s Articles plus anciens"
+msgstr ""
 
 #: includes/admin/content.php:211
 #, php-format
 #@ startbox
 msgid "Newer posts %s"
-msgstr "Newer posts %s"
+msgstr ""
 
 #: includes/admin/footer.php:8
 #@ startbox
 msgid "Footer Settings"
-msgstr "Paramètres de pied de page"
+msgstr ""
 
 #: includes/admin/footer.php:10
 #@ startbox
 msgid "Select what text (if any) you would like to appear in the footer area of your site."
-msgstr "Sélectionnez ce texte (le cas échéant) que vous souhaitez voir apparaître dans la zone de pied de page de votre site."
+msgstr ""
 
 #: includes/admin/footer.php:16
 #@ startbox
 msgid "Enable Return to Top link"
-msgstr "Activer Revenez au lien de Haut"
+msgstr ""
 
 #: includes/admin/footer.php:18
 #@ startbox
 msgid "Include a link for users to return to the top of the site (Default: true)."
-msgstr "Inclure un lien permettant aux utilisateurs de revenir au début du site (par défaut: true)."
+msgstr ""
 
 #: includes/admin/footer.php:22
 #: includes/extensions/theme-customizer.php:233
 #@ startbox
 #@ default
 msgid "Enable Admin Links"
-msgstr "Activer Liens de l'Admin"
+msgstr ""
 
 #: includes/admin/footer.php:24
 #@ startbox
 msgid "Include admin links in the site footer (Default: false)."
-msgstr "Inclure des liens admin dans le pied de page (par défaut: false)."
+msgstr ""
 
 #: includes/admin/footer.php:29
 #@ startbox
 msgid "Footer Text:"
-msgstr "Pied de page du texte:"
+msgstr ""
 
 #: includes/admin/footer.php:30
 #@ startbox
 msgid "Full HTML and Shortcodes are allowed."
-msgstr "HTML complets et abrégés sont autorisés."
+msgstr ""
 
 #: includes/admin/footer.php:31
 #, php-format
 #@ startbox
 msgid "[copyright year=\"%s\"] [site_link].<br/>Proudly powered by [WordPress] and [StartBox]."
-msgstr "[copyright year = \"% s\"] [site_link]. <br/> Fièrement propulsé par [WordPress] et [StartBox]."
+msgstr ""
 
 #: includes/admin/footer.php:32
 #@ startbox
 msgid "Display any custom text you would like, including full HTML if your user account permits it."
-msgstr "Afficher le texte personnalisé que vous souhaitez, y compris HTML complet que si votre compte d'utilisateur le permet."
+msgstr ""
 
 #: includes/admin/header.php:8
 #@ startbox
 msgid "Branding"
-msgstr "Branding"
+msgstr ""
 
 #: includes/admin/header.php:10
 #@ startbox
 msgid "Control various aspects of the header area of your site, including logo, site description, favicon and navigation."
-msgstr "Contrôler divers aspects de l'en-tête de votre site, y compris le logo, description du site, favicon et la navigation."
+msgstr ""
 
 #: includes/admin/header.php:17
 #@ startbox
 msgid "Upload an image or specify some text to use for your logo."
-msgstr "Téléchargez une image ou spécifier le texte à utiliser pour votre logo."
+msgstr ""
 
 #: includes/admin/header.php:18
 #@ startbox
 msgid "Upload or select an image to use for the site logo. If you specify any text the site will display that instead of any selected image."
-msgstr "Télécharger ou sélectionner une image à utiliser pour le logo du site. Si vous spécifiez un texte sur le site s'affichera au lieu d'une image sélectionnée."
+msgstr ""
 
 #: includes/admin/header.php:23
 #@ startbox
 msgid "Display Site Tagline"
-msgstr "Afficher Slogan du site"
+msgstr ""
 
 #: includes/admin/header.php:24
 #, php-format
 #@ startbox
 msgid "You can set your site Tagline in %1$sSettings > General%2$s."
-msgstr "Vous pouvez configurer votre site dans %1$sSettings > General%2%s."
+msgstr ""
 
 #: includes/admin/header.php:25
 #@ startbox
 msgid "Show your site tagline in the header."
-msgstr "Montrez votre slogan site dans l'en-tête."
+msgstr ""
 
 #: includes/admin/header.php:30
 #@ startbox
 msgid "Favicon"
-msgstr "favicon"
+msgstr ""
 
 #: includes/admin/header.php:31
 #, php-format
 #@ startbox
 msgid "The %s is a small logo/icon that displays alongside your URL or in the page tab of most browsers."
-msgstr "Le% s est une petite icône logo/qui affiche à côté de votre URL ou dans l'onglet page de la plupart des navigateurs."
+msgstr ""
 
 #: includes/admin/header.php:33
 #@ startbox
 msgid "Specify a custom favicon (small 16px image) for use in the navigation bar or browser tab for your site"
-msgstr "Spécifier un favicon personnalisé (16px petite image) pour utilisation dans la barre de navigation ou le navigateur onglet pour votre site"
+msgstr ""
 
 #: includes/admin/help.php:8
 #@ startbox
 msgid "Need Help?"
-msgstr "Besoin d'aide ?"
+msgstr ""
 
 #: includes/admin/help.php:16
 #@ startbox
 msgid "Struggling with some of the theme options or settings? Click on the \"Help\" tab above."
-msgstr "Aux prises avec certains des paramètres ou options de thème ? Cliquez sur l'onglet « Aide » ci-dessus."
+msgstr ""
 
 #: includes/admin/layout.php:8
 #@ startbox
 msgid "Layout Settings"
-msgstr "Paramètres de mise en page"
+msgstr ""
 
 #: includes/admin/layout.php:10
 #@ startbox
 msgid "Take full control over the layout throughout your site."
-msgstr "Prendre le contrôle complet sur la mise en page tout au long de votre site."
+msgstr ""
 
 #: includes/admin/layout.php:16
 #@ startbox
 msgid "Homepage Layout:"
-msgstr "Mise en page page d'accueil :"
+msgstr ""
 
 #: includes/admin/layout.php:17
 #@ startbox
 msgid "Select content and sidebar alignment. Choose from any of the available layouts."
-msgstr "Sélectionnez le contenu et l'alignement latéral. Choisissez parmi les modèles disponibles."
+msgstr ""
 
 #: includes/admin/layout.php:20
 #@ startbox
 msgid "Select which page layout you would like to use for the homepage."
-msgstr "Sélectionnez la mise en page que vous souhaitez utiliser pour la page d'accueil."
+msgstr ""
 
 #: includes/admin/layout.php:24
 #@ startbox
 msgid "Interior Page Layout:"
-msgstr "Intérieur de la mise en Page :"
+msgstr ""
 
 #: includes/admin/layout.php:25
 #@ startbox
 msgid "Select content and sidebar alignment. This can be changed on each page individually."
-msgstr "Sélectionnez alignement de contenu et de la barre latérale. Cela peut être changé à chaque page individuellement."
+msgstr ""
 
 #: includes/admin/layout.php:28
 #@ startbox
 msgid "Select the default layout for your interior pages."
-msgstr "Sélectionnez la disposition par défaut pour les pages intérieures."
+msgstr ""
 
 #: includes/admin/layout.php:32
 #@ startbox
 msgid "Single Post Layout:"
-msgstr "Mise en page unique :"
+msgstr ""
 
 #: includes/admin/layout.php:33
 #@ startbox
 msgid "Select content and sidebar alignment. This can be changed on each post individually."
-msgstr "Sélectionnez alignement de contenu et de la barre latérale. Ceci peut être modifié sur chaque poste individuellement."
+msgstr ""
 
 #: includes/admin/layout.php:36
 #@ startbox
 msgid "Select the default layout for your single post views."
-msgstr "Sélectionnez la disposition par défaut pour votre point de vue un message."
+msgstr ""
 
 #: includes/admin/navigation.php:8
 #@ startbox
 msgid "Navigation Settings"
-msgstr "Paramètres de navigation"
+msgstr ""
 
 #: includes/admin/navigation.php:10
 #@ startbox
 msgid "These options allow you to take full control of your site's navigation. Select which menu to display, where to display it, how deep the drop-down menus should go, whether to include a \"Home\" link at the beginning, and what (if any) extras to include (e.g. social links, site-wide search)."
-msgstr "Ces options vous permettent de prendre le contrôle total de la navigation de votre site. Sélectionner quel menu d'affichage, où pour l'afficher, comment profondément les menus déroulants doivent aller, s'il faut inclure un lien « Accueil » au début et ce que (le cas échéant) options à inclure (p. ex. sociales liens, recherche de l'ensemble du site)."
+msgstr ""
 
 #: includes/admin/navigation.php:16
 #: includes/functions/startbox.php:119
 #@ startbox
 #@ StartBox
 msgid "Primary Navigation"
-msgstr "navigation principale"
+msgstr ""
 
 #: includes/admin/navigation.php:22
 #@ startbox
 msgid "This is the main menu for your site."
-msgstr "Ceci est le menu principal de votre site."
+msgstr ""
 
 #: includes/admin/navigation.php:27
 #: includes/functions/startbox.php:119
 #@ startbox
 #@ StartBox
 msgid "Secondary Navigation"
-msgstr "navigation secondaire"
+msgstr ""
 
 #: includes/admin/navigation.php:32
 #@ startbox
 msgid "This menu should only be used if you want two menus at the top of your site."
-msgstr "Ce menu ne doit être utilisée que si vous voulez que deux menus en haut de votre site."
+msgstr ""
 
 #: includes/admin/navigation.php:37
 #@ startbox
 msgid "Footer Navigation"
-msgstr "Footer Navigation"
+msgstr ""
 
 #: includes/admin/navigation.php:41
 #@ startbox
 msgid "Before Footer Wrap"
-msgstr "Avant Wrap Footer"
+msgstr ""
 
 #: includes/admin/navigation.php:42
 #@ startbox
 msgid "Before Footer Widgets"
-msgstr "Avant Widgets Footer"
+msgstr ""
 
 #: includes/admin/navigation.php:43
 #@ startbox
 msgid "After Footer Widgets"
-msgstr "Après Widgets Footer"
+msgstr ""
 
 #: includes/admin/navigation.php:44
 #@ startbox
 msgid "Footer Left (above copyright)"
-msgstr "Pied gauche (au-dessus du droit d'auteur)"
+msgstr ""
 
 #: includes/admin/navigation.php:45
 #@ startbox
 msgid "Footer Right (above admin links)"
-msgstr "Pied droit (au-dessus des liens d'admin)"
+msgstr ""
 
 #: includes/admin/navigation.php:46
 #@ startbox
 msgid "Bottom of Page"
-msgstr "Bas de la page"
+msgstr ""
 
 #: includes/admin/navigation.php:50
 #@ startbox
 msgid "Use this if you want a menu in the footer of your site."
-msgstr "Utilisez cette option si vous voulez un menu en bas de page de votre site."
+msgstr ""
 
 #: includes/admin/seo.php:5
 #@ startbox
 msgid "Basic SEO Settings"
-msgstr "Réglages de base SEO"
+msgstr ""
 
 #: includes/admin/seo.php:13
 #@ startbox
 msgid "These are only rudimentary options that will disappear as soon as you activate an SEO plugin. I highly recommend you use the <a href=\"http://wordpress.org/extend/plugins/wordpress-seo/\" target=\"_blank\">WordPress SEO Plugin</a> instead of these."
-msgstr "Ce ne sont que des options rudimentaires qui disparaîtront dès que vous activez un plugin SEO. Je vous recommande fortement d'utiliser la <a href=\"http://wordpress.org/extend/plugins/wordpress-seo/\" target=\"_blank\">WordPress SEO plugin </a> à la place de ceux-ci."
+msgstr ""
 
 #: includes/admin/seo.php:17
 #@ startbox
 msgid "Site Description"
-msgstr "description du site"
+msgstr ""
 
 #: includes/admin/seo.php:19
 #@ startbox
 msgid "Try to keep this brief."
-msgstr "Essayez d'être bref."
+msgstr ""
 
 #: includes/admin/seo.php:23
 #@ startbox
 msgid "Site-wide Keywords"
-msgstr "L'ensemble du site Mots-clés"
+msgstr ""
 
 #: includes/admin/seo.php:25
 #@ startbox
 msgid "Comma separated (e.g. WordPress, themes, etc)"
-msgstr "Séparés par des virgules (par exemple WordPress, thèmes, etc)"
+msgstr ""
 
 #: includes/admin/upgrade.php:8
 #@ startbox
 msgid "Version Information"
-msgstr "Informations sur la version"
+msgstr ""
 
 #: includes/admin/upgrade.php:15
 #, php-format
 #@ startbox
 msgid "StartBox Version: %s"
-msgstr "Version STARTBOX: %s"
+msgstr ""
 
 #: includes/admin/upgrade.php:19
 #@ startbox
 msgid "Enable Automatic Updates"
-msgstr "Activer Mises à jour automatiques"
+msgstr ""
 
 #: includes/extensions/layouts.php:106
 #@ startbox
 msgid "Layout"
-msgstr "disposition"
+msgstr ""
 
 #: includes/extensions/layouts.php:154
 #@ startbox
 msgid "Specify a custom page layout for this content."
-msgstr "Spécifiez une mise en page personnalisée pour ce contenu."
+msgstr ""
 
 #: includes/extensions/layouts.php:158
 #: includes/extensions/layouts.php:214
@@ -791,67 +791,67 @@ msgstr ""
 #, php-format
 #@ startbox
 msgid "Continue Reading %s"
-msgstr "Continuer la lecture %s"
+msgstr ""
 
 #: includes/extensions/shortcodes.php:207
 #, php-format
 #@ startbox
 msgid "View all posts by %s"
-msgstr "Voir tous les messages de %s"
+msgstr ""
 
 #: includes/extensions/shortcodes.php:223
 #@ startbox
 msgid "Tagged: "
-msgstr "Tagged:"
+msgstr "タグ: "
 
 #: includes/extensions/shortcodes.php:236
 #@ startbox
 msgid "No Comments"
-msgstr "Pas de commentaire"
+msgstr "コメントはありません"
 
 #: includes/extensions/shortcodes.php:236
 #@ startbox
 msgid "1 Comment"
-msgstr "1 Commentaire"
+msgstr "\t1 つのコメント"
 
 #: includes/extensions/shortcodes.php:236
 #@ startbox
 msgid "% Comments"
-msgstr "% Commentaires"
+msgstr "\t% コメント"
 
 #: includes/extensions/shortcodes.php:249
 #, php-format
 #@ startbox
 msgid "About %s"
-msgstr "À propos de %s"
+msgstr ""
 
 #: includes/extensions/shortcodes.php:252
 #, php-format
 #@ startbox
 msgid "View all posts by %s &raquo;"
-msgstr "Voir tous les messages de %s &raquo;"
+msgstr ""
 
 #: includes/extensions/shortcodes.php:592
 #@ startbox
 msgid "Sorry, you must be logged in to view this content."
-msgstr "Désolé, vous devez être connecté pour voir ce contenu."
+msgstr ""
 
 #: includes/extensions/shortcodes.php:681
 #: includes/functions/admin_settings.php:616
 #@ startbox
 msgid "Pages"
-msgstr "Pages"
+msgstr ""
 
 #: includes/extensions/shortcodes.php:708
 #: includes/functions/admin_settings.php:617
 #@ startbox
 msgid "Categories"
-msgstr "catégories"
+msgstr ""
 
 #: includes/extensions/shortcodes.php:718
 #@ startbox
 msgid "Posts by Category"
-msgstr "Messages par catégorie"
+msgstr ""
 
 #: includes/extensions/sidebars.php:26
 #@ startbox
@@ -1454,43 +1454,43 @@ msgstr ""
 #, php-format
 #@ startbox
 msgid "Required fields are marked %s"
-msgstr "Les champs obligatoires sont indiqués %s"
+msgstr ""
 
 #: includes/functions/comment_format.php:19
 #@ startbox
 msgid "Name"
-msgstr "Nom"
+msgstr ""
 
 #: includes/functions/comment_format.php:21
 #@ startbox
 msgid "Email"
-msgstr "Email"
+msgstr ""
 
 #: includes/functions/comment_format.php:23
 #@ startbox
 msgid "Website"
-msgstr "site Web"
+msgstr ""
 
 #: includes/functions/comment_format.php:27
 #@ startbox
 msgid "Add Your Comment"
-msgstr "Ajouter un commentaire"
+msgstr ""
 
 #: includes/functions/comment_format.php:31
 #@ startbox
 msgid "Your email address will <strong>not</strong> be published."
-msgstr "Votre adresse email ne sera pas être publié."
+msgstr ""
 
 #: includes/functions/comment_format.php:41
 #@ startbox
 msgid "Get a Gravatar!"
-msgstr "Obtenir un Gravatar!"
+msgstr ""
 
 #: includes/functions/comment_format.php:49
 #@ startbox
 msgctxt "noun"
 msgid "Comment"
-msgstr "commenter"
+msgstr ""
 
 #: includes/functions/comment_format.php:111
 #, php-format
@@ -1501,132 +1501,132 @@ msgstr ""
 #: includes/functions/comment_format.php:113
 #@ startbox
 msgid "\\t\\t\\t\\t\\t<span class='unapproved'>Your comment is awaiting moderation.</span>\n"
-msgstr "\\t\\t\\t\\t\\t<span class='unapproved'>Votre commentaire est en attente de modération.</span>\n"
+msgstr ""
 
 #: includes/functions/comment_format.php:121
 #@ startbox
 msgid "Reply to this Comment"
-msgstr "Répondre à ce commentaire"
+msgstr ""
 
 #: includes/functions/comment_format.php:122
 #@ startbox
 msgid "Log in to reply."
-msgstr "Connectez-vous pour répondre."
+msgstr ""
 
 #: includes/functions/custom.php:286
 #@ startbox
 msgid "Suggested"
-msgstr "suggéré"
+msgstr ""
 
 #: includes/functions/hooks.php:111
 #, php-format
 #@ startbox
 msgid "Search Results for: %s"
-msgstr "Résultats de la recherche pour: %s"
+msgstr ""
 
 #: includes/functions/hooks.php:112
 #, php-format
 #@ startbox
 msgid "Category Archives: %s"
-msgstr "Archives de catégorie: %s"
+msgstr ""
 
 #: includes/functions/hooks.php:113
 #, php-format
 #@ startbox
 msgid "Tag Archives: %s"
-msgstr "Tag Archives: %s"
+msgstr ""
 
 #: includes/functions/hooks.php:114
 #@ startbox
 msgid "Not Found"
-msgstr "Introuvable"
+msgstr ""
 
 #: includes/functions/hooks.php:118
 #, php-format
 #@ startbox
 msgid "Page %s"
-msgstr "Cette page %s"
+msgstr ""
 
 #: includes/functions/hooks.php:162
 #@ startbox
 msgid "Skip to content"
-msgstr "Passer au contenu"
+msgstr ""
 
 #: includes/functions/hooks.php:222
 #@ startbox
 msgid "Author Archives: "
-msgstr "Archives Auteur:"
+msgstr "\t著者アーカイブ："
 
 #: includes/functions/hooks.php:227
 #@ startbox
 msgid "Category Archives:"
-msgstr "Archives de catégorie:"
+msgstr "\tカテゴリー アーカイブ："
 
 #: includes/functions/hooks.php:232
 #@ startbox
 msgid "Search Results for:"
-msgstr "Résultats de la recherche pour:"
+msgstr "\tの検索結果："
 
 #: includes/functions/hooks.php:237
 #@ startbox
 msgid "Tag Archives:"
-msgstr "Tag Archives:"
+msgstr "\tタグ別アーカイブ："
 
 #: includes/functions/hooks.php:240
 #@ startbox
 msgid "Archives:"
-msgstr "Archives:"
+msgstr ""
 
 #: includes/functions/hooks.php:242
 #, php-format
 #@ startbox
 msgid "<span>Daily Archives:</span> %s"
-msgstr "<span>Archives quotidiennes:</span> %s"
+msgstr ""
 
 #: includes/functions/hooks.php:244
 #, php-format
 #@ startbox
 msgid "<span>Monthly Archives:</span> %s"
-msgstr "<span>Archives mensuelles: </span> %s"
+msgstr ""
 
 #: includes/functions/hooks.php:246
 #, php-format
 #@ startbox
 msgid "<span>Yearly Archives:</span> %s"
-msgstr "<span>Archives annuel:</span> %s"
+msgstr ""
 
 #: includes/functions/hooks.php:248
 #@ startbox
 msgid "404 - File Not Found"
-msgstr "404 - Fichier introuvable"
+msgstr "404 - ファイルが見つかりません"
 
 #: includes/functions/hooks.php:250
 #@ startbox
 msgid "Content Archives:"
-msgstr "Archives Contenu:"
+msgstr ""
 
 #: includes/functions/hooks.php:252
 #@ startbox
 msgid "Blog Archives"
-msgstr "Archives du blog"
+msgstr ""
 
 #: includes/functions/hooks.php:281
 #@ startbox
 msgid "Sorry, but we were unable to find what you were looking for. Try searching or browsing our content below."
-msgstr "Désolé, mais nous n'avons pas pu trouver ce que vous recherchez. Essayez ou naviguez sur notre contenu ci-dessous."
+msgstr "申し訳ありませんが、我々はあなたが探していたものを見つけることができませんでした。検索したり、下私たちのコンテンツを閲覧してみてください。"
 
 #: includes/functions/menus.php:157
 #: includes/widgets/social.php:65
 #, php-format
 #@ startbox
 msgid "Connect on %s"
-msgstr "Connectez-vous sur %s"
+msgstr ""
 
 #: includes/functions/menus.php:161
 #: includes/widgets/social.php:63
 #@ startbox
 msgid "Subscribe via RSS"
-msgstr "S'abonner via RSS"
+msgstr ""
 
 #: includes/functions/sidebars.php:61
 #@ startbox
@@ -1662,6 +1662,31 @@ msgstr ""
 #@ startbox
 msgid "This is the last footer column. Only use this after using all other columns."
 msgstr ""
+
+#: includes/functions/startbox.php:251
+#@ startbox
+msgid "Next <span>&gt;</span>"
+msgstr "次へ<span&gt;</span>"
+
+#: includes/functions/startbox.php:252
+#@ startbox
+msgid "<span>&lt;</span> Previous"
+msgstr "\t<span>&lt;</span>前"
+
+#: includes/functions/startbox.php:253
+#@ startbox
+msgid "more"
+msgstr "もっと見る"
+
+#: includes/functions/startbox.php:254
+#@ startbox
+msgid "Less"
+msgstr "\t以下"
+
+#: includes/functions/startbox.php:255
+#@ startbox
+msgid "Follow"
+msgstr "フォロー"
 
 #: includes/functions/upgrade.php:96
 #@ startbox
@@ -2158,51 +2183,26 @@ msgstr ""
 #: page-archives.php:34
 #@ startbox
 msgid "Archives by Author"
-msgstr "Archives par auteur"
+msgstr ""
 
 #: page-listcategories.php:20
 #: page.php:16
 #@ startbox
 msgid "Pages: "
-msgstr "Pages:"
+msgstr ""
 
 #: search.php:17
 #@ startbox
 msgid "Nothing Found"
-msgstr "rien trouvé"
+msgstr ""
 
 #: search.php:19
 #@ startbox
 msgid "Sorry, but nothing matched your search criteria. Please try again with some different keywords."
-msgstr "Désolé, mais rien ne correspond à vos critères de recherche. S'il vous plaît essayez de nouveau avec quelques mots clés différents."
-
-#: includes/functions/startbox.php:251
-#@ startbox
-msgid "Next <span>&gt;</span>"
 msgstr ""
-
-#: includes/functions/startbox.php:252
-#@ startbox
-msgid "<span>&lt;</span> Previous"
-msgstr ""
-
-#: includes/functions/startbox.php:253
-#@ startbox
-msgid "more"
-msgstr "plus "
-
-#: includes/functions/startbox.php:254
-#@ startbox
-msgid "Less"
-msgstr "\t"
-
-#: includes/functions/startbox.php:255
-#@ startbox
-msgid "Follow"
-msgstr "Suivre"
 
 #: includes/functions/startbox.php:256
 #@ startbox
 msgid "More: "
-msgstr "Plus: "
+msgstr "もっと見る: "
 
