@@ -8,33 +8,44 @@
  * @subpackage Comments
  */
 
-// Filter the default comment form
-function sb_comment_defaults($defaults) {
-	$commenter = wp_get_current_commenter();
-	$req = get_option( 'require_name_email' );
-	$aria_req = ( $req ? " aria-required='true'" : '' );
+/**
+ * Filter the default comment form with our own values
+ *
+ * @since  Unknown
+ * @param  array $defaults The WP comment form defaults
+ * @return array           Our updated defaults
+ */
+function sb_comment_defaults( $defaults ) {
+	$commenter     = wp_get_current_commenter();
+	$req           = get_option( 'require_name_email' );
+	$aria_req      = ( $req ? " aria-required='true'" : '' );
 	$required_text = sprintf( ' ' . __('Required fields are marked %s', 'startbox'), '<span class="required">*</span>' );
 
 	$fields =  array(
 		'author' => '<p class="comment-form-author">' . '<label for="author">' . __( 'Name', 'startbox' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) .
-		            '<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" title="' . __( 'Your Name', 'startbox' ) . '" size="30"' . $aria_req . ' /></p>',
+					'<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" title="' . __( 'Your Name', 'startbox' ) . '" size="30"' . $aria_req . ' /></p>',
 		'email'  => '<p class="comment-form-email"><label for="email">' . __( 'Email', 'startbox' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) .
-		            '<input id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" title="' . __( 'Your Email', 'startbox' ) . '" size="30"' . $aria_req . ' /></p>',
+					'<input id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" title="' . __( 'Your Email', 'startbox' ) . '" size="30"' . $aria_req . ' /></p>',
 		'url'    => '<p class="comment-form-url"><label for="url">' . __( 'Website', 'startbox' ) . '</label>' .
-		            '<input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" title="' . __( 'Your Website (optional)', 'startbox' ) . '" size="30"/></p>',
+					'<input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" title="' . __( 'Your Website (optional)', 'startbox' ) . '" size="30"/></p>',
 	);
 
-	$defaults['title_reply'] =  __( 'Add Your Comment', 'startbox' ).' <a href="http://gravatar.com" class="h3-link">(Get a Gravatar)</a>';
-	$defaults['fields'] = apply_filters( 'comment_form_default_fields', $fields );
-	$defaults['comment_field'] = '';
+	$defaults['title_reply']          =  __( 'Add Your Comment', 'startbox' ).' <a href="http://gravatar.com" class="h3-link">(Get a Gravatar)</a>';
+	$defaults['fields']               = apply_filters( 'comment_form_default_fields', $fields );
+	$defaults['comment_field']        = '';
 	$defaults['comment_notes_before'] = '';
-	$defaults['comment_notes_after'] = '<p class="comment-notes">' . __( 'Your email address will <strong>not</strong> be published.', 'startbox' ) . ( $req ? $required_text : '' ) . '.</p>';
-	$defaults['label_submit'] = __( 'Post Your Comment', 'startbox' );
+	$defaults['comment_notes_after']  = '<p class="comment-notes">' . __( 'Your email address will <strong>not</strong> be published.', 'startbox' ) . ( $req ? $required_text : '' ) . '.</p>';
+	$defaults['label_submit']         = __( 'Post Your Comment', 'startbox' );
 
 	return $defaults;
 }
 add_filter( 'comment_form_defaults', 'sb_comment_defaults' );
 
+/**
+ * Output comment form meta content
+ *
+ * @since Unknown
+ */
 function sb_insert_comment_form() { ?>
 		<div class="comment-meta">
 			<div class="comment-author vcard">
@@ -56,7 +67,7 @@ add_action( 'comment_form_top', 'sb_insert_comment_form' );
  * @since 2.4.8
  */
 function sb_avatar_defaults($avatar_defaults) {
- 	unset($avatar_defaults['mystery']);
+	unset($avatar_defaults['mystery']);
 	$sb_mystery = IMAGES_URL . '/comments/gravatar.png';
 	$avatar_defaults[$sb_mystery] = 'Mystery Man (enhanced)';
 
@@ -72,7 +83,7 @@ add_filter( 'avatar_defaults', 'sb_avatar_defaults' );
  *
  * Used by sb_comments() for displaying comment author information
  *
- * @since 1.4
+ * @since 1.4.0
  */
 function sb_commenter_link() {
 	global $avatar_defaults;
@@ -82,10 +93,10 @@ function sb_commenter_link() {
 	} else {
 		$commenter = '<a href="'.get_permalink().'" class="comment-author-name">'.$commenter.'</a>';
 	}
-	$avatar_email = get_comment_author_email();
-	$avatar_size = apply_filters( 'sb_comment_gravatar_size', '60' ); // Available filter: sb_comment_gravatar_size
+	$avatar_email   = get_comment_author_email();
+	$avatar_size    = apply_filters( 'sb_comment_gravatar_size', '60' ); // Available filter: sb_comment_gravatar_size
 	$avatar_default = apply_filters( 'sb_comment_gravatar_default', get_option('avatar_default') ); // Available filter: sb_comment_gravatar_default. Note: must be full URL
-	$avatar = str_replace( "class='avatar", "class='photo avatar", get_avatar( $avatar_email, $avatar_size, $avatar_default ) );
+	$avatar         = str_replace( "class='avatar", "class='photo avatar", get_avatar( $avatar_email, $avatar_size, $avatar_default ) );
 	echo $avatar . ' <cite class="fn n">' . $commenter . '</cite>';
 }
 
@@ -96,24 +107,24 @@ function sb_commenter_link() {
  *
  * Used as a callback by wp_list_comments() for displaying the comments in comments.php.
  *
- * @since 1.4
+ * @since 1.4.0
  * @uses sb_commenter_link()
  *
  */
 if ( !function_exists( 'sb_comments' ) ) {
 	function sb_comments($comment, $args, $depth) {
-	    $GLOBALS['comment'] = $comment;
-	    ?>
-	    	<li id="comment-<?php comment_ID() ?>" <?php comment_class(); ?>>
-	    		<div class="comment-wrap">
+		$GLOBALS['comment'] = $comment;
+		?>
+			<li id="comment-<?php comment_ID() ?>" <?php comment_class(); ?>>
+				<div class="comment-wrap">
 					<div class="comment-meta">
 						<div class="comment-author vcard"><?php sb_commenter_link() ?></div>
-		    			<div class="comment-date"><a href="<?php echo esc_url( '#comment-' . get_comment_ID() ); ?>" class="comment-permalink" title="Permalink to this comment"><?php printf(__('%1$s <br/> %2$s', 'startbox'), get_comment_date(), get_comment_time()); ?></a></div>
+						<div class="comment-date"><a href="<?php echo esc_url( '#comment-' . get_comment_ID() ); ?>" class="comment-permalink" title="Permalink to this comment"><?php printf(__('%1$s <br/> %2$s', 'startbox'), get_comment_date(), get_comment_time()); ?></a></div>
 					</div>
-		    		<?php if ($comment->comment_approved == '0') _e("\t\t\t\t\t<span class='unapproved'>Your comment is awaiting moderation.</span>\n", 'startbox') ?>
-		            <div class="comment-entry">
+					<?php if ($comment->comment_approved == '0') _e("\t\t\t\t\t<span class='unapproved'>Your comment is awaiting moderation.</span>\n", 'startbox') ?>
+					<div class="comment-entry">
 						<span class="comment-arrow"></span>
-		        		<?php comment_text() ?>
+						<?php comment_text() ?>
 						<div class="comment-footer">
 							<?php // echo the comment reply link with help from Justin Tadlock http://justintadlock.com/ and Will Norris http://willnorris.com/
 								if($args['type'] == 'all' || get_comment_type() == 'comment') :
@@ -128,7 +139,7 @@ if ( !function_exists( 'sb_comments' ) ) {
 							?>
 							<?php edit_comment_link(__('Edit', 'startbox'), ' <span class="meta-sep">|</span> <span class="comment-edit-link">', '</span>'); ?>
 						</div>
-		    		</div>
+					</div>
 				</div>
 	<?php }
 }
@@ -136,16 +147,14 @@ if ( !function_exists( 'sb_comments' ) ) {
 /**
  * Template for Trackbacks
  *
- * Override this function in a child theme by creating your own sb_pings() function
- *
+ * Override this function in a child theme by creating your own sb_pings() function.
  * Used as a callback by wp_list_comments() for displaying the comments in comments.php.
  *
- * @since 1.4
+ * @since 1.4.0
  */
 if ( !function_exists( 'sb_pings' ) ) {
 	function sb_pings($comment, $args, $depth) {
-	       $GLOBALS['comment'] = $comment;
-	        ?>
-	    		<li><?php comment_author_link() ?></li>
-	<?php }
+		$GLOBALS['comment'] = $comment;
+		echo '<li>' . comment_author_link() . '</li>';
+	}
 }
