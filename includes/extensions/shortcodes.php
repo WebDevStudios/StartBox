@@ -741,6 +741,7 @@ function sb_get_sitemap( $args = '' ) {
 
 			wp_reset_postdata();
 
+
 		}
 		$output .= '</div><!-- ' . $container_class . ' ' . $container_class . '-post -->' . "\n";
 	}

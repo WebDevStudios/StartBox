@@ -169,7 +169,6 @@ class StartBox {
 		require_if_theme_supports( 'sb-updates',			FUNCTIONS_PATH . '/upgrade.php' );									// Update Manager
 		require_if_theme_supports( 'sb-sidebars',			EXTENSIONS_PATH . '/sidebars.php' );								// Sidebar manager
 		require_if_theme_supports( 'sb-shortcodes',			EXTENSIONS_PATH . '/shortcodes.php' );								// Shortcodes
-		require_if_theme_supports( 'sb-slideshows',			EXTENSIONS_PATH . '/startbox-slideshows/startbox-slideshows.php' );	// Slideshows
 		require_if_theme_supports( 'sb-layouts',			EXTENSIONS_PATH . '/layouts.php' );									// Theme Layouts
 		require_if_theme_supports( 'sb-theme-customizer',	EXTENSIONS_PATH . '/theme-customizer.php' );				 		// Theme Customizer settings (in development)
 		foreach ( glob( ADMIN_PATH . '/*.php') as $sb_admin ) { require_if_theme_supports( 'sb-options', $sb_admin ); }			// Theme Options
