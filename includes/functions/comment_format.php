@@ -42,6 +42,23 @@ function sb_comment_defaults( $defaults ) {
 add_filter( 'comment_form_defaults', 'sb_comment_defaults' );
 
 /**
+ * Clear comment website value if default value not changed
+ *
+ * @since  2.7.0
+ * @param  array $comment_content The array containing our default comment content
+ * @return array                  Our potentially updated comment content
+ */
+function sb_comment_save( $comment_content ) {
+
+	if ( __( 'Your Website (optional)', 'startbox' ) == $comment_content['comment_author_url'] )
+		$comment_content['comment_author_url'] = '';
+
+	return $comment_content;
+
+}
+add_filter( 'preprocess_comment', 'sb_comment_save' );
+
+/**
  * Output comment form meta content
  *
  * @since Unknown
