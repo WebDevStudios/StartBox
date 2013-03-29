@@ -132,8 +132,11 @@ class StartBox {
 		add_theme_support( 'sb-options' );				// StartBox Options API
 		add_theme_support( 'sb-sidebars' );				// StartBox Easy Sidebars
 		add_theme_support( 'sb-shortcodes' );			// StartBox Shortcodes
-		add_theme_support( 'sb-slideshows' );			// StartBox Slideshows
-		// add_theme_support( 'sb-theme-customizer' );	// StartBox Theme Customizer Settings
+		// add_theme_support( 'sb-theme-customizer' );	// StartBox Theme Customizer Settings (beta hack)
+
+		// Only include theme support if we already have slideshows
+		if ( get_posts( array( 'post_type' => 'slideshow' ) ) )
+			add_theme_support( 'sb-slideshows' );			// StartBox Slideshows
 
 		// Add theme support for StartBox Layouts, redefine this list of available layouts using the filter 'sb_layouts_defaults'
 		$sb_default_layouts = array(
@@ -447,7 +450,7 @@ class StartBox {
 			}
 			update_option( 'sidebars_widgets', $registered_sidebars );
 
-			// Update our custom sidebars to handle the name change for primary and secondary widget areas
+			// Update any registered custom sidebars to handle the name change for primary and secondary widget areas
 			global $wpdb;
 			$wpdb->update( $wpdb->postmeta, array( 'meta_value' => 'primary' ), array( 'meta_value' => 'primary_widget_area' ) );
 			$wpdb->update( $wpdb->postmeta, array( 'meta_value' => 'secondary' ), array( 'meta_value' => 'secondary_widget_area' ) );
