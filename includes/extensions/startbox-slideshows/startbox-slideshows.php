@@ -1,25 +1,20 @@
 <?php
-/*
-Plugin Name: StartBox Slideshows
-Plugin URI: http://wpstartbox.com/
-Description: This plugin creates a custom post type called Slideshows which integrates with the Media Library, allowing you to create customizable slideshows to suit your needs. To embed a slideshow into a post or page, simply insert [slideshow id=""] anywhere in the post, page or widget content (or use the built-in widget).
-Version: 1.0
-Author: Joel Jcuzmarski, Brian Richards
-Author URI: http://www.joelak.com
-Requires at least: 3.3.1
-Tested up to: 3.4.2
-*/
-
-// register_activation_hook( __FILE__, 'sb_slideshow_activation' );
-// function sb_slideshow_activation() {
-// 	$sb_version = get_option( 'startbox_version' );
-// 	if ( false == $sb_version || version_compare( get_option('startbox_version'), '2.5.6', '<') ) {
-// 		if ( isset($_GET['action']) && $_GET['action'] == 'error_scrape' ) {
-// 			echo '<strong>The plugin StartBox Slideshows requires StartBox 2.6 or later.</strong>';
-// 			exit;
-// 		} else { trigger_error('The plugin StartBox Slideshows requires StartBox 2.6 or later.', E_USER_ERROR); }
-// 	}
-// }
+/**
+ * StartBox Slideshows
+ *
+ * This extension creates a custom post type called Slideshows which integrates
+ * with the Media Library, allowing you to create customizable slideshows to
+ * suit your needs. To embed a slideshow into a post or page, simply insert
+ * [slideshow id=""] anywhere in the post, page or widget content (or use the
+ * built-in widget). Originally by Joel Kcuzmarski, with updates by Brian Richards.
+ *
+ * Note that this is a deprecated feature of StartBox. It will be removed in 2.8.
+ *
+ * @package StartBox
+ * @subpackage Slideshows
+ * @link http://www.joelak.com
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ */
 
 // Make sure these functions don't exist elsewhere and that the current theme supports this functionality
 if ( ! function_exists('sb_slideshow_init') && current_theme_supports( 'sb-slideshows' ) ) {
@@ -30,30 +25,36 @@ global $wpdb, $sb_slideshow_slides, $sb_slideshow_used_ids, $sb_slideshow_footer
 $sb_slideshow_slides = $sb_slideshow_used_ids = array();
 $sb_slideshow_footer_javascript = '';
 $sb_slideshow_interface = apply_filters( 'sb_slideshow_interface', array(
-	'transitions' 		=> array( 'sliceDown', 'sliceDownLeft', 'sliceUp', 'sliceUpLeft', 'sliceUpDown', 'sliceUpDownLeft', 'fold', 'fade' ),
-	'controls' 		=> array(
-						'arrows' 		=> __( 'Show Overlay Arrows', 'startbox' ),
-						'navigation' 	=> __( 'Show Bottom Navigation', 'startbox' ) ),
-	'ssorris' 		=> array(
-						'slideshow_on' 		=> __('Slideshow', 'startbox'),
-						'slideshow_off' 	=> __('Random Image', 'startbox')  ),
-	'sizes' 			=> array(
-						'max' 	=> __( 'Largest Image', 'startbox' ),
-						'min' 	=> __( 'Smallest Image', 'startbox' ),
-						'custom' 	=> __( 'Custom', 'startbox' ) ),
-	'link_text' 		=> 'http://',
-	'pause' 			=> 3000,
-	'opacity'			=> 0.8,
-	'color' 			=> '#FFFFFF',
-	'slide_width' 		=> 300,
-	'slide_height' 	=> 188,
-	'filter_width'		=> 60,
-	'filter_height' 	=> 60,
-	'mime_types' 		=> array( 'image/jpeg', 'image/png', 'image/gif' ) ) );
+	'transitions'   => array( 'sliceDown', 'sliceDownLeft', 'sliceUp', 'sliceUpLeft', 'sliceUpDown', 'sliceUpDownLeft', 'fold', 'fade' ),
+	'controls'      => array(
+		'arrows'     => __( 'Show Overlay Arrows', 'startbox' ),
+		'navigation' => __( 'Show Bottom Navigation', 'startbox' ) ),
+	'ssorris'       => array(
+		'slideshow_on'  => __('Slideshow', 'startbox'),
+		'slideshow_off' => __('Random Image', 'startbox')  ),
+	'sizes'         => array(
+		'max'    => __( 'Largest Image', 'startbox' ),
+		'min'    => __( 'Smallest Image', 'startbox' ),
+		'custom' => __( 'Custom', 'startbox' ) ),
+	'link_text'     => 'http://',
+	'pause'         => 3000,
+	'opacity'       => 0.8,
+	'color'         => '#FFFFFF',
+	'slide_width'   => 300,
+	'slide_height'  => 188,
+	'filter_width'  => 60,
+	'filter_height' => 60,
+	'mime_types'    => array( 'image/jpeg', 'image/png', 'image/gif' )
+) );
 
-$sb_slideshow_interface['mysql_select'] = "SELECT ID, post_date, post_content, post_excerpt, post_mime_type FROM $wpdb->posts WHERE
-	post_type = 'attachment' AND post_status != 'trash' AND
-	post_mime_type = '" . implode( "' OR post_mime_type='", $sb_slideshow_interface['mime_types'] ) . "'";
+$sb_slideshow_interface['mysql_select'] =
+	"
+	SELECT ID, post_date, post_content, post_excerpt, post_mime_type
+	FROM   $wpdb->posts
+	WHERE  post_type = 'attachment'
+	       AND post_status != 'trash'
+	       AND post_mime_type = '" . implode( "' OR post_mime_type='", $sb_slideshow_interface['mime_types'] ) . "'
+	";
 /*
  * Use add_filter('sb_slideshow_interface', 'your_filter_function'); to filter interface options for a custom player
  * Filters used for implimenting a custom player located in sb_slideshow_shortcode():
@@ -105,33 +106,36 @@ function sb_slideshow_radio( $value, $key, $name, $checked = '' ) {
 function sb_slideshow_init() {
 	// Add custom post type
 	register_post_type( 'slideshow', array(
-		'labels' 				=> array(
-								'name' 				=> _x('Slideshows', 'post type general name'),
-								'singular_name' 		=> _x('Slideshow', 'post type singular name'),
-								'add_new' 			=> _x('Add New', 'startbox' ),
-								'add_new_item' 		=> __( 'Add New Slideshow', 'startbox' ),
-								'edit_item' 			=> __( 'Edit Slideshow', 'startbox' ),
-								'new_item' 			=> __( 'New Slideshow', 'startbox' ),
-								'view_item' 			=> __( 'View Slideshow', 'startbox' ),
-								'search_items' 		=> __( 'Search Slideshows', 'startbox' ),
-								'not_found' 			=> __( 'No slideshows found', 'startbox' ),
-								'not_found_in_trash' 	=> __( 'No slideshows found in Trash', 'startbox' ),
-								'parent_item_colon' 	=> '' ),
-		'label' 				=> __( 'Slideshows', 'startbox' ),
-		'singular_label' 		=> __( 'Slideshow', 'startbox' ),
-		'public' 				=> true,
-		'exclude_from_search' 	=> true,
-		'show_ui' 			=> true,
-		'capability_type' 		=> 'post',
-		'hierarchical' 		=> false,
-		'rewrite' 			=> array(
-								'slug' 		=> 'slideshows',
-								'with_front' 	=> false ),
-		'query_var' 			=> true,
-		'supports' 			=> array( 'title' ),
-		'menu_position' 		=> 5,
-		'show_in_nav_menus' 	=> false,
-		'register_meta_box_cb' 	=> 'sb_slideshow_meta_box_callback' ));
+		'labels'               => array(
+			'name'               => _x('Slideshows', 'post type general name'),
+			'singular_name'      => _x('Slideshow', 'post type singular name'),
+			'add_new'            => _x('Add New', 'startbox' ),
+			'add_new_item'       => __( 'Add New Slideshow', 'startbox' ),
+			'edit_item'          => __( 'Edit Slideshow', 'startbox' ),
+			'new_item'           => __( 'New Slideshow', 'startbox' ),
+			'view_item'          => __( 'View Slideshow', 'startbox' ),
+			'search_items'       => __( 'Search Slideshows', 'startbox' ),
+			'not_found'          => __( 'No slideshows found', 'startbox' ),
+			'not_found_in_trash' => __( 'No slideshows found in Trash', 'startbox' ),
+			'parent_item_colon'  => ''
+			),
+		'label'                => __( 'Slideshows', 'startbox' ),
+		'singular_label'       => __( 'Slideshow', 'startbox' ),
+		'public'               => true,
+		'exclude_from_search'  => true,
+		'show_ui'              => true,
+		'capability_type'      => 'post',
+		'hierarchical'         => false,
+		'rewrite'              => array(
+			'slug'       => 'slideshows',
+			'with_front' => false
+			),
+		'query_var'            => true,
+		'supports'             => array( 'title' ),
+		'menu_position'        => 5,
+		'show_in_nav_menus'    => false,
+		'register_meta_box_cb' => 'sb_slideshow_meta_box_callback'
+	) );
 }
 add_action( 'init', 'sb_slideshow_init' );
 
@@ -146,7 +150,38 @@ function sb_slideshow_meta_box_callback() {
 	add_meta_box( 'sb_library', __( 'Media Library', 'startbox' ), 'sb_slideshow_library_meta', 'slideshow', 'normal', 'low' );
 	add_meta_box( 'sb_shortcode', __( 'Shortcode', 'startbox' ), 'sb_slideshow_shortcode_meta', 'slideshow', 'side', 'low' );
 	add_meta_box( 'sb_slide_options', __( 'Options', 'startbox' ), 'sb_slideshow_options_meta', 'slideshow', 'side', 'low' );
+	add_action( 'admin_notices', 'sb_slideshow_admin_notice' );
 }
+
+// Display a notice that slideshows are being deprecated
+function sb_slideshow_admin_notice() {
+
+	// Grab our current user ID for hiding this message
+	global $current_user ;
+    $user_id = $current_user->ID;
+
+    // Output our message
+    if ( ! get_user_meta( $user_id, '_startbox_ignore_slideshow_warning', true ) ) {
+		echo '<div id="message" class="error"><p>';
+		printf( __( '<strong>Notice:</strong> Slideshows will be removed in StartBox 2.8. You can continue to use them indefinitely, but we recommend switching to another slideshow solution.<br/>We prefer and recommend <a href="%s">Soliloquy</a>. <a href="%s" style="float:right;">Hide this Warning</a>', 'startbox' ), 'http://soliloquywp.com/', add_query_arg( 'ignore_slideshow_warning', 'true' ) );
+		echo '</p></div>';
+	}
+}
+
+// This allows users to dismiss our deprecation notice
+function sb_slideshow_ignore_warning() {
+
+	// Grab our current user ID
+	global $current_user;
+	$user_id = $current_user->ID;
+
+    if ( isset( $_GET['ignore_slideshow_warning'] ) && true == $_GET['ignore_slideshow_warning'] ) {
+		update_user_meta( $user_id, '_startbox_ignore_slideshow_warning', 'true' );
+		wp_redirect( remove_query_arg( 'ignore_slideshow_warning' ) );
+		exit();
+	}
+}
+add_action('admin_init', 'sb_slideshow_ignore_warning');
 
 // Output "Slides" Meta Box
 function sb_slideshow_slides_meta() {
@@ -236,13 +271,13 @@ function sb_slideshow_shortcode_meta() {
 function sb_slideshow_options_meta() {
 	global $post, $sb_slideshow_interface;
 
-	$pause = get_post_meta( $post->ID, 'pause', true );
-	$opacity = get_post_meta( $post->ID, 'opacity', true );
-	$effect = get_post_meta( $post->ID, 'effect', true );
-	$control = get_post_meta( $post->ID, 'control', true );
-	$size = get_post_meta( $post->ID, 'size', true );
+	$pause       = get_post_meta( $post->ID, 'pause', true );
+	$opacity     = get_post_meta( $post->ID, 'opacity', true );
+	$effect      = get_post_meta( $post->ID, 'effect', true );
+	$control     = get_post_meta( $post->ID, 'control', true );
+	$size        = get_post_meta( $post->ID, 'size', true );
 	$size_custom = get_post_meta( $post->ID, 'size_custom', true );
-	$ssorri = get_post_meta($post->ID, 'ssorri', true);
+	$ssorri      = get_post_meta($post->ID, 'ssorri', true);
 ?>
 
     <p><strong><?php _e('Shortcode Output', 'startbox'); ?></strong></p>
@@ -340,18 +375,18 @@ function sb_slideshow_slides( $sql ) {
 		$metadata = wp_get_attachment_metadata( $attachment->ID );
 
 		array_push( $sb_slideshow_slides, array(
-			'box' 			=> $box,
-			'order'			=> $order,
-			'attachment'		=> array(
-				'id' 		=> $attachment->ID,
-				'year' 		=> mysql2date( 'Y', $attachment->post_date ),
-				'month' 	=> mysql2date( 'm', $attachment->post_date ),
-				'width'		=> $metadata['width'],
-				'height' 	=> $metadata['height'],
-				'type' 		=> $attachment->post_mime_type,
-				'link'		=> $attachment->post_excerpt,
-				'content'	=> $attachment->post_content ),
-				'image' 	=> '<img src="' . sb_get_post_image_url( array( 'width' => $sb_slideshow_interface['slide_width'], 'height' => $sb_slideshow_interface['slide_height'], 'image_id' 	=> $attachment->ID, 'echo' 	=> false ) ) . '" width="' . $sb_slideshow_interface['slide_width'] . '" height="' . $sb_slideshow_interface['slide_height'] . '" />'
+			'box'        => $box,
+			'order'      => $order,
+			'attachment' => array(
+				'id'      => $attachment->ID,
+				'year'    => mysql2date( 'Y', $attachment->post_date ),
+				'month'   => mysql2date( 'm', $attachment->post_date ),
+				'width'   => $metadata['width'],
+				'height'  => $metadata['height'],
+				'type'    => $attachment->post_mime_type,
+				'link'    => $attachment->post_excerpt,
+				'content' => $attachment->post_content ),
+				'image'   => '<img src="' . sb_get_post_image_url( array( 'width' => $sb_slideshow_interface['slide_width'], 'height' => $sb_slideshow_interface['slide_height'], 'image_id' 	=> $attachment->ID, 'echo' 	=> false ) ) . '" width="' . $sb_slideshow_interface['slide_width'] . '" height="' . $sb_slideshow_interface['slide_height'] . '" />'
 			)
 		);
 	}
