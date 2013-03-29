@@ -154,13 +154,14 @@ function sb_get_post_image_url( $args = null ) {
 
 	// Setup our default args
 	$defaults = array(
-		'post_id'         => $post->ID,
-		'image_id'        => null,
-		'use_attachments' => apply_filters( 'sb_post_image_use_attachments', false ),
-		'width'           => absint( apply_filters( 'sb_post_image_width', 200 ) ),
-		'height'          => absint( apply_filters( 'sb_post_image_height', 200 ) ),
-		'crop'            => absint( apply_filters( 'sb_post_image_crop', 1 ) ),
-		'align'           => apply_filters( 'sb_post_image_align', 't' )
+		'post_id'           => $post->ID,
+		'image_id'          => null,
+		'use_attachments'   => apply_filters( 'sb_post_image_use_attachments', false ),
+		'width'             => absint( apply_filters( 'sb_post_image_width', 200 ) ),
+		'height'            => absint( apply_filters( 'sb_post_image_height', 200 ) ),
+		'crop'              => apply_filters( 'sb_post_image_crop', true ),
+		'align'             => apply_filters( 'sb_post_image_align', 't' ),
+		'override_existing' => apply_filters( 'sb_post_image_override_existing', false )
 	);
 	$args = wp_parse_args($args, apply_filters( 'sb_post_image_settings', $defaults ) );
 
@@ -180,7 +181,7 @@ function sb_get_post_image_url( $args = null ) {
 	$image_url      = trailingslashit( $uploads_dir['url'] ) . "{$filename}-{$suffix}.{$ext}";
 
 	// If we don't already have a file for our desired dimensions and alignment...
-	if ( ! file_exists( $file ) ) {
+	if ( ! file_exists( $file ) || true == $args['override_existing'] ) {
 
 		// Fire up the WP Image editor to generate our correctly sized image
 		$image = wp_get_image_editor( $current_image );
