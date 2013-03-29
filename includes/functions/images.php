@@ -242,13 +242,13 @@ function sb_image_crop_dimensions( $original_width = 0, $original_height = 0, $n
 
 	// Setup our starting coordinates based on our alignment
 	if ( !empty( $alignment ) ) {
-		if ( strpos ($alignment, 't') )
+		if ( strstr($alignment, 't') )
 			$start_y = 0;
-		if ( strpos ($alignment, 'b') )
+		if ( strstr($alignment, 'b') )
 			$start_y = $original_height - $max_height;
-		if ( strpos ($alignment, 'l') )
+		if ( strstr($alignment, 'l') )
 			$start_x = 0;
-		if ( strpos ($alignment, 'r') )
+		if ( strstr($alignment, 'r') )
 			$start_x = $original_width - $max_width;
 	}
 
