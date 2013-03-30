@@ -1,5 +1,5 @@
-2013.02.01 - version 2.7
-	* Added: Language support for German, French, Italian, Spanish and Russian
+2013.03.29 - version 2.7
+	* Added: Language support for British English, German, French, Italian, Spanish, Russian, Brazilian Portuguese, and Japanese
 	* Added: Filter ‘sb_register_sidebar_defaults’ to allow easy override of default sidebar markup
 	* Added: sb_image_crop_dimensions() for properly determining the crop coordinates for any image
 	* Fixed: Multiple custom sidebars can now appear on a single page (e.g. replacing both Primary and Footer Aside 1 is possible).
@@ -7,11 +7,13 @@
 	* Fixed: Replaced post content pagination to loop.php and single.php.
 	* Fixed: Default settings for post thumbnails in theme options.
 	* Fixed: Made footer settings sanitization a touch less restrictive.
-	* Changed: Removed automatic add_theme_support of StartBox Slideshows (unless a site already has any slideshows)
+	* Fixed: Prevent comments from storing the default website text if no website provided
+	* Changed: Removed automatic add_theme_support of StartBox Slideshows (unless a site already has one or more slideshows)
 	* Changed: Updated startbox.css to better style heading elements (h1, h2, etc) for handling line-height and bottom margin.
 	* Changed: Updated the Options API uploader to use media manager.
 	* Changed: Improved inline documentation for sb_get_post_image, sb_post_image and sb_get_post_image_url
 	* Changed: Updated sb_get_post_image, sb_post_image and sb_get_post_image_url to not use extract()
+	* Changed: Added StartBox Support link to Help metabox in Theme Options
 	* Removed: Eliminated AJAXUpload scripts and all references
 	* Removed: Timthumb.php and dependence on Timthumb entirely. \o/
 	* Removed: Deprecated sb_post_image_url
