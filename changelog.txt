@@ -1,5 +1,6 @@
 2013.04.01 - version 2.7.1
 	* Fixed: Repaired a missing file include for SB Slideshows
+	* Fixed: Repaired a hidden issue with custom sidebars not appearing in some instances
 
 2013.03.29 - version 2.7
 	* Added: Language support for British English, German, French, Italian, Spanish, Russian, Brazilian Portuguese, and Japanese
