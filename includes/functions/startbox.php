@@ -131,9 +131,9 @@ class StartBox {
 		add_theme_support( 'sb-shortcodes' );			// StartBox Shortcodes
 		// add_theme_support( 'sb-theme-customizer' );	// StartBox Theme Customizer Settings (beta hack)
 
-		// Only include theme support if we already have slideshows
+		// Only include theme support for SB Slideshows if we already have slideshows
 		if ( get_posts( array( 'post_type' => 'slideshow' ) ) )
-			add_theme_support( 'sb-slideshows' );			// StartBox Slideshows
+			add_theme_support( 'sb-slideshows' );
 
 		// Add theme support for StartBox Layouts, redefine this list of available layouts using the filter 'sb_layouts_defaults'
 		$sb_default_layouts = array(
@@ -169,6 +169,7 @@ class StartBox {
 		require_if_theme_supports( 'sb-updates',			FUNCTIONS_PATH . '/upgrade.php' );									// Update Manager
 		require_if_theme_supports( 'sb-sidebars',			EXTENSIONS_PATH . '/sidebars.php' );								// Sidebar manager
 		require_if_theme_supports( 'sb-shortcodes',			EXTENSIONS_PATH . '/shortcodes.php' );								// Shortcodes
+		require_if_theme_supports( 'sb-slideshows',			EXTENSIONS_PATH . '/startbox-slideshows/startbox-slideshows.php' );	// Slideshows
 		require_if_theme_supports( 'sb-layouts',			EXTENSIONS_PATH . '/layouts.php' );									// Theme Layouts
 		require_if_theme_supports( 'sb-theme-customizer',	EXTENSIONS_PATH . '/theme-customizer.php' );				 		// Theme Customizer settings (in development)
 		foreach ( glob( ADMIN_PATH . '/*.php') as $sb_admin ) { require_if_theme_supports( 'sb-options', $sb_admin ); }			// Theme Options
@@ -453,6 +454,14 @@ class StartBox {
 
 			// Update our theme version
 			update_option( 'startbox_version', '2.7' );
+
+		}
+
+		// Upgrade to 2.7
+		if ( version_compare( get_option('startbox_version'), '2.7.1', '<') ) {
+
+			// Update our theme version
+			update_option( 'startbox_version', '2.7.1' );
 
 		}
 
