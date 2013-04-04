@@ -460,6 +460,9 @@ class StartBox {
 		// Upgrade to 2.7
 		if ( version_compare( get_option('startbox_version'), '2.7.2', '<') ) {
 
+			// Dump the (assumed bad) sidebar transient
+			delete_transient( 'sb_custom_sidebars' );
+
 			// Update our theme version
 			update_option( 'startbox_version', '2.7.2' );
 
