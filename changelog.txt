@@ -1,3 +1,7 @@
+2013.04.03 - version 2.7.2
+	* Fixed: Prevented all unsaved post types from using the 'custom-sidebar' slug intended for Sidebars
+	* Fixed: Corrected the custom sidebar query so it checks ALL sidebars when selecting a replacement
+
 2013.04.01 - version 2.7.1
 	* Fixed: Repaired a missing file include for SB Slideshows
 	* Fixed: Repaired a hidden issue with custom sidebars not appearing in some instances

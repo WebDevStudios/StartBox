@@ -174,7 +174,7 @@ class SB_Sidebars {
 		if ( empty( $sidebars ) ) {
 
 			// Get all sidebar posts
-			$sidebar_posts = get_posts( array( 'post_type' => 'sidebar', 'no_paging' => true ) );
+			$sidebar_posts = get_posts( array( 'post_type' => 'sidebar', 'nopaging' => true ) );
 
 			// Setup our custom sidebars array
 			$sidebars = array();
@@ -230,20 +230,13 @@ class SB_Sidebars {
 			elseif ( array_key_exists( 'all-Pages', $custom_sidebars ) && is_page() ) { $key = 'all-Pages'; }
 			elseif ( array_key_exists( 'all-category', $custom_sidebars ) && is_category() ) { $key = 'all-category'; }
 			elseif ( array_key_exists( 'all-tag', $custom_sidebars ) && is_tag() ) { $key = 'all-tag'; }
-			if (
-				array_key_exists( $key, $custom_sidebars )
-				&& array_key_exists( $location, $custom_sidebars[$key]['locations'] )
-			) {
-				$sidebar = $custom_sidebars[$key]['locations'][$location];
-				return $sidebar;
-			}
-
-			// Handle normal use cases and return at the end
-			if ( is_home() ) { $key = $wp_query->queried_object_id; } // This catches the blog page when front page is set to a static page
+			elseif ( is_home() ) { $key = $wp_query->queried_object_id; } // This catches the blog page when front page is set to a static page
 			elseif ( is_category() ) { $key = get_query_var('cat'); }
 			elseif ( is_tag() ) { $key = get_query_var('tag_id'); }
 			elseif ( is_tax() ) { $key = get_query_var('term_id'); }
 			else { $key = $post->ID; }
+
+			// If we have a custom sidebar for this page, and for this location, use it
 			if (
 				array_key_exists( $key, $custom_sidebars )
 				&& array_key_exists( $location, $custom_sidebars[$key]['locations'] )
@@ -253,7 +246,7 @@ class SB_Sidebars {
 
 		}
 
-		// Finally, return the given sidebar
+		// Finally, return the appropriate sidebar
 		return $sidebar;
 	}
 

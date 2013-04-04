@@ -458,10 +458,10 @@ class StartBox {
 		}
 
 		// Upgrade to 2.7
-		if ( version_compare( get_option('startbox_version'), '2.7.1', '<') ) {
+		if ( version_compare( get_option('startbox_version'), '2.7.2', '<') ) {
 
 			// Update our theme version
-			update_option( 'startbox_version', '2.7.1' );
+			update_option( 'startbox_version', '2.7.2' );
 
 		}
 

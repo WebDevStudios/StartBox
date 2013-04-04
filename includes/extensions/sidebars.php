@@ -66,6 +66,10 @@ add_action( 'init', 'sb_sidebars_init' );
  */
 function sb_sidebar_default_slug( $data , $postarr ) {
 
+	// If we're not working with a sidebar, bail here
+	if ( 'sidebar' != $data['post_type'] )
+		return $data;
+
 	// If we don't have a post_name (slug), set it to "custom-sidebar"
 	if ( '' == $data['post_name'] ) {
 		$data['post_name'] = 'custom-sidebar';
