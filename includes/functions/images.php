@@ -126,7 +126,14 @@ function sb_post_image( $args = array(), $depricated_height = null, $depricated_
 		return false;
 
 	// Otherwise, setup our image tag
-	$image = '<img src="' . sb_get_post_image_url( $args ) . '" width="' . $args['width'] . '" height="' . $args['height'] . '" class="' . $args['class'] . '" alt="' . $args['alt'] . '" title="' . $args['title'] . '" />';
+
+	// Allow overriding of image retrieval, otherwise build our own
+	if ( !( $image = apply_filters( 'sb_build_image', '', $args ) ) || !is_string( $image ) )
+		$image = '<img src="' . sb_get_post_image_url( $args ) . '" width="' . $args['width'] . '" height="' . $args['height'] . '" class="' . $args['class'] . '" alt="' . $args['alt'] . '" title="' . $args['title'] . '" />';
+
+	// Allow overriding of final image
+	if ( ( $image_mod = apply_filters( 'sb_image_modification', $image, $args ) ) && is_string( $image_mod ) )
+		$image = $image_mod;
 
 	// Echo our image if applicable
 	if ( $args['echo'] )
