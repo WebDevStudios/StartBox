@@ -94,6 +94,8 @@ class sb_featured_content_widget extends WP_Widget {
 			if ($title && $instance['content_type'] != 'page') { echo $before_title . $title . $after_title; }
 			if ($showmore && ( $morelocation == 'before' || $morelocation == 'before_after' ) ) { echo '<a href="'.$morelink.'" class="more-link">'.$moretext.'</a>'; }
 			$postcount = $count + $morecount; $i = 1;
+			$postcount = $postcount > 999 ? 999 : $postcount;
+
 			$posts = new WP_query( array(
 				'post_type' => $instance['content_type'],
 				'cat' => $category,
@@ -102,8 +104,11 @@ class sb_featured_content_widget extends WP_Widget {
 				'order' => $order,
 				'offset' => $offset,
 				'post__in' => $include,
-				'post__not_in' => $exclude
-				) );
+				'post__not_in' => $exclude,
+				'post_status' => 'publish',
+				'no_found_rows' => true,
+				'ignore_sticky_posts' => true
+			) );
 			?>
 			<ul>
 			<?php if ( $posts->have_posts() ) : while ( $posts->have_posts() ) : $posts->the_post(); if ( $i <= $count ) { $i++; ?>
