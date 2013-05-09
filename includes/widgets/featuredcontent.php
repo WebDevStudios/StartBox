@@ -96,7 +96,7 @@ class sb_featured_content_widget extends WP_Widget {
 			$postcount = $count + $morecount; $i = 1;
 			$postcount = $postcount > 999 ? 999 : $postcount;
 
-			$posts = new WP_query( array(
+			$posts = new WP_query( apply_filters( 'sb_featured_content_widget_query_args',  array(
 				'post_type' => $instance['content_type'],
 				'cat' => $category,
 				'posts_per_page' => $postcount,
@@ -108,7 +108,7 @@ class sb_featured_content_widget extends WP_Widget {
 				'post_status' => 'publish',
 				'no_found_rows' => true,
 				'ignore_sticky_posts' => true
-			) );
+			), $instance, $args ) );
 			?>
 			<ul>
 			<?php if ( $posts->have_posts() ) : while ( $posts->have_posts() ) : $posts->the_post(); if ( $i <= $count ) { $i++; ?>
