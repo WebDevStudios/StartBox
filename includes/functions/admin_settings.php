@@ -57,13 +57,22 @@ class sb_settings {
 		add_action( 'init', array( $this, 'hooks' ), 9 );
 	}
 
-	// This creates the metabox. Do not override this method.
+	// This hooks the metabox method. Do not override this method.
 	public function _init() {
+
 		global $sb_admin, $sb_style;
-		if ( empty( $this->hide_ui_if_cannot ) || current_user_can( $this->hide_ui_if_cannot ) ) {
-			$this->page = ($this->page == 'sb_style') ? $sb_style : $sb_admin;
-			add_meta_box( $this->slug, $this->name, array( $this, 'admin_form' ), $sb_admin, $this->location, $this->priority);
-		}
+		$this->page = ($this->page == 'sb_style') ? $sb_style : $sb_admin;
+
+		add_action( 'load-'. $this->page, array( $this, '_metaboxes' ) );
+
+	}
+
+	// This creates the metabox. Do not override this method.
+	public function _metaboxes() {
+
+		if ( empty( $this->hide_ui_if_cannot ) || current_user_can( $this->hide_ui_if_cannot ) )
+			add_meta_box( $this->slug, $this->name, array( $this, 'admin_form' ), $this->page, $this->location, $this->priority);
+
 	}
 
 	// This makes errors more happy and less desctructive
