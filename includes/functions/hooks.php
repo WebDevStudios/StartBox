@@ -263,7 +263,6 @@ add_action( 'sb_page_title', 'sb_default_page_title' );
 
 // Hook archive meta after page title for archive pages
 function sb_archive_meta() {
-	global $post;
 	if ( ( is_category() || is_tag() || is_tax() ) && term_description() != '' ) {
 		$content = '<div class="archive-meta">';
 		$content .= apply_filters( 'sb_archive_meta', term_description() );
