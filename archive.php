@@ -4,10 +4,10 @@
 		<div id="content">
 
 			<?php
+				if ( have_posts() ) the_post();
 				do_action( 'sb_before_content' );
-				the_post();
 				do_action( 'sb_page_title' );
-				rewind_posts();
+				if ( have_posts() ) rewind_posts();
 
 				while ( have_posts() ) : the_post();
 
