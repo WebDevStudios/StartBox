@@ -36,7 +36,9 @@ class sb_featured_content_widget extends WP_Widget {
 
 		global $post;
 
-		$title = apply_filters('widget_title', $instance['title'] );
+		$title = apply_filters( 'widget_title', $instance['title'] );
+		$instance = apply_filters( 'sb_featured_content_instance', $instance, $args );
+
 		if ( $instance['content_type'] != 'page' ) {
 			$category = $instance['post_categories'];
 			$orderby = $instance['post_orderby'];
