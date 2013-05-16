@@ -626,20 +626,21 @@ class sb_input {
 			'categories' => __( 'Categories', 'startbox' )
 		));
 		$menus = get_terms('nav_menu');
+		$menus = wp_get_nav_menus( array('orderby' => 'name') );
+
 		$output = '';
 
 		// Concatenate our output
 		$output .= '<p class="' . esc_attr( $id ) . '">'."\n";
 		$output .= '<label for="' . esc_attr( $sb_id ) . '">' . $label . ':</label> '."\n";
 		$output .= '<select id="' . esc_attr( $sb_id ) . '" name="' . esc_attr( $sb_id ) . '"class="option-select-' . esc_attr( $size ) . ' ' . esc_attr( $align ) . '">'."\n";
-		foreach ( $menu_opts as $option_id => $option ) {
-			if ($value == $option_id) { $select = 'selected="selected"'; } else { $select = ''; }
-			$output .= '<option value="' . esc_attr( $option_id ) . '" ' . $select . '>' . $option . '</option>'."\n";
-		}
-		foreach ($menus as $menu ) {
-			if ($value == $menu->term_id) { $select = 'selected="selected"'; } else { $select = ''; }
-			$output .= '<option value="'. esc_attr( $menu->term_id ) .'" ' . $select . '>'. $menu->name .'</option>'."\n";
-		}
+
+		foreach ( $menu_opts as $option_id => $option )
+			$output .= '<option value="' . esc_attr( $option_id ) . '" ' . selected( $value, $option_id, false ) . '>' . $option . '</option>'."\n";
+
+		foreach ($menus as $menu )
+			$output .= '<option value="'. esc_attr( $menu->term_id ) .'" ' . selected( $value, $menu->term_id, false ) . '>'. $menu->name .'</option>'."\n";
+
 		$output .= '</select>' . "\n";
 
 		// Depth Options
