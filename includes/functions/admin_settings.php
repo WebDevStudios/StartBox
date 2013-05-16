@@ -625,7 +625,6 @@ class sb_input {
 			'pages'		 => __( 'Pages', 'startbox' ),
 			'categories' => __( 'Categories', 'startbox' )
 		));
-		$menus = get_terms('nav_menu');
 		$menus = wp_get_nav_menus( array('orderby' => 'name') );
 
 		$output = '';
