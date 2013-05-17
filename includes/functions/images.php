@@ -125,15 +125,9 @@ function sb_post_image( $args = array(), $depricated_height = null, $depricated_
 	if ( false == $args['enabled'] || ( $args['hide_nophoto'] && sb_get_post_image( $args ) === $args['nophoto_url'] ) )
 		return false;
 
-	// Otherwise, setup our image tag
-
-	// Allow overriding of image retrieval, otherwise build our own
-	if ( !( $image = apply_filters( 'sb_post_image', '', $args ) ) || !is_string( $image ) )
-		$image = '<img src="' . sb_get_post_image_url( $args ) . '" width="' . $args['width'] . '" height="' . $args['height'] . '" class="' . $args['class'] . '" alt="' . $args['alt'] . '" title="' . $args['title'] . '" />';
-
-	// Allow overriding of final image
-	if ( ( $image_mod = apply_filters( 'sb_post_image_mod', $image, $args ) ) && is_string( $image_mod ) )
-		$image = $image_mod;
+	// Available filters to both bypass sb_get_post_image_url() and override final output
+	if ( ! is_string( $image = apply_filters( 'sb_pre_post_image', null, $args ) ) )
+		$image = apply_filters( 'sb_post_image', '<img src="' . sb_get_post_image_url( $args ) . '" width="' . $args['width'] . '" height="' . $args['height'] . '" class="' . $args['class'] . '" alt="' . $args['alt'] . '" title="' . $args['title'] . '" />', $args );
 
 	// Echo our image if applicable
 	if ( $args['echo'] )
@@ -212,7 +206,7 @@ function sb_get_post_image_url( $args = null ) {
 	}
 
 	// Finally, return the image URL for our correctly sized image
-	return $image_url;
+	return apply_filters( 'sb_post_image_url', $image_url, $args );
 
 }
 
