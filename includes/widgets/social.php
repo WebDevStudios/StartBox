@@ -1,8 +1,9 @@
 <?php
 /**
- * StartBox Framework.
+ * StartBox Social Widget
  *
- * @package StartBox\Widgets
+ * @package StartBox
+ * @subpackage Widgets
  * @author  WebDev Studios
  * @link    http://wpstartbox.com/
  * @license GPL-2.0+
@@ -26,14 +27,14 @@ class SB_Widget_Social extends WP_Widget {
 	 * @var array
 	 */
 	protected $defaults;
-	
+
 	/**
 	 * Holds details of available services, populated in constructor.
 	 *
 	 * @var array
 	 */
 	protected $services;
-	
+
 	/**
 	 * Constructor. Set the default widget options and create widget.
 	 */
@@ -55,7 +56,7 @@ class SB_Widget_Social extends WP_Widget {
 			'linksopen'   => '',
 			'display'     => '',
 		);
-		
+
 		$this->services = array(
 			'rss'         => array( 'name' => 'RSS', 'url' => $rss, 'text' => __( 'Subscribe via RSS', 'startbox' ) ),
 			'comment_rss' => array( 'name' => 'Comments RSS', 'url' => $comment_rss, 'text' => __( 'Subscribe to Comments RSS', 'startbox' ) ),
@@ -86,46 +87,45 @@ class SB_Widget_Social extends WP_Widget {
 	 */
 	protected function widget( array $args, array $instance ) {
 		extract($args);
-		$instance = wp_parse_args( $instance, $this->defaults );
-		
+		$instance  = wp_parse_args( $instance, $this->defaults );
 		$linksopen = $instance['linksopen'] ? ' target="_blank"' : '' ;
-		$hideicon = ( 'text' == $instance['display'] ) ? true : false ;
-		$hidetext = ( 'icon' == $instance['display'] ) ? true : false ;
-		
+		$hideicon  = ( 'text' == $instance['display'] ) ? true : false ;
+		$hidetext  = ( 'icon' == $instance['display'] ) ? true : false ;
+
 		// Icon properties
-		$icon_url = apply_filters( 'sb_social_images_url', IMAGES_URL . '/social/' );
-		$icon_size = apply_filters( 'sb_social_images_size', 24 );
+		$icon_url       = apply_filters( 'sb_social_images_url', IMAGES_URL . '/social/' );
+		$icon_size      = apply_filters( 'sb_social_images_size', 24 );
 		$icon_extension = apply_filters( 'sb_social_images_extension', '.png' );
-		
+
 		// Pre-defined values
-		$rss = ( isset( $instance['rss'] ) ) ? get_bloginfo('rss2_url') : '';
+		$rss         = ( isset( $instance['rss'] ) ) ? get_bloginfo('rss2_url') : '';
 		$comment_rss = ( isset( $instance['comment_rss'] ) ) ? get_bloginfo('comment_rss2_url') : '';
-		$twitter = ( isset( $instance['twitter'] ) ) ? 'https://twitter.com/' . $instance['twitter'] : '';
-			
+		$twitter     = ( isset( $instance['twitter'] ) ) ? 'https://twitter.com/' . $instance['twitter'] : '';
+
 		echo $before_widget;
-			
+
 		if ( ! empty( $instance['title'] ) ) {
 			echo $before_title . apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base ) . $after_title;
 		}
-		
+
 		if ( $instance['intro'] ) {
 			echo '<p>' . $instance['intro'] . '</p>';
 		}
-		
+
 		echo '<ul>';
 		foreach ( $this->services as $service_id => $service ) {
 			// Skip if there's no URL
 			if ( ! isset( $service['url'] ) || ! $service['url'] ) {
 				continue;
-			}		
-			
+			}
+
 			// Give default (filterable) text strings
 			if ( ! isset( $service['text'] ) ) {
 				$service['text'] = sprintf( __( 'Connect on %s', 'startbox'), $service['name'] );
 			}
-			
+
 			$service['text'] = apply_filters( "sb_social_{$service_id}", $service['text'] )
-			
+
 			printf(
 				'<li class="%s">',
 				esc_attr( 'listing ' . sanitize_class_html( 'listing-' . $service_id ) )
@@ -160,7 +160,7 @@ class SB_Widget_Social extends WP_Widget {
 	 * This function should check that $new_instance is set correctly.
 	 * The newly calculated value of $instance should be returned.
 	 * If "false" is returned, the instance won't be saved / updated.
-	 * 
+	 *
 	 * @todo Better sanitization for social widget options.
 	 *
 	 * @param array $new_instance New settings for this instance as input by the user via form().
@@ -171,19 +171,19 @@ class SB_Widget_Social extends WP_Widget {
 	protected function update( array $new_instance, array $old_instance ) {
 		$instance = $old_instance;
 
-		$instance['title']       = strip_tags( $new_instance['title'] );
-		$instance['intro']       = strip_tags( $new_instance['intro'] );
+		$instance['title']       = esc_html( $new_instance['title'] );
+		$instance['intro']       = esc_html( $new_instance['intro'] );
 		$instance['rss']         = $new_instance['rss'];
 		$instance['comment_rss'] = $new_instance['comment_rss'];
-		$instance['twitter']     = strip_tags( $new_instance['twitter'] );
-		$instance['facebook']    = strip_tags( $new_instance['facebook'] );
-		$instance['gplus']       = strip_tags( $new_instance['gplus'] );
-		$instance['delicious']   = strip_tags( $new_instance['delicious'] );
-		$instance['flickr']      = strip_tags( $new_instance['flickr'] );
-		$instance['youtube']     = strip_tags( $new_instance['youtube'] );
-		$instance['vimeo']       = strip_tags( $new_instance['vimeo'] );
-		$instance['digg']        = strip_tags( $new_instance['digg'] );
-		$instance['linkedin']    = strip_tags( $new_instance['linkedin'] );
+		$instance['twitter']     = esc_html( $new_instance['twitter'] );
+		$instance['facebook']    = esc_html( $new_instance['facebook'] );
+		$instance['gplus']       = esc_html( $new_instance['gplus'] );
+		$instance['delicious']   = esc_html( $new_instance['delicious'] );
+		$instance['flickr']      = esc_html( $new_instance['flickr'] );
+		$instance['youtube']     = esc_html( $new_instance['youtube'] );
+		$instance['vimeo']       = esc_html( $new_instance['vimeo'] );
+		$instance['digg']        = esc_html( $new_instance['digg'] );
+		$instance['linkedin']    = esc_html( $new_instance['linkedin'] );
 		$instance['linksopen']   =  $new_instance['linksopen'];
 		$instance['display']     = $new_instance['display'];
 

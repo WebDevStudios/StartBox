@@ -1,8 +1,9 @@
 <?php
 /**
- * StartBox Framework.
+ * StartBox Tag Cloud Widget
  *
- * @package StartBox\Widgets
+ * @package StartBox
+ * @subpackage Widgets
  * @author  WebDev Studios
  * @link    http://wpstartbox.com/
  * @license GPL-2.0+
@@ -19,14 +20,14 @@
  * @since Unknown
  */
 class SB_Widget_Tag_Cloud extends WP_Widget {
-	
+
 	/**
 	 * Holds widget settings defaults, populated in constructor.
 	 *
 	 * @var array
 	 */
 	protected $defaults;
-	
+
 	/**
 	 * Constructor. Set the default widget options and create widget.
 	 */
@@ -62,7 +63,7 @@ class SB_Widget_Tag_Cloud extends WP_Widget {
 	 */
 	protected function widget( array $args, array $instance ) {
 		extract( $args );
-		
+
 		$tag_cloud_args = $instance;
 		unset( $tag_cloud_args['title'] );
 
@@ -83,7 +84,7 @@ class SB_Widget_Tag_Cloud extends WP_Widget {
 	 * This function should check that $new_instance is set correctly.
 	 * The newly calculated value of $instance should be returned.
 	 * If "false" is returned, the instance won't be saved / updated.
-	 * 
+	 *
 	 * @todo Better sanitization for enumerated tag cloud widget options.
 	 *
 	 * @param array $new_instance New settings for this instance as input by the user via form().
@@ -93,19 +94,19 @@ class SB_Widget_Tag_Cloud extends WP_Widget {
 	 */
 	protected function update( array $new_instance, array $old_instance ) {
 		$instance = $old_instance;
-		
-		$instance['title']     = strip_tags( $new_instance['title'] );
+
+		$instance['title']     = esc_html( $new_instance['title'] );
 		$instance['smallest']  = absint( $new_instance['smallest'] );
 		$instance['largest']   = absint( $new_instance['largest'] );
-		$instance['unit']      = strip_tags( $new_instance['unit'] );
+		$instance['unit']      = esc_html( $new_instance['unit'] );
 		$instance['number']    = absint( $new_instance['number'] );
-		$instance['format']    = strip_tags( $new_instance['format'] );
-		$instance['separator'] = strip_tags( $new_instance['separator'] );
-		$instance['orderby']   = strip_tags( $new_instance['orderby'] );
-		$instance['order']     = strip_tags( $new_instance['order'] );
-		$instance['include']   = strip_tags( $new_instance['include'] );
-		$instance['exclude']   = strip_tags( $new_instance['exclude'] );
-		
+		$instance['format']    = esc_html( $new_instance['format'] );
+		$instance['separator'] = esc_html( $new_instance['separator'] );
+		$instance['orderby']   = esc_html( $new_instance['orderby'] );
+		$instance['order']     = esc_html( $new_instance['order'] );
+		$instance['include']   = esc_html( $new_instance['include'] );
+		$instance['exclude']   = esc_html( $new_instance['exclude'] );
+
 		return $instance;
 	}
 

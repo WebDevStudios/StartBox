@@ -1,8 +1,9 @@
 <?php
 /**
- * StartBox Framework.
+ * StartBox Search Widget
  *
- * @package StartBox\Widgets
+ * @package StartBox
+ * @subpackage Widgets
  * @author  WebDev Studios
  * @link    http://wpstartbox.com/
  * @license GPL-2.0+
@@ -15,7 +16,7 @@
  *
  * @package StartBox\Widgets
  * @author  WebDev Studios
- * 
+ *
  * @since Unknown
  */
 class SB_Widget_Search extends WP_Widget {
@@ -65,7 +66,7 @@ class SB_Widget_Search extends WP_Widget {
 				<input type="text" class="searchtext" value="" name="s" title="<?php echo esc_attr( $instance['search-input'] ); ?>" size="10" tabindex="1" />
 				<input type="submit" class="button" value="<?php echo esc_attr( $instance['search-button'] ); ?>" tabindex="2" />
 			</div>
-		</form>		
+		</form>
 		<?php
 		echo $after_widget;
 	}
@@ -85,9 +86,9 @@ class SB_Widget_Search extends WP_Widget {
 	protected function update( array $new_instance, array $old_instance ) {
 		$instance = $old_instance;
 
-		$instance['title']         = strip_tags( $new_instance['title'] );
-		$instance['search-input']  = strip_tags( $new_instance['search-input'] );
-		$instance['search-button'] = strip_tags( $new_instance['search-button'] );
+		$instance['title']         = esc_html( $new_instance['title'] );
+		$instance['search-input']  = esc_html( $new_instance['search-input'] );
+		$instance['search-button'] = esc_html( $new_instance['search-button'] );
 
 		return $instance;
 	}
