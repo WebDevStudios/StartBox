@@ -40,54 +40,53 @@ class sb_featured_content_widget extends WP_Widget {
 		$instance = apply_filters( 'sb_featured_content_instance', $instance, $args );
 
 		if ( $instance['content_type'] != 'page' ) {
-			$category = $instance['post_categories'];
-			$orderby = $instance['post_orderby'];
-			$order = $instance['post_order'];
-			$count = $instance['post_count'];
-
+			$category  = $instance['post_categories'];
+			$orderby   = $instance['post_orderby'];
+			$order     = $instance['post_order'];
+			$count     = $instance['post_count'];
 			$showtitle = $instance['post_showtitle'];
 
 			if ( $showmeta = $instance['post_showmeta'] ) { $meta = $instance['post_meta']; }
 
 			if ( $showimage = $instance['post_showimage'] ) {
-				$imagewidth = $instance['post_imagewidth'];
-				$imageheight = $instance['post_imageheight'];
+				$imagewidth     = $instance['post_imagewidth'];
+				$imageheight    = $instance['post_imageheight'];
 				$imagealignment = $instance['post_imagealignment'];
-				$imagelocation = $instance['post_imagelocation'];
+				$imagelocation  = $instance['post_imagelocation'];
 			}
 
 			$content = $limit = $readmore = '' ;
 			if ( $showcontent = $instance['post_showcontent'] ) {
-				$content = $instance['post_content'];
-				$limit = $instance['post_limit'];
+				$content  = $instance['post_content'];
+				$limit    = $instance['post_limit'];
 				$readmore = $instance['post_readmore'];
 			}
 
 			$morelink = $moretext = $morelocation = '';
 			if ( $showmore = $instance['post_showmore'] ) {
-				$morelink = $instance['post_morelink'];
-				$moretext = $instance['post_moretext'];
+				$morelink     = $instance['post_morelink'];
+				$moretext     = $instance['post_moretext'];
 				$morelocation = $instance['post_morelocation'];
 			}
 
 			$morecount = $offset = $include = $exclude = '';
 			if ( $showadvanced = $instance['post_showadvanced'] ) {
-				$offset = $instance['post_offset'];
-				$exclude = ($instance['post_exclude']) ? array($instance['post_exclude']) : '' ;
-				$include = ($instance['post_include']) ? array($instance['post_include']) : '' ;
+				$offset    = $instance['post_offset'];
+				$exclude   = ($instance['post_exclude']) ? array($instance['post_exclude']) : '' ;
+				$include   = ($instance['post_include']) ? array($instance['post_include']) : '' ;
 				$morecount = $instance['post_morecount'];
 			}
 
 		} else {
-			$page_id = $instance['page'];
-			$showimage = $instance['page_showimage'];
-			$imagewidth = $instance['page_imagewidth'];
-			$imageheight = $instance['page_imageheight'];
+			$page_id        = $instance['page'];
+			$showimage      = $instance['page_showimage'];
+			$imagewidth     = $instance['page_imagewidth'];
+			$imageheight    = $instance['page_imageheight'];
 			$imagealignment = $instance['page_imagealignment'];
-			$imagelocation = $instance['page_imagelocation'];
-			$showcontent = $instance['page_showcontent'];
-			$limit = $instance['page_limit'];
-			$readmore = $instance['page_readmore'];
+			$imagelocation  = $instance['page_imagelocation'];
+			$showcontent    = $instance['page_showcontent'];
+			$limit          = $instance['page_limit'];
+			$readmore       = $instance['page_readmore'];
 		}
 
 		echo $before_widget;
@@ -99,16 +98,16 @@ class sb_featured_content_widget extends WP_Widget {
 			$postcount = $postcount > 999 ? 999 : $postcount;
 
 			$posts = new WP_query( apply_filters( 'sb_featured_content_widget_query_args',  array(
-				'post_type' => $instance['content_type'],
-				'cat' => $category,
-				'posts_per_page' => $postcount,
-				'orderby' => $orderby,
-				'order' => $order,
-				'offset' => $offset,
-				'post__in' => $include,
-				'post__not_in' => $exclude,
-				'post_status' => 'publish',
-				'no_found_rows' => true,
+				'post_type'           => $instance['content_type'],
+				'cat'                 => $category,
+				'posts_per_page'      => $postcount,
+				'orderby'             => $orderby,
+				'order'               => $order,
+				'offset'              => $offset,
+				'post__in'            => $include,
+				'post__not_in'        => $exclude,
+				'post_status'         => 'publish',
+				'no_found_rows'       => true,
 				'ignore_sticky_posts' => true
 			), $instance, $args ) );
 			?>
@@ -160,51 +159,51 @@ class sb_featured_content_widget extends WP_Widget {
 	function update($new_instance, $old_instance) {
 		$instance = $old_instance;
 
-		$instance['content_type'] = $new_instance['content_type'];
+		$instance['content_type']        = $new_instance['content_type'];
 
-		$instance['title'] = strip_tags( $new_instance['title'] );
-		$instance['post_categories'] = $new_instance['post_categories'];
-		$instance['post_orderby'] = $new_instance['post_orderby'];
-		$instance['post_order'] = $new_instance['post_order'];
-		$instance['post_count'] = strip_tags( $new_instance['post_count'] );
+		$instance['title']               = esc_html( $new_instance['title'] );
+		$instance['post_categories']     = $new_instance['post_categories'];
+		$instance['post_orderby']        = $new_instance['post_orderby'];
+		$instance['post_order']          = $new_instance['post_order'];
+		$instance['post_count']          = absint( $new_instance['post_count'] );
 
-		$instance['post_showtitle'] = $new_instance['post_showtitle'];
-		$instance['post_showmeta'] = $new_instance['post_showmeta'];
-		$instance['post_meta'] = strip_tags( $new_instance['post_meta'] );
+		$instance['post_showtitle']      = $new_instance['post_showtitle'];
+		$instance['post_showmeta']       = $new_instance['post_showmeta'];
+		$instance['post_meta']           = esc_html( $new_instance['post_meta'] );
 
-		$instance['post_showimage'] = $new_instance['post_showimage'];
-		$instance['post_imagewidth'] = strip_tags( $new_instance['post_imagewidth'] );
-		$instance['post_imageheight'] = strip_tags( $new_instance['post_imageheight'] );
+		$instance['post_showimage']      = $new_instance['post_showimage'];
+		$instance['post_imagewidth']     = absint( $new_instance['post_imagewidth'] );
+		$instance['post_imageheight']    = absint( $new_instance['post_imageheight'] );
 		$instance['post_imagealignment'] = $new_instance['post_imagealignment'];
-		$instance['post_imagelocation'] = $new_instance['post_imagelocation'];
+		$instance['post_imagelocation']  = $new_instance['post_imagelocation'];
 
-		$instance['post_showcontent'] = $new_instance['post_showcontent'];
-		$instance['post_content'] = $new_instance['post_content'];
-		$instance['post_limit'] = strip_tags( $new_instance['post_limit'] );
-		$instance['post_readmore'] = strip_tags( $new_instance['post_readmore'] );
+		$instance['post_showcontent']    = $new_instance['post_showcontent'];
+		$instance['post_content']        = $new_instance['post_content'];
+		$instance['post_limit']          = absint( $new_instance['post_limit'] );
+		$instance['post_readmore']       = esc_html( $new_instance['post_readmore'] );
 
-		$instance['post_showmore'] =  $new_instance['post_showmore'];
-		$instance['post_morelink'] = strip_tags( $new_instance['post_morelink'] );
-		$instance['post_moretext'] = strip_tags( $new_instance['post_moretext'] );
-		$instance['post_morelocation'] = strip_tags( $new_instance['post_morelocation'] );
+		$instance['post_showmore']       =  $new_instance['post_showmore'];
+		$instance['post_morelink']       = esc_html( $new_instance['post_morelink'] );
+		$instance['post_moretext']       = esc_html( $new_instance['post_moretext'] );
+		$instance['post_morelocation']   = esc_html( $new_instance['post_morelocation'] );
 
-		$instance['post_showadvanced'] = strip_tags( $new_instance['post_showadvanced'] );
-		$instance['post_morecount'] = strip_tags( $new_instance['post_morecount'] );
-		$instance['post_include'] = strip_tags( $new_instance['post_include'] );
-		$instance['post_exclude'] = strip_tags( $new_instance['post_exclude'] );
-		$instance['post_offset'] = strip_tags( $new_instance['post_offset'] );
+		$instance['post_showadvanced']   = esc_html( $new_instance['post_showadvanced'] );
+		$instance['post_morecount']      = absint( $new_instance['post_morecount'] );
+		$instance['post_include']        = esc_html( $new_instance['post_include'] );
+		$instance['post_exclude']        = esc_html( $new_instance['post_exclude'] );
+		$instance['post_offset']         = absint( $new_instance['post_offset'] );
 
-		$instance['page'] = $new_instance['page'];
+		$instance['page']                = $new_instance['page'];
 
-		$instance['page_showimage'] = $new_instance['page_showimage'];
-		$instance['page_imagewidth'] = strip_tags( $new_instance['page_imagewidth'] );
-		$instance['page_imageheight'] = strip_tags( $new_instance['page_imageheight'] );
+		$instance['page_showimage']      = $new_instance['page_showimage'];
+		$instance['page_imagewidth']     = absint( $new_instance['page_imagewidth'] );
+		$instance['page_imageheight']    = absint( $new_instance['page_imageheight'] );
 		$instance['page_imagealignment'] = $new_instance['page_imagealignment'];
-		$instance['page_imagelocation'] = $new_instance['page_imagelocation'];
+		$instance['page_imagelocation']  = $new_instance['page_imagelocation'];
 
-		$instance['page_showcontent'] = $new_instance['page_showcontent'];
-		$instance['page_limit'] = strip_tags( $new_instance['page_limit'] );
-		$instance['page_readmore'] = strip_tags( $new_instance['page_readmore'] );
+		$instance['page_showcontent']    = $new_instance['page_showcontent'];
+		$instance['page_limit']          = absint( $new_instance['page_limit'] );
+		$instance['page_readmore']       = esc_html( $new_instance['page_readmore'] );
 
 		return $instance;
 
@@ -216,27 +215,27 @@ class sb_featured_content_widget extends WP_Widget {
 
 	function form($instance) {
 		$defaults = array(
-			'title'				=> 'Featured',
-			'content_type'		=> 'posts',
-			'post_categories'	=> '',
-			'post_count'		=> '5',
-			'post_showtitle'	=> 'on',
-			'post_limit'		=> '',
-			'post_meta'			=> 'Published on [date] by [author]',
-			'post_imagewidth'	=> '60',
-			'post_imageheight'	=> '60',
-			'post_readmore'		=> 'Read &amp; Discuss &raquo;',
-			'post_morelink'		=> '',
-			'post_moretext'		=> 'More Posts &raquo;',
-			'post_morecount'	=> '0',
-			'post_exclude'		=> '',
-			'post_include'		=> '',
-			'post_offset'		=> '',
-			'page'				=> '',
-			'page_imagewidth'	=> '60',
-			'page_imageheight'	=> '60',
-			'page_limit'		=> '500',
-			'page_readmore'		=> 'Continue Reading &raquo;'
+			'title'            => 'Featured',
+			'content_type'     => 'posts',
+			'post_categories'  => '',
+			'post_count'       => '5',
+			'post_showtitle'   => 'on',
+			'post_limit'       => '',
+			'post_meta'        => 'Published on [date] by [author]',
+			'post_imagewidth'  => '60',
+			'post_imageheight' => '60',
+			'post_readmore'    => 'Read &amp; Discuss &raquo;',
+			'post_morelink'    => '',
+			'post_moretext'    => 'More Posts &raquo;',
+			'post_morecount'   => '0',
+			'post_exclude'     => '',
+			'post_include'     => '',
+			'post_offset'      => '',
+			'page'             => '',
+			'page_imagewidth'  => '60',
+			'page_imageheight' => '60',
+			'page_limit'       => '500',
+			'page_readmore'    => 'Continue Reading &raquo;'
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults );
 		$post_types = get_post_types( array('public'=>true),'objects');
