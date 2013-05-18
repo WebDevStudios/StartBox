@@ -439,11 +439,11 @@ class StartBox {
 			$registered_sidebars = get_option( 'sidebars_widgets' );
 			if ( isset( $registered_sidebars['primary_widget_area'] ) ) {
 				$registered_sidebars['primary'] = $registered_sidebars['primary_widget_area'];
-				unset( $registered_sidebars['primary_widget_area'] );
+				// unset( $registered_sidebars['primary_widget_area'] );
 			}
 			if ( isset( $registered_sidebars['secondary_widget_area'] ) ) {
 				$registered_sidebars['secondary'] = $registered_sidebars['secondary_widget_area'];
-				unset( $registered_sidebars['secondary_widget_area'] );
+				// unset( $registered_sidebars['secondary_widget_area'] );
 			}
 			update_option( 'sidebars_widgets', $registered_sidebars );
 
