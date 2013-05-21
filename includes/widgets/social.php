@@ -57,20 +57,6 @@ class SB_Widget_Social extends WP_Widget {
 			'display'     => '',
 		);
 
-		$this->services = array(
-			'rss'         => array( 'name' => 'RSS', 'url' => $rss, 'text' => __( 'Subscribe via RSS', 'startbox' ) ),
-			'comment_rss' => array( 'name' => 'Comments RSS', 'url' => $comment_rss, 'text' => __( 'Subscribe to Comments RSS', 'startbox' ) ),
-			'twitter'     => array( 'name' => 'Twitter', 'url' => $twitter ),
-			'facebook'    => array( 'name' => 'Facebook', 'url' => $instance['facebook'] ),
-			'gplus'       => array( 'name' => 'Google+', 'url' => $instance['gplus'] ),
-			'youtube'     => array( 'name' => 'YouTube', 'url' => $instance['youtube'] ),
-			'vimeo'       => array( 'name' => 'Vimeo', 'url' => $instance['vimeo'] ),
-			'flickr'      => array( 'name' => 'Flickr', 'url' => $instance['flickr'] ),
-			'delicious'   => array( 'name' => 'Del.icio.us', 'url' => $instance['delicious'] ),
-			'linkedin'    => array( 'name' => 'LinkedIn', 'url' => $instance['linkedin'] ),
-			'digg'        => array( 'name' => 'Digg', 'url' => $instance['digg'] ),
-		);
-
 		$widget_ops = array(
 			'classname'   =>  'sb_social_widget',
 			'description' =>  __( 'Provide visitors with links to your social media profiles.', 'startbox' ),
@@ -102,6 +88,21 @@ class SB_Widget_Social extends WP_Widget {
 		$comment_rss = ( isset( $instance['comment_rss'] ) ) ? get_bloginfo('comment_rss2_url') : '';
 		$twitter     = ( isset( $instance['twitter'] ) ) ? 'https://twitter.com/' . $instance['twitter'] : '';
 
+		// Setup our services
+		$services = array(
+			'rss'         => array( 'name' => 'RSS',          'url' => $rss, 'text' => __( 'Subscribe via RSS', 'startbox' ) ),
+			'comment_rss' => array( 'name' => 'Comments RSS', 'url' => $comment_rss, 'text' => __( 'Subscribe to Comments RSS', 'startbox' ) ),
+			'twitter'     => array( 'name' => 'Twitter',      'url' => $twitter ),
+			'facebook'    => array( 'name' => 'Facebook',     'url' => $instance['facebook'] ),
+			'gplus'       => array( 'name' => 'Google+',      'url' => $instance['gplus'] ),
+			'youtube'     => array( 'name' => 'YouTube',      'url' => $instance['youtube'] ),
+			'vimeo'       => array( 'name' => 'Vimeo',        'url' => $instance['vimeo'] ),
+			'flickr'      => array( 'name' => 'Flickr',       'url' => $instance['flickr'] ),
+			'delicious'   => array( 'name' => 'Del.icio.us',  'url' => $instance['delicious'] ),
+			'linkedin'    => array( 'name' => 'LinkedIn',     'url' => $instance['linkedin'] ),
+			'digg'        => array( 'name' => 'Digg',         'url' => $instance['digg'] ),
+		);
+
 		echo $before_widget;
 
 		if ( ! empty( $instance['title'] ) ) {
@@ -113,7 +114,7 @@ class SB_Widget_Social extends WP_Widget {
 		}
 
 		echo '<ul>';
-		foreach ( $this->services as $service_id => $service ) {
+		foreach ( $services as $service_id => $service ) {
 			// Skip if there's no URL
 			if ( ! isset( $service['url'] ) || ! $service['url'] ) {
 				continue;
