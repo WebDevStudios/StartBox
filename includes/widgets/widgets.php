@@ -28,7 +28,7 @@ function sb_load_widgets() {
 	unregister_widget( 'WP_Widget_Search' );
 	unregister_widget( 'WP_Widget_Tag_Cloud' );
 }
-add_action( 'widgets_init', 'sb_social_load_widgets' );
+add_action( 'widgets_init', 'sb_load_widgets' );
 
 /**
  * Enqueue JavaScript file for Featured Content widget.

@@ -52,7 +52,7 @@ class SB_Widget_Search extends WP_Widget {
 	 * @param array $args Display arguments including before_title, after_title, before_widget, and after_widget.
 	 * @param array $instance The settings for the particular instance of the widget
 	 */
-	protected function widget( array $args, array $instance ) {
+	public function widget( array $args, array $instance ) {
 		extract( $args );
 
 		echo $before_widget;
@@ -83,7 +83,7 @@ class SB_Widget_Search extends WP_Widget {
 	 *
 	 * @return array Settings to save or bool false to cancel saving
 	 */
-	protected function update( array $new_instance, array $old_instance ) {
+	public function update( array $new_instance, array $old_instance ) {
 		$instance = $old_instance;
 
 		$instance['title']         = esc_html( $new_instance['title'] );
@@ -98,7 +98,7 @@ class SB_Widget_Search extends WP_Widget {
 	 *
 	 * @param array $instance Current settings
 	 */
-	protected function form( array $instance ) {
+	public function form( array $instance ) {
 		$instance = wp_parse_args( $instance, $this->defaults );
 		?>
 		<p>
