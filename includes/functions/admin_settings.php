@@ -988,7 +988,7 @@ class sb_settings_factory {
 
 	// Register a new options panel
 	public function register($class_name) {
-		$this->settings[$class_name] = & new $class_name();
+		$this->settings[$class_name] = new $class_name();
 	}
 
 	// Unregister an options panel
