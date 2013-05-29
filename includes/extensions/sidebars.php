@@ -454,7 +454,7 @@ function sb_sidebars_delete($post_id) {
 	}
 
 }
-add_action( 'trash_post', 'sb_sidebars_delete' );
+add_action( 'trashed_post', 'sb_sidebars_delete' );
 
 /**
  * Filter the "post updated" messages
