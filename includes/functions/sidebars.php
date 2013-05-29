@@ -226,8 +226,9 @@ class SB_Sidebars {
 			// Determine which key we're testing based on what we're viewing
 			// For our special cases we'll want to return early
 			if ( array_key_exists( 'Home', $custom_sidebars ) && is_front_page() ) { $key = 'Home'; }
-			elseif ( array_key_exists( 'all-Posts', $custom_sidebars ) && is_single() ) { $key = 'all-Posts'; }
+			elseif ( array_key_exists( 'all-Posts', $custom_sidebars ) && is_single() && get_post_type() == 'post' ) ) { $key = 'all-Posts'; }
 			elseif ( array_key_exists( 'all-Pages', $custom_sidebars ) && is_page() ) { $key = 'all-Pages'; }
+			elseif ( array_key_exists( 'all-'.$post->post_type, $custom_sidebars ) && is_single() && get_post_type() == $post->post_type ) { $key = 'all-'.$post->post_type; }
 			elseif ( array_key_exists( 'all-category', $custom_sidebars ) && is_category() ) { $key = 'all-category'; }
 			elseif ( array_key_exists( 'all-tag', $custom_sidebars ) && is_tag() ) { $key = 'all-tag'; }
 			if (
