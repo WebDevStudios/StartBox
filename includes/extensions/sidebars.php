@@ -67,8 +67,9 @@ add_action( 'init', 'sb_sidebars_init' );
 function sb_sidebar_default_slug( $data , $postarr ) {
 
 	// If we don't have a post_name (slug), set it to "custom-sidebar"
-	if ( '' == $data['post_name'] ) {
-		$data['post_name'] = 'custom-sidebar';
+	// Make sure this isn't an unsaved post (auto-draft) and is a custon sidebar post
+	if ( 'auto-draft' != $postarr['post_status'] && 'sidebar' == $data['post_type'] && '' == $data['post_name'] ) {
+		$data['post_name'] = 'custom-sidebar-'.$postarr['ID'];
 	}
 
 	// Don't forget to return the data, otherwise we ruin everything.
