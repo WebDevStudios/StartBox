@@ -93,7 +93,7 @@ class StartBox {
 	public function register_scripts_and_styles() {
 
 		// Register Default Scripts
-		wp_register_script( 'startbox',		SCRIPTS_URL . '/startbox.js', array('jquery', 'colorbox', 'md5', 'smoothScroll') );
+		wp_register_script( 'startbox',		SCRIPTS_URL . '/startbox.js', array('jquery', 'md5', 'smoothScroll') );
 		wp_register_script( 'colorbox',		SCRIPTS_URL . '/jquery.colorbox.min.js', array('jquery'), NULL );
 		wp_register_script( 'md5',			SCRIPTS_URL . '/jquery.md5.js', array('jquery') );
 		wp_register_script( 'hovercards',	( is_ssl() ? 'https://secure' : 'http://s' ) . '.gravatar.com/js/gprofiles.js?u', array('jquery') ); // Gravatar Hovercards
@@ -186,7 +186,9 @@ class StartBox {
 		}
 		wp_enqueue_style( 'shortcodes' );
 		wp_enqueue_style( 'layouts' );
+		wp_enqueue_style( 'colorbox' );
 		wp_enqueue_script( 'hovercards' );
+		wp_enqueue_script( 'colorbox' );
 		wp_enqueue_script( 'startbox' );
 	}
 
