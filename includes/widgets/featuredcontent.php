@@ -175,8 +175,8 @@ class SB_Widget_Featured_Content extends WP_Widget {
 					}
 					if ( 'none' != $content ) {
 						echo '<div class="featured-content">';
-						if ( $limit ) {
-							echo substr( get_the_excerpt(), 0, $limit) . '... ';
+						if ( $limit && $shortened_content = substr( get_the_excerpt(), 0, $limit ) ) {
+							echo $shortened_content . '... ';
 							if ( $readmore ) {
 								echo '<a href="'. get_permalink() .'" title="' . $readmore . '" rel="bookmark" class="more-link">' . $readmore . '</a>';
 							}
@@ -220,8 +220,10 @@ class SB_Widget_Featured_Content extends WP_Widget {
 					if ( $showimage && 'after' == $imagelocation ) {
 						?><a class="featured-photo align<?php echo $imagealignment; ?>" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php sb_post_image( array( 'width' => $imagewidth, 'height' => $imageheight ) ); ?></a><?php
 					}
-					if ( $limit ) {
-						echo substr( get_the_content(), 0, $limit) . '... '; if ( $readmore ) echo '<a href="'. get_permalink() .'" title="' . $readmore . '" rel="bookmark" class="more-link">' . $readmore . '</a>';
+					if ( $limit && $shortened_content = substr( get_the_content(), 0, $limit ) ) {
+						echo $shortened_content . '... ';
+						if ( $readmore )
+							echo '<a href="'. get_permalink() .'" title="' . $readmore . '" rel="bookmark" class="more-link">' . $readmore . '</a>';
 					} else {
 						the_content( apply_filters( 'sb_read_more', $readmore ) );
 					}
