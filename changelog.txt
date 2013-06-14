@@ -1,6 +1,12 @@
-2013.04.03 - version 2.7.2
-	* Fixed: Prevented all unsaved post types from using the 'custom-sidebar' slug intended for Sidebars
+2013.06.14 - version 2.7.2
+	* Added: New filters for controling SB's post image functions
+	* Added: New filters for featured content widget output
+	* Changed: Removed startbox.js hard dependency on colorbox.js
+	* Fixed: Prevent non-sidebar posts from using the 'custom-sidebar' slug
 	* Fixed: Corrected the custom sidebar query so it checks ALL sidebars when selecting a replacement
+	* Fixed: Allow for "All {post_type}" selections to work for sidebars
+	* Fixed: Stop featured content widget from showing "..." if post has no content
+	* Fixed: A number of minor issues that caused an inane amount of PHP warnings
 
 2013.04.01 - version 2.7.1
 	* Fixed: Repaired a missing file include for SB Slideshows
