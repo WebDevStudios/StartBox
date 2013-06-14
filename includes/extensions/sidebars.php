@@ -66,13 +66,16 @@ add_action( 'init', 'sb_sidebars_init' );
  */
 function sb_sidebar_default_slug( $data , $postarr ) {
 
-	// If we're not working with a sidebar, bail here
-	if ( 'sidebar' != $data['post_type'] )
-		return $data;
-
-	// If we don't have a post_name (slug), set it to "custom-sidebar"
-	if ( '' == $data['post_name'] ) {
-		$data['post_name'] = 'custom-sidebar';
+	// If this is a sidebar post
+	// And this is NOT an unsaved post (auto-draft)
+	// And there is currently no post-name (slug)
+	if (
+		'sidebar' == $data['post_type']
+		&& 'auto-draft' != $postarr['post_status']
+		&& '' == $data['post_name']
+	) {
+		// Override the slug, enumerated with the post's ID
+		$data['post_name'] = 'custom-sidebar-' . $postarr['ID'];
 	}
 
 	// Don't forget to return the data, otherwise we ruin everything.
