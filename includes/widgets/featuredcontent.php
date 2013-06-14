@@ -32,7 +32,7 @@ class SB_Widget_Featured_Content extends WP_Widget {
 	 * Constructor. Set the default widget options and create widget.
 	 */
 	public function __construct() {
-		$defaults = array(
+		$this->defaults = array(
 			'title'            => __( 'Featured', 'startbox' ),
 			'content_type'     => 'posts',
 			'post_categories'  => '',

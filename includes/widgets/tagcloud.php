@@ -32,7 +32,7 @@ class SB_Widget_Tag_Cloud extends WP_Widget {
 	 * Constructor. Set the default widget options and create widget.
 	 */
 	public function __construct() {
-		$defaults = array(
+		$this->defaults = array(
 			'title'     => __( 'Tags', 'startbox' ),
 			'smallest'  => '8',
 			'largest'   => '22',

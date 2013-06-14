@@ -32,7 +32,7 @@ class SB_Widget_Search extends WP_Widget {
 	 * Constructor. Set the default widget options and create widget.
 	 */
 	public function __construct() {
-		$defaults = array(
+		$this->defaults = array(
 			'title'         => __( 'Search', 'startbox' ),
 			'search-input'  => __( 'Search', 'startbox' ),
 			'search-button' => __( 'Search', 'startbox' ),
