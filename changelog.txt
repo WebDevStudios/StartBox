@@ -1,3 +1,13 @@
+2013.06.14 - version 2.7.2
+	* Added: New filters for controling SB's post image functions
+	* Added: New filters for featured content widget output
+	* Updated: Removed startbox.js hard dependency on colorbox.js
+	* Fixed: Prevent non-sidebar posts from using the 'custom-sidebar' slug
+	* Fixed: Corrected the custom sidebar query so it checks ALL sidebars when selecting a replacement
+	* Fixed: Allow for "All {post_type}" selections to work for sidebars
+	* Fixed: Stop featured content widget from showing "..." if post has no content
+	* Fixed: A number of minor issues that caused an inane amount of PHP warnings
+
 2013.04.01 - version 2.7.1
 	* Fixed: Repaired a missing file include for SB Slideshows
 	* Fixed: Repaired a hidden issue with custom sidebars not appearing in some instances
@@ -12,12 +22,12 @@
 	* Fixed: Default settings for post thumbnails in theme options.
 	* Fixed: Made footer settings sanitization a touch less restrictive.
 	* Fixed: Prevent comments from storing the default website text if no website provided
-	* Changed: Removed automatic add_theme_support of StartBox Slideshows (unless a site already has one or more slideshows)
-	* Changed: Updated startbox.css to better style heading elements (h1, h2, etc) for handling line-height and bottom margin.
-	* Changed: Updated the Options API uploader to use media manager.
-	* Changed: Improved inline documentation for sb_get_post_image, sb_post_image and sb_get_post_image_url
-	* Changed: Updated sb_get_post_image, sb_post_image and sb_get_post_image_url to not use extract()
-	* Changed: Added StartBox Support link to Help metabox in Theme Options
+	* Updated: Removed automatic add_theme_support of StartBox Slideshows (unless a site already has one or more slideshows)
+	* Updated: Updated startbox.css to better style heading elements (h1, h2, etc) for handling line-height and bottom margin.
+	* Updated: Updated the Options API uploader to use media manager.
+	* Updated: Improved inline documentation for sb_get_post_image, sb_post_image and sb_get_post_image_url
+	* Updated: Updated sb_get_post_image, sb_post_image and sb_get_post_image_url to not use extract()
+	* Updated: Added StartBox Support link to Help metabox in Theme Options
 	* Removed: Eliminated AJAXUpload scripts and all references
 	* Removed: Timthumb.php and dependence on Timthumb entirely. \o/
 	* Removed: Deprecated sb_post_image_url
@@ -33,18 +43,18 @@
 	* Fixed: annoying bug introduced in 2.5.4 that prevented sidebar settings from being stored on first save.
 	* Fixed: bug that prevented WordPress SEO (by Yoast) from overwriting page titles
 	* Fixed: bug that would cause the RSS nav menu extra link to use href="true" instead of href="/your/feed/url/"
-	* Changed: Options API: Refactored most of the code and added better inline documentation (see /includes/functions/admin_settings.php)
-	* Changed: Options API: WYSIWYG option to use wp_editor functionality introduced in WP3.3
-	* Changed: Options API: Logo option is now cleaner and simpler
-	* Changed: Options API: Layout Options are now in their own separate section
-	* Changed: the Sitemap Page Template now accepts parameters passed as an array through the Custom Field "sitemap_settings"
-	* Changed: updated all post image functions to run off a single array or argument string, instead of multiple arguments
-	* Changed: renamed /plugins/ to /extensions/
-	* Changed: [date] shortcode now accepts "relative=true" parameter to return a relative date (e.g. 5 hours ago)
-	* Changed: updated SB Social widget to include Google+ and more gracefully handle output of each network's name
-	* Changed: wp_enqueue_style calls now pass through theme version numbers (for chache-busting purposes)
-	* Changed: footer widgets now hook into sb_footer_widgets via hooks.php (they were previously hard-coded)
-	* Changed: replaced custom, unfilterable search form extra in Menus to use get_template_part() and searchform.php or searchform-menu.php (if present)
+	* Updated: Options API: Refactored most of the code and added better inline documentation (see /includes/functions/admin_settings.php)
+	* Updated: Options API: WYSIWYG option to use wp_editor functionality introduced in WP3.3
+	* Updated: Options API: Logo option is now cleaner and simpler
+	* Updated: Options API: Layout Options are now in their own separate section
+	* Updated: the Sitemap Page Template now accepts parameters passed as an array through the Custom Field "sitemap_settings"
+	* Updated: updated all post image functions to run off a single array or argument string, instead of multiple arguments
+	* Updated: renamed /plugins/ to /extensions/
+	* Updated: [date] shortcode now accepts "relative=true" parameter to return a relative date (e.g. 5 hours ago)
+	* Updated: updated SB Social widget to include Google+ and more gracefully handle output of each network's name
+	* Updated: wp_enqueue_style calls now pass through theme version numbers (for chache-busting purposes)
+	* Updated: footer widgets now hook into sb_footer_widgets via hooks.php (they were previously hard-coded)
+	* Updated: replaced custom, unfilterable search form extra in Menus to use get_template_part() and searchform.php or searchform-menu.php (if present)
 	* Removed: deprecated ALL custom hook functions, replacing them more simply with do_action( 'hook_name' )
 	* Removed: deprecated sb_title() function, since it's only use was having wp_title hooked directly to it
 	* Removed: /page-fullwidth.php (full-width page template) -- use the One Column layout option instead
@@ -55,116 +65,116 @@
 	* Removed: Options API: "Save the Web" Settings (The PushUpTheWeb service no longer exists)
 
 2012.08.02 - version 2.5.8
-	* changed: updated /includes/functions/startbox.php to use wp_get_theme instead of get_theme_data (when supported)
-	* changed: merged in a number of translation fixes from github. Props Koncept-Web
+	* Updated: updated /includes/functions/startbox.php to use wp_get_theme instead of get_theme_data (when supported)
+	* Updated: merged in a number of translation fixes from github. Props Koncept-Web
 
 2012.05.16 - version 2.5.7
-	* fixed: annoying bug introduced in 2.5.4 that prevented sidebar settings from being stored on first save.
-	* fixed: bug that would cause the RSS nav menu extra link to use href="true" instead of href="/your/feed/url/"
-	* fixed: bug that prevented WordPress SEO plugin (by Yoast) from rewriting page titles correctly
+	* Fixed: annoying bug introduced in 2.5.4 that prevented sidebar settings from being stored on first save.
+	* Fixed: bug that would cause the RSS nav menu extra link to use href="true" instead of href="/your/feed/url/"
+	* Fixed: bug that prevented WordPress SEO plugin (by Yoast) from rewriting page titles correctly
 
 2012.01.31 - version 2.5.6
-	* changed: updated [date] shortcode so that you can pass a custom PHP date format (e.g. [date format="Y"])
-	* changed: hooked #header_wrap correctly to sb_before_header 999 and sb_after_header 9 (instead of the other way around)
+	* Updated: updated [date] shortcode so that you can pass a custom PHP date format (e.g. [date format="Y"])
+	* Updated: hooked #header_wrap correctly to sb_before_header 999 and sb_after_header 9 (instead of the other way around)
 
 2012.01.23 - version 2.5.5
-	* added: Options API now supports new contextual Help tab in WP3.3, added help text for relevant panels
-	* changed: updated how admin menu items were registered per WP 3.3 changes
-	* changed: updated when all defaults scripts and styles were registered to better follow WP standards
-	* changed: updated footer settings to load the current year as the default setting
-	* changed: slideshows now use sb_post_image_url() instead of sb_post_image()
-	* changed: updated Nivo Slider from 2.3 to 2.7.1
-	* fixed: minor CSS tweaks to Theme Options page to better match WP3.3 style
-	* fixed: bug in attribute output for sb_post_image()
-	* fixed: bug where layout would not apply to posts page if set to static page via Settings > Reading
-	* fixed: bug where correct sidebar would not apply to posts page if set to static page via Settings > Reading
-	* fixed: annoying bug that would recheck slideshow control settings
+	* Added: Options API now supports new contextual Help tab in WP3.3, added help text for relevant panels
+	* Updated: updated how admin menu items were registered per WP 3.3 changes
+	* Updated: updated when all defaults scripts and styles were registered to better follow WP standards
+	* Updated: updated footer settings to load the current year as the default setting
+	* Updated: slideshows now use sb_post_image_url() instead of sb_post_image()
+	* Updated: updated Nivo Slider from 2.3 to 2.7.1
+	* Fixed: minor CSS tweaks to Theme Options page to better match WP3.3 style
+	* Fixed: bug in attribute output for sb_post_image()
+	* Fixed: bug where layout would not apply to posts page if set to static page via Settings > Reading
+	* Fixed: bug where correct sidebar would not apply to posts page if set to static page via Settings > Reading
+	* Fixed: annoying bug that would recheck slideshow control settings
 
 2011.11.17 - version 2.5.4
-	* added: Complete security audit by Mark Jaquith, lots of minor changes to tighten theme security
-	* added: [title] shortcode to simply return get_the_title()
-	* changed: updated TimThumb to version 2.8.2
-	* changed: updated [box] shortcode so you can use style="" or type="" to specify box style
-	* changed: updated sidebar hook sb_no_{$sidebar}_widgets to use $location instead of $sidebar, as intended
-	* changed: updated filter sb_logo_container to use h1 on front page, h2 elsewhere (Joost SEO tip)
-	* changed: removed nofollow settings on read more links in loop.php (Joost SEO tip)
-	* changed: Set default "Read More" text to "Read More: [title] &rarr;" (Joost SEO tip)
-	* changed: set Show Admin Links (footer settings) to false by default (Joost SEO tip)
-	* changed: added title attribute to entry photo to match alt attribute (Joost SEO tip)
-	* fixed: corrected a javascript bug while viewing the Widgets page
-	* fixed: corrected a bug with the [box] shortcode, now correctly uses <div> instead of <span>
-	* fixed: minor bug (php warning) with layout thumbnails in /includes/functions/layouts.php
-	* fixed: minor bug (php warning) with sanitization and wp_kses in /includes/admin/admin.php (hat-tip: John Bloch and Ryan Duff)
-	* fixed: minor bug from earlier release that broke the color type options
+	* Added: Complete security audit by Mark Jaquith, lots of minor changes to tighten theme security
+	* Added: [title] shortcode to simply return get_the_title()
+	* Updated: updated TimThumb to version 2.8.2
+	* Updated: updated [box] shortcode so you can use style="" or type="" to specify box style
+	* Updated: updated sidebar hook sb_no_{$sidebar}_widgets to use $location instead of $sidebar, as intended
+	* Updated: updated filter sb_logo_container to use h1 on front page, h2 elsewhere (Joost SEO tip)
+	* Updated: removed nofollow settings on read more links in loop.php (Joost SEO tip)
+	* Updated: Set default "Read More" text to "Read More: [title] &rarr;" (Joost SEO tip)
+	* Updated: set Show Admin Links (footer settings) to false by default (Joost SEO tip)
+	* Updated: added title attribute to entry photo to match alt attribute (Joost SEO tip)
+	* Fixed: corrected a javascript bug while viewing the Widgets page
+	* Fixed: corrected a bug with the [box] shortcode, now correctly uses <div> instead of <span>
+	* Fixed: minor bug (php warning) with layout thumbnails in /includes/functions/layouts.php
+	* Fixed: minor bug (php warning) with sanitization and wp_kses in /includes/admin/admin.php (hat-tip: John Bloch and Ryan Duff)
+	* Fixed: minor bug from earlier release that broke the color type options
 
 2011.08.02 - version 2.5.3
 	* IMPORTANT SECURITY UPDATE: patched a zero-day exploit in timthumb.php
 
 2011.07.30 - version 2.5.2
-	* new: custom sidebars can now be set to appear on just the homepage
-	* new: sb_register_sidebar helper function for easily registering new sidebar within theme/plugin
-	* new: sb_unregister_sidebar helper function for easily unregistering a default sidebar within theme/plugin
-	* new: Slideshows can now be used to output a single random image (credit: Lee Doel)
-	* changed: added check for is_post_type_archive() to the sb_page_title hook
-	* changed: improved URL scheme for admin links in footer
-	* changed: sb_before/after_{sidebar}_aside to sb_before/after_{sidebar}
-	* changed: altered the default search widget styles and gravity form submit button style
-	* changed: nav menu options depth now limited to 3 levels deep
-	* changed: nav menu options can now set a default depth
-	* changed: updated startbox.po and startbox.mo to include all the latest localization strings
+	* Added: custom sidebars can now be set to appear on just the homepage
+	* Added: sb_register_sidebar helper function for easily registering new sidebar within theme/plugin
+	* Added: sb_unregister_sidebar helper function for easily unregistering a default sidebar within theme/plugin
+	* Added: Slideshows can now be used to output a single random image (credit: Lee Doel)
+	* Updated: added check for is_post_type_archive() to the sb_page_title hook
+	* Updated: improved URL scheme for admin links in footer
+	* Updated: sb_before/after_{sidebar}_aside to sb_before/after_{sidebar}
+	* Updated: altered the default search widget styles and gravity form submit button style
+	* Updated: nav menu options depth now limited to 3 levels deep
+	* Updated: nav menu options can now set a default depth
+	* Updated: updated startbox.po and startbox.mo to include all the latest localization strings
 	* removed: removed internal copy of Widget Logic, users are encouraged to install the stand-alone plugin if they still want it.
 
 2011.06.24 - version 2.5.1
-	* new: added sb_before/after_{sidebar}_aside to appear outside of opening/closing div for given sidebar
-	* changed: moved sb_before/after_{sidebar}_widgets to appear inside of opening/closing div for for given sidebar
-	* fixed: removed extra double quote output at end of sb_post_image_url()
-	* fixed: hooked style.css to wp_enqueue_scripts, instead of template_redirect, preventing layout override
-	* fixed: JS bug in Slideshows that prevented admin UI from working in IE, FF5 and Safari
-	* fixed: bug that prevented thumbnails from being disabled via Theme Options
+	* Added: added sb_before/after_{sidebar}_aside to appear outside of opening/closing div for given sidebar
+	* Updated: moved sb_before/after_{sidebar}_widgets to appear inside of opening/closing div for for given sidebar
+	* Fixed: removed extra double quote output at end of sb_post_image_url()
+	* Fixed: hooked style.css to wp_enqueue_scripts, instead of template_redirect, preventing layout override
+	* Fixed: JS bug in Slideshows that prevented admin UI from working in IE, FF5 and Safari
+	* Fixed: bug that prevented thumbnails from being disabled via Theme Options
 
 2011.06.12 - version 2.5
-	* new: added new Sidebar manager, create custom sidebars via the Appearance menu
-	* new: theme support for custom page layouts
-	* new: layout selector added for all post types and taxonomies
-	* new: a 'layout' option type for the Options API
-	* new: filter sb_layout_image_uri to set custom layout images
-	* new: filter get_post_layout_default to override default layout
-	* new: filter get_theme_layout to alter body class output for layouts
-	* new: several more hooks before and after each individual widget area. maintained legacy hooks, too.
-	* new: sb_post_image_url() to output just the image URI for cropped images
-	* new: conditional sb_verify_post_type($type)
-	* new: shortcode [sidebar id="the-sidebar-id"] for adding sidebars virtually anywhere
-	* new: SB_Sidebar class, can be extended by child theme to redefine StartBox sidebar defaults
-	* changed: added several more theme options for controlling post thumbnails
-	* changed: adjusted footer text sanitization to allow only practical html by default
-	* changed: moved all files in /includes/styles/defaults/ to /includes/styles/
-	* changed: deleted /includes/styles/layouts/
-	* changed: edited SB Featured widget to include all public post types as selectable content types
-	* changed: updated "Display A Category" page template (page_category.php) to optionally display CPT's and parse more variables set via custom fields
-	* changed: updated sb_post_image to use TimThumb's new align arguments (NOTE: this breaks the old arguments)
-	* changed: updated facebook shortcode to include new "send" button
-	* changed: added post_format and custom loop support to the Display a Category page template
-	* changed: hooked Google Analytics option into wp_head instead of sb_after
-	* changed: added custom taxonomy archives to sb_page_title output
-	* changed: added Caption Opacity option for Slideshows
-	* fixed: minor bug in sb_post_image that improperly applied class .nophoto when use_attachments was set to true and post had attachments
-	* fixed: minor bug that prevented "THEMENAME Options Updated" from appearing after saving theme options
-	* fixed: minor bug that broke smooth scrolling in "Return to Top" links
+	* Added: added new Sidebar manager, create custom sidebars via the Appearance menu
+	* Added: theme support for custom page layouts
+	* Added: layout selector added for all post types and taxonomies
+	* Added: a 'layout' option type for the Options API
+	* Added: filter sb_layout_image_uri to set custom layout images
+	* Added: filter get_post_layout_default to override default layout
+	* Added: filter get_theme_layout to alter body class output for layouts
+	* Added: several more hooks before and after each individual widget area. maintained legacy hooks, too.
+	* Added: sb_post_image_url() to output just the image URI for cropped images
+	* Added: conditional sb_verify_post_type($type)
+	* Added: shortcode [sidebar id="the-sidebar-id"] for adding sidebars virtually anywhere
+	* Added: SB_Sidebar class, can be extended by child theme to redefine StartBox sidebar defaults
+	* Updated: added several more theme options for controlling post thumbnails
+	* Updated: adjusted footer text sanitization to allow only practical html by default
+	* Updated: moved all files in /includes/styles/defaults/ to /includes/styles/
+	* Updated: deleted /includes/styles/layouts/
+	* Updated: edited SB Featured widget to include all public post types as selectable content types
+	* Updated: updated "Display A Category" page template (page_category.php) to optionally display CPT's and parse more variables set via custom fields
+	* Updated: updated sb_post_image to use TimThumb's new align arguments (NOTE: this breaks the old arguments)
+	* Updated: updated facebook shortcode to include new "send" button
+	* Updated: added post_format and custom loop support to the Display a Category page template
+	* Updated: hooked Google Analytics option into wp_head instead of sb_after
+	* Updated: added custom taxonomy archives to sb_page_title output
+	* Updated: added Caption Opacity option for Slideshows
+	* Fixed: minor bug in sb_post_image that improperly applied class .nophoto when use_attachments was set to true and post had attachments
+	* Fixed: minor bug that prevented "THEMENAME Options Updated" from appearing after saving theme options
+	* Fixed: minor bug that broke smooth scrolling in "Return to Top" links
 
 2011.03.13 - version 2.4.9.4
-	* new: added a wysiwyg option type to Options API, credit: Lee Doel
-	* changed: set sb_default_page_title to include titles for custom post types
-	* fixed: added a closing </li> tag to the home link inserted in nav menus.
-	* fixed: corrected a bug with setting a custom class in the [toggle] shortcode
-	* fixed: corrected a bug in SB Social widget that would force twitter link to appear even when blank
-	* fixed: corrected a bug in SB Social widget that produced a malformed twitter URL
+	* Added: added a wysiwyg option type to Options API, credit: Lee Doel
+	* Updated: set sb_default_page_title to include titles for custom post types
+	* Fixed: added a closing </li> tag to the home link inserted in nav menus.
+	* Fixed: corrected a bug with setting a custom class in the [toggle] shortcode
+	* Fixed: corrected a bug in SB Social widget that would force twitter link to appear even when blank
+	* Fixed: corrected a bug in SB Social widget that produced a malformed twitter URL
 
 2011.03.07 - version 2.4.9.3
-	* new: Added Theme Options menu item to Appearance menu in admin bar (introduced in WP 3.1)
-	* fixed: removed the non-validating attributes from the image tag generated via sb_post_image()
-	* fixed: corrected the hooks for including post thumbnails via RSS
-	* fixed: corrected a bug with SB Social widget where twitter would always show
-	* changed: upgraded Colorbox to 1.3.16
+	* Added: Added Theme Options menu item to Appearance menu in admin bar (introduced in WP 3.1)
+	* Fixed: removed the non-validating attributes from the image tag generated via sb_post_image()
+	* Fixed: corrected the hooks for including post thumbnails via RSS
+	* Fixed: corrected a bug with SB Social widget where twitter would always show
+	* Updated: upgraded Colorbox to 1.3.16
 
 2011.01.26 - version 2.4.9.2
 	* MAJOR overhaul to the Slideshows feature, much thanks to Joel Kuczmarski for that

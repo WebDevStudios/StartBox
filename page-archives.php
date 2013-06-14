@@ -4,12 +4,12 @@ Template Name: Archives Page
 */
 ?>
 <?php get_header(); ?>
-	
+
 	<div id="container">
 		<div id="content">
 
-		<?php the_post(); ?>
-		
+		<?php if ( have_posts() ) the_post(); ?>
+
 		<?php do_action( 'sb_before_content' ); ?>
 
 			<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -21,7 +21,7 @@ Template Name: Archives Page
 						<li id="category-archives">
 							<h3><?php _e('Archives by Category', 'startbox'); ?></h3>
 							<ul>
-								<?php wp_list_categories('optioncount=1&feed=RSS&title_li=&show_count=1'); ?> 
+								<?php wp_list_categories('optioncount=1&feed=RSS&title_li=&show_count=1'); ?>
 							</ul>
 						</li>
 						<li id="monthly-archives">
@@ -41,9 +41,9 @@ Template Name: Archives Page
 
 				</div>
 			</div><!-- .post -->
-			
+
 			<?php do_action( 'sb_after_content' ); ?>
-			
+
 			<?php comments_template( '', true ); ?>
 
 		</div><!-- #content -->

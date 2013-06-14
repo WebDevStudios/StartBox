@@ -4,18 +4,18 @@ Template Name: Links Page
 */
 ?>
 <?php get_header(); ?>
-	
+
 	<div id="container">
 		<div id="content">
 
-		<?php the_post(); ?>
+		<?php if ( have_posts() ) the_post(); ?>
 		<?php
 			$toc = ( get_post_meta($post->ID, 'links_toc', true) ) ?  get_post_meta($post->ID, 'links_toc', true) : false;
 			$rtt = ( $toc ) ? '<li><a class="rtt" href="#top">Return to Top</a></li><hr/>' : '' ;
 			$category = get_post_meta($post->ID, 'links_categoryid', true)
 		?>
 		<?php do_action( 'sb_before_content' ); ?>
-		
+
 			<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<?php do_action( 'sb_page_title' ); ?>
 				<div class="entry-content">
@@ -83,14 +83,14 @@ Template Name: Links Page
 							wp_list_bookmarks($args);
 						?>
 					</ul>
-					
+
 					<?php edit_post_link( __('Edit', 'startbox'),'<span class="edit-link">','</span>'); ?>
 
 				</div>
 			</div><!-- .post -->
 
 			<?php do_action( 'sb_after_content' ); ?>
-			
+
 			<?php comments_template( '', true ); ?>
 
 		</div><!-- #content -->

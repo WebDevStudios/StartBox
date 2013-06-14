@@ -8,7 +8,7 @@ Template Name: List Child Categories
 	<div id="container">
 		<div id="content">
 
-		<?php the_post(); ?>
+		<?php if ( have_posts() ) the_post(); ?>
 
 		<?php do_action( 'sb_before_content' ); ?>
 
