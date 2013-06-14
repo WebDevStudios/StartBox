@@ -66,9 +66,16 @@ add_action( 'init', 'sb_sidebars_init' );
  */
 function sb_sidebar_default_slug( $data , $postarr ) {
 
-	// If we don't have a post_name (slug), set it to "custom-sidebar"
-	if ( '' == $data['post_name'] ) {
-		$data['post_name'] = 'custom-sidebar';
+	// If this is a sidebar post
+	// And this is NOT an unsaved post (auto-draft)
+	// And there is currently no post-name (slug)
+	if (
+		'sidebar' == $data['post_type']
+		&& 'auto-draft' != $postarr['post_status']
+		&& '' == $data['post_name']
+	) {
+		// Override the slug, enumerated with the post's ID
+		$data['post_name'] = 'custom-sidebar-' . $postarr['ID'];
 	}
 
 	// Don't forget to return the data, otherwise we ruin everything.
@@ -256,7 +263,7 @@ function sb_sidebars_post_type_meta_box( $post, $post_type ) {
 					$get_posts = new WP_Query;
 					$posts = $get_posts->query( $args );
 					if ( $get_posts->post_count ) {
-						$output = '<li><label><input type="checkbox" ' . checked( in_array( 'all-' . $post_type['args']->labels->name, $selected), true, false ) . ' name="post[all-' . $post_type['args']->labels->name .']" value="true"/> All ' . $post_type['args']->labels->name . ' (includes all future ' . $post_type['args']->labels->name . ')</label></li>';
+						$output = '<li><label><input type="checkbox" ' . checked( in_array( 'all-' . $post_type['args']->name, $selected), true, false ) . ' name="post[all-' . $post_type['args']->name .']" value="true"/> All ' . $post_type['args']->labels->name . ' (includes all future ' . $post_type['args']->labels->name . ')</label></li>';
 						if ( $post_type['args']->name == 'page' ) { $output .= '<li><label><input type="checkbox" ' . checked( in_array( 'Home', $selected), true, false ) . ' name="post[Home]" value="true"/>Home</label></li>'; }
 						while ( $get_posts->have_posts() ) : $get_posts->the_post();
 							$output .= '<li>';
@@ -454,7 +461,7 @@ function sb_sidebars_delete($post_id) {
 	}
 
 }
-add_action( 'trash_post', 'sb_sidebars_delete' );
+add_action( 'trashed_post', 'sb_sidebars_delete' );
 
 /**
  * Filter the "post updated" messages

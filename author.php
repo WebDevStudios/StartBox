@@ -3,9 +3,11 @@
 	<div id="container">
 		<div id="content">
 
-		<?php the_post(); ?>
-
-		<?php do_action( 'sb_before_content' ); ?>
+			<?php
+				if ( have_posts() ) the_post();
+				do_action( 'sb_before_content' );
+				if ( have_posts() ) rewind_posts();
+			?>
 
 			<div id="entry-author-info">
 				<?php sb_page_title(); ?>
@@ -24,7 +26,6 @@
 				do_action( 'sb_author_before_posts' );
 
 				// Grab the author's posts
-				rewind_posts();
 				while ( have_posts() ) : the_post();
 					get_template_part( 'loop', 'author' );
 				endwhile;

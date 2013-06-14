@@ -172,6 +172,6 @@ if ( !function_exists( 'sb_comments' ) ) {
 if ( !function_exists( 'sb_pings' ) ) {
 	function sb_pings($comment, $args, $depth) {
 		$GLOBALS['comment'] = $comment;
-		echo '<li>' . comment_author_link() . '</li>';
+		echo '<li>' . get_comment_author_link() . '</li>';
 	}
 }

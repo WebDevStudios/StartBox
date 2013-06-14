@@ -57,13 +57,22 @@ class sb_settings {
 		add_action( 'init', array( $this, 'hooks' ), 9 );
 	}
 
-	// This creates the metabox. Do not override this method.
+	// This hooks the metabox method. Do not override this method.
 	public function _init() {
+
 		global $sb_admin, $sb_style;
-		if ( empty( $this->hide_ui_if_cannot ) || current_user_can( $this->hide_ui_if_cannot ) ) {
-			$this->page = ($this->page == 'sb_style') ? $sb_style : $sb_admin;
-			add_meta_box( $this->slug, $this->name, array( $this, 'admin_form' ), $sb_admin, $this->location, $this->priority);
-		}
+		$this->page = ($this->page == 'sb_style') ? $sb_style : $sb_admin;
+
+		add_action( 'load-'. $this->page, array( $this, '_metaboxes' ) );
+
+	}
+
+	// This creates the metabox. Do not override this method.
+	public function _metaboxes() {
+
+		if ( empty( $this->hide_ui_if_cannot ) || current_user_can( $this->hide_ui_if_cannot ) )
+			add_meta_box( $this->slug, $this->name, array( $this, 'admin_form' ), $this->page, $this->location, $this->priority);
+
 	}
 
 	// This makes errors more happy and less desctructive
@@ -616,21 +625,21 @@ class sb_input {
 			'pages'		 => __( 'Pages', 'startbox' ),
 			'categories' => __( 'Categories', 'startbox' )
 		));
-		$menus = get_terms('nav_menu');
+		$menus = wp_get_nav_menus( array('orderby' => 'name') );
+
 		$output = '';
 
 		// Concatenate our output
 		$output .= '<p class="' . esc_attr( $id ) . '">'."\n";
 		$output .= '<label for="' . esc_attr( $sb_id ) . '">' . $label . ':</label> '."\n";
 		$output .= '<select id="' . esc_attr( $sb_id ) . '" name="' . esc_attr( $sb_id ) . '"class="option-select-' . esc_attr( $size ) . ' ' . esc_attr( $align ) . '">'."\n";
-		foreach ( $menu_opts as $option_id => $option ) {
-			if ($value == $option_id) { $select = 'selected="selected"'; } else { $select = ''; }
-			$output .= '<option value="' . esc_attr( $option_id ) . '" ' . $select . '>' . $option . '</option>'."\n";
-		}
-		foreach ($menus as $menu ) {
-			if ($value == $menu->term_id) { $select = 'selected="selected"'; } else { $select = ''; }
-			$output .= '<option value="'. esc_attr( $menu->term_id ) .'" ' . $select . '>'. $menu->name .'</option>'."\n";
-		}
+
+		foreach ( $menu_opts as $option_id => $option )
+			$output .= '<option value="' . esc_attr( $option_id ) . '" ' . selected( $value, $option_id, false ) . '>' . $option . '</option>'."\n";
+
+		foreach ($menus as $menu )
+			$output .= '<option value="'. esc_attr( $menu->term_id ) .'" ' . selected( $value, $menu->term_id, false ) . '>'. $menu->name .'</option>'."\n";
+
 		$output .= '</select>' . "\n";
 
 		// Depth Options
@@ -979,7 +988,7 @@ class sb_settings_factory {
 
 	// Register a new options panel
 	public function register($class_name) {
-		$this->settings[$class_name] = & new $class_name();
+		$this->settings[$class_name] = new $class_name();
 	}
 
 	// Unregister an options panel

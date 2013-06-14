@@ -110,7 +110,7 @@ function sb_nav_menu_items($items, $args ) {
 
 	// Include Link to homepage based on user selection
 	$is_home = ( is_front_page() ) ? ' current-menu-item' : '' ;
-	$home = ( $show_home ) ? '<li class="menu-item menu-item-home' . $is_home . '"><a href="' . home_url('/') . '">Home</a></li>' : '' ;
+	$home = ( isset( $show_home ) && $show_home ) ? '<li class="menu-item menu-item-home' . $is_home . '"><a href="' . home_url('/') . '">Home</a></li>' : '' ;
 
 	// Change menu contents based on user selection
 	if ( $menu == 'pages' ) {
@@ -131,13 +131,13 @@ function sb_nav_menu_items($items, $args ) {
     if( $last = strripos( $items, 'class=') ) { $items = substr_replace( $items, 'last ', $last+7, 0 ); }
 
 	// Add extras
-	if ( $extras == 'search' ) {
+	if ( isset( $extras ) && $extras == 'search' ) {
 		$items .= '<li class="menu-item menu-item-type-search">';
 		ob_start();
 		get_template_part( 'searchform', 'menu' );
 		$items .= ob_get_clean();
 		$items .= '</li>';
-	} elseif ( $extras == 'social' ) {
+	} elseif ( isset( $extras ) && $extras == 'social' ) {
 		$options = get_option(THEME_OPTIONS);
 		$rss = (isset($options[$menu_id . '-social-rss'])) ? $options[$menu_id . '-social-rss'] : '';
 		$services = array(

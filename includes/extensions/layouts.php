@@ -46,9 +46,8 @@ function sb_get_layout() {
 
 	/* If viewing a taxonomy, check if a layout has been specified */
 	if ( is_category() || is_tag() || is_tax() || is_archive() ) {
-		global $wp_query;
 		$term = $wp_query->get_queried_object();
-		$layout = $term->meta['layout'];
+		$layout = isset( $term->meta['layout'] ) ? $term->meta['layout'] : '';
 	}
 
 	/* Make sure the given layout is in the array of available post layouts for the theme. */

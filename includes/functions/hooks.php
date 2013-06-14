@@ -16,15 +16,15 @@ function sb_body_classes($classes) {
 
 	// Determine user's browser and adds appropriate class
 	global $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
-	if($is_lynx) $classes[] = 'lynx';
-	elseif($is_gecko) $classes[] = 'gecko';
-	elseif($is_opera) $classes[] = 'opera';
-	elseif($is_NS4) $classes[] = 'ns4';
+	if($is_lynx) $classes[]       = 'lynx';
+	elseif($is_gecko) $classes[]  = 'gecko';
+	elseif($is_opera) $classes[]  = 'opera';
+	elseif($is_NS4) $classes[]    = 'ns4';
 	elseif($is_safari) $classes[] = 'safari';
 	elseif($is_chrome) $classes[] = 'chrome';
-	elseif($is_IE) $classes[] = 'ie';
+	elseif($is_IE) $classes[]     = 'ie';
 	elseif($is_iphone) $classes[] = 'iphone';
-	else $classes[] = 'unknown';
+	else $classes[]               = 'unknown';
 
 	// Include user's IE version for version-specific hacking. Credit: http://wordpress.org/extend/plugins/krusty-msie-body-classes/
 	if( preg_match( '/MSIE ([0-9]+)([a-zA-Z0-9.]+)/', $_SERVER['HTTP_USER_AGENT'], $browser_version ) ){
@@ -124,11 +124,11 @@ function sb_default_title( $title, $sep, $seplocation) {
 		$title = array(
 			'site_name' => $site_name,
 			'separator' => $sep,
-			'title' => $title
+			'title'     => $title
 		);
 	} else {
 		$title = array(
-			'title' => $title,
+			'title'     => $title,
 			'separator' => $sep,
 			'site_name' => $site_name
 		);
@@ -263,7 +263,6 @@ add_action( 'sb_page_title', 'sb_default_page_title' );
 
 // Hook archive meta after page title for archive pages
 function sb_archive_meta() {
-	global $post;
 	if ( ( is_category() || is_tag() || is_tax() ) && term_description() != '' ) {
 		$content = '<div class="archive-meta">';
 		$content .= apply_filters( 'sb_archive_meta', term_description() );
