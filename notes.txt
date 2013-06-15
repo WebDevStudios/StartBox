@@ -15,11 +15,42 @@
 	require_once( get_template_directory() . '/startbox/startbox.php' );
 
 	// Pick and choose which modules to include
-	add_theme_support( 'sb-options' );
 	add_theme_support( 'sb-customizer' );
-	add_theme_support( 'sb-metaboxes' );
 	add_theme_support( 'sb-layouts' );
 	add_theme_support( 'sb-sidebars' );
 	add_theme_support( 'sb-functions' );
+	add_theme_support( 'sb-shortcodes' );
 	add_theme_support( 'sb-updates' );
 	add_theme_support( 'sb-widgets' );
+
+##### SBX Directory structure
+/theme
+	/startbox
+		/admin
+		/classes
+			SB_Customizer
+			SB_Layouts
+			SB_Sidebars
+			SB_Updates
+		/css
+			colorbox
+			images
+			layouts
+			print
+			reset
+			shortcodes
+			typography
+		/extensions
+			hooks
+			custom
+			conditionals
+		/js
+			colorbox
+			smooth-scroll
+			widgets
+		/languages
+		/widgets
+			featured-content
+			search
+			tag-cloud
+			social-icons
