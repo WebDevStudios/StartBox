@@ -14,10 +14,7 @@
  */
 
 // Initialize StartBox, but only if a child theme hasn't already
-if( !did_action( 'sb_init' ) ) {
-	require_once( get_template_directory() . '/startbox/startbox.php' );
-	StartBox::init();
-}
+require_once( get_template_directory() . '/startbox/startbox.php' );
 
 /**
  * In his grace, God has given us different gifts for doing certain things well.

@@ -150,7 +150,7 @@ add_filter( 'wp_title_rss', create_function( '$a', 'return "";' ) );
 // The default stylesheet
 function sb_default_stylesheet() {
 	if (!is_admin())
-		wp_enqueue_style( 'style', get_stylesheet_uri(), null, THEME_VERSION, 'screen' );
+		wp_enqueue_style( 'style', get_stylesheet_uri(), null, SB_VERSION, 'screen' );
 }
 add_action( 'wp_enqueue_scripts', 'sb_default_stylesheet', 15 );
 
