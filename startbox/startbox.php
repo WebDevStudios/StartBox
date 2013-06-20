@@ -21,37 +21,32 @@ class StartBox {
 		$theme_version = $current_theme->version;
 
 		// Setup our theme constants
-		define( 'THEME_NAME',		$current_theme );
-		define( 'THEME_VERSION',	$theme_version );
-		define( 'THEME_OPTIONS',	'startbox' );
-		define( 'THEME_PREFIX',		'sb_' );
-		define( 'SB_VERSION',		$sb_version );
-		define( 'THEME_PATH',		get_stylesheet_directory() );
-		define( 'THEME_URI',		get_stylesheet_directory_uri() );
-		define( 'SB_PATH',			get_template_directory() );
-		define( 'INCLUDES_PATH',	get_template_directory() . '/includes' );
-		define( 'INCLUDES_URL',		get_template_directory_uri() . '/includes' );
-		define( 'ADMIN_PATH',		INCLUDES_PATH . '/admin' );
-		define( 'FUNCTIONS_PATH',	INCLUDES_PATH . '/functions' );
-		define( 'EXTENSIONS_PATH',	INCLUDES_PATH . '/extensions' );
-		define( 'SCRIPTS_URL',		INCLUDES_URL . '/scripts' );
-		define( 'WIDGETS_PATH',		INCLUDES_PATH . '/widgets' );
-		define( 'STYLES_URL',		INCLUDES_URL . '/styles' );
-		define( 'IMAGES_URL',		get_template_directory_uri() . '/images' );
+		define( 'THEME_NAME',      $current_theme );
+		define( 'THEME_VERSION',   $theme_version );
+		define( 'THEME_OPTIONS',   'startbox' );
+		define( 'THEME_PREFIX',    'sb_' );
+		define( 'SB_VERSION',      $sb_version );
+		define( 'THEME_PATH',      get_stylesheet_directory() );
+		define( 'THEME_URI',       get_stylesheet_directory_uri() );
+		define( 'SB_PATH',         get_template_directory() );
+		define( 'INCLUDES_PATH',   get_template_directory() . '/startbox' );
+		define( 'INCLUDES_URL',    get_template_directory_uri() . '/startbox' );
+		define( 'ADMIN_PATH',      INCLUDES_PATH . '/admin' );
+		define( 'CLASSES_PATH',    INCLUDES_PATH . '/classes' );
+		define( 'EXTENSIONS_PATH', INCLUDES_PATH . '/extensions' );
+		define( 'SCRIPTS_URL',     INCLUDES_URL . '/js' );
+		define( 'WIDGETS_PATH',    INCLUDES_PATH . '/widgets' );
+		define( 'STYLES_URL',      INCLUDES_URL . '/css' );
+		define( 'IMAGES_URL',      get_template_directory_uri() . '/images' );
 
 		// Translate, if applicable
 		load_theme_textdomain( 'startbox', INCLUDES_PATH . '/languages' );
 
 		// Register all our stock functionality
-		require_once( FUNCTIONS_PATH . '/admin_settings.php' );	// Admin Functions
-		require_once( FUNCTIONS_PATH . '/custom.php' );			// Custom Functions
-		require_once( FUNCTIONS_PATH . '/conditionals.php' );	// Conditional Functions
-		require_once( FUNCTIONS_PATH . '/images.php' );			// Image Functions
-		require_once( FUNCTIONS_PATH . '/menus.php' );			// Menu Functions
-		require_once( FUNCTIONS_PATH . '/depricated.php' );		// Deprecated Functions
-		require_once( FUNCTIONS_PATH . '/hooks.php' );			// Hooks
-		require_once( FUNCTIONS_PATH . '/sidebars.php' );		// Sidebars
-		require_once( FUNCTIONS_PATH . '/comment_format.php' );	// Comment Structure
+		require_once( EXTENSIONS_PATH . '/conditionals.php' ); // Conditional Functions
+		require_once( EXTENSIONS_PATH . '/custom.php' );       // Custom Functions
+		require_once( EXTENSIONS_PATH . '/hooks.php' );        // Hooks
+		require_once( EXTENSIONS_PATH . '/images.php' );       // Image Functions
 
 		// Register our scripts and styles
 		add_action( 'init', array( 'StartBox', 'register_scripts_and_styles' ), 1 );
@@ -142,7 +137,7 @@ class StartBox {
 	// Include all Widgets, Plugins and Theme Options
 	public function sb_includes() {
 
-		require_if_theme_supports( 'sb-updates',			FUNCTIONS_PATH . '/upgrade.php' );									// Update Manager
+		require_if_theme_supports( 'sb-updates',			EXTENSIONS_PATH . '/upgrade.php' );									// Update Manager
 		require_if_theme_supports( 'sb-sidebars',			EXTENSIONS_PATH . '/sidebars.php' );								// Sidebar manager
 		require_if_theme_supports( 'sb-shortcodes',			EXTENSIONS_PATH . '/shortcodes.php' );								// Shortcodes
 		require_if_theme_supports( 'sb-slideshows',			EXTENSIONS_PATH . '/startbox-slideshows/startbox-slideshows.php' );	// Slideshows
