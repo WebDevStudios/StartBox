@@ -12,44 +12,62 @@
  */
 
 /**
- * This is the main SB Sidebars class. You can extend and override this via child theme to alter your own widget markup
+ * This is the main SB Sidebars class.
+ *
+ * You can extend this within your theme to alter the widget markup
+ *
+ * @since 2.5.0
  */
 class SB_Sidebars {
 
-	// Variable for storing all registered sidebars, don't override this.
+	/**
+	 * Variable for storing all registered sidebars, don't override this.
+	 *
+	 * @since 2.5.0
+	 * @var array
+	 */
 	public $sidebars = array();
 
-	// Magic method that auto-loads default sidebars and custom sidebars. Don't override this.
-	function SB_Sidebars() {
+	/**
+	 * Auto-load default and custom sidebars. Don't override this.
+	 *
+	 * @since 2.5.0
+	 */
+	function __construct() {
 
 		// Register and activate all the sidebars
 		add_action( 'after_setup_theme', array( $this, 'default_sidebars'), 10 );
 		add_action( 'after_setup_theme', array( $this, 'custom_sidebars'), 11 );
 		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 
-		// Hook for other functions
+		// Available hook for other functions
 		do_action( 'sb_sidebars_init' );
 
 	}
 
-	// Activate all sidebars, override this to customize sidebar markup
+	/**
+	 * Activate all registered sidebars.
+	 *
+	 * @since 2.5.0
+	 */
 	function widgets_init() {
 
 		// If there aren't any sidebars, skip the rest
-		if ( !$this->sidebars || empty($this->sidebars) ) return;
+		if ( empty( $this->sidebars ) )
+			return;
 
 		// Otherwise, lets register all of them
 		foreach ( $this->sidebars as $sidebar_id => $sidebar_info ) {
 
-			register_sidebar( apply_filters( 'sb_register_sidebar_defaults', array(
-				'name'          => esc_attr( $sidebar_info['name'] ),
+			register_sidebar( apply_filters( 'sb_sidebars_register_sidebar', array(
 				'id'            => esc_attr( $sidebar_id ),
+				'name'          => esc_attr( $sidebar_info['name'] ),
 				'description'   => esc_attr( $sidebar_info['description'] ),
 				'editable'      => absint( $sidebar_info['editable'] ),
-				'before_widget' => "\n\t\t\t" . '<li id="%1$s" class="widget %2$s">',
-				'after_widget'  => "\n\t\t\t</li>\n",
-				'before_title'  => "\n\t\t\t\t". '<h3 class="widget-title"><span class="widget-title-left"><span class="widget-title-right">',
-				'after_title'   => '</span></span></h3>'."\n"
+				'before_widget' => apply_filters( 'sb_sidebars_before_widget', '<li id="%1$s" class="widget %2$s">', $sidebar_id, $sidebar_info ),
+				'after_widget'  => apply_filters( 'sb_sidebars_after_widget', '</li>', $sidebar_id, $sidebar_info ),
+				'before_title'  => apply_filters( 'sb_sidebars_before_title', '<h3 class="widget-title">', $sidebar_id, $sidebar_info ),
+				'after_title'   => apply_filters( 'sb_sidebars_after_title', '</h3>', $sidebar_id, $sidebar_info )
 			), $sidebar_id, $sidebar_info ) );
 
 		}
@@ -61,13 +79,12 @@ class SB_Sidebars {
 	 * @since 2.5.0
 	 */
 	function default_sidebars() {
-		$this->register_sidebar( array( 'name' => 'Primary Sidebar', 'id' => 'primary', 'description' => __('This is the primary sidebar when using two- or three-column layouts.', 'startbox') , 'editable' => 1 ) );
-		$this->register_sidebar( array( 'name' => 'Secondary Sidebar', 'id' => 'secondary', 'description' => __('This is the secondary sidebar for three-column layouts.', 'startbox'), 'editable' => 1 ) );
-		$this->register_sidebar( array( 'name' => 'Home Featured', 'id' => 'home_featured', 'description' => __('These widgets will appear above the content on the homepage.', 'startbox'), 'editable' => 0 ) );
-		$this->register_sidebar( array( 'name' => 'Footer Aside 1', 'id' => 'footer_widget_area_1', 'description' => __('This is the first footer column. Use this before using any other footer columns.', 'startbox'), 'editable' => 1 ) );
-		$this->register_sidebar( array( 'name' => 'Footer Aside 2', 'id' => 'footer_widget_area_2', 'description' => __('This is the second footer column. Only use this after using Footer Aside 1.', 'startbox'), 'editable' => 1 ) );
-		$this->register_sidebar( array( 'name' => 'Footer Aside 3', 'id' => 'footer_widget_area_3', 'description' => __('This is the third footer column. Only use this after using Footer Aside 2.', 'startbox') , 'editable' => 1 ) );
-		$this->register_sidebar( array( 'name' => 'Footer Aside 4', 'id' => 'footer_widget_area_4', 'description' => __('This is the last footer column. Only use this after using all other columns.', 'startbox'), 'editable' => 1 ) );
+
+		/* Get the available post layouts and store them in an array */
+		foreach ( get_theme_support( 'sb-sidebars' ) as $sidebar ) {
+			$this->register_sidebar( $sidebar );
+		}
+
 	}
 
 	/**
@@ -77,13 +94,10 @@ class SB_Sidebars {
 	 */
 	function custom_sidebars() {
 
-		$custom_sidebars = get_posts( array(
-			'order'          => 'ASC',
-			'orderby'        => 'date',
-			'post_type'      => 'sidebar',
-			'posts_per_page' => -1
-		) );
+		// Get our custom sidebars
+		$custom_sidebars = $this->get_custom_sidebars();
 
+		// Loop through each and register it
 		foreach( $custom_sidebars as $sidebar ) {
 			$this->register_sidebar( array(
 				'name'        => $sidebar->post_title,
@@ -162,11 +176,13 @@ class SB_Sidebars {
 	}
 
 	/**
-	 * Get all custom sidebars registered for a given scope (don't override this)
+	 * Get all custom sidebars
+	 *
+	 * This is just a wrapper for get_posts() that
+	 * caches the query for 30 days.
 	 *
 	 * @since  2.5.0
-	 * @param  string $scope The query scope we're calling (accepts 'post_type' and 'taxonomy')
-	 * @return array         An array of registered sidebars for the given scope
+	 * @return array An array of registered sidebars
 	 */
 	function get_custom_sidebars() {
 
@@ -177,14 +193,42 @@ class SB_Sidebars {
 		if ( empty( $sidebars ) ) {
 
 			// Get all sidebar posts
-			$sidebar_posts = get_posts( array( 'post_type' => 'sidebar', 'nopaging' => true ) );
+			$sidebars = get_posts( array(
+				'post_type' => 'sidebar',
+				'nopaging'  => true,
+				'orderby'   => 'date',
+				'order'     => 'ASC',
+			) );
 
-			// Setup our custom sidebars array
-			$sidebars = array();
+			// Cache our query for 30 days
+			set_transient( 'sb_custom_sidebars', $sidebars, 30 * DAY_IN_SECONDS );
 
-			// If we have sidebars, loop through each and add relevant ones to our array
-			if ( ! empty( $sidebar_posts ) ) { foreach ( $sidebar_posts as $sidebar ) {
+		}
 
+		// Return our scoped sidebars (cast to an array for good measure)
+		return (array) maybe_unserialize( $sidebars );
+	}
+
+	/**
+	 * Get each assigned sidebar location
+	 *
+	 * Return an array keyed with post/term ID containing
+	 * each location that has a custom assigned sidebar.
+	 *
+	 * @since  3.0.0
+	 * @return array Keyed location array
+	 */
+	function get_custom_sidebar_locations() {
+
+		// Grab our custom sidebars
+		$sidebar_posts = $this->get_custom_sidebars();
+
+		// Setup our custom sidebars array
+		$sidebars = array();
+
+		// If we have any sidebars, add the relevant ones to our array
+		if ( ! empty( $sidebar_posts ) ) {
+			foreach ( $sidebar_posts as $sidebar ) {
 				// Grab our sidebar_id and location
 				$name     = $sidebar->post_name;
 				$location = get_post_meta( $sidebar->ID, '_sidebar_replaced', true);
@@ -197,15 +241,10 @@ class SB_Sidebars {
 					$sidebars[$key]['locations'][$location] = $name;
 				}
 
-			} }
-
-			// Cache our query for one week
-			set_transient( 'sb_custom_sidebars', $sidebars, (60*60*24*7) );
-
+			}
 		}
 
-		// Return our scoped sidebars (cast to an array for good measure)
-		return (array) $sidebars;
+		return $sidebars;
 	}
 
 	/**
@@ -220,8 +259,8 @@ class SB_Sidebars {
 		// Grab our globals (so we know what we're querying)
 		global $post, $wp_query;
 
-		// Grab our custom sidebars
-		$custom_sidebars = $this->get_custom_sidebars();
+		// Grab our assigned locations
+		$custom_sidebars = $this->get_custom_sidebar_locations();
 
 		// If we actually have custom sidebars, lets look deeper
 		if ( !empty( $custom_sidebars ) ) {
@@ -257,8 +296,7 @@ class SB_Sidebars {
 }
 
 // Initialize the SB_Sidebars class, store it to the global $sb_sidebars variable
-global $sb_sidebars;
-$sb_sidebars = new SB_Sidebars;
+$GLOBALS['sb_sidebars'] = new SB_Sidebars;
 
 
 /**
