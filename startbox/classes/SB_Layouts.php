@@ -13,6 +13,41 @@
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
+/**
+ * Get the registered layouts for a given context
+ *
+ * @since  3.0.0
+ * @param  string $context The page context to use
+ * @return array           An array of registered layouts
+ */
+function sb_get_registered_layouts( $context = 'default' ) {
+	return apply_filters( "sb_get_{$context}_layouts", array(
+		'one-col' => array(
+			'label' => '1 Column (no sidebars)',
+			'img'   => SB_IMAGES . '/layouts/one-col.png'
+			),
+		'two-col-left' => array(
+			'label' => '2 Columns, sidebar on left',
+			'img'   => SB_IMAGES . '/layouts/two-col-left.png'
+			),
+		'two-col-right' => array(
+			'label' => '2 Columns, sidebar on right',
+			'img'   => SB_IMAGES . '/layouts/two-col-right.png'
+			),
+		'three-col-left' => array(
+			'label' => '3 Columns, sidebar on left',
+			'img'   => SB_IMAGES . '/layouts/three-col-left.png'
+			),
+		'three-col-right' => array(
+			'label' => '3 Columns, sidebar on right',
+			'img'   => SB_IMAGES . '/layouts/three-col-right.png'
+			),
+		'three-col-both' => array(
+			'label' => '3 Columns, sidebar on each side',
+			'img'   => SB_IMAGES . '/layouts/three-col-both.png'
+			)
+	) );
+}
 
 /**
  * Gets the layout for the current post, page or taxonomy. If none is specified, use 'layout-default'.
@@ -20,7 +55,6 @@
  * @since 2.5
  * @return string The layout for the given page.
  */
-
 function sb_get_layout() {
 	global $wp_query;
 
