@@ -19,13 +19,13 @@ if ( ! class_exists('StartBox') ) {
 		public function __construct() {
 
 			// Hook in all the different parts of our engine
-			add_action( 'after_setup_theme', array( $this, 'constants' ), 1 );
-			add_action( 'after_setup_theme', array( $this, 'core' ), 2 );
-			add_action( 'after_setup_theme', array( $this, 'extensions' ), 3 );
-			add_action( 'after_setup_theme', array( $this, 'i18n' ), 4 );
+			add_action( 'init', array( $this, 'constants' ), 1 );
+			add_action( 'init', array( $this, 'core' ), 2 );
+			add_action( 'init', array( $this, 'extensions' ), 3 );
+			add_action( 'init', array( $this, 'i18n' ), 4 );
 
 			// Register our scripts and styles
-			add_action( 'init', array( $this, 'register_scripts_and_styles' ), 0 );
+			add_action( 'init', array( $this, 'register_scripts_and_styles' ), 5 );
 
 			// Available action for other processes to fire during init
 			do_action( 'sb_init', $this );
@@ -86,8 +86,8 @@ if ( ! class_exists('StartBox') ) {
 			require_if_theme_supports( 'sb-shortcodes',      SB_EXTENSIONS . '/shortcodes.php' );
 
 			// Include all customization panels
-			foreach ( glob( SB_ADMIN . '/*.php') as $sb_admin )
-				require_if_theme_supports( 'sb-customizer', $sb_admin );
+			// foreach ( glob( SB_ADMIN . '/*.php') as $sb_admin )
+			// 	require_if_theme_supports( 'sb-customizer', $sb_admin );
 
 			// Include all packaged widgets
 			foreach ( glob( SB_WIDGETS . '/*.php') as $sb_widget )
