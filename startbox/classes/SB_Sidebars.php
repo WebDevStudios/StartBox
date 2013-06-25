@@ -155,7 +155,7 @@ class SB_Sidebars {
 	}
 
 }
-$GLOBALS['sb_sidebars'] = new SB_Sidebars;
+$GLOBALS['startbox']->sidebars = new SB_Sidebars;
 
 /**
  * Wrapper Function for SB_Sidebars::register_sidebar()
@@ -167,8 +167,8 @@ $GLOBALS['sb_sidebars'] = new SB_Sidebars;
  * @param boolean $editable if true this sidebar can be overridden via custom sidebars (Default: false)
  */
 function sb_register_sidebar( $name = null, $id = null, $description = null, $editable = 0 ) {
-	global $sb_sidebars;
-	$sb_sidebars->register_sidebar( array( 'name' => $name, 'id' => $id, 'description' => $description, 'editable' => $editable ) );
+	global $startbox;
+	$startbox->sidebars->register_sidebar( array( 'name' => $name, 'id' => $id, 'description' => $description, 'editable' => $editable ) );
 }
 
 /**
@@ -178,8 +178,8 @@ function sb_register_sidebar( $name = null, $id = null, $description = null, $ed
  * @param string $id the ID of the sidebar to unregister
  */
 function sb_unregister_sidebar( $id ) {
-	global $sb_sidebars;
-	$sb_sidebars->unregister_sidebar( $id );
+	global $startbox;
+	$startbox->sidebars->unregister_sidebar( $id );
 }
 
 /**
@@ -191,8 +191,8 @@ function sb_unregister_sidebar( $id ) {
  * @param string $classes additional custom classes to add to the container for this sidebar
  */
 function sb_do_sidebar( $location = null, $sidebar = null, $classes = null ) {
-	global $sb_sidebars;
-	$sb_sidebars->do_sidebar( $location, $sidebar, $classes );
+	global $startbox;
+	$startbox->sidebars->do_sidebar( $location, $sidebar, $classes );
 }
 
 /**
