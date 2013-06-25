@@ -12,7 +12,7 @@
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
-class SB_Update {
+class SB_Updater {
 
 	public function __construct() {
 
@@ -109,4 +109,4 @@ class SB_Update {
 	}
 
 }
-$GLOBALS['startbox']['updates'] = new SB_Update;
+$GLOBALS['startbox']->updater = new SB_Updater;
