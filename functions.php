@@ -16,6 +16,36 @@
 // Initialize StartBox, but only if a child theme hasn't already
 require_once( get_template_directory() . '/startbox/startbox.php' );
 
+// Setup the environment and register support for various WP features.
+function startbox_setup_theme() {
+
+	// StartBox Core Features
+	add_theme_support( 'sb-breadcrumbs' );
+	add_theme_support( 'sb-customizer' );
+	add_theme_support( 'sb-layouts' );
+	add_theme_support( 'sb-shortcodes' );
+	add_theme_support( 'sb-sidebars' );
+	add_theme_support( 'sb-updates' );
+
+	// Custom Post Editor Styles
+	add_editor_style( array(
+		'/includes/styles/typography.css',
+		'/includes/styles/editor.css'
+	) );
+
+	// Post Format support
+	add_theme_support(
+		'post-formats',
+		array( 'aside', 'gallery', 'image', 'link', 'quote', 'video' )
+	);
+
+	// Post Thumbnail support
+	add_theme_support( 'post-thumbnails' );
+	set_post_thumbnail_size( 200, 200, true );
+
+}
+add_action( 'after_setup_theme', 'startbox_setup_theme' );
+
 /**
  * In his grace, God has given us different gifts for doing certain things well.
  * So if God has given you the ability to prophesy, speak out with as much faith as

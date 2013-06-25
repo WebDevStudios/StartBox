@@ -23,7 +23,6 @@ if ( ! class_exists('StartBox') ) {
 			add_action( 'after_setup_theme', array( $this, 'core' ), 2 );
 			add_action( 'after_setup_theme', array( $this, 'extensions' ), 3 );
 			add_action( 'after_setup_theme', array( $this, 'i18n' ), 4 );
-			add_action( 'after_setup_theme', array( $this, 'environment' ), 10 );
 
 			// Register our scripts and styles
 			add_action( 'init', array( $this, 'register_scripts_and_styles' ), 0 );
@@ -129,31 +128,6 @@ if ( ! class_exists('StartBox') ) {
 			wp_register_style( 'shortcodes',    SB_CSS . '/shortcodes.css', null, SB_VERSION );
 			wp_register_style( 'typography',    SB_CSS . '/typography.css', null, SB_VERSION );
 		}
-
-		// Setup the environment and register support for various WP features.
-		public function environment() {
-
-			// Add theme support for various WP-specific features
-			add_editor_style( array(						// This sets up the content editor style to match the front-end design
-				'/includes/styles/typography.css',			// Basic Typography
-				'/includes/styles/editor.css'				// Content-specific styles (adapted from startbox.css)
-			) );
-
-			// Add theme support for StartBox Layouts, redefine this list of available layouts using the filter 'sb_layouts_defaults'
-			$sb_default_layouts = array(
-				'one-col'         => array( 'label' => '1 Column (no sidebars)', 			'img' => SB_IMAGES . 'layouts/one-col.png' ),
-				'two-col-left'    => array( 'label' => '2 Columns, sidebar on left', 		'img' => SB_IMAGES . 'layouts/two-col-left.png' ),
-				'two-col-right'   => array( 'label' => '2 Columns, sidebar on right', 		'img' => SB_IMAGES . 'layouts/two-col-right.png' ),
-				'three-col-left'  => array( 'label' => '3 Columns, sidebar on left', 		'img' => SB_IMAGES . 'layouts/three-col-left.png' ),
-				'three-col-right' => array( 'label' => '3 Columns, sidebar on right', 		'img' => SB_IMAGES . 'layouts/three-col-right.png' ),
-				'three-col-both'  => array( 'label' => '3 Columns, sidebar on each side',	'img' => SB_IMAGES . 'layouts/three-col-both.png' )
-			);
-
-			add_theme_support( 'sb-layouts', apply_filters( 'sb_layouts_defaults', $sb_default_layouts) ); 				// Theme Layouts
-			add_theme_support( 'sb-layouts-home', apply_filters( 'sb_layouts_defaults_home', $sb_default_layouts ) );	// Theme Layouts (homepage)
-
-		}
-
 	}
 }
 $GLOBALS['startbox'] = new StartBox;
