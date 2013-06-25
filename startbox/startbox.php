@@ -24,7 +24,9 @@ if ( ! class_exists('StartBox') ) {
 			add_action( 'after_setup_theme', array( $this, 'extensions' ), 3 );
 			add_action( 'after_setup_theme', array( $this, 'i18n' ), 4 );
 			add_action( 'after_setup_theme', array( $this, 'environment' ), 10 );
-			add_action( 'init', array( $this, 'scripts_and_styles' ), 1 );
+
+			// Register our scripts and styles
+			add_action( 'init', array( $this, 'register_scripts_and_styles' ), 0 );
 
 			// Available action for other processes to fire during init
 			do_action( 'sb_init', $this );
@@ -105,13 +107,12 @@ if ( ! class_exists('StartBox') ) {
 
 		}
 
-
 		/**
 		 * Register the packaged scripts and styles
 		 *
 		 * @since 3.0.0
 		 */
-		public function scripts_and_styles() {
+		public function register_scripts_and_styles() {
 
 			// Register Default Scripts
 			wp_register_script( 'colorbox',     SB_JS . '/jquery.colorbox.min.js', array( 'jquery' ), SB_VERSION );
