@@ -77,12 +77,13 @@ if ( ! class_exists('StartBox') ) {
 		 * @since 3.0.0
 		 */
 		public function extensions() {
-			require_if_theme_supports( 'sb-breadcrumbs',  SB_CLASSES . '/SB_Breadcrumbs.php' );
-			require_if_theme_supports( 'sb-customizer',   SB_CLASSES . '/SB_Customizer.php' );
-			require_if_theme_supports( 'sb-layouts',      SB_CLASSES . '/SB_Layouts.php' );
-			require_if_theme_supports( 'sb-sidebars',     SB_CLASSES . '/SB_Sidebars.php' );
-			require_if_theme_supports( 'sb-updates',      SB_CLASSES . '/SB_Updater.php' );
-			require_if_theme_supports( 'sb-shortcodes',   SB_EXTENSIONS . '/shortcodes.php' );
+			require_if_theme_supports( 'sb-breadcrumbs',     SB_CLASSES . '/SB_Breadcrumbs.php' );
+			require_if_theme_supports( 'sb-customizer',      SB_CLASSES . '/SB_Customizer.php' );
+			require_if_theme_supports( 'sb-layouts',         SB_CLASSES . '/SB_Layouts.php' );
+			require_if_theme_supports( 'sb-sidebars',        SB_CLASSES . '/SB_Sidebars.php' );
+			require_if_theme_supports( 'sb-custom-sidebars', SB_CLASSES . '/SB_Custom_Sidebars.php' );
+			require_if_theme_supports( 'sb-updates',         SB_CLASSES . '/SB_Updater.php' );
+			require_if_theme_supports( 'sb-shortcodes',      SB_EXTENSIONS . '/shortcodes.php' );
 
 			// Include all customization panels
 			foreach ( glob( SB_ADMIN . '/*.php') as $sb_admin )
