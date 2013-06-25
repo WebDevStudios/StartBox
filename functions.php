@@ -24,7 +24,53 @@ function startbox_setup_theme() {
 	add_theme_support( 'sb-customizer' );
 	add_theme_support( 'sb-layouts' );
 	add_theme_support( 'sb-shortcodes' );
-	add_theme_support( 'sb-sidebars' );
+	add_theme_support(
+		'sb-sidebars',
+		array(
+			array(
+				'id'          => 'primary',
+				'name'        => 'Primary Sidebar',
+				'description' => __( 'This is the primary sidebar when using two- or three-column layouts.', 'startbox' ),
+				'editable'    => 1
+				),
+			array(
+				'id'          => 'secondary',
+				'name'        => 'Secondary Sidebar',
+				'description' => __( 'This is the secondary sidebar for three-column layouts.', 'startbox' ),
+				'editable'    => 1
+				),
+			array(
+				'id'          => 'home_featured',
+				'name'        => 'Home Featured',
+				'description' => __( 'These widgets will appear above the content on the homepage.', 'startbox' ),
+				'editable'    => 0
+				),
+			array(
+				'id'          => 'footer_widget_area_1',
+				'name'        => 'Footer Aside 1',
+				'description' => __( 'This is the first footer column. Use this before using any other footer columns.', 'startbox' ),
+				'editable'    => 1
+				),
+			array(
+				'id'          => 'footer_widget_area_2',
+				'name'        => 'Footer Aside 2',
+				'description' => __( 'This is the second footer column. Only use this after using Footer Aside 1.', 'startbox' ),
+				'editable'    => 1
+				),
+			array(
+				'id'          => 'footer_widget_area_3',
+				'name'        => 'Footer Aside 3',
+				'description' => __( 'This is the third footer column. Only use this after using Footer Aside 2.', 'startbox' ),
+				'editable'    => 1
+				),
+			array(
+				'id'          => 'footer_widget_area_4',
+				'name'        => 'Footer Aside 4',
+				'description' => __( 'This is the last footer column. Only use this after using all other columns.', 'startbox' ),
+				'editable'    => 1
+				),
+		)
+	);
 	add_theme_support( 'sb-updates' );
 
 	// Custom Post Editor Styles
