@@ -1,4 +1,8 @@
 <?php
+
+// Placeholder
+class SB_Settings {}
+
 /**
  * Creates Theme Options page and enqueues all necessary scripts
  *
