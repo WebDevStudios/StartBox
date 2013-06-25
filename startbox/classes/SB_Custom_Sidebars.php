@@ -1,14 +1,16 @@
 <?php
 /**
- * StartBox Sidebar Manager
+ * StartBox Custom Sidebar Manager
  *
- * Create additional sidebars to replace any default sidebars in StartBox for any post-type or taxonomy.
- * Uses Custom Post Types to handle sidebar registration. Metabox functionality originally lifted
- * from WP's Custom Menu admin functions.
+ * Create additional sidebars to replace any default sidebars
+ * in StartBox for any post-type or taxonomy. Uses Custom Post
+ * Types to handle sidebar registration. Metabox functionality
+ * originally lifted from WP's Custom Menu admin functions.
  *
  * @package StartBox
- * @subpackage Add-ons
- * @since 2.5.0
+ * @subpackage Classes
+ * @since 3.0.0
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
 // Check to see if current theme supports sidebars, skip the rest if not
