@@ -42,7 +42,7 @@ function sb_get_post_image( $args = array(), $deprecated_post_id = null, $deprec
 		'post_id'         => $id,
 		'image_id'        => null,
 		'use_attachments' => false,
-		'nophoto_url'     => apply_filters( 'sb_post_image_none', IMAGES_URL . '/nophoto.jpg' )
+		'nophoto_url'     => apply_filters( 'sb_post_image_none', SB_IMAGES . '/nophoto.jpg' )
 	);
 	$args = wp_parse_args( $args, $defaults );
 
@@ -114,7 +114,7 @@ function sb_post_image( $args = array(), $depricated_height = null, $depricated_
 		'class'           => apply_filters( 'sb_post_image_class', 'post-image' ),
 		'alt'             => apply_filters( 'sb_post_image_alt', get_the_title() ),
 		'title'           => apply_filters( 'sb_post_image_alt', get_the_title() ),
-		'nophoto_url'     => apply_filters( 'sb_post_image_none', IMAGES_URL . '/nophoto.jpg' ),
+		'nophoto_url'     => apply_filters( 'sb_post_image_none', SB_IMAGES . '/nophoto.jpg' ),
 		'hide_nophoto'    => apply_filters( 'sb_post_image_hide_nophoto', false ),
 		'enabled'         => apply_filters( 'sb_post_image_enabled', true ),
 		'echo'            => apply_filters( 'sb_post_image_echo', true )
