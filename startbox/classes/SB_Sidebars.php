@@ -14,6 +14,7 @@
 // Check to see if current theme supports sidebars, skip the rest if not
 if ( ! current_theme_supports( 'sb-sidebars' ) )
 	return;
+
 /**
  * This is the main SB Sidebars class.
  *
@@ -38,9 +39,12 @@ class SB_Sidebars {
 	 */
 	function __construct() {
 
+		$supported_sidebars = get_theme_support( 'sb-sidebars' );
+		$this->sidebars = $supported_sidebars[0];
+
 		// Register and activate all the sidebars
 		add_action( 'after_setup_theme', array( $this, 'register_default_sidebars') );
-		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
+		add_action( 'init', array( $this, 'widgets_init' ) );
 
 		// Available hook for other functions
 		do_action( 'sb_sidebars_init' );
