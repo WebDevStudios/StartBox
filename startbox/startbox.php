@@ -39,7 +39,10 @@ if ( ! class_exists('StartBox') ) {
 		 */
 		public function constants() {
 
+			// Setup version and option constants
 			define( 'SB_VERSION',      '3.0.0' );
+			define( 'THEME_OPTIONS',   'startbox' );
+			define( 'THEME_PREFIX',    'sb' );
 
 			// Define all our paths
 			define( 'THEME_DIR',       get_template_directory() );
