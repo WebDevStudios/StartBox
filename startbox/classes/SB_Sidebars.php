@@ -39,6 +39,7 @@ class SB_Sidebars {
 	 */
 	function __construct() {
 
+		// Grab the default supported sidebars
 		$supported_sidebars = get_theme_support( 'sb-sidebars' );
 		$this->sidebars = $supported_sidebars[0];
 
