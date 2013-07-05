@@ -140,14 +140,11 @@ $GLOBALS['startbox']->sidebars = new SB_Sidebars;
  * Wrapper Function for SB_Sidebars::register_sidebar()
  *
  * @since 2.5.2
- * @param string  $name        Sidebar display name
- * @param string  $id          Sidebar's unique ID
- * @param string  $description Sidebar description
- * @param boolean $editable    True if this sidebar can be overriden by Custom Sidebars (Default: false)
+ * @param array $args An array of sidebar registration arguments (id, name, description, editable)
  */
-function sb_register_sidebar( $name = null, $id = null, $description = null, $editable = 0 ) {
+function sb_register_sidebar( $args = array() ) {
 	global $startbox;
-	$startbox->sidebars->register_sidebar( array( 'name' => $name, 'id' => $id, 'description' => $description, 'editable' => $editable ) );
+	$startbox->sidebars->register_sidebar( $args );
 }
 
 /**
