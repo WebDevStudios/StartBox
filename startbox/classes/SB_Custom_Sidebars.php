@@ -602,6 +602,10 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 	function maybe_replace_current_sidebar( $sidebar ) {
 		global $post, $wp_query;
 
+		// If the sidebar is not editable, bail early
+		if ( ! sb_is_sidebar_editable( $sidebar ) )
+			return $sidebar;
+
 		// Grab our assigned locations
 		$custom_sidebars = $this->get_custom_sidebar_locations();
 
