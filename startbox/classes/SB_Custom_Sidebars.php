@@ -33,7 +33,8 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 		add_action( 'wp_before_admin_bar_render', array( $this, 'admin_bar' ) );
 		add_action( 'widgets_admin_page', array( $this, 'widget_page_output' ) );
 		add_action( 'save_post', array( $this, 'save_sidebar' ) );
-		add_action( 'trashed_post', array( $this, 'trashed_sidebar' ) );
+		add_action( 'trashed_post', array( $this, 'dump_sidebar_cache' ) );
+		add_action( 'untrash_post', array( $this, 'dump_sidebar_cache' ) );
 		add_filter( 'post_updated_messages', array( $this, 'sidebar_update_messages' ) );
 
 		// Register and render custom sidebars
@@ -469,7 +470,7 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 	 *
 	 * @since 2.5.0
 	 */
-	function trashed_sidebar( $post_id ) {
+	function dump_sidebar_cache( $post_id ) {
 		// Verify we're actually deleting a sidebar
 		if ( 'sidebar' == get_post_type( $post_id ) ) {
 	        delete_transient( 'sb_custom_sidebars' );
