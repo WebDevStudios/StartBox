@@ -120,14 +120,14 @@ class SB_Sidebars {
 		if ( is_active_sidebar( $sidebar ) || has_action( "sb_no_{$location}_widgets" ) ) {
 
 			do_action( "sb_before_{$location}" );
-			echo '<div id="' . esc_attr( $location ) . '" class="aside ' . esc_attr( $location ) . '-aside ' . esc_attr( $classes ) . '" role="complimentary">';
+			echo '<div id="' . esc_attr( $location ) . '" class="widget-area ' . esc_attr( $location ) . '-widget-area ' . esc_attr( $classes ) . '" role="complimentary">';
 			do_action( "sb_before_{$location}_widgets" );
 
 			if ( ! dynamic_sidebar( $sidebar ) )
 				do_action( "sb_no_{$location}_widgets" );
 
 			do_action( "sb_after_{$location}_widgets" );
-			echo '</div><!-- #' . esc_attr( $location ) . ' .aside-' . esc_attr( $location ) . ' -->';
+			echo '</div><!-- #' . esc_attr( $location ) . ' .' . esc_attr( $location ) . '-widget-area -->';
 			do_action( "sb_after_{$location}" );
 		}
 	}
