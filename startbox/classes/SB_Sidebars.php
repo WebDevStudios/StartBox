@@ -134,9 +134,9 @@ class SB_Sidebars {
 	 * Render markup and action hooks for a given sidebar (override this to customize your markup)
 	 *
 	 * @since 2.5.0
-	 * @param string $location the unique ID to give the container for this sidebar
-	 * @param string $sidebar the ID of the sidebar to attach to this location by default
-	 * @param string $classes additional custom classes to add to the container for this sidebar
+	 * @param string $location Unique ID applied to sidebar containers
+	 * @param string $sidebar  The default sidebar to render
+	 * @param string $classes  Additional classes to add to the container
 	 */
 	function do_sidebar( $location = null, $sidebar = null, $classes = null ) {
 
@@ -144,19 +144,19 @@ class SB_Sidebars {
 		$sidebar = apply_filters( 'sb_do_sidebar', $sidebar, $location );
 
 		// If the sidebar has widgets, or an action attached to it, commence output
-		if ( is_active_sidebar( $sidebar ) || has_action( "sb_no_{$location}_widgets" ) ) { ?>
+		if ( is_active_sidebar( $sidebar ) || has_action( "sb_no_{$location}_widgets" ) ) {
 
-			<?php do_action( "sb_before_{$location}" ); ?>
-			<div id="<?php echo esc_attr( $location ); ?>" class="aside <?php echo $location; ?>-aside<?php if ($classes) { echo ' ' . $classes; }?>" role="complimentary">
-				<?php do_action( "sb_before_{$location}_widgets" ); ?>
-				<ul class="xoxo">
-					<?php if ( !dynamic_sidebar($sidebar) ) { do_action( "sb_no_{$location}_widgets" ); }?>
-				</ul>
-				<?php do_action( "sb_after_{$location}_widgets" ); ?>
-		   </div><!-- #<?php echo $location; ?> .aside-<?php echo $location; ?> .aside -->
-		   <?php do_action( "sb_after_{$location}" ); ?>
+			do_action( "sb_before_{$location}" );
+			echo '<div id="' . esc_attr( $location ) . '" class="aside ' . esc_attr( $location ) . '-aside ' . esc_attr( $classes ) . '" role="complimentary">';
+			do_action( "sb_before_{$location}_widgets" );
 
-		<?php }
+			if ( ! dynamic_sidebar( $sidebar ) )
+				do_action( "sb_no_{$location}_widgets" );
+
+			do_action( "sb_after_{$location}_widgets" );
+			echo '</div><!-- #' . esc_attr( $location ) . ' .aside-' . esc_attr( $location ) . ' -->';
+			do_action( "sb_after_{$location}" );
+		}
 	}
 
 }
