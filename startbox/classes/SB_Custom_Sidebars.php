@@ -37,7 +37,7 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 		add_filter( 'post_updated_messages', array( $this, 'sidebar_update_messages' ) );
 
 		// Register and render custom sidebars
-		add_action( 'after_setup_theme', array( $this, 'register_custom_sidebars'), 11 );
+		add_action( 'init', array( $this, 'register_custom_sidebars'), 11 );
 		add_filter( 'sb_do_sidebar', array( $this, 'maybe_replace_current_sidebar' ), 10, 2 );
 
 		// Do all the normal SB_Sidebars business
@@ -209,10 +209,10 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 		$output .= '<option value="none"' . selected( $selected, 'none', false) . ' >' . __( 'None', 'startbox') . '</option>';
 
 		// Loop through all registered sidebars, add them to the list
-		foreach ( $startbox->sidebars->sidebars as $sidebar => $info ) {
+		foreach ( $startbox->sidebars->sidebars as $sidebar ) {
 			// Only include editable sidebars in our list
-			if ( $info['editable'] == 1 )
-				$output .= '<option value="' . $sidebar . '"' . selected( $selected, $sidebar, false) . ' >' . $info['name'] . '</option>';
+			if ( 1 === $sidebar['editable'] )
+				$output .= '<option value="' . $sidebar['id'] . '"' . selected( $selected, $sidebar['id'], false) . ' >' . $sidebar['name'] . '</option>';
 		}
 		$output .= '</select>';
 
@@ -600,15 +600,13 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 	 * @return string           The sidebar to be rendered
 	 */
 	function maybe_replace_current_sidebar( $sidebar, $location ) {
-
-		// Grab our globals (so we know what we're querying)
 		global $post, $wp_query;
 
 		// Grab our assigned locations
 		$custom_sidebars = $this->get_custom_sidebar_locations();
 
 		// If we actually have custom sidebars, lets look deeper
-		if ( !empty( $custom_sidebars ) ) {
+		if ( ! empty( $custom_sidebars ) ) {
 
 			// Determine which key we're testing based on what we're viewing
 			// For our special cases we'll want to return early
