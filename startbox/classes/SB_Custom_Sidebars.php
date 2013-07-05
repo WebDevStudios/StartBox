@@ -197,7 +197,7 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 		global $post_id, $startbox;
 
 		// If there aren't any sidebars, skip the rest
-		if ( empty( $startbox->sidebars->sidebars ) )
+		if ( empty( $startbox->sidebars->registered_sidebars ) )
 			return;
 
 		// Grab the current selection
@@ -210,7 +210,7 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 		$output .= '<option value="none"' . selected( $selected, 'none', false) . ' >' . __( 'None', 'startbox') . '</option>';
 
 		// Loop through all registered sidebars, add them to the list
-		foreach ( $startbox->sidebars->sidebars as $sidebar ) {
+		foreach ( $startbox->sidebars->registered_sidebars as $sidebar ) {
 			// Only include editable sidebars in our list
 			if ( 1 === $sidebar['editable'] )
 				$output .= '<option value="' . $sidebar['id'] . '"' . selected( $selected, $sidebar['id'], false) . ' >' . $sidebar['name'] . '</option>';

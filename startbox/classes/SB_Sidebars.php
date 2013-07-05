@@ -30,7 +30,7 @@ class SB_Sidebars {
 	 * @since 2.5.0
 	 * @var array
 	 */
-	public $sidebars = array();
+	public $registered_sidebars = array();
 
 	/**
 	 * Auto-load default and custom sidebars. Don't override this.
@@ -39,15 +39,8 @@ class SB_Sidebars {
 	 */
 	function __construct() {
 
-		// Grab the default supported sidebars
-		$supported_sidebars = get_theme_support( 'sb-sidebars' );
-		$this->sidebars = $supported_sidebars[0];
-
 		// Register and activate all the sidebars
 		add_action( 'init', array( $this, 'register_default_sidebars') );
-
-		// Available hook for other functions
-		do_action( 'sb_sidebars_init' );
 
 	}
 
@@ -58,12 +51,15 @@ class SB_Sidebars {
 	 */
 	function register_default_sidebars() {
 
+		// Grab the default supported sidebars
+		$supported_sidebars = get_theme_support( 'sb-sidebars' );
+
 		// If there aren't any sidebars, skip the rest
-		if ( empty( $this->sidebars ) )
+		if ( empty( $supported_sidebars ) )
 			return;
 
-		/* Get the available post layouts and store them in an array */
-		foreach ( $this->sidebars as $sidebar ) {
+		// Loop through each supported sidebar and register it
+		foreach ( $supported_sidebars[0] as $key => $sidebar ) {
 			$this->register_sidebar( $sidebar );
 		}
 
@@ -79,8 +75,8 @@ class SB_Sidebars {
 
 		// Setup our defaults (all null, for the most part)
 		$defaults = array(
-			'name'        => '',
 			'id'          => '',
+			'name'        => '',
 			'description' => '',
 			'editable'    => 1 // Makes this sidebar replaceable via SB Custom Sidebars extension
 		);
@@ -89,7 +85,7 @@ class SB_Sidebars {
 		// Rudimentary sanitization for editable var
 		$editable = ( $sidebar['editable'] ) ? 1 : 0;
 
-		// Register the sidebar
+		// Register the sidebar in WP
 		register_sidebar( apply_filters( 'sb_sidebars_register_sidebar', array(
 			'id'            => esc_attr( $sidebar['id'] ),
 			'name'          => esc_attr( $sidebar['name'] ),
@@ -100,6 +96,9 @@ class SB_Sidebars {
 			'before_title'  => apply_filters( 'sb_sidebars_before_title', '<h1 class="widget-title">', $sidebar['id'], $sidebar ),
 			'after_title'   => apply_filters( 'sb_sidebars_after_title', '</h1>', $sidebar['id'], $sidebar )
 		), $sidebar ) );
+
+		// Add the sidebar to our registered array
+		$this->registered_sidebars[$sidebar['id']] = $sidebar;
 	}
 
 	/**
