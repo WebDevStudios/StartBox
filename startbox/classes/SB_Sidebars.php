@@ -6,7 +6,7 @@
  * output, markup, the works.
  *
  * @package StartBox
- * @subpackage Classes
+ * @subpackage Sidebars
  * @since 3.0.0
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
@@ -20,6 +20,7 @@ if ( ! current_theme_supports( 'sb-sidebars' ) )
  *
  * You can extend this within your theme to alter the widget markup
  *
+ * @subpackage Classes
  * @since 2.5.0
  */
 class SB_Sidebars {

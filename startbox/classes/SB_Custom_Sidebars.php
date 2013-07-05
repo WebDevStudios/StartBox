@@ -2,13 +2,8 @@
 /**
  * StartBox Custom Sidebar Manager
  *
- * Create additional sidebars to replace any default sidebars
- * in StartBox for any post-type or taxonomy. Uses Custom Post
- * Types to handle sidebar registration. Metabox functionality
- * originally lifted from WP's Custom Menu admin functions.
- *
  * @package StartBox
- * @subpackage Classes
+ * @subpackage Sidebars
  * @since 3.0.0
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
@@ -17,6 +12,17 @@
 if ( ! current_theme_supports( 'sb-custom-sidebars' ) )
 	return;
 
+/**
+ * Main Custom Sidebars class
+ *
+ * Create additional sidebars to replace any default sidebars
+ * in StartBox for any post-type or taxonomy. Uses Custom Post
+ * Types to handle sidebar registration. Metabox functionality
+ * originally lifted from WP's Custom Menu admin functions.
+ *
+ * @subpackage Classes
+ * @since 3.0.0
+ */
 class SB_Custom_Sidebars extends SB_Sidebars {
 
 	/**
@@ -41,8 +47,6 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 		add_action( 'init', array( $this, 'register_custom_sidebars'), 11 );
 		add_filter( 'sb_do_sidebar', array( $this, 'maybe_replace_current_sidebar' ), 10, 2 );
 
-		// Do all the normal SB_Sidebars business
-		parent::__construct();
 	}
 
 	/**
