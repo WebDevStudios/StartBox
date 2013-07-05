@@ -44,40 +44,11 @@ class SB_Sidebars {
 		$this->sidebars = $supported_sidebars[0];
 
 		// Register and activate all the sidebars
-		add_action( 'after_setup_theme', array( $this, 'register_default_sidebars') );
-		add_action( 'init', array( $this, 'widgets_init' ) );
+		add_action( 'init', array( $this, 'register_default_sidebars') );
 
 		// Available hook for other functions
 		do_action( 'sb_sidebars_init' );
 
-	}
-
-	/**
-	 * Activate all registered sidebars.
-	 *
-	 * @since 2.5.0
-	 */
-	function widgets_init() {
-
-		// If there aren't any sidebars, skip the rest
-		if ( empty( $this->sidebars ) )
-			return;
-
-		// Otherwise, lets register all of them
-		foreach ( $this->sidebars as $sidebar ) {
-
-			register_sidebar( apply_filters( 'sb_sidebars_register_sidebar', array(
-				'id'            => esc_attr( $sidebar['id'] ),
-				'name'          => esc_attr( $sidebar['name'] ),
-				'description'   => esc_attr( $sidebar['description'] ),
-				'editable'      => absint( $sidebar['editable'] ),
-				'before_widget' => apply_filters( 'sb_sidebars_before_widget', '<aside id="%1$s" class="widget %2$s">', $sidebar_id, $sidebar ),
-				'after_widget'  => apply_filters( 'sb_sidebars_after_widget', '</aside>', $sidebar_id, $sidebar ),
-				'before_title'  => apply_filters( 'sb_sidebars_before_title', '<h1 class="widget-title">', $sidebar_id, $sidebar ),
-				'after_title'   => apply_filters( 'sb_sidebars_after_title', '</h1>', $sidebar_id, $sidebar )
-			), $sidebar ) );
-
-		}
 	}
 
 	/**
@@ -87,8 +58,12 @@ class SB_Sidebars {
 	 */
 	function register_default_sidebars() {
 
+		// If there aren't any sidebars, skip the rest
+		if ( empty( $this->sidebars ) )
+			return;
+
 		/* Get the available post layouts and store them in an array */
-		foreach ( get_theme_support( 'sb-sidebars' ) as $sidebar ) {
+		foreach ( $this->sidebars as $sidebar ) {
 			$this->register_sidebar( $sidebar );
 		}
 
@@ -107,27 +82,24 @@ class SB_Sidebars {
 			'name'        => '',
 			'id'          => '',
 			'description' => '',
-			'editable'    => 1   // Makes this sidebar replaceable via the StartBox Easy Sidebars extension
+			'editable'    => 1 // Makes this sidebar replaceable via SB Custom Sidebars extension
 		);
-		extract( wp_parse_args( $args, $defaults) );
+		$sidebar = wp_parse_args( $args, $defaults );
 
 		// Rudimentary sanitization for editable var
-		$editable = ($editable) ? 1 : 0;
+		$editable = ( $sidebar['editable'] ) ? 1 : 0;
 
-		// If the sidebar doesn't already exist, register it
-		if ( !isset($this->sidebars[$id]) )
-			$this->sidebars[$id] = array( 'name' => $name, 'id' => $id, 'description' => $description, 'editable' => $editable );
-	}
-
-	/**
-	 * Unregister a sidebar (don't override this)
-	 *
-	 * @since 2.5.0
-	 * @param string $id the unique ID for the sidebar to unregister
-	 */
-	function unregister_sidebar( $id ) {
-		if ( isset($this->sidebars[$id]) )
-			unset($this->sidebars[$id]);
+		// Register the sidebar
+		register_sidebar( apply_filters( 'sb_sidebars_register_sidebar', array(
+			'id'            => esc_attr( $sidebar['id'] ),
+			'name'          => esc_attr( $sidebar['name'] ),
+			'description'   => esc_attr( $sidebar['description'] ),
+			'editable'      => absint( $sidebar['editable'] ),
+			'before_widget' => apply_filters( 'sb_sidebars_before_widget', '<aside id="%1$s" class="widget %2$s">', $sidebar['id'], $sidebar ),
+			'after_widget'  => apply_filters( 'sb_sidebars_after_widget', '</aside><!-- #%1$s -->', $sidebar['id'], $sidebar ),
+			'before_title'  => apply_filters( 'sb_sidebars_before_title', '<h1 class="widget-title">', $sidebar['id'], $sidebar ),
+			'after_title'   => apply_filters( 'sb_sidebars_after_title', '</h1>', $sidebar['id'], $sidebar )
+		), $sidebar ) );
 	}
 
 	/**
@@ -166,25 +138,14 @@ $GLOBALS['startbox']->sidebars = new SB_Sidebars;
  * Wrapper Function for SB_Sidebars::register_sidebar()
  *
  * @since 2.5.2
- * @param string $name the display name for this sidebar
- * @param string $id the unique ID for this sidebar
- * @param string $description a short description for this sidebar
- * @param boolean $editable if true this sidebar can be overridden via custom sidebars (Default: false)
+ * @param string  $name        Sidebar display name
+ * @param string  $id          Sidebar's unique ID
+ * @param string  $description Sidebar description
+ * @param boolean $editable    True if this sidebar can be overriden by Custom Sidebars (Default: false)
  */
 function sb_register_sidebar( $name = null, $id = null, $description = null, $editable = 0 ) {
 	global $startbox;
 	$startbox->sidebars->register_sidebar( array( 'name' => $name, 'id' => $id, 'description' => $description, 'editable' => $editable ) );
-}
-
-/**
- * Wrapper Function for SB_Sidebars::unregister_sidebar()
- *
- * @since 2.5.2
- * @param string $id the ID of the sidebar to unregister
- */
-function sb_unregister_sidebar( $id ) {
-	global $startbox;
-	$startbox->sidebars->unregister_sidebar( $id );
 }
 
 /**
