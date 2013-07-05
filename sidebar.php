@@ -1,17 +1,15 @@
 <?php
 /**
- * sb_do_sidebar() is defined in /includes/functions/sidebars.php
+ * sb_do_sidebar() is defined in /startbox/classes/SB_Sidebars.php
  *
  * Default Output:
- * hook: sb_before_{$location}
- * <div id="{$location}" class="aside {$location}-aside">
- * 	hook: sb_before_{$location}_widgets
- * 	<ul class="xoxo">
- * 		sidebar contents, or hook: sb_no_{$location}_widgets
- * 	</ul>
- * 	hook: sb_after_{$location}_widgets
+ * hook: sb_before_{$sidebar}
+ * <div id="{$sidebar}" class="widget-area {$sidebar}-widget-area">
+ * 	hook: sb_before_{$sidebar}_widgets
+ * 		widgets (<aside class="widget"></aside>), or hook: sb_no_{$sidebar}_widgets
+ * 	hook: sb_after_{$sidebar}_widgets
  * </div>
- * hook: sb_after_{$location}
+ * hook: sb_after_{$sidebar}
  */
 sb_do_sidebar( 'primary' );
 sb_do_sidebar( 'secondary' );
