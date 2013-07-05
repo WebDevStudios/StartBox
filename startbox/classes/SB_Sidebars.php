@@ -71,10 +71,10 @@ class SB_Sidebars {
 				'name'          => esc_attr( $sidebar_info['name'] ),
 				'description'   => esc_attr( $sidebar_info['description'] ),
 				'editable'      => absint( $sidebar_info['editable'] ),
-				'before_widget' => apply_filters( 'sb_sidebars_before_widget', '<li id="%1$s" class="widget %2$s">', $sidebar_id, $sidebar_info ),
-				'after_widget'  => apply_filters( 'sb_sidebars_after_widget', '</li>', $sidebar_id, $sidebar_info ),
-				'before_title'  => apply_filters( 'sb_sidebars_before_title', '<h3 class="widget-title">', $sidebar_id, $sidebar_info ),
-				'after_title'   => apply_filters( 'sb_sidebars_after_title', '</h3>', $sidebar_id, $sidebar_info )
+				'before_widget' => apply_filters( 'sb_sidebars_before_widget', '<aside id="%1$s" class="widget %2$s">', $sidebar_id, $sidebar_info ),
+				'after_widget'  => apply_filters( 'sb_sidebars_after_widget', '</aside>', $sidebar_id, $sidebar_info ),
+				'before_title'  => apply_filters( 'sb_sidebars_before_title', '<h1 class="widget-title">', $sidebar_id, $sidebar_info ),
+				'after_title'   => apply_filters( 'sb_sidebars_after_title', '</h1>', $sidebar_id, $sidebar_info )
 			), $sidebar_id, $sidebar_info ) );
 
 		}
