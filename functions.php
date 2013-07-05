@@ -71,6 +71,7 @@ function startbox_setup_theme() {
 				),
 		)
 	);
+	add_theme_support( 'sb-custom-sidebars' );
 	add_theme_support( 'sb-updates' );
 
 	// Custom Post Editor Styles

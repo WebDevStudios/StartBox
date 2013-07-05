@@ -27,13 +27,13 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 	public function __construct() {
 
 		// Build Custom Sidebar Support
-		add_action( 'init', array( $this, 'register_cpt' ), 0 );
+		add_action( 'init', array( $this, 'register_cpt' ), 5 );
 		add_filter( 'wp_insert_post_data' , array( $this, 'default_post_slug' ), '10', 2 );
 		add_action( 'load-post-new.php', array( $this, 'enqueue_scripts' ) );
 		add_action( 'wp_before_admin_bar_render', array( $this, 'admin_bar' ) );
 		add_action( 'widgets_admin_page', array( $this, 'widget_page_output' ) );
 		add_action( 'save_post', array( $this, 'save_sidebar' ) );
-		add_action( 'trashed_post', 'trashed_sidebar' );
+		add_action( 'trashed_post', array( $this, 'trashed_sidebar' ) );
 		add_filter( 'post_updated_messages', array( $this, 'sidebar_update_messages' ) );
 
 		// Register and render custom sidebars
@@ -193,10 +193,10 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 	 * @since 2.5.0
 	 */
 	function sidebar_select_metabox() {
-		global $post_id, $sb_sidebars;
+		global $post_id, $startbox;
 
 		// If there aren't any sidebars, skip the rest
-		if ( ! $sb_sidebars->sidebars || empty( $sb_sidebars->sidebars ) )
+		if ( empty( $startbox->sidebars->sidebars ) )
 			return;
 
 		// Grab the current selection
@@ -209,7 +209,7 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 		$output .= '<option value="none"' . selected( $selected, 'none', false) . ' >' . __( 'None', 'startbox') . '</option>';
 
 		// Loop through all registered sidebars, add them to the list
-		foreach ( $sb_sidebars->sidebars as $sidebar => $info ) {
+		foreach ( $startbox->sidebars->sidebars as $sidebar => $info ) {
 			// Only include editable sidebars in our list
 			if ( $info['editable'] == 1 )
 				$output .= '<option value="' . $sidebar . '"' . selected( $selected, $sidebar, false) . ' >' . $info['name'] . '</option>';
