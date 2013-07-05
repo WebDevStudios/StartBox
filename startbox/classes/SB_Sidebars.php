@@ -160,3 +160,20 @@ function sb_do_sidebar( $sidebar = null, $classes = null ) {
 	global $startbox;
 	$startbox->sidebars->do_sidebar( $sidebar, $classes );
 }
+
+/**
+ * Check if a sidebar is editable
+ *
+ * @since  3.0.0
+ * @param  string $sidebar The sidebar to check
+ * @return bool            True if sidebar is editable, false otherwise
+ */
+function sb_is_sidebar_editable( $sidebar = null ) {
+	global $startbox;
+
+	// If the editable field is empty, it is not editable
+	if ( empty( $startbox->sidebars->registered_sidebars[$sidebar]['editable'] ) )
+		return false;
+	else
+		return true;
+}

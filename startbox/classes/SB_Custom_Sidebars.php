@@ -212,7 +212,7 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 		// Loop through all registered sidebars, add them to the list
 		foreach ( $startbox->sidebars->registered_sidebars as $sidebar ) {
 			// Only include editable sidebars in our list
-			if ( 1 === $sidebar['editable'] )
+			if ( sb_is_sidebar_editable( $sidebar['id'] ) )
 				$output .= '<option value="' . $sidebar['id'] . '"' . selected( $selected, $sidebar['id'], false) . ' >' . $sidebar['name'] . '</option>';
 		}
 		$output .= '</select>';
