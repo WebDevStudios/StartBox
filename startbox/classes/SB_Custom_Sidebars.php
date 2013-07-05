@@ -460,7 +460,7 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 
 		// Delete transient data (used to cache all sidebars for front-end display)
 		delete_transient( 'sb_custom_sidebars' );
-		delete_transient( 'sb_custom_sidebar_locations' );
+		delete_transient( 'sb_custom_sidebar_replacements' );
 
 		return $post_id;
 	}
@@ -474,7 +474,7 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 		// Verify we're actually deleting a sidebar
 		if ( 'sidebar' == get_post_type( $post_id ) ) {
 	        delete_transient( 'sb_custom_sidebars' );
-	    	delete_transient( 'sb_custom_sidebar_locations' );
+	    	delete_transient( 'sb_custom_sidebar_replacements' );
 	    }
 	}
 
@@ -554,9 +554,9 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 	 * @since  3.0.0
 	 * @return array Keyed location array
 	 */
-	function get_custom_sidebar_locations() {
+	function get_replaced_sidebars() {
 
-		$sidebars = get_transient( 'sb_custom_sidebar_locations' );
+		$sidebars = get_transient( 'sb_custom_sidebar_replacements' );
 
 		// If we don't have a transient, rebuild our array
 		if ( empty( $sidebars ) || ! is_array( $sidebars ) ) {
@@ -586,7 +586,7 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 			}
 
 			// Cache our location data for 30 days
-			set_transient( 'sb_custom_sidebar_locations', $sidebars, 30 * DAY_IN_SECONDS );
+			set_transient( 'sb_custom_sidebar_replacements', $sidebars, 30 * DAY_IN_SECONDS );
 		}
 
 		return (array) maybe_unserialize( $sidebars );
@@ -607,19 +607,19 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 			return $sidebar;
 
 		// Grab our assigned locations
-		$custom_sidebars = $this->get_custom_sidebar_locations();
+		$replaced_sidebars = $this->get_replaced_sidebars();
 
 		// If we actually have custom sidebars, lets look deeper
-		if ( ! empty( $custom_sidebars ) ) {
+		if ( ! empty( $replaced_sidebars ) ) {
 
 			// Determine which key we're testing based on what we're viewing
 			// For our special cases we'll want to return early
-			if ( array_key_exists( 'Home', $custom_sidebars ) && is_front_page() ) { $key = 'Home'; }
-			elseif ( array_key_exists( 'all-Posts', $custom_sidebars ) && is_single() && get_post_type() == 'post' ) { $key = 'all-Posts'; }
-			elseif ( array_key_exists( 'all-Pages', $custom_sidebars ) && is_page() ) { $key = 'all-Pages'; }
-			elseif ( array_key_exists( 'all-'.$post->post_type, $custom_sidebars ) && is_single() && get_post_type() == $post->post_type ) { $key = 'all-'.$post->post_type; }
-			elseif ( array_key_exists( 'all-category', $custom_sidebars ) && is_category() ) { $key = 'all-category'; }
-			elseif ( array_key_exists( 'all-tag', $custom_sidebars ) && is_tag() ) { $key = 'all-tag'; }
+			if ( array_key_exists( 'Home', $replaced_sidebars ) && is_front_page() ) { $key = 'Home'; }
+			elseif ( array_key_exists( 'all-Posts', $replaced_sidebars ) && is_single() && get_post_type() == 'post' ) { $key = 'all-Posts'; }
+			elseif ( array_key_exists( 'all-Pages', $replaced_sidebars ) && is_page() ) { $key = 'all-Pages'; }
+			elseif ( array_key_exists( 'all-'.$post->post_type, $replaced_sidebars ) && is_single() && get_post_type() == $post->post_type ) { $key = 'all-'.$post->post_type; }
+			elseif ( array_key_exists( 'all-category', $replaced_sidebars ) && is_category() ) { $key = 'all-category'; }
+			elseif ( array_key_exists( 'all-tag', $replaced_sidebars ) && is_tag() ) { $key = 'all-tag'; }
 			elseif ( is_home() ) { $key = $wp_query->queried_object_id; } // This catches the blog page when front page is set to a static page
 			elseif ( is_category() ) { $key = get_query_var('cat'); }
 			elseif ( is_tag() ) { $key = get_query_var('tag_id'); }
@@ -628,10 +628,10 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 
 			// If we have a custom sidebar for this page, and for this location, use it
 			if (
-				array_key_exists( $key, $custom_sidebars )
-				&& array_key_exists( $sidebar, $custom_sidebars[$key]['locations'] )
+				array_key_exists( $key, $replaced_sidebars )
+				&& array_key_exists( $sidebar, $replaced_sidebars[$key]['locations'] )
 			) {
-				$sidebar = $custom_sidebars[$key]['locations'][$sidebar];
+				$sidebar = $replaced_sidebars[$key]['locations'][$sidebar];
 			}
 
 		}
