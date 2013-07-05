@@ -106,14 +106,16 @@ class SB_Sidebars {
 	 * Render markup and action hooks for a given sidebar (override this to customize your markup)
 	 *
 	 * @since 2.5.0
-	 * @param string $location Unique ID applied to sidebar containers
 	 * @param string $sidebar  The default sidebar to render
-	 * @param string $classes  Additional classes to add to the container
+	 * @param string $classes  Additional CSS classes to apply to the container
 	 */
-	function do_sidebar( $location = null, $sidebar = null, $classes = null ) {
+	function do_sidebar( $sidebar = null, $classes = null ) {
+
+		// Cache the sidebar location we're rendering
+		$location = $sidebar;
 
 		// Maybe replace the default sidebar with a custom sidebar
-		$sidebar = apply_filters( 'sb_do_sidebar', $sidebar, $location );
+		$sidebar = apply_filters( 'sb_do_sidebar', $sidebar );
 
 		// If the sidebar has widgets, or an action attached to it, commence output
 		if ( is_active_sidebar( $sidebar ) || has_action( "sb_no_{$location}_widgets" ) ) {
@@ -152,11 +154,10 @@ function sb_register_sidebar( $name = null, $id = null, $description = null, $ed
  * Wrapper Function for SB_Sidebars::do_sidebar()
  *
  * @since 2.5.0
- * @param string $location the unique ID to give the container for this sidebar
- * @param string $sidebar the ID of the sidebar to attach to this location by default
- * @param string $classes additional custom classes to add to the container for this sidebar
+ * @param string $sidebar The default sidebar to render
+ * @param string $classes Additional CSS classes to apply to the container
  */
-function sb_do_sidebar( $location = null, $sidebar = null, $classes = null ) {
+function sb_do_sidebar( $sidebar = null, $classes = null ) {
 	global $startbox;
-	$startbox->sidebars->do_sidebar( $location, $sidebar, $classes );
+	$startbox->sidebars->do_sidebar( $sidebar, $classes );
 }

@@ -597,10 +597,9 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 	 *
 	 * @since  2.5.0
 	 * @param  string $sidebar  The sidebar being rendered
-	 * @param  string $location The registered location to check
-	 * @return string           The sidebar to be rendered
+	 * @return string           The sidebar to rendered
 	 */
-	function maybe_replace_current_sidebar( $sidebar, $location ) {
+	function maybe_replace_current_sidebar( $sidebar ) {
 		global $post, $wp_query;
 
 		// Grab our assigned locations
@@ -626,9 +625,9 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 			// If we have a custom sidebar for this page, and for this location, use it
 			if (
 				array_key_exists( $key, $custom_sidebars )
-				&& array_key_exists( $location, $custom_sidebars[$key]['locations'] )
+				&& array_key_exists( $sidebar, $custom_sidebars[$key]['locations'] )
 			) {
-				$sidebar = $custom_sidebars[$key]['locations'][$location];
+				$sidebar = $custom_sidebars[$key]['locations'][$sidebar];
 			}
 
 		}
