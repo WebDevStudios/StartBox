@@ -9,10 +9,10 @@
  *
  * @since 2.4.2
  */
-$footer1 = ( is_sidebar_active( 'footer_widget_area_1' ) || has_action( 'sb_no_footer_widget_area_1_widgets' ) );
-$footer2 = ( is_sidebar_active( 'footer_widget_area_2' ) || has_action( 'sb_no_footer_widget_area_2_widgets' ) );
-$footer3 = ( is_sidebar_active( 'footer_widget_area_3' ) || has_action( 'sb_no_footer_widget_area_3_widgets' ) );
-$footer4 = ( is_sidebar_active( 'footer_widget_area_4' ) || has_action( 'sb_no_footer_widget_area_4_widgets' ) );
+$footer1 = ( is_active_sidebar( 'footer_widget_area_1' ) || has_action( 'sb_no_footer_widget_area_1_widgets' ) );
+$footer2 = ( is_active_sidebar( 'footer_widget_area_2' ) || has_action( 'sb_no_footer_widget_area_2_widgets' ) );
+$footer3 = ( is_active_sidebar( 'footer_widget_area_3' ) || has_action( 'sb_no_footer_widget_area_3_widgets' ) );
+$footer4 = ( is_active_sidebar( 'footer_widget_area_4' ) || has_action( 'sb_no_footer_widget_area_4_widgets' ) );
 
 if ( $footer1 || $footer2 || $footer3 || $footer4 ) {
 

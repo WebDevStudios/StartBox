@@ -144,7 +144,7 @@ class SB_Sidebars {
 		$sidebar = apply_filters( 'sb_do_sidebar', $sidebar, $location );
 
 		// If the sidebar has widgets, or an action attached to it, commence output
-		if ( is_sidebar_active( $sidebar ) || has_action( "sb_no_{$location}_widgets" ) ) { ?>
+		if ( is_active_sidebar( $sidebar ) || has_action( "sb_no_{$location}_widgets" ) ) { ?>
 
 			<?php do_action( "sb_before_{$location}" ); ?>
 			<div id="<?php echo esc_attr( $location ); ?>" class="aside <?php echo $location; ?>-aside<?php if ($classes) { echo ' ' . $classes; }?>">
@@ -198,27 +198,4 @@ function sb_unregister_sidebar( $id ) {
 function sb_do_sidebar( $location = null, $sidebar = null, $classes = null ) {
 	global $startbox;
 	$startbox->sidebars->do_sidebar( $location, $sidebar, $classes );
-}
-
-/**
- * Check for widgets in widget-ready areas to confirm if sidebar is active.
- *
- * @since  2.3.6
- * @param  string $id The ID of the sidebar to check
- * @return bool       True if sidebar has widgets, false otherwise
- */
-if ( !function_exists('is_sidebar_active') ) {
-	function is_sidebar_active( $id ) {
-		global $wp_registered_sidebars;
-
-		// Grab the active sidebars (ones including widgets)
-		$widgetcolums = wp_get_sidebars_widgets();
-
-		// If we have widgets stored for this sidebar, return true
-		// Otherwise, return false
-		if ( isset( $widgetcolums[$id] ) && true == $widgetcolums[$id] )
-			return true;
-		else
-			return false;
-	}
 }
