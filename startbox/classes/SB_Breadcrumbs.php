@@ -102,7 +102,7 @@ class SB_Breadcrumbs {
 	 */
 	function get_home_crumb() {
 
-		if ( is_front_page() )
+		if ( is_front_page() && ! $this->get_paged_crumb() )
 			$trail = $this->args['labels']['home'];
 		else
 			$trail = $this->get_breadcrumb_link( home_url(), $this->args['labels']['home'] );
@@ -122,7 +122,7 @@ class SB_Breadcrumbs {
 		$trail = '';
 
 		if ( 'page' == get_option( 'show_on_front' ) ) {
-			if ( is_home() )
+			if ( is_home() && ! $this->get_paged_crumb() )
 				$trail = get_the_title( get_option( 'page_for_posts' ) );
 			else
 				$trail = $this->get_breadcrumb_link( get_permalink( get_option( 'page_for_posts' ) ), get_the_title( get_option( 'page_for_posts' ) ) );
@@ -247,7 +247,7 @@ class SB_Breadcrumbs {
 		}
 
 		// Include our current post at the end of the trail
-		if ( $post !== get_queried_object() )
+		if ( $post !== get_queried_object() || $this->get_paged_crumb() )
 			$trail[] = $this->get_breadcrumb_link( get_permalink( $post->ID ), $post->post_title );
 		else
 			$trail[] = $post->post_title;
@@ -277,11 +277,21 @@ class SB_Breadcrumbs {
 			$trail[] = $this->get_post_term_crumbs( $term->parent, $taxonomy );
 
 		// Include our current term
-		if ( is_object( $term ) )
+		if ( ( ! is_category( $term->slug ) && ! is_tag( $term->slug ) && ! is_tax( $taxonomy, $term->slug ) ) || $this->get_paged_crumb() )
 			$trail[] = $this->get_breadcrumb_link( get_term_link( $term ), $term->name );
+		else
+			$trail[] = $term->name;
 
 		// Return filterable output
 		return apply_filters( 'sb_get_post_term_crumbs', $this->glue_crumbs_together( $trail ), $term_id, $taxonomy, $this->args );
+	}
+
+	function get_paged_crumb() {
+		if ( get_query_var( 'page' ) || get_query_var( 'paged' ) ) {
+			$page = get_query_var( 'page' ) ? get_query_var( 'page' ) : get_query_var( 'paged' );
+			$trail = sprintf( __( 'Page %d', 'startbox' ), absint( $page ) );
+			return apply_filters( 'sb_get_paged_crumb', $trail, $this->args );
+		}
 	}
 
 	/**
@@ -308,6 +318,10 @@ class SB_Breadcrumbs {
 			$trail[] = $this->get_archive_crumb();
 		elseif ( is_singular() && ! is_front_page() )
 			$trail[] = $this->get_singular_crumb();
+
+		// If we're on a paged query, include our paged crumb
+		if ( $this->get_paged_crumb() )
+			$trail[] = $this->get_paged_crumb();
 
 		// Return filterable output
 		return apply_filters( 'sb_build_crumb_trail', $this->glue_crumbs_together( $trail ), $this->args );
