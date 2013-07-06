@@ -364,14 +364,16 @@ function sb_breadcrumbs( $args = array() ) {
  */
 function sb_do_breadcrumbs() {
 
-	if ( function_exists( 'yoast_breadcrumb' ) )
+	// Breadcrumb NavXT
+	if ( function_exists( 'bcn_display' ) )
+		echo '<div class="breadcrumbs">' . bcn_display( true ) . '</div>';
+	// Yoast Breadcrumbs/WordPress SEO Breadcrumbs
+	elseif ( function_exists( 'yoast_breadcrumb' ) )
 		yoast_breadcrumb( '<div class="breadcrumbs">', '</div>' );
+	// bbPress Breadcrumbs
 	elseif ( function_exists( 'breadcrumbs' ) )
 		breadcrumbs();
-	elseif ( function_exists( 'crumbs' ) )
-		crumbs();
-	elseif ( function_exists( 'bcn_display' ) )
-		echo '<div class="breadcrumbs">' . bcn_display( true ) . '</div>';
+	// SB Breadcrumbs
 	else
 		sb_breadcrumbs();
 
