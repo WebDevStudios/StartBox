@@ -46,7 +46,7 @@ class SB_Breadcrumbs {
 				'prefix'    => __( 'You are here: ', 'startbox' ),
 				'home'      => __( 'Home', 'startbox' ),
 				'search'    => __( 'Search for ', 'startbox' ),
-				'404'       => __( 'Not found: ', 'startbox' )
+				'404'       => __( 'Link Not Found', 'startbox' )
 			)
 		);
 
