@@ -37,12 +37,11 @@ class SB_Breadcrumbs {
 
 		// Setup argument defaults
 		$this->args = array(
-			'before_crumbs'           => '<div class="breadcrumb">',
+			'before_crumbs'           => '<div class="breadcrumbs">',
 			'after_crumbs'            => '</div>',
-			'sep'                     => ' / ',
+			'separator'               => ' / ',
 			'heirarchial_attachments' => true,
 			'heirarchial_categories'  => true,
-			'display'                 => true,
 			'labels' => array(
 				'prefix'    => __( 'You are here: ', 'startbox' ),
 				'home'      => __( 'Home', 'startbox' ),
@@ -106,7 +105,7 @@ class SB_Breadcrumbs {
 		if ( is_front_page() )
 			$trail = $this->args['labels']['home'];
 		else
-			$trail = $this->get_breadcrumb_link( site_url(), $this->args['labels']['home'] );
+			$trail = $this->get_breadcrumb_link( home_url(), $this->args['labels']['home'] );
 
 		return apply_filters( 'sb_get_home_crumb', $trail, $this->args );
 	}
@@ -120,7 +119,7 @@ class SB_Breadcrumbs {
 	function get_blog_crumb() {
 
 		if ( 'page' == get_option( 'show_on_front' ) )
-			$trail = $this->get_breadcrumb_link( home_url(), get_the_title( get_option( 'page_for_posts' ) ) );
+			$trail = $this->get_breadcrumb_link( get_permalink( get_option( 'page_for_posts' ) ), get_the_title( get_option( 'page_for_posts' ) ) );
 		else
 			$trail = '';
 
@@ -198,12 +197,13 @@ class SB_Breadcrumbs {
 	 * Return single post type breadcrumb
 	 *
 	 * @since  3.0.0
-	 * @return string Concatenated HTML markup
+	 * @param  $integer $post_id A specific post ID to render
+	 * @return string            Concatenated HTML markup
 	 */
-	function get_singular_crumb() {
+	function get_singular_crumb( $post_id = 0 ) {
 
 		// Get our relevant post data
-		$post             = get_queried_object();
+		$post             = $post_id ? get_post( $post_id ) : get_queried_object();
 		$parent           = absint( $post->post_parent );
 		$post_type        = $post->post_type;
 		$post_type_object = get_post_type_object( $post_type );
@@ -211,20 +211,30 @@ class SB_Breadcrumbs {
 		// Assume we have nothing to output
 		$trail = array();
 
-		// If we have any ancestors, include them in the trail
-		if ( $post->ancestors ) {
+		// If we're looking at a post, and the blog is
+		// set to a specific page, include blog link
+		if ( 'post' == $post_type && $this->get_blog_crumb() )
+			$trail[] = $this->get_blog_crumb();
+
+		// If this is an attachment, and we support attachment hierarcy
+		if ( 'attachment' == $post_type ) {
+			if ( $this->args['heirarchial_attachments'] )
+				$trail[] = $this->get_singular_crumb( $post->post_parent );
+
+		// Or, we're on another hierarchical post type with ancestors
+		} elseif ( $post->ancestors ) {
 			$ancestors = array_reverse( $post->ancestors );
 			foreach ( $ancestors as $ancestor ) {
 				$trail[] = $this->get_breadcrumb_link( get_permalink( $ancestor ), get_the_title( $ancestor ) );
 			}
 
 		// Or we're dealing with a categorized post
-		} elseif ( is_singular( 'post' ) && $categories = get_the_category( $post->ID ) ) {
+		} elseif ( 'post' == $post_type && $categories = get_the_category( $post->ID ) ) {
 			if ( is_array( $categories ) )
 				$trail[] = $this->get_post_term_crumbs( $categories[0]->cat_ID, 'category' );
 
-		// Or we're dealing with a CPT
-		} elseif ( 'page' != $post->post_type ) {
+		// Or we're dealing with a non-standard CPT
+		} elseif ( ! in_array( $post_type, array( 'post', 'page', 'attachment' ) ) ) {
 			if ( $post_type_archive = get_post_type_archive_link( $post_type ) )
 				$trail[] = $this->get_breadcrumb_link( $post_type_archive, $post_type_object->labels->name );
 			else
@@ -232,7 +242,10 @@ class SB_Breadcrumbs {
 		}
 
 		// Include our current post at the end of the trail
-		$trail[] = $post->post_title;
+		if ( $post !== get_queried_object() )
+			$trail[] = $this->get_breadcrumb_link( get_permalink( $post->ID ), $post->post_title );
+		else
+			$trail[] = $post->post_title;
 
 		// Return filterable output
 		return apply_filters( 'sb_get_singular_crumb', $this->glue_crumbs_together( $trail ), $post, $this->args );
@@ -305,7 +318,7 @@ class SB_Breadcrumbs {
 	 * @return string         Flattened, unique list of crumbs
 	 */
 	function glue_crumbs_together( array $crumbs ) {
-		return implode( $this->args['sep'], array_unique( $crumbs ) );
+		return implode( $this->args['separator'], array_unique( $crumbs ) );
 	}
 
 }
