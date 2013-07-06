@@ -341,16 +341,16 @@ class SB_Breadcrumbs {
 	}
 
 }
-$GLOBALS['startbox']->breadcrumbs = new SB_Breadcrumbs;
 
 /**
- * Helper function for the startbox Breadcrumb Class.
+ * Helper function for the SB_Breadcrumbs Class output
  *
  * @since 3.0.0
  * @param array $args Breadcrumb arguments
  */
 function sb_breadcrumbs( $args = array() ) {
 	global $startbox;
+	$startbox->breadcrumbs = new SB_Breadcrumbs;
 	echo $startbox->breadcrumbs->get_output( $args );
 }
 add_action( 'sb_after_header', 'sb_breadcrumbs' );
