@@ -118,10 +118,15 @@ class SB_Breadcrumbs {
 	 */
 	function get_blog_crumb() {
 
-		if ( 'page' == get_option( 'show_on_front' ) )
-			$trail = $this->get_breadcrumb_link( get_permalink( get_option( 'page_for_posts' ) ), get_the_title( get_option( 'page_for_posts' ) ) );
-		else
-			$trail = '';
+		// Assume we have no blog crumb
+		$trail = '';
+
+		if ( 'page' == get_option( 'show_on_front' ) ) {
+			if ( is_home() )
+				$trail = get_the_title( get_option( 'page_for_posts' ) );
+			else
+				$trail = $this->get_breadcrumb_link( get_permalink( get_option( 'page_for_posts' ) ), get_the_title( get_option( 'page_for_posts' ) ) );
+		}
 
 		return apply_filters( 'sb_get_blog_crumb', $trail, $this->args );
 	}
@@ -301,7 +306,7 @@ class SB_Breadcrumbs {
 			$trail[] = $this->get_404_crumb();
 		elseif ( is_archive() )
 			$trail[] = $this->get_archive_crumb();
-		elseif ( is_singular() )
+		elseif ( is_singular() && ! is_front_page() )
 			$trail[] = $this->get_singular_crumb();
 
 		// Return filterable output
