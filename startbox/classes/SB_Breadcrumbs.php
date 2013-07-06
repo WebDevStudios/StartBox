@@ -353,4 +353,27 @@ function sb_breadcrumbs( $args = array() ) {
 	$startbox->breadcrumbs = new SB_Breadcrumbs;
 	echo $startbox->breadcrumbs->get_output( $args );
 }
-add_action( 'sb_after_header', 'sb_breadcrumbs' );
+
+/**
+ * Render breadcrumbs across the site
+ *
+ * This function grants preference to 3rd-party
+ * plugins before attempting sb_breadcrumbs()
+ *
+ * @since 3.0.0
+ */
+function sb_do_breadcrumbs() {
+
+	if ( function_exists( 'yoast_breadcrumb' ) )
+		yoast_breadcrumb( '<div class="breadcrumbs">', '</div>' );
+	elseif ( function_exists( 'breadcrumbs' ) )
+		breadcrumbs();
+	elseif ( function_exists( 'crumbs' ) )
+		crumbs();
+	elseif ( function_exists( 'bcn_display' ) )
+		echo '<div class="breadcrumbs">' . bcn_display( true ) . '</div>';
+	else
+		sb_breadcrumbs();
+
+}
+add_action( 'sb_after_header', 'sb_do_breadcrumbs' );
