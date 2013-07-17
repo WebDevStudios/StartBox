@@ -175,34 +175,23 @@ add_action( 'sb_before_content', 'sb_breadcrumb_output', 15 );
 
 ////////////////////////////////////////////////// Items To Hook into home page //////////////////////////////////////////////////
 
-// Add a featured widget area to the home page
+// Add additional hooks to the front page
+function sb_front_page_hooks() {
+	// Only include these hooks on the front page,
+	// and when NOT using a custom template
+	if ( is_front_page() && ! is_page_template() ) {
+		do_action( 'sb_before_featured' );
+		do_action( 'sb_featured' );
+		do_action( 'sb_after_featured' );
+	}
+}
+add_action( 'sb_before_content', 'sb_front_page_hooks' );
+
+// Add a featured widget area to sb_featrued on the home page
 function sb_home_featured_sidebar() {
 	sb_do_sidebar( 'featured_aside', 'home_featured', 'featured-aside' );
 }
 add_action('sb_featured','sb_home_featured_sidebar');
-
-// Hook standard content if front-page is a static page, or a standard loop if using blog posts
-function sb_home_content() {
-	while ( have_posts() ) : the_post();
-		if (is_page()) { ?>
-			<h2 class="page-title"><?php the_title(); ?></h2>
-				<div class="entry-content">
-					<?php the_content() ?>
-					<?php edit_post_link(__('Edit', 'startbox'),'<span class="edit-link">','</span>') ?>
-				</div><!-- .entry-content -->
-		<?php }
-		else {
-			get_template_part( 'loop', 'home' );
-
-			// eventually, use this everywhere:
-			// if ( 'post' != get_post_type() )
-			// 	get_template_part( 'loop', get_post_type() );
-			// else
-			// 	get_template_part( 'loop', get_post_format() );
-		}
-	endwhile;
-}
-add_action('sb_home','sb_home_content');
 
 ////////////////////////////////////////////////// Items To Hook into content areas //////////////////////////////////////////////////
 
