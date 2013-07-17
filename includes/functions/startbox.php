@@ -459,7 +459,7 @@ class StartBox {
 
 		}
 
-		// Upgrade to 2.7
+		// Upgrade to 2.7.2
 		if ( version_compare( get_option('startbox_version'), '2.7.2', '<') ) {
 
 			// Dump the (assumed bad) sidebar transient
@@ -467,6 +467,14 @@ class StartBox {
 
 			// Update our theme version
 			update_option( 'startbox_version', '2.7.2' );
+
+		}
+
+		// Upgrade to 2.7.3
+		if ( version_compare( get_option('startbox_version'), '2.7.3', '<') ) {
+
+			// Update our theme version
+			update_option( 'startbox_version', '2.7.3' );
 
 		}
 
