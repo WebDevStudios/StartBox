@@ -1,6 +1,6 @@
 2013.07.17 - version 2.7.3
-	* Removed: front-page.php
-	* Updated: Reintroduced custom front-page hooks via hooks.php
+	* Fixed: Eliminated erroneous function call from the SB Social widget
+	* Removed: front-page.php, reintroduced custom front-page hooks via hooks.php
 
 2013.06.14 - version 2.7.2
 	* Added: New filters for controling SB's post image functions
