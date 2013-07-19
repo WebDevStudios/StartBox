@@ -129,7 +129,7 @@ class SB_Widget_Social extends WP_Widget {
 
 			printf(
 				'<li class="%s">',
-				esc_attr( 'listing ' . sanitize_class_html( 'listing-' . $service_id ) )
+				esc_attr( 'listing listing-' . $service_id )
 			);
 			printf(
 				'<a href="%s" title="%s"%s>',
