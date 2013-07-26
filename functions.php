@@ -90,8 +90,103 @@ function startbox_setup_theme() {
 	add_theme_support( 'post-thumbnails' );
 	set_post_thumbnail_size( 200, 200, true );
 
+	add_filter( 'sb_customizer_settings', 'sb_sample_customizer_settings' );
+
 }
 add_action( 'after_setup_theme', 'startbox_setup_theme' );
+
+function sb_sample_customizer_settings( $sections = array() ) {
+
+	// Defines $prefix for setting IDs. Optional.
+	$prefix = 'sb_';
+
+	$sections['title_tagline']['settings'][] = array(
+		'id'      => $prefix . 'header_text',
+		'label'   => 'Additional Header Text',
+		'type'    => 'text',
+		'default' => 'Some content'
+	);
+
+	// Defines theme cusotmizer sections and settings
+	$sections['example_settings'] = array(
+		'title'       => 'Example Settings',
+		'description' => 'Section description...',
+		'priority'    => 200,
+		'settings'    => array(
+			array(
+				'id'      => $prefix . 'text',
+				'label'   => 'Text',
+				'type'    => 'text',
+				'default' => 'Default content',
+				'priority' => 10
+			),
+			array(
+				'id'      => $prefix . 'textarea',
+				'label'   => 'Textarea',
+				'type'    => 'textarea',
+				'default' => 'Some sample content...',
+				'priority' => 20
+			),
+			array(
+				'id'    => $prefix . 'checkbox',
+				'label' => 'Checkbox',
+				'type'  => 'checkbox',
+				'priority' => 30
+			),
+			array(
+				'id'      => $prefix . 'radio_buttons',
+				'label'   => 'Radio Buttons',
+				'type'    => 'radio',
+				'default' => 'left',
+				'choices' => array(
+					'left'   => 'Left',
+					'right'  => 'Right',
+					'center' => 'Center',
+				),
+				'priority' => 40
+			),
+			array(
+				'id'      => $prefix . 'select_list',
+				'label'   => 'Select list',
+				'type'    => 'select',
+				'default' => 'two',
+				'choices' => array(
+					'one'   => 'Option 1',
+					'two'   => 'Option 2',
+					'three' => 'Option 3',
+				),
+				'priority' => 50
+			),
+			array(
+				'id'      => $prefix . 'page',
+				'label'   => 'Page',
+				'type'    => 'dropdown-pages',
+				'priority' => 60
+			),
+			array(
+				'id'      => $prefix . 'color',
+				'label'   => 'Color',
+				'type'    => 'color',
+				'default' => '#f70',
+				'priority' => 70
+			),
+			array(
+				'id'      => $prefix . 'upload',
+				'label'   => 'Upload',
+				'type'    => 'upload',
+				'priority' => 80
+			),
+			array(
+				'id'      => $prefix . 'image',
+				'label'   => 'Image',
+				'type'    => 'image',
+				'priority' => 90
+			),
+		)
+	);
+
+	return $sections;
+}
 
 /**
  * In his grace, God has given us different gifts for doing certain things well.
