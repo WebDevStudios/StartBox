@@ -337,3 +337,41 @@ class SB_Sanitization {
 	}
 
 }
+
+/**
+ * Helper for get_theme_mod() to automatically retrieve defaults
+ *
+ * Looks first for the setting, then for the passed default,
+ * finally for a default set in sb_customizer_settings
+ *
+ * @since  3.0.0
+ * @param  string $setting The setting to retrieve
+ * @param  string $default A specific default to use if no data exists
+ * @return string          The setting data, or a default
+ */
+function sb_get_theme_mod( $setting = '', $default = '' ) {
+
+	// Attempt to grab the setting from the DB
+	$output = get_theme_mod( $setting, $default );
+
+	// If we have no output, attempt to pull back the default from sb_customizer_settings
+	if ( empty( $output ) ) {
+
+		// Pull back our customizer settings array
+		$customizer_settings = apply_filters( 'sb_customizer_settings', array() );
+
+		// Get only the settings from our array,
+		// and loop through until we find this setting
+		$setting_fields = wp_list_pluck( $customizer_settings, 'settings' );
+		foreach ( $setting_fields as $section ) {
+			foreach ( $section as $field ) {
+				if ( $setting == $field['id'] ) {
+					$output = $field['default'];
+				}
+			}
+		}
+
+	}
+
+	return $output;
+}
