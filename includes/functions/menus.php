@@ -39,6 +39,7 @@ if ( !function_exists( 'sb_nav_menu' ) ) {
 				'walker'		=> ''
 			);
 		$r = wp_parse_args( $args, apply_filters( "sb_nav_menu_defaults", $defaults ) );
+		$r = apply_filters( "sb_nav_menu_{$r['menu_id']}_args", $r );
 		extract( $r, EXTR_SKIP );
 
 		if ( $type == 'none' || $type == '' )
