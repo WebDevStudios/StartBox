@@ -25,24 +25,24 @@ All other styles can be overridden--or ignored!--in Child Theme stylesheets
 .alignleft,
 img.alignleft {
 	float: left;
-    margin-right:20px;
+    margin-right: 20px;
 }
 .alignright,
 img.alignright {
 	display: block;
 	float: right;
-    margin-left:20px;
+    margin-left: 20px;
 }
 .aligncenter,
 img.aligncenter {
-	margin-left:auto;
-	margin-right:auto;
+	margin-left: auto;
+	margin-right: auto;
 	display: block;
 	clear: both;
 }
 .wp-caption {
 	text-align: center;
-	margin-bottom:18px;
+	margin-bottom: 18px;
 }
 .wp-caption img {
 	margin: 0;
@@ -51,13 +51,13 @@ img.aligncenter {
 }
 .wp-caption p.wp-caption-text {
 	margin: 0;
-	padding:5px;
+	padding: 5px;
 }
 .gallery img {
-    margin:0;
+    margin: 0;
 }
 .gallery-caption {}
 .wp-smiley { /* Prevent the smileys from breaking line-height */
-	max-height:12px;
-	margin:0 !important;
+	max-height: 12px;
+	margin: 0 !important;
 }
