@@ -24,7 +24,7 @@ Table of Contents
 .layout-one-col div#primary,
 .layout-one-col div#secondary,
 .layout-one-col div#tertiary {
-	display:none;
+	display: none;
 }
 .layout-one-col div#footer_wrap {
 	clear: left;
@@ -43,7 +43,7 @@ Table of Contents
 .page-template-page-fullwidth-php div#primary,
 .page-template-page-fullwidth-php div#secondary,
 .page-template-page-fullwidth-php div#tertiary {
-	display:none!important;
+	display: none!important;
 }
 .page-template-page-fullwidth-php div#footer_wrap {
 	clear: left!important;
@@ -71,7 +71,7 @@ Table of Contents
 	overflow: hidden;
 }
 .layout-two-col-left div#secondary {
-	display:none;
+	display: none;
 }
 .layout-two-col-left div#footer_wrap {
 	clear: both;
@@ -99,7 +99,7 @@ Table of Contents
 	width: 280px;
 }
 .layout-two-col-right div#secondary {
-	display:none;
+	display: none;
 }
 .layout-two-col-right div#footer_wrap {
 	clear: both;
@@ -124,7 +124,7 @@ Table of Contents
 	float: left;
 	overflow: hidden;
 	width: 180px;
-	margin-right:20px;
+	margin-right: 20px;
 }
 .layout-three-col-left div#footer_wrap {
 	clear: both;

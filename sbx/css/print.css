@@ -11,7 +11,9 @@
 .menu,
 .entry-social,
 .entry-footer,
-.aside { display:none!important; }
+.aside { 
+	display: none!important; 
+}
 
 body,
 #wrap,
@@ -19,25 +21,29 @@ body,
 #content,
 .hentry,
 .entry-content {
-	background:#fff;
-	font-size:12pt;
-	width:100%!important;
-	margin:0!important;
-	padding:0!important;
-	border:0!important;
-	overflow:visible!important;
-	float:none!important;
+	background: #fff;
+	font-size: 12pt;
+	width: 100%!important;
+	margin: 0!important;
+	padding: 0!important;
+	border: 0!important;
+	overflow: visible!important;
+	float: none!important;
 }
 
-a, a:visited {
-	text-decoration:underline;
+a, 
+a:visited {
+	text-decoration: underline;
 }
 
-h1, h2, h3, h4 {
-	line-height:1.4em;
+h1, 
+h2, 
+h3, 
+h4 {
+	line-height: 1.4em;
 }
 
 .entry-title a {
-	background:none!important;
-	line-height:2em;
+	background: none!important;
+	line-height: 2em;
 }
