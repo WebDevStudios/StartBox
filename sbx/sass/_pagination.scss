@@ -1,0 +1,18 @@
+/* Pagination
+--------------------------------------------- */
+
+.content-area [class*="navigation"] {
+	@include rem(margin, 0 0 24px);
+	overflow: hidden;
+}
+
+[class*="navigation"] .nav-previous {
+	float: left;
+	width: 50%;
+}
+
+[class*="navigation"] .nav-next {
+	float: right;
+	text-align: right;
+	width: 50%;
+}

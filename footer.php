@@ -1,30 +1,26 @@
-		<?php do_action( 'after_container' ); ?>
-	</div><!-- #container_wrap .hfeed -->
-</div><!-- #wrap .hfeed -->
-<?php do_action( 'between_content_and_footer' ); ?>
-<div id="footer_wrap">
+<?php
+/**
+ * The template for displaying the footer.
+ *
+ * Contains the closing of the id=main div and all content after
+ *
+ * @package sbx
+ */
+?>
+	</div><!-- #content -->
+	<div class="footer-widgets">
+		<div class="wrap">
+			<?php get_sidebar( 'footer' ); ?>
+		</div>
+	</div><!-- .footer-widgets -->
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="site-info clear">
+			<?php do_action( 'sbx_credits' ); ?>
+		</div><!-- .site-info -->
+	</footer><!-- #colophon -->
+</div><!-- #page -->
 
-	<?php do_action( 'before_footer' ); ?>
-
-	<div id="footer">
-
-		<?php
-			do_action( 'footer_widgets' );
-			do_action( 'footer' );
-			if ( has_action( 'wp_footer' ) ) {
-				echo '<div id="wp_footer">';
-				wp_footer();
-				echo '</div><!-- #wp_footer -->';
-			}
-		?>
-
-	</div><!-- #footer -->
-
-	<?php do_action( 'after_footer' ); ?>
-
-</div><!-- #footer_wrap .hfeed -->
-
-<?php do_action( 'after' ); ?>
+<?php wp_footer(); ?>
 
 </body>
 </html>

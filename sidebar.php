@@ -1,15 +1,33 @@
 <?php
 /**
- * sb_do_sidebar() is defined in /startbox/classes/SB_Sidebars.php
+ * The Sidebar containing the main widget areas.
  *
- * Default Output:
- * hook: sb_before_{$sidebar}
- * <div id="{$sidebar}" class="widget-area {$sidebar}-widget-area">
- * 	hook: sb_before_{$sidebar}_widgets
- * 		widgets (<aside class="widget"></aside>), or hook: sb_no_{$sidebar}_widgets
- * 	hook: sb_after_{$sidebar}_widgets
- * </div>
- * hook: sb_after_{$sidebar}
+ * @package sbx
  */
-sb_do_sidebar( 'primary' );
-sb_do_sidebar( 'secondary' );
+?>
+	<div id="secondary" class="widget-area col span_4" role="complementary">
+		<?php do_action( 'before_sidebar' ); ?>
+		<?php if ( ! dynamic_sidebar( 'sidebar-1' ) ) : ?>
+
+			<aside id="search" class="widget widget_search">
+				<?php get_search_form(); ?>
+			</aside>
+
+			<aside id="archives" class="widget">
+				<h1 class="widget-title"><?php _e( 'Archives', 'sbx' ); ?></h1>
+				<ul>
+					<?php wp_get_archives( array( 'type' => 'monthly' ) ); ?>
+				</ul>
+			</aside>
+
+			<aside id="meta" class="widget">
+				<h1 class="widget-title"><?php _e( 'Meta', 'sbx' ); ?></h1>
+				<ul>
+					<?php wp_register(); ?>
+					<li><?php wp_loginout(); ?></li>
+					<?php wp_meta(); ?>
+				</ul>
+			</aside>
+
+		<?php endif; // end sidebar widget area ?>
+	</div><!-- #secondary -->

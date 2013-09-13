@@ -1,0 +1,13 @@
+.site-footer {
+	clear: both;
+	background-color: $color-bg-container;
+	padding: 8px 0;
+	padding: .8rem 0;
+}
+
+.site-info {
+	color: $color-text-primary;
+	font-size: 12px;
+	@include rem(font-size, 12px);
+	@include rem(padding, 10px 0 5px 24px);
+}

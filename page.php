@@ -1,31 +1,34 @@
-<?php get_header(); ?>
+<?php
+/**
+ * The template for displaying all pages.
+ *
+ * This is the template that displays all pages by default.
+ * Please note that this is the WordPress construct of pages
+ * and that other 'pages' on your WordPress site will use a
+ * different template.
+ *
+ * @package sbx
+ */
 
-	<div id="container">
-		<div id="content">
+get_header(); ?>
 
-		<?php if ( have_posts() ) the_post(); ?>
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main col span_8" role="main">
 
-		<?php do_action( 'before_content' ); ?>
+			<?php while ( have_posts() ) : the_post(); ?>
 
-			<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-				<?php do_action( 'page_title' ); ?>
-				<div class="entry-content">
+				<?php get_template_part( 'content', 'page' ); ?>
 
-					<?php
-						the_content();
-						wp_link_pages( array( 'before' => '<div class="entry-pages cb">' . __( 'Pages:', 'startbox' ), 'after' => '</div>' ) );
-						edit_post_link(__('Edit', 'startbox'),'<span class="edit-link">','</span>');
-					?>
+				<?php
+					// If comments are open or we have at least one comment, load up the comment template
+					if ( comments_open() || '0' != get_comments_number() )
+						comments_template();
+				?>
 
-				</div><!-- .entry-content -->
-			</div><!-- .post -->
+			<?php endwhile; // end of the loop. ?>
 
-		<?php do_action( 'after_content' ); ?>
-
-		<?php comments_template( '', true ); ?>
-
-		</div><!-- #content -->
-	</div><!-- #container -->
+		</main><!-- #main -->
+	</div><!-- #primary -->
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

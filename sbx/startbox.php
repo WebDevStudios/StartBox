@@ -72,6 +72,7 @@ if ( ! class_exists('StartBox') ) {
 			require_once( SB_EXTENSIONS . '/custom.php' );
 			require_once( SB_EXTENSIONS . '/hooks.php' );
 			require_once( SB_EXTENSIONS . '/images.php' );
+			require_once( SB_EXTENSIONS . '/template-tags.php' );
 		}
 
 		/**
@@ -122,6 +123,7 @@ if ( ! class_exists('StartBox') ) {
 			wp_register_script( 'smoothScroll', SB_JS . '/jquery.smooth-scroll.min.js', array( 'jquery' ), SB_VERSION );
 			wp_register_script( 'startbox',     SB_JS . '/startbox.js', array( 'jquery' ), SB_VERSION );
 			wp_register_script( 'widgets',      SB_JS . '/widgets.js', array( 'jquery' ), SB_VERSION );
+			wp_enqueue_script( 'startbox' );
 
 			// Register Default Styles
 			wp_register_style( 'colorbox',      SB_CSS . '/colorbox.css', null, SB_VERSION, 'screen' );

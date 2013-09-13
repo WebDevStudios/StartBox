@@ -1,0 +1,13 @@
+/* Hyperlinks
+--------------------------------------------- */
+
+a,
+a:visited {
+	color: $color-link;
+}
+
+a:hover,
+a:focus,
+a:active {
+	color: $color-link-hover;
+}

@@ -62,6 +62,9 @@ function sb_body_classes($classes) {
 	elseif( is_page() )
 		$classes[] = 'page-' . $wp_query->post->post_name;
 
+	// Gutters
+	$classes[] = 'gutters';
+
 	// return the $classes array
 	return $classes;
 }
@@ -164,7 +167,6 @@ add_action( 'before', 'sb_topofpage', 1);
 function sb_skip_to_content() {
 	echo '<a href="#content" title="Skip to content" class="skip-to-content">' . __( 'Skip to content', 'startbox' ) . '</a>'."\n";
 }
-add_action( 'before','sb_skip_to_content');
 
 // Insert Yoast Breadcrumbs if Active
 function sb_breadcrumb_output() {

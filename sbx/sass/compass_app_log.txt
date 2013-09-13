@@ -1,0 +1,588 @@
+2013-09-13 10:39:36    create ../style.css 
+2013-09-13 10:47:54 overwrite ../../style.css 
+2013-09-13 10:49:43     error style.scss (Line 46: File to import not found or unreadable: html5-reset.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 10:49:43 overwrite ../../style.css 
+2013-09-13 10:49:43     error style.scss (Line 46: File to import not found or unreadable: html5-reset.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 10:49:43 identical ../../style.css 
+2013-09-13 10:52:48     error style.scss (Line 46: File to import not found or unreadable: html5-reset.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 10:52:48 overwrite ../../style.css 
+2013-09-13 10:53:04     error style.scss (Line 46: File to import not found or unreadable: html5-reset.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 10:53:04 identical ../../style.css 
+2013-09-13 10:53:20     error style.scss (Line 46: File to import not found or unreadable: html5-reset.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 10:53:20 identical ../../style.css 
+2013-09-13 10:58:46     error style.scss (Line 46: File to import not found or unreadable: html5-reset.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 10:58:46 overwrite ../../style.css 
+2013-09-13 10:58:46     error style.scss (Line 46: File to import not found or unreadable: html5-reset.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 10:58:46 identical ../../style.css 
+2013-09-13 10:58:54     error style.scss (Line 46: File to import not found or unreadable: html5-reset.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 10:58:54 identical ../../style.css 
+2013-09-13 10:58:54     error style.scss (Line 46: File to import not found or unreadable: html5-reset.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 10:58:54 identical ../../style.css 
+2013-09-13 11:01:20     error style.scss (Line 49: File to import not found or unreadable: reset.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 11:01:20 overwrite ../../style.css 
+2013-09-13 11:01:38     error style.scss (Line 55: File to import not found or unreadable: typography.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 11:01:38 overwrite ../../style.css 
+2013-09-13 11:01:38     error style.scss (Line 55: File to import not found or unreadable: typography.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 11:01:38 overwrite ../../style.css 
+2013-09-13 11:01:44     error style.scss (Line 56: File to import not found or unreadable: hyperlinks.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 11:01:44 overwrite ../../style.css 
+2013-09-13 11:01:44     error style.scss (Line 56: File to import not found or unreadable: hyperlinks.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 11:01:44 identical ../../style.css 
+2013-09-13 11:02:54     error style.scss (Line 57: File to import not found or unreadable: objects.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 11:02:54 overwrite ../../style.css 
+2013-09-13 11:03:03     error style.scss (Line 58: File to import not found or unreadable: aligment.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 11:03:03 overwrite ../../style.css 
+2013-09-13 11:03:31     error style.scss (Line 58: File to import not found or unreadable: aligment.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 11:03:31 identical ../../style.css 
+2013-09-13 11:03:45     error style.scss (Line 58: File to import not found or unreadable: aligment.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 11:03:45 identical ../../style.css 
+2013-09-13 11:03:51     error style.scss (Line 58: File to import not found or unreadable: aligment.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 11:03:51 identical ../../style.css 
+2013-09-13 11:04:03     error style.scss (Line 58: File to import not found or unreadable: aligment.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 11:04:03 identical ../../style.css 
+2013-09-13 11:04:15     error style.scss (Line 58: File to import not found or unreadable: aligment.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 11:04:15 identical ../../style.css 
+2013-09-13 11:04:25     error style.scss (Line 58: File to import not found or unreadable: aligment.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 11:04:25 identical ../../style.css 
+2013-09-13 11:04:33     error style.scss (Line 58: File to import not found or unreadable: aligment.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 11:04:33 identical ../../style.css 
+2013-09-13 11:04:45     error style.scss (Line 58: File to import not found or unreadable: aligment.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 11:04:45 identical ../../style.css 
+2013-09-13 11:04:53     error style.scss (Line 58: File to import not found or unreadable: aligment.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 11:04:53 identical ../../style.css 
+2013-09-13 11:05:08     error style.scss (Line 58: File to import not found or unreadable: aligment.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 11:05:08 identical ../../style.css 
+2013-09-13 11:05:13     error style.scss (Line 58: File to import not found or unreadable: aligment.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 11:05:13 identical ../../style.css 
+2013-09-13 11:05:19     error style.scss (Line 58: File to import not found or unreadable: aligment.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 11:05:19 identical ../../style.css 
+2013-09-13 11:05:31     error style.scss (Line 58: File to import not found or unreadable: alignment.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 11:05:31 overwrite ../../style.css 
+2013-09-13 11:05:49     error style.scss (Line 58: File to import not found or unreadable: alignment.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 11:05:49 identical ../../style.css 
+2013-09-13 11:06:34 overwrite ../../style.css 
+2013-09-13 11:22:31 overwrite ../../style.css 
+2013-09-13 11:25:05 identical ../../style.css 
+2013-09-13 11:26:46 overwrite ../../style.css 
+2013-09-13 11:27:11 overwrite ../../style.css 
+2013-09-13 11:30:52 identical ../../style.css 
+2013-09-13 11:49:38     error style.scss (Line 11 of _variables.scss: Invalid CSS after "$color-border:			": expected expression (e.g. 1px, bold), was ";")
+2013-09-13 11:49:38 overwrite ../../style.css 
+2013-09-13 11:49:41     error style.scss (Line 11 of _variables.scss: Invalid CSS after "$color-border:			": expected expression (e.g. 1px, bold), was ";")
+2013-09-13 11:49:41 identical ../../style.css 
+2013-09-13 11:50:10     error style.scss (Line 11 of _variables.scss: Invalid CSS after "$color-border:			": expected expression (e.g. 1px, bold), was ";")
+2013-09-13 11:50:10 identical ../../style.css 
+2013-09-13 11:51:21     error style.scss (Line 11 of _typography.scss: Invalid CSS after "...$sansFontFamily": expected ";", was "@include rem(fo...")
+2013-09-13 11:51:21 overwrite ../../style.css 
+2013-09-13 11:53:48     error style.scss (Line 11 of _typography.scss: Invalid CSS after "...$sansFontFamily": expected ";", was "@include rem(fo...")
+2013-09-13 11:53:48 identical ../../style.css 
+2013-09-13 11:54:01     error style.scss (Line 11 of _typography.scss: Invalid CSS after "...$sansFontFamily": expected ";", was "@include rem(fo...")
+2013-09-13 11:54:01 identical ../../style.css 
+2013-09-13 11:54:10     error style.scss (Line 11 of _typography.scss: Invalid CSS after "...$sansFontFamily": expected ";", was "@include rem(fo...")
+2013-09-13 11:54:10 identical ../../style.css 
+2013-09-13 11:54:23 overwrite ../../style.css 
+2013-09-13 11:54:38 identical ../../style.css 
+2013-09-13 11:54:59     error style.scss (Line 37 of _mixins.scss: Undefined variable: "$font-base".)
+2013-09-13 11:54:59 overwrite ../../style.css 
+2013-09-13 11:55:12 overwrite ../../style.css 
+2013-09-13 11:55:49 identical ../../style.css 
+2013-09-13 11:56:34     error style.scss (Line 67 of _mixins.scss: () isn't a valid CSS value.)
+2013-09-13 11:56:34 overwrite ../../style.css 
+2013-09-13 11:56:53 overwrite ../../style.css 
+2013-09-13 11:59:30     error style.scss (Line 61 of _typography.scss: Invalid CSS after "	font-family": expected ";", was ": $font-mono;")
+2013-09-13 11:59:30 overwrite ../../style.css 
+2013-09-13 11:59:43     error style.scss (Line 62 of _typography.scss: Invalid CSS after "...e rem(font-size": expected comma, was ": 15px);")
+2013-09-13 11:59:43 overwrite ../../style.css 
+2013-09-13 11:59:50     error style.scss (Line 65 of _typography.scss: Invalid CSS after "...ude rem(padding": expected comma, was ": 16px;)")
+2013-09-13 11:59:50 overwrite ../../style.css 
+2013-09-13 11:59:56     error style.scss (Line 65 of _typography.scss: Invalid CSS after "...m(padding, 16px": expected ")", was ";)")
+2013-09-13 11:59:56 overwrite ../../style.css 
+2013-09-13 12:00:03     error style.scss (Line 31 of _variables.scss: Invalid CSS after "...er, monospace; ": expected selector or at-rule, was "!default;")
+2013-09-13 12:00:03 overwrite ../../style.css 
+2013-09-13 12:00:12     error style.scss (Line 65 of _typography.scss: Invalid CSS after "...m(padding, 16px": expected ")", was ";)")
+2013-09-13 12:00:12 overwrite ../../style.css 
+2013-09-13 12:00:23     error style.scss (Line 65 of _typography.scss: Invalid CSS after "...m(padding, 16px": expected ")", was ";)")
+2013-09-13 12:00:23 identical ../../style.css 
+2013-09-13 12:00:30     error style.scss (Line 65 of _typography.scss: Invalid CSS after "...m(padding, 16px": expected ")", was ";)")
+2013-09-13 12:00:30 identical ../../style.css 
+2013-09-13 12:00:40     error style.scss (Line 66 of _typography.scss: Invalid CSS after "...(padding, 16px)": expected "}", was "overflow: auto;")
+2013-09-13 12:00:40 overwrite ../../style.css 
+2013-09-13 12:00:48     error style.scss (Line 60 of _typography.scss: Undefined variable: "$adjust_hue".)
+2013-09-13 12:00:48 overwrite ../../style.css 
+2013-09-13 12:01:00 overwrite ../../style.css 
+2013-09-13 12:41:37     error style.scss (Line 29 of _variables.scss: Invalid CSS after "...ight:		$yellow ": expected selector or at-rule, was "!deafult;")
+2013-09-13 12:41:37 overwrite ../../style.css 
+2013-09-13 12:49:50     error style.scss (Line 33 of _variables.scss: Invalid CSS after "...ighter !default": expected selector or at-rule, was "// Text")
+2013-09-13 12:49:50 overwrite ../../style.css 
+2013-09-13 12:50:39     error style.scss (Line 33 of _variables.scss: Invalid CSS after "...ighter !default": expected selector or at-rule, was "// Text")
+2013-09-13 12:50:39 identical ../../style.css 
+2013-09-13 12:51:16     error style.scss (Line 33 of _variables.scss: Invalid CSS after "...ighter !default": expected selector or at-rule, was "// Text")
+2013-09-13 12:51:16 identical ../../style.css 
+2013-09-13 12:51:26     error style.scss (Line 33 of _variables.scss: Invalid CSS after "...ighter !default": expected selector or at-rule, was "// Text")
+2013-09-13 12:51:26 identical ../../style.css 
+2013-09-13 12:51:49     error style.scss (Line 33 of _variables.scss: Invalid CSS after "...ighter !default": expected selector or at-rule, was "// Text")
+2013-09-13 12:51:49 identical ../../style.css 
+2013-09-13 12:51:55     error style.scss (Line 33 of _variables.scss: Invalid CSS after "...ighter !default": expected selector or at-rule, was "// Text")
+2013-09-13 12:51:55 identical ../../style.css 
+2013-09-13 12:54:02     error style.scss (Line 33 of _variables.scss: Invalid CSS after "...ighter !default": expected selector or at-rule, was "// Text")
+2013-09-13 12:54:02 identical ../../style.css 
+2013-09-13 12:54:15     error style.scss (Line 33 of _variables.scss: Invalid CSS after "...ighter !default": expected selector or at-rule, was "// Text")
+2013-09-13 12:54:15 identical ../../style.css 
+2013-09-13 12:54:32     error style.scss (Line 9 of _typography.scss: Undefined variable: "$color-text".)
+2013-09-13 12:54:32 overwrite ../../style.css 
+2013-09-13 12:55:03     error style.scss (Line 9 of _typography.scss: Undefined variable: "$color-primary".)
+2013-09-13 12:55:03 overwrite ../../style.css 
+2013-09-13 12:55:13     error style.scss (Line 9 of _typography.scss: Undefined variable: "$color-primary".)
+2013-09-13 12:55:13 identical ../../style.css 
+2013-09-13 12:55:21 overwrite ../../style.css 
+2013-09-13 12:57:42 identical ../../style.css 
+2013-09-13 12:57:52 identical ../../style.css 
+2013-09-13 12:59:03     error style.scss (Line 67 of _mixins.scss: () isn't a valid CSS value.)
+2013-09-13 12:59:04 overwrite ../../style.css 
+2013-09-13 12:59:38 overwrite ../../style.css 
+2013-09-13 13:00:33 overwrite ../../style.css 
+2013-09-13 13:01:07 identical ../../style.css 
+2013-09-13 13:02:31 overwrite ../../style.css 
+2013-09-13 13:03:07 overwrite ../../style.css 
+2013-09-13 13:03:38 overwrite ../../style.css 
+2013-09-13 13:05:03 identical ../../style.css 
+2013-09-13 13:05:34 overwrite ../../style.css 
+2013-09-13 13:07:03 overwrite ../../style.css 
+2013-09-13 13:07:32 overwrite ../../style.css 
+2013-09-13 13:07:41     error style.scss (Line 65: File to import not found or unreadable: containers.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-13 13:07:41 overwrite ../../style.css 
+2013-09-13 13:08:15 overwrite ../../style.css 
+2013-09-13 13:11:11     error style.scss (Line 25 of _branding.scss: Invalid CSS after "	@include": expected identifier, was "(font-size, 12px);")
+2013-09-13 13:11:11 overwrite ../../style.css 
+2013-09-13 13:11:22     error style.scss (Line 25 of _branding.scss: Invalid CSS after "	@include": expected identifier, was "(font-size, 12px);")
+2013-09-13 13:11:22 identical ../../style.css 
+2013-09-13 13:11:36     error style.scss (Line 24 of _branding.scss: Undefined variable: "$color-secondary-text".)
+2013-09-13 13:11:36 overwrite ../../style.css 
+2013-09-13 13:11:45     error style.scss (Line 24 of _branding.scss: Undefined variable: "$color-secondary-text".)
+2013-09-13 13:11:45 identical ../../style.css 
+2013-09-13 13:11:55 overwrite ../../style.css 
+2013-09-13 13:15:24 overwrite ../../style.css 
+2013-09-13 13:15:31 overwrite ../../style.css 
+2013-09-13 13:16:08 overwrite ../../style.css 
+2013-09-13 13:17:31     error style.scss (Line 9 of _typography.scss: Undefined variable: "$background-body".)
+2013-09-13 13:17:31 overwrite ../../style.css 
+2013-09-13 13:19:18     error style.scss (Line 9 of _typography.scss: Undefined variable: "$background-body".)
+2013-09-13 13:19:18 identical ../../style.css 
+2013-09-13 13:19:22     error style.scss (Line 9 of _typography.scss: Undefined variable: "$background-body".)
+2013-09-13 13:19:22 identical ../../style.css 
+2013-09-13 13:19:23     error style.scss (Line 9 of _typography.scss: Undefined variable: "$background-body".)
+2013-09-13 13:19:23 identical ../../style.css 
+2013-09-13 13:22:54     error style.scss (Line 150 of _mixins.scss: Invalid CSS after "...ition: opacity ": expected ";", was ".$delay ease-in...")
+2013-09-13 13:22:54 overwrite ../../style.css 
+2013-09-13 13:23:53     error style.scss (Line 150 of _mixins.scss: Invalid CSS after "...ition: opacity ": expected ";", was ".$delay ease-in...")
+2013-09-13 13:23:53 identical ../../style.css 
+2013-09-13 13:24:08     error style.scss (Line 150 of _mixins.scss: Invalid CSS after "...ition: opacity ": expected ";", was ".$delay ease-in...")
+2013-09-13 13:24:08 identical ../../style.css 
+2013-09-13 13:24:48     error style.scss (Line 9 of _typography.scss: Undefined variable: "$background-body".)
+2013-09-13 13:24:48 overwrite ../../style.css 
+2013-09-13 13:25:01     error style.scss (Line 9 of _typography.scss: Undefined variable: "$background-body".)
+2013-09-13 13:25:01 identical ../../style.css 
+2013-09-13 13:25:43 overwrite ../../style.css 
+2013-09-13 13:27:43 identical ../../style.css 
+2013-09-13 13:36:57     error style.scss (Line 36 of _main-navigation.scss: Colors must have either three or six digits: '#c')
+2013-09-13 13:36:57 overwrite ../../style.css 
+2013-09-13 13:37:13     error style.scss (Line 41 of _main-navigation.scss: Colors must have either three or six digits: '#c')
+2013-09-13 13:37:13 overwrite ../../style.css 
+2013-09-13 13:37:21     error style.scss (Line 5 of _main-navigation.scss: Undefined variable: "$color-bg-nav".)
+2013-09-13 13:37:21 overwrite ../../style.css 
+2013-09-13 13:38:30     error style.scss (Line 5 of _main-navigation.scss: Undefined variable: "$color-bg-nav".)
+2013-09-13 13:38:30 identical ../../style.css 
+2013-09-13 13:38:34 overwrite ../../style.css 
+2013-09-13 13:39:21 identical ../../style.css 
+2013-09-13 13:40:06 overwrite ../../style.css 
+2013-09-13 13:40:48 identical ../../style.css 
+2013-09-13 13:41:51 overwrite ../../style.css 
+2013-09-13 13:45:30     error style.scss (Line 7 of _footer-widget-area.scss: Undefined variable: "$color-text-tertiary".)
+2013-09-13 13:45:30 overwrite ../../style.css 
+2013-09-13 13:45:33 overwrite ../../style.css 
+2013-09-13 13:48:23 overwrite ../../style.css 
+2013-09-13 13:48:31 overwrite ../../style.css 
+2013-09-13 13:51:28 overwrite ../../style.css 
+2013-09-13 15:07:46 overwrite ../../style.css 
+2013-09-13 15:07:54 overwrite ../../style.css 
+2013-09-13 15:08:20 overwrite ../../style.css 
+2013-09-13 15:08:27 overwrite ../../style.css 
+2013-09-13 15:15:52 overwrite ../../style.css 
+2013-09-13 15:16:06 identical ../../style.css 
+2013-09-13 15:16:33 overwrite ../../style.css 
+2013-09-13 15:17:25 overwrite ../../style.css 
+2013-09-13 15:18:45 overwrite ../../style.css 
+2013-09-13 15:19:37 identical ../../style.css 
+2013-09-13 15:20:48 overwrite ../../style.css 

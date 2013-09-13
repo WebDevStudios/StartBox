@@ -1,0 +1,66 @@
+// Colors
+// http://sassme.arc90.com/
+// -------------------------
+
+// Grayscale
+$black:						#000000 !default;
+$black-med:					#222222 !default;
+$black-light:				#888888 !default;
+$black-lighter:				#dddddd !default;
+$black-lightest:			#eeeeee !default;
+$white:						#ffffff !default;
+
+// Rainbow
+$red:						#ff0000 !default;
+$orange:					#ffa500 !default;
+$yellow:					#ffff00 !default;
+$green:						#008000 !default;
+$blue:						#0000ff !default;
+$indigo:					#4b0082 !default;
+$violet:					#8f00ff !default;
+
+// Backgrounds
+$color-bg-body:				$white !default;
+$color-bg-container:		$black-med !default;
+$color-bg-interior:			$black-lightest !default;
+
+// Border
+$color-border:				$black-lighter !default;
+$color-nav-border:			$black-lighter !default;
+$color-nav-sub-border:		$black-lightest !default;
+
+// Hightlight
+$color-highlight:			$black-lightest !default;
+
+// Links
+$color-link:				$black-light !default;
+$color-link-hover:			$black-lighter !default;
+
+// Navigation
+$color-bg-nav:				$black-med !default;
+$color-bg-nav-sub:			$white !default;
+$color-bg-nav-sub-hover:	$black-lightest !default;
+$color-nav-link:			$white !default;
+$color-nav-link-hover:		$black-lightest !default;
+$color-nav-sub-link:		$black-med !default;
+$color-nav-sub-link-hover:	$black !default;
+
+// Text
+$color-text-primary:		$black !default;
+$color-text-secondary:		$black-light !default;
+$color-text-tertiary:		$white !default;
+
+
+// Structure
+// -------------------------
+$content-width:			740 !default; // The width of your content box (640, 740, 1140, etc...)
+$margin-size:			24 !default; // Spacing is calculated using either 24px or 48px to maintain vertical rhythm
+$line-height:			1.625 !default; // Line Height is calcuded by the Golden Ratio and is based on $content-widget
+
+
+// Typography
+// -------------------------
+$font-size:          	10 !default; // Default: 10. After setting html {font-size: 62.5%;} in _site-defaults.scss
+$font-sans:				"Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-serif:			Georgia, Cambria, "Times New Roman", Times, serif !default;
+$font-mono:				"Courier 10 Pitch", Courier, monospace !default;

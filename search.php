@@ -1,34 +1,38 @@
-<?php get_header(); ?>
+<?php
+/**
+ * The template for displaying Search Results pages.
+ *
+ * @package sbx
+ */
 
-	<div id="container">
-		<div id="content">
+get_header(); ?>
 
-			<?php
-				do_action( 'before_content' );
-				if (have_posts()) :
-					do_action( 'page_title' );
-					while ( have_posts() ) : the_post();
-						get_template_part( 'loop', 'search' );
-					endwhile;
-				else :
-			?>
+	<section id="primary" class="content-area">
+		<main id="main" class="site-main col span_8" role="main">
 
-			<div id="post-0" class="post noresults">
-				<h2 class="entry-title"><?php _e('Nothing Found', 'startbox'); ?></h2>
-				<div class="entry-content">
-					<p><?php _e('Sorry, but nothing matched your search criteria. Please try again with some different keywords.', 'startbox') ?></p>
-				</div>
+		<?php if ( have_posts() ) : ?>
 
-				<?php get_template_part( 'searchform' ); ?>
+			<header class="page-header">
+				<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'sbx' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+			</header><!-- .page-header -->
 
-			</div><!-- .post -->
+			<?php /* Start the Loop */ ?>
+			<?php while ( have_posts() ) : the_post(); ?>
+
+				<?php get_template_part( 'content', 'search' ); ?>
+
+			<?php endwhile; ?>
+
+			<?php sbx_content_nav( 'nav-below' ); ?>
+
+		<?php else : ?>
+
+			<?php get_template_part( 'no-results', 'search' ); ?>
 
 		<?php endif; ?>
 
-		<?php do_action( 'after_content' ); ?>
-
-		</div><!-- #content -->
-	</div><!-- #container -->
+		</main><!-- #main -->
+	</section><!-- #primary -->
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

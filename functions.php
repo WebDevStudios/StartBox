@@ -13,6 +13,31 @@
  * @link http://www.wpstartbox.com
  */
 
+add_action( 'wp_footer', 'wds_debug' );
+/*
+ * Show me some dev info during development! DELETE ME BEFORE GOING LIVE!!!
+ *
+ */
+function wds_debug() {
+	global $template; ?><br />
+	<?php echo $template; ?><br />
+	<?php echo get_num_queries(); ?> queries in <?php timer_stop(1); ?> seconds<br />
+	Server load: <?php $load = sys_getloadavg(); echo $load[0]; ?>%<br />
+	Memory usage: 
+	<?php $mem_usage = memory_get_usage(true);        
+        if ($mem_usage < 1024) 
+            echo $mem_usage." bytes"; 
+        elseif ($mem_usage < 1048576) 
+            echo round($mem_usage/1024,2)." kilobytes"; 
+        else 
+            echo round($mem_usage/1048576,2)." megabytes";
+    ?><br />
+    PHP v<?php echo phpversion(); ?><br />
+    Server date: <?php echo date('Y/j/m'); ?><br />
+    Server time: <?php echo date('h:i:s a'); ?>
+<?php }
+
+
 // Initialize StartBox, but only if a child theme hasn't already
 require_once( get_template_directory() . '/sbx/startbox.php' );
 
@@ -73,6 +98,8 @@ function startbox_setup_theme() {
 	);
 	add_theme_support( 'sb-custom-sidebars' );
 	add_theme_support( 'sb-updates' );
+
+	register_nav_menu( 'main-navigation',__( 'Main Navigation' ) );
 
 	// Custom Post Editor Styles
 	add_editor_style( array(
@@ -187,6 +214,7 @@ function sb_sample_customizer_settings( $sections = array() ) {
 
 	return $sections;
 }
+
 
 /**
  * In his grace, God has given us different gifts for doing certain things well.

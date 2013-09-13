@@ -1,0 +1,29 @@
+/* Tables
+--------------------------------------------- */
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	line-height: 2;
+	@include rem(margin-bottom, 24px);
+	width: 100%;
+}
+
+tbody {
+	border-bottom: 1px solid $color-border;
+}
+
+th,
+td {
+	text-align: left;
+}
+
+th {
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+td {
+	border-top: 1px solid $color-border;
+	@include rem(padding, 6px 0);
+}

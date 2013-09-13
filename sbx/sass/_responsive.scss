@@ -1,0 +1,84 @@
+
+/* Responsive
+--------------------------------------------- */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+	only screen and (-moz-min-device-pixel-ratio: 1.5),
+	only screen and (-o-min-device-pixel-ratio: 3/2),
+	only screen and (min-device-pixel-ratio: 1.5) {
+
+}
+
+@media only screen and (max-width: 1139px) { }
+
+@media only screen and (max-width: 1023px) { 
+
+	.content-area {
+		@include rem(padding, 0 12px);
+	}
+
+}
+
+@media only screen and (max-width: 768px) {
+
+	.site-title,
+	.site-description,
+	.sidebar-header,
+	.sidebar-header ul,
+	.sidebar-header .widget,
+	.footer-widgets-1,
+	.footer-widgets-2,
+	.footer-widgets-3 {
+		clear: both;
+		float: none;
+		margin: 0;
+		padding: 0;
+		@include rem(padding-bottom, 12px);
+		text-align: center;
+		width: 100%;
+	}
+
+	.site-title {
+		@include rem(font-size, 48px);
+	}
+
+	.site-description {
+		@include rem(font-size, 24px);
+	}
+
+	.sidebar-header .widget a {
+		@include rem(font-size, 16px);
+	}
+
+	h1.menu-toggle,
+	.main-navigation,
+	.main-navigation ul,
+	.main-navigation li,
+	.main-navigation a {
+		clear: both;
+		color: $color-text-tertiary;
+		float: none;
+		margin: 0;
+		padding: 0;
+		text-align: center;
+		width: 100%;
+	}
+
+	.menu-toggle,
+	.main-navigation.toggled .nav-menu {
+		display: block;
+	}
+
+	.main-navigation ul {
+		display: none;
+	}
+
+	.main-navigation li {
+		@include rem(padding, 6px);
+	}
+
+	h1.menu-toggle {
+		@include rem(font-size, 24px);
+		@include rem(padding, 6px 0);
+	}
+
+}

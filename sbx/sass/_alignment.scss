@@ -1,0 +1,50 @@
+/* Alignment
+--------------------------------------------- */
+
+img.centered,
+.aligncenter {
+	display: block;
+	@include rem(margin, 0 auto 24px);
+}
+
+img.alignnone {
+	@include rem(margin-bottom, 12px);
+}
+
+.alignleft {
+	float: left;
+	text-align: left;
+}
+
+.alignright {
+	float: right;
+	text-align: right;
+}
+
+img.alignleft,
+.wp-caption.alignleft {
+	@include rem(margin, 0 24px 24px 0);
+}
+
+img.alignright,
+.wp-caption.alignright {
+	@include rem(margin, 0 0 24px 24px);
+}
+
+.wp-caption-text {
+	@include rem(font-size, 14px);
+	font-weight: 700;
+	text-align: center;
+}
+
+.gallery-caption {
+}
+
+.widget_calendar table {
+	width: 100%;
+}
+
+.widget_calendar td,
+.widget_calendar th {
+	text-align: center;
+}

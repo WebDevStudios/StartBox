@@ -1,0 +1,57 @@
+/*
+Print Styles
+--------------------------------------------- */
+
+@media print {
+
+	body {
+		background: none !important;
+		color: #000;
+		font-size: 10pt;
+	}
+
+	.nav-primary,
+	.sidebar,
+	.genesis-box,
+	.footer-widgets {
+		display: none;
+	}
+
+	.title-area {
+		text-align: center;
+	}
+
+	.site-inner {
+		position: relative;
+		padding-top: 0;
+		top: -50px;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 { 
+		page-break-after: avoid; 
+		page-break-inside: avoid
+	}
+
+	img {
+		page-break-inside: avoid; 
+		page-break-after: avoid;
+	}
+
+	blockquote,
+	table,
+	pre {
+		page-break-inside: avoid
+	}
+
+	ul,
+	ol,
+	dl {
+		page-break-before: avoid
+	}
+
+}

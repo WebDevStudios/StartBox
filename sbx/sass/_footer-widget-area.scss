@@ -1,0 +1,20 @@
+/* Footer Widget Area
+--------------------------------------------- */
+
+.footer-widgets {
+	background-color: $color-bg-container;
+	border-top: 10px solid $color-border;
+	color: $color-text-tertiary;
+	clear: both;
+	@include rem(padding, 40px 0 16px);
+}
+
+.footer-widgets .widget-title {
+	color: $color-text-tertiary;
+}
+
+.footer-widgets ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
