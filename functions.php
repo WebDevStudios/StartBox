@@ -14,7 +14,7 @@
  */
 
 // Initialize StartBox, but only if a child theme hasn't already
-require_once( get_template_directory() . '/startbox/startbox.php' );
+require_once( get_template_directory() . '/sbx/startbox.php' );
 
 // Setup the environment and register support for various WP features.
 function startbox_setup_theme() {
