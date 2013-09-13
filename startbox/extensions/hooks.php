@@ -98,8 +98,8 @@ function sb_header_wrap() {
 	else
 		echo '</div><!-- #header_wrap -->'."\n";
 }
-add_action( 'sb_before_header', 'sb_header_wrap', 999 );
-add_action( 'sb_after_header', 'sb_header_wrap', 9 );
+add_action( 'before_header', 'sb_header_wrap', 999 );
+add_action( 'after_header', 'sb_header_wrap', 9 );
 
 /**
  * Filter the site title to be more dynamic.
@@ -158,19 +158,19 @@ add_action( 'wp_enqueue_scripts', 'sb_default_stylesheet', 15 );
 function sb_topofpage() {
 	echo '<a name="top"></a>'."\n";
 }
-add_action('sb_before', 'sb_topofpage', 1);
+add_action( 'before', 'sb_topofpage', 1);
 
 // Insert skip-to-content link for screen reader users
 function sb_skip_to_content() {
 	echo '<a href="#content" title="Skip to content" class="skip-to-content">' . __( 'Skip to content', 'startbox' ) . '</a>'."\n";
 }
-add_action('sb_before','sb_skip_to_content');
+add_action( 'before','sb_skip_to_content');
 
 // Insert Yoast Breadcrumbs if Active
 function sb_breadcrumb_output() {
 	if ( function_exists( 'yoast_breadcrumb' ) ) { yoast_breadcrumb('<div id="yoastbreadcrumb">','</div>'); }
 }
-add_action( 'sb_before_content', 'sb_breadcrumb_output', 15 );
+add_action( 'before_content', 'sb_breadcrumb_output', 15 );
 
 
 ////////////////////////////////////////////////// Items To Hook into home page //////////////////////////////////////////////////
@@ -180,18 +180,18 @@ function sb_front_page_hooks() {
 	// Only include these hooks on the front page,
 	// and when NOT using a custom template
 	if ( is_front_page() && ! is_page_template() ) {
-		do_action( 'sb_before_featured' );
-		do_action( 'sb_featured' );
-		do_action( 'sb_after_featured' );
+		do_action( 'before_featured' );
+		do_action( 'featured' );
+		do_action( 'after_featured' );
 	}
 }
-add_action( 'sb_before_content', 'sb_front_page_hooks' );
+add_action( 'before_content', 'sb_front_page_hooks' );
 
 // Add a featured widget area to sb_featrued on the home page
 function sb_home_featured_sidebar() {
 	sb_do_sidebar( 'featured_aside', 'home_featured', 'featured-aside' );
 }
-add_action('sb_featured','sb_home_featured_sidebar');
+add_action( 'featured','sb_home_featured_sidebar');
 
 ////////////////////////////////////////////////// Items To Hook into content areas //////////////////////////////////////////////////
 
@@ -248,7 +248,7 @@ function sb_default_page_title() {
 
 	echo apply_filters('sb_default_page_title', $content, $container, $post );
 }
-add_action( 'sb_page_title', 'sb_default_page_title' );
+add_action( 'page_title', 'sb_default_page_title' );
 
 // Hook archive meta after page title for archive pages
 function sb_archive_meta() {
@@ -259,7 +259,7 @@ function sb_archive_meta() {
 		echo $content;
 	}
 }
-add_action( 'sb_page_title', 'sb_archive_meta' );
+add_action( 'page_title', 'sb_archive_meta' );
 
 // Add content filters for the description/meta content
 add_filter( 'archive_meta', 'wptexturize' );
@@ -274,13 +274,13 @@ function sb_404_content() {
 	echo '<br/>';
 	sb_sitemap();
 }
-add_action( 'sb_404', 'sb_404_content' );
+add_action( '404', 'sb_404_content' );
 
 // Dynamically create hook for the very first post in a loop
-function sb_before_first_post() { global $firstpost; if ( !isset( $firstpost ) ) { do_action('sb_before_first_post'); } } // Just before the post
-function sb_after_first_post() { global $firstpost; if ( !isset( $firstpost ) ) { do_action('sb_after_first_post'); $firstpost = 1; } } // Just after the post
-add_action( 'sb_before_post', 'sb_before_first_post' );
-add_action( 'sb_after_post', 'sb_after_first_post' );
+function sb_before_first_post() { global $firstpost; if ( !isset( $firstpost ) ) { do_action( 'before_first_post' ); } } // Just before the post
+function sb_after_first_post() { global $firstpost; if ( !isset( $firstpost ) ) { do_action( 'after_first_post' ); $firstpost = 1; } } // Just after the post
+add_action( 'before_post', 'sb_before_first_post' );
+add_action( 'after_post', 'sb_after_first_post' );
 
 ////////////////////////////////////////////////// Items To Hook into Footer //////////////////////////////////////////////////
 
@@ -288,15 +288,15 @@ add_action( 'sb_after_post', 'sb_after_first_post' );
 function sb_footer_widgets() {
 	get_sidebar('footer');
 }
-add_action( 'sb_footer_widgets', 'sb_footer_widgets' );
+add_action( 'footer_widgets', 'sb_footer_widgets' );
 
 // Auto-hide the address bar in mobile Safari (iPhone)
 function sb_iphone() { echo '<script type="text/javascript">window.scrollTo(0, 1);</script>'; }
-add_action('sb_after','sb_iphone');
+add_action( 'after','sb_iphone');
 
 // Add left/right footer hooks
 function sb_footer_left_right() {
-	if ( has_action( 'sb_footer_left' ) ) { echo '<div id="footer_left" class="left">'; do_action( 'sb_footer_left' ); echo '</div><!-- #footer_left -->'; }
-	if ( has_action( 'sb_footer_right' ) ) { echo '<div id="footer_right" class="right">'; do_action( 'sb_footer_right' ); echo '</div><!-- #footer_right -->'; }
+	if ( has_action( 'sb_footer_left' ) ) { echo '<div id="footer_left" class="left">'; do_action( 'footer_left' ); echo '</div><!-- #footer_left -->'; }
+	if ( has_action( 'sb_footer_right' ) ) { echo '<div id="footer_right" class="right">'; do_action( 'footer_right' ); echo '</div><!-- #footer_right -->'; }
 }
-add_action( 'sb_footer', 'sb_footer_left_right', 15 );
+add_action( 'footer', 'sb_footer_left_right', 15 );

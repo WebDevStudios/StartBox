@@ -4,14 +4,14 @@
 		<div id="content">
 
 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-		
-			<?php do_action( 'sb_before_content' ); ?>
 
-			<?php do_action( 'sb_page_title' ); ?>
+			<?php do_action( 'before_content' ); ?>
+
+			<?php do_action( 'page_title' ); ?>
 			<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<h2 class="entry-title"><?php the_title(); ?></h2>
 				<div class="entry-meta">
-					<?php do_action( 'sb_post_header' ); ?>
+					<?php do_action( 'post_header' ); ?>
 					<?php
 						if ( wp_attachment_is_image() ) {
 							echo ' <span class="meta-sep">|</span> ';
@@ -29,8 +29,8 @@
 				</div>
 				<div class="entry-content">
 					<div class="entry-attachment">
-					
-					<?php 
+
+					<?php
 						if ( wp_attachment_is_image() ) {
 							$attachments = array_values( get_children( array( 'post_parent' => $post->post_parent, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => 'ASC', 'orderby' => 'menu_order ID' ) ) );
 							foreach ( $attachments as $k => $attachment ) {
@@ -40,11 +40,11 @@
 							$k++;
 							if ( isset( $attachments[ $k ] ) ) {
 								$next_attachment_url = get_attachment_link( $attachments[ $k ]->ID );
-							} else { 
+							} else {
 								$next_attachment_url = get_permalink( $post->post_parent );
 							}
 						?>
-					
+
 						<p class="attachment">
 							<a href="<?php echo esc_url( $next_attachment_url ); ?>" title="<?php echo esc_attr( get_the_title() ); ?>" rel="attachment">
 							<?php
@@ -58,15 +58,15 @@
 							<div class="nav-previous"><?php previous_image_link( false ); ?></div>
 							<div class="nav-next"><?php next_image_link( false ); ?></div>
 						</div><!-- #nav-below -->
-				
+
 						<?php } else { ?>
-						
+
 							<a href="<?php echo esc_url( wp_get_attachment_url() ); ?>" title="<?php echo esc_attr( get_the_title() ); ?>" rel="attachment"><?php echo basename( get_permalink() ); ?></a>
-					
+
 						<?php } ?>
-					
+
 					</div><!-- .entry-attachment -->
-				
+
 					<div class="entry-caption"><?php if ( !empty( $post->post_excerpt ) ) the_excerpt(); ?></div>
 
 					<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'startbox' ) ); ?>
@@ -76,10 +76,10 @@
 
 			</div><!-- .post -->
 
-		<?php do_action( 'sb_after_content' ); ?>
-			
+		<?php do_action( 'after_content' ); ?>
+
 		<?php comments_template(); ?>
-			
+
 		<?php endwhile; endif; ?>
 
 		</div><!-- #content -->

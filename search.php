@@ -4,9 +4,9 @@
 		<div id="content">
 
 			<?php
-				do_action( 'sb_before_content' );
+				do_action( 'before_content' );
 				if (have_posts()) :
-					do_action( 'sb_page_title' );
+					do_action( 'page_title' );
 					while ( have_posts() ) : the_post();
 						get_template_part( 'loop', 'search' );
 					endwhile;
@@ -25,7 +25,7 @@
 
 		<?php endif; ?>
 
-		<?php do_action( 'sb_after_content' ); ?>
+		<?php do_action( 'after_content' ); ?>
 
 		</div><!-- #content -->
 	</div><!-- #container -->

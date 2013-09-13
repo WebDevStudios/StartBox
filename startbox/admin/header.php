@@ -71,8 +71,8 @@ class sb_header_settings extends sb_settings {
 	function nav_before() { _deprecated_function( __FUNCTION__, '2.4.9', 'secondary_nav' ); }
 
 	function hooks() {
-		add_action( 'sb_header', array( $this, 'logo') );
-		add_action( 'sb_header', array( $this, 'tagline') );
+		add_action( 'header', array( $this, 'logo') );
+		add_action( 'header', array( $this, 'tagline') );
 		add_action( 'wp_head', array( $this, 'favicon') );
 	}
 

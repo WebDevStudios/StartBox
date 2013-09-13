@@ -10,10 +10,10 @@ Template Name: Sitemap
 
 		<?php if ( have_posts() ) the_post(); ?>
 
-		<?php do_action( 'sb_before_content' ); ?>
+		<?php do_action( 'before_content' ); ?>
 
 			<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-				<?php do_action( 'sb_page_title' ); ?>
+				<?php do_action( 'page_title' ); ?>
 				<div class="entry-content">
 
 					<?php the_content(); ?>
@@ -25,7 +25,7 @@ Template Name: Sitemap
 				</div><!-- .entry-content -->
 			</div><!-- .post -->
 
-		<?php do_action( 'sb_after_content' ); ?>
+		<?php do_action( 'after_content' ); ?>
 
 		<?php comments_template( '', true ); ?>
 

@@ -10,9 +10,9 @@ Template Name: Display Posts
 
 		<?php if ( have_posts() ) the_post(); ?>
 
-		<?php do_action( 'sb_before_content' ); ?>
+		<?php do_action( 'before_content' ); ?>
 
-		<?php do_action( 'sb_page_title' ); ?>
+		<?php do_action( 'page_title' ); ?>
 		<?php the_content(); ?>
 		<?php edit_post_link( __('Edit', 'startbox'), '<span class="edit-link">', '</span>' ); ?>
 
@@ -40,7 +40,7 @@ Template Name: Display Posts
 				$post = $temp_post;
 			?>
 
-		<?php do_action( 'sb_after_content' ); ?>
+		<?php do_action( 'after_content' ); ?>
 
 		</div><!-- #content -->
 	</div><!-- #container -->

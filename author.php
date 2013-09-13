@@ -5,7 +5,7 @@
 
 			<?php
 				if ( have_posts() ) the_post();
-				do_action( 'sb_before_content' );
+				do_action( 'before_content' );
 				if ( have_posts() ) rewind_posts();
 			?>
 
@@ -23,7 +23,7 @@
 
 			<?php
 				// Provide a hook for placing content before author posts
-				do_action( 'sb_author_before_posts' );
+				do_action( 'author_before_posts' );
 
 				// Grab the author's posts
 				while ( have_posts() ) : the_post();
@@ -31,7 +31,7 @@
 				endwhile;
 
 				// Standard "after content" hook
-				do_action( 'sb_after_content' );
+				do_action( 'after_content' );
 			?>
 
 		</div><!-- #content -->

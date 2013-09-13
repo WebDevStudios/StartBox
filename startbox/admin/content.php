@@ -265,12 +265,12 @@ class sb_content_settings extends sb_settings {
 
 	function hooks() {
 		add_filter( 'sb_read_more', array($this, 'more_text' ) );
-		add_action( 'sb_post_header', array($this, 'sb_header_meta' ) );
-		add_action( 'sb_post_footer', array($this, 'sb_footer_meta' ) );
-		if ( sb_get_option( 'author_bio' ) == 'before' ) { add_action( 'sb_before_post_content', array( $this, 'sb_author_bio' ) ); }
-		if ( sb_get_option( 'author_bio' ) == 'after' ) { add_action( 'sb_after_post_content', array( $this, 'sb_author_bio' ) ); }
-		add_action( 'sb_before_content', array( $this, 'sb_post_nav' ) );
-		add_action( 'sb_after_content', array( $this, 'sb_post_nav' ) );
+		add_action( 'post_header', array($this, 'sb_header_meta' ) );
+		add_action( 'post_footer', array($this, 'sb_footer_meta' ) );
+		if ( sb_get_option( 'author_bio' ) == 'before' ) { add_action( 'before_post_content', array( $this, 'sb_author_bio' ) ); }
+		if ( sb_get_option( 'author_bio' ) == 'after' ) { add_action( 'after_post_content', array( $this, 'sb_author_bio' ) ); }
+		add_action( 'before_content', array( $this, 'sb_post_nav' ) );
+		add_action( 'after_content', array( $this, 'sb_post_nav' ) );
 		if ( sb_get_option( 'post_thumbnail_rss' ) ) {
 			add_filter('the_excerpt_rss', array( $this, 'post_image_feeds' ) );
 			add_filter('the_content_feed', array( $this, 'post_image_feeds' ) );

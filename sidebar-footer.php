@@ -23,7 +23,7 @@ if ( $footer1 || $footer2 || $footer3 || $footer4 ) {
 	elseif ( $footer1 && $footer2 ) { $column = 'column one_half'; $column2 = ' last'; }
 	else { $column = 'column last'; }
 
-	do_action( 'sb_before_footer_widgets' );
+	do_action( 'before_footer_widgets' );
 
 	echo '<div id="footer_sidebar">';
 		sb_do_sidebar( 'footer_widget_area_1', 'footer_widget_area_1', $column );
@@ -32,6 +32,6 @@ if ( $footer1 || $footer2 || $footer3 || $footer4 ) {
 		sb_do_sidebar( 'footer_widget_area_4', 'footer_widget_area_4', $column . $column4 );
 	echo '</div><!-- #footer_sidebar -->';
 
-	do_action( 'sb_after_footer_widgets' );
+	do_action( 'after_footer_widgets' );
 
 }

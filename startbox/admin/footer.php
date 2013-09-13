@@ -102,9 +102,9 @@ class sb_footer_settings extends sb_settings {
 	}
 
 	function hooks() {
-		add_action( 'sb_footer', array( $this, 'sb_rtt'), 5 );
-		add_action( 'sb_footer_left', array( $this, 'copyright' ), 12 );
-		add_action( 'sb_footer_right', array( $this, 'admin' ), 12 );
+		add_action( 'footer', array( $this, 'sb_rtt'), 5 );
+		add_action( 'footer_left', array( $this, 'copyright' ), 12 );
+		add_action( 'footer_right', array( $this, 'admin' ), 12 );
 	}
 
 }
