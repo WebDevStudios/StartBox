@@ -2,11 +2,15 @@ About StartBox
 ============
 An incredibly powerful theme framework for WordPress. Official website: [WPStartBox.com](http://wpstartbox.com).
 
+Download
+------------
+Download here: [startbox.zip](http://wpstartbox.com/startbox.zip)
+
 Installation
 ------------
-*Important:* You can download a .zip archive using the Repository Download button above, but make sure you rename the resulting folder to "startbox" (it will default to "StartBox-master"). If you forget to rename the folder, weird things may happen.
-
 StartBox can be installed like any other WordPress theme, either via the built-in Theme Uploader, or by manually uploading to your server it via (s)FTP.
+
+*Important:* If you use the "Repository Download" button, github will generate a file named "StartBox-master"). It is important that you rename the unzipped theme directory to "startbox", otherwise your child theme won't recognize that StartBox has been installed.
 
 Usage
 ------------
