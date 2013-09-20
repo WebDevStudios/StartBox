@@ -1,9 +1,9 @@
-2013.09.20 - version 3.0.1
+2013.09.20 - version 3.0.0-Experimental
 	* Schema.org microdata markup
 	* Continued CSS styling
 	* Moved all colors out in favor for SASS variables
 	* Hooked up footer widgets
-2013.09.13 - version 3.0.0-alpha
+2013.09.13 - version 3.0.0-Experimental
 	* Initial push
 2013.07.17 - version 2.7.3
 	* Fixed: Eliminated erroneous function call from the SB Social widget
