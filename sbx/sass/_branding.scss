@@ -8,19 +8,19 @@
 
 .site-title {
 	float: left;
-	@include rem(font-size, 24px);
+	@include rem(font-size, 48px);
 	line-height: 1.3;
-	@include rem(margin, 0 12px);
+	margin: 0;
 	@include rem(padding-top, 4px);
 }
 
 .site-title a {
-	color: $color-text-primary;
+	color: $color-site-title;
 	font-weight: 700;
 	text-decoration: none;
 }
 
 .site-description {
-	color: $color-text-secondary;
+	color: $color-site-description;
 	@include rem(font-size, 12px);
 }

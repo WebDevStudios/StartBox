@@ -616,3 +616,160 @@ Load paths:
 2013-09-20 10:13:28 overwrite ../../style.css 
 2013-09-20 10:34:16 overwrite ../../style.css 
 2013-09-20 12:21:54 overwrite ../../style.css 
+2013-09-20 12:31:20 identical ../../style.css 
+2013-09-20 12:31:21     error style.scss (Line 90 of _comments.scss: Undefined variable: "$greenLighter".)
+2013-09-20 12:31:21 overwrite ../../style.css 
+2013-09-20 12:31:52 overwrite ../../style.css 
+2013-09-20 12:40:21 overwrite ../../style.css 
+2013-09-20 12:41:22 overwrite ../../style.css 
+2013-09-20 12:42:44 overwrite ../../style.css 
+2013-09-20 12:49:03     error style.scss (Line 26 of _forms.scss: Undefined variable: "$gray".)
+2013-09-20 12:49:03 overwrite ../../style.css 
+2013-09-20 12:49:52 overwrite ../../style.css 
+2013-09-20 12:51:13 overwrite ../../style.css 
+2013-09-20 12:51:31     error style.scss (Line 27 of _forms.scss: Invalid CSS after "	box-shadow": expected ";", was ": inset 0 1px 0...")
+2013-09-20 12:51:31 overwrite ../../style.css 
+2013-09-20 12:51:46 overwrite ../../style.css 
+2013-09-20 12:52:32 overwrite ../../style.css 
+2013-09-20 12:52:38 overwrite ../../style.css 
+2013-09-20 13:03:22 overwrite ../../style.css 
+2013-09-20 13:03:48 overwrite ../../style.css 
+2013-09-20 13:04:32 overwrite ../../style.css 
+2013-09-20 13:05:32 overwrite ../../style.css 
+2013-09-20 13:06:00 overwrite ../../style.css 
+2013-09-20 13:06:13 overwrite ../../style.css 
+2013-09-20 13:06:52 overwrite ../../style.css 
+2013-09-20 13:07:34 overwrite ../../style.css 
+2013-09-20 13:07:54 overwrite ../../style.css 
+2013-09-20 13:08:00 overwrite ../../style.css 
+2013-09-20 13:08:17 overwrite ../../style.css 
+2013-09-20 13:08:24 overwrite ../../style.css 
+2013-09-20 13:09:20     error style.scss (Line 134 of _typography.scss: Undefined variable: "$blueDark".)
+2013-09-20 13:09:20 overwrite ../../style.css 
+2013-09-20 13:09:34     error style.scss (Line 134 of _typography.scss: Undefined variable: "$blueDark".)
+2013-09-20 13:09:34 overwrite ../../style.css 
+2013-09-20 13:10:16     error style.scss (Line 135 of _typography.scss: Invalid CSS after "	font-family": expected ";", was ": $font-serif;")
+2013-09-20 13:10:16 overwrite ../../style.css 
+2013-09-20 13:11:10     error style.scss (Line 168 of _typography.scss: Undefined variable: "$blueDark".)
+2013-09-20 13:11:10 overwrite ../../style.css 
+2013-09-20 13:11:27 overwrite ../../style.css 
+2013-09-20 13:12:09 overwrite ../../style.css 
+2013-09-20 13:12:58 overwrite ../../style.css 
+2013-09-20 13:13:06 overwrite ../../style.css 
+2013-09-20 13:13:40     error style.scss (Line 12 of _content.scss: Invalid CSS after "	color: ": expected expression (e.g. 1px, bold), was "$$blackLight;")
+2013-09-20 13:13:40 overwrite ../../style.css 
+2013-09-20 13:13:51 overwrite ../../style.css 
+2013-09-20 13:14:15 overwrite ../../style.css 
+2013-09-20 13:15:39 overwrite ../../style.css 
+2013-09-20 13:22:48 overwrite ../../style.css 
+2013-09-20 13:28:02 overwrite ../../style.css 
+2013-09-20 13:28:52 overwrite ../../style.css 
+2013-09-20 13:29:12 overwrite ../../style.css 
+2013-09-20 13:29:33 overwrite ../../style.css 
+2013-09-20 13:31:40 overwrite ../../style.css 
+2013-09-20 13:31:48 overwrite ../../style.css 
+2013-09-20 13:31:57 overwrite ../../style.css 
+2013-09-20 13:32:04 overwrite ../../style.css 
+2013-09-20 13:32:42 overwrite ../../style.css 
+2013-09-20 13:32:47 overwrite ../../style.css 
+2013-09-20 13:32:50 overwrite ../../style.css 
+2013-09-20 13:32:56 overwrite ../../style.css 
+2013-09-20 13:33:06 overwrite ../../style.css 
+2013-09-20 13:34:29 overwrite ../../style.css 
+2013-09-20 13:36:01 overwrite ../../style.css 
+2013-09-20 13:36:39 overwrite ../../style.css 
+2013-09-20 13:37:08 overwrite ../../style.css 
+2013-09-20 13:38:53 overwrite ../../style.css 
+2013-09-20 13:39:01 identical ../../style.css 
+2013-09-20 13:39:08 identical ../../style.css 
+2013-09-20 13:39:23 identical ../../style.css 
+2013-09-20 13:39:33 identical ../../style.css 
+2013-09-20 13:40:46 identical ../../style.css 
+2013-09-20 13:40:56 overwrite ../../style.css 
+2013-09-20 13:41:19 overwrite ../../style.css 
+2013-09-20 13:42:30 identical ../../style.css 
+2013-09-20 13:42:52 identical ../../style.css 
+2013-09-20 13:43:25 identical ../../style.css 
+2013-09-20 13:43:38 identical ../../style.css 
+2013-09-20 13:44:45     error style.scss (Line 28 of _variables.scss: Invalid CSS after "...r:			$blackMed ": expected selector or at-rule, was "!defaut;")
+2013-09-20 13:44:45 overwrite ../../style.css 
+2013-09-20 13:44:51     error style.scss (Line 28 of _variables.scss: Invalid CSS after "...r:			$blackMed ": expected selector or at-rule, was "!defaut;")
+2013-09-20 13:44:51 identical ../../style.css 
+2013-09-20 13:45:21     error style.scss (Line 30 of _variables.scss: Invalid CSS after "...r:			$blackMed ": expected selector or at-rule, was "!defaut;")
+2013-09-20 13:45:21 overwrite ../../style.css 
+2013-09-20 13:45:34     error style.scss (Line 30 of _variables.scss: Invalid CSS after "...r:			$blackMed ": expected selector or at-rule, was "!defaut;")
+2013-09-20 13:45:34 identical ../../style.css 
+2013-09-20 13:46:11     error style.scss (Line 30 of _variables.scss: Invalid CSS after "...r:			$blackMed ": expected selector or at-rule, was "!defaut;")
+2013-09-20 13:46:11 identical ../../style.css 
+2013-09-20 13:46:22     error style.scss (Line 3 of _footer.scss: Undefined variable: "$color-bg-container".)
+2013-09-20 13:46:22 overwrite ../../style.css 
+2013-09-20 13:46:31 overwrite ../../style.css 
+2013-09-20 13:47:18 identical ../../style.css 
+2013-09-20 13:47:30 identical ../../style.css 
+2013-09-20 13:49:26 identical ../../style.css 
+2013-09-20 13:50:13 identical ../../style.css 
+2013-09-20 13:50:34 overwrite ../../style.css 
+2013-09-20 13:50:42 overwrite ../../style.css 
+2013-09-20 13:52:29 overwrite ../../style.css 
+2013-09-20 13:52:59 overwrite ../../style.css 
+2013-09-20 13:54:16 overwrite ../../style.css 
+2013-09-20 13:54:25 overwrite ../../style.css 
+2013-09-20 13:54:34 overwrite ../../style.css 
+2013-09-20 13:55:03 overwrite ../../style.css 
+2013-09-20 13:55:10 overwrite ../../style.css 
+2013-09-20 14:39:19     error style.scss (Line 28 of _forms.scss: Undefined variable: "$color-form-input-text".)
+2013-09-20 14:39:19 overwrite ../../style.css 
+2013-09-20 14:39:20 overwrite ../../style.css 
+2013-09-20 14:55:56 identical ../../style.css 
+2013-09-20 14:57:10 identical ../../style.css 
+2013-09-20 14:57:39 overwrite ../../style.css 
+2013-09-20 14:58:06 overwrite ../../style.css 
+2013-09-20 14:58:39 overwrite ../../style.css 
+2013-09-20 14:58:49 identical ../../style.css 
+2013-09-20 15:01:27 overwrite ../../style.css 
+2013-09-20 15:02:44     error style.scss (Line 103: File to import not found or unreadable: sidebar-widgets.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-20 15:02:44 overwrite ../../style.css 
+2013-09-20 15:02:44     error style.scss (Line 103: File to import not found or unreadable: sidebar-widgets.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-20 15:02:44 identical ../../style.css 
+2013-09-20 15:02:51 overwrite ../../style.css 
+2013-09-20 15:03:18 overwrite ../../style.css 
+2013-09-20 15:04:39 identical ../../style.css 
+2013-09-20 15:05:05 overwrite ../../style.css 
+2013-09-20 15:05:27 overwrite ../../style.css 
+2013-09-20 15:06:08 overwrite ../../style.css 
+2013-09-20 15:06:22 overwrite ../../style.css 
+2013-09-20 15:06:45 overwrite ../../style.css 
+2013-09-20 15:09:24 overwrite ../../style.css 
+2013-09-20 15:10:57 identical ../../style.css 
+2013-09-20 15:11:13 overwrite ../../style.css 
+2013-09-20 15:11:31 overwrite ../../style.css 
+2013-09-20 15:11:43 overwrite ../../style.css 
+2013-09-20 15:12:27 overwrite ../../style.css 
+2013-09-20 15:12:35 identical ../../style.css 
+2013-09-20 15:12:53 identical ../../style.css 
+2013-09-20 15:14:43 overwrite ../../style.css 
+2013-09-20 15:15:09 overwrite ../../style.css 

@@ -7,7 +7,7 @@ $black:						#000000 !default;
 $blackMed:					#222222 !default;
 $blackLight:				#888888 !default;
 $blackLighter:				#dddddd !default;
-$blackLightest:			#eeeeee !default;
+$blackLightest:				#eeeeee !default;
 $white:						#ffffff !default;
 
 // Rainbow
@@ -20,14 +20,27 @@ $indigo:					#4b0082 !default;
 $violet:					#8f00ff !default;
 
 // Backgrounds
-$color-bg-body:				$white !default;
-$color-bg-container:		$blackMed !default;
-$color-bg-interior:			$blackLightest !default;
+$color-bg-body:				$blackLightest !default;
+$color-bg-nav:				$blackMed !default;
+$color-bg-nav-sub:			$white !default;
+$color-bg-nav-sub-hover:	$blackLightest !default;
+$color-bg-header:			$white !default;
+$color-bg-widgets:			$white !default;
+$color-bg-content:			$white !default;
+$color-bg-comments:			$white !default;
+$color-bg-comment-author:	$blackLightest !default;
+$color-bg-button:			$blackLighter !default;
+$color-bg-button-hover:		$blackLightest !default;
+$color-bg-footer:			$blackMed !default;
 
 // Border
 $color-border:				$blackLighter !default;
 $color-nav-border:			$blackLighter !default;
 $color-nav-sub-border:		$blackLightest !default;
+
+// Branding
+$color-site-title:			$blackMed !default;
+$color-site-description:	$blackLight !default;
 
 // Hightlight
 $color-highlight:			$blackLightest !default;
@@ -37,9 +50,6 @@ $color-link:				$blackLight !default;
 $color-link-hover:			$blackLighter !default;
 
 // Navigation
-$color-bg-nav:				$blackMed !default;
-$color-bg-nav-sub:			$white !default;
-$color-bg-nav-sub-hover:	$blackLightest !default;
 $color-nav-link:			$white !default;
 $color-nav-link-hover:		$blackLightest !default;
 $color-nav-sub-link:		$blackMed !default;
@@ -49,6 +59,15 @@ $color-nav-sub-link-hover:	$black !default;
 $color-text-primary:		$black !default;
 $color-text-secondary:		$blackLight !default;
 $color-text-tertiary:		$white !default;
+
+// Headlines
+$color-headlines-primary:	$blackMed !default;
+$color-headlines-secondary:	$blackLight !default;
+$color-headlines-footer:	$white !default;
+
+// Forms
+$color-form-button-text:	$black !default;
+$color-form-input-text:		$black !default;			
 
 
 // Structure

@@ -10,7 +10,7 @@ body {
 	color: $color-text-primary;
 	font-family: $font-sans;
 	@include rem(font-size, 16px);
-	font-weight: 400;
+	font-weight: 300;
 	line-height: $line-height;
 }
 
@@ -119,4 +119,51 @@ figure {
 
 th {
 	font-weight: 700;
+}
+
+/* Headlines
+--------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	clear: both;
+	color: $color-headlines-primary;
+	font-weight: 700;
+	line-height: 1.2;
+	margin: 0;
+	@include rem(margin-bottom, 24px);
+	padding: 0;
+}
+
+h1 {
+	@include rem(font-size, 36px);
+}
+
+h2 {
+	@include rem(font-size, 30px);
+}
+
+h3 {
+	@include rem(font-size, 24px);
+}
+
+h4 {
+	@include rem(font-size, 20px);
+}
+
+h5 {
+	@include rem(font-size, 18px);
+}
+
+h6 {
+	@include rem(font-size, 16px);
+}
+
+.entry-title a {
+	color: $color-headlines-primary;
+	text-decoration: none;
 }

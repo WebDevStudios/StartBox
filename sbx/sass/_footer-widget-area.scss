@@ -2,7 +2,7 @@
 --------------------------------------------- */
 
 .footer-widgets {
-	background-color: $color-bg-container;
+	background-color: $color-bg-footer;
 	border-top: 10px solid $color-border;
 	color: $color-text-tertiary;
 	clear: both;
@@ -10,7 +10,7 @@
 }
 
 .footer-widgets .widget-title {
-	color: $color-text-tertiary;
+	color: $color-headlines-footer;
 }
 
 .footer-widgets ul {

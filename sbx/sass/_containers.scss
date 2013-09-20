@@ -1,7 +1,10 @@
 /* Containers
 --------------------------------------------- */
+.site-header {
+	background-color: $color-bg-header;
+}
 
-.content-area,
+.site-inner,
 .wrap {
 	margin: 0 auto;
 	max-width: 1140px;

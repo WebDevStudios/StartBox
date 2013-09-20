@@ -16,8 +16,9 @@ Table Of Contents
 		- Box Sizing
 		- Clearfix
 	- Defaults
-		- Typography
 		- Hyperlinks
+		- Typography
+		- Headlines
 		- Objects
 		- Alignment
 		- Screen Readers
@@ -236,14 +237,44 @@ input[type="search"] {
 /* Clearfix
 	http://nicolasgallagher.com/micro-clearfix-hack/
 --------------------------------------------- */
-.clear:before,
-.wrap:before {
+.clearfix:before,
+.row:before,
+.col:before,
+.clr:before,
+.site-inner:before,
+.content-sidebar:before,
+.entry:before,
+.post-navigation:before,
+.entry-pagination:before,
+.entry-footer:before,
+.comment-list:before,
+.comment:before,
+.comment-respond:before,
+.footer-widgets:before,
+.main-navigation:before,
+.wrap:before,
+.entry-header:before {
   content: " ";
   display: table;
 }
 
-.clear:after,
-.wrap:after {
+.clearfix:after,
+.row:after,
+.col:after,
+.clr:after,
+.site-inner:after,
+.content-sidebar:after,
+.entry:after,
+.post-navigation:after,
+.entry-pagination:after,
+.entry-footer:after,
+.comment-list:after,
+.comment:after,
+.comment-respond:after,
+.footer-widgets:after,
+.main-navigation:after,
+.wrap:after,
+.entry-header:after {
   clear: both;
   content: " ";
   display: table;
@@ -257,6 +288,19 @@ input[type="search"] {
 /*
 Defaults
 ------------------------------------------------------------------------- */
+/* Hyperlinks
+--------------------------------------------- */
+a,
+a:visited {
+  color: #888888;
+}
+
+a:hover,
+a:focus,
+a:active {
+  color: #dddddd;
+}
+
 /* Typography
 --------------------------------------------- */
 html {
@@ -265,12 +309,12 @@ html {
 }
 
 body {
-  background-color: white;
+  background-color: #eeeeee;
   color: black;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-size: 1.6rem;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.625;
 }
 
@@ -391,17 +435,57 @@ th {
   font-weight: 700;
 }
 
-/* Hyperlinks
+/* Headlines
 --------------------------------------------- */
-a,
-a:visited {
-  color: #888888;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  clear: both;
+  color: #222222;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  margin-bottom: 24px;
+  margin-bottom: 2.4rem;
+  padding: 0;
 }
 
-a:hover,
-a:focus,
-a:active {
-  color: #dddddd;
+h1 {
+  font-size: 36px;
+  font-size: 3.6rem;
+}
+
+h2 {
+  font-size: 30px;
+  font-size: 3rem;
+}
+
+h3 {
+  font-size: 24px;
+  font-size: 2.4rem;
+}
+
+h4 {
+  font-size: 20px;
+  font-size: 2rem;
+}
+
+h5 {
+  font-size: 18px;
+  font-size: 1.8rem;
+}
+
+h6 {
+  font-size: 16px;
+  font-size: 1.6rem;
+}
+
+.entry-title a {
+  color: #222222;
+  text-decoration: none;
 }
 
 /* Objects
@@ -534,12 +618,164 @@ td {
   padding: 0.6rem 0;
 }
 
+/* Forms
+--------------------------------------------- */
+button,
+input,
+select,
+textarea {
+  font-size: 100%;
+  /* Corrects font size not being inherited in all browsers */
+  margin: 0;
+  /* Addresses margins set differently in IE6/7, F3/4, S5, Chrome */
+  vertical-align: baseline;
+  /* Improves appearance and consistency in all browsers */
+  *vertical-align: middle;
+  /* Improves appearance and consistency in all browsers */
+}
+
+button,
+input {
+  line-height: normal;
+  /* Addresses FF3/4 setting line-height using !important in the UA stylesheet */
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  background: #dddddd;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 15px 17px rgba(255, 255, 255, 0.5), inset 0 -5px 12px rgba(0, 0, 0, 0.05);
+  color: black;
+  cursor: pointer;
+  /* Improves usability and consistency of cursor style between image-type 'input' and others */
+  -webkit-appearance: button;
+  /* Corrects inability to style clickable 'input' types in iOS */
+  font-weight: 700;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 1;
+  padding: 7px 16px 6px;
+  padding: 0.7rem 1.6rem 0.6rem;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+button:hover,
+html input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:hover {
+  border: 1px solid #dddddd;
+  background: #eeeeee;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 15px 17px rgba(255, 255, 255, 0.8), inset 0 -5px 12px rgba(0, 0, 0, 0.02);
+}
+
+button:focus,
+html input[type="button"]:focus,
+input[type="reset"]:focus,
+input[type="submit"]:focus,
+button:active,
+html input[type="button"]:active,
+input[type="reset"]:active,
+input[type="submit"]:active {
+  border: 1px solid #dddddd;
+  background: #eeeeee;
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* Addresses box sizing set to content-box in IE8/9 */
+  padding: 0;
+  /* Addresses excess padding in IE8/9 */
+}
+
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* Addresses appearance set to searchfield in S5, Chrome */
+  -webkit-box-sizing: content-box;
+  /* Addresses box sizing set to border-box in S5, Chrome (include -moz to future-proof) */
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+input[type="search"]::-webkit-search-decoration {
+  /* Corrects inner padding displayed oddly in S5, Chrome on OSX */
+  -webkit-appearance: none;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  /* Corrects inner padding and border displayed oddly in FF3/4 www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/ */
+  border: 0;
+  padding: 0;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+textarea {
+  color: black;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+textarea:focus {
+  color: black;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"] {
+  padding: 3px;
+  padding: 0.3rem;
+}
+
+textarea {
+  overflow: auto;
+  /* Removes default vertical scrollbar in IE6/7/8/9 */
+  padding-left: 5px;
+  padding-left: 0.5rem;
+  vertical-align: top;
+  /* Improves readability and alignment in all browsers */
+  width: 100%;
+}
+
+input[type="text"] {
+  box-shadow: inset 0px 2px 8px 0px #ccc;
+  font-size: 12px;
+  font-size: 1.2rem;
+  padding: 15px;
+  padding: 1.5rem;
+  width: 318px;
+  -moz-box-shadow: inset 0px 2px 8px 0px #ccc;
+  -webkit-box-shadow: inset 0px 2px 8px 0px #ccc;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+}
+
 /*
 Structure and Layout
 ------------------------------------------------------------------------- */
 /* Containers
 --------------------------------------------- */
-.content-area,
+.site-header {
+  background-color: white;
+}
+
+.site-inner,
 .wrap {
   margin: 0 auto;
   max-width: 1140px;
@@ -680,17 +916,16 @@ Header
 
 .site-title {
   float: left;
-  font-size: 24px;
-  font-size: 2.4rem;
+  font-size: 48px;
+  font-size: 4.8rem;
   line-height: 1.3;
-  margin: 0 12px;
-  margin: 0 1.2rem;
+  margin: 0;
   padding-top: 4px;
   padding-top: 0.4rem;
 }
 
 .site-title a {
-  color: black;
+  color: #222222;
   font-weight: 700;
   text-decoration: none;
 }
@@ -741,8 +976,6 @@ Navigation
 .main-navigation {
   background-color: #222222;
   border-bottom: 6px solid #dddddd;
-  margin-bottom: 36px;
-  margin-bottom: 3.6rem;
 }
 
 .nav-menu,
@@ -864,25 +1097,30 @@ Comments
 ------------------------------------------------------------------------- */
 /* Content
 --------------------------------------------- */
+.site-inner {
+  padding-top: 48px;
+  padding-top: 4.8rem;
+}
+
+.entry-meta {
+  color: #888888;
+  border-top: 1px solid #dddddd;
+  font-size: 14px;
+  font-size: 1.4rem;
+  padding: 24px 0;
+  padding: 2.4rem 0;
+}
+
 .hentry {
+  background-color: white;
   margin-bottom: 24px;
   margin-bottom: 2.4rem;
+  padding: 40px 48px 24px;
+  padding: 4rem 4.8rem 2.4rem;
 }
 
 .entry-updated {
   display: none;
-}
-
-.single .byline,
-.group-blog .byline {
-  display: inline;
-}
-
-.page-content,
-.entry-content,
-.entry-summary {
-  margin-top: 24px;
-  margin-top: 2.4rem;
 }
 
 .page-links {
@@ -894,9 +1132,125 @@ Comments
 /*
 Comments
 ------------------------------------------------------------------------- */
+/* Comments
+--------------------------------------------- */
+.comments-area {
+  margin-top: 48px;
+  margin-top: 4.8rem;
+}
+
+.comment-list {
+  margin: 0;
+  padding: 0;
+}
+
+.entry-comments {
+  clear: both;
+  margin: 48px 0;
+  margin: 4.8rem 0;
+}
+
+.comment-respond,
+.entry-pings {
+  padding: 48px 0;
+  padding: 4.8rem 0;
+}
+
+.comment-area .entry-comments {
+  padding: 40px;
+  padding: 4rem;
+}
+
+.comment-list,
+.ping-list {
+  clear: both;
+  list-style-type: none;
+}
+
+.comment-list {
+  background-color: white;
+  margin-bottom: 24px;
+  margin-bottom: 2.4rem;
+  padding: 40px 48px 24px;
+  padding: 4rem 4.8rem 2.4rem;
+}
+
+/* comment children */
+ul.children {
+  clear: both;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  top: 12px;
+}
+
+.comment-list li li {
+  padding: 12px;
+  padding: 1.2rem;
+}
+
+/* comment forms */
+.comment-respond input[type="email"],
+.comment-respond input[type="text"],
+.comment-respond input[type="url"] {
+  width: 50%;
+}
+
+.comment-respond label {
+  display: block;
+  margin-right: 12px;
+  margin-right: 1.2rem;
+}
+
+.comment-content {
+  clear: both;
+}
+
+.entry-comments .avatar {
+  float: left;
+  margin-right: 24px;
+  margin-right: 2.4rem;
+}
+
+.comment-metadata {
+  margin-top: 12px;
+  margin-top: 1.2rem;
+}
+
+.entry-comments .comment-author {
+  margin-bottom: 0;
+}
+
+.entry-pings .reply {
+  display: none;
+}
+
+.bypostauthor {
+  background-color: #eeeeee;
+}
+
+.form-allowed-tags {
+  background-color: white;
+  font-size: 14px;
+  font-size: 1.4rem;
+  padding: 24px;
+  padding: 2.4rem;
+}
+
 /*
 Sidebar Widgets
 ------------------------------------------------------------------------- */
+/* Sidebar Widgets
+--------------------------------------------- */
+.sidebar .widget {
+  background-color: white;
+  margin-bottom: 48px;
+  margin-bottom: 4.8rem;
+  padding: 40px;
+  padding: 4rem;
+}
+
 /*
 Footer
 ------------------------------------------------------------------------- */

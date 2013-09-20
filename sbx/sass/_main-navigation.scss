@@ -4,7 +4,6 @@
 .main-navigation {
 	background-color: $color-bg-nav;
 	border-bottom: 6px solid $color-nav-border;
-	@include rem(margin-bottom, 36px);
 }
 
 .nav-menu,

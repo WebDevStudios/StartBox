@@ -20,8 +20,9 @@ Table Of Contents
 		- Box Sizing
 		- Clearfix
 	- Defaults
-		- Typography
 		- Hyperlinks
+		- Typography
+		- Headlines
 		- Objects
 		- Alignment
 		- Screen Readers
@@ -54,8 +55,8 @@ HTML5 Reset
 /*
 Defaults
 ------------------------------------------------------------------------- */
-@import "typography";
 @import "hyperlinks";
+@import "typography";
 @import "objects";
 @import "alignment";
 @import "screen-readers";
@@ -99,7 +100,7 @@ Comments
 /*
 Sidebar Widgets
 ------------------------------------------------------------------------- */
-@import "sidebar-widgets";
+@import "widgets";
 
 
 /*

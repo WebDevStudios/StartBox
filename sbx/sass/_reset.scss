@@ -19,14 +19,44 @@ input[type="search"] {
 	http://nicolasgallagher.com/micro-clearfix-hack/
 --------------------------------------------- */
 
-.clear:before,
-.wrap:before {
+.clearfix:before,
+.row:before,
+.col:before,
+.clr:before,
+.site-inner:before,
+.content-sidebar:before,
+.entry:before,
+.post-navigation:before,
+.entry-pagination:before,
+.entry-footer:before,
+.comment-list:before,
+.comment:before,
+.comment-respond:before,
+.footer-widgets:before,
+.main-navigation:before,
+.wrap:before,
+.entry-header:before  {
 	content: " ";
 	display: table;
 }
 
-.clear:after,
-.wrap:after {
+.clearfix:after,
+.row:after,
+.col:after,
+.clr:after,
+.site-inner:after,
+.content-sidebar:after,
+.entry:after,
+.post-navigation:after,
+.entry-pagination:after,
+.entry-footer:after,
+.comment-list:after,
+.comment:after,
+.comment-respond:after,
+.footer-widgets:after,
+.main-navigation:after,
+.wrap:after,
+.entry-header:after {
 	clear: both;
 	content: " ";
 	display: table;

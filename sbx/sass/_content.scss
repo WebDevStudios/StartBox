@@ -1,22 +1,29 @@
 /* Content
 --------------------------------------------- */
+.site-inner {
+	@include rem(padding-top, 48px);
+}
+
 .sticky {
 }
-.hentry {
-	@include rem(margin-bottom, 24px);
+
+.entry-meta {
+	color: $blackLight;
+	border-top: 1px solid $color-border;
+	@include rem(font-size, 14px);
+	@include rem(padding, 24px 0);
 }
+
+.hentry {
+	background-color: $color-bg-content;
+	@include rem(margin-bottom, 24px);
+	@include rem(padding, 40px 48px 24px);
+}
+
 .entry-updated {
 	display: none;
 }
-.single .byline,
-.group-blog .byline {
-	display: inline;
-}
-.page-content,
-.entry-content,
-.entry-summary {
-	@include rem(margin-top, 24px);
-}
+
 .page-links {
 	clear: both;
 	@include rem(margin-bottom, 24px);
