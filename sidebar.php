@@ -5,7 +5,7 @@
  * @package sbx
  */
 ?>
-	<div id="secondary" class="widget-area col span_4" role="complementary">
+	<div id="secondary" class="widget-area col span_4" role="complementary" itemscope itemtype="http://schema.org/WPSideBar">
 		<?php do_action( 'before_sidebar' ); ?>
 		<?php if ( ! dynamic_sidebar( 'sidebar-1' ) ) : ?>
 

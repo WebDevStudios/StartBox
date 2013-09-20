@@ -8,7 +8,7 @@
 get_header(); ?>
 
 	<div id="primary" class="content-area">
-		<main id="main" class="site-main col span_8" role="main">
+		<main id="main" class="site-main col span_8" role="main" itemscope itemprop="mainContentOfPage" itemtype="http://schema.org/Blog">
 
 		<?php while ( have_posts() ) : the_post(); ?>
 

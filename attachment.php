@@ -9,7 +9,7 @@
 
 			<?php do_action( 'page_title' ); ?>
 			<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-				<h2 class="entry-title"><?php the_title(); ?></h2>
+				<h2 class="entry-title" itemprop="headline"><?php the_title(); ?></h2>
 				<div class="entry-meta">
 					<?php do_action( 'post_header' ); ?>
 					<?php
@@ -27,8 +27,8 @@
 						}
 					?>
 				</div>
-				<div class="entry-content">
-					<div class="entry-attachment">
+				<div class="entry-content" itemprop="text">
+					<div class="entry-attachment" itemprop="associatedMedia">
 
 					<?php
 						if ( wp_attachment_is_image() ) {

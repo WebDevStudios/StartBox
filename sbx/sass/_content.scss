@@ -1,0 +1,23 @@
+/* Content
+--------------------------------------------- */
+.sticky {
+}
+.hentry {
+	@include rem(margin-bottom, 24px);
+}
+.entry-updated {
+	display: none;
+}
+.single .byline,
+.group-blog .byline {
+	display: inline;
+}
+.page-content,
+.entry-content,
+.entry-summary {
+	@include rem(margin-top, 24px);
+}
+.page-links {
+	clear: both;
+	@include rem(margin-bottom, 24px);
+}

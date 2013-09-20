@@ -13,7 +13,7 @@
 			<?php get_sidebar( 'footer' ); ?>
 		</div>
 	</div><!-- .footer-widgets -->
-	<footer id="colophon" class="site-footer" role="contentinfo">
+	<footer id="colophon" class="site-footer" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
 		<div class="site-info clear">
 			<?php do_action( 'sbx_credits' ); ?>
 		</div><!-- .site-info -->

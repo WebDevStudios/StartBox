@@ -10,12 +10,12 @@
 get_header(); ?>
 
 	<section id="primary" class="content-area">
-		<main id="main" class="site-main col span_8" role="main">
+		<main id="main" class="site-main col span_8" role="main" itemscope itemprop="mainContentOfPage" itemtype="http://schema.org/Blog">
 
 		<?php if ( have_posts() ) : ?>
 
 			<header class="page-header">
-				<h1 class="page-title">
+				<h1 class="page-title" itemprop="headline">
 					<?php
 						if ( is_category() ) :
 							single_cat_title();

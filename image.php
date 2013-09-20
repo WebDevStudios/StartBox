@@ -14,7 +14,7 @@ get_header();
 		<?php while ( have_posts() ) : the_post(); ?>
 
 			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-				<header class="entry-header">
+				<header class="entry-header" itemprop="headline">
 					<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 
 					<div class="entry-meta">
@@ -41,9 +41,9 @@ get_header();
 					</nav><!-- #image-navigation -->
 				</header><!-- .entry-header -->
 
-				<div class="entry-content">
+				<div class="entry-content" itemprop="text">
 					<div class="entry-attachment">
-						<div class="attachment">
+						<div class="attachment" itemprop="associatedMedia">
 							<?php sbx_the_attached_image(); ?>
 						</div><!-- .attachment -->
 

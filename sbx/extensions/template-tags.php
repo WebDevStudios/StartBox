@@ -7,6 +7,7 @@
  * @package sbx
  */
 
+
 if ( ! function_exists( 'sbx_content_nav' ) ) :
 /**
  * Display navigation to next/previous pages when applicable
@@ -30,22 +31,22 @@ function sbx_content_nav( $nav_id ) {
 	$nav_class = ( is_single() ) ? 'post-navigation' : 'paging-navigation';
 
 	?>
-	<nav role="navigation" id="<?php echo esc_attr( $nav_id ); ?>" class="<?php echo $nav_class; ?>">
+	<nav id="<?php echo esc_attr( $nav_id ); ?>" class="<?php echo $nav_class; ?>" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
 		<h1 class="screen-reader-text"><?php _e( 'Post navigation', 'sbx' ); ?></h1>
 
 	<?php if ( is_single() ) : // navigation links for single posts ?>
 
-		<?php previous_post_link( '<div class="nav-previous">%link</div>', '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'sbx' ) . '</span> %title' ); ?>
-		<?php next_post_link( '<div class="nav-next">%link</div>', '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'sbx' ) . '</span>' ); ?>
+		<?php previous_post_link( '<div class="nav-previous" itemprop="name">%link</div>', '<span class="meta-nav" itemprop="url">' . _x( '&larr;', 'Previous post link', 'sbx' ) . '</span> %title' ); ?>
+		<?php next_post_link( '<div class="nav-next" itemprop="name">%link</div>', '%title <span class="meta-nav" itemprop="url">' . _x( '&rarr;', 'Next post link', 'sbx' ) . '</span>' ); ?>
 
 	<?php elseif ( $wp_query->max_num_pages > 1 && ( is_home() || is_archive() || is_search() ) ) : // navigation links for home, archive, and search pages ?>
 
 		<?php if ( get_next_posts_link() ) : ?>
-		<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'sbx' ) ); ?></div>
+		<div class="nav-previous" itemprop="name"><?php next_posts_link( __( '<span class="meta-nav" itemprop="url">&larr;</span> Older posts', 'sbx' ) ); ?></div>
 		<?php endif; ?>
 
 		<?php if ( get_previous_posts_link() ) : ?>
-		<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'sbx' ) ); ?></div>
+		<div class="nav-next" itemprop="name"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav" itemprop="url">&rarr;</span>', 'sbx' ) ); ?></div>
 		<?php endif; ?>
 
 	<?php endif; ?>
@@ -54,6 +55,7 @@ function sbx_content_nav( $nav_id ) {
 	<?php
 }
 endif; // sbx_content_nav
+
 
 if ( ! function_exists( 'sbx_comment' ) ) :
 /**
@@ -74,46 +76,58 @@ function sbx_comment( $comment, $args, $depth ) {
 	<?php else : ?>
 
 	<li id="comment-<?php comment_ID(); ?>" <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?>>
-		<article id="div-comment-<?php comment_ID(); ?>" class="comment-body">
-			<footer class="comment-meta">
-				<div class="comment-author vcard">
+		<article id="div-comment-<?php comment_ID(); ?>" class="comment-body" itemprop="comment" itemscope itemtype="http://schema.org/UserComments">
+			
+			<header class="comment-meta">
+				<div class="comment-gravatar col span_2">
 					<?php if ( 0 != $args['avatar_size'] ) echo get_avatar( $comment, $args['avatar_size'] ); ?>
-					<?php printf( __( '%s <span class="says">says:</span>', 'sbx' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link() ) ); ?>
-				</div><!-- .comment-author -->
+				</div>
+				<div class="comment-metadata col span_10">
+					<div class="comment-author vcard" itemprop="creator" itemscope itemtype="http://schema.org/Person">
+						<?php printf( __( '%s <span class="says">says:</span>', 'sbx' ), sprintf( '<cite class="fn" itemprop="name">%s</cite>', get_comment_author_link() ) ); ?>
+					</div><!-- .comment-author -->
 
-				<div class="comment-metadata">
-					<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
-						<time datetime="<?php comment_time( 'c' ); ?>">
-							<?php printf( _x( '%1$s at %2$s', '1: date, 2: time', 'sbx' ), get_comment_date(), get_comment_time() ); ?>
-						</time>
-					</a>
-					<?php edit_comment_link( __( 'Edit', 'sbx' ), '<span class="edit-link">', '</span>' ); ?>
+					<div class="comment-meta">
+						<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
+							<time itemprop="commentTime" datetime="<?php comment_time( 'c' ); ?>">
+								<?php printf( _x( '%1$s at %2$s', '1: date, 2: time', 'sbx' ), get_comment_date(), get_comment_time() ); ?>
+							</time>
+						</a>
+					</div>
 				</div><!-- .comment-metadata -->
-
 				<?php if ( '0' == $comment->comment_approved ) : ?>
-				<p class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'sbx' ); ?></p>
+					<p class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'sbx' ); ?></p>
 				<?php endif; ?>
-			</footer><!-- .comment-meta -->
+			</header><!-- .comment-meta -->
 
-			<div class="comment-content">
+			<div class="comment-content col span_12" itemprop="commentText">
 				<?php comment_text(); ?>
 			</div><!-- .comment-content -->
 
-			<?php
-				comment_reply_link( array_merge( $args, array(
-					'add_below' => 'div-comment',
-					'depth'     => $depth,
-					'max_depth' => $args['max_depth'],
-					'before'    => '<div class="reply">',
-					'after'     => '</div>',
-				) ) );
-			?>
+			<footer class="comment-reply col span_12">
+				<?php
+					// Comment reply link
+					comment_reply_link( array_merge( $args, 
+						array(
+							'add_below' => 'div-comment',
+							'depth'     => $depth,
+							'max_depth' => $args['max_depth'],
+							'before'    => '<div class="reply">',
+							'after'     => '</div>',
+						)));
+
+					// Edit comment
+					edit_comment_link( __( '(Edit this comment)', 'sbx' ), '<span class="edit-link">', '</span>' );
+				?>
+			</footer><!-- .comment-reply -->
+
 		</article><!-- .comment-body -->
 
 	<?php
 	endif;
 }
 endif; // ends check for sbx_comment()
+
 
 if ( ! function_exists( 'sbx_the_attached_image' ) ) :
 /**
@@ -167,14 +181,15 @@ function sbx_the_attached_image() {
 }
 endif;
 
+
 if ( ! function_exists( 'sbx_posted_on' ) ) :
 /**
  * Prints HTML with meta information for the current post-date/time and author.
  */
 function sbx_posted_on() {
-	$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time>';
+	$time_string = '<time class="entry-date published updated" itemprop="datePublished" datetime="%1$s">%2$s</time>';
 	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) )
-		$time_string .= '<time class="updated" datetime="%3$s">%4$s</time>';
+		$time_string .= '<time class="entry-updated updated" itemprop="dateModified" datetime="%3$s">%4$s</time>';
 
 	$time_string = sprintf( $time_string,
 		esc_attr( get_the_date( 'c' ) ),
@@ -184,12 +199,12 @@ function sbx_posted_on() {
 	);
 
 	printf( __( '<span class="posted-on">Posted on %1$s</span><span class="byline"> by %2$s</span>', 'sbx' ),
-		sprintf( '<a href="%1$s" title="%2$s" rel="bookmark">%3$s</a>',
+		sprintf( '%3$s',
 			esc_url( get_permalink() ),
 			esc_attr( get_the_time() ),
 			$time_string
 		),
-		sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s">%3$s</a></span>',
+		sprintf( '<span class="author vcard" itemprop="author" itemscope itemptype="http://schema.org/Person"><a class="url fn n" href="%1$s" title="%2$s" itemprop="url" rel="author"><span class="entry-author-name" itemprop="name">%3$s</span></a></span>',
 			esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 			esc_attr( sprintf( __( 'View all posts by %s', 'sbx' ), get_the_author() ) ),
 			esc_html( get_the_author() )
@@ -197,6 +212,7 @@ function sbx_posted_on() {
 	);
 }
 endif;
+
 
 /**
  * Returns true if a blog has more than 1 category
@@ -222,6 +238,7 @@ function sbx_categorized_blog() {
 		return false;
 	}
 }
+
 
 /**
  * Flush out the transients used in sbx_categorized_blog

@@ -586,3 +586,33 @@ Load paths:
 2013-09-13 15:18:45 overwrite ../../style.css 
 2013-09-13 15:19:37 identical ../../style.css 
 2013-09-13 15:20:48 overwrite ../../style.css 
+2013-09-20 08:18:03     error style.scss (Line 24 of _variables.scss: Undefined variable: "$black-med".)
+2013-09-20 08:18:03 overwrite ../../style.css 
+2013-09-20 08:18:39     error style.scss (Line 24 of _variables.scss: Undefined variable: "$black-med".)
+2013-09-20 08:18:39 identical ../../style.css 
+2013-09-20 08:19:57 overwrite ../../style.css 
+2013-09-20 09:00:48 overwrite ../../style.css 
+2013-09-20 09:03:43 identical ../../style.css 
+2013-09-20 09:04:00 overwrite ../../style.css 
+2013-09-20 09:04:30     error style.scss (Line 90: File to import not found or unreadable: content.
+Load paths:
+  /Applications/MAMP/htdocs/StartBox/sbx/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/blueprint/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-960-plugin-0.10.4/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/compass-normalize-1.4.3/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/susy-1.0.9/sass
+  /Applications/compass.app/Contents/Resources/lib/ruby/compass_extensions/zurb-foundation-4.3.1/scss
+  Compass::SpriteImporter
+  /vendor/assets/stylesheets)
+2013-09-20 09:04:30 overwrite ../../style.css 
+2013-09-20 09:04:40     error style.scss (Line 1 of _content.scss: Invalid CSS after "content": expected "{", was "")
+2013-09-20 09:04:40 overwrite ../../style.css 
+2013-09-20 09:04:43 overwrite ../../style.css 
+2013-09-20 09:04:45 identical ../../style.css 
+2013-09-20 10:03:45 overwrite ../../style.css 
+2013-09-20 10:13:28 overwrite ../../style.css 
+2013-09-20 10:34:16 overwrite ../../style.css 
+2013-09-20 12:21:54 overwrite ../../style.css 
