@@ -7,6 +7,11 @@
 .sticky {
 }
 
+.entry-title a {
+	color: $color-headlines-primary;
+	text-decoration: none;
+}
+
 .entry-meta {
 	color: $blackLight;
 	border-top: 1px solid $color-border;

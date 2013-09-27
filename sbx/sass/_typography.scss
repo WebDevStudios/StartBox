@@ -162,8 +162,3 @@ h5 {
 h6 {
 	@include rem(font-size, 16px);
 }
-
-.entry-title a {
-	color: $color-headlines-primary;
-	text-decoration: none;
-}

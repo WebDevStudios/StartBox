@@ -5,25 +5,25 @@
 	float: left;
 	text-align: right;
 	@include rem(padding-top, 6px);
-}
 
-.sidebar-header .menu-item {
-	display: inline-block;
-	position: relative;
-}
+	.menu-item {
+		display: inline-block;
+		position: relative;
+	}
 
-.sidebar-header .widget {
-	margin: 0;
-	padding: 0;
-}
+	.widget {
+		margin: 0;
+		padding: 0;
 
-.sidebar-header .widget a {
-	color: $color-link;
-	@include rem(font-size, 12px);
-	@include rem(padding, 0 5px);
-	text-decoration: none;
-}
+		a {
+			color: $color-link;
+			@include rem(font-size, 12px);
+			@include rem(padding, 0 5px);
+			text-decoration: none;
+		}
 
-.sidebar-header .widget a:hover {
-	text-decoration: underline;
+		a:hover {
+			text-decoration: underline;
+		}
+	}
 }

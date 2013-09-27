@@ -4,7 +4,7 @@ THEME URI: http://wpstartbox.com
 DESCRIPTION: StartBox is a flexible, customizable theme framework. All modifications should be made using a <a href="http://docs.wpstartbox.com/Child_Themes/" target="_blank">child theme</a> to maintain forward compatibility.
 TAGS: one-column, two-columns, three-columns, left-sidebar, right-sidebar, fixed-width, white, light, custom-menu, editor-style, featured-images, full-width-template, microformats, sticky-post, theme-options, threaded-comments, translation-ready
 VERSION: 3.0-experimental
-AUTHOR: WebDevStudios.com
+AUTHOR: WebDevStudios
 AUTHOR URI: http://wpstartbox.com
 LICENSE: GNU General Public License
 LICENSE URI: license.txt
@@ -483,11 +483,6 @@ h6 {
   font-size: 1.6rem;
 }
 
-.entry-title a {
-  color: #222222;
-  text-decoration: none;
-}
-
 /* Objects
 --------------------------------------------- */
 embed,
@@ -801,8 +796,11 @@ Structure and Layout
   .gutters .col {
     margin-left: 2%;
   }
-
   .gutters .col:first-child {
+    margin-left: 0;
+  }
+
+  .no-gutters.col {
     margin-left: 0;
   }
 }
@@ -858,47 +856,36 @@ Structure and Layout
   .gutters .span_1 {
     width: 6.5%;
   }
-
   .gutters .span_2 {
     width: 15.0%;
   }
-
   .gutters .span_3 {
     width: 23.5%;
   }
-
   .gutters .span_4 {
     width: 32.0%;
   }
-
   .gutters .span_5 {
     width: 40.5%;
   }
-
   .gutters .span_6 {
     width: 49.0%;
   }
-
   .gutters .span_7 {
     width: 57.5%;
   }
-
   .gutters .span_8 {
     width: 66.0%;
   }
-
   .gutters .span_9 {
     width: 74.5%;
   }
-
   .gutters .span_10 {
     width: 83.0%;
   }
-
   .gutters .span_11 {
     width: 91.5%;
   }
-
   .gutters .span_12 {
     width: 100%;
   }
@@ -923,7 +910,6 @@ Header
   padding-top: 4px;
   padding-top: 0.4rem;
 }
-
 .site-title a {
   color: #222222;
   font-weight: 700;
@@ -944,17 +930,14 @@ Header
   padding-top: 6px;
   padding-top: 0.6rem;
 }
-
 .sidebar-header .menu-item {
   display: inline-block;
   position: relative;
 }
-
 .sidebar-header .widget {
   margin: 0;
   padding: 0;
 }
-
 .sidebar-header .widget a {
   color: #888888;
   font-size: 12px;
@@ -963,7 +946,6 @@ Header
   padding: 0 0.5rem;
   text-decoration: none;
 }
-
 .sidebar-header .widget a:hover {
   text-decoration: underline;
 }
@@ -977,19 +959,11 @@ Navigation
   background-color: #222222;
   border-bottom: 6px solid #dddddd;
 }
-
-.nav-menu,
-.sub-menu {
-  margin: 0;
-  padding-left: 0;
-}
-
 .main-navigation .page_item,
 .main-navigation .menu-item {
   display: inline-block;
   text-align: left;
 }
-
 .main-navigation a {
   border: none;
   color: white;
@@ -999,26 +973,18 @@ Navigation
   padding: 1.4rem 4.8rem 1.4rem 1.2rem;
   position: relative;
 }
-
 .main-navigation a:hover,
 .main-navigation .current-menu-item > a,
 .main-navigation .sub-menu .current-menu-item > a:hover {
   color: #eeeeee;
 }
-
 .main-navigation .sub-menu .current-menu-item > a {
   color: white;
 }
-
 .main-navigation a:hover,
 .main-navigation .current-menu-item > a {
   color: white;
 }
-
-.main-navigation > .menu-item > a {
-  text-transform: uppercase;
-}
-
 .main-navigation .children,
 .main-navigation .sub-menu {
   left: -9999px;
@@ -1031,7 +997,9 @@ Navigation
   width: 200px;
   z-index: 99;
 }
-
+.main-navigation > .menu-item > a {
+  text-transform: uppercase;
+}
 .main-navigation .children a,
 .main-navigation .sub-menu a {
   color: #222222;
@@ -1045,27 +1013,29 @@ Navigation
   position: relative;
   width: 200px;
 }
-
 .main-navigation .children a:hover,
 .main-navigation .sub-menu a:hover {
   background-color: #eeeeee;
   color: black;
 }
-
 .main-navigation .children .children,
 .main-navigation .sub-menu .sub-menu {
   margin: -54px 0 0 199px;
 }
-
 .main-navigation .page_item:hover,
 .main-navigation .menu-item:hover {
   position: static;
 }
-
 .main-navigation .page_item:hover > .children,
 .main-navigation .menu-item:hover > .sub-menu {
   left: auto;
   opacity: 1;
+}
+
+.nav-menu,
+.sub-menu {
+  margin: 0;
+  padding-left: 0;
 }
 
 .menu-toggle {
@@ -1100,6 +1070,11 @@ Comments
 .site-inner {
   padding-top: 48px;
   padding-top: 4.8rem;
+}
+
+.entry-title a {
+  color: #222222;
+  text-decoration: none;
 }
 
 .entry-meta {
@@ -1138,33 +1113,9 @@ Comments
   margin-top: 48px;
   margin-top: 4.8rem;
 }
-
-.comment-list {
-  margin: 0;
-  padding: 0;
-}
-
-.entry-comments {
-  clear: both;
-  margin: 48px 0;
-  margin: 4.8rem 0;
-}
-
-.comment-respond,
-.entry-pings {
-  padding: 48px 0;
-  padding: 4.8rem 0;
-}
-
-.comment-area .entry-comments {
+.comments-area .entry-comments {
   padding: 40px;
   padding: 4rem;
-}
-
-.comment-list,
-.ping-list {
-  clear: both;
-  list-style-type: none;
 }
 
 .comment-list {
@@ -1173,6 +1124,37 @@ Comments
   margin-bottom: 2.4rem;
   padding: 40px 48px 24px;
   padding: 4rem 4.8rem 2.4rem;
+}
+.comment-list li li {
+  padding: 12px;
+  padding: 1.2rem;
+}
+
+.entry-comments {
+  clear: both;
+  margin: 48px 0;
+  margin: 4.8rem 0;
+}
+.entry-comments .avatar {
+  float: left;
+  margin-right: 24px;
+  margin-right: 2.4rem;
+}
+.entry-comments .comment-author {
+  margin-bottom: 0;
+}
+
+.comment-respond,
+.entry-pings {
+  padding: 48px 0;
+  padding: 4.8rem 0;
+}
+
+.comment-content,
+.comment-list,
+.ping-list {
+  clear: both;
+  list-style-type: none;
 }
 
 /* comment children */
@@ -1183,11 +1165,6 @@ ul.children {
   padding: 0;
   position: relative;
   top: 12px;
-}
-
-.comment-list li li {
-  padding: 12px;
-  padding: 1.2rem;
 }
 
 /* comment forms */
@@ -1203,23 +1180,9 @@ ul.children {
   margin-right: 1.2rem;
 }
 
-.comment-content {
-  clear: both;
-}
-
-.entry-comments .avatar {
-  float: left;
-  margin-right: 24px;
-  margin-right: 2.4rem;
-}
-
 .comment-metadata {
   margin-top: 12px;
   margin-top: 1.2rem;
-}
-
-.entry-comments .comment-author {
-  margin-bottom: 0;
 }
 
 .entry-pings .reply {
@@ -1280,11 +1243,9 @@ Footer
   padding: 40px 0 16px;
   padding: 4rem 0 1.6rem;
 }
-
 .footer-widgets .widget-title {
   color: white;
 }
-
 .footer-widgets ul {
   list-style: none;
   margin: 0;
@@ -1304,9 +1265,8 @@ Print Styles
     font-size: 10pt;
   }
 
-  .nav-primary,
+  .main-navigation,
   .sidebar,
-  .genesis-box,
   .footer-widgets {
     display: none;
   }

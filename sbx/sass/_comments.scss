@@ -3,16 +3,34 @@
 
 .comments-area {
 	@include rem(margin-top, 48px);
+
+	.entry-comments {
+		@include rem(padding, 40px);
+	}
 }
 
 .comment-list {
-	margin: 0;
-	padding: 0;
+	background-color: $color-bg-comments;
+	@include rem(margin-bottom, 24px);
+	@include rem(padding, 40px 48px 24px);
+
+	li li {
+		@include rem(padding, 12px);
+	}
 }
 
 .entry-comments {
 	clear: both;
 	@include rem(margin, 48px 0);
+
+	.avatar {
+		float: left;
+		@include rem(margin-right, 24px);
+	}
+
+	.comment-author {
+		margin-bottom: 0;
+	}
 }
 
 .comment-respond,
@@ -20,20 +38,11 @@
 	@include rem(padding, 48px 0);
 }
 
-.comment-area .entry-comments {
-	@include rem(padding, 40px);
-}
-
+.comment-content,
 .comment-list,
-.ping-list{
+.ping-list {
 	clear: both;
 	list-style-type: none;
-}
-
-.comment-list{
-	background-color: $color-bg-comments;
-	@include rem(margin-bottom, 24px);
-	@include rem(padding, 40px 48px 24px);
 }
 
 /* comment children */
@@ -44,10 +53,6 @@ ul.children {
 	padding: 0;
 	position: relative;
 	top: 12px;
-}
-
-.comment-list li li {
-	@include rem(padding, 12px);
 }
 
 /* comment forms */
@@ -62,25 +67,14 @@ ul.children {
 	@include rem(margin-right, 12px);
 }
 
-.comment-content {
-	clear: both;
-}
-
-.entry-comments .avatar {
-	float: left;
-	@include rem(margin-right, 24px);
-}
-
 .comment-metadata {
 	@include rem(margin-top, 12px);
 }
 
-.entry-comments .comment-author {
-	margin-bottom: 0;
-}
-
-.entry-pings .reply {
-	display: none;
+.entry-pings {
+	.reply {
+		display: none;
+	}
 }
 
 .bypostauthor {
