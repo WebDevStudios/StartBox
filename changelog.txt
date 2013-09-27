@@ -1,6 +1,8 @@
 2013.09.27 - version 3.0.0-Experimental
 	* Nested SASS
-	* Updated Sidebars 
+	* Updated Sidebars to use SBX
+	* Some CSS style changes
+	* Moved SASS out of SBX folder
 
 2013.09.20 - version 3.0.0-Experimental
 	* Schema.org microdata markup

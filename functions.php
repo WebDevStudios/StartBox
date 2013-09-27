@@ -19,10 +19,11 @@ add_action( 'wp_footer', 'wds_debug' );
  *
  */
 function wds_debug() {
-	global $template; ?><br />
-	<?php echo $template; ?><br />
-	<?php echo get_num_queries(); ?> queries in <?php timer_stop(1); ?> seconds<br />
-	Server load: <?php $load = sys_getloadavg(); echo $load[0]; ?>%<br />
+	global $template; ?><br>
+	<a href="<?php echo wp_login_url(); ?>">WordPress Dashboard</a><br>
+	<?php echo $template; ?><br>
+	<?php echo get_num_queries(); ?> queries in <?php timer_stop(1); ?> seconds<br>
+	Server load: <?php $load = sys_getloadavg(); echo $load[0]; ?>%<br>
 	Memory usage: 
 	<?php $mem_usage = memory_get_usage(true);        
         if ($mem_usage < 1024) 
@@ -31,9 +32,9 @@ function wds_debug() {
             echo round($mem_usage/1024,2)." kilobytes"; 
         else 
             echo round($mem_usage/1048576,2)." megabytes";
-    ?><br />
-    PHP v<?php echo phpversion(); ?><br />
-    Server date: <?php echo date('Y/j/m'); ?><br />
+    ?><br>
+    PHP v<?php echo phpversion(); ?><br>
+    Server date: <?php echo date('Y/j/m'); ?><br>
     Server time: <?php echo date('h:i:s a'); ?>
 <?php }
 
@@ -87,13 +88,7 @@ function startbox_setup_theme() {
 				'name'        => 'Footer Aside 3',
 				'description' => __( 'This is the third footer column. Only use this after using Footer Aside 2.', 'startbox' ),
 				'editable'    => 1
-				),
-			array(
-				'id'          => 'footer_widget_area_4',
-				'name'        => 'Footer Aside 4',
-				'description' => __( 'This is the last footer column. Only use this after using all other columns.', 'startbox' ),
-				'editable'    => 1
-				),
+				)
 		)
 	);
 	add_theme_support( 'sb-custom-sidebars' );

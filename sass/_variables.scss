@@ -20,7 +20,7 @@ $indigo:					#4b0082 !default;
 $violet:					#8f00ff !default;
 
 // Backgrounds
-$color-bg-body:				$blackLightest !default;
+$color-bg-body:				$white !default;
 $color-bg-nav:				$blackMed !default;
 $color-bg-nav-sub:			$white !default;
 $color-bg-nav-sub-hover:	$blackLightest !default;
@@ -72,15 +72,15 @@ $color-form-input-text:		$black !default;
 
 // Structure
 // -------------------------
-$site-wrap:				1140px !default; // The widget of the content wrap (1140, 960, etc...)
-$content-width:			740px !default; // The width of your content box (640, 740, etc...)
-$margin-size:			24 !default; // Spacing is calculated using either 24px or 48px to maintain vertical rhythm
-$line-height:			1.625 !default; // Line Height is calcuded by the Golden Ratio and is based on $content-widget
+$site-wrap:					1140px !default; // The widget of the content wrap (1140, 960, etc...)
 
 
 // Typography
 // -------------------------
-$font-size:          	10 !default; // Default: 10. After setting html {font-size: 62.5%;} in _site-defaults.scss
-$font-sans:				"Helvetica Neue", Helvetica, Arial, sans-serif !default;
-$font-serif:			Georgia, Cambria, "Times New Roman", Times, serif !default;
-$font-mono:				"Courier 10 Pitch", Courier, monospace !default;
+$font-size:          		10 !default; // Default: 10. After setting html {font-size: 62.5%;} in _site-defaults.scss
+$font-sans:					"Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-serif:				Georgia, Cambria, "Times New Roman", Times, serif !default;
+$font-mono:					"Courier 10 Pitch", Courier, monospace !default;
+$site-title-font:			$font-serif !default;
+$site-description-font:		$font-sans !default;
+$headline-font:				$font-sans !default;
