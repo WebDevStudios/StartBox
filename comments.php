@@ -18,10 +18,7 @@
 if ( post_password_required() )
 	return;
 ?>
-	<?php do_action( 'before_comment_area' ); ?>
 	<div id="comments" class="comments-area">
-
-	<?php do_action( 'before_comment_title' ); ?>
 
 	<?php if ( have_comments() ) : ?>
 		<h2 class="comments-title">
@@ -39,7 +36,6 @@ if ( post_password_required() )
 		</nav><!-- #comment-nav-above -->
 		<?php endif; // check for comment navigation ?>
 		<ol class="comment-list">
-			<?php do_action( 'before_comment_list' ); ?>
 			<?php
 				/* Loop through and list the comments. Tell wp_list_comments()
 				 * to use sbx_comment() to format the comments.
@@ -49,16 +45,13 @@ if ( post_password_required() )
 				 */
 				wp_list_comments( array( 'callback' => 'sbx_comment', 'avatar_size' => '64' ) );
 			?>
-			<?php do_action( 'after_comments_list' ); ?>
 		</ol><!-- .comment-list -->
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
 		<nav id="comment-nav-below" class="comment-navigation" role="navigation">
-			<?php do_action( 'before_comments_nav' ); ?>
 			<h1 class="screen-reader-text"><?php _e( 'Comment navigation', 'sbx' ); ?></h1>
 			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'sbx' ) ); ?></div>
 			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'sbx' ) ); ?></div>
-			<?php do_action( 'after_comments_nav' ); ?>
 		</nav><!-- #comment-nav-below -->
 		<?php endif; // check for comment navigation ?>
 
@@ -70,9 +63,6 @@ if ( post_password_required() )
 	?>
 		<p class="no-comments"><?php _e( 'Comments are closed.', 'sbx' ); ?></p>
 	<?php endif; ?>
-	<?php do_action( 'before_comments_form' ); ?>
 	<?php comment_form(); ?>
-	<?php do_action( 'after_comments_form' ); ?>
 
 </div><!-- #comments -->
-<?php do_action( 'after_comments_area' ); ?>

@@ -1,5 +1,3 @@
-<?php do_action( 'before_post' ); ?>
-
 <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<div class="entry-header">
 		<h2 class="entry-title"><a href="<?php the_permalink(); ?>" title="<?php printf(__('Permalink to %s', 'startbox'), esc_html(get_the_title(), 1)) ?>" rel="bookmark"><?php the_title(); ?></a></h2>
@@ -7,8 +5,6 @@
 			<?php do_action( 'post_header' ); ?>
 		</div><!-- .entry-meta -->
 	</div><!-- .entry-header -->
-
-	<?php do_action( 'before_post_content' ); ?>
 
 	<div class="entry-content" itemprop="text">
 		<a class="entry-photo" href="<?php the_permalink() ?>" rel="bookmark" title="<?php echo esc_attr( get_the_title() ); ?>">
@@ -30,11 +26,7 @@
 
 	</div><!-- .entry-content -->
 
-	<?php do_action( 'after_post_content' ); ?>
-
 	<div class="entry-footer">
 		<?php do_action( 'post_footer' ); ?>
 	</div><!-- .entry-footer -->
 </div><!-- .post -->
-
-<?php do_action( 'after_post' ); ?>

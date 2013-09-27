@@ -5,8 +5,6 @@
 
 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
-			<?php do_action( 'before_content' ); ?>
-
 			<?php do_action( 'page_title' ); ?>
 			<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<h2 class="entry-title" itemprop="headline"><?php the_title(); ?></h2>
@@ -75,8 +73,6 @@
 				</div><!-- .entry-content -->
 
 			</div><!-- .post -->
-
-		<?php do_action( 'after_content' ); ?>
 
 		<?php comments_template(); ?>
 
