@@ -72,7 +72,8 @@ $color-form-input-text:		$black !default;
 
 // Structure
 // -------------------------
-$content-width:			740 !default; // The width of your content box (640, 740, 1140, etc...)
+$site-wrap:				1140px !default; // The widget of the content wrap (1140, 960, etc...)
+$content-width:			740px !default; // The width of your content box (640, 740, etc...)
 $margin-size:			24 !default; // Spacing is calculated using either 24px or 48px to maintain vertical rhythm
 $line-height:			1.625 !default; // Line Height is calcuded by the Golden Ratio and is based on $content-widget
 

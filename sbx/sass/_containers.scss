@@ -4,8 +4,7 @@
 	background-color: $color-bg-header;
 }
 
-.site-inner,
 .wrap {
 	margin: 0 auto;
-	max-width: 1140px;
+	max-width: $site-wrap;
 }
