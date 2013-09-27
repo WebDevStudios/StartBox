@@ -7,16 +7,15 @@
 
 get_header(); ?>
 
-
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main col span_12" role="main" itemscope itemprop="mainContentOfPage" itemtype="http://schema.org/CreativeWork">
 
 			<section class="error-404 not-found">
 				<header class="page-header">
-					<h1 class="page-title"><?php _e( 'Oops! That page can&rsquo;t be found.', 'sbx' ); ?></h1>
+					<h1 class="page-title" itemprop="headline"><?php _e( 'Oops! That page can&rsquo;t be found.', 'sbx' ); ?></h1>
 				</header><!-- .page-header -->
 
-				<div class="page-content">
+				<div class="page-content" itemprop="text">
 					<p><?php _e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'sbx' ); ?></p>
 
 					<?php get_search_form(); ?>

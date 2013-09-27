@@ -6,15 +6,19 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
 	<header class="entry-header">
+		<?php do_action( 'before_entry_header' ); ?>
 		<h1 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark" itemprop="headline"><?php the_title(); ?></a></h1>
 
 		<?php if ( 'post' == get_post_type() ) : ?>
+		<?php do_action( 'before_entry_meta' ); ?>
 		<div class="entry-meta">
 			<?php sbx_posted_on(); ?>
 		</div><!-- .entry-meta -->
+		<?php do_action( 'after_entry_meta' ); ?>
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 
+	<?php do_action( 'before_entry_content' ); ?>
 	<?php if ( is_search() ) : // Only display Excerpts for Search ?>
 	<div class="entry-summary" itemprop="text">
 		<?php the_excerpt(); ?>
@@ -30,8 +34,10 @@
 		?>
 	</div><!-- .entry-content -->
 	<?php endif; ?>
+	<?php do_action( 'after_entry_content' ); ?>
 
 	<footer class="entry-meta">
+		<?php do_action( 'before_entry_footer' ); ?>
 		<?php if ( 'post' == get_post_type() ) : // Hide category and tag text for pages on Search ?>
 			<?php
 				/* translators: used between list items, there is a space after the comma */
@@ -59,5 +65,6 @@
 		<?php endif; ?>
 
 		<?php edit_post_link( __( 'Edit', 'sbx' ), '<span class="edit-link">', '</span>' ); ?>
+		<?php do_action( 'after_entry_footer' ); ?>
 	</footer><!-- .entry-meta -->
 </article><!-- #post-## -->
