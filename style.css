@@ -35,9 +35,10 @@ Table Of Contents
 		- Pagination
 	- Content
 	- Comments
-	- Sidebar Widgets
+	- Sidebar
+		- Widget Area
 	- Footer
-		- Footer Widgets
+		- Widget Area
 	- Media Queries
 		- Print
 		- Responsive
@@ -226,17 +227,16 @@ table {
 
 /* Box Sizing
 --------------------------------------------- */
-*,
-input[type="search"] {
+* {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  *behavior: url(/js/boxsizing.htc);
 }
 
 /* Clearfix
 	http://nicolasgallagher.com/micro-clearfix-hack/
 --------------------------------------------- */
+.clear:before,
 .clearfix:before,
 .row:before,
 .col:before,
@@ -244,6 +244,7 @@ input[type="search"] {
 .site-inner:before,
 .content-sidebar:before,
 .entry:before,
+.entry-header:before
 .post-navigation:before,
 .entry-pagination:before,
 .entry-footer:before,
@@ -252,12 +253,12 @@ input[type="search"] {
 .comment-respond:before,
 .footer-widgets:before,
 .main-navigation:before,
-.wrap:before,
-.entry-header:before {
+.wrap:before {
   content: " ";
   display: table;
 }
 
+.clear:after,
 .clearfix:after,
 .row:after,
 .col:after,
@@ -265,16 +266,16 @@ input[type="search"] {
 .site-inner:after,
 .content-sidebar:after,
 .entry:after,
-.post-navigation:after,
+.entry-header:after,
 .entry-pagination:after,
 .entry-footer:after,
+.post-navigation:after,
 .comment-list:after,
 .comment:after,
 .comment-respond:after,
 .footer-widgets:after,
 .main-navigation:after,
-.wrap:after,
-.entry-header:after {
+.wrap:after {
   clear: both;
   content: " ";
   display: table;
@@ -544,6 +545,10 @@ img.alignright,
   text-align: center;
 }
 
+.gallery-caption {
+  text-align: center;
+}
+
 .widget_calendar table {
   width: 100%;
 }
@@ -784,14 +789,10 @@ Structure and Layout
 }
 
 .col {
-  display: block;
   float: left;
   width: 100%;
 }
 
-/* Grid
-	12 column - http://responsive.gs 
---------------------------------------------- */
 @media (min-width: 768px) {
   .gutters .col {
     margin-left: 2%;
@@ -1066,13 +1067,15 @@ Navigation
 }
 
 /*
-Comments
+Content
 ------------------------------------------------------------------------- */
-/* Content
---------------------------------------------- */
 .site-inner {
   padding-top: 48px;
   padding-top: 4.8rem;
+}
+
+.sticky {
+  background-color: yellow;
 }
 
 .entry-title a {
@@ -1110,11 +1113,9 @@ Comments
 /*
 Comments
 ------------------------------------------------------------------------- */
-/* Comments
---------------------------------------------- */
 .comments-area {
-  margin-top: 48px;
-  margin-top: 4.8rem;
+  padding: 48px;
+  padding: 4.8rem;
 }
 .comments-area .entry-comments {
   padding: 40px;
@@ -1197,7 +1198,7 @@ ul.children {
 }
 
 .form-allowed-tags {
-  background-color: white;
+  background-color: #dddddd;
   font-size: 14px;
   font-size: 1.4rem;
   padding: 24px;
@@ -1205,9 +1206,9 @@ ul.children {
 }
 
 /*
-Sidebar Widgets
+Sidebar
 ------------------------------------------------------------------------- */
-/* Sidebar Widgets
+/* Sidebar Widget Area
 --------------------------------------------- */
 .sidebar .widget {
   background-color: white;
@@ -1220,8 +1221,6 @@ Sidebar Widgets
 /*
 Footer
 ------------------------------------------------------------------------- */
-/* Footer
---------------------------------------------- */
 .site-footer {
   clear: both;
   background-color: #222222;

@@ -39,9 +39,10 @@ Table Of Contents
 		- Pagination
 	- Content
 	- Comments
-	- Sidebar Widgets
+	- Sidebar
+		- Widget Area
 	- Footer
-		- Footer Widgets
+		- Widget Area
 	- Media Queries
 		- Print
 		- Responsive
@@ -86,7 +87,7 @@ Navigation
 
 
 /*
-Comments
+Content
 ------------------------------------------------------------------------- */
 @import "content";
 
@@ -98,9 +99,10 @@ Comments
 
 
 /*
-Sidebar Widgets
+Sidebar
 ------------------------------------------------------------------------- */
-@import "widgets";
+@import "sidebar";
+@import "sidebar-widget-area";
 
 
 /*

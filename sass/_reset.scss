@@ -7,18 +7,17 @@ article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,su
 /* Box Sizing
 --------------------------------------------- */
 
-*,
-input[type="search"] {
+* {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing:    border-box;
 	box-sizing:         border-box;
-	*behavior: url(/js/boxsizing.htc); 
 }
 
 /* Clearfix
 	http://nicolasgallagher.com/micro-clearfix-hack/
 --------------------------------------------- */
 
+.clear:before,
 .clearfix:before,
 .row:before,
 .col:before,
@@ -26,6 +25,7 @@ input[type="search"] {
 .site-inner:before,
 .content-sidebar:before,
 .entry:before,
+.entry-header:before
 .post-navigation:before,
 .entry-pagination:before,
 .entry-footer:before,
@@ -34,12 +34,12 @@ input[type="search"] {
 .comment-respond:before,
 .footer-widgets:before,
 .main-navigation:before,
-.wrap:before,
-.entry-header:before  {
+.wrap:before {
 	content: " ";
 	display: table;
 }
 
+.clear:after,
 .clearfix:after,
 .row:after,
 .col:after,
@@ -47,16 +47,16 @@ input[type="search"] {
 .site-inner:after,
 .content-sidebar:after,
 .entry:after,
-.post-navigation:after,
+.entry-header:after,
 .entry-pagination:after,
 .entry-footer:after,
+.post-navigation:after,
 .comment-list:after,
 .comment:after,
 .comment-respond:after,
 .footer-widgets:after,
 .main-navigation:after,
-.wrap:after,
-.entry-header:after {
+.wrap:after {
 	clear: both;
 	content: " ";
 	display: table;

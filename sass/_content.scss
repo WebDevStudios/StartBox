@@ -1,11 +1,10 @@
-/* Content
---------------------------------------------- */
 
 .site-inner {
 	@include rem(padding-top, 48px);
 }
 
 .sticky {
+	background-color: $yellow;
 }
 
 .entry-title a {

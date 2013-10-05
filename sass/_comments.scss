@@ -1,8 +1,6 @@
-/* Comments
---------------------------------------------- */
 
 .comments-area {
-	@include rem(margin-top, 48px);
+	@include rem(padding, 48px);
 
 	.entry-comments {
 		@include rem(padding, 40px);
@@ -82,7 +80,7 @@ ul.children {
 }
 
 .form-allowed-tags {
-	background-color: $color-bg-comments;
+	background-color: $blackLighter;
 	@include rem(font-size, 14px);
 	@include rem(padding, 24px);
 }
