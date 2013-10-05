@@ -1,5 +1,5 @@
 // Colors
-// http://sassme.arc90.com/
+// We love this SASS color tool: http://sassme.arc90.com
 // -------------------------
 
 // Grayscale
@@ -28,7 +28,9 @@ $color-bg-header:			$white !default;
 $color-bg-widgets:			$white !default;
 $color-bg-content:			$white !default;
 $color-bg-comments:			$white !default;
-$color-bg-comment-author:	$blackLightest !default;
+$color-bg-comment-even:		lighten($black, 98) !default;
+$color-bg-comment-odd:		$white !default;
+$color-bg-comment-author:	lighten($yellow, 45) !default;
 $color-bg-button:			$blackLighter !default;
 $color-bg-button-hover:		$blackLightest !default;
 $color-bg-footer:			$blackMed !default;

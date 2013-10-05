@@ -781,6 +781,13 @@ Structure and Layout
   max-width: 1140px;
 }
 
+.hentry,
+.post-navigation,
+.comments-area {
+  padding: 40px 48px;
+  padding: 4rem 4.8rem;
+}
+
 /* Grid
 	12 column - http://responsive.gs 
 --------------------------------------------- */
@@ -1050,8 +1057,6 @@ Navigation
 /* Pagination
 --------------------------------------------- */
 .content-area [class*="navigation"] {
-  margin: 0 0 24px;
-  margin: 0 0 2.4rem;
   overflow: hidden;
 }
 
@@ -1094,10 +1099,6 @@ Content
 
 .hentry {
   background-color: white;
-  margin-bottom: 24px;
-  margin-bottom: 2.4rem;
-  padding: 40px 48px 24px;
-  padding: 4rem 4.8rem 2.4rem;
 }
 
 .entry-updated {
@@ -1113,39 +1114,44 @@ Content
 /*
 Comments
 ------------------------------------------------------------------------- */
-.comments-area {
-  padding: 48px;
-  padding: 4.8rem;
-}
-.comments-area .entry-comments {
-  padding: 40px;
-  padding: 4rem;
+/* comment reset */
+.comment-content,
+.comment-list,
+.ping-list,
+ol.comment-list,
+ul.children,
+.entry-comments,
+.entry-pings {
+  clear: both;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 .comment-list {
   background-color: white;
-  margin-bottom: 24px;
-  margin-bottom: 2.4rem;
-  padding: 40px 48px 24px;
-  padding: 4rem 4.8rem 2.4rem;
 }
 .comment-list li li {
   padding: 12px;
   padding: 1.2rem;
 }
+.comment-list .comment {
+  padding: 12px;
+  padding: 1.2rem;
+}
+.comment-list .thread-even {
+  background-color: #fafafa;
+}
+.comment-list .thread-odd {
+  background-color: white;
+}
+.comment-list .bypostauthor {
+  background-color: #ffffe5;
+}
 
-.entry-comments {
-  clear: both;
-  margin: 48px 0;
-  margin: 4.8rem 0;
-}
-.entry-comments .avatar {
-  float: left;
-  margin-right: 24px;
-  margin-right: 2.4rem;
-}
-.entry-comments .comment-author {
-  margin-bottom: 0;
+.comment-content {
+  padding-right: 24px;
+  padding-right: 2.4rem;
 }
 
 .comment-respond,
@@ -1154,21 +1160,11 @@ Comments
   padding: 4.8rem 0;
 }
 
-.comment-content,
-.comment-list,
-.ping-list {
-  clear: both;
-  list-style-type: none;
-}
-
 /* comment children */
 ul.children {
-  clear: both;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  position: relative;
-  top: 12px;
+  margin-left: 3%;
+  padding: 12px 0 0;
+  padding: 1.2rem 0 0;
 }
 
 /* comment forms */
@@ -1184,17 +1180,8 @@ ul.children {
   margin-right: 1.2rem;
 }
 
-.comment-metadata {
-  margin-top: 12px;
-  margin-top: 1.2rem;
-}
-
 .entry-pings .reply {
   display: none;
-}
-
-.bypostauthor {
-  background-color: #eeeeee;
 }
 
 .form-allowed-tags {
