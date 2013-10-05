@@ -1,7 +1,15 @@
+2013.10.04 - version 3.0.0-Experimental
+	* Re-arranged some SASS and broke out some sections
+	* Removed unecessary template files
+	* Finishing touches on Schmema.org Microdata
+	* Tested Schema.org Microdata on Posts, Pages, Author Page, Attachments, and Comments
+	* Replaced links to CSS and Scripts with Theme Constants
+	* Post Type and Taxonomy support
+
 2013.09.27 - version 3.0.0-Experimental
 	* Nested SASS
 	* Updated Sidebars to use SBX
-	* Some CSS style changes
+	* Some CSS style changes to background and widgets
 	* Moved SASS out of SBX folder
 
 2013.09.20 - version 3.0.0-Experimental
@@ -9,8 +17,10 @@
 	* Continued CSS styling
 	* Moved all colors out in favor for SASS variables
 	* Hooked up footer widgets
+
 2013.09.13 - version 3.0.0-Experimental
-	* Initial push
+	* Initial push of 3.0.0
+
 2013.07.17 - version 2.7.3
 	* Fixed: Eliminated erroneous function call from the SB Social widget
 	* Removed: front-page.php, reintroduced custom front-page hooks via hooks.php
