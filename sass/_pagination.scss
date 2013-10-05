@@ -2,7 +2,6 @@
 --------------------------------------------- */
 
 .content-area [class*="navigation"] {
-	@include rem(margin, 0 0 24px);
 	overflow: hidden;
 }
 

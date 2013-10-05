@@ -21,8 +21,6 @@
 
 .hentry {
 	background-color: $color-bg-content;
-	@include rem(margin-bottom, 24px);
-	@include rem(padding, 40px 48px 24px);
 }
 
 .entry-updated {

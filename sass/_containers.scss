@@ -9,3 +9,9 @@
 	margin: 0 auto;
 	max-width: $site-wrap;
 }
+
+.hentry,
+.post-navigation,
+.comments-area {
+	@include rem(padding, 40px 48px);
+}
