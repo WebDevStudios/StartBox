@@ -8,6 +8,38 @@
  */
 
 
+if ( ! function_exists( 'sbx_posted_on' ) ) :
+/**
+ * Prints HTML with meta information for the current post-date/time and author.
+ */
+function sbx_posted_on() {
+	$time_string = '<time class="entry-date published updated" itemprop="datePublished" datetime="%1$s">%2$s</time>';
+	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) )
+		$time_string .= '<time class="entry-updated updated" itemprop="dateModified" datetime="%3$s">%4$s</time>';
+
+	$time_string = sprintf( $time_string,
+		esc_attr( get_the_date( 'c' ) ),
+		esc_html( get_the_date() ),
+		esc_attr( get_the_modified_date( 'c' ) ),
+		esc_html( get_the_modified_date() )
+	);
+
+	printf( __( '<span class="posted-on">Posted on %1$s</span><span class="byline"> by %2$s</span>', 'sbx' ),
+		sprintf( '%3$s',
+			esc_url( get_permalink() ),
+			esc_attr( get_the_time() ),
+			$time_string
+		),
+		sprintf( '<span class="author vcard" itemprop="author" itemscope itemptype="http://schema.org/Person"><a class="url fn n" href="%1$s" title="%2$s" itemprop="url" rel="author"><span class="entry-author-name" itemprop="name">%3$s</span></a></span>',
+			esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
+			esc_attr( sprintf( __( 'View all posts by %s', 'sbx' ), get_the_author() ) ),
+			esc_html( get_the_author() )
+		)
+	);
+}
+endif;
+
+
 if ( ! function_exists( 'sbx_content_nav' ) ) :
 /**
  * Display navigation to next/previous pages when applicable
@@ -173,7 +205,7 @@ function sbx_the_attached_image() {
 			$next_attachment_url = get_attachment_link( array_shift( $attachment_ids ) );
 	}
 
-	printf( '<a href="%1$s" title="%2$s" rel="attachment">%3$s</a>',
+	printf( '<a href="%1$s" title="%2$s" rel="attachment" itemprop="thumbnailUrl">%3$s</a>',
 		esc_url( $next_attachment_url ),
 		the_title_attribute( array( 'echo' => false ) ),
 		wp_get_attachment_image( $post->ID, $attachment_size )
@@ -182,34 +214,44 @@ function sbx_the_attached_image() {
 endif;
 
 
-if ( ! function_exists( 'sbx_posted_on' ) ) :
+if ( ! function_exists( 'sbx_entry_meta' ) ) :
 /**
- * Prints HTML with meta information for the current post-date/time and author.
+ * Create CPT entry meta
  */
-function sbx_posted_on() {
-	$time_string = '<time class="entry-date published updated" itemprop="datePublished" datetime="%1$s">%2$s</time>';
-	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) )
-		$time_string .= '<time class="entry-updated updated" itemprop="dateModified" datetime="%3$s">%4$s</time>';
+function sbx_entry_meta() {
 
-	$time_string = sprintf( $time_string,
-		esc_attr( get_the_date( 'c' ) ),
-		esc_html( get_the_date() ),
-		esc_attr( get_the_modified_date( 'c' ) ),
-		esc_html( get_the_modified_date() )
+	// Get the categories
+	$category_list = get_the_category_list( __( ', ', 'sbx' ) );
+
+	// Get the tags
+	$tag_list = get_the_tag_list( '', __( ', ', 'sbx' ) );
+
+	if ( ! sbx_categorized_blog() ) {
+		// This blog only has 1 category so we just need to worry about tags in the meta text
+		if ( '' != $tag_list ) {
+			$meta_text = __( 'This entry was tagged with %2$s. Bookmark the <a href="%3$s" title="Permalink to %4$s" rel="bookmark">permalink</a>.', 'sbx' );
+		} else {
+			$meta_text = __( 'Bookmark the <a href="%3$s" title="Permalink to %4$s" rel="bookmark">permalink</a>.', 'sbx' );
+		}
+
+	} else {
+		// But this blog has loads of categories so we should probably display them here
+		if ( '' != $tag_list ) {
+			$meta_text = __( 'This entry was posted in %1$s and tagged with %2$s. Bookmark the <a href="%3$s" title="Permalink to %4$s" rel="bookmark">permalink</a>.', 'sbx' );
+		} else {
+			$meta_text = __( 'This entry was posted in %1$s. Bookmark the <a href="%3$s" title="Permalink to %4$s" rel="bookmark">permalink</a>.', 'sbx' );
+		}
+
+	} // end check for categories on this blog
+
+	printf(
+		$meta_text,
+		$category_list,
+		$tag_list,
+		get_permalink(),
+		the_title_attribute( 'echo=0' )
 	);
 
-	printf( __( '<span class="posted-on">Posted on %1$s</span><span class="byline"> by %2$s</span>', 'sbx' ),
-		sprintf( '%3$s',
-			esc_url( get_permalink() ),
-			esc_attr( get_the_time() ),
-			$time_string
-		),
-		sprintf( '<span class="author vcard" itemprop="author" itemscope itemptype="http://schema.org/Person"><a class="url fn n" href="%1$s" title="%2$s" itemprop="url" rel="author"><span class="entry-author-name" itemprop="name">%3$s</span></a></span>',
-			esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
-			esc_attr( sprintf( __( 'View all posts by %s', 'sbx' ), get_the_author() ) ),
-			esc_html( get_the_author() )
-		)
-	);
 }
 endif;
 

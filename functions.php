@@ -39,6 +39,8 @@ function wds_debug() {
 <?php }
 
 
+
+
 // Initialize StartBox, but only if a child theme hasn't already
 require_once( get_template_directory() . '/sbx/startbox.php' );
 
@@ -210,6 +212,25 @@ function sb_sample_customizer_settings( $sections = array() ) {
 	return $sections;
 }
 
+/**
+ * Setup custom post types (Singular, Plural, Key, Slug, Menu Position)
+ */
+function sbx_post_types() {
+
+	sbx_post_type( array( 'Books', 'Book', 'book', 'book' ), array( 'menu_position' => '1' ) );
+
+}
+add_action( 'init', 'sbx_post_types' );
+
+/**
+ * Setup taxonomies (Singlular, Plural, Key, Slug, Parent Key)
+ */
+function sbx_taxonomies() {
+
+	sbx_taxonomy( 'Tag', 'Book Tags', 'book_tags', 'book-tags', array( 'book' ) );
+
+}
+add_action( 'init', 'sbx_taxonomies' );
 
 /**
  * In his grace, God has given us different gifts for doing certain things well.
