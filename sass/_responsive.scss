@@ -44,7 +44,8 @@
 	.main-navigation,
 	.main-navigation ul,
 	.main-navigation li,
-	.main-navigation a {
+	.main-navigation a,
+	ul.sub-menu {
 		clear: both;
 		color: $color-text-tertiary;
 		float: none;
@@ -59,12 +60,31 @@
 		display: block;
 	}
 
-	.main-navigation ul {
-		display: none;
-	}
+	.main-navigation {
 
-	.main-navigation li {
-		@include rem(padding, 6px);
+		ul {
+			display: none;
+		}
+
+		li {
+			@include rem(padding, 6px);
+		}
+
+		ul.sub-menu {
+			width: 98%;
+
+			ul {
+				left: 0;
+				top: 40px;
+				width: 100%;
+			}
+
+			a {
+				padding: 0;
+				width: 100%;
+			}
+		}
+
 	}
 
 	h1.menu-toggle {
