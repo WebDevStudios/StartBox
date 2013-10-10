@@ -23,11 +23,11 @@ ul.children,
 		@include rem(padding, 12px);
 	}
 
-	.thread-even {
+	.even {
 		background-color: $color-bg-comment-even;
 	}
 
-	.thread-odd {
+	.odd {
 		background-color: $color-bg-comment-odd;
 	}
 

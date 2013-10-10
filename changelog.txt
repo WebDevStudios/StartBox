@@ -1,3 +1,7 @@
+2013.10.10 - version 3.0.0-Experimental
+	* Overhaul main navigation styles
+	* Added zebra striping to comments
+
 2013.10.05 - version 3.0.0-Experimental
 	* Overhaul comment styles
 

@@ -1107,10 +1107,10 @@ ul.children,
   padding: 12px;
   padding: 1.2rem;
 }
-.comment-list .thread-even {
+.comment-list .even {
   background-color: #fafafa;
 }
-.comment-list .thread-odd {
+.comment-list .odd {
   background-color: white;
 }
 .comment-list .bypostauthor {
