@@ -121,7 +121,7 @@ class SB_Sidebars {
 		if ( is_active_sidebar( $sidebar ) || has_action( "sb_no_{$location}_widgets" ) ) {
 
 			do_action( "before_{$location}" );
-			echo '<div id="' . esc_attr( $location ) . '_sidebar" class="sidebar ' . esc_attr( $location ) . '-sidebar col span_4 widget-area ' . esc_attr( $location ) . '-widget-area ' . esc_attr( $classes ) . '" role="complimentary" itemscope itemtype="http://schema.org/WPSideBar">';
+			echo '<div id="' . esc_attr( $location ) . '" class="widget-area sidebar ' . esc_attr( $location ) . ' col span-4 ' . esc_attr( $classes ) . '" role="complimentary" itemscope itemtype="http://schema.org/WPSideBar">';
 			do_action( "before_{$location}_widgets" );
 
 			if ( ! dynamic_sidebar( $sidebar ) )
