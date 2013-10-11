@@ -8,7 +8,7 @@
 get_header(); ?>
 
 	<div id="primary" class="content-area">
-		<main id="main" class="site-main col span_12" role="main" itemscope itemprop="mainContentOfPage" itemtype="http://schema.org/CreativeWork">
+		<main id="main" class="site-main col span-12" role="main" itemscope itemprop="mainContentOfPage" itemtype="http://schema.org/CreativeWork">
 
 			<section class="error-404 not-found">
 				<header class="page-header">

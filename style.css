@@ -813,88 +813,88 @@ Structure and Layout
   }
 }
 @media (min-width: 768px) {
-  .span_1 {
+  .span-1 {
     width: 8.33333333333%;
   }
 
-  .span_2 {
+  .span-2 {
     width: 16.6666666667%;
   }
 
-  .span_3 {
+  .span-3 {
     width: 25%;
   }
 
-  .span_4 {
+  .span-4 {
     width: 33.3333333333%;
   }
 
-  .span_5 {
+  .span-5 {
     width: 41.6666666667%;
   }
 
-  .span_6 {
+  .span-6 {
     width: 50%;
   }
 
-  .span_7 {
+  .span-7 {
     width: 58.3333333333%;
   }
 
-  .span_8 {
+  .span-8 {
     width: 66.6666666667%;
   }
 
-  .span_9 {
+  .span-9 {
     width: 75%;
   }
 
-  .span_10 {
+  .span-10 {
     width: 83.3333333333%;
   }
 
-  .span_11 {
+  .span-11 {
     width: 91.6666666667%;
   }
 
-  .span_12 {
+  .span-12 {
     width: 100%;
   }
 
-  .gutters .span_1 {
+  .gutters .span-1 {
     width: 6.5%;
   }
-  .gutters .span_2 {
+  .gutters .span-2 {
     width: 15.0%;
   }
-  .gutters .span_3 {
+  .gutters .span-3 {
     width: 23.5%;
   }
-  .gutters .span_4 {
+  .gutters .span-4 {
     width: 32.0%;
   }
-  .gutters .span_5 {
+  .gutters .span-5 {
     width: 40.5%;
   }
-  .gutters .span_6 {
+  .gutters .span-6 {
     width: 49.0%;
   }
-  .gutters .span_7 {
+  .gutters .span-7 {
     width: 57.5%;
   }
-  .gutters .span_8 {
+  .gutters .span-8 {
     width: 66.0%;
   }
-  .gutters .span_9 {
+  .gutters .span-9 {
     width: 74.5%;
   }
-  .gutters .span_10 {
+  .gutters .span-10 {
     width: 83.0%;
   }
-  .gutters .span_11 {
+  .gutters .span-11 {
     width: 91.5%;
   }
-  .gutters .span_12 {
+  .gutters .span-12 {
     width: 100%;
   }
 }
@@ -935,21 +935,21 @@ Header
 
 /* Header Widget Area
 --------------------------------------------- */
-.sidebar-header {
+.header_widget_area {
   float: left;
   text-align: right;
   padding-top: 6px;
   padding-top: 0.6rem;
 }
-.sidebar-header .menu-item {
+.header_widget_area .menu-item {
   display: inline-block;
   position: relative;
 }
-.sidebar-header .widget {
+.header_widget_area .widget {
   margin: 0;
   padding: 0;
 }
-.sidebar-header .widget a {
+.header_widget_area .widget a {
   color: #888888;
   font-size: 12px;
   font-size: 1.2rem;
@@ -957,7 +957,7 @@ Header
   padding: 0 0.5rem;
   text-decoration: none;
 }
-.sidebar-header .widget a:hover {
+.header_widget_area .widget a:hover {
   text-decoration: underline;
 }
 
