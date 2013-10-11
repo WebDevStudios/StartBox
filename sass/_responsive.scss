@@ -11,6 +11,7 @@
 
 @media only screen and (max-width: 768px) {
 
+	.comments-area,
 	.site-title,
 	.site-description,
 	.sidebar-header,
@@ -55,11 +56,6 @@
 		width: 100%;
 	}
 
-	.menu-toggle,
-	.main-navigation.toggled .nav-menu {
-		display: block;
-	}
-
 	.main-navigation {
 
 		ul {
@@ -85,6 +81,11 @@
 			}
 		}
 
+	}
+
+	.menu-toggle,
+	.main-navigation.toggled .nav-menu {
+		display: block;
 	}
 
 	h1.menu-toggle {
