@@ -56,39 +56,39 @@ function startbox_setup_theme() {
 		'sb-sidebars',
 		array(
 			array(
-				'id'          => 'primary',
-				'name'        => 'Primary Sidebar',
-				'description' => __( 'This is the primary sidebar when using two- or three-column layouts.', 'startbox' ),
-				'editable'    => 1
-				),
-			array(
-				'id'          => 'secondary',
-				'name'        => 'Secondary Sidebar',
+				'id'          => 'header_widget_area',
+				'name'        => 'Header Widget Area',
 				'description' => __( 'This is the secondary sidebar for three-column layouts.', 'startbox' ),
 				'editable'    => 1
 				),
 			array(
-				'id'          => 'home_featured',
-				'name'        => 'Home Featured',
-				'description' => __( 'These widgets will appear above the content on the homepage.', 'startbox' ),
-				'editable'    => 0
+				'id'          => 'primary_widget_area',
+				'name'        => 'Primary Widget Area',
+				'description' => __( 'This is the primary widget area when using two- or three-column layouts.', 'startbox' ),
+				'editable'    => 1
+				),
+			array(
+				'id'          => 'secondary_widget_area',
+				'name'        => 'Secondary Widget Area',
+				'description' => __( 'This is the secondary widget area for three-column layouts.', 'startbox' ),
+				'editable'    => 1
 				),
 			array(
 				'id'          => 'footer_widget_area_1',
-				'name'        => 'Footer Aside 1',
-				'description' => __( 'This is the first footer column. Use this before using any other footer columns.', 'startbox' ),
+				'name'        => 'Footer - Left Widget Area',
+				'description' => __( 'Appears on the left side of the footer.', 'startbox' ),
 				'editable'    => 1
 				),
 			array(
 				'id'          => 'footer_widget_area_2',
-				'name'        => 'Footer Aside 2',
-				'description' => __( 'This is the second footer column. Only use this after using Footer Aside 1.', 'startbox' ),
+				'name'        => 'Footer - Center Widget Area',
+				'description' => __( 'Appears in the center of the footer.', 'startbox' ),
 				'editable'    => 1
 				),
 			array(
 				'id'          => 'footer_widget_area_3',
-				'name'        => 'Footer Aside 3',
-				'description' => __( 'This is the third footer column. Only use this after using Footer Aside 2.', 'startbox' ),
+				'name'        => 'Footer - Right Widget Area',
+				'description' => __( 'Appears on the right side of the footer.', 'startbox' ),
 				'editable'    => 1
 				)
 		)

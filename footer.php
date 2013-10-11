@@ -11,7 +11,20 @@
 	</div><!-- #content -->
 	<div class="footer-widgets">
 		<div class="wrap">
-			<?php get_sidebar( 'footer' ); ?>
+			<div class="footer-widgets-1 widget-area col span_4">
+				<?php if ( ! dynamic_sidebar( 'footer_widget_area_1' ) ) { ?>
+				<?php } ?>
+			</div>
+
+			<div class="footer-widgets-2 widget-area col span_4">
+				<?php if ( ! dynamic_sidebar( 'footer_widget_area_2' ) ) { ?>
+				<?php } ?>
+			</div>
+
+			<div class="footer-widgets-3 widget-area col span_4">
+				<?php if ( ! dynamic_sidebar( 'footer_widget_area_3' ) ) { ?>
+				<?php } ?>
+			</div>
 		</div>
 	</div><!-- .footer-widgets -->
 	<footer id="colophon" class="site-footer" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
