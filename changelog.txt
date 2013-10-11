@@ -1,3 +1,11 @@
+2013.10.11 - version 3.0.0-Experimental
+	* Made comments responsive
+	* Rename "Sidebars" to "Widget Areas"
+	* Rename all span_X to span-X
+	* Refactored all Widget Areas to use sb_do_sidebar();
+	* Added Header Widget Area
+	* Added custom menu support to Header Widget Area
+
 2013.10.10 - version 3.0.0-Experimental
 	* Overhaul main navigation styles
 	* Added zebra striping to comments
