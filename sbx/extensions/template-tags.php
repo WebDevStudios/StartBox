@@ -114,7 +114,7 @@ function sbx_comment( $comment, $args, $depth ) {
 				<div class="comment-gravatar col span-2">
 					<?php if ( 0 != $args['avatar_size'] ) echo get_avatar( $comment, $args['avatar_size'] ); ?>
 				</div>
-				<div class="comment-metadata col span-10">
+				<div class="comment-metadata col no-gutters span-10">
 					<div class="comment-author vcard" itemprop="creator" itemscope itemtype="http://schema.org/Person">
 						<?php printf( __( '%s <span class="says">says:</span>', 'sbx' ), sprintf( '<cite class="fn" itemprop="name">%s</cite>', get_comment_author_link() ) ); ?>
 					</div><!-- .comment-author -->
