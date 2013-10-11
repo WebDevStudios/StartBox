@@ -79,6 +79,7 @@ class SB_Sidebars {
 			'id'          => '',
 			'name'        => '',
 			'description' => '',
+			'class'       => '',
 			'editable'    => 1 // Makes this sidebar replaceable via SB Custom Sidebars extension
 		);
 		$sidebar = wp_parse_args( $args, $defaults );
@@ -91,6 +92,7 @@ class SB_Sidebars {
 			'id'            => esc_attr( $sidebar['id'] ),
 			'name'          => esc_attr( $sidebar['name'] ),
 			'description'   => esc_attr( $sidebar['description'] ),
+			'class'         => esc_attr( $sidebar['class'] ),
 			'editable'      => absint( $sidebar['editable'] ),
 			'before_widget' => apply_filters( 'sb_sidebars_before_widget', '<aside id="%1$s" class="widget %2$s">', $sidebar['id'], $sidebar ),
 			'after_widget'  => apply_filters( 'sb_sidebars_after_widget', '</aside><!-- #%1$s -->', $sidebar['id'], $sidebar ),
@@ -99,7 +101,8 @@ class SB_Sidebars {
 		), $sidebar ) );
 
 		// Add the sidebar to our registered array
-		$this->registered_sidebars[$sidebar['id']] = $sidebar;
+		$this->registered_sidebars[$sidebar['id']] = $sidebar;		
+		
 	}
 
 	/**
@@ -107,12 +110,12 @@ class SB_Sidebars {
 	 *
 	 * @since 2.5.0
 	 * @param string $sidebar  The default sidebar to render
-	 * @param string $classes  Additional CSS classes to apply to the container
+	 * @param string $class  Additional CSS classes to apply to the container
 	 */
 	function do_sidebar( $sidebar = null, $classes = null ) {
 
 		// Cache the sidebar location we're rendering
-		$location = $sidebar;
+		$location = $sidebar;		
 
 		// Maybe replace the default sidebar with a custom sidebar
 		$sidebar = apply_filters( 'sb_do_sidebar', $sidebar );
@@ -121,14 +124,14 @@ class SB_Sidebars {
 		if ( is_active_sidebar( $sidebar ) || has_action( "sb_no_{$location}_widgets" ) ) {
 
 			do_action( "before_{$location}" );
-			echo '<div id="' . esc_attr( $location ) . '" class="widget-area sidebar ' . esc_attr( $location ) . ' col span-4 ' . esc_attr( $classes ) . '" role="complimentary" itemscope itemtype="http://schema.org/WPSideBar">';
+			echo '<div id="' . esc_attr( $location ) . '" class="widget-area sidebar ' . esc_attr( $location ) . ' ' . esc_attr( $classes ) . '" role="complimentary" itemscope itemtype="http://schema.org/WPSideBar">';
 			do_action( "before_{$location}_widgets" );
 
 			if ( ! dynamic_sidebar( $sidebar ) )
 				do_action( "no_{$location}_widgets" );
 
 			do_action( "after_{$location}_widgets" );
-			echo '</div><!-- #' . esc_attr( $location ) . ' .' . esc_attr( $location ) . '-widget-area -->';
+			echo '</div><!-- #' . esc_attr( $location ) . ' .' . esc_attr( $classes ) . ' -->';
 			do_action( "after_{$location}" );
 		}
 	}
