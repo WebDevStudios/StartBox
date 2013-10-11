@@ -28,6 +28,7 @@ Table Of Contents
 		- Screen Readers
 		- Tables
 		- Forms
+		- Widgets
 	- Structure and Layout
 		- Container
 		- Grid
@@ -38,16 +39,15 @@ Table Of Contents
 		- Main Navigation
 		- Pagination
 	- Content
-	- Comments
-	- Sidebar
 		- Widget Area
+	- Comments
 	- Footer
 		- Widget Area
 	- Media Queries
 		- Print
 		- Responsive
 
-/*
+
 HTML5 Reset
 ------------------------------------------------------------------------- */
 @import "reset";
@@ -63,6 +63,7 @@ Defaults
 @import "screen-readers";
 @import "tables";
 @import "forms";
+@import "widgets";
 
 
 /*
@@ -90,20 +91,12 @@ Navigation
 Content
 ------------------------------------------------------------------------- */
 @import "content";
-
+@import "content-widget-area";
 
 /*
 Comments
 ------------------------------------------------------------------------- */
 @import "comments";
-
-
-/*
-Sidebar
-------------------------------------------------------------------------- */
-@import "sidebar";
-@import "sidebar-widget-area";
-
 
 /*
 Footer

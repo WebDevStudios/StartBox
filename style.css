@@ -24,6 +24,7 @@ Table Of Contents
 		- Screen Readers
 		- Tables
 		- Forms
+		- Widgets
 	- Structure and Layout
 		- Container
 		- Grid
@@ -34,16 +35,15 @@ Table Of Contents
 		- Main Navigation
 		- Pagination
 	- Content
-	- Comments
-	- Sidebar
 		- Widget Area
+	- Comments
 	- Footer
 		- Widget Area
 	- Media Queries
 		- Print
 		- Responsive
 
-/*
+
 HTML5 Reset
 ------------------------------------------------------------------------- */
 /* Normalize
@@ -241,6 +241,7 @@ table {
 .row:before,
 .col:before,
 .clr:before,
+.menu:before,
 .site-inner:before,
 .content-sidebar:before,
 .entry:before,
@@ -251,8 +252,7 @@ table {
 .comment-list:before,
 .comment:before,
 .comment-respond:before,
-.footer-widgets:before,
-.main-navigation:before,
+.widget:before,
 .wrap:before {
   content: " ";
   display: table;
@@ -263,6 +263,7 @@ table {
 .row:after,
 .col:after,
 .clr:after,
+.menu:after,
 .site-inner:after,
 .content-sidebar:after,
 .entry:after,
@@ -273,8 +274,7 @@ table {
 .comment-list:after,
 .comment:after,
 .comment-respond:after,
-.footer-widgets:after,
-.main-navigation:after,
+.widget:after,
 .wrap:after {
   clear: both;
   content: " ";
@@ -762,6 +762,16 @@ input[type="text"] {
   border-radius: 8px;
 }
 
+/* Widgets
+--------------------------------------------- */
+.widget-area .widget {
+  background-color: white;
+  margin-bottom: 48px;
+  margin-bottom: 4.8rem;
+  padding: 40px;
+  padding: 4rem;
+}
+
 /*
 Structure and Layout
 ------------------------------------------------------------------------- */
@@ -931,29 +941,57 @@ Header
 /* Header Widget Area
 --------------------------------------------- */
 .header_widget_area {
-  float: left;
-  text-align: right;
-  padding-top: 6px;
-  padding-top: 0.6rem;
+  padding-top: 32px;
+  padding-top: 3.2rem;
 }
-.header_widget_area .menu-item {
-  display: inline-block;
-  position: relative;
-}
-.header_widget_area .widget {
+.header_widget_area .widget,
+.header_widget_area ul {
+  list-style: none;
   margin: 0;
   padding: 0;
 }
-.header_widget_area .widget a {
-  color: #888888;
-  font-size: 12px;
-  font-size: 1.2rem;
-  padding: 0 5px;
-  padding: 0 0.5rem;
+.header_widget_area .widget_nav_menu ul {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+.header_widget_area .widget_nav_menu li {
+  float: left;
+  position: relative;
+}
+.header_widget_area .widget_nav_menu a {
+  color: black;
+  display: block;
+  padding: 12px;
+  padding: 1.2rem;
   text-decoration: none;
 }
-.header_widget_area .widget a:hover {
-  text-decoration: underline;
+.header_widget_area .widget_nav_menu a:hover {
+  color: #eeeeee;
+}
+.header_widget_area .widget_nav_menu ul.sub-menu {
+  background-color: white;
+  display: none;
+  float: left;
+  position: absolute;
+  z-index: 99999;
+}
+.header_widget_area .widget_nav_menu ul.sub-menu ul {
+  left: 100%;
+  top: 0;
+}
+.header_widget_area .widget_nav_menu ul.sub-menu a {
+  color: #222222;
+  padding: 16px 24px;
+  padding: 1.6rem 2.4rem;
+  width: 200px;
+}
+.header_widget_area .widget_nav_menu ul.sub-menu a:hover {
+  background-color: #eeeeee;
+  color: black;
+}
+.header_widget_area .widget_nav_menu ul li:hover > ul.sub-menu {
+  display: block;
 }
 
 /*
@@ -984,6 +1022,9 @@ Navigation
   padding: 24px;
   padding: 2.4rem;
   text-decoration: none;
+}
+.main-navigation a:hover {
+  color: #eeeeee;
 }
 .main-navigation ul.sub-menu {
   background-color: white;
@@ -1074,6 +1115,8 @@ Content
   margin-bottom: 2.4rem;
 }
 
+/* Content Widget Area
+--------------------------------------------- */
 /*
 Comments
 ------------------------------------------------------------------------- */
@@ -1156,19 +1199,6 @@ ul.children {
 }
 
 /*
-Sidebar
-------------------------------------------------------------------------- */
-/* Sidebar Widget Area
---------------------------------------------- */
-.sidebar .widget {
-  background-color: white;
-  margin-bottom: 48px;
-  margin-bottom: 4.8rem;
-  padding: 40px;
-  padding: 4rem;
-}
-
-/*
 Footer
 ------------------------------------------------------------------------- */
 .site-footer {
@@ -1196,6 +1226,10 @@ Footer
   clear: both;
   padding: 40px 0 16px;
   padding: 4rem 0 1.6rem;
+}
+.footer-widgets .widget {
+  background-color: #222222;
+  padding: 0;
 }
 .footer-widgets .widget-title {
   color: white;

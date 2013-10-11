@@ -1,9 +1,11 @@
-/* Sidebar Widget Area
+/* Widgets
 --------------------------------------------- */
-.sidebar {
+.widget-area {
+	
 	.widget {
 		background-color: $color-bg-widgets;
 		@include rem(margin-bottom, 48px);
 		@include rem(padding, 40px);
+
 	}
 }
