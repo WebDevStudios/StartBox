@@ -1,25 +1,16 @@
 /* Responsive
 --------------------------------------------- */
 
-@media only screen and (max-width: 1023px) { 
-
-	.content-area {
-		@include rem(padding, 0 12px);
-	}
-
-}
-
 @media only screen and (max-width: 768px) {
 
-	.comments-area,
+	h1.menu-toggle,
+	.main-navigation,
+	.main-navigation ul,
+	.main-navigation li,
+	.main-navigation a,
+	ul.sub-menu,
 	.site-title,
-	.site-description,
-	.sidebar-header,
-	.sidebar-header ul,
-	.sidebar-header .widget,
-	.footer-widgets-1,
-	.footer-widgets-2,
-	.footer-widgets-3 {
+	.site-description {
 		clear: both;
 		float: none;
 		margin: 0;
@@ -35,25 +26,6 @@
 
 	.site-description {
 		@include rem(font-size, 24px);
-	}
-
-	.sidebar-header .widget a {
-		@include rem(font-size, 16px);
-	}
-
-	h1.menu-toggle,
-	.main-navigation,
-	.main-navigation ul,
-	.main-navigation li,
-	.main-navigation a,
-	ul.sub-menu {
-		clear: both;
-		color: $color-text-tertiary;
-		float: none;
-		margin: 0;
-		padding: 0;
-		text-align: center;
-		width: 100%;
 	}
 
 	.main-navigation {

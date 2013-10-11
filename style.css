@@ -281,11 +281,6 @@ table {
   display: table;
 }
 
-/* For IE 6/7 only */
-.clear {
-  *zoom: 1;
-}
-
 /*
 Defaults
 ------------------------------------------------------------------------- */
@@ -1269,22 +1264,15 @@ Print Styles
 }
 /* Responsive
 --------------------------------------------- */
-@media only screen and (max-width: 1023px) {
-  .content-area {
-    padding: 0 12px;
-    padding: 0 1.2rem;
-  }
-}
 @media only screen and (max-width: 768px) {
-  .comments-area,
+  h1.menu-toggle,
+  .main-navigation,
+  .main-navigation ul,
+  .main-navigation li,
+  .main-navigation a,
+  ul.sub-menu,
   .site-title,
-  .site-description,
-  .sidebar-header,
-  .sidebar-header ul,
-  .sidebar-header .widget,
-  .footer-widgets-1,
-  .footer-widgets-2,
-  .footer-widgets-3 {
+  .site-description {
     clear: both;
     float: none;
     margin: 0;
@@ -1303,26 +1291,6 @@ Print Styles
   .site-description {
     font-size: 24px;
     font-size: 2.4rem;
-  }
-
-  .sidebar-header .widget a {
-    font-size: 16px;
-    font-size: 1.6rem;
-  }
-
-  h1.menu-toggle,
-  .main-navigation,
-  .main-navigation ul,
-  .main-navigation li,
-  .main-navigation a,
-  ul.sub-menu {
-    clear: both;
-    color: white;
-    float: none;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    width: 100%;
   }
 
   .main-navigation ul {
