@@ -22,6 +22,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,su
 .row:before,
 .col:before,
 .clr:before,
+.menu:before,
 .site-inner:before,
 .content-sidebar:before,
 .entry:before,
@@ -32,8 +33,8 @@ article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,su
 .comment-list:before,
 .comment:before,
 .comment-respond:before,
-.footer-widgets:before,
-.main-navigation:before,
+
+.widget:before,
 .wrap:before {
 	content: " ";
 	display: table;
@@ -44,6 +45,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,su
 .row:after,
 .col:after,
 .clr:after,
+.menu:after,
 .site-inner:after,
 .content-sidebar:after,
 .entry:after,
@@ -54,8 +56,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,su
 .comment-list:after,
 .comment:after,
 .comment-respond:after,
-.footer-widgets:after,
-.main-navigation:after,
+.widget:after,
 .wrap:after {
 	clear: both;
 	content: " ";

@@ -2,28 +2,75 @@
 --------------------------------------------- */
 
 .header_widget_area {
-	float: left;
-	text-align: right;
-	@include rem(padding-top, 6px);
+	@include rem(padding-top, 32px);
 
-	.menu-item {
-		display: inline-block;
-		position: relative;
-	}
-
-	.widget {
+	.widget,
+	ul {
+		list-style: none;
 		margin: 0;
 		padding: 0;
+	}
+
+	.widget_nav_menu {
+
+		ul {
+			list-style: none;
+			margin: 0;
+			padding-left: 0;
+		}
+
+		li {
+			float: left;
+			position: relative;
+		}
 
 		a {
-			color: $color-link;
-			@include rem(font-size, 12px);
-			@include rem(padding, 0 5px);
+			color: $color-nav-header-link;
+			display: block;
+			@include rem(padding, 12px);
 			text-decoration: none;
 		}
 
 		a:hover {
-			text-decoration: underline;
+			color: $color-nav-header-link-hover;
 		}
+
+		ul.sub-menu {
+			background-color: $color-bg-nav-sub;
+			display: none;
+			float: left;
+			position: absolute;
+			z-index: 99999;
+
+			ul {
+				left: 100%;
+				top: 0;
+			}
+
+			a {
+				color: $color-nav-sub-link;
+				@include rem(padding, 16px 24px);
+				width: 200px;
+			}
+
+			a:hover {
+				background-color: $color-bg-nav-sub-hover;
+				color: $color-nav-sub-link-hover;
+			}
+
+		}
+
+		li:hover > a {
+		}
+
+		ul li:hover > ul.sub-menu {
+			display: block;
+		}
+
+		li.current_page_item a,
+		li.current-menu-item a {
+		}
+
 	}
+
 }

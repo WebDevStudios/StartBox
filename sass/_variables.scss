@@ -56,6 +56,8 @@ $color-nav-link:			$white !default;
 $color-nav-link-hover:		$blackLightest !default;
 $color-nav-sub-link:		$blackMed !default;
 $color-nav-sub-link-hover:	$black !default;
+$color-nav-header-link:		$black !default;
+$color-nav-header-link-hover: $blackLightest !default;
 
 // Text
 $color-text-primary:		$black !default;
@@ -79,7 +81,7 @@ $site-wrap:					1140px !default; // The width of .wrap (1140, 960, etc...)
 
 // Typography
 // -------------------------
-$font-size:          		10 !default; // Default: 10. After setting html {font-size: 62.5%;} in _site-defaults.scss
+$font-size:					10 !default; // Default: 10. After setting html {font-size: 62.5%;} in _site-defaults.scss
 $font-sans:					"Helvetica Neue", Helvetica, Arial, sans-serif !default;
 $font-serif:				Georgia, Cambria, "Times New Roman", Times, serif !default;
 $font-mono:					"Courier 10 Pitch", Courier, monospace !default;
