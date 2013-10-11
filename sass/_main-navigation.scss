@@ -27,6 +27,10 @@
 		text-decoration: none;
 	}
 
+	a:hover {
+		color: $color-nav-link-hover;
+	}
+
 	ul.sub-menu {
 		background-color: $color-bg-nav-sub;
 		box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
