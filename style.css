@@ -536,12 +536,12 @@ img.alignright,
 .wp-caption-text {
   font-size: 14px;
   font-size: 1.4rem;
-  font-weight: 700;
   text-align: center;
 }
 
 .gallery-caption {
   text-align: center;
+  margin: 0;
 }
 
 .widget_calendar table {
@@ -1086,6 +1086,11 @@ Content
 
 .sticky {
   background-color: yellow;
+}
+
+.page-header {
+  margin-top: 24px;
+  margin-top: 2.4rem;
 }
 
 .entry-title a {

@@ -1,10 +1,13 @@
-
 .site-inner {
 	@include rem(padding-top, 48px);
 }
 
 .sticky {
 	background-color: $yellow;
+}
+
+.page-header {
+	@include rem(margin-top, 24px);
 }
 
 .entry-title a {
