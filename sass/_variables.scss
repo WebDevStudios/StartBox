@@ -49,15 +49,15 @@ $color-highlight:			$blackLightest !default;
 
 // Links
 $color-link:				$blackLight !default;
-$color-link-hover:			$blackLighter !default;
+$color-link-hover:			lighten($blackLight, 15) !default;
 
 // Navigation
 $color-nav-link:			$white !default;
-$color-nav-link-hover:		$blackLightest !default;
+$color-nav-link-hover:		lighten($blackLight, 15) !default;
 $color-nav-sub-link:		$blackMed !default;
 $color-nav-sub-link-hover:	$black !default;
 $color-nav-header-link:		$black !default;
-$color-nav-header-link-hover: $blackLightest !default;
+$color-nav-header-link-hover: lighten($blackLight, 15) !default;
 
 // Text
 $color-text-primary:		$black !default;
@@ -82,8 +82,8 @@ $site-wrap:					1140px !default; // The width of .wrap (1140, 960, etc...)
 // Typography
 // -------------------------
 $font-size:					10 !default; // Default: 10. After setting html {font-size: 62.5%;} in _site-defaults.scss
-$font-sans:					"Helvetica Neue", Helvetica, Arial, sans-serif !default;
-$font-serif:				Georgia, Cambria, "Times New Roman", Times, serif !default;
+$font-sans:					Arial, "Helvetica Neue", Helvetica, sans-serif !default;
+$font-serif:				Georgia, Times, "Times New Roman", serif !default;
 $font-mono:					"Courier 10 Pitch", Courier, monospace !default;
 $site-title-font:			$font-serif !default;
 $site-description-font:		$font-sans !default;
