@@ -13,7 +13,7 @@ ul.children,
 }
 
 .comments-area {
-	@include rem(40px 10px 40px 20px);
+	@include rem(padding, 40px 10px 40px 20px);
 }
 
 .comment-list {
