@@ -3,12 +3,13 @@
 
 @media only screen and (max-width: 768px) {
 
+	.site-branding,
 	h1.menu-toggle,
 	.main-navigation,
 	.main-navigation ul,
 	.main-navigation li,
 	.main-navigation a,
-	ul.sub-menu,
+	.main-navigation ul.sub-menu,
 	.site-title,
 	.site-description {
 		clear: both;
@@ -60,9 +61,18 @@
 		display: block;
 	}
 
+	.header_widget_area {
+		.widget_nav_menu {
+			ul {
+				float: none;
+			}
+		}
+	}
+
 	h1.menu-toggle {
+		color: $white;
 		@include rem(font-size, 24px);
-		@include rem(padding, 6px 0);
+		@include rem(padding, 12px 0 0);
 	}
 
 }
