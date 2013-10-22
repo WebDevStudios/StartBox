@@ -1329,6 +1329,10 @@ Print Styles
     font-size: 2.4rem;
   }
 
+  .header_widget_area {
+    padding: 0;
+  }
+
   .main-navigation ul {
     display: none;
   }
