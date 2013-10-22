@@ -21,9 +21,6 @@ $violet:					#8f00ff !default;
 
 // Backgrounds
 $color-bg-body:				$white !default;
-$color-bg-nav:				$blackMed !default;
-$color-bg-nav-sub:			$white !default;
-$color-bg-nav-sub-hover:	$blackLightest !default;
 $color-bg-header:			$white !default;
 $color-bg-widgets:			$white !default;
 $color-bg-content:			$white !default;
@@ -31,8 +28,6 @@ $color-bg-comments:			$white !default;
 $color-bg-comment-even:		lighten($black, 98) !default;
 $color-bg-comment-odd:		$white !default;
 $color-bg-comment-author:	lighten($yellow, 45) !default;
-$color-bg-button:			$blackLighter !default;
-$color-bg-button-hover:		$blackLightest !default;
 $color-bg-footer:			$blackMed !default;
 
 // Border
@@ -52,6 +47,9 @@ $color-link:				$blackLight !default;
 $color-link-hover:			lighten($blackLight, 15) !default;
 
 // Navigation
+$color-bg-nav:				$blackMed !default;
+$color-bg-nav-sub:			$white !default;
+$color-bg-nav-sub-hover:	$blackLightest !default;
 $color-nav-link:			$white !default;
 $color-nav-link-hover:		lighten($blackLight, 15) !default;
 $color-nav-sub-link:		$blackMed !default;
@@ -70,7 +68,9 @@ $color-headlines-secondary:	$blackLight !default;
 $color-headlines-footer:	$white !default;
 
 // Forms
-$color-form-button-text:	$black !default;
+$color-bg-button:			$blackMed !default;
+$color-bg-button-hover:		lighten($blackMed, 15) !default;
+$color-form-button-text:	$white !default;
 $color-form-input-text:		$black !default;			
 
 
