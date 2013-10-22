@@ -58,7 +58,6 @@ if ( ! class_exists('StartBox') ) {
 			define( 'SB_IMAGES',       trailingslashit( SB_DIR ) . 'images' );
 			define( 'SB_JS',           trailingslashit( SB_URI ) . 'js' );
 			define( 'SB_LANGUAGES',    trailingslashit( SB_DIR ) . 'languages' );
-			define( 'SB_WIDGETS',      trailingslashit( SB_DIR ) . 'widgets' );
 
 		}
 
@@ -94,10 +93,6 @@ if ( ! class_exists('StartBox') ) {
 			// foreach ( glob( SB_ADMIN . '/*.php') as $sb_admin )
 			// 	require_if_theme_supports( 'sb-customizer', $sb_admin );
 
-			// Include all packaged widgets
-			foreach ( glob( SB_WIDGETS . '/*.php') as $sb_widget )
-				require_if_theme_supports( 'sb-widgets', $sb_widget );
-
 		}
 
 		/**
@@ -123,7 +118,6 @@ if ( ! class_exists('StartBox') ) {
 			wp_register_script( 'colorbox',     SB_JS . '/jquery.colorbox.min.js', array( 'jquery' ), SB_VERSION );
 			wp_register_script( 'smoothScroll', SB_JS . '/jquery.smooth-scroll.min.js', array( 'jquery' ), SB_VERSION );
 			wp_register_script( 'startbox',     SB_JS . '/startbox.js', array( 'jquery' ), SB_VERSION );
-			wp_register_script( 'widgets',      SB_JS . '/widgets.js', array( 'jquery' ), SB_VERSION );
 			wp_enqueue_script( 'startbox' );
 
 			// Register Default Styles
