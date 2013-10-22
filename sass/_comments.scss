@@ -12,8 +12,13 @@ ul.children,
 	padding: 0;
 }
 
+.comments-area {
+	@include rem(40px 10px 40px 20px);
+}
+
 .comment-list {
 	background-color: $color-bg-comments;
+	@include rem(padding, 12px 12px 0 12px);
 
 	li li {
 		@include rem(padding, 12px);
