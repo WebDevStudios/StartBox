@@ -2,19 +2,19 @@
 --------------------------------------------- */
 
 .footer-widgets {
-	background-color: $color-bg-footer;
+	background-color: $color-bg-footer-widgets;
 	border-top: 10px solid $color-border;
 	color: $color-text-tertiary;
 	clear: both;
 	@include rem(padding, 40px 0 16px);
 	
 	.widget {
-		background-color: $color-bg-footer;
+		background-color: $color-bg-footer-widgets;
 		padding: 0;
 	}
 
 	.widget-title {
-		color: $color-headlines-footer;
+		color: $color-footer-widget-title;
 	}
 
 	ul {

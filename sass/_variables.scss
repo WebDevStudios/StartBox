@@ -62,7 +62,11 @@ $color-bg-comment-odd:			$white !default;
 $color-bg-comment-author:		lighten($yellow, 45) !default;
 
 // Footer
-$color-bg-footer:				$color-4 !default;
+$color-bg-footer:				$color-3 !default;
+$color-footer-text:				$color-4 !default;
+$color-footer-link:				$color-5 !default;
+$color-bg-footer-widgets:		$color-4 !default;
+$color-footer-widget-title:		$color-3 !default;
 
 // Forms
 $color-bg-button:				$color-3 !default;
@@ -84,7 +88,6 @@ $size-site-description:			12px !default;
 // Headlines
 $color-headlines-primary:		$color-4 !default;
 $color-headlines-secondary:		$color-5 !default;
-$color-headlines-footer:		$color-3 !default;
 $font-headlines:				$font-stack-sans !default;
 
 // Hightlight

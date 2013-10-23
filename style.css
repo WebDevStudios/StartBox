@@ -1263,18 +1263,21 @@ Footer
 --------------------------------------------- */
 .site-footer {
   clear: both;
-  background-color: #3e4651;
+  background-color: #f0f0f0;
   padding: 8px 0;
-  padding: .8rem 0;
+  padding: 0.8rem 0;
 }
 
 .site-info {
   color: #3e4651;
   font-size: 12px;
-  font-size: 12px;
   font-size: 1.2rem;
-  padding: 10px 0 5px 24px;
-  padding: 1rem 0 0.5rem 2.4rem;
+  padding: 12px 0;
+  padding: 1.2rem 0;
+}
+
+.site-info a {
+  color: #5c6d7e;
 }
 
 /* Footer Widget Area
@@ -1366,7 +1369,8 @@ Media Queries
   .main-navigation a,
   .main-navigation ul.sub-menu,
   .site-title,
-  .site-description {
+  .site-description,
+  .site-info {
     clear: both;
     float: none;
     margin: 0;

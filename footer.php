@@ -17,9 +17,11 @@
 		</div>
 	</div><!-- .footer-widgets -->
 	<footer id="colophon" class="site-footer" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
-		<div class="site-info clear">
-			<?php do_action( 'sbx_credits' ); ?>
-		</div><!-- .site-info -->
+		<div class="wrap">
+			<div class="no-gutters site-info col span-12">
+				<p>&copy; <?php echo date( 'Y' ); ?> <a href="#">Footer Credits</a> | Will be replaced with a shortcode</p>
+			</div><!-- .site-info -->
+	</div>
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 <?php wp_footer(); ?>
