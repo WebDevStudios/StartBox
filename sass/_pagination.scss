@@ -5,7 +5,10 @@
 .paging-navigation,
 .page-links {
 	clear: both;
-	@include rem(margin-bottom, 24px);
+}
+
+.post-navigation {
+	@include rem(margin-bottom, 48px);
 }
 
 .content-area [class*="navigation"] {
