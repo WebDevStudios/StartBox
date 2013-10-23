@@ -760,6 +760,11 @@ Structure and Layout
   background-color: #fcf5ef;
 }
 
+.site-main {
+  margin-bottom: 48px;
+  margin-bottom: 4.8rem;
+}
+
 .wrap {
   margin: 0 auto;
   max-width: 1140px;
@@ -1044,8 +1049,11 @@ Navigation
 .paging-navigation,
 .page-links {
   clear: both;
-  margin-bottom: 24px;
-  margin-bottom: 2.4rem;
+}
+
+.post-navigation {
+  margin-bottom: 48px;
+  margin-bottom: 4.8rem;
 }
 
 .content-area [class*="navigation"] {
