@@ -912,13 +912,14 @@ Header
   color: #5c6d7e;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-weight: 300;
-  font-size: 12px;
-  font-size: 1.2rem;
+  font-size: 14px;
+  font-size: 1.4rem;
 }
 
 /* Header Widget Area
 --------------------------------------------- */
 .header_widget_area {
+  float: right;
   padding-top: 32px;
   padding-top: 3.2rem;
 }

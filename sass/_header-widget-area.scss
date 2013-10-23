@@ -2,6 +2,7 @@
 --------------------------------------------- */
 
 .header_widget_area {
+	float: right;
 	@include rem(padding-top, 32px);
 
 	.widget,
