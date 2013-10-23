@@ -78,10 +78,7 @@ function startbox_setup_theme() {
 	register_nav_menu( 'main-navigation',__( 'Main Navigation' ) );
 
 	// Custom Post Editor Styles
-	add_editor_style( array(
-		'/includes/styles/typography.css',
-		'/includes/styles/editor.css'
-	) );
+    add_editor_style( 'editor-style.css' );
 
 	// Post Format support
 	add_theme_support(

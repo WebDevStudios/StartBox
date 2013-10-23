@@ -1,0 +1,26 @@
+// Import variables and mixins
+@import "variables"; // Modify this for custom colors, font-sizes, etc
+@import "mixins"; // Modify this for custom functions and actions etc
+
+/*
+Defaults
+------------------------------------------------------------------------- */
+@import "hyperlinks";
+@import "typography";
+@import "objects";
+@import "alignment";
+@import "screen-readers";
+@import "tables";
+@import "forms";
+
+/*
+Content
+------------------------------------------------------------------------- */
+@import "content";
+
+// Add overwrites as needed so that the content of the editor field is attractive and not broken
+body { 
+    padding: 0; 
+    background: #ffffff;
+    margin: 8px;
+}

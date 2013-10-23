@@ -1,0 +1,524 @@
+/*
+Defaults
+------------------------------------------------------------------------- */
+/* Hyperlinks
+--------------------------------------------- */
+a,
+a:visited {
+  color: #f16233;
+}
+
+a:hover,
+a:focus,
+a:active {
+  color: #5c6d7e;
+}
+
+/* Typography
+--------------------------------------------- */
+html {
+  font-size: 62.5%;
+  /* 10px browser default */
+}
+
+body {
+  background-color: #f0f0f0;
+  color: #3e4651;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 16px;
+  font-size: 1.6rem;
+  font-weight: 300;
+  line-height: 1.625;
+}
+
+p {
+  margin-bottom: 24px;
+  margin-bottom: 2.4rem;
+}
+
+ul,
+ol {
+  padding-left: 24px;
+  padding-left: 2.4rem;
+}
+
+li > ul,
+li > ol {
+  margin-bottom: 0;
+  margin-left: 24px;
+  margin-left: 2.4rem;
+}
+
+dt {
+  font-weight: 700;
+}
+
+dd {
+  margin: 0 24px 24px;
+  margin: 0 2.4rem 2.4rem;
+}
+
+b,
+strong {
+  font-weight: 700;
+}
+
+dfn,
+cite,
+em,
+i {
+  font-style: italic;
+}
+
+blockquote {
+  margin: 24px;
+  margin: 2.4rem;
+}
+
+address {
+  margin: 0 0 24px;
+  margin: 0 0 2.4rem;
+}
+
+pre {
+  background: #eeeeee;
+  font-family: "Courier 10 Pitch", Courier, monospace;
+  font-size: 15px;
+  font-size: 1.5rem;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  margin-bottom: 2.5rem;
+  padding: 16px;
+  padding: 1.6rem;
+  overflow: auto;
+  max-width: 100%;
+}
+
+code,
+kbd,
+tt,
+var {
+  font-family: "Courier 10 Pitch", Courier, monospace;
+  font-size: 15px;
+  font-size: 1.5rem;
+}
+
+abbr,
+acronym {
+  border-bottom: 1px dotted #5c6d7e;
+  cursor: help;
+}
+
+mark,
+ins {
+  background: #fff9a9;
+  text-decoration: none;
+}
+
+sup,
+sub {
+  font-size: 75%;
+  height: 0;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  bottom: 1ex;
+}
+
+sub {
+  top: .5ex;
+}
+
+small {
+  font-size: 75%;
+}
+
+big {
+  font-size: 125%;
+}
+
+figure {
+  margin: 0;
+}
+
+th {
+  font-weight: 700;
+}
+
+/* Headlines
+--------------------------------------------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  clear: both;
+  color: #3e4651;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  margin-bottom: 24px;
+  margin-bottom: 2.4rem;
+  padding: 0;
+}
+
+h1 {
+  font-size: 36px;
+  font-size: 3.6rem;
+}
+
+h2 {
+  font-size: 30px;
+  font-size: 3rem;
+}
+
+h3 {
+  font-size: 24px;
+  font-size: 2.4rem;
+}
+
+h4 {
+  font-size: 20px;
+  font-size: 2rem;
+}
+
+h5 {
+  font-size: 18px;
+  font-size: 1.8rem;
+}
+
+h6 {
+  font-size: 16px;
+  font-size: 1.6rem;
+}
+
+/* Objects
+--------------------------------------------- */
+embed,
+iframe,
+img,
+object,
+video,
+.wp-caption {
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+  width: auto;
+  /* IE8 */
+}
+
+/* Alignment
+--------------------------------------------- */
+img.centered,
+.aligncenter {
+  display: block;
+  margin: 0 auto 24px;
+  margin: 0 auto 2.4rem;
+}
+
+img.alignnone {
+  margin-bottom: 12px;
+  margin-bottom: 1.2rem;
+}
+
+.alignleft {
+  float: left;
+  text-align: left;
+}
+
+.alignright {
+  float: right;
+  text-align: right;
+}
+
+img.alignleft,
+.wp-caption.alignleft {
+  margin: 0 24px 24px 0;
+  margin: 0 2.4rem 2.4rem 0;
+}
+
+img.alignright,
+.wp-caption.alignright {
+  margin: 0 0 24px 24px;
+  margin: 0 0 2.4rem 2.4rem;
+}
+
+.wp-caption-text {
+  font-size: 14px;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.gallery-caption {
+  text-align: center;
+  margin: 0;
+}
+
+.widget_calendar table {
+  width: 100%;
+}
+
+.widget_calendar td,
+.widget_calendar th {
+  text-align: center;
+}
+
+/* Screen Readers
+--------------------------------------------- */
+.screen-reader-text {
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute !important;
+}
+
+.screen-reader-text:hover,
+.screen-reader-text:active,
+.screen-reader-text:focus {
+  background-color: #f1f1f1;
+  border-radius: 3px;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+  clip: auto !important;
+  color: #21759b;
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  height: auto;
+  left: 5px;
+  line-height: normal;
+  padding: 15px 23px 14px;
+  padding: 1.5rem 2.3rem 1.4rem;
+  text-decoration: none;
+  top: 5px;
+  width: auto;
+  z-index: 100000;
+  /* Above WP toolbar */
+}
+
+/* Tables
+--------------------------------------------- */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  line-height: 2;
+  margin-bottom: 24px;
+  margin-bottom: 2.4rem;
+  width: 100%;
+}
+
+tbody {
+  border-bottom: 1px solid #5c6d7e;
+}
+
+th,
+td {
+  text-align: left;
+}
+
+th {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+td {
+  border-top: 1px solid #5c6d7e;
+  padding: 6px 0;
+  padding: 0.6rem 0;
+}
+
+/* Forms
+--------------------------------------------- */
+/* reset */
+button,
+input,
+select,
+textarea {
+  font-size: 100%;
+  /* Corrects font size not being inherited in all browsers */
+  margin: 0;
+  /* Addresses margins set differently in IE6/7, F3/4, S5, Chrome */
+  vertical-align: baseline;
+  /* Improves appearance and consistency in all browsers */
+  *vertical-align: middle;
+  /* Improves appearance and consistency in all browsers */
+}
+
+button,
+input {
+  line-height: normal;
+  /* Addresses FF3/4 setting line-height using !important in the UA stylesheet */
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* Addresses box sizing set to content-box in IE8/9 */
+  padding: 0;
+  /* Addresses excess padding in IE8/9 */
+}
+
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* Addresses appearance set to searchfield in S5, Chrome */
+  -webkit-box-sizing: content-box;
+  /* Addresses box sizing set to border-box in S5, Chrome (include -moz to future-proof) */
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+input[type="search"]::-webkit-search-decoration {
+  /* Corrects inner padding displayed oddly in S5, Chrome on OSX */
+  -webkit-appearance: none;
+}
+
+input:focus,
+textarea:focus,
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  /* Corrects inner padding and border displayed oddly in FF3/4 www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/ */
+  border: 1px solid #dddddd;
+  outline: none;
+  border: 0;
+  padding: 0;
+}
+
+/* buttons */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  background: #f0f0f0;
+  border: 1px solid #dddddd;
+  color: #5c6d7e;
+  cursor: pointer;
+  /* Improves usability and consistency of cursor style between image-type 'input' and others */
+  -webkit-appearance: button;
+  /* Corrects inability to style clickable 'input' types in iOS */
+  font-size: 14px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 10px;
+  padding: 1rem;
+}
+
+button:hover,
+html input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:hover {
+  border: 1px solid #dddddd;
+  background: #5c6d7e;
+  color: #f0f0f0;
+}
+
+button:focus,
+html input[type="button"]:focus,
+input[type="reset"]:focus,
+input[type="submit"]:focus,
+button:active,
+html input[type="button"]:active,
+input[type="reset"]:active,
+input[type="submit"]:active {
+  border: 1px solid #dddddd;
+  background: #5c6d7e;
+}
+
+/* inputs */
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="tel"],
+input[type="password"],
+input[type="search"],
+select,
+textarea,
+.gform_fields input[type="text"],
+.gform_fields input[type="email"],
+.gform_fields input[type="url"],
+.gform_fields input[type="tel"],
+.gform_fields input[type="password"],
+.gform_fields input[type="search"],
+.gform_fields select,
+.gform_fields textarea,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+textarea:focus {
+  color: #3e4651;
+  border: 1px solid #dddddd;
+  font-size: 14px;
+  font-size: 1.4rem;
+  padding: 10px;
+  padding: 1rem;
+}
+
+textarea,
+.gform_fields textarea {
+  overflow: auto;
+  /* Removes default vertical scrollbar in IE6/7/8/9 */
+  vertical-align: top;
+  /* Improves readability and alignment in all browsers */
+  width: 100%;
+}
+
+/*
+Content
+------------------------------------------------------------------------- */
+/* Content
+--------------------------------------------- */
+.site-inner {
+  background-color: #f0f0f0;
+  clear: both;
+  padding-top: 48px;
+  padding-top: 4.8rem;
+}
+
+.sticky {
+  background-color: yellow;
+}
+
+.page-header {
+  margin-top: 24px;
+  margin-top: 2.4rem;
+}
+
+.entry-title a {
+  color: #3e4651;
+  text-decoration: none;
+}
+
+.entry-title a:hover {
+  color: #5c6d7e;
+}
+
+.entry-meta {
+  color: #5c6d7e;
+  border-top: 1px solid #5c6d7e;
+  font-size: 14px;
+  font-size: 1.4rem;
+  padding: 24px 0;
+  padding: 2.4rem 0;
+}
+
+.hentry {
+  background-color: white;
+  margin-bottom: 48px;
+  margin-bottom: 4.8rem;
+}
+
+.entry-updated {
+  display: none;
+}
+
+body {
+  padding: 0;
+  background: #ffffff;
+  margin: 8px;
+}
