@@ -63,7 +63,6 @@ Defaults
 @import "screen-readers";
 @import "tables";
 @import "forms";
-@import "widgets";
 
 
 /*
@@ -91,7 +90,7 @@ Navigation
 Content
 ------------------------------------------------------------------------- */
 @import "content";
-@import "content-widget-area";
+@import "primary-widget-area";
 
 /*
 Comments

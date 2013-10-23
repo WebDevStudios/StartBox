@@ -1,6 +1,7 @@
-// Colors
-// We love this SASS color tool: http://sassme.arc90.com
-// -------------------------
+// DEFAULT VARIABLES
+// --------------------------------------------------------
+
+// Colors (We love this SASS color tool: http://sassme.arc90.com)
 
 // Grayscale
 $black:						#000000 !default;
@@ -12,79 +13,99 @@ $white:						#ffffff !default;
 
 // Rainbow
 $red:						#ff0000 !default;
-$orange:					#ffa500 !default;
+$orange:					#ff7f00 !default;
 $yellow:					#ffff00 !default;
 $green:						#008000 !default;
 $blue:						#0000ff !default;
 $indigo:					#4b0082 !default;
 $violet:					#8f00ff !default;
 
-// Backgrounds
-$color-bg-body:				$white !default;
-$color-bg-header:			$white !default;
-$color-bg-widgets:			$white !default;
-$color-bg-content:			$white !default;
-$color-bg-comments:			$white !default;
-$color-bg-comment-even:		lighten($black, 98) !default;
-$color-bg-comment-odd:		$white !default;
-$color-bg-comment-author:	lighten($yellow, 45) !default;
-$color-bg-footer:			$blackMed !default;
-
-// Border
-$color-border:				$blackLighter !default;
-$color-nav-border:			$blackLighter !default;
-$color-nav-sub-border:		$blackLightest !default;
-
-// Branding
-$color-site-title:			$blackMed !default;
-$color-site-description:	$blackLight !default;
-
-// Hightlight
-$color-highlight:			$blackLightest !default;
-
-// Links
-$color-link:				$blackLight !default;
-$color-link-hover:			lighten($blackLight, 15) !default;
-
-// Navigation
-$color-bg-nav:				$blackMed !default;
-$color-bg-nav-sub:			$white !default;
-$color-bg-nav-sub-hover:	$blackLightest !default;
-$color-nav-link:			$white !default;
-$color-nav-link-hover:		lighten($blackLight, 15) !default;
-$color-nav-sub-link:		$blackMed !default;
-$color-nav-sub-link-hover:	$black !default;
-$color-nav-header-link:		$black !default;
-$color-nav-header-link-hover: lighten($blackLight, 15) !default;
-
-// Text
-$color-text-primary:		$black !default;
-$color-text-secondary:		$blackLight !default;
-$color-text-tertiary:		$white !default;
-
-// Headlines
-$color-headlines-primary:	$blackMed !default;
-$color-headlines-secondary:	$blackLight !default;
-$color-headlines-footer:	$white !default;
-
-// Forms
-$color-bg-button:			$blackMed !default;
-$color-bg-button-hover:		lighten($blackMed, 15) !default;
-$color-form-button-text:	$white !default;
-$color-form-input-text:		$black !default;			
-
-
-// Structure
-// -------------------------
-$site-wrap:					1140px !default; // The width of .wrap (1140, 960, etc...)
-
+// Accent Color Pallet
+// Using Adobe Kuler (https://kuler.adobe.com/explore/most-popular/) pick your favorite theme.
+// Paste the five colors below, and your theme will be properly accented!
+$color-1:					#F16233;
+$color-2:					#00B5B5;
+$color-3:					#F0F0F0;
+$color-4:					#3E4651;
+$color-5:					#5C6D7E;
 
 // Typography
-// -------------------------
-$font-size:					10 !default; // Default: 10. After setting html {font-size: 62.5%;} in _site-defaults.scss
-$font-sans:					Arial, "Helvetica Neue", Helvetica, sans-serif !default;
-$font-serif:				Georgia, Times, "Times New Roman", serif !default;
-$font-mono:					"Courier 10 Pitch", Courier, monospace !default;
-$site-title-font:			$font-serif !default;
-$site-description-font:		$font-sans !default;
-$headline-font:				$font-sans !default;
+$size-html:					10 !default; // Default: 10. Do not use px. Used to calclulate REM value in mixin.
+$size-body:					16px !default;
+$font-stack-sans:			Arial, "Helvetica Neue", Helvetica, sans-serif !default;
+$font-stack-serif:			Georgia, Times, "Times New Roman", serif !default;
+$font-stack-mono:			"Courier 10 Pitch", Courier, monospace !default;
+
+
+// THEME SETTINGS
+// ----------------------------------------------------------
+
+// Border
+$color-border:					$color-5 !default;
+$color-nav-border:				$color-5 !default;
+$color-nav-sub-border:			$blackLightest !default;
+
+// Content
+$color-bg-body:					$color-3 !default;
+$color-bg-content-wrap:			$color-3 !default;
+$color-bg-content:				$white !default;
+$color-text-primary:			$color-4 !default;
+$color-text-secondary:			$color-5 !default;
+$color-text-tertiary:			$white !default;
+$site-wrap:						1140px !default; // The width of .wrap (1140, 960, etc...)
+
+// Comments
+$color-bg-comments:				$white !default;
+$color-bg-comment-even:			lighten($black, 98) !default;
+$color-bg-comment-odd:			$white !default;
+$color-bg-comment-author:		lighten($yellow, 45) !default;
+
+// Footer
+$color-bg-footer:				$color-4 !default;
+
+// Forms
+$color-bg-button:				$color-3 !default;
+$color-bg-button-hover:			$color-5 !default;
+$color-form-border:				$blackLighter !default;
+$color-form-button-text:		$color-5 !default;
+$color-form-button-hover:		$color-3 !default;
+$color-form-input-text:			$color-4 !default;
+
+// Header
+$color-bg-header:				$color-3 !default;
+$color-site-title:				$color-4 !default;
+$color-site-description:		$color-5 !default;
+$font-site-title:				$font-stack-serif !default;
+$font-site-description:			$font-stack-sans !default;
+$size-site-title:				48px !default;
+$size-site-description:			12px !default;
+
+// Headlines
+$color-headlines-primary:		$color-4 !default;
+$color-headlines-secondary:		$color-5 !default;
+$color-headlines-footer:		$color-3 !default;
+$font-headlines:				$font-stack-sans !default;
+
+// Hightlight
+$color-highlight:				$blackLightest !default;
+
+// Hyperlinks
+$color-link:					$color-1 !default;
+$color-link-hover:				$color-5 !default;
+
+// Navigation
+$color-bg-nav:					$color-4 !default;
+$color-bg-nav-sub:				$white !default;
+$color-bg-nav-sub-hover:		$color-3 !default;
+$color-nav-link:				$white !default;
+$color-nav-link-hover:			$color-1 !default;
+$color-nav-sub-link:			$color-4 !default;
+$color-nav-sub-link-hover:		$color-5 !default;
+$color-nav-header-link:			$color-5 !default;
+$color-nav-header-link-hover: 	$color-4 !default;
+
+// Primary Widgets
+$color-bg-widget:				$white !default;
+$color-widget-title:			$color-4 !default;
+$font-widget-title:				$font-stack-sans !default;
+$size-widget-title:				24px !default;

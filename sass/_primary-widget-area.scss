@@ -1,0 +1,57 @@
+/* Primary Widget Area
+--------------------------------------------- */
+
+.primary-widget-area {
+	
+	.widget {
+		background-color: $color-bg-widget;
+		@include rem(margin-bottom, 48px);
+		@include rem(padding, 40px);
+
+	}
+
+	.widget-title {
+		color: $color-widget-title;
+		font-family: $font-widget-title;
+		@include rem(font-size, $size-widget-title);
+	}
+
+	/* Widget Forms */
+	input[type="text"],
+	input[type="email"],
+	input[type="url"],
+	input[type="tel"],
+	input[type="password"],
+	input[type="search"],
+	select,
+	textarea,
+	.gform_fields input[type="text"],
+	.gform_fields input[type="email"],
+	.gform_fields input[type="url"],
+	.gform_fields input[type="tel"],
+	.gform_fields input[type="password"],
+	.gform_fields input[type="search"],
+	.gform_fields select,
+	.gform_fields textarea,
+	input[type="text"]:focus,
+	input[type="email"]:focus,
+	input[type="url"]:focus,
+	input[type="password"]:focus,
+	input[type="search"]:focus,
+	textarea:focus  {
+		color: $color-form-input-text;
+		border: 1px solid $color-form-border;
+		@include rem(font-size, 14px);
+		@include rem(padding, 10px);
+	}
+
+	.search-field {
+		width: 66%;
+	}
+
+	.gform_wrapper .top_label input.medium, 
+	.gform_wrapper .top_label select.medium {
+		width: 100%;
+	}
+
+}

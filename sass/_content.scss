@@ -1,4 +1,6 @@
 .site-inner {
+	background-color: $color-bg-content-wrap;
+	clear: both;
 	@include rem(padding-top, 48px);
 }
 
@@ -15,8 +17,12 @@
 	text-decoration: none;
 }
 
+.entry-title a:hover {
+	color: $color-link-hover;
+}
+
 .entry-meta {
-	color: $blackLight;
+	color: $color-text-secondary;
 	border-top: 1px solid $color-border;
 	@include rem(font-size, 14px);
 	@include rem(padding, 24px 0);
@@ -24,13 +30,9 @@
 
 .hentry {
 	background-color: $color-bg-content;
+	@include rem(margin-bottom, 48px);
 }
 
 .entry-updated {
 	display: none;
-}
-
-.page-links {
-	clear: both;
-	@include rem(margin-bottom, 24px);
 }

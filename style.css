@@ -288,13 +288,13 @@ Defaults
 --------------------------------------------- */
 a,
 a:visited {
-  color: #888888;
+  color: #f16233;
 }
 
 a:hover,
 a:focus,
 a:active {
-  color: #aeaeae;
+  color: #5c6d7e;
 }
 
 /* Typography
@@ -305,8 +305,8 @@ html {
 }
 
 body {
-  background-color: white;
-  color: black;
+  background-color: #f0f0f0;
+  color: #3e4651;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-size: 16px;
   font-size: 1.6rem;
@@ -388,7 +388,7 @@ var {
 
 abbr,
 acronym {
-  border-bottom: 1px dotted #dddddd;
+  border-bottom: 1px dotted #5c6d7e;
   cursor: help;
 }
 
@@ -440,7 +440,7 @@ h4,
 h5,
 h6 {
   clear: both;
-  color: #222222;
+  color: #3e4651;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-weight: 700;
   line-height: 1.2;
@@ -595,7 +595,7 @@ table {
 }
 
 tbody {
-  border-bottom: 1px solid #dddddd;
+  border-bottom: 1px solid #5c6d7e;
 }
 
 th,
@@ -609,7 +609,7 @@ th {
 }
 
 td {
-  border-top: 1px solid #dddddd;
+  border-top: 1px solid #5c6d7e;
   padding: 6px 0;
   padding: 0.6rem 0;
 }
@@ -664,7 +664,7 @@ textarea:focus,
 button::-moz-focus-inner,
 input::-moz-focus-inner {
   /* Corrects inner padding and border displayed oddly in FF3/4 www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/ */
-  border: 1px solid #999;
+  border: 1px solid #dddddd;
   outline: none;
   border: 0;
   padding: 0;
@@ -675,9 +675,9 @@ button,
 html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-  background: #222222;
+  background: #f0f0f0;
   border: 1px solid #dddddd;
-  color: white;
+  color: #5c6d7e;
   cursor: pointer;
   /* Improves usability and consistency of cursor style between image-type 'input' and others */
   -webkit-appearance: button;
@@ -686,8 +686,8 @@ input[type="submit"] {
   font-size: 1.4rem;
   font-weight: 700;
   line-height: 1;
-  padding: 5px 10px;
-  padding: 0.5rem 1rem;
+  padding: 10px;
+  padding: 1rem;
 }
 
 button:hover,
@@ -695,7 +695,8 @@ html input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover {
   border: 1px solid #dddddd;
-  background: #484848;
+  background: #5c6d7e;
+  color: #f0f0f0;
 }
 
 button:focus,
@@ -707,7 +708,7 @@ html input[type="button"]:active,
 input[type="reset"]:active,
 input[type="submit"]:active {
   border: 1px solid #dddddd;
-  background: #484848;
+  background: #5c6d7e;
 }
 
 /* inputs */
@@ -733,12 +734,12 @@ input[type="url"]:focus,
 input[type="password"]:focus,
 input[type="search"]:focus,
 textarea:focus {
-  color: black;
+  color: #3e4651;
   border: 1px solid #dddddd;
   font-size: 14px;
   font-size: 1.4rem;
-  padding: 5px;
-  padding: 0.5rem;
+  padding: 10px;
+  padding: 1rem;
 }
 
 textarea,
@@ -750,23 +751,13 @@ textarea,
   width: 100%;
 }
 
-/* Widgets
---------------------------------------------- */
-.widget-area .widget {
-  background-color: white;
-  margin-bottom: 48px;
-  margin-bottom: 4.8rem;
-  padding: 40px;
-  padding: 4rem;
-}
-
 /*
 Structure and Layout
 ------------------------------------------------------------------------- */
 /* Containers
 --------------------------------------------- */
 .site-header {
-  background-color: white;
+  background-color: #f0f0f0;
 }
 
 .wrap {
@@ -775,7 +766,6 @@ Structure and Layout
 }
 
 .hentry,
-.post-navigation,
 .comments-area {
   padding: 40px 48px;
   padding: 4rem 4.8rem;
@@ -913,13 +903,13 @@ Header
   padding-top: 0.4rem;
 }
 .site-title a {
-  color: #222222;
+  color: #3e4651;
   font-weight: 700;
   text-decoration: none;
 }
 
 .site-description {
-  color: #888888;
+  color: #5c6d7e;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-weight: 300;
   font-size: 12px;
@@ -949,14 +939,14 @@ Header
   position: relative;
 }
 .header_widget_area .widget_nav_menu a {
-  color: black;
+  color: #5c6d7e;
   display: block;
   padding: 12px;
   padding: 1.2rem;
   text-decoration: none;
 }
 .header_widget_area .widget_nav_menu a:hover {
-  color: #aeaeae;
+  color: #3e4651;
 }
 .header_widget_area .widget_nav_menu ul.sub-menu {
   background-color: white;
@@ -970,14 +960,14 @@ Header
   top: 0;
 }
 .header_widget_area .widget_nav_menu ul.sub-menu a {
-  color: #222222;
+  color: #3e4651;
   padding: 16px 24px;
   padding: 1.6rem 2.4rem;
   width: 200px;
 }
 .header_widget_area .widget_nav_menu ul.sub-menu a:hover {
-  background-color: #eeeeee;
-  color: black;
+  background-color: #f0f0f0;
+  color: #5c6d7e;
 }
 .header_widget_area .widget_nav_menu ul li:hover > ul.sub-menu {
   display: block;
@@ -989,8 +979,8 @@ Navigation
 /* Main Navigation
 --------------------------------------------- */
 .main-navigation {
-  background-color: #222222;
-  border-bottom: 6px solid #dddddd;
+  background-color: #3e4651;
+  border-bottom: 6px solid #5c6d7e;
   clear: both;
   display: block;
   float: left;
@@ -1013,7 +1003,7 @@ Navigation
   text-decoration: none;
 }
 .main-navigation a:hover {
-  color: #aeaeae;
+  color: #f16233;
 }
 .main-navigation ul.sub-menu {
   background-color: white;
@@ -1028,14 +1018,14 @@ Navigation
   top: 0;
 }
 .main-navigation ul.sub-menu a {
-  color: #222222;
+  color: #3e4651;
   padding: 16px 24px;
   padding: 1.6rem 2.4rem;
   width: 200px;
 }
 .main-navigation ul.sub-menu a:hover {
-  background-color: #eeeeee;
-  color: black;
+  background-color: #f0f0f0;
+  color: #5c6d7e;
 }
 .main-navigation ul li:hover > ul.sub-menu {
   display: block;
@@ -1049,6 +1039,13 @@ Navigation
 
 /* Pagination
 --------------------------------------------- */
+.paging-navigation,
+.page-links {
+  clear: both;
+  margin-bottom: 24px;
+  margin-bottom: 2.4rem;
+}
+
 .content-area [class*="navigation"] {
   overflow: hidden;
 }
@@ -1068,6 +1065,8 @@ Navigation
 Content
 ------------------------------------------------------------------------- */
 .site-inner {
+  background-color: #f0f0f0;
+  clear: both;
   padding-top: 48px;
   padding-top: 4.8rem;
 }
@@ -1082,13 +1081,17 @@ Content
 }
 
 .entry-title a {
-  color: #222222;
+  color: #3e4651;
   text-decoration: none;
 }
 
+.entry-title a:hover {
+  color: #5c6d7e;
+}
+
 .entry-meta {
-  color: #888888;
-  border-top: 1px solid #dddddd;
+  color: #5c6d7e;
+  border-top: 1px solid #5c6d7e;
   font-size: 14px;
   font-size: 1.4rem;
   padding: 24px 0;
@@ -1097,20 +1100,69 @@ Content
 
 .hentry {
   background-color: white;
+  margin-bottom: 48px;
+  margin-bottom: 4.8rem;
 }
 
 .entry-updated {
   display: none;
 }
 
-.page-links {
-  clear: both;
-  margin-bottom: 24px;
-  margin-bottom: 2.4rem;
+/* Primary Widget Area
+--------------------------------------------- */
+.primary-widget-area {
+  /* Widget Forms */
+}
+.primary-widget-area .widget {
+  background-color: white;
+  margin-bottom: 48px;
+  margin-bottom: 4.8rem;
+  padding: 40px;
+  padding: 4rem;
+}
+.primary-widget-area .widget-title {
+  color: #3e4651;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 24px;
+  font-size: 2.4rem;
+}
+.primary-widget-area input[type="text"],
+.primary-widget-area input[type="email"],
+.primary-widget-area input[type="url"],
+.primary-widget-area input[type="tel"],
+.primary-widget-area input[type="password"],
+.primary-widget-area input[type="search"],
+.primary-widget-area select,
+.primary-widget-area textarea,
+.primary-widget-area .gform_fields input[type="text"],
+.primary-widget-area .gform_fields input[type="email"],
+.primary-widget-area .gform_fields input[type="url"],
+.primary-widget-area .gform_fields input[type="tel"],
+.primary-widget-area .gform_fields input[type="password"],
+.primary-widget-area .gform_fields input[type="search"],
+.primary-widget-area .gform_fields select,
+.primary-widget-area .gform_fields textarea,
+.primary-widget-area input[type="text"]:focus,
+.primary-widget-area input[type="email"]:focus,
+.primary-widget-area input[type="url"]:focus,
+.primary-widget-area input[type="password"]:focus,
+.primary-widget-area input[type="search"]:focus,
+.primary-widget-area textarea:focus {
+  color: #3e4651;
+  border: 1px solid #dddddd;
+  font-size: 14px;
+  font-size: 1.4rem;
+  padding: 10px;
+  padding: 1rem;
+}
+.primary-widget-area .search-field {
+  width: 66%;
+}
+.primary-widget-area .gform_wrapper .top_label input.medium,
+.primary-widget-area .gform_wrapper .top_label select.medium {
+  width: 100%;
 }
 
-/* Content Widget Area
---------------------------------------------- */
 /*
 Comments
 ------------------------------------------------------------------------- */
@@ -1204,13 +1256,13 @@ Footer
 ------------------------------------------------------------------------- */
 .site-footer {
   clear: both;
-  background-color: #222222;
+  background-color: #3e4651;
   padding: 8px 0;
   padding: .8rem 0;
 }
 
 .site-info {
-  color: black;
+  color: #3e4651;
   font-size: 12px;
   font-size: 12px;
   font-size: 1.2rem;
@@ -1221,19 +1273,19 @@ Footer
 /* Footer Widget Area
 --------------------------------------------- */
 .footer-widgets {
-  background-color: #222222;
-  border-top: 10px solid #dddddd;
+  background-color: #3e4651;
+  border-top: 10px solid #5c6d7e;
   color: white;
   clear: both;
   padding: 40px 0 16px;
   padding: 4rem 0 1.6rem;
 }
 .footer-widgets .widget {
-  background-color: #222222;
+  background-color: #3e4651;
   padding: 0;
 }
 .footer-widgets .widget-title {
-  color: white;
+  color: #f0f0f0;
 }
 .footer-widgets ul {
   list-style: none;

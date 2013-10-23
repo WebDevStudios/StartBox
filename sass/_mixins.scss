@@ -34,7 +34,7 @@
 	$px : (); 
 	$rem: ();
 	
-	$root: $font-size;
+	$root: $size-html;
 	
 	@each $value in $values {
 		@if $value == 0 or $value == auto {

@@ -1,6 +1,12 @@
 /* Pagination
 --------------------------------------------- */
 
+.paging-navigation,
+.page-links {
+	clear: both;
+	@include rem(margin-bottom, 24px);
+}
+
 .content-area [class*="navigation"] {
 	overflow: hidden;
 }
