@@ -1,10 +1,13 @@
 2013.10.23 - version 3.0.0-Experimental
 	* Major SASS refactoring
 	* Add SASS/Adobe Kuler support
+	* Add Footer Credits
+
 2013.10.22 - version 3.0.0-Experimental
 	* CSS tweaks
 	* Added Gravity Forms support
 	* Moved SBX widget to seperate plugin
+
 2013.10.11 - version 3.0.0-Experimental
 	* Made comments responsive
 	* Rename "Sidebars" to "Widget Areas"
