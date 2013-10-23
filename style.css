@@ -305,7 +305,7 @@ html {
 }
 
 body {
-  background-color: #fcf7f3;
+  background-color: #fcf5ef;
   color: #111111;
   font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-size: 16px;
@@ -757,7 +757,7 @@ Structure and Layout
 /* Containers
 --------------------------------------------- */
 .site-header {
-  background-color: #fcf7f3;
+  background-color: #fcf5ef;
 }
 
 .wrap {
@@ -1069,7 +1069,7 @@ Content
 /* Content
 --------------------------------------------- */
 .site-inner {
-  background-color: #fcf7f3;
+  background-color: #fcf5ef;
   clear: both;
   padding-top: 48px;
   padding-top: 4.8rem;
@@ -1264,21 +1264,25 @@ Footer
 --------------------------------------------- */
 .site-footer {
   clear: both;
-  background-color: #fcf7f3;
+  background-color: #fcf5ef;
   padding: 8px 0;
   padding: 0.8rem 0;
 }
 
 .site-info {
   color: #111111;
-  font-size: 12px;
-  font-size: 1.2rem;
+  font-size: 14px;
+  font-size: 1.4rem;
   padding: 12px 0;
   padding: 1.2rem 0;
 }
 
 .site-info a {
   color: #cc6d16;
+}
+
+.site-info a:hover {
+  color: #f0d5bc;
 }
 
 /* Footer Widget Area

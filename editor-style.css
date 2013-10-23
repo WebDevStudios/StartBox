@@ -22,7 +22,7 @@ html {
 }
 
 body {
-  background-color: #fcf7f3;
+  background-color: #fcf5ef;
   color: #111111;
   font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-size: 16px;
@@ -474,7 +474,7 @@ Content
 /* Content
 --------------------------------------------- */
 .site-inner {
-  background-color: #fcf7f3;
+  background-color: #fcf5ef;
   clear: both;
   padding-top: 48px;
   padding-top: 4.8rem;

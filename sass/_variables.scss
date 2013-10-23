@@ -31,7 +31,7 @@ $color-3:					#351A01; // Main Navigation & Footer Background
 $color-4:					#CC6D16; // Links
 $color-5:					#F0D5BC; // Borders
 $color-6:					#F8EADE; // Content, Wrap, & Widget Background
-$color-7:					#fcf7f3; // Site Background
+$color-7:					lighten($color-6, 4); // Site Background
 
 
 // -------------------------------------------------------------------------
@@ -125,6 +125,7 @@ $color-bg-credits:				$color-bg-body;
 $color-bg-footer:				$color-bg-nav;
 $color-bg-widgets-footer:		$color-bg-footer;
 $color-border-footer:			$color-border;
-$color-text-footer:				$color-1;
+$color-text-footer:				$color-text-primary;
 $color-link-footer:				$color-link;
+$color-link-footer-hover:		$color-link-hover;
 $color-widget-title-footer:		$color-headlines-primary;

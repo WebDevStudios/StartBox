@@ -9,10 +9,14 @@
 
 .site-info {
 	color: $color-text-footer;
-	@include rem(font-size, 12px);
+	@include rem(font-size, 14px);
 	@include rem(padding, 12px 0);
 }
 
 .site-info a {
 	color: $color-link-footer;
+}
+
+.site-info a:hover {
+	color: $color-link-footer-hover;
 }
