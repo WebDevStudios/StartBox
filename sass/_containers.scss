@@ -5,6 +5,10 @@
 	background-color: $color-bg-header;
 }
 
+.site-main {
+	@include rem(margin-bottom, 48px);
+}
+
 .wrap {
 	margin: 0 auto;
 	max-width: $width-site-wrap;
