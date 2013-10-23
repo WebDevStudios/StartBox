@@ -189,6 +189,21 @@ function sb_sample_customizer_settings( $sections = array() ) {
 }
 
 /**
+ * Add Google Font
+ */
+function sbx_google_webfonts() {
+	$protocol = is_ssl() ? 'https' : 'http';
+	$query_args = array(
+		'family' => 'Open+Sans:400italic,700italic,400,700',
+		'subset' => 'latin,latin-ext',
+	);
+
+	wp_enqueue_style( 'google-webfonts', add_query_arg( $query_args, "$protocol://fonts.googleapis.com/css" ), array(), null );
+}
+add_action( 'wp_enqueue_scripts', 'sbx_google_webfonts' );
+
+
+/**
  * Setup custom post types (Singular, Plural, Key, Slug, Menu Position)
  */
 function sbx_post_types() {

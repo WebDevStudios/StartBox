@@ -13,7 +13,7 @@
 	.widget-title {
 		color: $color-widget-title;
 		font-family: $font-widget-title;
-		@include rem(font-size, $size-widget-title);
+		@include rem(font-size, $font-size-widget-title);
 	}
 
 	/* Widget Forms */
@@ -39,8 +39,8 @@
 	input[type="password"]:focus,
 	input[type="search"]:focus,
 	textarea:focus  {
-		color: $color-form-input-text;
-		border: 1px solid $color-form-border;
+		color: $color-input-form;
+		border: 1px solid $color-border-form;
 		@include rem(font-size, 14px);
 		@include rem(padding, 10px);
 	}

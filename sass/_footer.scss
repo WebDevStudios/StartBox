@@ -3,16 +3,16 @@
 
 .site-footer {
 	clear: both;
-	background-color: $color-bg-footer;
+	background-color: $color-bg-credits;
 	@include rem(padding, 8px 0);
 }
 
 .site-info {
-	color: $color-footer-text;
+	color: $color-text-footer;
 	@include rem(font-size, 12px);
 	@include rem(padding, 12px 0);
 }
 
 .site-info a {
-	color: $color-footer-link;
+	color: $color-link-footer;
 }

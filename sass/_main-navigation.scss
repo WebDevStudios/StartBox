@@ -3,7 +3,7 @@
 
 .main-navigation {
 	background-color: $color-bg-nav;
-	border-bottom: 6px solid $color-nav-border;
+	border-bottom: 6px solid $color-border-nav;
 	clear: both;
 	display: block;
 	float: left;
@@ -21,18 +21,18 @@
 	}
 
 	a {
-		color: $color-nav-link;
+		color: $color-link-nav;
 		display: block;
 		@include rem(padding, 24px);
 		text-decoration: none;
 	}
 
 	a:hover {
-		color: $color-nav-link-hover;
+		color: $color-link-nav-hover
 	}
 
 	ul.sub-menu {
-		background-color: $color-bg-nav-sub;
+		background-color: $color-bg-submenu;
 		box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 		display: none;
 		float: left;
@@ -45,14 +45,14 @@
 		}
 
 		a {
-			color: $color-nav-sub-link;
+			color: $color-link-submenu;
 			@include rem(padding, 16px 24px);
 			width: 200px;
 		}
 
 		a:hover {
-			background-color: $color-bg-nav-sub-hover;
-			color: $color-nav-sub-link-hover;
+			background-color: $color-bg-submenu-hover;
+			color: $color-link-submenu-hover;
 		}
 
 	}

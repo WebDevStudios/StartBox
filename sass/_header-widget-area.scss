@@ -27,18 +27,18 @@
 		}
 
 		a {
-			color: $color-nav-header-link;
+			color: $color-link-nav-header;
 			display: block;
 			@include rem(padding, 12px);
 			text-decoration: none;
 		}
 
 		a:hover {
-			color: $color-nav-header-link-hover;
+			color: $color-link-nav-header-hover;
 		}
 
 		ul.sub-menu {
-			background-color: $color-bg-nav-sub;
+			background-color: $color-bg-submenu;
 			display: none;
 			float: left;
 			position: absolute;
@@ -50,19 +50,20 @@
 			}
 
 			a {
-				color: $color-nav-sub-link;
+				color: $color-link-submenu;
 				@include rem(padding, 16px 24px);
 				width: 200px;
 			}
 
 			a:hover {
-				background-color: $color-bg-nav-sub-hover;
-				color: $color-nav-sub-link-hover;
+				background-color: $color-bg-submenu-hover;
+				color: $color-link-submenu-hover;
 			}
 
 		}
 
 		li:hover > a {
+
 		}
 
 		ul li:hover > ul.sub-menu {
@@ -71,6 +72,7 @@
 
 		li.current_page_item a,
 		li.current-menu-item a {
+
 		}
 
 	}

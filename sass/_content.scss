@@ -2,13 +2,13 @@
 --------------------------------------------- */
 
 .site-inner {
-	background-color: $color-bg-content-wrap;
+	background-color: $color-bg-wrap;
 	clear: both;
 	@include rem(padding-top, 48px);
 }
 
 .sticky {
-	background-color: $yellow;
+	background-color: $color-highlight;
 }
 
 .page-header {

@@ -38,7 +38,7 @@ input:focus,
 textarea:focus,
 button::-moz-focus-inner,
 input::-moz-focus-inner { /* Corrects inner padding and border displayed oddly in FF3/4 www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/ */
-	border: 1px solid $color-form-border;
+	border: 1px solid $color-border-form;
 	outline: none;
 	border: 0;
 	padding: 0;
@@ -50,8 +50,8 @@ html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
 	background: $color-bg-button;
-	border: 1px solid $color-form-border;
-	color: $color-form-button-text;
+	border: 1px solid $color-border-form;
+	color: $color-text-button;
 	cursor: pointer; /* Improves usability and consistency of cursor style between image-type 'input' and others */
 	-webkit-appearance: button; /* Corrects inability to style clickable 'input' types in iOS */
 	@include rem(font-size, 14px);
@@ -64,9 +64,9 @@ button:hover,
 html input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover {
-	border: 1px solid $color-form-border;
+	border: 1px solid $color-border-form;
 	background: $color-bg-button-hover;
-	color: $color-form-button-hover;
+	color: $color-text-button-hover;
 }
 
 button:focus,
@@ -77,8 +77,8 @@ button:active,
 html input[type="button"]:active,
 input[type="reset"]:active,
 input[type="submit"]:active {
-	border: 1px solid $color-form-border;
-	background: $color-bg-button-hover;
+	border: 1px solid $color-border-form;
+	background: $color-text-button-hover;
 }
 
 /* inputs */
@@ -104,8 +104,8 @@ input[type="url"]:focus,
 input[type="password"]:focus,
 input[type="search"]:focus,
 textarea:focus  {
-	color: $color-form-input-text;
-	border: 1px solid $color-form-border;
+	color: $color-input-form;
+	border: 1px solid $color-border-form;
 	@include rem(font-size, 14px);
 	@include rem(padding, 10px);
 }

@@ -1,115 +1,130 @@
+// -------------------------------------------------------------------------
 // DEFAULT VARIABLES
-// --------------------------------------------------------
+// -------------------------------------------------------------------------
 
-// Colors (We love this SASS color tool: http://sassme.arc90.com)
+
+// Font Stacks
+// ------------------------------------------
+$font-stack-sans:			"Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
+$font-stack-serif:			Georgia, Times, "Times New Roman", serif;
+$font-stack-mono:			"Courier 10 Pitch", Courier, monospace;
+
+
+// Colors
+// We love this SASS color tool: http://sassme.arc90.com and recommend
+// using Adobe Kuler https://kuler.adobe.com/explore/most-popular/
+// for design inspiration!
+// ------------------------------------------
 
 // Grayscale
-$black:						#000000 !default;
-$blackMed:					#222222 !default;
-$blackLight:				#888888 !default;
-$blackLighter:				#dddddd !default;
-$blackLightest:				#eeeeee !default;
-$white:						#ffffff !default;
+$black:						#000000;
+$blackMed:					#222222;
+$blackLight:				#888888;
+$blackLighter:				#dddddd;
+$blackLightest:				#eeeeee;
+$white:						#ffffff;
 
-// Rainbow
-$red:						#ff0000 !default;
-$orange:					#ff7f00 !default;
-$yellow:					#ffff00 !default;
-$green:						#008000 !default;
-$blue:						#0000ff !default;
-$indigo:					#4b0082 !default;
-$violet:					#8f00ff !default;
-
-// Accent Color Pallet
-
-// Using Adobe Kuler (https://kuler.adobe.com/explore/most-popular/) pick your favorite theme.
-// Paste the five colors below, and your theme will be properly accented!
-$color-1:					#F16233;
-$color-2:					#00B5B5;
-$color-3:					#F0F0F0;
-$color-4:					#3E4651;
-$color-5:					#5C6D7E;
-
-// Typography
-$size-html:					10 !default; // Default: 10. Do not use px. Used to calclulate REM value in mixin.
-$size-body:					16px !default;
-$font-stack-sans:			Arial, "Helvetica Neue", Helvetica, sans-serif !default;
-$font-stack-serif:			Georgia, Times, "Times New Roman", serif !default;
-$font-stack-mono:			"Courier 10 Pitch", Courier, monospace !default;
+// Color Theme
+$color-1:					#111111; // Text
+$color-2:					#888888; // Secondary Text
+$color-3:					#351A01; // Main Navigation & Footer Background
+$color-4:					#CC6D16; // Links
+$color-5:					#F0D5BC; // Borders
+$color-6:					#F8EADE; // Content, Wrap, & Widget Background
+$color-7:					#fcf7f3; // Site Background
 
 
+// -------------------------------------------------------------------------
 // THEME SETTINGS
-// ----------------------------------------------------------
+// -------------------------------------------------------------------------
 
-// Border
-$color-border:					$color-5 !default;
-$color-nav-border:				$color-5 !default;
-$color-nav-sub-border:			$blackLightest !default;
-
-// Content
-$color-bg-body:					$color-3 !default;
-$color-bg-content-wrap:			$color-3 !default;
-$color-bg-content:				$white !default;
-$color-text-primary:			$color-4 !default;
-$color-text-secondary:			$color-5 !default;
-$color-text-tertiary:			$white !default;
-$site-wrap:						1140px !default; // The width of .wrap (1140, 960, etc...)
-
-// Comments
-$color-bg-comments-area:		$white !default;
-$color-bg-comment-even:			$white !default;
-$color-bg-comment-odd:			$white !default;
-$color-bg-comment-author:		lighten($yellow, 45) !default;
-
-// Footer
-$color-bg-footer:				$color-3 !default;
-$color-footer-text:				$color-4 !default;
-$color-footer-link:				$color-5 !default;
-$color-bg-footer-widgets:		$color-4 !default;
-$color-footer-widget-title:		$color-3 !default;
-
-// Forms
-$color-bg-button:				$color-3 !default;
-$color-bg-button-hover:			$color-5 !default;
-$color-form-border:				$blackLighter !default;
-$color-form-button-text:		$color-5 !default;
-$color-form-button-hover:		$color-3 !default;
-$color-form-input-text:			$color-4 !default;
-
-// Header
-$color-bg-header:				$color-3 !default;
-$color-site-title:				$color-4 !default;
-$color-site-description:		$color-5 !default;
-$font-site-title:				$font-stack-serif !default;
-$font-site-description:			$font-stack-sans !default;
-$size-site-title:				48px !default;
-$size-site-description:			14px !default;
-
-// Headlines
-$color-headlines-primary:		$color-4 !default;
-$color-headlines-secondary:		$color-5 !default;
-$font-headlines:				$font-stack-sans !default;
-
-// Hightlight
-$color-highlight:				$blackLightest !default;
+// Body
+// ------------------------------------------
+$color-bg-body:					$color-7;
+$color-bg-wrap:					$color-bg-body;
+$color-border:					$color-5;
+$color-highlight:				$blackLightest;
+$size-html:						10; // Default: 10. Do not use px. Used to calclulate REM value in mixin.
 
 // Hyperlinks
-$color-link:					$color-1 !default;
-$color-link-hover:				$color-5 !default;
+$color-link:					$color-4;
+$color-link-hover:				$color-5;
 
-// Navigation
-$color-bg-nav:					$color-4 !default;
-$color-bg-nav-sub:				$white !default;
-$color-bg-nav-sub-hover:		$color-3 !default;
-$color-nav-link:				$white !default;
-$color-nav-link-hover:			$color-1 !default;
-$color-nav-sub-link:			$color-4 !default;
-$color-nav-sub-link-hover:		$color-5 !default;
-$color-nav-header-link:			$color-5 !default;
-$color-nav-header-link-hover: 	$color-4 !default;
+// Text
+$color-text-primary:			$color-1;
+$color-text-secondary:			$color-2;
+$color-text-tertiary:			$white;
+$width-site-wrap:				1140px;
+$font-size-body:				16px;
 
-// Primary Widgets
-$color-bg-widget:				$white !default;
-$color-widget-title:			$color-4 !default;
-$font-widget-title:				$font-stack-sans !default;
-$size-widget-title:				24px !default;
+// Headlines
+$color-headlines-primary:		$color-4;
+$color-headlines-secondary:		$color-5;
+$font-stack-headlines:			$font-stack-sans;
+
+
+// Header Area
+// ------------------------------------------
+$color-bg-header:				$color-bg-body;
+$color-site-title:				$color-headlines-primary;
+$color-site-description:		$color-headlines-secondary;
+$font-size-site-title:			48px;
+$font-size-site-description:	14px;
+$font-stack-site-title:			$font-stack-sans;
+$font-stack-site-description:	$font-stack-sans;
+
+// Header Widget Nav
+$color-link-nav-header:			$color-link;
+$color-link-nav-header-hover: 	$color-link-hover;
+
+
+// Main Navigation
+// ------------------------------------------
+$color-bg-nav:					$color-3;
+$color-border-nav:				$color-border;
+$color-link-nav:				$color-link;
+$color-link-nav-hover:			$color-link-hover;
+
+// Submenu
+$color-bg-submenu:				$color-6;
+$color-bg-submenu-hover:		$color-4;
+$color-link-submenu:			$color-4;
+$color-link-submenu-hover:		$color-5;
+
+
+// Content Area
+// ------------------------------------------
+$color-bg-content:				$color-6;
+
+// Forms
+$color-bg-button:				$color-bg-nav;
+$color-bg-button-hover:			$color-4;
+$color-border-form:				$color-border;
+$color-text-button:				$color-6;
+$color-text-button-hover:		$color-5;
+$color-input-form:				$color-text-primary;
+
+// Comments
+$color-bg-comment-area:			$color-bg-content;
+$color-bg-comment-even:			$color-bg-content;
+$color-bg-comment-odd:			$color-5;
+$color-bg-comment-author:		lighten(#ffff00, 38);
+
+
+// Primary Widget Area
+// ------------------------------------------
+$color-bg-widget:				$color-bg-content;
+$color-widget-title:			$color-headlines-primary;
+$font-widget-title:				$font-stack-sans;
+$font-size-widget-title:		24px;
+
+
+// Footer Area
+// ------------------------------------------
+$color-bg-credits:				$color-bg-body;
+$color-bg-footer:				$color-bg-nav;
+$color-bg-widgets-footer:		$color-bg-footer;
+$color-border-footer:			$color-border;
+$color-text-footer:				$color-1;
+$color-link-footer:				$color-link;
+$color-widget-title-footer:		$color-headlines-primary;

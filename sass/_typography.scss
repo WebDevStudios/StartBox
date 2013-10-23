@@ -9,7 +9,7 @@ body {
 	background-color: $color-bg-body;
 	color: $color-text-primary;
 	font-family: $font-stack-sans;
-	@include rem(font-size, $size-body);
+	@include rem(font-size, $font-size-body);
 	font-weight: 300;
 	line-height: 1.625;
 }
@@ -84,7 +84,7 @@ acronym {
 
 mark,
 ins {
-	background: desaturate(lighten(adjust_hue($red, 56), 33), 1);
+	background: $color-highlight;
 	text-decoration: none;
 }
 
@@ -132,7 +132,7 @@ h5,
 h6 {
 	clear: both;
 	color: $color-headlines-primary;
-	font-family: $font-headlines;
+	font-family: $font-stack-headlines;
 	font-weight: 700;
 	line-height: 1.2;
 	margin: 0;

@@ -8,8 +8,8 @@
 
 .site-title {
 	float: left;
-	font-family: $font-site-title;
-	@include rem(font-size, $size-site-title);
+	font-family: $font-stack-site-title;
+	@include rem(font-size, $font-size-site-title);
 	line-height: 1.3;
 	margin: 0;
 	@include rem(padding-top, 4px);
@@ -23,7 +23,7 @@
 
 .site-description {
 	color: $color-site-description;
-	font-family: $font-site-description;
+	font-family: $font-stack-site-description;
 	font-weight: 300;
-	@include rem(font-size, $size-site-description);
+	@include rem(font-size, $font-size-site-description);
 }
