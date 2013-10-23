@@ -1039,6 +1039,7 @@ Navigation
 
 /* Pagination
 --------------------------------------------- */
+.post-navigation,
 .paging-navigation,
 .page-links {
   clear: both;
@@ -1185,12 +1186,12 @@ ul.children,
 }
 
 .comments-area {
-  padding: 40px 10px 40px 20px;
-  padding: 4rem 1rem 4rem 2rem;
+  background-color: white;
+  padding: 48px 24px;
+  padding: 4.8rem 2.4rem;
 }
 
 .comment-list {
-  background-color: white;
   padding: 12px 12px 0 12px;
   padding: 1.2rem 1.2rem 0 1.2rem;
 }
@@ -1203,7 +1204,7 @@ ul.children,
   padding: 1.2rem;
 }
 .comment-list .even {
-  background-color: #fafafa;
+  background-color: white;
 }
 .comment-list .odd {
   background-color: white;

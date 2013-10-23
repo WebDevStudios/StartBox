@@ -56,8 +56,8 @@ $color-text-tertiary:			$white !default;
 $site-wrap:						1140px !default; // The width of .wrap (1140, 960, etc...)
 
 // Comments
-$color-bg-comments:				$white !default;
-$color-bg-comment-even:			lighten($black, 98) !default;
+$color-bg-comments-area:		$white !default;
+$color-bg-comment-even:			$white !default;
 $color-bg-comment-odd:			$white !default;
 $color-bg-comment-author:		lighten($yellow, 45) !default;
 

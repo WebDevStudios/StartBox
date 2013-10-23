@@ -16,11 +16,11 @@ ul.children,
 }
 
 .comments-area {
-	@include rem(padding, 40px 10px 40px 20px);
+	background-color: $color-bg-comments-area;
+	@include rem(padding, 48px 24px);
 }
 
 .comment-list {
-	background-color: $color-bg-comments;
 	@include rem(padding, 12px 12px 0 12px);
 
 	li li {
