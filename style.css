@@ -298,7 +298,7 @@ a:visited {
 a:hover,
 a:focus,
 a:active {
-  color: #4c4c4c;
+  color: #999999;
 }
 
 /* Typography
@@ -309,7 +309,7 @@ html {
 }
 
 body {
-  background-color: white;
+  background-color: #f0f0f0;
   color: #111111;
   font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-size: 16px;
@@ -392,7 +392,7 @@ var {
 
 abbr,
 acronym {
-  border-bottom: 1px dotted #4c4c4c;
+  border-bottom: 1px dotted #999999;
   cursor: help;
 }
 
@@ -444,7 +444,7 @@ h4,
 h5,
 h6 {
   clear: both;
-  color: black;
+  color: #111111;
   font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-weight: 700;
   line-height: 1.2;
@@ -599,7 +599,7 @@ table {
 }
 
 tbody {
-  border-bottom: 1px solid #4c4c4c;
+  border-bottom: 1px solid #999999;
 }
 
 th,
@@ -613,7 +613,7 @@ th {
 }
 
 td {
-  border-top: 1px solid #4c4c4c;
+  border-top: 1px solid #999999;
   padding: 6px 0;
   padding: 0.6rem 0;
 }
@@ -668,7 +668,7 @@ textarea:focus,
 button::-moz-focus-inner,
 input::-moz-focus-inner {
   /* Corrects inner padding and border displayed oddly in FF3/4 www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/ */
-  border: 1px solid #4c4c4c;
+  border: 1px solid #999999;
   outline: none;
   border: 0;
   padding: 0;
@@ -679,9 +679,9 @@ button,
 html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-  background: black;
-  border: 1px solid #4c4c4c;
-  color: #d9d9d9;
+  background: #111111;
+  border: 1px solid #999999;
+  color: white;
   cursor: pointer;
   /* Improves usability and consistency of cursor style between image-type 'input' and others */
   -webkit-appearance: button;
@@ -698,9 +698,9 @@ button:hover,
 html input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover {
-  border: 1px solid #4c4c4c;
-  background: #4c4c4c;
-  color: black;
+  border: 1px solid #999999;
+  background: #999999;
+  color: #111111;
 }
 
 button:focus,
@@ -711,8 +711,8 @@ button:active,
 html input[type="button"]:active,
 input[type="reset"]:active,
 input[type="submit"]:active {
-  border: 1px solid #4c4c4c;
-  background: black;
+  border: 1px solid #999999;
+  background: #111111;
 }
 
 /* inputs */
@@ -738,7 +738,7 @@ input[type="password"]:focus,
 input[type="search"]:focus,
 textarea:focus {
   color: #111111;
-  border: 1px solid #4c4c4c;
+  border: 1px solid #999999;
   font-size: 14px;
   font-size: 1.4rem;
   padding: 10px;
@@ -760,7 +760,7 @@ Structure and Layout
 /* Containers
 --------------------------------------------- */
 .site-header {
-  background-color: white;
+  background-color: #f0f0f0;
 }
 
 .site-main {
@@ -911,13 +911,13 @@ Header
   padding-top: 0.4rem;
 }
 .site-title a {
-  color: black;
+  color: #111111;
   font-weight: 700;
   text-decoration: none;
 }
 
 .site-description {
-  color: #4c4c4c;
+  color: #999999;
   font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-weight: 300;
   font-size: 14px;
@@ -955,10 +955,10 @@ Header
   text-decoration: none;
 }
 .header_widget_area .widget_nav_menu a:hover {
-  color: #4c4c4c;
+  color: #999999;
 }
 .header_widget_area .widget_nav_menu ul.sub-menu {
-  background-color: white;
+  background-color: #f0f0f0;
   display: none;
   float: left;
   position: absolute;
@@ -975,8 +975,8 @@ Header
   width: 200px;
 }
 .header_widget_area .widget_nav_menu ul.sub-menu a:hover {
-  background-color: #d9d9d9;
-  color: #4c4c4c;
+  background-color: white;
+  color: #999999;
 }
 .header_widget_area .widget_nav_menu ul li:hover > ul.sub-menu {
   display: block;
@@ -988,8 +988,8 @@ Navigation
 /* Main Navigation
 --------------------------------------------- */
 .main-navigation {
-  background-color: black;
-  border-bottom: 6px solid #4c4c4c;
+  background-color: #111111;
+  border-bottom: 6px solid #999999;
   clear: both;
   display: block;
   float: left;
@@ -1005,17 +1005,17 @@ Navigation
   position: relative;
 }
 .main-navigation a {
-  color: #8c8c8c;
+  color: #f0f0f0;
   display: block;
   padding: 24px;
   padding: 2.4rem;
   text-decoration: none;
 }
 .main-navigation a:hover {
-  color: #4c4c4c;
+  color: #999999;
 }
 .main-navigation ul.sub-menu {
-  background-color: white;
+  background-color: #f0f0f0;
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
   display: none;
   float: left;
@@ -1033,8 +1033,8 @@ Navigation
   width: 200px;
 }
 .main-navigation ul.sub-menu a:hover {
-  background-color: #d9d9d9;
-  color: #4c4c4c;
+  background-color: white;
+  color: #999999;
 }
 .main-navigation ul li:hover > ul.sub-menu {
   display: block;
@@ -1080,14 +1080,20 @@ Content
 /* Content
 --------------------------------------------- */
 .site-inner {
-  background-color: white;
+  background-color: #f0f0f0;
   clear: both;
   padding-top: 48px;
   padding-top: 4.8rem;
 }
 
+.post {
+  background-color: white;
+  margin-bottom: 24px;
+  margin-bottom: 2.4rem;
+}
+
 .sticky {
-  background-color: #eeeeee;
+  background-color: white;
 }
 
 .page-header {
@@ -1096,27 +1102,21 @@ Content
 }
 
 .entry-title a {
-  color: black;
+  color: #111111;
   text-decoration: none;
 }
 
 .entry-title a:hover {
-  color: #4c4c4c;
+  color: #999999;
 }
 
 .entry-meta {
-  color: #4c4c4c;
-  border-top: 1px solid #4c4c4c;
+  color: #999999;
+  border-top: 1px solid #999999;
   font-size: 14px;
   font-size: 1.4rem;
   padding: 24px 0;
   padding: 2.4rem 0;
-}
-
-.hentry {
-  background-color: #d9d9d9;
-  margin-bottom: 48px;
-  margin-bottom: 4.8rem;
 }
 
 .entry-updated {
@@ -1129,14 +1129,14 @@ Content
   /* Widget Forms */
 }
 .primary-widget-area .widget {
-  background-color: #d9d9d9;
-  margin-bottom: 48px;
-  margin-bottom: 4.8rem;
+  background-color: white;
+  margin-bottom: 24px;
+  margin-bottom: 2.4rem;
   padding: 40px;
   padding: 4rem;
 }
 .primary-widget-area .widget-title {
-  color: black;
+  color: #111111;
   font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-size: 24px;
   font-size: 2.4rem;
@@ -1164,7 +1164,7 @@ Content
 .primary-widget-area input[type="search"]:focus,
 .primary-widget-area textarea:focus {
   color: #111111;
-  border: 1px solid #4c4c4c;
+  border: 1px solid #999999;
   font-size: 14px;
   font-size: 1.4rem;
   padding: 10px;
@@ -1198,7 +1198,7 @@ ul.children,
 }
 
 .comments-area {
-  background-color: #d9d9d9;
+  background-color: white;
   padding: 48px 24px;
   padding: 4.8rem 2.4rem;
 }
@@ -1216,7 +1216,7 @@ ul.children,
   padding: 1.2rem;
 }
 .comment-list .even {
-  background-color: #d9d9d9;
+  background-color: white;
 }
 .comment-list .odd {
   background-color: #8c8c8c;
@@ -1269,7 +1269,7 @@ Footer
 --------------------------------------------- */
 .site-footer {
   clear: both;
-  background-color: white;
+  background-color: #f0f0f0;
   padding: 8px 0;
   padding: 0.8rem 0;
 }
@@ -1287,25 +1287,26 @@ Footer
 }
 
 .site-info a:hover {
-  color: #4c4c4c;
+  color: #999999;
 }
 
 /* Footer Widget Area
 --------------------------------------------- */
 .footer-widgets {
-  background-color: black;
-  border-top: 10px solid #4c4c4c;
+  background-color: #111111;
+  border-top: 10px solid #999999;
+  border-bottom: 10px solid #999999;
   color: white;
   clear: both;
-  padding: 40px 0 16px;
-  padding: 4rem 0 1.6rem;
+  padding: 48px 0;
+  padding: 4.8rem 0;
 }
 .footer-widgets .widget {
-  background-color: black;
+  background-color: #111111;
   padding: 0;
 }
 .footer-widgets .widget-title {
-  color: white;
+  color: #f0f0f0;
 }
 .footer-widgets ul {
   list-style: none;

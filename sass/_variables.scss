@@ -28,11 +28,11 @@ $white:                         #ffffff;
 // Color Theme
 $color-1:                       #111111; // Text
 $color-2:                       #888888; // Secondary Text
-$color-3:                       #000000; // Nav & Footer Backgrounds
-$color-4:                       #4C4C4C; // Borders, Hovers, & Highlights
+$color-3:                       #111111; // Nav & Footer Backgrounds
+$color-4:                       #999999; // Borders, Hovers, & Highlights
 $color-5:                       #8C8C8C; // Links
-$color-6:                       #D9D9D9; // Content, Wrap, & Widget Backgrounds
-$color-7:                       #ffffff; // Site Background
+$color-6:                       #ffffff; // Content, Wrap, & Widget Backgrounds
+$color-7:                       #f0f0f0; // Site Background
 
 
 // -------------------------------------------------------------------------
@@ -82,7 +82,7 @@ $color-link-nav-header-hover:   $color-link-hover;
 // ------------------------------------------
 $color-bg-nav:                  $color-3;
 $color-border-nav:              $color-border;
-$color-link-nav:                $color-link;
+$color-link-nav:                $color-7;
 $color-link-nav-hover:          $color-link-hover;
 
 // Submenu
@@ -96,7 +96,8 @@ $color-link-submenu-hover:      $color-4;
 // ------------------------------------------
 
 // Posts & Pages
-$color-bg-content:              $color-6;
+$color-bg-posts:                #FFFFFF;
+$color-bg-sticky:				$color-6;
 $color-entry-meta:              $color-4;
 
 // Forms
@@ -108,15 +109,15 @@ $color-text-button-hover:       $color-3;
 $color-input-form:              $color-text-primary;
 
 // Comments
-$color-bg-comment-area:         $color-bg-content;
-$color-bg-comment-even:         $color-bg-content;
+$color-bg-comment-area:         $color-bg-posts;
+$color-bg-comment-even:         $color-bg-posts;
 $color-bg-comment-odd:          $color-5;
 $color-bg-comment-author:       lighten(#ffff00, 38);
 
 
 // Primary Widget Area
 // ------------------------------------------
-$color-bg-widget:               $color-bg-content;
+$color-bg-widget:               $color-6;
 $color-widget-title:            $color-headlines-primary;
 $font-widget-title:             $font-stack-sans;
 $font-size-widget-title:        24px;
