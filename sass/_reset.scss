@@ -24,16 +24,17 @@ article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,su
 .clr:before,
 .menu:before,
 .site-inner:before,
+.site-main:before,
 .content-sidebar:before,
 .entry:before,
-.entry-header:before
+.entry-header:before,
+.entry-content:before,
 .post-navigation:before,
 .entry-pagination:before,
 .entry-footer:before,
 .comment-list:before,
 .comment:before,
 .comment-respond:before,
-
 .widget:before,
 .wrap:before {
 	content: " ";
@@ -47,9 +48,11 @@ article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,su
 .clr:after,
 .menu:after,
 .site-inner:after,
+.site-main:after,
 .content-sidebar:after,
 .entry:after,
 .entry-header:after,
+.entry-content:after,
 .entry-pagination:after,
 .entry-footer:after,
 .post-navigation:after,

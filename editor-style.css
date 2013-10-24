@@ -5,13 +5,13 @@ Defaults
 --------------------------------------------- */
 a,
 a:visited {
-  color: #cc6d16;
+  color: #777777;
 }
 
 a:hover,
 a:focus,
 a:active {
-  color: #f0d5bc;
+  color: #999999;
 }
 
 /* Typography
@@ -22,7 +22,7 @@ html {
 }
 
 body {
-  background-color: #fcf5ef;
+  background-color: #f0f0f0;
   color: #111111;
   font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-size: 16px;
@@ -81,7 +81,7 @@ address {
 }
 
 pre {
-  background: #eeeeee;
+  background: #f0f0f0;
   font-family: "Courier 10 Pitch", Courier, monospace;
   font-size: 15px;
   font-size: 1.5rem;
@@ -105,13 +105,13 @@ var {
 
 abbr,
 acronym {
-  border-bottom: 1px dotted #f0d5bc;
+  border-bottom: 1px dotted #999999;
   cursor: help;
 }
 
 mark,
 ins {
-  background: #eeeeee;
+  background: #fffadb;
   text-decoration: none;
 }
 
@@ -157,7 +157,7 @@ h4,
 h5,
 h6 {
   clear: both;
-  color: #cc6d16;
+  color: #111111;
   font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-weight: 700;
   line-height: 1.2;
@@ -312,7 +312,7 @@ table {
 }
 
 tbody {
-  border-bottom: 1px solid #f0d5bc;
+  border-bottom: 1px solid #999999;
 }
 
 th,
@@ -326,7 +326,7 @@ th {
 }
 
 td {
-  border-top: 1px solid #f0d5bc;
+  border-top: 1px solid #999999;
   padding: 6px 0;
   padding: 0.6rem 0;
 }
@@ -381,7 +381,7 @@ textarea:focus,
 button::-moz-focus-inner,
 input::-moz-focus-inner {
   /* Corrects inner padding and border displayed oddly in FF3/4 www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/ */
-  border: 1px solid #f0d5bc;
+  border: 1px solid #999999;
   outline: none;
   border: 0;
   padding: 0;
@@ -392,9 +392,9 @@ button,
 html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-  background: #351a01;
-  border: 1px solid #f0d5bc;
-  color: #f8eade;
+  background: #111111;
+  border: 1px solid #999999;
+  color: white;
   cursor: pointer;
   /* Improves usability and consistency of cursor style between image-type 'input' and others */
   -webkit-appearance: button;
@@ -403,17 +403,17 @@ input[type="submit"] {
   font-size: 1.4rem;
   font-weight: 700;
   line-height: 1;
-  padding: 10px;
-  padding: 1rem;
+  padding: 12px 10px;
+  padding: 1.2rem 1rem;
 }
 
 button:hover,
 html input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover {
-  border: 1px solid #f0d5bc;
-  background: #cc6d16;
-  color: #f0d5bc;
+  border: 1px solid #999999;
+  background: #999999;
+  color: #111111;
 }
 
 button:focus,
@@ -424,8 +424,8 @@ button:active,
 html input[type="button"]:active,
 input[type="reset"]:active,
 input[type="submit"]:active {
-  border: 1px solid #f0d5bc;
-  background: #f0d5bc;
+  border: 1px solid #999999;
+  background: #111111;
 }
 
 /* inputs */
@@ -442,7 +442,6 @@ textarea,
 .gform_fields input[type="url"],
 .gform_fields input[type="tel"],
 .gform_fields input[type="password"],
-.gform_fields input[type="search"],
 .gform_fields select,
 .gform_fields textarea,
 input[type="text"]:focus,
@@ -452,7 +451,7 @@ input[type="password"]:focus,
 input[type="search"]:focus,
 textarea:focus {
   color: #111111;
-  border: 1px solid #f0d5bc;
+  border: 1px solid #999999;
   font-size: 14px;
   font-size: 1.4rem;
   padding: 10px;
@@ -474,14 +473,24 @@ Content
 /* Content
 --------------------------------------------- */
 .site-inner {
-  background-color: #fcf5ef;
+  background-color: #f0f0f0;
   clear: both;
   padding-top: 48px;
   padding-top: 4.8rem;
 }
 
+.post,
+.site-inner .page {
+  background-color: white;
+  margin-bottom: 24px;
+  margin-bottom: 2.4rem;
+  padding: 48px;
+  padding: 4.8rem;
+}
+
 .sticky {
-  background-color: #eeeeee;
+  background-color: #fffadb;
+  border: 1px solid #e5dba1;
 }
 
 .page-header {
@@ -490,27 +499,21 @@ Content
 }
 
 .entry-title a {
-  color: #cc6d16;
+  color: #111111;
   text-decoration: none;
 }
 
 .entry-title a:hover {
-  color: #f0d5bc;
+  color: #999999;
 }
 
 .entry-meta {
   color: #888888;
-  border-top: 1px solid #f0d5bc;
+  border-top: 1px solid #999999;
   font-size: 14px;
   font-size: 1.4rem;
   padding: 24px 0;
   padding: 2.4rem 0;
-}
-
-.hentry {
-  background-color: #f8eade;
-  margin-bottom: 48px;
-  margin-bottom: 4.8rem;
 }
 
 .entry-updated {

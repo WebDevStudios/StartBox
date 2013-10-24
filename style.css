@@ -243,9 +243,11 @@ table {
 .clr:before,
 .menu:before,
 .site-inner:before,
+.site-main:before,
 .content-sidebar:before,
 .entry:before,
-.entry-header:before
+.entry-header:before,
+.entry-content:before,
 .post-navigation:before,
 .entry-pagination:before,
 .entry-footer:before,
@@ -265,9 +267,11 @@ table {
 .clr:after,
 .menu:after,
 .site-inner:after,
+.site-main:after,
 .content-sidebar:after,
 .entry:after,
 .entry-header:after,
+.entry-content:after,
 .entry-pagination:after,
 .entry-footer:after,
 .post-navigation:after,
@@ -288,13 +292,13 @@ Defaults
 --------------------------------------------- */
 a,
 a:visited {
-  color: #cc6d16;
+  color: #777777;
 }
 
 a:hover,
 a:focus,
 a:active {
-  color: #f0d5bc;
+  color: #999999;
 }
 
 /* Typography
@@ -305,7 +309,7 @@ html {
 }
 
 body {
-  background-color: #fcf5ef;
+  background-color: #f0f0f0;
   color: #111111;
   font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-size: 16px;
@@ -364,7 +368,7 @@ address {
 }
 
 pre {
-  background: #eeeeee;
+  background: #f0f0f0;
   font-family: "Courier 10 Pitch", Courier, monospace;
   font-size: 15px;
   font-size: 1.5rem;
@@ -388,13 +392,13 @@ var {
 
 abbr,
 acronym {
-  border-bottom: 1px dotted #f0d5bc;
+  border-bottom: 1px dotted #999999;
   cursor: help;
 }
 
 mark,
 ins {
-  background: #eeeeee;
+  background: #fffadb;
   text-decoration: none;
 }
 
@@ -440,7 +444,7 @@ h4,
 h5,
 h6 {
   clear: both;
-  color: #cc6d16;
+  color: #111111;
   font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-weight: 700;
   line-height: 1.2;
@@ -595,7 +599,7 @@ table {
 }
 
 tbody {
-  border-bottom: 1px solid #f0d5bc;
+  border-bottom: 1px solid #999999;
 }
 
 th,
@@ -609,7 +613,7 @@ th {
 }
 
 td {
-  border-top: 1px solid #f0d5bc;
+  border-top: 1px solid #999999;
   padding: 6px 0;
   padding: 0.6rem 0;
 }
@@ -664,7 +668,7 @@ textarea:focus,
 button::-moz-focus-inner,
 input::-moz-focus-inner {
   /* Corrects inner padding and border displayed oddly in FF3/4 www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/ */
-  border: 1px solid #f0d5bc;
+  border: 1px solid #999999;
   outline: none;
   border: 0;
   padding: 0;
@@ -675,9 +679,9 @@ button,
 html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-  background: #351a01;
-  border: 1px solid #f0d5bc;
-  color: #f8eade;
+  background: #111111;
+  border: 1px solid #999999;
+  color: white;
   cursor: pointer;
   /* Improves usability and consistency of cursor style between image-type 'input' and others */
   -webkit-appearance: button;
@@ -686,17 +690,17 @@ input[type="submit"] {
   font-size: 1.4rem;
   font-weight: 700;
   line-height: 1;
-  padding: 10px;
-  padding: 1rem;
+  padding: 12px 10px;
+  padding: 1.2rem 1rem;
 }
 
 button:hover,
 html input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover {
-  border: 1px solid #f0d5bc;
-  background: #cc6d16;
-  color: #f0d5bc;
+  border: 1px solid #999999;
+  background: #999999;
+  color: #111111;
 }
 
 button:focus,
@@ -707,8 +711,8 @@ button:active,
 html input[type="button"]:active,
 input[type="reset"]:active,
 input[type="submit"]:active {
-  border: 1px solid #f0d5bc;
-  background: #f0d5bc;
+  border: 1px solid #999999;
+  background: #111111;
 }
 
 /* inputs */
@@ -725,7 +729,6 @@ textarea,
 .gform_fields input[type="url"],
 .gform_fields input[type="tel"],
 .gform_fields input[type="password"],
-.gform_fields input[type="search"],
 .gform_fields select,
 .gform_fields textarea,
 input[type="text"]:focus,
@@ -735,7 +738,7 @@ input[type="password"]:focus,
 input[type="search"]:focus,
 textarea:focus {
   color: #111111;
-  border: 1px solid #f0d5bc;
+  border: 1px solid #999999;
   font-size: 14px;
   font-size: 1.4rem;
   padding: 10px;
@@ -757,7 +760,7 @@ Structure and Layout
 /* Containers
 --------------------------------------------- */
 .site-header {
-  background-color: #fcf5ef;
+  background-color: #f0f0f0;
 }
 
 .site-main {
@@ -768,12 +771,6 @@ Structure and Layout
 .wrap {
   margin: 0 auto;
   max-width: 1140px;
-}
-
-.hentry,
-.comments-area {
-  padding: 40px 48px;
-  padding: 4rem 4.8rem;
 }
 
 /* Grid
@@ -908,13 +905,13 @@ Header
   padding-top: 0.4rem;
 }
 .site-title a {
-  color: #cc6d16;
+  color: #111111;
   font-weight: 700;
   text-decoration: none;
 }
 
 .site-description {
-  color: #f0d5bc;
+  color: #999999;
   font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-weight: 300;
   font-size: 14px;
@@ -945,17 +942,17 @@ Header
   position: relative;
 }
 .header_widget_area .widget_nav_menu a {
-  color: #cc6d16;
+  color: #777777;
   display: block;
   padding: 12px;
   padding: 1.2rem;
   text-decoration: none;
 }
 .header_widget_area .widget_nav_menu a:hover {
-  color: #f0d5bc;
+  color: #999999;
 }
 .header_widget_area .widget_nav_menu ul.sub-menu {
-  background-color: #f8eade;
+  background-color: white;
   display: none;
   float: left;
   position: absolute;
@@ -966,14 +963,14 @@ Header
   top: 0;
 }
 .header_widget_area .widget_nav_menu ul.sub-menu a {
-  color: #cc6d16;
+  color: #777777;
   padding: 16px 24px;
   padding: 1.6rem 2.4rem;
   width: 200px;
 }
 .header_widget_area .widget_nav_menu ul.sub-menu a:hover {
-  background-color: #cc6d16;
-  color: #f0d5bc;
+  background-color: #f0f0f0;
+  color: #999999;
 }
 .header_widget_area .widget_nav_menu ul li:hover > ul.sub-menu {
   display: block;
@@ -985,8 +982,8 @@ Navigation
 /* Main Navigation
 --------------------------------------------- */
 .main-navigation {
-  background-color: #351a01;
-  border-bottom: 6px solid #f0d5bc;
+  background-color: #111111;
+  border-bottom: 6px solid #999999;
   clear: both;
   display: block;
   float: left;
@@ -1002,17 +999,17 @@ Navigation
   position: relative;
 }
 .main-navigation a {
-  color: #cc6d16;
+  color: #f0f0f0;
   display: block;
   padding: 24px;
   padding: 2.4rem;
   text-decoration: none;
 }
 .main-navigation a:hover {
-  color: #f0d5bc;
+  color: #999999;
 }
 .main-navigation ul.sub-menu {
-  background-color: #f8eade;
+  background-color: white;
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
   display: none;
   float: left;
@@ -1024,14 +1021,14 @@ Navigation
   top: 0;
 }
 .main-navigation ul.sub-menu a {
-  color: #cc6d16;
+  color: #777777;
   padding: 16px 24px;
   padding: 1.6rem 2.4rem;
   width: 200px;
 }
 .main-navigation ul.sub-menu a:hover {
-  background-color: #cc6d16;
-  color: #f0d5bc;
+  background-color: #f0f0f0;
+  color: #999999;
 }
 .main-navigation ul li:hover > ul.sub-menu {
   display: block;
@@ -1077,14 +1074,24 @@ Content
 /* Content
 --------------------------------------------- */
 .site-inner {
-  background-color: #fcf5ef;
+  background-color: #f0f0f0;
   clear: both;
   padding-top: 48px;
   padding-top: 4.8rem;
 }
 
+.post,
+.site-inner .page {
+  background-color: white;
+  margin-bottom: 24px;
+  margin-bottom: 2.4rem;
+  padding: 48px;
+  padding: 4.8rem;
+}
+
 .sticky {
-  background-color: #eeeeee;
+  background-color: #fffadb;
+  border: 1px solid #e5dba1;
 }
 
 .page-header {
@@ -1093,27 +1100,21 @@ Content
 }
 
 .entry-title a {
-  color: #cc6d16;
+  color: #111111;
   text-decoration: none;
 }
 
 .entry-title a:hover {
-  color: #f0d5bc;
+  color: #999999;
 }
 
 .entry-meta {
   color: #888888;
-  border-top: 1px solid #f0d5bc;
+  border-top: 1px solid #999999;
   font-size: 14px;
   font-size: 1.4rem;
   padding: 24px 0;
   padding: 2.4rem 0;
-}
-
-.hentry {
-  background-color: #f8eade;
-  margin-bottom: 48px;
-  margin-bottom: 4.8rem;
 }
 
 .entry-updated {
@@ -1126,14 +1127,14 @@ Content
   /* Widget Forms */
 }
 .primary-widget-area .widget {
-  background-color: #f8eade;
-  margin-bottom: 48px;
-  margin-bottom: 4.8rem;
+  background-color: white;
+  margin-bottom: 24px;
+  margin-bottom: 2.4rem;
   padding: 40px;
   padding: 4rem;
 }
 .primary-widget-area .widget-title {
-  color: #cc6d16;
+  color: #111111;
   font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-size: 24px;
   font-size: 2.4rem;
@@ -1161,7 +1162,7 @@ Content
 .primary-widget-area input[type="search"]:focus,
 .primary-widget-area textarea:focus {
   color: #111111;
-  border: 1px solid #f0d5bc;
+  border: 1px solid #999999;
   font-size: 14px;
   font-size: 1.4rem;
   padding: 10px;
@@ -1195,42 +1196,36 @@ ul.children,
 }
 
 .comments-area {
-  background-color: #f8eade;
-  padding: 48px 24px;
-  padding: 4.8rem 2.4rem;
+  background-color: white;
+  padding: 48px;
+  padding: 4.8rem;
 }
 
-.comment-list {
-  padding: 12px 12px 0 12px;
-  padding: 1.2rem 1.2rem 0 1.2rem;
+ol.comment-list {
+  padding: 12px 12px 24px;
+  padding: 1.2rem 1.2rem 2.4rem;
 }
-.comment-list li li {
+ol.comment-list li li {
   padding: 12px;
   padding: 1.2rem;
 }
-.comment-list .comment {
+ol.comment-list .comment {
   padding: 12px;
   padding: 1.2rem;
 }
-.comment-list .even {
-  background-color: #f8eade;
+ol.comment-list .even {
+  background-color: white;
 }
-.comment-list .odd {
-  background-color: #f0d5bc;
+ol.comment-list .odd {
+  background-color: #f0f0f0;
 }
-.comment-list .bypostauthor {
-  background-color: #ffffc2;
+ol.comment-list .bypostauthor {
+  background-color: #fffadb;
 }
 
 .comment-content {
   padding-right: 24px;
   padding-right: 2.4rem;
-}
-
-.comment-respond,
-.entry-pings {
-  padding: 48px 0;
-  padding: 4.8rem 0;
 }
 
 /* comment children */
@@ -1272,7 +1267,7 @@ Footer
 --------------------------------------------- */
 .site-footer {
   clear: both;
-  background-color: #fcf5ef;
+  background-color: #f0f0f0;
   padding: 8px 0;
   padding: 0.8rem 0;
 }
@@ -1286,34 +1281,42 @@ Footer
 }
 
 .site-info a {
-  color: #cc6d16;
+  color: #777777;
 }
 
 .site-info a:hover {
-  color: #f0d5bc;
+  color: #999999;
 }
 
 /* Footer Widget Area
 --------------------------------------------- */
 .footer-widgets {
-  background-color: #351a01;
-  border-top: 10px solid #f0d5bc;
-  color: white;
+  background-color: #111111;
+  border-top: 10px solid #999999;
+  border-bottom: 10px solid #999999;
+  color: #f0f0f0;
   clear: both;
-  padding: 40px 0 16px;
-  padding: 4rem 0 1.6rem;
+  padding: 48px 0;
+  padding: 4.8rem 0;
 }
 .footer-widgets .widget {
-  background-color: #351a01;
+  background-color: #111111;
   padding: 0;
 }
 .footer-widgets .widget-title {
-  color: #cc6d16;
+  color: #f0f0f0;
 }
 .footer-widgets ul {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+.footer-widgets a,
+.footer-widgets a:visited {
+  color: #777777;
+}
+.footer-widgets a:hover {
+  color: #999999;
 }
 
 /*
@@ -1443,5 +1446,10 @@ Media Queries
     font-size: 2.4rem;
     padding: 12px 0 0;
     padding: 1.2rem 0 0;
+  }
+
+  .hentry {
+    padding-left: 5%;
+    padding-right: 5%;
   }
 }

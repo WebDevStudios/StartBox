@@ -17,11 +17,11 @@ ul.children,
 
 .comments-area {
 	background-color: $color-bg-comment-area;
-	@include rem(padding, 48px 24px);
+	@include rem(padding, 48px);
 }
 
-.comment-list {
-	@include rem(padding, 12px 12px 0 12px);
+ol.comment-list {
+	@include rem(padding, 12px 12px 24px);
 
 	li li {
 		@include rem(padding, 12px);
@@ -46,11 +46,6 @@ ul.children,
 
 .comment-content {
 	@include rem(padding-right, 24px);
-}
-
-.comment-respond,
-.entry-pings {
-	@include rem(padding, 48px 0);
 }
 
 /* comment children */

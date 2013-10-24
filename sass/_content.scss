@@ -7,8 +7,16 @@
 	@include rem(padding-top, 48px);
 }
 
+.post,
+.site-inner .page {
+	background-color: $color-bg-posts;
+	@include rem(margin-bottom, 24px);
+	@include rem(padding, 48px);
+}
+
 .sticky {
-	background-color: $color-highlight;
+	background-color: $color-bg-sticky;
+	border: 1px solid $color-border-sticky;
 }
 
 .page-header {
@@ -25,15 +33,10 @@
 }
 
 .entry-meta {
-	color: $color-text-secondary;
+	color: $color-entry-meta;
 	border-top: 1px solid $color-border;
 	@include rem(font-size, 14px);
 	@include rem(padding, 24px 0);
-}
-
-.hentry {
-	background-color: $color-bg-content;
-	@include rem(margin-bottom, 48px);
 }
 
 .entry-updated {
