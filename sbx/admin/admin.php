@@ -1,8 +1,5 @@
 <?php
 
-// Placeholder
-class SB_Settings {}
-
 /**
  * Creates Theme Options page and enqueues all necessary scripts
  *
@@ -14,7 +11,7 @@ function sb_admin_init() {
 	global $sb_admin;
 
 	// Create our settings page and add it to the menu
-	$sb_admin = add_theme_page( THEME_NAME." Options", __('Theme Options', 'startbox'), 'edit_theme_options', 'sb_admin', 'sb_admin_page' );
+	$sb_admin = add_menu_page( __( 'StartBox Options', 'startbox' ), __( 'SBX', 'startbox'), 'edit_theme_options', 'sb_admin', 'sb_admin_page', '', '59' );
 
 	// Register our custom settings field
 	register_setting( 'sb_admin', THEME_OPTIONS, 'sb_sanitize');
@@ -105,10 +102,10 @@ function sb_admin_load() {
 
 	// Load StartBox-specific scripts and styles
 	wp_enqueue_script( 'colorbox' );
-	wp_enqueue_script( 'jquery-colorpicker', SCRIPTS_URL . '/colorpicker/js/colorpicker.js' );
-	wp_enqueue_script( 'sb-admin', SCRIPTS_URL . '/admin.js', array('jquery-colorpicker') );
-	wp_enqueue_style( 'colorpicker', SCRIPTS_URL . '/colorpicker/css/colorpicker.css' );
-	wp_enqueue_style( 'sb-admin', STYLES_URL . '/admin.css' );
+	wp_enqueue_script( 'jquery-colorpicker', SB_JS . '/colorpicker/js/colorpicker.js' );
+	wp_enqueue_script( 'sb-admin', SB_JS . '/admin.js', array('jquery-colorpicker') );
+	wp_enqueue_style( 'colorpicker', SB_JS . '/colorpicker/css/colorpicker.css' );
+	wp_enqueue_style( 'sb-admin', SB_CSS . '/admin.css' );
 	wp_enqueue_style( 'colorbox' );
 
 	// Load scripts for TinyMCE (Credit: Lee Doel)

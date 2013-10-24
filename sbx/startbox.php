@@ -43,6 +43,7 @@ if ( ! class_exists('StartBox') ) {
 			define( 'SB_VERSION',      '3.0.0' );
 			define( 'THEME_OPTIONS',   'startbox' );
 			define( 'THEME_PREFIX',    'sb' );
+			define( 'THEME_NAME',      wp_get_theme() );
 
 			// Define all our paths
 			define( 'THEME_DIR',       get_template_directory() );
@@ -88,10 +89,11 @@ if ( ! class_exists('StartBox') ) {
 			require_if_theme_supports( 'sb-custom-sidebars', SB_CLASSES . '/SB_Custom_Sidebars.php' );
 			require_if_theme_supports( 'sb-updates',         SB_CLASSES . '/SB_Updater.php' );
 			require_if_theme_supports( 'sb-shortcodes',      SB_EXTENSIONS . '/shortcodes.php' );
+			require_if_theme_supports( 'sb-options',		SB_CLASSES . '/SB_Options_API.php' );
 
 			// Include all customization panels
-			// foreach ( glob( SB_ADMIN . '/*.php') as $sb_admin )
-			// 	require_if_theme_supports( 'sb-customizer', $sb_admin );
+			foreach ( glob( SB_ADMIN . '/*.php') as $sb_admin )
+			 	require_if_theme_supports( 'sb-customizer', $sb_admin );
 
 		}
 

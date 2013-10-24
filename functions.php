@@ -25,6 +25,7 @@ function startbox_setup_theme() {
 	add_theme_support( 'sb-customizer' );
 	add_theme_support( 'sb-layouts' );
 	add_theme_support( 'sb-shortcodes' );
+	add_theme_support( 'sb-options' );
 	add_theme_support(
 		'sb-sidebars',
 		array(
