@@ -18,21 +18,21 @@ $font-stack-mono:           "Courier 10 Pitch", Courier, monospace;
 // ------------------------------------------
 
 // Grayscale
-$black:                     #000000;
-$blackMed:                  #222222;
-$blackLight:                #888888;
-$blackLighter:              #dddddd;
-$blackLightest:             #eeeeee;
-$white:                     #ffffff;
+$black:                         #000000;
+$blackMed:                      #222222;
+$blackLight:                    #888888;
+$blackLighter:                  #dddddd;
+$blackLightest:                 #eeeeee;
+$white:                         #ffffff;
 
 // Color Theme
-$color-1:                   #111111; // Text
-$color-2:                   #888888; // Secondary Text
-$color-3:                   #351A01; // Nav & Footer Backgrounds
-$color-4:                   #CC6D16; // Links
-$color-5:                   #F0D5BC; // Borders & Highlights
-$color-6:                   #F8EADE; // Content, Wrap, & Widget Backgrounds
-$color-7:                   lighten($color-6, 4); // Site Background
+$color-1:                       #111111; // Text
+$color-2:                       #888888; // Secondary Text
+$color-3:                       #351A01; // Nav & Footer Backgrounds
+$color-4:                       #CC6D16; // Links
+$color-5:                       #F0D5BC; // Borders & Highlights
+$color-6:                       #F8EADE; // Content, Wrap, & Widget Backgrounds
+$color-7:                       lighten($color-6, 4); // Site Background
 
 
 // -------------------------------------------------------------------------
