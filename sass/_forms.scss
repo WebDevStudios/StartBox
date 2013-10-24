@@ -57,7 +57,7 @@ input[type="submit"] {
 	@include rem(font-size, 14px);
 	font-weight: 700;
 	line-height: 1;
-	@include rem(padding, 10px);
+	@include rem(padding, 12px 10px);
 }
 
 button:hover,
@@ -95,7 +95,6 @@ textarea,
 .gform_fields input[type="url"],
 .gform_fields input[type="tel"],
 .gform_fields input[type="password"],
-.gform_fields input[type="search"],
 .gform_fields select,
 .gform_fields textarea,
 input[type="text"]:focus,
