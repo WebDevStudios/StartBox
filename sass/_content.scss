@@ -8,7 +8,7 @@
 }
 
 .post,
-.page {
+.site-inner .page {
 	background-color: $color-bg-posts;
 	@include rem(margin-bottom, 24px);
 	@include rem(padding, 48px);
@@ -16,6 +16,7 @@
 
 .sticky {
 	background-color: $color-bg-sticky;
+	border: 1px solid $color-border-sticky;
 }
 
 .page-header {

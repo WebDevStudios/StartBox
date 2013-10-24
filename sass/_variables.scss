@@ -31,8 +31,8 @@ $color-2:                            #888888; // Secondary Text & Post Meta
 $color-3:                            #111111; // Nav & Footer Backgrounds
 $color-4:                            #999999; // Borders, Hovers, & Highlights
 $color-5:                            #777777; // Links
-$color-6:                            #ffffff; // Content, Wrap, & Widget Backgrounds
-$color-7:                            #f0f0f0; // Site Background
+$color-6:                            #FFFFFF; // Content, Wrap, & Widget Backgrounds
+$color-7:                            #F0F0F0; // Site Background
 
 
 // -------------------------------------------------------------------------
@@ -44,7 +44,7 @@ $color-7:                            #f0f0f0; // Site Background
 $color-bg-body:                      $color-7;
 $color-bg-wrap:                      $color-bg-body;
 $color-border:                       $color-4;
-$color-highlight:                    lighten(#ffff00, 38);
+$color-highlight:                    #FFFADB;
 $width-site-wrap:                    1140px;
 
 // Hyperlinks
@@ -100,6 +100,7 @@ $color-link-submenu-hover:           $color-4;
 // Posts & Pages
 $color-bg-posts:                     $color-6;
 $color-bg-sticky:			    	 $color-highlight;
+$color-border-sticky:                #E5DBA1;
 $color-entry-meta:                   $color-text-secondary;
 
 // Forms

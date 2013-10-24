@@ -111,7 +111,7 @@ acronym {
 
 mark,
 ins {
-  background: #ffffc2;
+  background: #fffadb;
   text-decoration: none;
 }
 
@@ -480,7 +480,7 @@ Content
 }
 
 .post,
-.page {
+.site-inner .page {
   background-color: white;
   margin-bottom: 24px;
   margin-bottom: 2.4rem;
@@ -489,7 +489,8 @@ Content
 }
 
 .sticky {
-  background-color: #ffffc2;
+  background-color: #fffadb;
+  border: 1px solid #e5dba1;
 }
 
 .page-header {
