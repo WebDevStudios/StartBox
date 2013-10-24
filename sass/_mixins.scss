@@ -34,7 +34,7 @@
 	$px : (); 
 	$rem: ();
 	
-	$root: $size-html;
+	$root: 10;
 	
 	@each $value in $values {
 		@if $value == 0 or $value == auto {
