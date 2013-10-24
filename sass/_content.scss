@@ -25,7 +25,7 @@
 }
 
 .entry-meta {
-	color: $color-text-secondary;
+	color: $color-entry-meta;
 	border-top: 1px solid $color-border;
 	@include rem(font-size, 14px);
 	@include rem(padding, 24px 0);
