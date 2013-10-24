@@ -7,8 +7,13 @@
 	@include rem(padding-top, 48px);
 }
 
+.post {
+	background-color: $color-bg-posts;
+	@include rem(margin-bottom, 24px);
+}
+
 .sticky {
-	background-color: $color-highlight;
+	background-color: $color-bg-sticky;
 }
 
 .page-header {
@@ -29,11 +34,6 @@
 	border-top: 1px solid $color-border;
 	@include rem(font-size, 14px);
 	@include rem(padding, 24px 0);
-}
-
-.hentry {
-	background-color: $color-bg-content;
-	@include rem(margin-bottom, 48px);
 }
 
 .entry-updated {

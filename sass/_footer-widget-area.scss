@@ -4,9 +4,10 @@
 .footer-widgets {
 	background-color: $color-bg-footer;
 	border-top: 10px solid $color-border-footer;
+	border-bottom: 10px solid $color-border-footer;
 	color: $color-text-tertiary;
 	clear: both;
-	@include rem(padding, 40px 0 16px);
+	@include rem(padding, 48px 0);
 	
 	.widget {
 		background-color: $color-bg-widgets-footer;
