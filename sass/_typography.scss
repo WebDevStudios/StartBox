@@ -10,8 +10,8 @@ body {
 	color: $color-text-primary;
 	font-family: $font-stack-sans;
 	@include rem(font-size, $font-size-body);
-	font-weight: 300;
-	line-height: 1.625;
+	font-weight: $font-weight;
+	line-height: $font-line-height;
 }
 
 p {
