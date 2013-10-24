@@ -5,7 +5,7 @@
 	background-color: $color-bg-footer;
 	border-top: 10px solid $color-border-footer;
 	border-bottom: 10px solid $color-border-footer;
-	color: $color-text-tertiary;
+	color: $color-widget-text-footer;
 	clear: both;
 	@include rem(padding, 48px 0);
 	
@@ -22,5 +22,14 @@
 		list-style: none;
 		margin: 0;
 		padding: 0;
+	}
+
+	a,
+	a:visited {
+		color: $color-widget-link-footer;
+	}
+
+	a:hover {
+		color: $color-widget-link-hover-footer;
 	}
 }
