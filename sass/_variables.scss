@@ -28,11 +28,11 @@ $white:                         #ffffff;
 // Color Theme
 $color-1:                       #111111; // Text
 $color-2:                       #888888; // Secondary Text
-$color-3:                       #351A01; // Nav & Footer Backgrounds
-$color-4:                       #CC6D16; // Links
-$color-5:                       #F0D5BC; // Borders & Highlights
-$color-6:                       #F8EADE; // Content, Wrap, & Widget Backgrounds
-$color-7:                       lighten($color-6, 4); // Site Background
+$color-3:                       #000000; // Nav & Footer Backgrounds
+$color-4:                       #4C4C4C; // Borders, Hovers, & Highlights
+$color-5:                       #8C8C8C; // Links
+$color-6:                       #D9D9D9; // Content, Wrap, & Widget Backgrounds
+$color-7:                       #ffffff; // Site Background
 
 
 // -------------------------------------------------------------------------
@@ -43,12 +43,12 @@ $color-7:                       lighten($color-6, 4); // Site Background
 // ------------------------------------------
 $color-bg-body:                 $color-7;
 $color-bg-wrap:                 $color-bg-body;
-$color-border:                  $color-5;
+$color-border:                  $color-4;
 $color-highlight:               $blackLightest;
 
 // Hyperlinks
-$color-link:                    $color-4;
-$color-link-hover:              $color-5;
+$color-link:                    $color-5;
+$color-link-hover:              $color-4;
 
 // Text
 $color-text-primary:            $color-1;
@@ -58,8 +58,8 @@ $width-site-wrap:               1140px;
 $font-size-body:                16px;
 
 // Headlines
-$color-headlines-primary:       $color-4;
-$color-headlines-secondary:     $color-5;
+$color-headlines-primary:       $color-3;
+$color-headlines-secondary:     $color-4;
 $font-stack-headlines:          $font-stack-sans;
 
 
@@ -86,10 +86,10 @@ $color-link-nav:                $color-link;
 $color-link-nav-hover:          $color-link-hover;
 
 // Submenu
-$color-bg-submenu:              $color-6;
-$color-bg-submenu-hover:        $color-4;
-$color-link-submenu:            $color-4;
-$color-link-submenu-hover:      $color-5;
+$color-bg-submenu:              $color-7;
+$color-bg-submenu-hover:        $color-6;
+$color-link-submenu:            $color-5;
+$color-link-submenu-hover:      $color-4;
 
 
 // Content Area
@@ -97,14 +97,14 @@ $color-link-submenu-hover:      $color-5;
 
 // Posts & Pages
 $color-bg-content:              $color-6;
-$color-entry-meta:              $color-text-secondary;
+$color-entry-meta:              $color-4;
 
 // Forms
 $color-bg-button:               $color-bg-nav;
 $color-bg-button-hover:         $color-4;
 $color-border-form:             $color-border;
 $color-text-button:             $color-6;
-$color-text-button-hover:       $color-5;
+$color-text-button-hover:       $color-3;
 $color-input-form:              $color-text-primary;
 
 // Comments
@@ -131,4 +131,4 @@ $color-border-footer:           $color-border;
 $color-text-footer:             $color-text-primary;
 $color-link-footer:             $color-link;
 $color-link-footer-hover:       $color-link-hover;
-$color-widget-title-footer:     $color-headlines-primary;
+$color-widget-title-footer:     $color-7;
