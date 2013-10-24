@@ -368,7 +368,7 @@ address {
 }
 
 pre {
-  background: #ffffc2;
+  background: #f0f0f0;
   font-family: "Courier 10 Pitch", Courier, monospace;
   font-size: 15px;
   font-size: 1.5rem;
@@ -1090,7 +1090,7 @@ Content
 }
 
 .sticky {
-  background-color: #f0f0f0;
+  background-color: #ffffc2;
 }
 
 .page-header {

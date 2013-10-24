@@ -54,6 +54,7 @@ $color-link-hover:                   $color-4;
 // Text
 $color-text-primary:                 $color-1;
 $color-text-secondary:               $color-2;
+$color-pre:                          $color-bg-body;
 $font-size-body:                     16px;
 $font-weight:                        300;
 $font-line-height:                   1.625;
@@ -98,7 +99,7 @@ $color-link-submenu-hover:           $color-4;
 
 // Posts & Pages
 $color-bg-posts:                     $color-6;
-$color-bg-sticky:			    	 $color-7;
+$color-bg-sticky:			    	 $color-highlight;
 $color-entry-meta:                   $color-text-secondary;
 
 // Forms

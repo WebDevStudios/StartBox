@@ -58,7 +58,7 @@ address {
 }
 
 pre {
-	background: $color-highlight;
+	background: $color-pre;
 	font-family: $font-stack-mono;
 	@include rem(font-size, 15px);
 	line-height: 1.6;
