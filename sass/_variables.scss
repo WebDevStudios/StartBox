@@ -18,21 +18,21 @@ $font-stack-mono:           "Courier 10 Pitch", Courier, monospace;
 // ------------------------------------------
 
 // Grayscale
-$black:                         #000000;
-$blackMed:                      #222222;
-$blackLight:                    #888888;
-$blackLighter:                  #dddddd;
-$blackLightest:                 #eeeeee;
-$white:                         #ffffff;
+$black:                              #000000;
+$blackMed:                           #222222;
+$blackLight:                         #888888;
+$blackLighter:                       #dddddd;
+$blackLightest:                      #eeeeee;
+$white:                              #ffffff;
 
 // Color Theme
-$color-1:                       #111111; // Text
-$color-2:                       #888888; // Secondary Text
-$color-3:                       #111111; // Nav & Footer Backgrounds
-$color-4:                       #999999; // Borders, Hovers, & Highlights
-$color-5:                       #8C8C8C; // Links
-$color-6:                       #ffffff; // Content, Wrap, & Widget Backgrounds
-$color-7:                       #f0f0f0; // Site Background
+$color-1:                            #111111; // Primary Text
+$color-2:                            #888888; // Secondary Text & Post Meta
+$color-3:                            #111111; // Nav & Footer Backgrounds
+$color-4:                            #999999; // Borders, Hovers, & Highlights
+$color-5:                            #777777; // Links
+$color-6:                            #ffffff; // Content, Wrap, & Widget Backgrounds
+$color-7:                            #f0f0f0; // Site Background
 
 
 // -------------------------------------------------------------------------
@@ -41,97 +41,103 @@ $color-7:                       #f0f0f0; // Site Background
 
 // Body
 // ------------------------------------------
-$color-bg-body:                 $color-7;
-$color-bg-wrap:                 $color-bg-body;
-$color-border:                  $color-4;
-$color-highlight:               $blackLightest;
-$width-site-wrap:               1140px;
+$color-bg-body:                      $color-7;
+$color-bg-wrap:                      $color-bg-body;
+$color-border:                       $color-4;
+$color-highlight:                    lighten(#ffff00, 38);
+$width-site-wrap:                    1140px;
 
 // Hyperlinks
-$color-link:                    $color-5;
-$color-link-hover:              $color-4;
+$color-link:                         $color-5;
+$color-link-hover:                   $color-4;
 
 // Text
-$color-text-primary:            $color-1;
-$color-text-secondary:          $color-2;
-$color-text-tertiary:           $white;
-$font-size-body:                16px;
-$font-weight:                   300;
-$font-line-height:              1.625;
+$color-text-primary:                 $color-1;
+$color-text-secondary:               $color-2;
+$font-size-body:                     16px;
+$font-weight:                        300;
+$font-line-height:                   1.625;
 
 // Headlines
-$color-headlines-primary:       $color-3;
-$color-headlines-secondary:     $color-4;
-$font-stack-headlines:          $font-stack-sans;
+$color-headlines-primary:            $color-3;
+$color-headlines-secondary:          $color-4;
+$font-stack-headlines:               $font-stack-sans;
 
 
 // Header Area
 // ------------------------------------------
-$color-bg-header:               $color-bg-body;
-$color-site-title:              $color-headlines-primary;
-$color-site-description:        $color-headlines-secondary;
-$font-size-site-title:          48px;
-$font-size-site-description:    14px;
-$font-stack-site-title:         $font-stack-sans;
-$font-stack-site-description:   $font-stack-sans;
+$color-bg-header:                    $color-bg-body;
+$color-site-title:                   $color-headlines-primary;
+$color-site-description:             $color-headlines-secondary;
+$font-size-site-title:               48px;
+$font-size-site-description:         14px;
+$font-stack-site-title:              $font-stack-sans;
+$font-stack-site-description:        $font-stack-sans;
 
 // Header Widget Nav
-$color-link-nav-header:         $color-link;
-$color-link-nav-header-hover:   $color-link-hover;
+$color-link-nav-header:              $color-link;
+$color-link-nav-header-hover:        $color-link-hover;
 
 
 // Main Navigation
 // ------------------------------------------
-$color-bg-nav:                  $color-3;
-$color-border-nav:              $color-border;
-$color-link-nav:                $color-7;
-$color-link-nav-hover:          $color-link-hover;
+$color-bg-nav:                       $color-3;
+$color-border-nav:                   $color-border;
+$color-link-nav:                     $color-7;
+$color-link-nav-hover:               $color-link-hover;
 
 // Submenu
-$color-bg-submenu:              $color-7;
-$color-bg-submenu-hover:        $color-6;
-$color-link-submenu:            $color-5;
-$color-link-submenu-hover:      $color-4;
+$color-bg-submenu:                   $color-6;
+$color-bg-submenu-hover:             $color-7;
+$color-link-submenu:                 $color-5;
+$color-link-submenu-hover:           $color-4;
 
 
 // Content Area
 // ------------------------------------------
 
 // Posts & Pages
-$color-bg-posts:                #FFFFFF;
-$color-bg-sticky:				$color-6;
-$color-entry-meta:              $color-4;
+$color-bg-posts:                     $color-6;
+$color-bg-sticky:			    	 $color-7;
+$color-entry-meta:                   $color-text-secondary;
 
 // Forms
-$color-bg-button:               $color-bg-nav;
-$color-bg-button-hover:         $color-4;
-$color-border-form:             $color-border;
-$color-text-button:             $color-6;
-$color-text-button-hover:       $color-3;
-$color-input-form:              $color-text-primary;
+$color-bg-button:                    $color-bg-nav;
+$color-bg-button-hover:              $color-4;
+$color-border-form:                  $color-border;
+$color-text-button:                  $color-6;
+$color-text-button-hover:            $color-3;
+$color-input-form:                   $color-text-primary;
 
 // Comments
-$color-bg-comment-area:         $color-bg-posts;
-$color-bg-comment-even:         $color-bg-posts;
-$color-bg-comment-odd:          $color-5;
-$color-bg-comment-author:       lighten(#ffff00, 38);
+$color-bg-comment-area:              $color-bg-posts;
+$color-bg-comment-even:              $color-bg-posts;
+$color-bg-comment-odd:               $color-7;
+$color-bg-comment-author:            $color-highlight;
 
 
 // Primary Widget Area
 // ------------------------------------------
-$color-bg-widget:               $color-6;
-$color-widget-title:            $color-headlines-primary;
-$font-widget-title:             $font-stack-sans;
-$font-size-widget-title:        24px;
+$color-bg-widget:                    $color-6;
+$color-widget-title:                 $color-headlines-primary;
+$font-widget-title:                  $font-stack-sans;
+$font-size-widget-title:             24px;
 
 
 // Footer Area
 // ------------------------------------------
-$color-bg-credits:              $color-bg-body;
-$color-bg-footer:               $color-bg-nav;
-$color-bg-widgets-footer:       $color-bg-footer;
-$color-border-footer:           $color-border;
-$color-text-footer:             $color-text-primary;
-$color-link-footer:             $color-link;
-$color-link-footer-hover:       $color-link-hover;
-$color-widget-title-footer:     $color-7;
+$color-bg-footer:                   $color-bg-nav;
+$color-border-footer:               $color-border;
+
+// Widgets
+$color-bg-widgets-footer:           $color-bg-footer;
+$color-widget-title-footer:         $color-bg-body;
+$color-widget-text-footer:          $color-bg-body;
+$color-widget-link-footer:          $color-link;
+$color-widget-link-hover-footer:    $color-link-hover;
+
+// Credits
+$color-bg-credits:                  $color-bg-body;
+$color-text-footer:                 $color-text-primary;
+$color-link-footer:                 $color-link;
+$color-link-footer-hover:           $color-link-hover;

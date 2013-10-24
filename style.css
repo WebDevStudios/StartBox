@@ -292,7 +292,7 @@ Defaults
 --------------------------------------------- */
 a,
 a:visited {
-  color: #8c8c8c;
+  color: #777777;
 }
 
 a:hover,
@@ -368,7 +368,7 @@ address {
 }
 
 pre {
-  background: #eeeeee;
+  background: #ffffc2;
   font-family: "Courier 10 Pitch", Courier, monospace;
   font-size: 15px;
   font-size: 1.5rem;
@@ -398,7 +398,7 @@ acronym {
 
 mark,
 ins {
-  background: #eeeeee;
+  background: #ffffc2;
   text-decoration: none;
 }
 
@@ -773,12 +773,6 @@ Structure and Layout
   max-width: 1140px;
 }
 
-.hentry,
-.comments-area {
-  padding: 40px 48px;
-  padding: 4rem 4.8rem;
-}
-
 /* Grid
 	12 column - http://responsive.gs 
 --------------------------------------------- */
@@ -948,7 +942,7 @@ Header
   position: relative;
 }
 .header_widget_area .widget_nav_menu a {
-  color: #8c8c8c;
+  color: #777777;
   display: block;
   padding: 12px;
   padding: 1.2rem;
@@ -958,7 +952,7 @@ Header
   color: #999999;
 }
 .header_widget_area .widget_nav_menu ul.sub-menu {
-  background-color: #f0f0f0;
+  background-color: white;
   display: none;
   float: left;
   position: absolute;
@@ -969,13 +963,13 @@ Header
   top: 0;
 }
 .header_widget_area .widget_nav_menu ul.sub-menu a {
-  color: #8c8c8c;
+  color: #777777;
   padding: 16px 24px;
   padding: 1.6rem 2.4rem;
   width: 200px;
 }
 .header_widget_area .widget_nav_menu ul.sub-menu a:hover {
-  background-color: white;
+  background-color: #f0f0f0;
   color: #999999;
 }
 .header_widget_area .widget_nav_menu ul li:hover > ul.sub-menu {
@@ -1015,7 +1009,7 @@ Navigation
   color: #999999;
 }
 .main-navigation ul.sub-menu {
-  background-color: #f0f0f0;
+  background-color: white;
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
   display: none;
   float: left;
@@ -1027,13 +1021,13 @@ Navigation
   top: 0;
 }
 .main-navigation ul.sub-menu a {
-  color: #8c8c8c;
+  color: #777777;
   padding: 16px 24px;
   padding: 1.6rem 2.4rem;
   width: 200px;
 }
 .main-navigation ul.sub-menu a:hover {
-  background-color: white;
+  background-color: #f0f0f0;
   color: #999999;
 }
 .main-navigation ul li:hover > ul.sub-menu {
@@ -1086,14 +1080,17 @@ Content
   padding-top: 4.8rem;
 }
 
-.post {
+.post,
+.page {
   background-color: white;
   margin-bottom: 24px;
   margin-bottom: 2.4rem;
+  padding: 48px;
+  padding: 4.8rem;
 }
 
 .sticky {
-  background-color: white;
+  background-color: #f0f0f0;
 }
 
 .page-header {
@@ -1111,7 +1108,7 @@ Content
 }
 
 .entry-meta {
-  color: #999999;
+  color: #888888;
   border-top: 1px solid #999999;
   font-size: 14px;
   font-size: 1.4rem;
@@ -1199,29 +1196,29 @@ ul.children,
 
 .comments-area {
   background-color: white;
-  padding: 48px 24px;
-  padding: 4.8rem 2.4rem;
+  padding: 48px;
+  padding: 4.8rem;
 }
 
-.comment-list {
-  padding: 12px 12px 0 12px;
-  padding: 1.2rem 1.2rem 0 1.2rem;
+ol.comment-list {
+  padding: 12px 12px 24px;
+  padding: 1.2rem 1.2rem 2.4rem;
 }
-.comment-list li li {
+ol.comment-list li li {
   padding: 12px;
   padding: 1.2rem;
 }
-.comment-list .comment {
+ol.comment-list .comment {
   padding: 12px;
   padding: 1.2rem;
 }
-.comment-list .even {
+ol.comment-list .even {
   background-color: white;
 }
-.comment-list .odd {
-  background-color: #8c8c8c;
+ol.comment-list .odd {
+  background-color: #f0f0f0;
 }
-.comment-list .bypostauthor {
+ol.comment-list .bypostauthor {
   background-color: #ffffc2;
 }
 
@@ -1283,7 +1280,7 @@ Footer
 }
 
 .site-info a {
-  color: #8c8c8c;
+  color: #777777;
 }
 
 .site-info a:hover {
@@ -1296,7 +1293,7 @@ Footer
   background-color: #111111;
   border-top: 10px solid #999999;
   border-bottom: 10px solid #999999;
-  color: white;
+  color: #f0f0f0;
   clear: both;
   padding: 48px 0;
   padding: 4.8rem 0;
@@ -1312,6 +1309,13 @@ Footer
   list-style: none;
   margin: 0;
   padding: 0;
+}
+.footer-widgets a,
+.footer-widgets a:visited {
+  color: #777777;
+}
+.footer-widgets a:hover {
+  color: #999999;
 }
 
 /*
