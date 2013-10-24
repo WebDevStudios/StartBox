@@ -1231,12 +1231,6 @@ ul.children,
   padding-right: 2.4rem;
 }
 
-.comment-respond,
-.entry-pings {
-  padding: 48px 0;
-  padding: 4.8rem 0;
-}
-
 /* comment children */
 ul.children {
   margin-left: 3%;
