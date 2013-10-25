@@ -50,7 +50,7 @@ add_filter('widget_text', 'do_shortcode');
  * @since 2.4.3
  */
 function sb_rtt() {
-	$link = '<a href="#top" class="rtt cb" title="Return to top of page">' . apply_filters( 'sb_rtt_text', __( 'Return to Top', 'startbox' ) ) . '</a>';
+	$link = '<span class="rtt"><a href="#top" class="cb" title="Return to top of page">' . apply_filters( 'sb_rtt_text', __( 'Return to Top', 'startbox' ) ) . '</a></span>';
 	return $link;
 }
 

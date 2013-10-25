@@ -37,7 +37,7 @@ class sb_footer_settings extends sb_settings {
 	}
 
 	// Insert Return to Top link
-	function sb_rtt() {
+	function rtt() {
 		if ( sb_get_option( 'enable_rtt' ) ) {
 			echo sb_rtt();
 		}
@@ -47,7 +47,7 @@ class sb_footer_settings extends sb_settings {
 	function credits() {
 
 		if ( $text = sb_get_option( 'footer_text' ) ) { 
-			echo do_shortcode( wpautop( $text ) );
+			echo '<span class="credits">' . do_shortcode( $text ) . '</span>';
 		}
 
 	}
@@ -87,12 +87,11 @@ class sb_footer_settings extends sb_settings {
 			}
 
 			// Begin output
-			$output .= '<div id="admin_links" class="admin-links">';
-			if ($user_ID) { $output .= '<span id="login_identity">Logged in as <strong>' . $user_identity . '</strong>.</span>'; }
+			$output .= '<span class="admin-links">';
 			$output .= '<ul>';
 			$output .= implode( $separator, $links );
 			$output .= '</ul>';
-			$output .= '</div> <!-- #admin_links -->';
+			$output .= '</span><!-- .admin-links -->';
 
 			// Filter the whole thing, incase someone wants to replace it entirely
 			echo apply_filters( 'sb_footer_admin', $output );
@@ -101,9 +100,9 @@ class sb_footer_settings extends sb_settings {
 	}
 
 	function hooks() {
-		add_action( 'footer', array( $this, 'sb_rtt' ), 98 );
-		add_action( 'footer', array( $this, 'credits' ), 1 );
-		add_action( 'footer', array( $this, 'admin' ), 99 );
+		add_action( 'footer', array( $this, 'credits' ), 97 );
+		add_action( 'footer', array( $this, 'admin' ), 98 );
+		add_action( 'footer', array( $this, 'rtt' ), 99 );
 	}
 
 }

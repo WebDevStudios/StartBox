@@ -35,6 +35,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,su
 .comment-list:before,
 .comment:before,
 .comment-respond:before,
+.site-info:before,
 .widget:before,
 .wrap:before {
 	content: " ";
@@ -59,6 +60,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,su
 .comment-list:after,
 .comment:after,
 .comment-respond:after,
+.site-info:after,
 .widget:after,
 .wrap:after {
 	clear: both;

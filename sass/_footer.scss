@@ -7,16 +7,35 @@
 	@include rem(padding, 8px 0);
 }
 
-.credits {
+.site-info {
 	color: $color-text-footer;
 	@include rem(font-size, 14px);
-	@include rem(padding, 12px 0);
+	@include rem(padding, 12px);
 }
 
-.credits a {
+.site-info a {
 	color: $color-link-footer;
 }
 
-.credits a:hover {
+.site-info a:hover {
 	color: $color-link-footer-hover;
+}
+
+.admin-links,
+.credits {
+	float: left;
+	@include rem(margin-right, 24px);
+}
+
+.rtt {
+	float: right;
+}
+
+.admin-links ul {
+	margin: 0;
+	padding: 0;
+}
+
+.admin-links li {
+	display: inline-block;
 }
