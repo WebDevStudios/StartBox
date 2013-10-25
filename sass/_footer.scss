@@ -7,16 +7,16 @@
 	@include rem(padding, 8px 0);
 }
 
-.site-info {
+.credits {
 	color: $color-text-footer;
 	@include rem(font-size, 14px);
 	@include rem(padding, 12px 0);
 }
 
-.site-info a {
+.credits a {
 	color: $color-link-footer;
 }
 
-.site-info a:hover {
+.credits a:hover {
 	color: $color-link-footer-hover;
 }
