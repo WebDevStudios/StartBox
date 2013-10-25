@@ -12,19 +12,13 @@ class sb_upgrade_settings extends sb_settings {
 		$this->options = array(
 			'sb_version_info' => array(
 				'type'	=> 'intro',
-				'desc'	=> sprintf(__('StartBox Version: %s', 'startbox'), get_option('startbox_version') )
+				'desc'	=> sprintf( __( 'StartBox Version: %s', 'startbox' ), SB_VERSION )
 			),
 			'enable_updates' => array(
 					'type'		=> 'checkbox',
-					'label'		=> __('Enable Automatic Updates', 'startbox'),
+					'label'		=> __( 'Enable Automatic Updates', 'startbox' ),
 					'default'	=> 'true'
 			),
-			// 'use_beta' => array(
-			// 		'type'		=> 'checkbox',
-			// 		'label'		=> __('Use Beta Updates', 'startbox'),
-			// 		'desc'		=> __('Note: Do not use beta updates in a production environment. They could break your site.', 'startbox'),
-			// 		'default'	=> false
-			// )
 		);
 		parent::__construct();
 	}
@@ -33,4 +27,4 @@ class sb_upgrade_settings extends sb_settings {
 
 // Only register this panel if the theme supports upgrades
 if ( current_theme_supports('sb-updates') )
-	sb_register_settings('sb_upgrade_settings');
+	sb_register_settings( 'sb_upgrade_settings' );
