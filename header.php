@@ -46,6 +46,6 @@
 			<?php wp_nav_menu( array( 'theme_location' => 'main-navigation' ) ); ?>
 		</div>
 	</nav><!-- #site-navigation -->
-	<?php do_action( 'content_top' ); ?>
 	<div id="content" class="site-inner">
 		<div class="wrap">
+			<?php do_action( 'content_top' ); ?>

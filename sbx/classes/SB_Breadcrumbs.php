@@ -378,4 +378,4 @@ function sb_do_breadcrumbs() {
 		sb_breadcrumbs();
 
 }
-add_action( 'after_header', 'sb_do_breadcrumbs' );
+add_action( 'content_top', 'sb_do_breadcrumbs' );
