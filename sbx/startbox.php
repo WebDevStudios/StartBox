@@ -117,19 +117,11 @@ if ( ! class_exists('StartBox') ) {
 		public function register_scripts_and_styles() {
 
 			// Register Default Scripts
-			wp_register_script( 'colorbox',     SB_JS . '/jquery.colorbox.min.js', array( 'jquery' ), SB_VERSION );
-			wp_register_script( 'smoothScroll', SB_JS . '/jquery.smooth-scroll.min.js', array( 'jquery' ), SB_VERSION );
-			wp_register_script( 'startbox',     SB_JS . '/startbox.js', array( 'jquery' ), SB_VERSION );
-			wp_enqueue_script( 'startbox' );
+			wp_register_script( 'sbx',     SB_JS . '/sbx.js', array( 'jquery' ), SB_VERSION );
+			wp_enqueue_script( 'sbx' );
 
 			// Register Default Styles
-			wp_register_style( 'colorbox',      SB_CSS . '/colorbox.css', null, SB_VERSION, 'screen' );
-			wp_register_style( 'images',        SB_CSS . '/images.css', null, SB_VERSION );
-			wp_register_style( 'layouts',       SB_CSS . '/layouts.css', null, SB_VERSION );
-			wp_register_style( 'print',         SB_CSS . '/print.css', null, SB_VERSION, 'print' );
-			wp_register_style( 'reset',         SB_CSS . '/reset.css', null, SB_VERSION );
-			wp_register_style( 'shortcodes',    SB_CSS . '/shortcodes.css', null, SB_VERSION );
-			wp_register_style( 'typography',    SB_CSS . '/typography.css', null, SB_VERSION );
+			wp_register_style( 'sbx',    SB_CSS . '/sbx.css', null, SB_VERSION );
 		}
 	}
 }

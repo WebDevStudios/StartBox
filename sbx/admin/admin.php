@@ -110,18 +110,11 @@ function sb_admin_load() {
 	wp_enqueue_script('postbox');
 
 	// Load StartBox-specific scripts and styles
-	wp_enqueue_script( 'colorbox' );
-	wp_enqueue_script( 'jquery-colorpicker', SB_JS . '/colorpicker/js/colorpicker.js' );
-	wp_enqueue_script( 'sb-admin', SB_JS . '/admin.js', array('jquery-colorpicker') );
-	wp_enqueue_style( 'colorpicker', SB_JS . '/colorpicker/css/colorpicker.css' );
 	wp_enqueue_style( 'sb-admin', SB_CSS . '/admin.css' );
-	wp_enqueue_style( 'colorbox' );
 
 	// Load scripts for TinyMCE (Credit: Lee Doel)
 	if ( user_can_richedit() ){
 		wp_enqueue_script('editor');
-		wp_enqueue_script('media-upload');
-		wp_enqueue_style( 'thickbox' );
 	}
 
 	// Reset our theme options back to default
