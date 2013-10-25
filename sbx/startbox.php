@@ -89,7 +89,7 @@ if ( ! class_exists('StartBox') ) {
 			require_if_theme_supports( 'sb-custom-sidebars', SB_CLASSES . '/SB_Custom_Sidebars.php' );
 			require_if_theme_supports( 'sb-updates',         SB_CLASSES . '/SB_Updater.php' );
 			require_if_theme_supports( 'sb-shortcodes',      SB_EXTENSIONS . '/shortcodes.php' );
-			require_if_theme_supports( 'sb-options',		SB_CLASSES . '/SB_Options_API.php' );
+			require_if_theme_supports( 'sb-options',		 SB_CLASSES . '/SB_Options_API.php' );
 
 			// Include all customization panels
 			foreach ( glob( SB_ADMIN . '/*.php') as $sb_admin )
@@ -125,11 +125,11 @@ if ( ! class_exists('StartBox') ) {
 			wp_register_style( 'default', CHILD_THEME_URI . '/style.css', null, SB_VERSION );
 
 			// Enqueue Default Styles
-			// 
 			if ( ! is_admin() ) {
 				wp_enqueue_style( 'sbx' );
 				wp_enqueue_style( 'default' );
 			}
+
 		}
 	}
 }
