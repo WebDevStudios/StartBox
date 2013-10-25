@@ -1288,7 +1288,7 @@ Footer
   padding: 0.8rem 0;
 }
 
-.site-info {
+.credits {
   color: #111111;
   font-size: 14px;
   font-size: 1.4rem;
@@ -1296,11 +1296,11 @@ Footer
   padding: 1.2rem 0;
 }
 
-.site-info a {
+.credits a {
   color: #777777;
 }
 
-.site-info a:hover {
+.credits a:hover {
   color: #999999;
 }
 

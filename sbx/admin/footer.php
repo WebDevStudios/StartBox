@@ -26,7 +26,7 @@ class sb_footer_settings extends sb_settings {
 				'footer_text' => array(
 					'type'		=> 'textarea',
 					'sanitize'	=> array( 'allowed_html' => array( 'a' => array( 'href' => array(), 'title' => array(), 'target' => array(), 'id' => array(), 'class' => array(), 'style' => array() ),'br' => array(),'em' => array( 'id' => array(), 'class' => array(), 'style' => array() ),'strong' => array( 'id' => array(), 'class' => array(), 'style' => array() ), 'div' => array( 'id' => array(), 'class' => array(), 'style' => array() ), 'span' => array( 'id' => array(), 'class' => array(), 'style' => array() ), 'ul' => array( 'id' => array(), 'class' => array(), 'style' => array() ), 'ol' => array( 'id' => array(), 'class' => array(), 'style' => array() ), 'li' => array( 'id' => array(), 'class' => array(), 'style' => array() ) ), 'style' => array() ),
-					'label'		=> __( 'Footer Text:', 'startbox'),
+					'label'		=> __( 'Credits:', 'startbox'),
 					'desc'		=> __( 'Shortcodes and some HTML is allowed.', 'startbox' ),
 					'default'	=> sprintf( __( '[copyright year="%s"] [site_link].<br/>Proudly powered by [WordPress] and [StartBox].', 'startbox' ), date('Y') ),
 					'help'		=> __( 'Display any custom text you would like, including full HTML if your user account permits it.', 'startbox' )
@@ -38,19 +38,18 @@ class sb_footer_settings extends sb_settings {
 
 	// Insert Return to Top link
 	function sb_rtt() {
-		if (sb_get_option( 'enable_rtt')) {
+		if ( sb_get_option( 'enable_rtt' ) ) {
 			echo sb_rtt();
 		}
 	}
 
 	// Add Copyright, Design Credit and add'l info to footer
-	function copyright() {
+	function credits() {
 
-		if ( $text = sb_get_option( 'footer_text' ) ) { ?>
-			<div id="credits" class="fine">
-				<span class="footer_text"><?php echo do_shortcode( wpautop( $text ) ); ?></span>
-			</div><!-- #credits -->
-		<?php }
+		if ( $text = sb_get_option( 'footer_text' ) ) { 
+			echo do_shortcode( wpautop( $text ) );
+		}
+
 	}
 
 	// Add Admin links to footer
@@ -63,8 +62,8 @@ class sb_footer_settings extends sb_settings {
 			// Our default links, can be overriden using the sb_footer_admin_links filter
 			$loggedin_defaults = array(
 				'Admin Dashboard'	=> admin_url(),
-				'Widgets'			=> admin_url('widgets.php'),
-				'Theme Options'		=> admin_url('themes.php?page=sb_admin'),
+				'Widgets'			=> admin_url( 'widgets.php' ),
+				'Theme Options'		=> admin_url( 'themes.php?page=sb_admin' ),
 				'Logout'			=> wp_logout_url( get_permalink() )
 			);
 			$loggedout_defaults = array(
@@ -88,7 +87,7 @@ class sb_footer_settings extends sb_settings {
 			}
 
 			// Begin output
-			$output .= '<div id="admin_links" class="fine">';
+			$output .= '<div id="admin_links" class="admin-links">';
 			if ($user_ID) { $output .= '<span id="login_identity">Logged in as <strong>' . $user_identity . '</strong>.</span>'; }
 			$output .= '<ul>';
 			$output .= implode( $separator, $links );
@@ -102,11 +101,11 @@ class sb_footer_settings extends sb_settings {
 	}
 
 	function hooks() {
-		add_action( 'footer', array( $this, 'sb_rtt'), 5 );
-		add_action( 'footer_left', array( $this, 'copyright' ), 12 );
-		add_action( 'footer_right', array( $this, 'admin' ), 12 );
+		add_action( 'footer', array( $this, 'sb_rtt' ), 98 );
+		add_action( 'footer', array( $this, 'credits' ), 1 );
+		add_action( 'footer', array( $this, 'admin' ), 99 );
 	}
 
 }
 
-sb_register_settings('sb_footer_settings');
+sb_register_settings( 'sb_footer_settings' );
