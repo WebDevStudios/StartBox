@@ -48,24 +48,34 @@ input::-moz-focus-inner { /* Corrects inner padding and border displayed oddly i
 button,
 html input[type="button"],
 input[type="reset"],
-input[type="submit"] {
+input[type="submit"],
+.gform_wrapper input[type="submit"],
+.gform_wrapper .gform_footer input.button,
+.gform_wrapper .gform_footer input[type="submit"] {
 	background: $color-bg-button;
 	border: 1px solid $color-border-form;
+	border-radius: 0;
 	color: $color-text-button;
 	cursor: pointer; /* Improves usability and consistency of cursor style between image-type 'input' and others */
 	-webkit-appearance: button; /* Corrects inability to style clickable 'input' types in iOS */
-	@include rem(font-size, 14px);
+	font-size: 14px !important;
+	font-size: 1.4rem !important;
 	font-weight: 700;
 	line-height: 1;
+	margin: 0;
 	@include rem(padding, 12px 10px);
 }
 
 button:hover,
 html input[type="button"]:hover,
 input[type="reset"]:hover,
-input[type="submit"]:hover {
-	border: 1px solid $color-border-form;
+input[type="submit"]:hover,
+.gform_wrapper input[type="submit"]:hover {
 	background: $color-bg-button-hover;
+	border: 1px solid $color-border-form;
+	border-radius: 0;
+	box-shadow: none;
+	-webkit-box-shadow: none;
 	color: $color-text-button-hover;
 }
 
@@ -73,11 +83,14 @@ button:focus,
 html input[type="button"]:focus,
 input[type="reset"]:focus,
 input[type="submit"]:focus,
+.gform_wrapper input[type="submit"]:focus,
 button:active,
 html input[type="button"]:active,
 input[type="reset"]:active,
-input[type="submit"]:active {
+input[type="submit"]:active,
+.gform_wrapper input[type="submit"]:active {
 	border: 1px solid $color-border-form;
+	border-radius: 0;
 	background: $color-text-button-hover;
 }
 
@@ -86,17 +99,19 @@ input[type="text"],
 input[type="email"],
 input[type="url"],
 input[type="tel"],
+input[type="number"],
 input[type="password"],
 input[type="search"],
 select,
 textarea,
-.gform_fields input[type="text"],
-.gform_fields input[type="email"],
-.gform_fields input[type="url"],
-.gform_fields input[type="tel"],
-.gform_fields input[type="password"],
-.gform_fields select,
-.gform_fields textarea,
+.gform_wrapper input[type="text"],
+.gform_wrapper input[type="email"],
+.gform_wrapper input[type="url"],
+.gform_wrapper input[type="tel"],
+.gform_wrapper input[type="number"],
+.gform_wrapper input[type="password"],
+.gform_wrapper select,
+.gform_wrapper textarea,
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="url"]:focus,
@@ -105,12 +120,16 @@ input[type="search"]:focus,
 textarea:focus  {
 	color: $color-input-form;
 	border: 1px solid $color-border-form;
-	@include rem(font-size, 14px);
-	@include rem(padding, 10px);
+	border-radius: 0;
+	font-size: 14px !important;
+	font-size: 1.4rem !important;
+	outline-style: none;
+	padding: 10px !important;
+	padding: 1rem !important;
 }
 
 textarea,
-.gform_fields textarea {
+.gform_wrapper textarea {
 	overflow: auto; /* Removes default vertical scrollbar in IE6/7/8/9 */
 	vertical-align: top; /* Improves readability and alignment in all browsers */
 	width: 100%;
