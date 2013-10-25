@@ -1,7 +1,7 @@
 <?php
 
 /**
- * These settings create an input for footer script code that gets hooked into wp_footer
+ * These settings create a redirect for RSS feeds based on the user input
  */
 class sb_custom_feed_settings extends sb_settings {
 
@@ -9,7 +9,7 @@ class sb_custom_feed_settings extends sb_settings {
 
 		$this->name = __( 'Custom Feeds', 'startbox' );
 		$this->slug = 'sb_custom_feed_settings';
-		$this->description = __( 'Allows you to include scripts in the footer of your website (like Google Analytics, Woopra, etc).', 'startbox' );
+		$this->description = __( 'Allows you to replace the default WordPress RSS URLs with a custom URL, such as Feedburner.', 'startbox' );
 		$this->location = 'primary';
 		$this->priority = 'core';
 		$this->hide_ui_if_cannot = 'unfiltered_html';

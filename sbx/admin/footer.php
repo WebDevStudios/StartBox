@@ -27,7 +27,7 @@ class sb_footer_settings extends sb_settings {
 					'type'		=> 'textarea',
 					'sanitize'	=> array( 'allowed_html' => array( 'a' => array( 'href' => array(), 'title' => array(), 'target' => array(), 'id' => array(), 'class' => array(), 'style' => array() ),'br' => array(),'em' => array( 'id' => array(), 'class' => array(), 'style' => array() ),'strong' => array( 'id' => array(), 'class' => array(), 'style' => array() ), 'div' => array( 'id' => array(), 'class' => array(), 'style' => array() ), 'span' => array( 'id' => array(), 'class' => array(), 'style' => array() ), 'ul' => array( 'id' => array(), 'class' => array(), 'style' => array() ), 'ol' => array( 'id' => array(), 'class' => array(), 'style' => array() ), 'li' => array( 'id' => array(), 'class' => array(), 'style' => array() ) ), 'style' => array() ),
 					'label'		=> __( 'Credits:', 'startbox'),
-					'desc'		=> __( 'Shortcodes and some HTML is allowed.', 'startbox' ),
+					'desc'		=> __( 'Shortcodes such as [copyright], [site_link], [WordPress], etc and HTML is allowed.', 'startbox' ),
 					'default'	=> sprintf( __( '[copyright year="%s"] [site_link].<br/>Proudly powered by [WordPress] and [StartBox].', 'startbox' ), date('Y') ),
 					'help'		=> __( 'Display any custom text you would like, including full HTML if your user account permits it.', 'startbox' )
 				)

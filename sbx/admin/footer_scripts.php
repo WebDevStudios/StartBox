@@ -9,7 +9,7 @@ class sb_footer_scripts_settings extends sb_settings {
 		
 		$this->name = __( 'Footer Scripts', 'startbox' );
 		$this->slug = 'sb_footer_scripts_settings';
-		$this->description = __( 'Allows you to include scripts in the footer of your website (like Google Analytics, Woopra, etc).', 'startbox' );
+		$this->description = __( 'Allows you to include scripts in the footer of your website (like jQuery, Woopra, etc).', 'startbox' );
 		$this->location = 'secondary';
 		$this->priority = 'core';
 		$this->hide_ui_if_cannot = 'unfiltered_html';

@@ -9,7 +9,7 @@ class sb_header_scripts_settings extends sb_settings {
 
 		$this->name = __( 'Header Scripts', 'startbox' );
 		$this->slug = 'sb_header_scripts_settings';
-		$this->description = __( 'Allows you to include scripts in the header of your website', 'startbox' );
+		$this->description = __( 'Allows you to include scripts in the header of your website (like Google Analytics, jQuery, etc).', 'startbox' );
 		$this->location = 'secondary';
 		$this->priority = 'core';
 		$this->hide_ui_if_cannot = 'unfiltered_html';
