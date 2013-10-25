@@ -101,8 +101,8 @@ class SB_Sidebars {
 		), $sidebar ) );
 
 		// Add the sidebar to our registered array
-		$this->registered_sidebars[$sidebar['id']] = $sidebar;		
-		
+		$this->registered_sidebars[$sidebar['id']] = $sidebar;
+
 	}
 
 	/**
@@ -110,14 +110,13 @@ class SB_Sidebars {
 	 *
 	 * @since 2.5.0
 	 * @param string $sidebar  The default sidebar to render
-	 * @param string $class  Additional CSS classes to apply to the container
-	 * @param string $span  Additional CSS to set width
+	 * @param string $class    Additional CSS classes to apply to the container
 	 */
-	function do_sidebar( $sidebar = null, $classes = null, $width = null ) {
+	function do_sidebar( $sidebar = null, $classes = null ) {
 
 		// Cache the sidebar location we're rendering
 		$location = $sidebar;
-		
+
 		// Maybe replace the default sidebar with a custom sidebar
 		$sidebar = apply_filters( 'sb_do_sidebar', $sidebar );
 
@@ -125,7 +124,7 @@ class SB_Sidebars {
 		if ( is_active_sidebar( $sidebar ) || has_action( "sb_no_{$location}_widgets" ) ) {
 
 			do_action( "before_{$location}" );
-			echo '<div id="' . esc_attr( $location ) . '" class="widget-area sidebar ' . esc_attr( $location ) . ' ' . esc_attr( $classes ) . ' col ' . esc_attr( $width ) . '" role="complimentary" itemscope itemtype="http://schema.org/WPSideBar">';
+			echo '<div id="' . esc_attr( $location ) . '" class="widget-area sidebar ' . esc_attr( $location ) . ' ' . esc_attr( $classes ) . '" role="complimentary" itemscope itemtype="http://schema.org/WPSideBar">';
 			do_action( "before_{$location}_widgets" );
 
 			if ( ! dynamic_sidebar( $sidebar ) )
@@ -158,9 +157,9 @@ function sb_register_sidebar( $args = array() ) {
  * @param string $sidebar The default sidebar to render
  * @param string $classes Additional CSS classes to apply to the container
  */
-function sb_do_sidebar( $sidebar = null, $classes = null, $width = null ) {
+function sb_do_sidebar( $sidebar = null, $classes = null ) {
 	global $startbox;
-	$startbox->sidebars->do_sidebar( $sidebar, $classes, $width );
+	$startbox->sidebars->do_sidebar( $sidebar, $classes );
 }
 
 /**

@@ -11,9 +11,9 @@
 	</div><!-- #content -->
 	<div class="footer-widgets">
 		<div class="wrap">
-			<?php sb_do_sidebar( 'footer_widget_area_1', 'footer-widget-area-1', 'span-4' ); ?>
-			<?php sb_do_sidebar( 'footer_widget_area_2', 'footer-widget-area-1', 'span-4' ); ?>
-			<?php sb_do_sidebar( 'footer_widget_area_3', 'footer-widget-area-1', 'span-4' ); ?>
+			<?php sb_do_sidebar( 'footer_widget_area_1', 'footer-widget-area-1 col span-4' ); ?>
+			<?php sb_do_sidebar( 'footer_widget_area_2', 'footer-widget-area-1 col span-4' ); ?>
+			<?php sb_do_sidebar( 'footer_widget_area_3', 'footer-widget-area-1 col span-4' ); ?>
 		</div>
 	</div><!-- .footer-widgets -->
 	<footer id="colophon" class="site-footer" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
