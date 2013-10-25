@@ -125,8 +125,11 @@ if ( ! class_exists('StartBox') ) {
 			wp_register_style( 'default', CHILD_THEME_URI . '/style.css', null, SB_VERSION );
 
 			// Enqueue Default Styles
-			wp_enqueue_style( 'sbx' );
-			wp_enqueue_style( 'default' );
+			// 
+			if ( ! is_admin() ) {
+				wp_enqueue_style( 'sbx' );
+				wp_enqueue_style( 'default' );
+			}
 		}
 	}
 }
