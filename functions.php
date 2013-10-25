@@ -75,6 +75,9 @@ function startbox_setup_theme() {
 	);
 	add_theme_support( 'sb-custom-sidebars' );
 	add_theme_support( 'sb-updates' );
+	add_theme_support( 'automatic-feed-links' );
+	add_theme_support( 'custom-header' );
+	add_theme_support( 'custom-background' );
 
 	register_nav_menu( 'main-navigation',__( 'Main Navigation' ) );
 
