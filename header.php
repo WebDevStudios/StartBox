@@ -14,8 +14,8 @@
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 <?php wp_head(); ?>
 <!--[if lt IE 9]>
-	<script src="<?php echo trailingslashit( SB_JS ); ?>html5shiv.js" type="text/javascript"></script>
-	<script src="<?php echo trailingslashit( SB_JS ); ?>respond.min.js" type="text/javascript"></script>
+	<script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/html5shiv.js" type="text/javascript"></script>
+	<script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/respond.min.js" type="text/javascript"></script>
 <![endif]-->
 </head>
 
