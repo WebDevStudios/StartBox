@@ -206,7 +206,7 @@ function sbx_google_webfonts() {
 		'subset' => 'latin,latin-ext',
 	);
 
-	wp_enqueue_style( 'google-webfonts', add_query_arg( $query_args, "$protocol://fonts.googleapis.com/css" ), array(), null );
+	wp_enqueue_style( 'open-sans', add_query_arg( $query_args, "$protocol://fonts.googleapis.com/css" ), array(), null );
 }
 add_action( 'wp_enqueue_scripts', 'sbx_google_webfonts' );
 
