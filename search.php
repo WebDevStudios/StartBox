@@ -18,9 +18,9 @@ get_header(); ?>
 
 			<?php /* Start the Loop */ ?>
 			<?php while ( have_posts() ) : the_post(); ?>
-
+				<?php do_action( 'entry_before' ); ?>
 				<?php get_template_part( 'content', 'search' ); ?>
-
+				<?php do_action( 'entry_after' ); ?>
 			<?php endwhile; ?>
 
 			<?php sbx_content_nav( 'nav-below' ); ?>

@@ -9,8 +9,9 @@ get_header(); ?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main col span-12" role="main" itemscope itemprop="mainContentOfPage" itemtype="http://schema.org/CreativeWork">
-
+			<?php do_action( 'entry_before' ); ?>
 			<section class="error-404 not-found">
+				<?php do_action( 'entry_top' ); ?>
 				<header class="page-header">
 					<h1 class="page-title" itemprop="headline"><?php _e( 'Oops! That page can&rsquo;t be found.', 'sbx' ); ?></h1>
 				</header><!-- .page-header -->
@@ -48,8 +49,9 @@ get_header(); ?>
 					<?php the_widget( 'WP_Widget_Tag_Cloud' ); ?>
 
 				</div><!-- .page-content -->
+				<?php do_action( 'entry_bottom' ); ?>
 			</section><!-- .error-404 -->
-
+			<?php do_action( 'entry_after' ); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 

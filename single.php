@@ -11,7 +11,7 @@ get_header(); ?>
 		<main id="main" class="site-main col span-8" role="main" itemscope itemprop="mainContentOfPage" itemtype="http://schema.org/Blog">
 
 		<?php while ( have_posts() ) : the_post(); ?>
-
+			<?php do_action( 'entry_before' ); ?>
 			<?php get_template_part( 'content', 'single' ); ?>
 
 			<?php sbx_content_nav( 'nav-below' ); ?>
@@ -23,7 +23,7 @@ get_header(); ?>
 			?>
 
 		<?php endwhile; // end of the loop. ?>
-
+		<?php do_action( 'entry_after' ); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 

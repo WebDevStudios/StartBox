@@ -19,7 +19,7 @@ if ( post_password_required() )
 	return;
 ?>
 	<div id="comments" class="comments-area">
-
+	<?php do_action( 'comments_before' ); ?>
 	<?php if ( have_comments() ) : ?>
 		<h2 class="comments-title">
 			<?php
@@ -64,5 +64,5 @@ if ( post_password_required() )
 		<p class="no-comments"><?php _e( 'Comments are closed.', 'sbx' ); ?></p>
 	<?php endif; ?>
 	<?php comment_form(); ?>
-
+	<?php do_action( 'comments_after' ); ?>
 </div><!-- #comments -->

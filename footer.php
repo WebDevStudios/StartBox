@@ -7,6 +7,7 @@
  * @package sbx
  */
 ?>
+		<?php do_action( 'content_bottom' ); ?>
 		</div><!-- .wrap -->
 	</div><!-- #content -->
 	<?php do_action( 'content_after' ); ?>

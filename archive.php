@@ -9,11 +9,11 @@
 
 get_header(); ?>
 
-	<section id="primary" class="content-area">
+	<div id="primary" class="content-area">
 		<main id="main" class="site-main col span-8" role="main" itemscope itemprop="mainContentOfPage" itemtype="http://schema.org/Blog">
-
+		
 		<?php if ( have_posts() ) : ?>
-
+			<?php do_action( 'entry_before' ); ?>
 			<header class="page-header">
 				<h1 class="page-title" itemprop="headline">
 					<?php
@@ -91,7 +91,7 @@ get_header(); ?>
 					 */
 					get_template_part( 'content', get_post_format() );
 				?>
-
+			<?php do_action( 'entry_after' ); ?>
 			<?php endwhile; ?>
 
 			<?php sbx_content_nav( 'nav-below' ); ?>
@@ -101,9 +101,8 @@ get_header(); ?>
 			<?php get_template_part( 'no-results', 'archive' ); ?>
 
 		<?php endif; ?>
-
 		</main><!-- #main -->
-	</section><!-- #primary -->
+	</div><!-- #primary -->
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

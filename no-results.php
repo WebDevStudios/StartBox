@@ -7,7 +7,7 @@
  * @package sbx
  */
 ?>
-
+<?php do_action( 'entry_before' ); ?>
 <section class="no-results not-found">
 	<header class="page-header">
 		<h1 class="page-title" itemprop="headline"><?php _e( 'Nothing Found', 'sbx' ); ?></h1>
@@ -31,3 +31,4 @@
 		<?php endif; ?>
 	</div><!-- .page-content -->
 </section><!-- .no-results -->
+<?php do_action( 'entry_after' ); ?>

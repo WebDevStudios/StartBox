@@ -123,16 +123,16 @@ class SB_Sidebars {
 		// If the sidebar has widgets, or an action attached to it, commence output
 		if ( is_active_sidebar( $sidebar ) || has_action( "sb_no_{$location}_widgets" ) ) {
 
-			do_action( "before_{$location}" );
+			do_action( 'sidebars_before' );
 			echo '<div id="' . esc_attr( $location ) . '" class="widget-area sidebar ' . esc_attr( $location ) . ' ' . esc_attr( $classes ) . '" role="complimentary" itemscope itemtype="http://schema.org/WPSideBar">';
-			do_action( "before_{$location}_widgets" );
+			do_action( 'sidebar_top' );
 
 			if ( ! dynamic_sidebar( $sidebar ) )
-				do_action( "no_{$location}_widgets" );
+				do_action( 'no_{$location}_widgets' );
 
-			do_action( "after_{$location}_widgets" );
+			do_action( 'sidebar_bottom' );
 			echo '</div><!-- #' . esc_attr( $location ) . ' .' . esc_attr( $classes ) . ' -->';
-			do_action( "after_{$location}" );
+			do_action( 'sidebars_after' );
 		}
 	}
 

@@ -3,8 +3,8 @@
  * @package sbx
  */
 ?>
-<?php do_action( 'before_post' ); ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
+	<?php do_action( 'entry_top' ); ?>
 	<header class="entry-header">
 		<h1 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark" itemprop="headline"><?php the_title(); ?></a></h1>
 
@@ -60,5 +60,5 @@
 
 		<?php edit_post_link( __( 'Edit', 'sbx' ), '<span class="edit-link">', '</span>' ); ?>
 	</footer><!-- .entry-meta -->
+	<?php do_action( 'entry_bottom' ); ?>
 </article><!-- #post-## -->
-<?php do_action( 'after_post' ); ?>
