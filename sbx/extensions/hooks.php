@@ -150,13 +150,6 @@ add_filter( 'wp_title', 'sb_default_title', 9, 3 );
 // Filter the RSS title to return nothing, otherwise RSS shows dupilicate title
 add_filter( 'wp_title_rss', create_function( '$a', 'return "";' ) );
 
-// The default stylesheet
-function sb_default_stylesheet() {
-	if (!is_admin())
-		wp_enqueue_style( 'sbx', get_stylesheet_uri(), null, SB_VERSION, 'screen' );
-}
-add_action( 'wp_enqueue_scripts', 'sb_default_stylesheet', 15 );
-
 // Insert #top anchor at beginning of page
 function sb_topofpage() {
 	echo '<a name="top"></a>'."\n";

@@ -117,11 +117,16 @@ if ( ! class_exists('StartBox') ) {
 		public function register_scripts_and_styles() {
 
 			// Register Default Scripts
-			wp_register_script( 'sbx',     SB_JS . '/sbx.js', array( 'jquery' ), SB_VERSION );
+			wp_register_script( 'sbx', SB_JS . '/sbx.js', array( 'jquery' ), SB_VERSION );
 			wp_enqueue_script( 'sbx' );
 
 			// Register Default Styles
-			wp_register_style( 'sbx',    SB_CSS . '/sbx.css', null, SB_VERSION );
+			wp_register_style( 'sbx', SB_CSS . '/sbx.css', null, SB_VERSION );
+			wp_register_style( 'default', CHILD_THEME_URI . '/style.css', null, SB_VERSION );
+
+			// Enqueue Default Styles
+			wp_enqueue_style( 'sbx' );
+			wp_enqueue_style( 'default' );
 		}
 	}
 }
