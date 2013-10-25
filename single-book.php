@@ -13,7 +13,7 @@ get_header(); ?>
 		<main id="main" class="site-main col span-8" role="main" itemscope itemprop="mainContentOfPage" itemtype="http://schema.org/Blog">
 
 		<?php while ( have_posts() ) : the_post(); ?>
-
+		<?php do_action( 'before_post' ); ?>
 		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
 			<header class="entry-header">
 				<h1 class="entry-title" itemprop="headline"><?php the_title(); ?></h1>
@@ -62,7 +62,7 @@ get_header(); ?>
 				<?php edit_post_link( __( 'Edit', 'sbx' ), '<span class="edit-link">', '</span>' ); ?>
 			</footer><!-- .entry-meta -->
 		</article><!-- #post-## -->
-
+		<?php do_action( 'after_post' ); ?>
 
 			<?php sbx_content_nav( 'nav-below' ); ?>
 

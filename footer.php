@@ -18,10 +18,10 @@
 	</div><!-- .footer-widgets -->
 	<footer id="colophon" class="site-footer" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
 		<div class="wrap">
-			<div class="no-gutters site-info col span-12">
-				<p>&copy; <?php echo date( 'Y' ); ?> <a href="#">Footer Credits</a> | Will be replaced with a shortcode</p>
-			</div><!-- .site-info -->
-	</div>
+			<div class="credits col span-12">
+				<?php do_action( 'footer' ); ?>
+			</div><!-- .credits -->
+		</div><!-- .wrap -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 <?php wp_footer(); ?>

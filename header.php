@@ -21,6 +21,7 @@
 
 <body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
 <div id="page" class="hfeed site">
+	<?php do_action( 'before_header' ); ?>
 	<header id="masthead" class="site-header" role="banner" itemscope itemtype="http://schema.org/WPHeader">
 		<div class="wrap">
 			<div class="site-branding">
@@ -30,6 +31,7 @@
 			<?php sb_do_sidebar( 'header_widget_area', 'header-widget-area', 'span-6' ); ?>
 		</div>
 	</header><!-- #masthead -->
+	<?php do_action( 'after_header' ); ?>
 	<nav id="site-navigation" class="main-navigation" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
 		<div class="wrap">
 			<h1 class="menu-toggle"><?php _e( 'Menu', 'sbx' ); ?></h1>

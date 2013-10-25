@@ -5,7 +5,7 @@
  * @package sbx
  */
 ?>
-
+<?php do_action( 'before_post' ); ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
 	<header class="entry-header">
 		<h1 class="entry-title" itemprop="headline"><?php the_title(); ?></h1>
@@ -30,3 +30,4 @@
 		<?php edit_post_link( __( 'Edit', 'sbx' ), '<span class="edit-link">', '</span>' ); ?>
 	</footer><!-- .entry-meta -->
 </article><!-- #post-## -->
+<?php do_action( 'after_post' ); ?>
