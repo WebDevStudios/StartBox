@@ -30,7 +30,16 @@ add_action( 'admin_menu', 'sb_admin_init' );
  */
 function sb_admin_bar_init() {
     global $wp_admin_bar;
-    $wp_admin_bar->add_menu( array( 'id' => 'theme-options', 'parent' => 'appearance', 'title' => __('Theme Options', 'startbox'), 'href' => admin_url( 'themes.php?page=sb_admin' ) ) );
+
+    $wp_admin_bar->add_menu(
+		array(
+			'id' => 'theme-options',
+			'parent' => 'appearance',
+			'title' => __( 'SBX Settings', 'startbox' ),
+			'href' => admin_url( 'admin.php?page=sb_admin' )
+			)
+	);
+
 }
 add_action( 'wp_before_admin_bar_render', 'sb_admin_bar_init' );
 
