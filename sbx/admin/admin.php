@@ -15,7 +15,6 @@ function sb_admin_init() {
 		// Register our custom settings field
 		register_setting( 'sb_admin', THEME_OPTIONS, 'sb_sanitize');
 
-
 		// Reset our theme options back to default
 		if ( sb_get_option( 'reset' ) ) { 
 			sb_set_default_options(); 
@@ -45,6 +44,9 @@ function sb_admin_scripts() {
 	wp_enqueue_script( 'wp-lists' );
 	wp_enqueue_script( 'postbox' );
 
+	// Set default screen column
+	add_screen_option( 'layout_columns', array( 'max' => 2, 'default' => 2 ) );
+
 }
 add_action( 'admin_enqueue_scripts', 'sb_admin_scripts' );
 
@@ -53,6 +55,7 @@ add_action( 'admin_enqueue_scripts', 'sb_admin_scripts' );
  * Add a menu item for Theme Options to the admin bar
  */
 function sb_admin_bar_init() {
+
 	global $wp_admin_bar;
 
 	$wp_admin_bar->add_menu(
@@ -72,6 +75,7 @@ add_action( 'wp_before_admin_bar_render', 'sb_admin_bar_init' );
  * Adds contextual help for all StartBox Options
  */
 function sb_admin_help() {
+
 	global $sb_admin, $wp_version;
 
 	// Make sure we're on at least WP3.3
@@ -123,11 +127,29 @@ function sb_admin_help() {
 
 
 /**
+ * Adds 2 columns option
+ */
+function sb_screen_options( $columns, $screen ) {
+
+	global $sb_admin;
+
+	if ($screen == $sb_admin) {
+		$columns[$sb_admin] = 2;
+	}
+
+	return $columns;
+
+}
+//add_filter( 'screen_layout_columns', 'sb_screen_options', 10, 2 );
+
+
+/**
  * Admin Metaboxes
  */
 function sb_admin_page() { 
 
-	global $sb_admin; ?>
+	global $sb_admin;
+	global $screen_layout_columns; ?>
 
 	<div class="wrap sbx-metaboxes">
 		<form method="post" action="options.php" id="sb_options">
@@ -142,16 +164,18 @@ function sb_admin_page() {
 		?>
 		<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
 		<p class="buttons"><?php sb_admin_buttons(); ?></p>
+		<div class="clear"></div>
 
-		<div class="metabox-holder">
+		<div id="dashboard-widgets" class="metabox-holder columns-<?php echo $screen_layout_columns; ?>">
 			<div id="postbox-container-1" class="postbox-container">
 				<?php do_meta_boxes( $sb_admin, 'primary', null ); ?>
-			</div><!-- .postbox-container -->
+			</div>
 			<div id="postbox-container-2" class="postbox-container">
 				<?php do_meta_boxes( $sb_admin, 'secondary', null ); ?>
-			</div><!-- .postbox-container -->
+			</div>
 		</div><!-- .metabox-holder -->
 
+		<div class="clear"></div>
 		<p class="buttons"><?php sb_admin_buttons(); ?></p>
 
 		</form><!-- #sb_options -->

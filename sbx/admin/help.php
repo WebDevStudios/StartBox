@@ -7,7 +7,7 @@ class sb_settings_help extends sb_settings {
 	function sb_settings_help() {
 		$this->name = __( 'Need Help?', 'startbox' );
 		$this->slug = 'sb_settings_help';
-		$this->location = 'primary';
+		$this->location = 'secondary';
 		$this->priority = 'high';
 		parent::__construct();
 	}
