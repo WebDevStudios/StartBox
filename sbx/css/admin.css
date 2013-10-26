@@ -36,6 +36,18 @@ form:after,
 	display: table;
 }
 
+/* Icons
+--------------------------------------------- */
+.sbx-metaboxes h2:before,
+#adminmenu .toplevel_page_sb_admin div.wp-menu-image:before {
+	content: '\f180';
+}
+
+.sbx-metaboxes h2:before {
+	font-family: 'dashicons';
+	vertical-align: bottom;
+}
+
 /* Metaboxes
 --------------------------------------------- */
 
