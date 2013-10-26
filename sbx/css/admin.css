@@ -1,7 +1,6 @@
 /* Default styles for SBX Settings
 ----------------------------------------------------------- */
 
-
 /* Box Sizing
 --------------------------------------------- */
 
@@ -37,24 +36,16 @@ form:after,
 	display: table;
 }
 
-/* Defaults
---------------------------------------------- */
-
-.sbx-metaboxes {
-	padding-bottom: 24px;
-	width: 700px;
-}
-
 /* Metaboxes
 --------------------------------------------- */
 
 .sbx-metaboxes h2 {
 	float: left;
+	margin: 3px;
 }
 
 .sbx-metaboxes .buttons {
-	float: right;
-	margin-right: 8px;
+	margin-left: 8px;
 }
 
 .sbx-metaboxes .right {
@@ -76,4 +67,9 @@ form:after,
 .sbx-metaboxes .option-field-large,
 .sbx-metaboxes .uploadinput {
 	width: 75%;
+}
+
+.sbx-metaboxes textarea {
+	min-height: 150px;
+	width: 99%;
 }
