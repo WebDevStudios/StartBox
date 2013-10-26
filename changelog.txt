@@ -1,3 +1,21 @@
+2013.10.25 - version 3.0.0-Experimental
+	* Updateds settings styles to match WP Defaults
+	* Fixed settings sort and collapse
+	* Remove SEO settings
+	* Re-ordered options
+	* Put all options in one column
+	* Minify Admin CSS
+	* Add RSS redirection option
+	* Add Header & Footer scripts option
+	* Add Theme Hook Alliance hooks
+	* Integrate Footer options into theme
+	* Integrate Breadcrumbs into theme
+
+2013.10.24 - version 3.0.0-Experimental
+	* Add SBX top level menu
+	* More SASS refactoring
+	* Updated color scheme
+
 2013.10.23 - version 3.0.0-Experimental
 	* Major SASS refactoring
 	* Add SASS/Adobe Kuler support
