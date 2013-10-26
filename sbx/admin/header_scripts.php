@@ -10,13 +10,14 @@ class sb_header_scripts_settings extends sb_settings {
 		$this->name = __( 'Header Scripts', 'startbox' );
 		$this->slug = 'sb_header_scripts_settings';
 		$this->description = __( 'Allows you to include scripts in the header of your website (like Google Analytics, jQuery, etc).', 'startbox' );
-		$this->location = 'secondary';
-		$this->priority = 'core';
+		$this->location = 'primary';
+		$this->priority = 'low';
 		$this->hide_ui_if_cannot = 'unfiltered_html';
 		$this->options = array(
 			'header_scripts' => array(
 					'type'		=> 'textarea',
 					'label'		=> __( 'Enter your header scripts below:', 'startbox' ),
+					'desc'      => __( 'Allows you to include scripts in the header of your website (like Google Analytics, jQuery, etc).', 'startbox' ),
 					'sanitize'	=> false,
 					'kses'		=> 'unfiltered_html',
 					'help'		=> __( 'You can paste any code here that you would like to add to the &lt;head&gt; section of all your pages.', 'startbox' )
@@ -42,7 +43,7 @@ class sb_header_scripts_settings extends sb_settings {
 
 	function hooks() {
 
-		add_action('wp_head', array( $this, 'output' ) );
+		add_action( 'wp_head', array( $this, 'output' ) );
 
 	}
 

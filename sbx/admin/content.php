@@ -23,7 +23,7 @@ class sb_content_settings extends sb_settings {
 							'full'		=> __( 'Full Post', 'startbox' )
 						),
 					'default'	=> 'excerpt',
-					'align'		=> 'right',
+					'align'		=> '',
 					'size'		=> 'medium',
 					'help'		=> __( 'Choose whether you would like to display the full post, or only an exceprt, on the homepage.', 'startbox' )
 				),
@@ -35,7 +35,7 @@ class sb_content_settings extends sb_settings {
 							'full'		=> __( 'Full Post', 'startbox' )
 						),
 					'default'	=> 'excerpt',
-					'align'		=> 'right',
+					'align'		=> '',
 					'size'		=> 'medium',
 					'help'		=> __( 'Choose whether you would like to display the full post, or only an exceprt, on all other blog pages.', 'startbox' )
 				),
@@ -43,8 +43,8 @@ class sb_content_settings extends sb_settings {
 					'type'		=> 'text',
 					'label'		=> __( 'Read More text', 'startbox' ),
 					'default'	=> __( 'Continue Reading: [title]', 'startbox' ),
-					'size'		=> 'medium',
-					'align'		=> 'right',
+					'size'		=> 'large',
+					'align'		=> '',
 					'help'		=> __( 'Specify your own link text for the "Read More" link on posts.', 'startbox' )
 				),
 			'author_bio' => array(
@@ -55,7 +55,7 @@ class sb_content_settings extends sb_settings {
 								'before'	=> __( 'Show Before Post Content', 'startbox' ),
 								'after'		=> __( 'Show After Post Content', 'startbox' ),
 						),
-					'align'		=> 'right',
+					'align'		=> '',
 					'desc'		=> __( 'Author bio only displays if author provides a description in their profile.', 'startbox' ),
 					'default'	=> 'true',
 					'size'		=> 'medium',
@@ -65,7 +65,7 @@ class sb_content_settings extends sb_settings {
 			'post_meta_heading' => array(
 					'type'		=> 'intro',
 					'label'		=> __( 'Post Meta', 'startbox' ),
-					'desc'		=> sprintf( __( 'Control the meta information displayed on each post. You can use any %s you like, including: [author], [categories], [comments], [date], [time], [tags] and [edit].', 'startbox' ), '<a href="http://docs.wpstartbox.com/shortcodes" target="_blank">shortcodes</a>' ),
+					'desc'		=> '',
 					'help'		=> __( 'Use shortcodes to control what information you would like to display for each post (e.g. Post author, category, comment count, etc).', 'startbox' )
 				),
 			'post_header_meta' => array(
@@ -73,15 +73,16 @@ class sb_content_settings extends sb_settings {
 					'label'		=> __( 'Post Header Meta', 'startbox' ),
 					'default'	=> __( 'Published in [categories] on [date] [edit]', 'startbox' ),
 					'size'		=> 'large',
-					'align'		=> 'right',
+					'align'		=> '',
 					'kses'		=> 'unfiltered_html'
 				),
 			'post_footer_meta' => array(
 					'type'		=> 'text',
 					'label'		=> __( 'Post Footer Meta', 'startbox' ),
+					'desc'      => sprintf( __( 'Control the meta information displayed on each post. You can use any %s you like, including: [author], [categories], [comments], [date], [time], [tags] and [edit].', 'startbox' ), '<a href="http://docs.wpstartbox.com/shortcodes" target="_blank">shortcodes</a>' ),
 					'default'	=> '[tags] [comments]',
 					'size'		=> 'large',
-					'align'		=> 'right',
+					'align'		=> '',
 					'kses'		=> 'unfiltered_html'
 			),
 			'content_div_2' => array( 'type' => 'divider' ),
@@ -93,27 +94,27 @@ class sb_content_settings extends sb_settings {
 					'type'		=> 'checkbox',
 					'label'		=> __( 'Enable Post Thumbnails', 'startbox' ),
 					'default'	=> 'true',
-					'align'		=> 'left',
+					'align'		=> '',
 					'help'		=> __( 'Enable thumbnails for posts in archive lists (Default: true).', 'startbox' )
 				),
 			'post_thumbnail_rss' => array(
 					'type'		=> 'checkbox',
 					'label'		=> __( 'Include Post Thumbnails in RSS feed', 'startbox' ),
 					'default'	=> 'true',
-					'align'		=> 'left',
+					'align'		=> '',
 					'help'		=> __( 'Enable thumbnails for posts in RSS feeds (Default: true).', 'startbox' )
 				),
 			'post_thumbnail_use_attachments' => array(
 					'type'		=> 'checkbox',
 					'label'		=> __( 'Use any attached image if no Featured Image specified', 'startbox' ),
 					'default'	=> 'true',
-					'align'		=> 'left',
+					'align'		=> '',
 					'help'		=> __( 'If there is no user-specified "Featured Image" for a particular post, the theme will automatically attempt to use the last attached image (Default: true).', 'startbox' )
 				),
 			'post_thumbnail_hide_nophoto' => array(
 					'type'		=> 'checkbox',
 					'label'		=> __( 'Hide thumbnails if no preview available', 'startbox' ),
-					'align'		=> 'left',
+					'align'		=> '',
 					'help'		=> __( 'Disable the default "No Preview Available" image that is used when no post thumbnail is found.', 'startbox' )
 				),
 			'post_thumbnail_default_image' => array(
@@ -125,8 +126,8 @@ class sb_content_settings extends sb_settings {
 			'post_thumbnail_width' => array(
 					'type'		=> 'text',
 					'label'		=> __( 'Thumbnail Width', 'startbox' ),
-					'after'		=> ' px',
-					'align'		=> 'right',
+					'after'		=> '',
+					'align'		=> '',
 					'size'		=> 'small',
 					'default'	=> '200',
 					'help'		=> __( 'Specify your own thumbnail width in pixels (Default: 200).', 'startbox' )
@@ -134,8 +135,8 @@ class sb_content_settings extends sb_settings {
 			'post_thumbnail_height' => array(
 					'type'		=> 'text',
 					'label'		=> __( 'Thumbnail Height', 'startbox' ),
-					'after'		=> ' px',
-					'align'		=> 'right',
+					'after'		=> '',
+					'align'		=> '',
 					'size'		=> 'small',
 					'default'	=> '200',
 					'help'		=> __( 'Specify your own thumbnail height in pixels (Default: 200).', 'startbox' )
@@ -144,18 +145,18 @@ class sb_content_settings extends sb_settings {
 					'type'		=> 'select',
 					'label'		=> __('Image Crop Alignment','startbox'),
 					'options'	=> array(
-						'tl'	=> __('Top Left','startbox'),
+						'tl'	=> __('Top ','startbox'),
 						'tc'	=> __('Top Center','startbox'),
-						'tr'	=> __('Top Right','startbox'),
-						'l'		=> __('Middle Left','startbox'),
+						'tr'	=> __('Top ','startbox'),
+						'l'		=> __('Middle ','startbox'),
 						'c'		=> __('Center','startbox'),
-						'r'		=> __('Middle Right','startbox'),
-						'bl'	=> __('Bottom Left','startbox'),
+						'r'		=> __('Middle ','startbox'),
+						'bl'	=> __('Bottom ','startbox'),
 						'bc'	=> __('Bottom Center','startbox'),
-						'br'	=> __('Bottom Right','startbox')
+						'br'	=> __('Bottom ','startbox')
 					),
 					'default'	=> 'tc',
-					'align'		=> 'right',
+					'align'		=> '',
 					'help'		=> __( 'Select where you would like the thumbnails to center the crop (Default: Top Center).', 'startbox' )
 				),
 			'content_div_3' => array( 'type' => 'divider' ),
@@ -175,7 +176,7 @@ class sb_content_settings extends sb_settings {
 								'both' 	=> __( 'Show Above & Below Posts', 'startbox' )
 						),
 					'default'	=> 'below',
-					'align'		=> 'right',
+					'align'		=> '',
 					'size'		=> 'medium'
 				),
 			'post_navigation' => array(
@@ -188,7 +189,7 @@ class sb_content_settings extends sb_settings {
 								'both' 	=> __( 'Show Above & Below Posts', 'startbox' )
 						),
 					'default'	=> 'below',
-					'align'		=> 'right',
+					'align'		=> '',
 					'size'		=> 'medium'
 				)
 		);

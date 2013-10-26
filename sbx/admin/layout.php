@@ -9,7 +9,7 @@ class sb_layout_settings extends sb_settings {
 		$this->slug = 'sb_layout_settings';
 		$this->description = __( 'Take full control over the layout throughout your site.', 'startbox' );
 		$this->location = 'primary';
-		$this->priority = 'high';
+		$this->priority = 'core';
 		$this->options = array(
 			'home_layout' => array(
 					'type'		=> 'layout',

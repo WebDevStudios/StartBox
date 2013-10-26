@@ -9,7 +9,7 @@ class sb_footer_settings extends sb_settings {
 		$this->slug = 'sb_footer_settings';
 		$this->description = __( 'Select what text (if any) you would like to appear in the footer area of your site.', 'startbox' );
 		$this->location = 'primary';
-		$this->priority = 'core';
+		$this->priority = 'low';
 		$this->options = array(
 				'enable_rtt' => array(
 					'type'		=> 'checkbox',

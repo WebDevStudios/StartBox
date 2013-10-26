@@ -82,10 +82,10 @@ class sb_settings {
 	public function admin_form( $options ) {
 		$options = ($options) ? $options : $this->options;
 
-	    $output = '';
-	    foreach ($options as $id => $settings) {
+		$output = '';
+		foreach ($options as $id => $settings) {
 
-	    	// Assume an empty value for every possible setting
+			// Assume an empty value for every possible setting
 			$defaults = array(
 				'label'		=> '',		// The label content
 				'desc'		=> '',		// Additional descriptive text
@@ -223,7 +223,7 @@ class sb_settings {
 		}
 
 		// Finally, echo our output
-	    echo $output;
+		echo $output;
 	}
 
 }
@@ -244,7 +244,7 @@ class sb_input {
 	 * @return string       The concatenated descriptive text
 	 */
 	public function descriptive_text( $desc ) {
-		return '<br/><span class="desc"> ' . $desc . ' </span>'."\n";
+		return '<span class="description"> ' . $desc . ' </span>'."\n";
 	}
 
 	/**
@@ -268,8 +268,8 @@ class sb_input {
 		$output = '';
 
 		// Concatenate our output
-		$output = '<h4 id="' . esc_attr( $id ) . '" class="' . esc_attr( $id ) . '">' . $label . '</h4>'."\n";
-		$output .= '<p class="' . esc_attr( $id ) . '">' . $desc . '</p>'."\n";
+		$output = '<h4>' . $label . '</h4>'."\n";
+		$output .= '<span class="description">' . $desc . '</span>'."\n";
 
 		// Return our output
 		return $output;
@@ -291,7 +291,7 @@ class sb_input {
 			'value'		=> '',			// The option value
 			'desc'		=> '',			// Descriptive text
 			'size'		=> 'default',	// The size of the input (small, default, large; default: default)
-			'align'		=> 'left',		// The alignment of the input (left, right; default: left)
+			'align'		=> '',		    // The alignment of the input (left, right; default: left)
 			'before'	=> '', 			// Custom content to place before the input
 			'after'		=> ''			// Custom content to place after the input
 		);
@@ -303,15 +303,11 @@ class sb_input {
 		$output = '';
 
 		// Concatenate our output
-		$output .= '<p class="' . esc_attr( $args['id'] ) . '">';
-		if ($label) $output .= '<label for="' . esc_attr( $sb_id ) . '">' . $label . ':</label> ';
-		$output .= '<span class="' .esc_attr( $align ) . '">';
+		if ($label) $output .= '<label for="' . esc_attr( $sb_id ) . '">' . $label . ':</label>';
 		$output .= $before;
-		$output .= '<input type="text" value="' . esc_attr( $value ) . '" name="' . esc_attr( $sb_id ) . '" id="' . esc_attr( $sb_id ) . '" class="' . esc_attr( 'option-field-' . esc_attr( $size ) . ' ' . $class ) . '" />';
+		$output .= '<p class="' . esc_attr( $args['id'] ) . ' ' . esc_attr( $align ) . '"><input type="text" value="' . esc_attr( $value ) . '" name="' . esc_attr( $sb_id ) . '" id="' . esc_attr( $sb_id ) . '" class="' . esc_attr( 'option-field-' . esc_attr( $size ) . ' ' . $class ) . '" /></p>';
 		$output .= $after;
-		$output .= '</span>';
 		if ($desc) $output .= sb_input::descriptive_text( $desc );
-		$output .= '</p>'."\n";
 
 		// Return our output
 		return $output;
@@ -331,8 +327,8 @@ class sb_input {
 			'label'		=> '',			// The content to display as the input label
 			'value'		=> '',			// The option value
 			'desc'		=> '',			// Descriptive text
-			'before'	=> '<p class="' . esc_attr( $args['id'] ) . '">', // Custom content to place before the input
-			'after'		=> '</p>'."\n"	// Custom content to place after the input
+			'before'	=> '', // Custom content to place before the input
+			'after'		=> ''."\n"	// Custom content to place after the input
 		);
 
 		// Get our variables ready to go
@@ -343,8 +339,8 @@ class sb_input {
 
 		// Concatenate our output
 		$output .= $before;
-		$output .= '<label for="' . esc_attr( $sb_id ) . '">' . $label . '</label><br/>'."\n";
-		$output .= '<textarea name="' . esc_attr( $sb_id ) . '" id="' . esc_attr( $sb_id ) . '">' . esc_textarea( $value ) . '</textarea>'."\n";
+		$output .= '<p class="' . esc_attr( $args['id'] ) . ' ' . esc_attr( $align ) . '"><label for="' . esc_attr( $sb_id ) . '">' . $label . '</label></p>'."\n";
+		$output .= '<textarea name="' . esc_attr( $sb_id ) . '" id="' . esc_attr( $sb_id ) . '" cols="78" rows="8">' . esc_textarea( $value ) . '</textarea>'."\n";
 		if ($desc) $output .= sb_input::descriptive_text( $desc );
 		$output .= $after;
 
@@ -367,8 +363,8 @@ class sb_input {
 			'value'		=> '',			// The option value
 			'desc'		=> '',			// Descriptive text
 			'align'		=> 'left',		// Alignment for input
-			'before'	=> '<p class="' . esc_attr( $args['id'] ) . '">', // Custom content to place before the input
-			'after'		=> '</p>'."\n"	// Custom content to place after the input
+			'before'	=> '',          // Custom content to place before the input
+			'after'		=> ''."\n"	    // Custom content to place after the input
 		);
 
 		// Get our variables ready to go
@@ -379,7 +375,8 @@ class sb_input {
 
 		// Concatenate our output
 		$output .= $before ;
-		$output .= '<label for="' . esc_attr( $sb_id ) . '" class="' . esc_attr( $align ) . '"><input type="checkbox" class="checkbox" id="' . esc_attr( $sb_id ) . '" name="' . esc_attr( $sb_id ) . '" value="true" ' . checked( $value, 'true', false ) . ' /> ' . $label . '</label>'."\n";
+		$output .= '<p class="' . esc_attr( $args['id'] ) . ' ' . esc_attr( $align ) . '"><label for="' . esc_attr( $sb_id ) . '" class="' . esc_attr( $align ) . '"></p>';
+		$output .= '<input type="checkbox" class="checkbox" id="' . esc_attr( $sb_id ) . '" name="' . esc_attr( $sb_id ) . '" value="true" ' . checked( $value, 'true', false ) . ' /> ' . $label . '</label>'."\n";
 		if ($desc) $output .= sb_input::descriptive_text( $desc );
 		$output .= $after;
 
@@ -411,8 +408,8 @@ class sb_input {
 		$output = '';
 
 		// Concatenate our output
-		$output .= '<p class="' . esc_attr( $id ) . '">';
-		$output .= $label . '<br/>'."\n";
+		$output .= '<p class="' . esc_attr( $args['id'] ) . ' ' . esc_attr( $align ) . '">';
+		$output .= $label . '<br>'."\n";
 		foreach ( $options as $option_id => $option ) {
 			$output .= '<input type="radio" id="' . esc_attr( $id ) . '-' . esc_attr( $option_id ) . '" value="' . esc_attr( $option_id ) . '" name="' . esc_attr( $sb_id ) . '" ' . checked( $value, $option_id, false ) . ' />';
 			$output .= '<label for="' . esc_attr( $id ) . '-' . esc_attr( $option_id ) . '">' . $option . '</label><br/>'."\n";
@@ -456,7 +453,7 @@ class sb_input {
 		$output = '';
 
 		// Concatenate our output
-		$output .= '<p class="' . esc_attr( $id ) . '">';
+		$output .= '<p class="' . esc_attr( $args['id'] ) . ' ' . esc_attr( $align ) . '">';
 		$output .= $label . '<br/>'."\n";
 		if ($desc) $output .= sb_input::descriptive_text( $desc );
 		foreach ( $options as $layout => $option ) {
@@ -494,8 +491,8 @@ class sb_input {
 			'order_by'	=> 'post_date',		// For post options: how posts should be ordered
 			'order'		=> 'DESC',			// For post options: the order to display the results
 			'limit'		=> 30, 				// For post and page options: how many results to retrieve
-			'before'	=> '<p class="' . esc_attr( $args['id'] ) . '">', // Custom content to place before the input
-			'after'		=> '</p>'."\n"	// Custom content to place after the input
+			'before'	=> '', // Custom content to place before the input
+			'after'		=> ''."\n"	// Custom content to place after the input
 		);
 
 		// Get our variables ready to go
@@ -506,7 +503,7 @@ class sb_input {
 
 		// Concatenate our output
 		$output .= $before;
-		$output .= ($label) ? '<label for="' . esc_attr( $sb_id ) . '">' . $label . ':</label> '."\n" : '';
+		$output .= ($label) ? '<p class="' . esc_attr( $args['id'] ) . ' ' . esc_attr( $align ) . '"><label for="' . esc_attr( $sb_id ) . '">' . $label . ':</label> '."\n" : '';
 		if ( 'categories' == $options )
 			$output .= wp_dropdown_categories( array(
 				'echo'		=> 0,
@@ -541,9 +538,10 @@ class sb_input {
 			foreach ( $options as $option_id => $option ) {
 				$output .= '<option value="' . esc_attr( $option_id ) . '" ' . selected( $value, $option_id, false ) . '>' . $option . '</option>'."\n";
 			}
-			$output .= '</select>'."\n";
+			$output .= '</select></p>'."\n";
 		}
 		if ($desc) $output .= sb_input::descriptive_text( $desc );
+		$output .= '';
 		$output .= $after;
 
 		// Return our output
@@ -630,8 +628,9 @@ class sb_input {
 		$output = '';
 
 		// Concatenate our output
-		$output .= '<p class="' . esc_attr( $id ) . '">'."\n";
-		$output .= '<label for="' . esc_attr( $sb_id ) . '">' . $label . ':</label> '."\n";
+		$output .= '<p class="' . esc_attr( $args['id'] ) . ' ' . esc_attr( $align ) . '">'."\n";
+		$output .= '<label for="' . esc_attr( $sb_id ) . '">' . $label . ':</label>';
+		$output .= '</p> '."\n";
 		$output .= '<select id="' . esc_attr( $sb_id ) . '" name="' . esc_attr( $sb_id ) . '"class="option-select-' . esc_attr( $size ) . ' ' . esc_attr( $align ) . '">'."\n";
 
 		foreach ( $menu_opts as $option_id => $option )
@@ -672,7 +671,6 @@ class sb_input {
 		$output .= sb_input::checkbox( array( 'id' => $id . '-enable-home', 'label' => sprintf( __( 'Add "Home" Link to %s', 'startbox'), $label ), 'value' => sb_get_option( $id . '-enable-home' ), 'align' => $align ) ) ;
 
 		if ($desc) $output .= sb_input::descriptive_text( $desc );
-		$output .= '</p>'."\n";
 
 		// If we have no extras, we can stop here
 		if (!$extras)
@@ -733,12 +731,12 @@ class sb_input {
 		wp_enqueue_media();
 
 		// Concatenate our output
-		$output .= '<p class="imagepickerinput ' . esc_attr( $id ) . '">'."\n";
-		$output .= '<label for="' . esc_attr( $sb_id ) . '">' . $label . ':</label> <input type="text" value="' . esc_attr( $value ) . '" name="' . esc_attr( $sb_id ) . '" id="' . esc_attr( $sb_id ) . '" class="uploadinput"/> ' ;
+		$output .= '<p class="' . esc_attr( $args['id'] ) . ' ' . esc_attr( $align ) . '"><label for="' . esc_attr( $sb_id ) . '">' . $label . ':</label></p>';
+		$output .= '<input type="text" value="' . esc_attr( $value ) . '" name="' . esc_attr( $sb_id ) . '" id="' . esc_attr( $sb_id ) . '" class="uploadinput"/><br>' ;
 		$output .= '<a class="previewlink button" href="' . esc_attr( $value ) . '">' . __( 'Preview', 'startbox' ) . '</a>&nbsp;';
-		$output .= '<a class="chooselink button" href="#">' . __( 'Upload/Choose File', 'startbox' ) . '</a>&nbsp;';
-		$output .= '<span class="desc"> ' . $desc . ' <span class="uploadresult"></span></span>'."\n";
-		$output .= '</p>'."\n";
+		$output .= '<a class="chooselink button" href="#">' . __( 'Upload/Choose File', 'startbox' ) . '</a>';
+		$output .= '<p><span class="description"> ' . $desc . ' <span class="uploadresult"></span></span></p>'."\n";
+		$output .= ''."\n";
 
 		// Return our output
 		return $output;
@@ -824,10 +822,10 @@ class sb_input {
 			'value'		=> '',		// The option value
 			'desc'		=> '',		// Descriptive text
 			'options'	=> array(	// Options specific to the wp_editor() function
-        		'textarea_name'	=> THEME_OPTIONS . '[' . esc_attr( $args['id'] ) . ']',
-	        	'media_buttons'	=> false,
-    	    	'teeny'			=> true
-        	)
+				'textarea_name'	=> THEME_OPTIONS . '[' . esc_attr( $args['id'] ) . ']',
+				'media_buttons'	=> false,
+				'teeny'			=> true
+			)
 		);
 
 		// Get our variables ready to go
@@ -836,19 +834,17 @@ class sb_input {
 		$output = '';
 
 		// Concatenate our output
-		$output .= '<p class=" . esc_attr( $id ) . ">'."\n";
-        $output .= '<label for="' . esc_attr( $sb_id ) . '">' . $label . '</label><br/>'."\n";
-        ob_start();
-        wp_editor( $value, $id, $options );
+		$output .= '<p class="' . esc_attr( $args['id'] ) . ' ' . esc_attr( $align ) . '"><label for="' . esc_attr( $sb_id ) . '">' . $label . '</label></p>'."\n";
+		ob_start();
+		wp_editor( $value, $id, $options );
 		$output .= ob_get_clean();
-        if ($desc) $output .= sb_input::descriptive_text( $desc );
-        $output .= '</p>'."\n";
+		if ($desc) $output .= sb_input::descriptive_text( $desc );
 
-        // Return our output
-        return $output;
-    }
+		// Return our output
+		return $output;
+	}
 
-    /**
+	/**
 	 * Color Input
 	 *
 	 * @param  array $args An array of arguments
@@ -979,7 +975,7 @@ class sb_settings_factory {
 		'sb_layout_settings',
 		'sb_content_settings',
 		'sb_footer_settings',
-		'sb_header_settings',
+		'sb_favicon_settings',
 		'sb_settings_help',
 		'sb_navigation_settings',
 		'sb_seo_settings',

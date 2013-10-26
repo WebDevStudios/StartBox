@@ -7,7 +7,7 @@ class sb_upgrade_settings extends sb_settings {
 	function sb_upgrade_settings() {
 		$this->name = __( 'Version Information', 'startbox');
 		$this->slug = 'sb_upgrade_settings';
-		$this->location = 'secondary';
+		$this->location = 'primary';
 		$this->priority = 'high';
 		$this->options = array(
 			'sb_version_info' => array(

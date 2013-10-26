@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Creates Theme Options page and enqueues all necessary scripts
  *
@@ -7,31 +6,56 @@
  */
 function sb_admin_init() {
 
-	// Setup our global admin variable
-	global $sb_admin;
+		// Setup our global admin variable
+		global $sb_admin;
 
-	// Create our settings page and add it to the menu
-	$sb_admin = add_menu_page( __( 'StartBox Options', 'startbox' ), __( 'SBX', 'startbox'), 'edit_theme_options', 'sb_admin', 'sb_admin_page', '', '59' );
+		// Create our settings page and add it to the menu
+		$sb_admin = add_menu_page( __( 'StartBox Options', 'startbox' ), __( 'SBX', 'startbox'), 'edit_theme_options', 'sb_admin', 'sb_admin_page', '', '59' );
 
-	// Register our custom settings field
-	register_setting( 'sb_admin', THEME_OPTIONS, 'sb_sanitize');
+		// Register our custom settings field
+		register_setting( 'sb_admin', THEME_OPTIONS, 'sb_sanitize');
 
-	// Load in our custom JS and help content
-	add_action( 'load-' . $sb_admin, 'sb_admin_load' );
-	add_action( 'load-' . $sb_admin, 'sb_admin_help');
+
+		// Reset our theme options back to default
+		if ( sb_get_option( 'reset' ) ) { 
+			sb_set_default_options(); 
+			wp_redirect( admin_url( 'themes.php?page=sb_admin&reset=true' ) ); 
+		}
+
+		// Load in our custom JS and help content
+		add_action( 'load-' . $sb_admin, 'sb_admin_help' );
 
 }
 add_action( 'admin_menu', 'sb_admin_init' );
 
+
+/**
+ * Styles & Scripts
+ */
+function sb_admin_scripts() {
+
+	global $sb_admin;
+
+	// Admin styles
+	//wp_enqueue_style( 'sb-admin', SB_CSS . '/admin.css' );
+	wp_enqueue_style( 'sb-admin', SB_CSS . '/admin.min.css' );
+
+	// Required scripts
+	wp_enqueue_script( 'common' );
+	wp_enqueue_script( 'wp-lists' );
+	wp_enqueue_script( 'postbox' );
+
+}
+add_action( 'admin_enqueue_scripts', 'sb_admin_scripts' );
+
+
 /**
  * Add a menu item for Theme Options to the admin bar
- *
- * @since 2.4
  */
 function sb_admin_bar_init() {
-    global $wp_admin_bar;
+	global $wp_admin_bar;
 
-    $wp_admin_bar->add_menu(
+	$wp_admin_bar->add_menu(
 		array(
 			'id' => 'theme-options',
 			'parent' => 'appearance',
@@ -43,20 +67,19 @@ function sb_admin_bar_init() {
 }
 add_action( 'wp_before_admin_bar_render', 'sb_admin_bar_init' );
 
+
 /**
  * Adds contextual help for all StartBox Options
- *
- * @since 2.5.5
  */
 function sb_admin_help() {
-    global $sb_admin, $wp_version;
+	global $sb_admin, $wp_version;
 
 	// Make sure we're on at least WP3.3
 	if ( version_compare( $wp_version, '3.3', '>=' ) ) {
-	    $screen = get_current_screen();
+		$screen = get_current_screen();
 
-	    // Don't add help tab if screen is not sb_admin
-	    if ( $screen->id != $sb_admin ) return;
+		// Don't add help tab if screen is not sb_admin
+		if ( $screen->id != $sb_admin ) return;
 
 		// Grab our theme options
 		global $sb_settings_factory;
@@ -87,114 +110,81 @@ function sb_admin_help() {
 				}
 
 				// Add the help tab
-			    $screen->add_help_tab( array(
-			        'id'		=> $setting->slug,
-			        'title'		=> $setting->name,
-			        'content'	=> $output,
-			    ) );
+				$screen->add_help_tab( array(
+					'id'		=> $setting->slug,
+					'title'		=> $setting->name,
+					'content'	=> $output,
+				) );
 			} // end if isset
 		} // end foreach
 	} // end if version compare
 
 }
 
-function sb_admin_load() {
-
-	global $sb_admin;
-
-	add_screen_option( 'layout_columns', array('max' => 2, 'default' => 2) );
-
-	// Load the scripts for handling metaboxes
-	wp_enqueue_script('common');
-	wp_enqueue_script('wp-lists');
-	wp_enqueue_script('postbox');
-
-	// Load StartBox-specific scripts and styles
-	wp_enqueue_style( 'sb-admin', SB_CSS . '/admin.css' );
-
-	// Load scripts for TinyMCE (Credit: Lee Doel)
-	if ( user_can_richedit() ){
-		wp_enqueue_script('editor');
-	}
-
-	// Reset our theme options back to default
-	if ( sb_get_option('reset') ) { sb_set_default_options(); wp_redirect( admin_url( 'themes.php?page=sb_admin&reset=true' ) ); }
-}
 
 /**
- * Adds the Screen Options tab with 2 columns. Credit: http://www.code-styling.de/english/how-to-use-wordpress-metaboxes-at-own-plugins
+ * Admin Metaboxes
  */
-function sb_screen_options($columns, $screen) {
-	global $sb_admin;
-	if ($screen == $sb_admin) {
-		$columns[$sb_admin] = 2;
-	}
-	return $columns;
-}
-// add_filter('screen_layout_columns', 'sb_screen_options', 10, 2);
+function sb_admin_page() { 
 
+	global $sb_admin; ?>
 
-
-/**
- * Callback for StartBox Theme Options Page layout
- *
- * @since 2.2.8
- */
-function sb_admin_page() { global $sb_admin; ?>
-
-<div class="wrap">
-    <div id="icon-options-general" class="icon32"><br/></div>
-
-    <h2><?php echo THEME_NAME; ?> <?php _e( 'Options', 'startbox'); ?></h2>
-
-	<?php
-		if ( isset($_REQUEST['settings-updated']) && $_REQUEST['settings-updated'] == true ) {
-			echo '<div id="message" class="updated fade"><p>' . THEME_NAME . ' ' . __( 'Options Updated.', 'startbox') . '</p></div>';
-		}
-	?>
-
-    <div id="poststuff" class="metabox-holder<?php global $screen_layout_columns; echo 2 == $screen_layout_columns ? ' has-right-sidebar' : ''; ?>">
-    	<form method="post" enctype="multipart/form-data" action="options.php" id="sb_options">
-		<?php
-			// Include Save/Reset buttons in header
-			sb_admin_buttons();
-
-			// Make metaboxes work proper
-			wp_nonce_field( 'sb-admin-metaboxes' );
-			wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false );
-			wp_nonce_field( 'meta-box-order', 'meta-box-order-nonce', false );
-
-			// Make settings usable
-			settings_fields( 'sb_admin' );
+	<div class="wrap sbx-metaboxes">
+		<form method="post" action="options.php" id="sb_options">
+		<?php wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false ); ?>
+		<?php wp_nonce_field( 'meta-box-order', 'meta-box-order-nonce', false ); ?>
+		<?php settings_fields( 'sb_admin' ); ?>
+		<?php 
+			// Notification nag
+			if ( isset( $_REQUEST['settings-updated'] ) && $_REQUEST['settings-updated'] == true ) {
+				echo '<div id="message" class="updated fade"><p>' . THEME_NAME . ' ' . __( 'Options Updated.', 'startbox' ) . '</p></div>';
+			}
 		?>
-        <div id="post-body" class="has-sidebar">
-			<div id="post-body-content" class="has-sidebar-content">
-            	<?php do_meta_boxes( $sb_admin, 'primary', null ); ?>
-			</div>
-        </div>  <!-- postbox-container -->
+		<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
+		<p class="buttons"><?php sb_admin_buttons(); ?></p>
 
-        <div id="side-info-column" class="inner-sidebar">
-        	<?php do_meta_boxes( $sb_admin, 'secondary', null ); ?>
-        </div>  <!-- postbox-container -->
+		<div class="metabox-holder">
+			<div id="postbox-container-1" class="postbox-container">
+				<?php do_meta_boxes( $sb_admin, 'primary', null ); ?>
+			</div><!-- .postbox-container -->
+			<div id="postbox-container-2" class="postbox-container">
+				<?php do_meta_boxes( $sb_admin, 'secondary', null ); ?>
+			</div><!-- .postbox-container -->
+		</div><!-- .metabox-holder -->
 
-		<?php sb_admin_buttons(); ?>
-        </form>
-    </div>  <!-- metabox-holder -->
-</div> <!-- wrap -->
-<?php
-}
+		<p class="buttons"><?php sb_admin_buttons(); ?></p>
 
-// Include the Admin Buttons
-function sb_admin_buttons() { ?>
-	<div style="position:relative;clear:both; margin-bottom:20px">
-		<input type="submit" name="Submit" value="<?php _e('Save All Settings', 'startbox') ?>" class="button-primary" />
-		<input type="submit" name="<?php echo esc_attr( THEME_OPTIONS . '[reset]' ); ?>" value="<?php _e('Reset All Settings', 'startbox') ?>" class="button" onclick="if(confirm('Reset All Theme Settings?')) return true; else return false;" />
-	</div>
+		</form><!-- #sb_options -->
+	</div><!-- .sbx-metaboxes -->
+	<script type="text/javascript">
+		//<![CDATA[
+		jQuery(document).ready(function($) {
+			// close postboxes that should be closed
+			$('.if-js-closed').removeClass('if-js-closed').addClass('closed');
+			// postboxes setup
+			postboxes.add_postbox_toggles('toplevel_page_sbx_admin');
+		});
+		//]]>
+	</script>
 <?php }
 
-// Perform some basic sanitization to our options on save
+
+/**
+ * Save & Reset Buttons
+ */
+function sb_admin_buttons() { ?>
+	<input type="submit" name="Submit" value="<?php _e( 'Save All Settings', 'startbox' ) ?>" class="button-primary" />
+	<input type="submit" name="<?php echo esc_attr( THEME_OPTIONS . '[reset]' ); ?>" value="<?php _e( 'Reset All Settings', 'startbox' ); ?>" class="button" onclick="if( confirm( 'Reset All Theme Settings?' ) ) return true; else return false;" />
+<?php }
+
+
+/**
+ * Perform some basic sanitization to our options on save
+ */
 function sb_sanitize($inputs) {
+
 	global $sb_settings_factory;
+
 	$settings = $sb_settings_factory->settings;
 
 	foreach ( $settings as $setting ) {
@@ -217,5 +207,6 @@ function sb_sanitize($inputs) {
 
 		}
 	}
+
 	return $inputs;
 }

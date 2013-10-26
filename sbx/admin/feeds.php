@@ -19,15 +19,16 @@ class sb_custom_feed_settings extends sb_settings {
 					'label'		=> __( 'Enter your custom RSS feed URL', 'startbox' ),
 					'sanitize'	=> false,
 					'help'		=> __( 'You can override the default WordPress RSS feed URL here.', 'startbox' ),
-					'align'		=> 'right',
+					'align'		=> '',
 					'size'		=> 'large',
 				),
 			'custom_comment_rss_feed' => array(
 					'type'		=> 'text',
 					'label'		=> __( 'Enter your custom comment RSS feed URL', 'startbox' ),
+					'desc'      => __( 'Allows you to replace the default WordPress RSS URLs with a custom URL, such as Feedburner.', 'startbox' ),
 					'sanitize'	=> false,
 					'help'		=> __( 'You can override the default WordPress comment RSS feed URL here.', 'startbox' ),
-					'align'		=> 'right',
+					'align'		=> '',
 					'size'		=> 'large',
 				)
 		);
