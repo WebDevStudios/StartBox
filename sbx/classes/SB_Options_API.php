@@ -340,7 +340,7 @@ class sb_input {
 		// Concatenate our output
 		$output .= $before;
 		$output .= '<p class="' . esc_attr( $args['id'] ) . ' ' . esc_attr( $align ) . '"><label for="' . esc_attr( $sb_id ) . '">' . $label . '</label></p>'."\n";
-		$output .= '<textarea name="' . esc_attr( $sb_id ) . '" id="' . esc_attr( $sb_id ) . '" cols="78" rows="8">' . esc_textarea( $value ) . '</textarea>'."\n";
+		$output .= '<textarea name="' . esc_attr( $sb_id ) . '" id="' . esc_attr( $sb_id ) . '">' . esc_textarea( $value ) . '</textarea>'."\n";
 		if ($desc) $output .= sb_input::descriptive_text( $desc );
 		$output .= $after;
 
