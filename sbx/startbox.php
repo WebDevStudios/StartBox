@@ -91,9 +91,15 @@ if ( ! class_exists('StartBox') ) {
 			require_if_theme_supports( 'sb-shortcodes',      SB_EXTENSIONS . '/shortcodes.php' );
 			require_if_theme_supports( 'sb-options',		 SB_CLASSES . '/SB_Options_API.php' );
 
-			// Include all customization panels
-			foreach ( glob( SB_ADMIN . '/*.php') as $sb_admin )
-			 	require_if_theme_supports( 'sb-customizer', $sb_admin );
+			// Include all setting metaboxes
+			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/admin.php' );
+			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/feeds.php' );
+			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/header_scripts.php' );
+			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/footer_scripts.php' );
+			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/help.php' );
+			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/layout.php' );
+			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/upgrade.php' );
+			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/footer.php' );
 
 		}
 
