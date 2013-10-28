@@ -21,7 +21,13 @@ require_once( get_template_directory() . '/sbx/startbox.php' );
 function startbox_setup_theme() {
 
 	// StartBox Core Features
-	add_theme_support( 'sb-sidebars',
+	add_theme_support( 'sb-breadcrumbs' );
+	add_theme_support( 'sb-customizer' );
+	add_theme_support( 'sb-layouts' );
+	add_theme_support( 'sb-shortcodes' );
+	add_theme_support( 'sb-options' );
+	add_theme_support(
+		'sb-sidebars',
 		array(
 			array(
 				'id'          => 'header_widget_area',
@@ -64,28 +70,127 @@ function startbox_setup_theme() {
 				'description' => __( 'Appears on the right side of the footer.', 'startbox' ),
 				'class'       => 'footer-widget-area-3',
 				'editable'    => 1
-				) 
+				)
 		)
 	);
-
-	add_theme_support( 'sb-breadcrumbs' );
-	add_theme_support( 'sb-customizer' );
-	add_theme_support( 'sb-layouts' );
-	add_theme_support( 'sb-shortcodes' );
-	add_theme_support( 'sb-options' );
 	add_theme_support( 'sb-custom-sidebars' );
 	add_theme_support( 'sb-updates' );
 	add_theme_support( 'automatic-feed-links' );
 	add_theme_support( 'custom-header' );
 	add_theme_support( 'custom-background' );
-	add_theme_support( 'post-formats', 	array( 'aside', 'gallery', 'image', 'link', 'quote', 'video' ) );
+
+	register_nav_menu( 'main-navigation',__( 'Main Navigation' ) );
+
+	// Custom Post Editor Styles
+    add_editor_style( 'editor-style.css' );
+
+	// Post Format support
+	add_theme_support(
+		'post-formats',
+		array( 'aside', 'gallery', 'image', 'link', 'quote', 'video' )
+	);
+
+	// Post Thumbnail support
 	add_theme_support( 'post-thumbnails' );
 	set_post_thumbnail_size( 200, 200, true );
-	register_nav_menu( 'main-navigation',__( 'Main Navigation' ) );
-    add_editor_style( 'editor-style.css' );
+
+	add_filter( 'sb_customizer_settings', 'sb_sample_customizer_settings' );
 
 }
 add_action( 'after_setup_theme', 'startbox_setup_theme' );
+
+function sb_sample_customizer_settings( $sections = array() ) {
+
+	// Defines $prefix for setting IDs. Optional.
+	$prefix = 'sb_';
+
+	$sections['title_tagline']['settings'][] = array(
+		'id'      => $prefix . 'header_text',
+		'label'   => 'Additional Header Text',
+		'type'    => 'text',
+		'default' => 'Some content'
+	);
+
+	// Defines theme cusotmizer sections and settings
+	$sections['example_settings'] = array(
+		'title'       => 'Example Settings',
+		'description' => 'Section description...',
+		'priority'    => 200,
+		'settings'    => array(
+			array(
+				'id'      => $prefix . 'text',
+				'label'   => 'Text',
+				'type'    => 'text',
+				'default' => 'Default content',
+				'priority' => 10
+			),
+			array(
+				'id'      => $prefix . 'textarea',
+				'label'   => 'Textarea',
+				'type'    => 'textarea',
+				'default' => 'Some sample content...',
+				'priority' => 20
+			),
+			array(
+				'id'    => $prefix . 'checkbox',
+				'label' => 'Checkbox',
+				'type'  => 'checkbox',
+				'priority' => 30
+			),
+			array(
+				'id'      => $prefix . 'radio_buttons',
+				'label'   => 'Radio Buttons',
+				'type'    => 'radio',
+				'default' => 'left',
+				'choices' => array(
+					'left'   => 'Left',
+					'right'  => 'Right',
+					'center' => 'Center',
+				),
+				'priority' => 40
+			),
+			array(
+				'id'      => $prefix . 'select_list',
+				'label'   => 'Select list',
+				'type'    => 'select',
+				'default' => 'two',
+				'choices' => array(
+					'one'   => 'Option 1',
+					'two'   => 'Option 2',
+					'three' => 'Option 3',
+				),
+				'priority' => 50
+			),
+			array(
+				'id'      => $prefix . 'page',
+				'label'   => 'Page',
+				'type'    => 'dropdown-pages',
+				'priority' => 60
+			),
+			array(
+				'id'      => $prefix . 'color',
+				'label'   => 'Color',
+				'type'    => 'color',
+				'default' => '#f70',
+				'priority' => 70
+			),
+			array(
+				'id'      => $prefix . 'upload',
+				'label'   => 'Upload',
+				'type'    => 'upload',
+				'priority' => 80
+			),
+			array(
+				'id'      => $prefix . 'image',
+				'label'   => 'Image',
+				'type'    => 'image',
+				'priority' => 90
+			),
+		)
+	);
+
+	return $sections;
+}
 
 
 /**
@@ -109,26 +214,6 @@ function sbx_google_webfonts() {
 }
 add_action( 'wp_enqueue_scripts', 'sbx_google_webfonts' );
 
-
-/**
- * Setup custom post types (Singular, Plural, Key, Slug, Menu Position)
- */
-function sbx_post_types() {
-
-	sbx_post_type( array( 'Books', 'Book', 'book', 'book' ), array( 'menu_position' => '1' ) );
-
-}
-add_action( 'init', 'sbx_post_types' );
-
-/**
- * Setup taxonomies (Singlular, Plural, Key, Slug, Parent Key)
- */
-function sbx_taxonomies() {
-
-	sbx_taxonomy( 'Tag', 'Book Tags', 'book_tags', 'book-tags', array( 'book' ) );
-
-}
-add_action( 'init', 'sbx_taxonomies' );
 
 /**
  * In his grace, God has given us different gifts for doing certain things well.
