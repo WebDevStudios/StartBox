@@ -72,7 +72,6 @@ if ( ! class_exists('StartBox') ) {
 			require_once( SB_EXTENSIONS . '/custom.php' );
 			require_once( SB_EXTENSIONS . '/hooks.php' );
 			require_once( SB_EXTENSIONS . '/images.php' );
-			require_once( SB_EXTENSIONS . '/post-types-taxonomies.php' );
 			require_once( SB_EXTENSIONS . '/template-tags.php' );
 		}
 
