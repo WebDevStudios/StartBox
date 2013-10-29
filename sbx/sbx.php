@@ -27,6 +27,9 @@ if ( ! class_exists('StartBox') ) {
 			// Register our scripts and styles
 			add_action( 'init', array( $this, 'register_scripts_and_styles' ), 5 );
 
+			// Register admin scripts and styles
+			add_action( 'admin_init', array( $this, 'admin_register_scripts_and_styles' ), 5 );
+
 			// Available action for other processes to fire during init
 			do_action( 'sb_init', $this );
 
@@ -92,6 +95,7 @@ if ( ! class_exists('StartBox') ) {
 
 			// Include all setting metaboxes
 			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/admin.php' );
+			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/favicon.php' );
 			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/feeds.php' );
 			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/header_scripts.php' );
 			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/footer_scripts.php' );
@@ -133,6 +137,18 @@ if ( ! class_exists('StartBox') ) {
 				wp_enqueue_style( 'sbx' );
 				wp_enqueue_style( 'default' );
 			}
+
+		}
+
+		/**
+		 * Register the packaged scripts and styles for the WP admin
+		 *
+		 * @since 3.0.0
+		 */
+		public function admin_register_scripts_and_styles() {
+
+			wp_register_script( 'sb-admin', SB_JS . '/admin.js', array( 'jquery' ), SB_VERSION );
+			wp_enqueue_script( 'sb-admin' );
 
 		}
 	}

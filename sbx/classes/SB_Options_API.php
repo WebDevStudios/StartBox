@@ -453,7 +453,7 @@ class sb_input {
 		$output = '';
 
 		// Concatenate our output
-		$output .= '<p class="' . esc_attr( $args['id'] ) . ' ' . esc_attr( $align ) . '">';
+		$output .= '<p class="' . esc_attr( $args['id'] ) . ' ">';
 		$output .= $label . '<br/>'."\n";
 		if ($desc) $output .= sb_input::descriptive_text( $desc );
 		foreach ( $options as $layout => $option ) {
@@ -731,7 +731,7 @@ class sb_input {
 		wp_enqueue_media();
 
 		// Concatenate our output
-		$output .= '<p class="' . esc_attr( $args['id'] ) . ' ' . esc_attr( $align ) . '"><label for="' . esc_attr( $sb_id ) . '">' . $label . ':</label></p>';
+		$output .= '<p class="imagepickerinput ' . esc_attr( $args['id'] ) . '"><label for="' . esc_attr( $sb_id ) . '">' . $label . ':</label></p>';
 		$output .= '<input type="text" value="' . esc_attr( $value ) . '" name="' . esc_attr( $sb_id ) . '" id="' . esc_attr( $sb_id ) . '" class="uploadinput"/><br>' ;
 		$output .= '<a class="previewlink button" href="' . esc_attr( $value ) . '">' . __( 'Preview', 'startbox' ) . '</a>&nbsp;';
 		$output .= '<a class="chooselink button" href="#">' . __( 'Upload/Choose File', 'startbox' ) . '</a>';

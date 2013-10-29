@@ -23,11 +23,13 @@ class sb_favicon_settings extends sb_settings {
 	}
 
 	function favicon() {
+
 		if ( sb_get_option( 'favicon' ) ) {
 			echo '<link rel="icon" type="image/png" href="' . esc_url( sb_get_option( 'favicon' ) ) . '" />'."\n";
 		} else {
-			echo '<link rel="icon" type="image/png" href="' . IMAGES_URL . '/favicon.png" />'."\n";
+			echo '<link rel="icon" type="image/png" href="' . SB_IMAGES . '/favicon.png" />'."\n";
 		}
+		
 	}
 
 	function hooks() {
