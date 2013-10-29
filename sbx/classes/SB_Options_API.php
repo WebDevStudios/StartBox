@@ -33,7 +33,7 @@
  * @param array $options The options to be added. See http://docs.wpstartbox.com/child-themes/theme-options/ Using Theme Options
  * @param string $hide_ui_if_cannot Lowest capability a user must have in order to see this metabox
  */
-class sb_settings {
+class SB_Settings {
 
 	// Setup our variables
 	public $name = 'Settings Panel';	// Name for your options panel, displays as a title
@@ -113,7 +113,7 @@ class sb_settings {
 				case 'upload' :
 				case 'wysiwyg' :
 				case 'color' :
-					$output .= sb_input::$option['type']( $option );
+					$output .= SB_Input::$option['type']( $option );
 					break;
 				case 'divider' :
 					$output .= "<hr/>\n";
@@ -131,13 +131,13 @@ class sb_settings {
 }
 
 /**
- * StartBox Input Class
+ * StartBox Input Class.
  *
- * Creates input fields for use in sb_settings classes. Currently used to produce the following:
+ * Generates markup for various option input types.
  *
  * @since 2.4.4
  */
-class sb_input {
+class SB_Input {
 
 	/**
 	 * Helper function for outputting descriptive text for each option
@@ -145,7 +145,7 @@ class sb_input {
 	 * @param  string $desc The descriptive text
 	 * @return string       The concatenated descriptive text
 	 */
-	public function descriptive_text( $desc ) {
+	public static function descriptive_text( $desc ) {
 		return '<span class="description"> ' . $desc . ' </span>'."\n";
 	}
 
@@ -155,7 +155,7 @@ class sb_input {
 	 * @param  array $args The array of arguments for building this input
 	 * @return string        The concatenated introduction output
 	 */
-	public function intro( $args ='' ) {
+	public static function intro( $args ='' ) {
 
 		// Setup our defaults
 		$defaults = array(
@@ -183,7 +183,7 @@ class sb_input {
 	 * @param  array $args The array of arguments for building this input
 	 * @return string      The concatenated text option output
 	 */
-	public function text( $args = '' ) {
+	public static function text( $args = '' ) {
 
 		// Setup our defaults
 		$defaults = array(
@@ -221,7 +221,7 @@ class sb_input {
 	 * @param  array $args  The array of arguments for building this input
 	 * @return string       The concatenated textarea option output
 	 */
-	public function textarea( $args = '' ) {
+	public static function textarea( $args = '' ) {
 
 		// Setup our defaults
 		$defaults = array(
@@ -256,7 +256,7 @@ class sb_input {
 	 * @param  array $args  The array of arguments for building this input
 	 * @return string       The concatenated checkbox option output
 	 */
-	public function checkbox( $args = '' ) {
+	public static function checkbox( $args = '' ) {
 
 		// Setup our defaults
 		$defaults = array(
@@ -296,7 +296,7 @@ class sb_input {
 	 * @param  array $args  The array of arguments for building this input
 	 * @return string         The concatenated radio option output
 	 */
-	public function radio( $args = '' ) {
+	public static function radio( $args = '' ) {
 
 		// Setup our defaults
 		$defaults = array(
@@ -333,7 +333,7 @@ class sb_input {
 	 * @param  array $args An array of arguments
 	 * @return string      The concatenated select option output
 	 */
-	public function select( $args = '' ) {
+	public static function select( $args = '' ) {
 
 		// Setup our defaults
 		$defaults = array(
@@ -410,7 +410,7 @@ class sb_input {
 	 * @param  array $args An array of arguments
 	 * @return string      The concatenated select option output
 	 */
-	public function enable_select( $args = '' ) {
+	public static function enable_select( $args = '' ) {
 
 		// Setup our defaults
 		$defaults = array(
@@ -455,7 +455,7 @@ class sb_input {
 	 * @param  array $args An array of arguments
 	 * @return string      The concatenated upload option output
 	 */
-	public function upload( $args = '' ) {
+	public static function upload( $args = '' ) {
 
 		// Setup our defaults
 		$defaults = array(
@@ -494,7 +494,7 @@ class sb_input {
 	 * @param  array $args An array of arguments
 	 * @return string      The concatenated WYSIWYG option output
 	 */
-	public function wysiwyg( $args = '' ) {
+	public static function wysiwyg( $args = '' ) {
 
 		// Setup our defaults
 		$defaults = array(
@@ -531,7 +531,7 @@ class sb_input {
 	 * @param  array $args An array of arguments
 	 * @return string      The concatenated color option output
 	 */
-	public function color( $args = '' ) {
+	public static function color( $args = '' ) {
 
 		// Setup our defaults
 		$defaults = array(
