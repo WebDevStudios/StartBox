@@ -649,19 +649,8 @@ function sb_set_default_options() {
 		foreach( $options as $option_id => $option ) {
 
 			// If the setting has a default, set it
-			if ( isset( $option['default'] ) ) $defaults[$option_id] = $option['default'];
-
-			// If we're working with navigation options specifically, we need to handle them differently
-			if ( $option['type'] == 'navigation' ) {
-				if ( isset($option['home_default']) )		$defaults[$option_id.'-enable-home']	= $option['home_default'];
-				if ( isset($option['position_default']) )	$defaults[$option_id.'-position']		= $option['position_default'];
-				if ( isset($option['depth_default']) )		$defaults[$option_id.'-depth']			= $option['depth_default'];
-			}
-
-			// And same is true with logo options
-			if ( $option['type'] == 'logo' ) {
-				$defaults['logo-image'] = IMAGES_URL . '/logo.png';
-			}
+			if ( isset( $option['default'] ) )
+				$defaults[ $option_id ] = $option['default'];
 		}
 	}
 
