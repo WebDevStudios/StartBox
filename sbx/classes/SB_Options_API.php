@@ -264,7 +264,7 @@ class sb_input {
 			'label'		=> '',			// The content to display as the input label
 			'value'		=> '',			// The option value
 			'desc'		=> '',			// Descriptive text
-			'align'		=> 'left',		// Alignment for input
+			'align'		=> '',			// Alignment for input
 			'before'	=> '',          // Custom content to place before the input
 			'after'		=> ''."\n"	    // Custom content to place after the input
 		);
