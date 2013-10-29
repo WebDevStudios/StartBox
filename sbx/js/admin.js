@@ -20,13 +20,9 @@ $(document).ready(function(){
 						$('.previewlink', instance).hide();
 					} else {
 						$('.previewlink', instance).show();
+						$('.previewlink', instance).attr( 'href', $('.uploadinput', instance).val() );
 					}
 				}).change();
-
-				// Preview Button
-				$('.previewlink', instance).click(function() {
-					$(this).colorbox({href: $('.uploadinput', instance).val(), maxWidth:"90%", maxHeight:"90%", opacity:0.6});
-				});
 
 				// Upload/Choose File Button (Media Library handler)
 				$('.chooselink', instance).click(function(event) {
@@ -34,6 +30,7 @@ $(document).ready(function(){
 					wp.media.editor.open($(this));
 					wp.media.editor.send.attachment = function(props, attachment){
 						$('.uploadinput', instance).val(attachment.url);
+						$('.uploadinput', instance).change();
 					};
 				});
 
