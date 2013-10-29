@@ -172,34 +172,12 @@ class sb_settings {
 						'order'		=> $order,
 						'limit'		=> $limit
 					) );
-			elseif ( 'layout' == $settings['type'] ) $output .= sb_input::layout( array(
-						'id' 		=> $id,
-						'label'		=> $label,
-						'value'		=> $value,
-						'desc'		=> $desc,
-						'options'	=> $options
-					) );
-			elseif ( 'navigation' == $settings['type'] ) $output .= sb_input::navigation( array(
-						'id'		=> $id,
-						'label'		=> $label,
-						'value'		=> $value,
-						'desc'		=> $desc,
-						'size'		=> 'large',
-						'align'		=> 'right',
-						'position'	=> $position,
-						'extras'	=> $extras
-					) );
 			elseif ( 'upload' == $settings['type'] ) $output .= sb_input::upload( array(
 						'id'		=> $id,
 						'label'		=> $label,
 						'value'		=> $value,
 						'desc'		=> $desc,
 						'suggested'	=> $suggested
-					) );
-			elseif ( 'logo' == $settings['type'] ) $output .= sb_input::logo( array(
-						'id'		=> $id,
-						'label'		=> $label,
-						'desc'		=> $desc
 					) );
 			elseif ( 'wysiwyg' == $settings['type'] ) $output .= sb_input::wysiwyg( array(
 						'id'		=> $id,
@@ -214,11 +192,6 @@ class sb_settings {
 						'value'		=> $value,
 						'desc'		=> $desc
 					) );
-			elseif ( 'background' == $settings['type'] ) $output .= sb_input::background( array(
-						'id'		=> $id,
-						'label'		=> $label,
-						'desc'		=> $desc
-				) );
 
 		}
 
@@ -422,56 +395,6 @@ class sb_input {
 	}
 
 	/**
-	 * Layout Options
-	 *
-	 * @param  string $id     Unique ID for this option
-	 * @param  string $label  The content to use as the input label
-	 * @param  string $value  The option value
-	 * @param  string $desc   The content to display as a small descriptive text
-	 * @param  array $options An array of selectable radio options
-	 * @return string         The concatenated layout option output
-	 */
-	public function layout( $args = '' ) {
-
-		// If themes don't support layouts, don't return any layout options
-		if ( !current_theme_supports('sb-layouts') || $args['options'] == '')
-			return $output;
-
-		// Setup our defaults
-		$defaults = array(
-			'id'		=> '',		// Unique ID for this option
-			'label'		=> '',		// The content to display as the input label
-			'value'		=> '',		// The option value
-			'desc'		=> '',		// Descriptive text
-			'options'	=> array(),	// Array of radio options ('id' => 'value')
-		);
-
-		// Get our variables ready to go
-		$r = wp_parse_args( $args, $defaults );
-		extract( $r, EXTR_OVERWRITE );
-		$sb_id = THEME_OPTIONS . '[' . esc_attr( $id ) . ']';
-		$output = '';
-
-		// Concatenate our output
-		$output .= '<p class="' . esc_attr( $args['id'] ) . ' ">';
-		$output .= $label . '<br/>'."\n";
-		if ($desc) $output .= sb_input::descriptive_text( $desc );
-		foreach ( $options as $layout => $option ) {
-			$output .= '<div class="layout-container">';
-			$output .= '<label for="' . esc_attr( $id ) . '-' . esc_attr( $layout ) . '">';
-			$output .= '<input type="radio" id="' . esc_attr( $id ) . '-' . esc_attr( $layout ) . '" value="' . esc_attr( $layout ) . '" name="' . esc_attr( $sb_id ) . '" ' . checked( $value, $layout, false ) . ' />';
-			$output .= '<img src="' . $option['img'] .'" alt="' . esc_attr( $option['label'] ) . '"  width="50" height="40" />';
-			$output .= '</label>';
-			$output .= '</div>';
-		}
-		$output .= '</p>'."\n";
-		$output .= '<hr/>'."\n";
-
-		// Return our output
-		return $output;
-	}
-
-	/**
 	 * Select Input
 	 *
 	 * @param  array $args An array of arguments
@@ -594,118 +517,6 @@ class sb_input {
 	}
 
 	/**
-	 * Navigation Option
-	 *
-	 * @param  array $args An array of arguments
-	 * @return string           The concatenated navigation option output
-	 */
-	public function navigation( $args = '' ) {
-
-		// Setup our defaults
-		$defaults = array(
-			'id'		=> 'option-select',	// The unique ID for this input
-			'label'		=> 'Select',		// The content to use as the input label
-			'value'		=> '',				// The option value
-			'desc'		=> '',				// The content to display as a small descriptive text
-			'options'	=> '',				// String: pages, posts, categories: returns a dropdown for common WordPress content; Array: An array of selectable options
-			'size'		=> 'large',			// The size of this input (small, default, large; default: large)
-			'align'		=> 'right',			// The alignment for this input (left, right; default: right)
-			'position'	=> '',				// An array of selectable position options
-			'extras'	=> '',				// An array of selectable extra options
-		);
-
-		// Get our variables ready to go
-		$r = wp_parse_args( $args, $defaults );
-		extract( $r, EXTR_OVERWRITE );
-		$sb_id = THEME_OPTIONS . '[' . esc_attr( $id ) . ']';
-		$menu_opts = apply_filters( "sb_nav_types", array(
-			'none' 		 => __( 'Disabled', 'startbox' ),
-			'pages'		 => __( 'Pages', 'startbox' ),
-			'categories' => __( 'Categories', 'startbox' )
-		));
-		$menus = wp_get_nav_menus( array('orderby' => 'name') );
-
-		$output = '';
-
-		// Concatenate our output
-		$output .= '<p class="' . esc_attr( $args['id'] ) . ' ' . esc_attr( $align ) . '">'."\n";
-		$output .= '<label for="' . esc_attr( $sb_id ) . '">' . $label . ':</label>';
-		$output .= '</p> '."\n";
-		$output .= '<select id="' . esc_attr( $sb_id ) . '" name="' . esc_attr( $sb_id ) . '"class="option-select-' . esc_attr( $size ) . ' ' . esc_attr( $align ) . '">'."\n";
-
-		foreach ( $menu_opts as $option_id => $option )
-			$output .= '<option value="' . esc_attr( $option_id ) . '" ' . selected( $value, $option_id, false ) . '>' . $option . '</option>'."\n";
-
-		foreach ($menus as $menu )
-			$output .= '<option value="'. esc_attr( $menu->term_id ) .'" ' . selected( $value, $menu->term_id, false ) . '>'. $menu->name .'</option>'."\n";
-
-		$output .= '</select>' . "\n";
-
-		// Depth Options
-		$depth = apply_filters( 'sb_nav_depth', array(
-			'0' => 'Unlimited',
-			'1' => '1',
-			'2' => '2',
-			'3' => '3'
-		));
-		$output .= sb_input::select( array( 'id' => $id . '-depth', 'label' => $label . ' ' . __( 'Depth', 'startbox' ), 'value' => sb_get_option( $id . '-depth' ), 'options' => $depth, 'size' => $size, 'align' => $align ) );
-
-		// Position Options
-		if ( !$position ) $position = apply_filters( "sb_{$id}_positions", array(
-			'sb_before'		=> __( 'Top of Page', 'startbox' ),
-			'sb_before_header'	=> __( 'Before Header', 'startbox' ),
-			'sb_header'		=> __( 'Inside Header', 'startbox' ),
-			'sb_after_header'	=> __( 'After Header', 'startbox' )
-		));
-		$output .= sb_input::select( array( 'id' => $id . '-position', 'label' => $label . ' ' . __( 'Position', 'startbox' ), 'value' => sb_get_option( $id . '-position' ), 'options' => $position, 'size' => $size, 'align' => $align ) );
-
-		// Extras Options
-		if ( $extras === true ) $extras = apply_filters( "sb_{$id}_extras", array(
-			'disabled'	=> __( 'Disabled', 'startbox' ),
-			'search'	=> __( 'Search Form', 'startbox' ),
-			'social'	=> __( 'Social Links', 'startbox' )
-		));
-		if ($extras) $output .= sb_input::select( array( 'id' => $id . '-extras', 'label' => $label . ' ' . __( 'Extras', 'startbox' ), 'value' => sb_get_option( $id . '-extras' ), 'options' => $extras, 'size' => $size, 'align' => $align ) );
-
-		// Add "Home" link to menu items
-		$output .= sb_input::checkbox( array( 'id' => $id . '-enable-home', 'label' => sprintf( __( 'Add "Home" Link to %s', 'startbox'), $label ), 'value' => sb_get_option( $id . '-enable-home' ), 'align' => $align ) ) ;
-
-		if ($desc) $output .= sb_input::descriptive_text( $desc );
-
-		// If we have no extras, we can stop here
-		if (!$extras)
-			return $output;
-
-		// Social Extras Options
-		$social_services = apply_filters( 'sb_nav_social_services', array(
-			'rss'		=> __( 'Include RSS Feed', 'startbox' ),
-			'twitter'	=> __( 'Twitter', 'startbox' ),
-			'facebook'	=> __( 'Facebook', 'startbox' ),
-			'youtube'	=> __( 'YouTube', 'startbox' ),
-			'vimeo'		=> __( 'Vimeo', 'startbox' ),
-			'flickr'	=> __( 'Flickr', 'startbox' ),
-			'delicious'	=> __( 'del.icio.us', 'startbox' ),
-			'linkedin'	=> __( 'LinkedIn', 'startbox' )
-		));
-
-		$output .= '<div class="' . esc_attr( $id ) . '-social-extras">';
-		$output .= sb_input::intro( array( 'id' => $id . '-social-intro', 'label' => __( 'Social Links', 'startbox' ), 'desc' => __( 'Provide the full URL\'s (including http://) of whichever social profiles you would like to include in your navigation.', 'startbox' ) ) );
-		foreach ($social_services as $service => $label) {
-			$value = sb_get_option( $id . '-social-' . $service );
-			if ($service == 'rss') {
-				if ( sb_get_option( $id . '-social-rss' ) == 'true') { $checked = true; } else { $checked = false; }
-				$output .= sb_input::checkbox( array( 'id' => $id . '-social-rss', 'label' => $label, 'value' => $checked, 'align' => $align ) );
-			} else {
-				$output .= sb_input::text( array( 'id' => $id . '-social-' . $service, 'class' => $id . '-social-' . $service, 'label' => $label, 'value' => $value, 'size' => 'medium', 'align' => 'right' ) );
-			}
-		}
-		$output .= '</div>';
-
-		// Return our output
-		return $output;
-	}
-
-	/**
 	 * Upload Input
 	 *
 	 * @param  array $args An array of arguments
@@ -739,71 +550,6 @@ class sb_input {
 		$output .= '</p>';
 		$output .= '<p><span class="description"> ' . $desc . ' <span class="uploadresult"></span></span></p>'."\n";
 		$output .= ''."\n";
-
-		// Return our output
-		return $output;
-	}
-
-	/**
-	 * Logo Options
-	 *
-	 * @param  array $args An array of arguments
-	 * @return string        The concatenated logo option output
-	 */
-	public function logo( $args = '' ) {
-
-		// Setup our defaults
-		$defaults = array(
-			'id'		=> '',	// The unique ID for this input
-			'label'		=> '',	// The content to use as the input label
-			'desc'		=> '',	// The content to display as a small descriptive text
-		);
-
-		// Get our variables ready to go
-		$r = wp_parse_args( $args, $defaults );
-		extract( $r, EXTR_OVERWRITE );
-		$output = '';
-
-		// Concatenate our output
-		$output .= sb_input::intro( array(
-			'id'		=> $id,
-			'label'		=> __( 'Logo Settings', 'startbox' ),
-			'desc'		=> $desc
-			) );
-		$output .= sb_input::select( array(
-			'id'		=> $id . '-select',
-			'label'		=> __( 'Logo Type', 'startbox' ),
-			'align'		=> 'left',
-			'value'		=> sb_get_option( $id . '-select' ),
-			'options'	=> array(
-				'image'		=> __( 'Image', 'startbox' ),
-				'text'		=> __( 'Text', 'startbox' ),
-				'disabled'	=> __( 'Disabled', 'startbox' )
-				)
-			) );
-		$output .= sb_input::select( array(
-			'id'		=> $id . '-align',
-			'label'		=> __( 'Alignment', 'startbox' ),
-			'align'		=> 'left',
-			'value'		=> sb_get_option( $id . '-align' ),
-			'options'	=> array(
-				'left'		=> __( 'Left', 'startbox' ),
-				'center'	=> __( 'Center', 'startbox' ),
-				'right'		=> __( 'Right', 'startbox' )
-				)
-			) );
-		$output .= sb_input::text( array(
-			'id'		=> $id . '-text',
-			'label'		=> __( 'Use This Text', 'startbox' ),
-			'value'		=> sb_get_option( $id . '-text' ),
-			'size'		=> 'medium',
-			'align'		=> 'left'
-			) );
-		$output .= sb_input::upload( array(
-			'id'		=> $id . '-image',
-			'label'		=> __( 'Use This Image', 'startbox' ),
-			'value'		=> sb_get_option( $id . '-image' ),
-			) );
 
 		// Return our output
 		return $output;
@@ -872,90 +618,6 @@ class sb_input {
 
 		// Return our output
 		return sb_input::text( $args );
-	}
-
-	/**
-	 * Background Options
-	 *
-	 * @param  string $id    The unique Id for this input
-	 * @param  string $label The content to use as the input label
-	 * @param  string $desc  Small descriptive text
-	 * @return string        The concatenated background option output
-	 */
-	public function background( $args = '' ) {
-
-		// Setup our defaults
-		$defaults = array(
-			'id'		=> '',		// Unique ID for this option
-			'label'		=> '',		// The content to display as the input label
-			'desc'		=> '',		// Descriptive text
-		);
-
-		// Get our variables ready to go
-		$r = wp_parse_args( $args, $defaults );
-		extract( $r, EXTR_OVERWRITE );
-		$output = '';
-
-		// Concatenate our output
-		$output .= sb_input::intro( array(
-			'id'		=> $id,
-			'label'		=> $label,
-			'desc'		=> $desc
-			) );
-		$output .= sb_input::upload( array(
-			'id'		=> $id . '-image',
-			'label'		=> 'Background Image',
-			'value'		=> sb_get_option( $id . '-image' )
-			) );
-		$output .= sb_input::color( array(
-			'id'		=> $id . '-color',
-			'label'		=> 'Bacground Color',
-			'value'		=> sb_get_option( $id . '-color' )
-			) );
-		$output .= sb_input::select( array(
-			'id'		=> $id . '-horiz',
-			'label'		=> 'Horizontal Alignment',
-			'value'		=> sb_get_option( $id . '-horiz' ),
-			'options'	=> array(
-				'left'		=> 'Left',
-				'center'	=> 'Center',
-				'right'		=> 'Right'),
-			'size'		=> 'medium',
-			'align'		=> 'right'
-			) );
-		$output .= sb_input::select( array(
-			'id'		=> $id . '-vert',
-			'label'		=> 'Vertical Alignment',
-			'value'		=> sb_get_option( $id . '-vert' ),
-			'options'	=> array(
-				'top'		=> 'Top',
-				'middle'	=> 'Middle',
-				'bottom'	=> 'Bottom'
-				),
-			'size'		=> 'medium',
-			'align'		=> 'right'
-			) );
-		$output .= sb_input::select( array( 'id' => $id . '-repeat',
-			'label'		=> 'Repeat',
-			'value'		=> sb_get_option( $id . '-repeat' ),
-			'options'	=> array(
-				'no-repeat'	=> 'No Repeat',
-				'repeat-x'	=> 'Tile Horizontally',
-				'repeat-y'	=> 'Tile Vertically',
-				'repeat'	=> 'Both'
-				),
-			'size'		=> 'medium',
-			'align'		=> 'right'
-			) );
-		$output .= sb_input::checkbox( array(
-			'id'		=> $id . '-fixed',
-			'label'		=> 'Fixed Position',
-			'value'		=> sb_get_option( $id . '-fixed' ),
-			'align'		=> 'right'
-			) );
-
-		// Return our output
-		return $output;
 	}
 
 }
@@ -1252,29 +914,4 @@ function sb_add_action( $tag, $class_name, $function_to_add, $priority = 10 ) {
 		$function_to_add = array( $sb_settings_factory->settings[$class_name], $function_to_add);
 	}
 	return add_action( $tag, $function_to_add, $priority );
-}
-
-/**
- * Helper function for outputting valid CSS for background-type options
- *
- * @since 2.4.4
- *
- * @uses sb_get_option()
- *
- * @param string $option_name Option name
- * @return string Complete CSS for declaring short-hand background properties
- */
-function sb_get_background_output( $option_name ) {
-	$options = get_option( THEME_OPTIONS );
-	$color = $options[ $option_name . '-color' ];
-	$image = $options[ $option_name . '-image' ];
-	$repeat = $options[ $option_name . '-repeat' ];
-	$horiz = $options[ $option_name . '-horiz' ];
-	$vert = $options[ $option_name . '-vert' ];
-	$fixed = ($options[ $option_name . '-fixed' ]) ? ' fixed' : '';
-	$url = ($image) ? "url('" . $image . "') " : ' ' ;
-
-	$output = $color . ' ' . $url . $repeat . ' ' . $horiz . ' ' . $vert . $fixed;
-
-	return $output;
 }
