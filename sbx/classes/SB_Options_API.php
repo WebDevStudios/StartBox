@@ -277,8 +277,12 @@ class sb_input {
 
 		// Concatenate our output
 		$output .= $before ;
-		$output .= '<p class="' . esc_attr( $args['id'] ) . ' ' . esc_attr( $align ) . '"><label for="' . esc_attr( $sb_id ) . '" class="' . esc_attr( $align ) . '"></p>';
-		$output .= '<input type="checkbox" class="checkbox" id="' . esc_attr( $sb_id ) . '" name="' . esc_attr( $sb_id ) . '" value="true" ' . checked( $value, 'true', false ) . ' /> ' . $label . '</label>'."\n";
+		$output .= '<p class="' . esc_attr( $args['id'] ) . ' ' . esc_attr( $align ) . '">';
+		$output .= '<label for="' . esc_attr( $sb_id ) . '" class="' . esc_attr( $align ) . '">';
+		$output .= '<input type="checkbox" class="checkbox" id="' . esc_attr( $sb_id ) . '" name="' . esc_attr( $sb_id ) . '" value="true" ' . checked( $value, 'true', false ) . ' /> ';
+		$output .= $label;
+		$output .= '</label>'."\n";
+		$output .= '</p>';
 		if ($desc) $output .= sb_input::descriptive_text( $desc );
 		$output .= $after;
 
