@@ -80,118 +80,47 @@ class sb_settings {
 
 	// Create the options form to wrap inside metabox. Only override this in your own class if you want to create your own form and do a butt-ton of work.
 	public function admin_form( $options ) {
-		$options = ($options) ? $options : $this->options;
 
+		// Get options from object if not passed directly
+		$options = ( ! empty( $options ) && is_array( $options ) )
+			? $options
+			: $this->options;
+
+		// Initialize output
 		$output = '';
-		foreach ($options as $id => $settings) {
 
-			// Assume an empty value for every possible setting
+		// Output each option
+		foreach ( $options as $option_id => $option ) {
+
+			// Setup option defaults
 			$defaults = array(
-				'label'		=> '',		// The label content
-				'desc'		=> '',		// Additional descriptive text
-				'class'		=> '',		// The option class
-				'align'		=> '',		// The alignment for this input (left, right)
-				'size'		=> '',		// The size of this input (small, default, large)
-				'before'	=> '',		// Custom content to include before the input
-				'after'		=> '',		// Custom costent to include after the input
-				'options'	=> array(),	// String: pages, posts, categories: returns a dropdown for common WordPress content; Array: An array of selectable options
-				'order_by'	=> '',		// For post options: the order to display the results
-				'order'		=> '',		// For post options: the order to display the results
-				'limit'		=> '', 		// For post and page options: how many results to retrieve
-				'suggested'	=> '',		// For post options: the order to display the results
-				'position'	=> array(),	// Array of possible menue positions
-				'extras'	=> array(),	// Array of additional menu extras
+				'id'    => $option_id, // Option ID.
+				'value' => sb_get_option( $option_id ), // Option value.
 			);
 
-			// Parse the values we were given and extract them for individual use
-			$r = wp_parse_args( $settings, $defaults );
-			extract( $r, EXTR_OVERWRITE );
+			// Parse option values against defaults
+			$option = wp_parse_args( $option, $defaults );
 
-			// Grab our current setting value
-			$value = sb_get_option( $id );
-
-			// Loop through each option type and begin concatenate our form elements
-			if ( 'divider' == $settings['type'] ) $output .= '<hr/>'."\n";
-			elseif ( 'intro' == $settings['type'] ) $output .= sb_input::intro( array(
-						'id'		=> $id,
-						'label'		=> $label,
-						'desc'		=> $desc
-					) );
-			elseif ( 'text' == $settings['type'] ) $output .= sb_input::text( array(
-						'id'		=> $id,
-						'class'		=> $class,
-						'label'		=> $label,
-						'value' 	=> $value,
-						'desc'		=> $desc,
-						'size' 		=> $size,
-						'align'		=> $align,
-						'before'	=> $before,
-						'after'		=> $after
-					) );
-			elseif ( 'textarea' == $settings['type'] ) $output .= sb_input::textarea( array(
-						'id'		=> $id,
-						'label'		=> $label,
-						'value'		=> $value,
-						'desc'		=> $desc
-					) );
-			elseif ( 'checkbox' == $settings['type'] ) $output .= sb_input::checkbox( array(
-						'id'		=> $id,
-						'label'		=> $label,
-						'value'		=> $value,
-						'desc'		=> $desc,
-						'align' 	=> $align
-					) );
-			elseif ( 'radio' == $settings['type'] ) $output .= sb_input::radio( array(
-						'id'		=> $id,
-						'label'		=> $label,
-						'value'		=> $value,
-						'desc'		=> $desc,
-						'options'	=> $options
-					) );
-			elseif ( 'select' == $settings['type'] ) $output .= sb_input::select( array(
-						'id'		=> $id,
-						'label'		=> $label,
-						'value'		=> $value,
-						'desc'		=> $desc,
-						'options'	=> $options,
-						'size'		=> $size,
-						'align'		=> $align,
-						'order_by'	=> $order_by,
-						'order'		=> $order,
-						'limit'		=> $limit
-					) );
-			elseif ( 'enable_select' == $settings['type'] ) $output .= sb_input::enable_select( array(
-						'id'		=> $id,
-						'label'		=> $label,
-						'value'		=> $value,
-						'desc'		=> $desc,
-						'options'	=> $options,
-						'size' 		=> $size,
-						'align'		=> $align,
-						'order_by'	=> $order_by,
-						'order'		=> $order,
-						'limit'		=> $limit
-					) );
-			elseif ( 'upload' == $settings['type'] ) $output .= sb_input::upload( array(
-						'id'		=> $id,
-						'label'		=> $label,
-						'value'		=> $value,
-						'desc'		=> $desc,
-						'suggested'	=> $suggested
-					) );
-			elseif ( 'wysiwyg' == $settings['type'] ) $output .= sb_input::wysiwyg( array(
-						'id'		=> $id,
-						'label'		=> $label,
-						'value'		=> $value,
-						'desc'		=> $desc,
-						'options'	=> $options
-					) );
-			elseif ( 'color' == $settings['type'] ) $output .= sb_input::color( array(
-						'id'		=> $id,
-						'label'		=> $label,
-						'value'		=> $value,
-						'desc'		=> $desc
-					) );
+			// Add option markup to output
+			switch ( $option['type'] ) {
+				case 'intro' :
+				case 'text' :
+				case 'textarea' :
+				case 'checkbox' :
+				case 'radio' :
+				case 'select' :
+				case 'enable_select' :
+				case 'upload' :
+				case 'wysiwyg' :
+				case 'color' :
+					$output .= sb_input::$option['type']( $option );
+					break;
+				case 'divider' :
+					$output .= "<hr/>\n";
+					break;
+				default :
+					break;
+			}
 
 		}
 
