@@ -731,10 +731,12 @@ class sb_input {
 		wp_enqueue_media();
 
 		// Concatenate our output
-		$output .= '<p class="imagepickerinput ' . esc_attr( $args['id'] ) . '"><label for="' . esc_attr( $sb_id ) . '">' . $label . ':</label></p>';
+		$output .= '<label for="' . esc_attr( $sb_id ) . '">' . $label . ':</label>';
+		$output .= '<p class="imagepickerinput ' . esc_attr( $args['id'] ) . '">';
 		$output .= '<input type="text" value="' . esc_attr( $value ) . '" name="' . esc_attr( $sb_id ) . '" id="' . esc_attr( $sb_id ) . '" class="uploadinput"/><br>' ;
-		$output .= '<a class="previewlink button" href="' . esc_attr( $value ) . '">' . __( 'Preview', 'startbox' ) . '</a>&nbsp;';
+		$output .= '<a class="previewlink button" href="' . esc_attr( $value ) . '" target="_blank">' . __( 'Preview', 'startbox' ) . '</a>&nbsp;';
 		$output .= '<a class="chooselink button" href="#">' . __( 'Upload/Choose File', 'startbox' ) . '</a>';
+		$output .= '</p>';
 		$output .= '<p><span class="description"> ' . $desc . ' <span class="uploadresult"></span></span></p>'."\n";
 		$output .= ''."\n";
 
