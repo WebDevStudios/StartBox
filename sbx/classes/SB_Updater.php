@@ -29,10 +29,6 @@ class SB_Updater {
 	function update_check() {
 		global $wpdb;
 
-		// Don't bother checking if updates are disabled
-		if (!sb_get_option('enable_updates'))
-			return;
-
 		$sb_update = get_transient('sb_update');
 
 		if ( !$sb_update ) {
