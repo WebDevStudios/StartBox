@@ -89,9 +89,11 @@ if ( ! class_exists('StartBox') ) {
 			require_if_theme_supports( 'sb-layouts',         SB_CLASSES . '/SB_Layouts.php' );
 			require_if_theme_supports( 'sb-sidebars',        SB_CLASSES . '/SB_Sidebars.php' );
 			require_if_theme_supports( 'sb-custom-sidebars', SB_CLASSES . '/SB_Custom_Sidebars.php' );
-			require_if_theme_supports( 'sb-updates',         SB_CLASSES . '/SB_Updater.php' );
 			require_if_theme_supports( 'sb-shortcodes',      SB_EXTENSIONS . '/shortcodes.php' );
 			require_if_theme_supports( 'sb-options',		 SB_CLASSES . '/SB_Options_API.php' );
+
+			//always include the updater class
+			require_once( SB_CLASSES . '/SB_Updater.php' );
 
 			// Include all setting metaboxes
 			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/admin.php' );
