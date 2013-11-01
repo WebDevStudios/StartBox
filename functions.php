@@ -145,22 +145,44 @@ function startbox_customizer_settings( $sections = array() ) {
 	// Defines theme cusotmizer sections and settings
 	$sections['content_settings'] = array(
 		'title'       => 'Post Content Settings',
-		'description' => 'Customize the byline and post meta',
+		'description' => 'Customize the bylines and post meta.',
 		'priority'    => 200,
 		'settings'    => array(
 			array(
 				'id'      => $prefix . 'post_header_meta',
 				'label'   => 'Post Header Meta',
-				'type'    => 'text',
+				'type'    => 'textarea',
 				'default' => 'Published by [author] on [date] at [time] in [categories]',
 				'priority' => 10
 			),
 			array(
 				'id'      => $prefix . 'post_footer_meta',
 				'label'   => 'Post Footer Meta',
-				'type'    => 'text',
+				'type'    => 'textarea',
 				'default' => 'Categories: [categories], Tags: [tags] [edit]',
 				'priority' => 20
+			),
+		)
+	);
+
+	// Defines theme cusotmizer sections and settings
+	$sections['footer_settings'] = array(
+		'title'       => 'Footer Settings',
+		'description' => 'Customize the credits area of the Footer.',
+		'priority'    => 300,
+		'settings'    => array(
+			array(
+				'id'    => $prefix . 'rtt_link',
+				'label' => 'Return to Top Link',
+				'type'  => 'checkbox',
+				'priority' => 10
+			),
+			array(
+				'id'      => $prefix . 'credits',
+				'label'   => 'Site Credits',
+				'type'    => 'textarea',
+				'default' => '[copyright year="2013"] [site_link]. Proudly powered by [WordPress] and [StartBox].',
+				'priority' => 30
 			),
 		)
 	);
@@ -169,7 +191,7 @@ function startbox_customizer_settings( $sections = array() ) {
 	$sections['example_settings'] = array(
 		'title'       => 'Example Settings',
 		'description' => 'Section description...',
-		'priority'    => 200,
+		'priority'    => 999,
 		'settings'    => array(
 			array(
 				'id'      => $prefix . 'text',

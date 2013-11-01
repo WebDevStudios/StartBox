@@ -100,8 +100,6 @@ if ( ! class_exists('StartBox') ) {
 			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/footer_scripts.php' );
 			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/help.php' );
 			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/upgrade.php' );
-			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/footer.php' );
-
 		}
 
 		/**
