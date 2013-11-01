@@ -94,7 +94,7 @@ function sb_admin_help() {
 		$screen->add_help_tab( array(
 			'id'		=> 'sb_need_help',
 			'title'		=> __( 'Additional Resources', 'startbox' ),
-			'content'	=> __( '<h3>Additional Resources</h3>', 'startbox' ) . '<p>' . sprintf( __( 'For more information, try the %s or %s.', 'startbox' ), '<a href="' . apply_filters( 'sb_theme_docs', 'http://docs.wpstartbox.com' ) . '" target="_blank">' . __( 'Theme Documentation', 'startbox') . '</a>',  '<a href="' . apply_filters( 'sb_theme_support', 'http://wpstartbox.com/support/' ) . '" target="_blank" >' . __( 'Support Forum', 'startbox' ) . '</a>' ) . '</p>'
+			'content'	=> __( '<h3>Additional Resources</h3>', 'startbox' ) . '<p>' . sprintf( __( 'The <a href="%s">Theme Customizer</a> is where you can really make this theme your own! There, you will find settings for Favicon, Site Title, Bylines, and more! Changing these settings is as easy as point-and-click.', 'startbox' ), admin_url( 'customize.php' ) ) . '</p><p>' . sprintf( __( ' For more information, try the %s or %s.', 'startbox' ), '<a href="' . apply_filters( 'sb_theme_docs', 'http://docs.wpstartbox.com' ) . '" target="_blank">' . __( 'Theme Documentation', 'startbox') . '</a>',  '<a href="' . apply_filters( 'sb_theme_support', 'http://wpstartbox.com/support/' ) . '" target="_blank" >' . __( 'Support Forum', 'startbox' ) . '</a>' ) . '</p>'
 		) );
 
 		// Loop through each option panel
@@ -127,20 +127,19 @@ function sb_admin_help() {
 
 
 /**
- * Adds 2 columns option
+ * Adds two columns option
  */
 function sb_screen_options( $columns, $screen ) {
 
 	global $sb_admin;
 
-	if ($screen == $sb_admin) {
-		$columns[$sb_admin] = 2;
-	}
+		if ($screen == $sb_admin) {
+			$columns[$sb_admin] = 2;
+		}
 
 	return $columns;
 
 }
-//add_filter( 'screen_layout_columns', 'sb_screen_options', 10, 2 );
 
 
 /**
