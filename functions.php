@@ -128,7 +128,7 @@ function sb_sample_customizer_settings( $sections = array() ) {
 				'id'      => $prefix . 'post_footer_meta',
 				'label'   => 'Post Footer Meta',
 				'type'    => 'text',
-				'default' => 'Categories: [categories], Tags: [tags], [edit]',
+				'default' => 'Categories: [categories], Tags: [tags] [edit]',
 				'priority' => 20
 			),
 		)

@@ -189,7 +189,7 @@ function sb_entry_categories() {
  */
 function sb_entry_tags() {
 	if ( $tags = get_the_tag_list( '', ', ' ) )
-		return '<span class="entry-tags" rel="tags">' . $tags . '</span>';
+		return '<span class="entry-tags">' . $tags . '</span>';
 }
 
 
