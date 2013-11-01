@@ -2,7 +2,7 @@
 /**
  * Options for controling the site layout for various content types
  */
-class sb_layout_settings extends sb_settings {
+class sb_layout_settings extends SB_Settings {
 
 	function sb_layout_settings() {
 		$this->name = __( 'Layout Settings', 'startbox' );

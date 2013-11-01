@@ -2,7 +2,7 @@
 /**
  * Settings for controlling various brand-related options like logo, favicon, etc.
  */
-class sb_favicon_settings extends sb_settings {
+class sb_favicon_settings extends SB_Settings {
 
 	function sb_favicon_settings() {
 		$this->name = __( 'Favicon', 'startbox' );

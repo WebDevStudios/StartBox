@@ -2,7 +2,7 @@
 /**
  * Settings for content to include in the site footer
  */
-class sb_footer_settings extends sb_settings {
+class sb_footer_settings extends SB_Settings {
 
 	function sb_footer_settings() {
 		$this->name = __( 'Footer Settings', 'startbox' );

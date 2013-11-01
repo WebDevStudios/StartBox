@@ -3,7 +3,7 @@
 /**
  * These settings create a redirect for RSS feeds based on the user input
  */
-class sb_custom_feed_settings extends sb_settings {
+class sb_custom_feed_settings extends SB_Settings {
 
 	function sb_custom_feed_settings() {
 

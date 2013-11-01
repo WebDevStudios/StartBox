@@ -3,7 +3,7 @@
 /**
  * These settings create an input for header script code that gets hooked into wp_head
  */
-class sb_header_scripts_settings extends sb_settings {
+class sb_header_scripts_settings extends SB_Settings {
 
 	function sb_header_scripts_settings() {
 

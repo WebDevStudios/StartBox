@@ -2,7 +2,7 @@
 /**
  * Content settings for adjusting post meta, content, navigation, thumbnails, etc.
  */
-class sb_content_settings extends sb_settings {
+class sb_content_settings extends SB_Settings {
 
 	function sb_content_settings() {
 		$this->name = __( 'Content Settings', 'startbox' );

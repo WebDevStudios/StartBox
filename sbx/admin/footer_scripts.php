@@ -3,7 +3,7 @@
 /**
  * These settings create an input for footer script code that gets hooked into wp_footer
  */
-class sb_footer_scripts_settings extends sb_settings {
+class sb_footer_scripts_settings extends SB_Settings {
 
 	function sb_footer_scripts_settings() {
 		

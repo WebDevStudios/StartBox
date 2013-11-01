@@ -2,7 +2,7 @@
 /**
  * Settings for controlling automatic upgrades
  */
-class sb_upgrade_settings extends sb_settings {
+class sb_upgrade_settings extends SB_Settings {
 
 	function sb_upgrade_settings() {
 		$this->name = __( 'SBX Information', 'startbox' );

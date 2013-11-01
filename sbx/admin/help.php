@@ -2,7 +2,7 @@
 /**
  * Registers a settings metabox to direct users to the help tab and resources
  */
-class sb_settings_help extends sb_settings {
+class sb_settings_help extends SB_Settings {
 
 	function sb_settings_help() {
 		$this->name = __( 'Need Help?', 'startbox' );
