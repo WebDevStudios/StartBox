@@ -1,3 +1,9 @@
+2013.11.1 - version 3.0.0-Experimental
+	* Add theme customizer support for Favicons
+	* Add theme customizer support for Bylines & Post Meta
+	* Add theme customizer support for Footer & Credits
+	* Add sb_get_image_id(); and sb_get_image();
+
 2013.10.25 - version 3.0.0-Experimental
 	* Updateds settings styles to match WP Defaults
 	* Fixed settings sort and collapse
