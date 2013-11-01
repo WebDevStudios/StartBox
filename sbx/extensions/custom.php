@@ -8,6 +8,7 @@
  * @subpackage Functions
  */
 
+
 /**
  * Display Relative Timestamps
  *
@@ -23,7 +24,6 @@
  * @param integer $newer_date Specify a known date to determine elapsed time. Will use current time if false Default: false
  * @return string Time since
 */
-
 function sb_time_since($older_date, $newer_date = false) {
 
 	// array of time period chunks
@@ -147,6 +147,7 @@ function sb_dropdown_posts($args = '') {
 		return $output;
 }
 
+
 /**
  * Create a nice multi-tag title
  *
@@ -180,6 +181,7 @@ function sb_tag_query() {
 	 return $nice_tag_query;
 }
 
+
 /**
  * Function for retrieving taxonomy meta information
  *
@@ -195,6 +197,7 @@ if ( !function_exists( 'get_taxonomy_term_type' ) ) {
 		return get_option("_term_type_{$taxonomy}_{$term->term_id}");
 	}
 }
+
 
 /**
  * Function for updating taxonomy meta information
@@ -213,6 +216,7 @@ if ( !function_exists( 'update_taxonomy_term_type' ) ) {
 	}
 }
 
+
 /**
  * Function for deleting taxonomy meta information
  *
@@ -228,6 +232,7 @@ if ( !function_exists( 'delete_taxonomy_term_type' ) ) {
 		delete_option("_term_type_{$taxonomy}_{$term_id}");
 	}
 }
+
 
 /**
  * Forever eliminate "Startbox" from the planet (or at least the little bit we can influence).
@@ -256,6 +261,7 @@ add_filter( 'the_content', 'capital_B_dangit', 11 );
 add_filter( 'the_title', 'capital_B_dangit', 11 );
 add_filter( 'comment_text', 'capital_B_dangit', 31 );
 
+
 /**
  * Introduces a new column to the 'Page' dashboard that will be used to render the page template
  * for the given page.
@@ -271,6 +277,7 @@ function sb_add_template_column( $page_columns ) {
 	return $page_columns;
 }
 add_filter( 'manage_edit-page_columns', 'sb_add_template_column' );
+
 
 /**
  * Renders the name of the template applied to the current page. Will use 'Default' if no
@@ -313,3 +320,112 @@ function sb_add_template_data( $column_name ) {
 
 }
 add_action( 'manage_page_posts_custom_column', 'sb_add_template_data' );
+
+
+/**
+ * Pull an attachment ID from a post, if one exists.
+ *
+ * @since    3.0.0
+ * @global   WP_Post   $post      Post object.
+ * @param    integer   $index     Optional. Index of which image to return from a post. Default is 0.
+ * @return   integer   boolean    Returns image ID, or false if image with given index does not exist.
+ */
+function sb_get_image_id( $index = 0 ) {
+
+	global $post;
+
+	$image_ids = array_keys(
+		get_children(
+			array(
+				'post_parent'    => $post->ID,
+				'post_type'	     => 'attachment',
+				'post_mime_type' => 'image',
+				'orderby'        => 'menu_order',
+				'order'	         => 'ASC',
+			)
+		)
+	);
+
+	if ( isset( $image_ids[$index] ) )
+		return $image_ids[$index];
+
+	return false;
+
+}
+
+
+/**
+ * Return an image pulled from the media gallery.
+ *
+ * Supported $args keys are:
+ *
+ *  - format   - string, default is 'html'
+ *  - size     - string, default is 'full'
+ *  - num      - integer, default is 0
+ *  - attr     - string, default is ''
+ *  - fallback - mixed, default is 'first-attached'
+ *
+ * @since    3.0.0
+ * @uses     sb_get_image_id()  Pull an attachment ID from a post, if one exists.
+ * @global   WP_Post  $post     Post object.
+ * @param    array    string    $args Optional. Image query arguments. Default is empty array.
+ * @return   string   boolean   Return image element HTML, URL of image, or false.
+ */
+function sb_get_image( $args = array() ) {
+
+	global $post;
+
+	$defaults = apply_filters( 'sb_get_image_default_args', array(
+		'format'   => 'html',
+		'size'     => 'full',
+		'num'      => 0,
+		'attr'     => '',
+		'fallback' => 'first-attached'
+	) );
+
+	$args = wp_parse_args( $args, $defaults );
+
+	// Check for post image
+	if ( has_post_thumbnail() && ( 0 === $args['num'] ) ) {
+		$id = get_post_thumbnail_id();
+		$html = wp_get_attachment_image( $id, $args['size'], false, $args['attr'] );
+		list( $url ) = wp_get_attachment_image_src( $id, $args['size'], false, $args['attr'] );
+	}
+
+	// Else if first-attached, pull the first image attachment
+	elseif ( 'first-attached' === $args['fallback'] ) {
+		$id = sb_get_image_id( $args['num'] );
+		$html = wp_get_attachment_image( $id, $args['size'], false, $args['attr'] );
+		list( $url ) = wp_get_attachment_image_src( $id, $args['size'], false, $args['attr'] );
+	}
+
+	// Else if fallback array exists
+	elseif ( is_array( $args['fallback'] ) ) {
+		$id   = 0;
+		$html = $args['fallback']['html'];
+		$url  = $args['fallback']['url'];
+	}
+
+	// Else, return false
+	else {
+		return false;
+	}
+
+	// Source path, relative to the root
+	$src = str_replace( home_url(), '', $url );
+
+	// Determine output
+	if ( 'html' === mb_strtolower( $args['format'] ) )
+		$output = $html;
+	elseif ( 'url' === mb_strtolower( $args['format'] ) )
+		$output = $url;
+	else
+		$output = $src;
+
+	// Return false if $url is blank
+	if ( empty( $url ) ) $output = false;
+
+	// Return data, filtered
+	return apply_filters( 'sb_get_image', $output, $args, $id, $html, $url, $src );
+
+}
