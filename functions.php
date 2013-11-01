@@ -30,13 +30,6 @@ function startbox_setup_theme() {
 		'sb-sidebars',
 		array(
 			array(
-				'id'          => 'header_widget_area',
-				'name'        => 'Header Widget Area',
-				'description' => __( 'Appears to the left of the logo area.', 'startbox' ),
-				'class'       => 'header-widget-area',
-				'editable'    => 1
-				),
-			array(
 				'id'          => 'primary_widget_area',
 				'name'        => 'Primary Widget Area',
 				'description' => __( 'This is the primary widget area when using two- or three-column layouts.', 'startbox' ),
@@ -48,6 +41,13 @@ function startbox_setup_theme() {
 				'name'        => 'Secondary Widget Area',
 				'description' => __( 'This is the secondary widget area for three-column layouts.', 'startbox' ),
 				'class'       => 'secondary-widget-area',
+				'editable'    => 1
+				),
+			array(
+				'id'          => 'header_widget_area',
+				'name'        => 'Header Widget Area',
+				'description' => __( 'Appears to the right of the logo area.', 'startbox' ),
+				'class'       => 'header-widget-area',
 				'editable'    => 1
 				),
 			array(
@@ -109,6 +109,29 @@ function sb_sample_customizer_settings( $sections = array() ) {
 		'label'   => 'Additional Header Text',
 		'type'    => 'text',
 		'default' => 'Some content'
+	);
+
+	// Defines theme cusotmizer sections and settings
+	$sections['content_settings'] = array(
+		'title'       => 'Post Content Settings',
+		'description' => 'Customize the byline and post meta',
+		'priority'    => 200,
+		'settings'    => array(
+			array(
+				'id'      => $prefix . 'post_header_meta',
+				'label'   => 'Post Header Meta',
+				'type'    => 'text',
+				'default' => 'Published by [author] on [date] at [time] in [categories]',
+				'priority' => 10
+			),
+			array(
+				'id'      => $prefix . 'post_footer_meta',
+				'label'   => 'Post Footer Meta',
+				'type'    => 'text',
+				'default' => 'Categories: [categories], Tags: [tags]',
+				'priority' => 20
+			),
+		)
 	);
 
 	// Defines theme cusotmizer sections and settings
