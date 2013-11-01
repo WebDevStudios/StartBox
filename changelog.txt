@@ -1,4 +1,4 @@
-2013.11.1 - version 3.0.0-Experimental
+2013.11.01 - version 3.0.0-Experimental
 	* Add theme customizer support for Favicons
 	* Add theme customizer support for Bylines & Post Meta
 	* Add theme customizer support for Footer & Credits
