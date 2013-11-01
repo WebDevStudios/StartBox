@@ -95,7 +95,6 @@ if ( ! class_exists('StartBox') ) {
 
 			// Include all setting metaboxes
 			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/admin.php' );
-			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/favicon.php' );
 			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/feeds.php' );
 			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/header_scripts.php' );
 			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/footer_scripts.php' );

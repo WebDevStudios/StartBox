@@ -12,14 +12,23 @@
 <?php do_action( 'head_top' ); ?>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title><?php wp_title( '|', true, 'right' ); ?></title>
+
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="<?php echo sb_get_theme_mod( 'sb_touch_icon' ); ?>">
+<link rel="icon" href="<?php echo sb_get_theme_mod( 'sb_favicon' ); ?>">
+<!--[if IE]><link rel="shortcut icon" href="<?php echo sb_get_theme_mod( 'sb_favicon' ); ?>"><![endif]-->
+<meta name="msapplication-TileColor" content="<?php echo sb_get_theme_mod( 'sb_tile_bg' ); ?>">
+<meta name="msapplication-TileImage" content="<?php echo sb_get_theme_mod( 'sb_tile_icon' ); ?>">
+
 <?php do_action( 'head_bottom' ); ?>
 <?php wp_head(); ?>
 <!--[if lt IE 9]>
-	<script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/html5shiv.js" type="text/javascript"></script>
-	<script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/respond.min.js" type="text/javascript"></script>
+	<script src="<?php echo get_template_directory_uri(); ?>/js/html5shiv.js" type="text/javascript"></script>
+	<script src="<?php echo get_template_directory_uri(); ?>/js/respond.min.js" type="text/javascript"></script>
 <![endif]-->
 </head>
 

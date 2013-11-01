@@ -79,7 +79,7 @@ function startbox_setup_theme() {
 	add_theme_support( 'custom-header' );
 	add_theme_support( 'custom-background' );
 
-	register_nav_menu( 'main-navigation',__( 'Main Navigation' ) );
+	register_nav_menu( 'main-navigation',__( 'Primary Navigation' ) );
 
 	// Custom Post Editor Styles
     add_editor_style( 'editor-style.css' );
@@ -94,21 +94,52 @@ function startbox_setup_theme() {
 	add_theme_support( 'post-thumbnails' );
 	set_post_thumbnail_size( 200, 200, true );
 
-	add_filter( 'sb_customizer_settings', 'sb_sample_customizer_settings' );
+	add_filter( 'sb_customizer_settings', 'startbox_customizer_settings' );
 
 }
 add_action( 'after_setup_theme', 'startbox_setup_theme' );
 
-function sb_sample_customizer_settings( $sections = array() ) {
+/**
+ * Hook into WordPress theme customizer
+ * @link( /wp-admin/customize.php, link)
+ */
+function startbox_customizer_settings( $sections = array() ) {
 
 	// Defines $prefix for setting IDs. Optional.
 	$prefix = 'sb_';
 
-	$sections['title_tagline']['settings'][] = array(
-		'id'      => $prefix . 'header_text',
-		'label'   => 'Additional Header Text',
-		'type'    => 'text',
-		'default' => 'Some content'
+	// Defines theme cusotmizer sections and settings
+	$sections['branding_settings'] = array(
+		'title'       => 'Branding Settings',
+		'description' => 'Upload a favicon, touch icon (iOS), and a tile icon (Windows 8).',
+		'priority'    => 1,
+		'settings'    => array(
+			array(
+				'id'      => $prefix . 'favicon',
+				'label'   => 'Favicon (32x32 .ico)',
+				'type'    => 'image',
+				'priority' => 10
+			),
+			array(
+				'id'      => $prefix . 'touch_icon',
+				'label'   => 'Touch Icon (152x152 .png)',
+				'type'    => 'image',
+				'priority' => 20
+			),
+			array(
+				'id'      => $prefix . 'tile_icon',
+				'label'   => 'Tile Icon (144x144 .png)',
+				'type'    => 'image',
+				'priority' => 30
+			),
+			array(
+				'id'      => $prefix . 'tile_bg',
+				'label'   => 'Tile Icon Background',
+				'type'    => 'color',
+				'default' => '#fff',
+				'priority' => 40
+			),
+		)
 	);
 
 	// Defines theme cusotmizer sections and settings

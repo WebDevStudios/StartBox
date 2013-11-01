@@ -15,7 +15,7 @@ class sb_favicon_settings extends SB_Settings {
 					'type'		=> 'upload',
 					'label'		=> __( 'Favicon', 'startbox' ),
 					'desc'		=> sprintf( __( 'The %s is a small logo/icon that displays alongside your URL or in the page tab of most browsers.', 'startbox' ), '<a href="http://en.wikipedia.org/wiki/Favicon" target="_blank">favicon</a>' ),
-					'default'	=> '/wp-content/themes/startbox/images/favicon.png',
+					'default'	=> get_template_directory_uri() . 'favicon.png',
 					'help'		=> __( 'Specify a custom favicon for use in the navigation bar or browser tab for your site', 'startbox' )
 				)
 			);
@@ -25,9 +25,9 @@ class sb_favicon_settings extends SB_Settings {
 	function favicon() {
 
 		if ( sb_get_option( 'favicon' ) ) {
-			echo '<link rel="icon" type="image/png" href="' . esc_url( sb_get_option( 'favicon' ) ) . '" />'."\n";
+			echo '<link rel="shortcut icon" href="' . get_template_directory_uri() . '' . esc_url( sb_get_option( 'favicon' ) ) . '" />'."\n";
 		} else {
-			echo '<link rel="icon" type="image/png" href="' . SB_IMAGES . '/favicon.png" />'."\n";
+			echo '<link rel="shortcut icon" href="' . SB_IMAGES . '/favicon.png" />'."\n";
 		}
 		
 	}
