@@ -37,12 +37,14 @@ add_shortcode( 'site_link', 'sb_site_link' );
 add_shortcode( 'WordPress', 'sb_wp_link' );
 add_shortcode( 'StartBox', 'sb_footer_link' );
 
+
 /**
  * Enable Shortcodes in widget areas
  *
  * @since 2.4.8
  */
-add_filter('widget_text', 'do_shortcode');
+add_filter( 'widget_text', 'do_shortcode' );
+
 
 /**
  * Shortcode to display Return To Top link
@@ -53,6 +55,7 @@ function sb_rtt() {
 	$link = '<span class="rtt"><a href="#top" class="cb" title="Return to top of page">' . apply_filters( 'sb_rtt_text', __( 'Return to Top', 'startbox' ) ) . '</a></span>';
 	return $link;
 }
+
 
 /**
  * Shortcode to display a sidebar virtually anywhere.
@@ -74,15 +77,17 @@ function sb_sidebar_shortcode ( $atts ) {
 	return ob_get_clean();
 }
 
+
 /**
  * Displays an Edit link for admins
  *
  * @since 2.4.6
  */
 function sb_entry_edit() {
-	if ( current_user_can('edit_posts') )
-		return '<span class="meta-sep">|</span> <span class="edit-link"><a href="' . get_edit_post_link() . '">' . __('Edit', 'startbox') . '</a></span>';
+	if ( current_user_can( 'edit_posts' ) )
+		return '<span class="edit-link">&nbsp;(<a href="' . get_edit_post_link() . '">' . __( 'Edit', 'startbox' ) . '</a>)</span>';
 }
+
 
 /**
  * Displays the current post date, if time since is installed, it will use that instead.
@@ -96,15 +101,19 @@ function sb_entry_edit() {
 function sb_entry_date( $atts ) {
 	global $post;
 	extract ( shortcode_atts ( array (
-		'format' => get_option('date_format'),
+		'format' => get_option( 'date_format' ),
 		'relative' => false
 	), $atts ) );
 
+	$date = get_the_time( $format );
+	$isodate = get_the_date( 'c' );
+
 	if ( true == $relative )
-		return '<span class="published entry-date">' . sb_time_since( abs( strtotime( $post->post_date_gmt . " GMT" ) ), time() ) . ' ago</span>';
+		return '<time class="entry-date published updated" itemprop="datePublished" datetime="' . esc_attr( $isodate ) . '">' . sb_time_since( abs( strtotime( $post->post_date_gmt . " GMT" ) ), time() ) . ' ago</time>';
 	else
-		return '<span class="published entry-date">' . get_the_time( $format ) . '</span>';
+		return '<time class="entry-date published updated" itemprop="datePublished" datetime="' . esc_attr( $isodate ) . '">' . esc_attr( $date ) . '</time>';
 }
+
 
 /**
  * Displays the current post time
@@ -112,20 +121,9 @@ function sb_entry_date( $atts ) {
  * @since 2.4.6
  */
 function sb_entry_time() {
-	return '<span class="entry-time">' . get_the_time( get_option('time_format') ) . '</span>';
+	return '<span class="entry-time">' . get_the_time() . '</span>';
 }
 
-/**
- * Displays the current post categories
- *
- * @since 2.4.6
- *
- * @uses get_the_category_list
- *
- */
-function sb_entry_categories() {
-	return '<span class="entry-categories">' . get_the_category_list(', ') . '</span>';
-}
 
 /**
  * Displays a Read More link
@@ -136,8 +134,9 @@ function sb_entry_categories() {
  *
  */
 function sb_readmore() {
-	return '<a href="' . get_permalink() . '" title="' . sprintf(__("Continue Reading %s", "startbox"), esc_html(get_the_title(), 1)) . '" rel="nofollow" class="more-link">' . apply_filters( "sb_read_more", "Read &amp; Discuss &raquo;" ) . '</a>';
+	return '<a href="' . get_permalink() . '" title="' . sprintf( __( 'Continue Reading %s', 'startbox' ), esc_html( get_the_title(), 1 ) ) . '" rel="nofollow" class="more-link">' . apply_filters( 'sb_read_more', 'Read &amp; Discuss &raquo;' ) . '</a>';
 }
+
 
 /**
  * Displays the current post title.
@@ -149,6 +148,7 @@ function sb_entry_title() {
 	return get_the_title();
 }
 
+
 /**
  * Displays the current post author.
  * Formatted for hAtom microformat.
@@ -158,13 +158,26 @@ function sb_entry_title() {
  */
 function sb_entry_author() {
 
-	$output = '<span class="vcard author entry-author">';
-	$output .= '<a href="' . get_author_posts_url( get_the_author_meta('ID') ) . '" class="url fn" title="' . sprintf( __('View all posts by %s', 'startbox'), esc_attr( get_the_author() ) ) .'">';
-	$output .= get_the_author();
+	$output = '<span class="vcard author entry-author" itemprop="author" itemscope itemptype="http://schema.org/Person">';
+	$output .= '<a class="url fn n" itemprop="url" rel="author" href="' . get_author_posts_url( get_the_author_meta( 'ID' ) ) . '" title="' . sprintf( __( 'View all posts by %s', 'startbox' ), esc_attr( get_the_author() ) ) .'">';
+	$output .= '<span class="entry-author-name" itemprop="name">' . get_the_author() . '</span>';
 	$output .= '</a>';
 	$output .= '</span>';
 
 	return $output;
+}
+
+
+/**
+ * Displays the current post categories
+ *
+ * @since 2.4.6
+ *
+ * @uses get_the_category_list
+ *
+ */
+function sb_entry_categories() {
+	return '<span class="entry-categories">' . get_the_category_list( ', ' ) . '</span>';
 }
 
 
@@ -175,8 +188,8 @@ function sb_entry_author() {
  *
  */
 function sb_entry_tags() {
-	if ( $tags = get_the_tag_list( '<span>' . __('Tagged: ','startbox') . '</span>', ', ' ) )
-		return '<span class="entry-tags">' . $tags . '</span>';
+	if ( $tags = get_the_tag_list( '', ', ' ) )
+		return '<span class="entry-tags" rel="tags">' . $tags . '</span>';
 }
 
 
@@ -188,9 +201,10 @@ function sb_entry_tags() {
  */
 function sb_entry_comments() {
 	ob_start();
-	comments_popup_link(__('No Comments', 'startbox'), __('1 Comment', 'startbox'), __('% Comments', 'startbox'));
+	comments_popup_link(__( 'No Comments', 'startbox' ), __( '1 Comment', 'startbox' ), __( '% Comments', 'startbox' ) );
 	return '<span class="entry-comments">' . ob_get_clean() . '</span>';
 }
+
 
 /**
  * Shortcode to create a content box
@@ -212,6 +226,7 @@ function sb_author_bio( $atts, $content = null ) {
 	return $output;
 }
 
+
 /**
  * Shortcode for creating a divider
  *
@@ -224,6 +239,7 @@ function sb_divider( $atts, $content = null ) {
 	$top = ( $show_top ) ? do_shortcode( '[rtt]' ) : '' ;
 	return '<div class="hr divider" style="text-align:' . $align . ';">' . $top . '</div>';
 }
+
 
 /**
  * Shortcode for creating a jQuery toggle link
@@ -251,6 +267,7 @@ function sb_toggle( $atts, $content = null ) {
 	return $output;
 }
 
+
 /**
  * Protect member-only content
  *
@@ -275,6 +292,7 @@ function sb_protected( $atts, $content = null ) {
 	}
 }
 
+
 /**
  * Hide content after specific expiration date
  *
@@ -296,6 +314,7 @@ function sb_expires( $atts, $content = null ) {
 		return do_shortcode( $content );
 }
 
+
 /**
  * Show content after specific teaser date
  *
@@ -316,6 +335,7 @@ function sb_show_after( $atts, $content = null ) {
 	else
 		return do_shortcode( $content );
 }
+
 
 /**
  * Function for producing a sitemap.
@@ -430,6 +450,7 @@ function sb_get_sitemap( $args = '' ) {
 	return $output;
 }
 
+
 /**
  * Shortcode to insert link to current site
  *
@@ -445,6 +466,7 @@ function sb_site_link( $atts ) {
 	return '<a href="' . $url . '" target="' . $target . '">' . $text . '</a>';
 }
 
+
 /**
  * Shortcode to insert WordPress link
  *
@@ -456,6 +478,7 @@ function sb_wp_link( $atts ) {
 	return '<a href="http://wordpress.org/" target="' . $target . '">WordPress</a>';
 }
 
+
 /**
  * Shortcode to insert StartBox link
  *
@@ -466,6 +489,7 @@ function sb_footer_link( $atts ) {
 
 	return '<a href="http://wpstartbox.com/" target="' . $target . '">StartBox</a>';
 }
+
 
 /**
  * Shortcode to insert copyright date(s)
