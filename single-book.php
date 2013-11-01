@@ -19,7 +19,7 @@ get_header(); ?>
 				<h1 class="entry-title" itemprop="headline"><?php the_title(); ?></h1>
 
 				<div class="entry-meta">
-					<?php sbx_posted_on(); ?>
+					<?php sb_get_theme_mod( 'sb_post_header_meta' ); ?>
 				</div><!-- .entry-meta -->
 			</header><!-- .entry-header -->
 
