@@ -50,7 +50,24 @@ i {
 }
 
 blockquote {
-	@include rem(margin, 24px);
+	background: $color-bg-blockquote;
+	border-left: 10px solid $color-border-blockquote;
+	@include rem(margin, 24px 10px 24px);
+	@include rem(padding, 5px 10px);
+	quotes: "\201C""\201D""\2018""\2019";
+}
+
+blockquote:before {
+	color: $color-text-blockquote;
+	content: open-quote;
+	@include rem(font-size, 48px);
+	line-height: 10px;
+	@include rem(margin-right, 5px);
+	vertical-align: -23px;
+}
+
+blockquote p {
+	display: inline;
 }
 
 address {

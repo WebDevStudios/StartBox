@@ -5,7 +5,7 @@
 	@include rem(margin-bottom, 24px);
 }
 
-/* Content
+/* Post Content
 --------------------------------------------- */
 
 .site-inner {
@@ -26,10 +26,6 @@
 	border: 1px solid $color-border-sticky;
 }
 
-.page-header {
-	@include rem(margin-top, 24px);
-}
-
 .entry-title a {
 	color: $color-headlines-primary;
 	text-decoration: none;
@@ -48,4 +44,32 @@
 
 .entry-updated {
 	display: none;
+}
+
+/* Post Formats
+--------------------------------------------- */
+
+.format-aside,
+.format-audio,
+.format-image,
+.format-link,
+.format-status,
+.format-quote,
+.format-video {
+
+	.entry-meta {
+		display: none;
+	}
+
+}
+
+.format-chat,
+.format-gallery {
+
+	footer {
+		.entry-meta {
+			display: none;
+		}
+	}
+
 }

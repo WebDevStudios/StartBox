@@ -71,8 +71,28 @@ i {
 }
 
 blockquote {
-  margin: 24px;
-  margin: 2.4rem;
+  background: #eeeeee;
+  border-left: 10px solid #cccccc;
+  margin: 24px 10px 24px;
+  margin: 2.4rem 1rem 2.4rem;
+  padding: 5px 10px;
+  padding: 0.5rem 1rem;
+  quotes: "\201C" "\201D" "\2018" "\2019";
+}
+
+blockquote:before {
+  color: #111111;
+  content: open-quote;
+  font-size: 48px;
+  font-size: 4.8rem;
+  line-height: 10px;
+  margin-right: 5px;
+  margin-right: 0.5rem;
+  vertical-align: -23px;
+}
+
+blockquote p {
+  display: inline;
 }
 
 address {
@@ -493,7 +513,7 @@ Content
   margin-bottom: 2.4rem;
 }
 
-/* Content
+/* Post Content
 --------------------------------------------- */
 .site-inner {
   background-color: #f0f0f0;
@@ -516,11 +536,6 @@ Content
   border: 1px solid #e5dba1;
 }
 
-.page-header {
-  margin-top: 24px;
-  margin-top: 2.4rem;
-}
-
 .entry-title a {
   color: #111111;
   text-decoration: none;
@@ -540,6 +555,23 @@ Content
 }
 
 .entry-updated {
+  display: none;
+}
+
+/* Post Formats
+--------------------------------------------- */
+.format-aside .entry-meta,
+.format-audio .entry-meta,
+.format-image .entry-meta,
+.format-link .entry-meta,
+.format-status .entry-meta,
+.format-quote .entry-meta,
+.format-video .entry-meta {
+  display: none;
+}
+
+.format-chat footer .entry-meta,
+.format-gallery footer .entry-meta {
   display: none;
 }
 
