@@ -31,8 +31,10 @@
 	</div><!-- .entry-content -->
 	<?php endif; ?>
 
-	<footer class="entry-meta">
-		<?php echo do_shortcode( sb_get_theme_mod( 'sb_post_footer_meta' ) ); ?>
+	<footer class="entry-footer">
+		<div class="entry-meta">
+			<?php echo do_shortcode( sb_get_theme_mod( 'sb_post_footer_meta' ) ); ?>
+		</div>
 	</footer><!-- .entry-meta -->
 	<?php do_action( 'entry_bottom' ); ?>
 </article><!-- #post-## -->

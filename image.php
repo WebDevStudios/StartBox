@@ -66,7 +66,8 @@ get_header();
 					?>
 				</div><!-- .entry-content -->
 
-				<footer class="entry-meta">
+				<footer class="entry-footer">
+					<div class="entry-meta">
 					<?php
 						if ( comments_open() && pings_open() ) : // Comments and trackbacks open
 							printf( __( '<a class="comment-link" href="#respond" title="Post a comment">Post a comment</a> or leave a trackback: <a class="trackback-link" href="%s" title="Trackback URL for your post" rel="trackback">Trackback URL</a>.', 'sbx' ), esc_url( get_trackback_url() ) );
@@ -80,7 +81,8 @@ get_header();
 
 						edit_post_link( __( 'Edit', 'sbx' ), ' <span class="edit-link">', '</span>' );
 					?>
-				</footer><!-- .entry-meta -->
+					</div>
+				</footer><!-- .entry-footer -->
 			</article><!-- #post-## -->
 			<?php do_action( 'entry_bottom' ); ?>
 			<?php

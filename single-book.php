@@ -33,7 +33,8 @@ get_header(); ?>
 				?>
 			</div><!-- .entry-content -->
 
-			<footer class="entry-meta">
+			<footer class="entry-footer">
+				<div class="entry-meta">
 				<?php 		
 					// Get post type
 					$cpt = get_post_type( get_the_ID() );
@@ -60,7 +61,8 @@ get_header(); ?>
 					);
 				?>
 				<?php edit_post_link( __( 'Edit', 'sbx' ), '<span class="edit-link">', '</span>' ); ?>
-			</footer><!-- .entry-meta -->
+				</div>
+			</footer><!-- .entry-footer -->
 		</article><!-- #post-## -->
 		<?php do_action( 'entry_after' ); ?>
 
