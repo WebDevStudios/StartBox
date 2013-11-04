@@ -72,10 +72,9 @@ if ( ! class_exists('StartBox') ) {
 		 */
 		public function core() {
 			require_once( SB_EXTENSIONS . '/conditionals.php' );
-			require_once( SB_EXTENSIONS . '/custom.php' );
+			require_once( SB_EXTENSIONS . '/template-tags.php' );
 			require_once( SB_EXTENSIONS . '/hooks.php' );
 			require_once( SB_EXTENSIONS . '/images.php' );
-			require_once( SB_EXTENSIONS . '/template-tags.php' );
 		}
 
 		/**
