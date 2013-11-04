@@ -1,6 +1,6 @@
 <?php
 /**
- * Custom template tags for this theme.
+ * Custom template tags and helper functions for this theme.
  *
  * Eventually, some of the functionality here could be replaced by core features
  *
@@ -8,6 +8,7 @@
  */
 
 
+if ( ! function_exists( 'sb_time_since' ) ) :
 /**
  * Display Relative Timestamps
  *
@@ -77,8 +78,10 @@ function sb_time_since($older_date, $newer_date = false) {
 
 	return $output;
 }
+endif;
 
 
+if ( ! function_exists( 'sb_dropdown_posts' ) ) :
 /**
  * Retrieve or display list of posts as a dropdown (select list).
  *
@@ -145,8 +148,10 @@ function sb_dropdown_posts($args = '') {
 	else
 		return $output;
 }
+endif;
 
 
+if ( ! function_exists( 'sb_tag_query' ) ) :
 /**
  * Create a nice multi-tag title
  *
@@ -179,6 +184,7 @@ function sb_tag_query() {
 	}
 	 return $nice_tag_query;
 }
+endif;
 
 
 /**
@@ -321,6 +327,7 @@ function sb_add_template_data( $column_name ) {
 add_action( 'manage_page_posts_custom_column', 'sb_add_template_data' );
 
 
+if ( ! function_exists( 'sb_get_image_id' ) ) :
 /**
  * Pull an attachment ID from a post, if one exists.
  *
@@ -329,11 +336,11 @@ add_action( 'manage_page_posts_custom_column', 'sb_add_template_data' );
  * @param    integer   $index     Optional. Index of which image to return from a post. Default is 0.
  * @return   integer   boolean    Returns image ID, or false if image with given index does not exist.
  */
-function sb_get_image_id( $index = 0 ) {
+function sbx_get_image_id( $index = 0 ) {
 
 	global $post;
 
-	$image_ids = array_keys(
+	$ids = array_keys(
 		get_children(
 			array(
 				'post_parent'    => $post->ID,
@@ -345,14 +352,16 @@ function sb_get_image_id( $index = 0 ) {
 		)
 	);
 
-	if ( isset( $image_ids[$index] ) )
-		return $image_ids[$index];
+	if ( isset( $ids[$index] ) )
+		return $ids[$index];
 
 	return false;
 
 }
+endif;
 
 
+if ( ! function_exists( 'sbx_get_image' ) ) :
 /**
  * Return an image pulled from the media gallery.
  *
@@ -370,11 +379,11 @@ function sb_get_image_id( $index = 0 ) {
  * @param    array    string    $args Optional. Image query arguments. Default is empty array.
  * @return   string   boolean   Return image element HTML, URL of image, or false.
  */
-function sb_get_image( $args = array() ) {
+function sbx_get_image( $args = array() ) {
 
 	global $post;
 
-	$defaults = apply_filters( 'sb_get_image_default_args', array(
+	$defaults = apply_filters( 'sbx_get_image_default_args', array(
 		'format'   => 'html',
 		'size'     => 'full',
 		'num'      => 0,
@@ -425,9 +434,10 @@ function sb_get_image( $args = array() ) {
 	if ( empty( $url ) ) $output = false;
 
 	// Return data, filtered
-	return apply_filters( 'sb_get_image', $output, $args, $id, $html, $url, $src );
+	return apply_filters( 'sbx_get_image', $output, $args, $id, $html, $url, $src );
 
 }
+endif;
 
 
 if ( ! function_exists( 'sbx_content_nav' ) ) :
@@ -476,7 +486,7 @@ function sbx_content_nav( $nav_id ) {
 	</nav><!-- #<?php echo esc_html( $nav_id ); ?> -->
 	<?php
 }
-endif; // sbx_content_nav
+endif;
 
 
 if ( ! function_exists( 'sbx_comment' ) ) :
@@ -548,7 +558,7 @@ function sbx_comment( $comment, $args, $depth ) {
 	<?php
 	endif;
 }
-endif; // ends check for sbx_comment()
+endif;
 
 
 if ( ! function_exists( 'sbx_the_attached_image' ) ) :
@@ -600,48 +610,6 @@ function sbx_the_attached_image() {
 		the_title_attribute( array( 'echo' => false ) ),
 		wp_get_attachment_image( $post->ID, $attachment_size )
 	);
-}
-endif;
-
-
-if ( ! function_exists( 'sbx_entry_meta' ) ) :
-/**
- * Create CPT entry meta
- */
-function sbx_entry_meta() {
-
-	// Get the categories
-	$category_list = get_the_category_list( __( ', ', 'sbx' ) );
-
-	// Get the tags
-	$tag_list = get_the_tag_list( '', __( ', ', 'sbx' ) );
-
-	if ( ! sbx_categorized_blog() ) {
-		// This blog only has 1 category so we just need to worry about tags in the meta text
-		if ( '' != $tag_list ) {
-			$meta_text = __( 'This entry was tagged with %2$s. Bookmark the <a href="%3$s" title="Permalink to %4$s" rel="bookmark">permalink</a>.', 'sbx' );
-		} else {
-			$meta_text = __( 'Bookmark the <a href="%3$s" title="Permalink to %4$s" rel="bookmark">permalink</a>.', 'sbx' );
-		}
-
-	} else {
-		// But this blog has loads of categories so we should probably display them here
-		if ( '' != $tag_list ) {
-			$meta_text = __( 'This entry was posted in %1$s and tagged with %2$s. Bookmark the <a href="%3$s" title="Permalink to %4$s" rel="bookmark">permalink</a>.', 'sbx' );
-		} else {
-			$meta_text = __( 'This entry was posted in %1$s. Bookmark the <a href="%3$s" title="Permalink to %4$s" rel="bookmark">permalink</a>.', 'sbx' );
-		}
-
-	} // end check for categories on this blog
-
-	printf(
-		$meta_text,
-		$category_list,
-		$tag_list,
-		get_permalink(),
-		the_title_attribute( 'echo=0' )
-	);
-
 }
 endif;
 
