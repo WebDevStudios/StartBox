@@ -23,7 +23,6 @@ function startbox_setup_theme() {
 	// StartBox Core Features
 	add_theme_support( 'sb-breadcrumbs' );
 	add_theme_support( 'sb-customizer' );
-	add_theme_support( 'sb-layouts' );
 	add_theme_support( 'sb-shortcodes' );
 	add_theme_support( 'sb-options' );
 	add_theme_support(
@@ -280,6 +279,7 @@ if ( ! isset( $content_width ) )
  * Add Google Font
  */
 function sbx_google_webfonts() {
+
 	$protocol = is_ssl() ? 'https' : 'http';
 	$query_args = array(
 		'family' => 'Open+Sans:400italic,700italic,400,700',
@@ -287,6 +287,7 @@ function sbx_google_webfonts() {
 	);
 
 	wp_enqueue_style( 'open-sans', add_query_arg( $query_args, "$protocol://fonts.googleapis.com/css" ), array(), null );
+	
 }
 add_action( 'wp_enqueue_scripts', 'sbx_google_webfonts' );
 
