@@ -1,3 +1,10 @@
+2013.11.04 - version 3.0.0-Experimental
+	* Rename _main-navigation.scss to _navigation.scss
+	* Move custom.php to template-tags.php
+	* Conditionalize template-tags.php
+	* Add Post Format CSS support
+	* Styled Blockquotes
+
 2013.11.01 - version 3.0.0-Experimental
 	* Add theme customizer support for Favicons
 	* Add theme customizer support for Bylines & Post Meta
