@@ -51,7 +51,7 @@
 	<nav id="site-navigation" class="main-navigation" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
 		<div class="wrap">
 			<h1 class="menu-toggle"><?php _e( 'Menu', 'sbx' ); ?></h1>
-			<div class="screen-reader-text skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'sbx' ); ?>"><?php _e( 'Skip to content', 'sbx' ); ?></a></div>
+				<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'startbox' ); ?></a>
 			<?php wp_nav_menu( array( 'theme_location' => 'main-navigation' ) ); ?>
 		</div>
 	</nav><!-- #site-navigation -->
