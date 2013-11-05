@@ -144,7 +144,7 @@ function startbox_customizer_settings( $sections = array() ) {
 	// Defines theme cusotmizer sections and settings
 	$sections['content_settings'] = array(
 		'title'       => 'Post Content Settings',
-		'description' => 'Customize the bylines and post meta.',
+		'description' => 'Customize the post content area.',
 		'priority'    => 200,
 		'settings'    => array(
 			array(
@@ -160,6 +160,12 @@ function startbox_customizer_settings( $sections = array() ) {
 				'type'    => 'textarea',
 				'default' => 'Categories: [categories], Tags: [tags] [edit]',
 				'priority' => 20
+			),
+			array(
+				'id'    => $prefix . 'show_author_box',
+				'label' => 'Display Author Box',
+				'type'  => 'checkbox',
+				'priority' => 30
 			),
 		)
 	);
