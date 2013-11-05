@@ -13,11 +13,11 @@ get_header(); ?>
 			<section class="error-404 not-found">
 				<?php do_action( 'entry_top' ); ?>
 				<header class="page-header">
-					<h1 class="page-title" itemprop="headline"><?php _e( 'Oops! That page can&rsquo;t be found.', 'sbx' ); ?></h1>
+					<h1 class="page-title" itemprop="headline"><?php _e( 'Oops! That page can&rsquo;t be found.', 'startbox' ); ?></h1>
 				</header><!-- .page-header -->
 
 				<div class="page-content" itemprop="text">
-					<p><?php _e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'sbx' ); ?></p>
+					<p><?php _e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'startbox' ); ?></p>
 
 					<?php get_search_form(); ?>
 
@@ -25,7 +25,7 @@ get_header(); ?>
 
 					<?php if ( sbx_categorized_blog() ) : // Only show the widget if site has multiple categories. ?>
 					<div class="widget widget_categories">
-						<h2 class="widgettitle"><?php _e( 'Most Used Categories', 'sbx' ); ?></h2>
+						<h2 class="widgettitle"><?php _e( 'Most Used Categories', 'startbox' ); ?></h2>
 						<ul>
 						<?php
 							wp_list_categories( array(
@@ -42,7 +42,7 @@ get_header(); ?>
 
 					<?php
 					/* translators: %1$s: smiley */
-					$archive_content = '<p>' . sprintf( __( 'Try looking in the monthly archives. %1$s', 'sbx' ), convert_smilies( ':)' ) ) . '</p>';
+					$archive_content = '<p>' . sprintf( __( 'Try looking in the monthly archives. %1$s', 'startbox' ), convert_smilies( ':)' ) ) . '</p>';
 					the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$archive_content" );
 					?>
 

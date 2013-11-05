@@ -35,7 +35,7 @@ get_header(); ?>
 							 * what author we're dealing with (if that is the case).
 							*/
 							the_post();
-							printf( __( 'Author: %s', 'sbx' ), '<span class="vcard author"><span class="fn">' . get_the_author() . '</span></span>' );
+							printf( __( 'Author: %s', 'startbox' ), '<span class="vcard author"><span class="fn">' . get_the_author() . '</span></span>' );
 							/* Since we called the_post() above, we need to
 							 * rewind the loop back to the beginning that way
 							 * we can run the loop properly, in full.
@@ -43,31 +43,31 @@ get_header(); ?>
 							rewind_posts();
 
 						elseif ( is_day() ) :
-							printf( __( 'Day: %s', 'sbx' ), '<span>' . get_the_date() . '</span>' );
+							printf( __( 'Day: %s', 'startbox' ), '<span>' . get_the_date() . '</span>' );
 
 						elseif ( is_month() ) :
-							printf( __( 'Month: %s', 'sbx' ), '<span>' . get_the_date( 'F Y' ) . '</span>' );
+							printf( __( 'Month: %s', 'startbox' ), '<span>' . get_the_date( 'F Y' ) . '</span>' );
 
 						elseif ( is_year() ) :
-							printf( __( 'Year: %s', 'sbx' ), '<span>' . get_the_date( 'Y' ) . '</span>' );
+							printf( __( 'Year: %s', 'startbox' ), '<span>' . get_the_date( 'Y' ) . '</span>' );
 
 						elseif ( is_tax( 'post_format', 'post-format-aside' ) ) :
-							_e( 'Asides', 'sbx' );
+							_e( 'Asides', 'startbox' );
 
 						elseif ( is_tax( 'post_format', 'post-format-image' ) ) :
-							_e( 'Images', 'sbx');
+							_e( 'Images', 'startbox');
 
 						elseif ( is_tax( 'post_format', 'post-format-video' ) ) :
-							_e( 'Videos', 'sbx' );
+							_e( 'Videos', 'startbox' );
 
 						elseif ( is_tax( 'post_format', 'post-format-quote' ) ) :
-							_e( 'Quotes', 'sbx' );
+							_e( 'Quotes', 'startbox' );
 
 						elseif ( is_tax( 'post_format', 'post-format-link' ) ) :
-							_e( 'Links', 'sbx' );
+							_e( 'Links', 'startbox' );
 
 						else :
-							_e( 'Archives', 'sbx' );
+							_e( 'Archives', 'startbox' );
 
 						endif;
 					?>

@@ -16,11 +16,11 @@
 		<?php the_content(); ?>
 		<?php
 			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'sbx' ),
+				'before' => '<div class="page-links">' . __( 'Pages:', 'startbox' ),
 				'after'  => '</div>',
 			) );
 		?>
 	</div><!-- .entry-content -->
-	<?php edit_post_link( __( 'Edit', 'sbx' ), '<footer class="entry-meta"><span class="edit-link">', '</span></footer>' ); ?>
+	<?php edit_post_link( __( 'Edit', 'startbox' ), '<footer class="entry-meta"><span class="edit-link">', '</span></footer>' ); ?>
 	<?php do_action( 'entry_bottom' ); ?>
 </article><!-- #post-## -->

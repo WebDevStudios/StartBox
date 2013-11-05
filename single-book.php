@@ -27,7 +27,7 @@ get_header(); ?>
 				<?php the_content(); ?>
 				<?php
 					wp_link_pages( array(
-						'before' => '<div class="page-links" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">' . __( 'Pages:', 'sbx' ),
+						'before' => '<div class="page-links" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">' . __( 'Pages:', 'startbox' ),
 						'after'  => '</div>',
 					) );
 				?>
@@ -44,11 +44,11 @@ get_header(); ?>
 
 					// If there are terms
 					if ( '' != $term_list ) {
-						$meta_text = __( 'This entry was posted in <a href="%1$s">%2$s</a> and tagged with %3$s. Bookmark the <a href="%4$s" title="Permalink to %5$s" rel="bookmark">permalink</a>.', 'sbx' );
+						$meta_text = __( 'This entry was posted in <a href="%1$s">%2$s</a> and tagged with %3$s. Bookmark the <a href="%4$s" title="Permalink to %5$s" rel="bookmark">permalink</a>.', 'startbox' );
 
 					// If there are no terms
 					} else {
-						$meta_text = __( 'This entry was posted in <a href="%1$s">%2$s</a>. Bookmark the <a href="%4$s" title="Permalink to %5$s" rel="bookmark">permalink</a>.', 'sbx' );
+						$meta_text = __( 'This entry was posted in <a href="%1$s">%2$s</a>. Bookmark the <a href="%4$s" title="Permalink to %5$s" rel="bookmark">permalink</a>.', 'startbox' );
 					}
 
 					printf(
@@ -60,7 +60,7 @@ get_header(); ?>
 						the_title_attribute( 'echo=0' )
 					);
 				?>
-				<?php edit_post_link( __( 'Edit', 'sbx' ), '<span class="edit-link">', '</span>' ); ?>
+				<?php edit_post_link( __( 'Edit', 'startbox' ), '<span class="edit-link">', '</span>' ); ?>
 				</div>
 			</footer><!-- .entry-footer -->
 		</article><!-- #post-## -->
