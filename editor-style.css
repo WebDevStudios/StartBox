@@ -523,7 +523,8 @@ Content
 }
 
 .post,
-.site-inner .page {
+.site-inner .page,
+.author-box {
   background-color: white;
   margin-bottom: 24px;
   margin-bottom: 2.4rem;

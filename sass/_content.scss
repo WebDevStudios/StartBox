@@ -15,7 +15,8 @@
 }
 
 .post,
-.site-inner .page {
+.site-inner .page,
+.author-box {
 	background-color: $color-bg-posts;
 	@include rem(margin-bottom, 24px);
 	@include rem(padding, 48px);

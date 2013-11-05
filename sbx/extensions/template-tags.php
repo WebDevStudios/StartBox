@@ -660,6 +660,30 @@ add_filter( 'user_contactmethods', 'sbx_user_contact_methods' );
 
 
 /**
+ * Author Box
+ */
+function sbx_author_box() { ?>
+
+	<div class="author-box">
+		<div class="author-gravatar col span-2">
+			<?php echo get_avatar( get_the_author_meta( 'email' ), 96 ); ?>
+		</div>
+
+		<div class="author-bio col span-10">
+			<strong><?php _e( 'About', 'startbox' ); ?> <?php echo get_the_author_meta( 'display_name' ); ?></strong>
+			<p><?php echo get_the_author_meta( 'description' ); ?></p>
+		</div>
+	</div>
+
+<?php }
+
+// If option is checked, show Author Box
+if ( get_theme_mod( 'sb_show_author_box' ) ) {
+	add_action( 'entry_after', 'sbx_author_box' );
+}
+
+
+/**
  * Flush out the transients used in sbx_categorized_blog
  */
 function sbx_category_transient_flusher() {

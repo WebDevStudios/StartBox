@@ -254,6 +254,7 @@ table {
 .post-navigation:before,
 .entry-pagination:before,
 .entry-footer:before,
+.author-box:before,
 .comment-list:before,
 .comment:before,
 .comment-respond:before,
@@ -279,6 +280,7 @@ table {
 .entry-pagination:after,
 .entry-footer:after,
 .post-navigation:after,
+.author-box:after,
 .comment-list:after,
 .comment:after,
 .comment-respond:after,
@@ -1129,7 +1131,8 @@ Content
 }
 
 .post,
-.site-inner .page {
+.site-inner .page,
+.author-box {
   background-color: white;
   margin-bottom: 24px;
   margin-bottom: 2.4rem;
