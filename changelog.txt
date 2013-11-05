@@ -1,4 +1,9 @@
 2013.11.04 - version 3.0.0-Experimental
+	* Added Author Box Markup and filters
+	* Added Author Box to Theme Customizer
+	* Renamed all i18n from sbx to startbox
+
+2013.11.04 - version 3.0.0-Experimental
 	* Rename _main-navigation.scss to _navigation.scss
 	* Move custom.php to template-tags.php
 	* Conditionalize template-tags.php
