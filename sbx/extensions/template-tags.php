@@ -645,23 +645,33 @@ function sbx_categorized_blog() {
  */
 function sbx_author_box() { ?>
 
-	<div class="author-box">
+	<section class="author-box" itemprop="author" itemscope itemtype="http://schema.org/Person">
 		<div class="author-gravatar">
 			<?php echo get_avatar( get_the_author_meta( 'email' ), 96 ); ?>
 		</div>
 
 		<div class="author-bio">
-			<strong><?php _e( 'About', 'startbox' ); ?> <?php echo get_the_author_meta( 'display_name' ); ?></strong>
-			<p><?php echo get_the_author_meta( 'description' ); ?></p>
+			<h2 class="author-title"><?php _e( 'About', 'startbox' ); ?> <span itemprop="name"><?php echo get_the_author_meta( 'display_name' ); ?></span></h2>
+			<p><span itemprop="description"><?php echo get_the_author_meta( 'description' ); ?></span></p>
 		</div>
-	</div>
+	</section>
 
 <?php }
 
-// If option is checked, show Author Box
-if ( get_theme_mod( 'sb_show_author_box' ) ) {
-	add_action( 'entry_after', 'sbx_author_box' );
+
+/**
+ * Conditionally add the author box after single posts
+ */
+function sbx_do_author_box() {
+
+	// Return early if not a post
+	if ( ! is_single() )
+		return;
+
+	if ( get_theme_mod( 'sb_show_author_box' ) ) { sbx_author_box(); }
+
 }
+add_action( 'entry_after', 'sbx_do_author_box', 10 );
 
 
 /**
