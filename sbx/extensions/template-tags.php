@@ -643,16 +643,24 @@ function sbx_categorized_blog() {
 /**
  * Author Box
  */
-function sbx_author_box() { ?>
+function sbx_author_box( $gravatar_size, $title, $name, $description ) { 
+
+	// Check if a filter is in use, if none, use defaults
+	$gravatar_size = apply_filters( 'sbx_author_box_gravatar_size', 96 );
+	$title         = apply_filters( 'sbx_author_box_title', __( 'About', 'startbox' ) );
+	$name          = apply_filters( 'sbx_author_box_name', get_the_author_meta( 'display_name' ) );
+	$description   = apply_filters( 'sbx_author_box_description', get_the_author_meta( 'description' ) );
+
+	?>
 
 	<section class="author-box" itemprop="author" itemscope itemtype="http://schema.org/Person">
 		<div class="author-gravatar">
-			<?php echo get_avatar( get_the_author_meta( 'email' ), 96 ); ?>
+			<?php echo get_avatar( get_the_author_meta( 'email' ), $gravatar_size ); ?>
 		</div>
 
 		<div class="author-bio">
-			<h2 class="author-title"><?php _e( 'About', 'startbox' ); ?> <span itemprop="name"><?php echo get_the_author_meta( 'display_name' ); ?></span></h2>
-			<p><span itemprop="description"><?php echo get_the_author_meta( 'description' ); ?></span></p>
+			<h2 class="author-title"><?php echo $title; ?> <span itemprop="name"><?php echo $name; ?></span></h2>
+			<p><span itemprop="description"><?php echo $description; ?></span></p>
 		</div>
 	</section>
 
