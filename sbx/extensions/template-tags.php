@@ -509,7 +509,7 @@ function sbx_comment( $comment, $args, $depth ) {
 
 	<li id="comment-<?php comment_ID(); ?>" <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?>>
 		<article id="div-comment-<?php comment_ID(); ?>" class="comment-body" itemprop="comment" itemscope itemtype="http://schema.org/UserComments">
-			
+
 			<header class="comment-meta">
 				<div class="comment-gravatar col span-2">
 					<?php if ( 0 != $args['avatar_size'] ) echo get_avatar( $comment, $args['avatar_size'] ); ?>
@@ -539,7 +539,7 @@ function sbx_comment( $comment, $args, $depth ) {
 			<footer class="comment-reply col span-12">
 				<?php
 					// Comment reply link
-					comment_reply_link( array_merge( $args, 
+					comment_reply_link( array_merge( $args,
 						array(
 							'add_below' => 'div-comment',
 							'depth'     => $depth,
@@ -639,33 +639,55 @@ function sbx_categorized_blog() {
 	}
 }
 
+/**
+ * Generate makrup for an Author Box
+ *
+ * @since  3.0.0
+ *
+ * @param  array  $args Parameters used for output.
+ * @return string       Concatenated markup.
+ */
+function sbx_get_author_box( $args = array() ) {
+
+	// Setup defaults
+	$defaults = apply_filters( 'sbx_author_box_defaults',
+		array(
+			'gravatar_size' => 96,
+			'title'         => __( 'About', 'startbox' ),
+			'name'          => get_the_author_meta( 'display_name' ),
+			'email'         => get_the_author_meta( 'email' ),
+			'description'   => get_the_author_meta( 'description' ),
+			'user_id'       => get_the_author_meta( 'ID' ),
+		),
+		$args
+	);
+
+	// Parse defaults against passed args
+	$args = wp_parse_args( $args, $defaults );
+
+	$output = '';
+	$output .= '<section class="author-box" itemprop="author" itemscope itemtype="http://schema.org/Person">';
+	$output .= '<div class="author-gravatar">' . get_avatar( sanitize_email( $args['email'] ), absint( $args['gravatar_size'] ) ) . '</div>';
+	$output .= '<div class="author-bio">';
+	$output .= '<h2 class="author-title">' . wp_kses_post( $args['title'] ) . '<span itemprop="name">' . wp_kses_post( $args['name'] ) . '</span></h2>';
+	$output .= '<p><span itemprop="description">' . wp_kses_post( $args['description'] ) . '</span></p>';
+	$output .= '</div>';
+	$output .= '</section>';
+
+	// Return our filterable markup
+	return apply_filters( 'sbx_author_box', $output, $args );
+}
 
 /**
- * Author Box
+ * Output an Author Box
+ *
+ * @since 3.0.0
+ *
+ * @param array $args Parameters used for output.
  */
-function sbx_author_box( $gravatar_size, $title, $name, $description ) { 
-
-	// Check if a filter is in use, if none, use defaults
-	$gravatar_size = apply_filters( 'sbx_author_box_gravatar_size', 96 );
-	$title         = apply_filters( 'sbx_author_box_title', __( 'About', 'startbox' ) );
-	$name          = apply_filters( 'sbx_author_box_name', get_the_author_meta( 'display_name' ) );
-	$description   = apply_filters( 'sbx_author_box_description', get_the_author_meta( 'description' ) );
-
-	?>
-
-	<section class="author-box" itemprop="author" itemscope itemtype="http://schema.org/Person">
-		<div class="author-gravatar">
-			<?php echo get_avatar( get_the_author_meta( 'email' ), $gravatar_size ); ?>
-		</div>
-
-		<div class="author-bio">
-			<h2 class="author-title"><?php echo $title; ?> <span itemprop="name"><?php echo $name; ?></span></h2>
-			<p><span itemprop="description"><?php echo $description; ?></span></p>
-		</div>
-	</section>
-
-<?php }
-
+function sbx_author_box( $args = array() ) {
+	echo sbx_get_author_box( $args );
+}
 
 /**
  * Conditionally add the author box after single posts
@@ -680,7 +702,6 @@ function sbx_do_author_box() {
 
 }
 add_action( 'entry_after', 'sbx_do_author_box', 10 );
-
 
 /**
  * Flush out the transients used in sbx_categorized_blog
