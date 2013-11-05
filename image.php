@@ -18,7 +18,6 @@ get_header();
 				<header class="entry-header">
 					<h1 class="entry-title" itemprop="headline"><?php _e( 'Attachment:', 'sbx' ); ?> <?php the_title(); ?></h1>
 
-
 					<div class="entry-meta">
 						<?php
 							$metadata = wp_get_attachment_metadata();
@@ -83,14 +82,15 @@ get_header();
 					?>
 					</div>
 				</footer><!-- .entry-footer -->
+				<?php do_action( 'entry_bottom' ); ?>
 			</article><!-- #post-## -->
-			<?php do_action( 'entry_bottom' ); ?>
-			<?php
-				// If comments are open or we have at least one comment, load up the comment template
-				if ( comments_open() || '0' != get_comments_number() )
-					comments_template();
-			?>
+
 		<?php do_action( 'entry_after' ); ?>
+		<?php
+			// If comments are open or we have at least one comment, load up the comment template
+			if ( comments_open() || '0' != get_comments_number() )
+				comments_template();
+		?>
 		<?php endwhile; // end of the loop. ?>
 
 		</main><!-- #main -->

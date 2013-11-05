@@ -22,5 +22,5 @@
 		?>
 	</div><!-- .entry-content -->
 	<?php edit_post_link( __( 'Edit', 'sbx' ), '<footer class="entry-meta"><span class="edit-link">', '</span></footer>' ); ?>
-<?php do_action( 'entry_bottom' ); ?>
+	<?php do_action( 'entry_bottom' ); ?>
 </article><!-- #post-## -->
