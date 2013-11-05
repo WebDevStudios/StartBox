@@ -641,6 +641,25 @@ function sbx_categorized_blog() {
 
 
 /**
+ * Add User Contact Methods
+ */
+function sbx_user_contact_methods( $user_contact ) {
+
+	$user_contact['facebook'] = __( 'Facebook profile URL', 'startbox' );
+	$user_contact['github'] = __( 'Github profile URL', 'startbox' );
+	$user_contact['googleplus'] = __( 'Google+ profile URL', 'startbox' );
+	$user_contact['instagram'] = __( 'Instagram profile URL', 'starbox' );
+	$user_contact['linkedin'] = __( 'LinkedIn profile URL', 'startbox' );
+	$user_contact['twitter'] = __( 'Twitter profile URL', 'startbox' );
+	$user_contact['youtube'] = __( 'YouTube profile URL', 'starbox' );
+
+	return $user_contact;
+
+}
+add_filter( 'user_contactmethods', 'sbx_user_contact_methods' );
+
+
+/**
  * Flush out the transients used in sbx_categorized_blog
  */
 function sbx_category_transient_flusher() {
