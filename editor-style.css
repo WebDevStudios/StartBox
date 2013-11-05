@@ -523,8 +523,7 @@ Content
 }
 
 .post,
-.site-inner .page,
-.author-box {
+.site-inner .page {
   background-color: white;
   margin-bottom: 24px;
   margin-bottom: 2.4rem;
@@ -574,6 +573,21 @@ Content
 .format-chat footer .entry-meta,
 .format-gallery footer .entry-meta {
   display: none;
+}
+
+/* Author Box
+--------------------------------------------- */
+.author-box {
+  background-color: white;
+  margin-bottom: 24px;
+  margin-bottom: 2.4rem;
+  padding: 48px;
+  padding: 4.8rem;
+}
+.author-box .author-gravatar {
+  float: left;
+  margin-right: 15px;
+  margin-right: 1.5rem;
 }
 
 body {

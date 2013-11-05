@@ -15,8 +15,7 @@
 }
 
 .post,
-.site-inner .page,
-.author-box {
+.site-inner .page{
 	background-color: $color-bg-posts;
 	@include rem(margin-bottom, 24px);
 	@include rem(padding, 48px);
@@ -71,6 +70,22 @@
 		.entry-meta {
 			display: none;
 		}
+	}
+
+}
+
+/* Author Box
+--------------------------------------------- */
+
+.author-box {
+
+	background-color: $color-bg-posts;
+	@include rem(margin-bottom, 24px);
+	@include rem(padding, 48px);
+
+	.author-gravatar {
+		float: left;
+		@include rem(margin-right, 15px);
 	}
 
 }

@@ -641,35 +641,16 @@ function sbx_categorized_blog() {
 
 
 /**
- * Add User Contact Methods
- */
-function sbx_user_contact_methods( $user_contact ) {
-
-	$user_contact['facebook'] = __( 'Facebook profile URL', 'startbox' );
-	$user_contact['github'] = __( 'Github profile URL', 'startbox' );
-	$user_contact['googleplus'] = __( 'Google+ profile URL', 'startbox' );
-	$user_contact['instagram'] = __( 'Instagram profile URL', 'starbox' );
-	$user_contact['linkedin'] = __( 'LinkedIn profile URL', 'startbox' );
-	$user_contact['twitter'] = __( 'Twitter profile URL', 'startbox' );
-	$user_contact['youtube'] = __( 'YouTube profile URL', 'starbox' );
-
-	return $user_contact;
-
-}
-add_filter( 'user_contactmethods', 'sbx_user_contact_methods' );
-
-
-/**
  * Author Box
  */
 function sbx_author_box() { ?>
 
 	<div class="author-box">
-		<div class="author-gravatar col span-2">
+		<div class="author-gravatar">
 			<?php echo get_avatar( get_the_author_meta( 'email' ), 96 ); ?>
 		</div>
 
-		<div class="author-bio col span-10">
+		<div class="author-bio">
 			<strong><?php _e( 'About', 'startbox' ); ?> <?php echo get_the_author_meta( 'display_name' ); ?></strong>
 			<p><?php echo get_the_author_meta( 'description' ); ?></p>
 		</div>
