@@ -1193,6 +1193,11 @@ Content
   padding: 48px;
   padding: 4.8rem;
 }
+.author-box .author-title {
+  clear: none;
+  font-size: 16px;
+  font-size: 1.6rem;
+}
 .author-box .author-gravatar {
   float: left;
   margin-right: 15px;

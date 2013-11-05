@@ -83,6 +83,11 @@
 	@include rem(margin-bottom, 24px);
 	@include rem(padding, 48px);
 
+	.author-title {
+		clear: none;
+		@include rem(font-size, 16px);
+	}
+
 	.author-gravatar {
 		float: left;
 		@include rem(margin-right, 15px);
