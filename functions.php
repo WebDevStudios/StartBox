@@ -30,42 +30,42 @@ function startbox_setup_theme() {
 		array(
 			array(
 				'id'          => 'primary_widget_area',
-				'name'        => 'Primary Widget Area',
+				'name'        => __( 'Primary Widget Area', 'startbox' ),
 				'description' => __( 'This is the primary widget area when using two- or three-column layouts.', 'startbox' ),
 				'class'       => 'primary-widget-area',
 				'editable'    => 1
 				),
 			array(
 				'id'          => 'secondary_widget_area',
-				'name'        => 'Secondary Widget Area',
+				'name'        => __( 'Secondary Widget Area', 'startbox' ),
 				'description' => __( 'This is the secondary widget area for three-column layouts.', 'startbox' ),
 				'class'       => 'secondary-widget-area',
 				'editable'    => 1
 				),
 			array(
 				'id'          => 'header_widget_area',
-				'name'        => 'Header Widget Area',
+				'name'        => __( 'Header Widget Area', 'startbox' ),
 				'description' => __( 'Appears to the right of the logo area.', 'startbox' ),
 				'class'       => 'header-widget-area',
 				'editable'    => 1
 				),
 			array(
 				'id'          => 'footer_widget_area_1',
-				'name'        => 'Footer - Left Widget Area',
+				'name'        => __( 'Footer - Left Widget Area', 'startbox' ),
 				'description' => __( 'Appears on the left side of the footer.', 'startbox' ),
 				'class'       => 'footer-widget-area-1',
 				'editable'    => 1
 				),
 			array(
 				'id'          => 'footer_widget_area_2',
-				'name'        => 'Footer - Center Widget Area',
+				'name'        => __( 'Footer - Center Widget Area', 'startbox' ),
 				'description' => __( 'Appears in the center of the footer.', 'startbox' ),
 				'class'       => 'footer-widget-area-2',
 				'editable'    => 1
 				),
 			array(
 				'id'          => 'footer_widget_area_3',
-				'name'        => 'Footer - Right Widget Area',
+				'name'        => __( 'Footer - Right Widget Area', 'startbox' ),
 				'description' => __( 'Appears on the right side of the footer.', 'startbox' ),
 				'class'       => 'footer-widget-area-3',
 				'editable'    => 1
@@ -293,7 +293,7 @@ function sbx_google_webfonts() {
 	);
 
 	wp_enqueue_style( 'open-sans', add_query_arg( $query_args, "$protocol://fonts.googleapis.com/css" ), array(), null );
-	
+
 }
 add_action( 'wp_enqueue_scripts', 'sbx_google_webfonts' );
 
