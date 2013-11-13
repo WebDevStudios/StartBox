@@ -215,8 +215,8 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 
 		// Loop through all registered sidebars, add them to the list
 		foreach ( $startbox->sidebars->registered_sidebars as $sidebar ) {
-			// Only include editable sidebars in our list
-			if ( sb_is_sidebar_editable( $sidebar['id'] ) )
+			// Only include replaceable sidebars in our list
+			if ( sb_is_sidebar_replaceable( $sidebar['id'] ) )
 				$output .= '<option value="' . $sidebar['id'] . '"' . selected( $selected, $sidebar['id'], false) . ' >' . $sidebar['name'] . '</option>';
 		}
 		$output .= '</select>';
@@ -543,7 +543,7 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 				'name'        => $sidebar->post_title,
 				'id'          => $sidebar->post_name,
 				'description' => get_post_meta( $sidebar->ID, '_sidebar_description', true ),
-				'editable'    => 0
+				'replaceable' => false,
 			) );
 		}
 
@@ -606,8 +606,8 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 	function maybe_replace_current_sidebar( $sidebar ) {
 		global $post, $wp_query;
 
-		// If the sidebar is not editable, bail early
-		if ( ! sb_is_sidebar_editable( $sidebar ) )
+		// If the sidebar is not replaceable, bail early
+		if ( ! sb_is_sidebar_replaceable( $sidebar ) )
 			return $sidebar;
 
 		// Grab our assigned locations

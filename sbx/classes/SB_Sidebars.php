@@ -80,20 +80,15 @@ class SB_Sidebars {
 			'name'        => '',
 			'description' => '',
 			'class'       => '',
-			'editable'    => 1 // Makes this sidebar replaceable via SB Custom Sidebars extension
+			'replaceable' => true, // Makes this sidebar replaceable via SB Custom Sidebars extension
 		);
 		$sidebar = wp_parse_args( $args, $defaults );
-
-		// Rudimentary sanitization for editable var
-		$editable = ( $sidebar['editable'] ) ? 1 : 0;
 
 		// Register the sidebar in WP
 		register_sidebar( apply_filters( 'sb_sidebars_register_sidebar', array(
 			'id'            => esc_attr( $sidebar['id'] ),
 			'name'          => esc_attr( $sidebar['name'] ),
 			'description'   => esc_attr( $sidebar['description'] ),
-			'class'         => esc_attr( $sidebar['class'] ),
-			'editable'      => absint( $sidebar['editable'] ),
 			'before_widget' => apply_filters( 'sb_sidebars_before_widget', '<aside id="%1$s" class="widget %2$s">', $sidebar['id'], $sidebar ),
 			'after_widget'  => apply_filters( 'sb_sidebars_after_widget', '</aside><!-- #%1$s -->', $sidebar['id'], $sidebar ),
 			'before_title'  => apply_filters( 'sb_sidebars_before_title', '<h1 class="widget-title">', $sidebar['id'], $sidebar ),
@@ -143,7 +138,7 @@ $GLOBALS['startbox']->sidebars = new SB_Sidebars;
  * Wrapper Function for SB_Sidebars::register_sidebar()
  *
  * @since 2.5.2
- * @param array $args An array of sidebar registration arguments (id, name, description, editable)
+ * @param array $args An array of sidebar registration arguments (id, name, description, replaceable)
  */
 function sb_register_sidebar( $args = array() ) {
 	global $startbox;
@@ -163,17 +158,17 @@ function sb_do_sidebar( $sidebar = null, $classes = null ) {
 }
 
 /**
- * Check if a sidebar is editable
+ * Check if a sidebar is replaceable
  *
  * @since  3.0.0
  * @param  string $sidebar The sidebar to check
- * @return bool            True if sidebar is editable, false otherwise
+ * @return bool            True if sidebar is replaceable, false otherwise
  */
-function sb_is_sidebar_editable( $sidebar = null ) {
+function sb_is_sidebar_replaceable( $sidebar = null ) {
 	global $startbox;
 
-	// If the editable field is empty, it is not editable
-	if ( empty( $startbox->sidebars->registered_sidebars[$sidebar]['editable'] ) )
+	// If the replaceable field is empty, it is not replaceable
+	if ( empty( $startbox->sidebars->registered_sidebars[$sidebar]['replaceable'] ) )
 		return false;
 	else
 		return true;
