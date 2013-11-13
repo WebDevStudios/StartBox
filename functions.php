@@ -1,5 +1,4 @@
 <?php
-
 /**
  * StartBox functions and definitions
  *
@@ -13,7 +12,6 @@
  * @link http://www.wpstartbox.com
  */
 
-
 // Initialize StartBox, but only if a child theme hasn't already
 require_once( get_template_directory() . '/sbx/sbx.php' );
 
@@ -25,51 +23,38 @@ function startbox_setup_theme() {
 	add_theme_support( 'sb-customizer' );
 	add_theme_support( 'sb-shortcodes' );
 	add_theme_support( 'sb-options' );
-	add_theme_support(
-		'sb-sidebars',
+	add_theme_support( 'sb-sidebars',
 		array(
 			array(
 				'id'          => 'primary_widget_area',
 				'name'        => __( 'Primary Widget Area', 'startbox' ),
 				'description' => __( 'This is the primary widget area when using two- or three-column layouts.', 'startbox' ),
-				'class'       => 'primary-widget-area',
-				'editable'    => 1
 				),
 			array(
 				'id'          => 'secondary_widget_area',
 				'name'        => __( 'Secondary Widget Area', 'startbox' ),
 				'description' => __( 'This is the secondary widget area for three-column layouts.', 'startbox' ),
-				'class'       => 'secondary-widget-area',
-				'editable'    => 1
 				),
 			array(
 				'id'          => 'header_widget_area',
 				'name'        => __( 'Header Widget Area', 'startbox' ),
 				'description' => __( 'Appears to the right of the logo area.', 'startbox' ),
-				'class'       => 'header-widget-area',
-				'editable'    => 1
 				),
 			array(
 				'id'          => 'footer_widget_area_1',
 				'name'        => __( 'Footer - Left Widget Area', 'startbox' ),
 				'description' => __( 'Appears on the left side of the footer.', 'startbox' ),
-				'class'       => 'footer-widget-area-1',
-				'editable'    => 1
 				),
 			array(
 				'id'          => 'footer_widget_area_2',
 				'name'        => __( 'Footer - Center Widget Area', 'startbox' ),
 				'description' => __( 'Appears in the center of the footer.', 'startbox' ),
-				'class'       => 'footer-widget-area-2',
-				'editable'    => 1
 				),
 			array(
 				'id'          => 'footer_widget_area_3',
 				'name'        => __( 'Footer - Right Widget Area', 'startbox' ),
 				'description' => __( 'Appears on the right side of the footer.', 'startbox' ),
-				'class'       => 'footer-widget-area-3',
-				'editable'    => 1
-				)
+				),
 		)
 	);
 	add_theme_support( 'sb-custom-sidebars' );
