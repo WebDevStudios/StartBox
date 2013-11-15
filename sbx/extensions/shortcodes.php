@@ -9,7 +9,7 @@
  * @subpackage Shortcodes
  */
 
-add_shortcode( 'sidebar', 'sb_sidebar_shortcode' );
+add_shortcode( 'widget_area', 'sb_widget_area_shortcode' );
 add_shortcode( 'sitemap', 'sb_get_sitemap' );
 
 add_shortcode( 'hr', 'sb_divider' );
@@ -58,23 +58,31 @@ function sb_rtt() {
 
 
 /**
- * Shortcode to display a sidebar virtually anywhere.
+ * Shortcode to display a widget_area virtually anywhere.
  *
  * @since 2.5
  */
-function sb_sidebar_shortcode ( $atts ) {
-	extract ( shortcode_atts ( array (
-		'location'	=> null,
-		'id' 		=> null,
-		'classes'	=> null
-	), $atts ) );
+function sb_widget_area_shortcode ( $atts ) {
 
-	if ( is_null ( $id ) ) return null;
-	if ( is_null ( $location ) ) $location = 'shortcode-'.$id; // prevents multiple shortcodes from using the same ID
+	// Setup default attributes
+	$atts = shortcode_atts(
+		array(
+			'id'      => null,
+			'classes' => null,
+		),
+		$atts
+	);
 
-	ob_start();
-	sb_do_sidebar( $location , $id, $classes );
-	return ob_get_clean();
+	// If no ID is set, bail here
+	if ( is_null( $atts['id'] ) ) {
+		return false;
+
+	// Otherwise, return the sidebar
+	} else {
+		ob_start();
+		sb_do_sidebar( $atts['id'], $$atts['classes'] );
+		return ob_get_clean();
+	}
 }
 
 

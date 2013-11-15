@@ -55,21 +55,21 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 	 * @since 2.5.0
 	 */
 	function register_cpt() {
-		register_post_type( 'sidebar', array(
+		register_post_type( 'widget_area', array(
 			'labels' => array(
-				'name'               => _x( 'Sidebars', 'post type general name', 'startbox' ),
-				'singular_name'      => _x( 'Sidebar', 'post type singular name', 'startbox' ),
+				'name'               => _x( 'Widget Areas', 'post type general name', 'startbox' ),
+				'singular_name'      => _x( 'Widget Area', 'post type singular name', 'startbox' ),
 				'add_new'            => _x( 'Add New', 'post type add link', 'startbox' ),
-				'add_new_item'       => __( 'Add New Sidebar', 'startbox' ),
-				'edit_item'          => __( 'Edit Sidebar', 'startbox' ),
-				'new_item'           => __( 'New Sidebar', 'startbox' ),
-				'view_item'          => __( 'View Sidebar', 'startbox' ),
-				'search_items'       => __( 'Search Sidebars', 'startbox' ),
-				'not_found'          => __( 'No sidebars found', 'startbox' ),
-				'not_found_in_trash' => __( 'No sidebars found in Trash', 'startbox' ),
+				'add_new_item'       => __( 'Add New Widget Area', 'startbox' ),
+				'edit_item'          => __( 'Edit Widget Area', 'startbox' ),
+				'new_item'           => __( 'New Widget Area', 'startbox' ),
+				'view_item'          => __( 'View Widget Area', 'startbox' ),
+				'search_items'       => __( 'Search Widget Areas', 'startbox' ),
+				'not_found'          => __( 'No Widget Areas found', 'startbox' ),
+				'not_found_in_trash' => __( 'No Widget Areas found in Trash', 'startbox' ),
 				'parent_item_colon'  => '' ),
-			'label'                => __( 'Sidebars', 'startbox' ),
-			'singular_label'       => __( 'Sidebar', 'startbox' ),
+			'label'                => __( 'Widget Areas', 'startbox' ),
+			'singular_label'       => __( 'Widget Area', 'startbox' ),
 			'public'               => false,
 			'exclude_from_search'  => true,
 			'show_ui'              => true,
@@ -103,7 +103,7 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 		// And this is NOT an unsaved post (auto-draft)
 		// And there is currently no post-name (slug)
 		if (
-			'sidebar' == $data['post_type']
+			'widget_area' == $data['post_type']
 			&& 'auto-draft' != $postarr['post_status']
 			&& '' == $data['post_name']
 		) {
@@ -137,8 +137,8 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 		$wp_admin_bar->add_menu( array(
 			'id'     => 'sb-sidebars',
 			'parent' => 'appearance',
-			'title'  => __('Sidebars', 'startbox'),
-			'href'   => admin_url( 'edit.php?post_type=sidebar' )
+			'title'  => __('Widget Areas', 'startbox'),
+			'href'   => admin_url( 'edit.php?post_type=widget_area' )
 		) );
 	}
 
@@ -150,7 +150,7 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 	function widget_page_output() {
 		// Only display this link if the user can edit theme options
 		if ( current_user_can('edit_theme_options') )
-			echo '<p>' . sprintf( __( 'Add additional widget areas via the <a href="%s">Sidebars</a> page.', 'startbox' ), admin_url( 'edit.php?post_type=sidebar' ) ) . '</p>'."\n";
+			echo '<p>' . sprintf( __( 'Add additional widget areas via the <a href="%s">Widget Areas</a> page.', 'startbox' ), admin_url( 'edit.php?post_type=widget_area' ) ) . '</p>'."\n";
 	}
 
 	/**
@@ -161,13 +161,13 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 	function metabox_setup() {
 
 		// Select box for sidebars to replace
-		add_meta_box( "sidebar-select", 'Select Sidebar to Replace', array( $this, 'sidebar_select_metabox' ), 'sidebar', 'normal', 'default' );
+		add_meta_box( "sidebar-select", 'Widget Area to Replace', array( $this, 'sidebar_select_metabox' ), 'widget_area', 'normal', 'default' );
 
 		// Description box
-		add_meta_box( "sidebar-description", 'Describe this Sidebar', array( $this, 'sidebar_description_metabox' ), 'sidebar', 'normal', 'default' );
+		add_meta_box( "sidebar-description", 'Describe this Widget Area', array( $this, 'sidebar_description_metabox' ), 'widget_area', 'normal', 'default' );
 
 		// Shortcode metabox
-		add_meta_box( "sidebar-shortcode", 'Shortcode', array( $this, 'sidebar_shortcode_metabox' ), 'sidebar', 'side', 'default' );
+		add_meta_box( "sidebar-shortcode", 'Shortcode', array( $this, 'sidebar_shortcode_metabox' ), 'widget_area', 'side', 'default' );
 
 		// Get all post types that are set to show in nav menus
 		if ( $post_types = get_post_types( array( 'show_in_nav_menus' => true ), 'object' ) ) {
@@ -175,7 +175,7 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 				$post_type = apply_filters( 'sb_sidebars_meta_box_object', $post_type );
 				if ( $post_type ) {
 					$id = $post_type->name;
-					add_meta_box( "sidebar-post-{$id}", $post_type->labels->name, array( $this, 'post_type_metabox' ), 'sidebar', 'normal', 'default', $post_type );
+					add_meta_box( "sidebar-post-{$id}", $post_type->labels->name, array( $this, 'post_type_metabox' ), 'widget_area', 'normal', 'default', $post_type );
 				}
 			}
 		}
@@ -186,7 +186,7 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 				$tax = apply_filters( 'sb_sidebars_meta_box_object', $tax );
 				if ( $tax ) {
 					$id = $tax->name;
-					add_meta_box( "sidebar-tax-{$id}", $tax->labels->name, array( $this, 'taxonomy_metabox' ), 'sidebar', 'normal', 'default', $tax );
+					add_meta_box( "sidebar-tax-{$id}", $tax->labels->name, array( $this, 'taxonomy_metabox' ), 'widget_area', 'normal', 'default', $tax );
 				}
 			}
 		}
@@ -211,7 +211,7 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 
 		// Include the option to replace none, because
 		// a sidebar can be displayed via shortcode
-		$output .= '<option value="none"' . selected( $selected, 'none', false) . ' >' . __( 'None', 'startbox') . '</option>';
+		$output .= '<option value="none"' . selected( $selected, 'none', false) . ' >' . __( 'None – Shortcode-use Only', 'startbox') . '</option>';
 
 		// Loop through all registered sidebars, add them to the list
 		foreach ( $startbox->sidebars->registered_sidebars as $sidebar ) {
@@ -243,7 +243,7 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 		$output = '<textarea class="" name="description" id="excerpt">' . $description . '</textarea>';
 		$output .= '<p class="description">';
 		$output .= sprintf(
-			__( 'A short description. This appears on the %s page.', 'startbox' ),
+			__( 'A short description to display on the %s page.', 'startbox' ),
 			'<a href="' . admin_url( 'widgets.php' ) . '">' . __( 'Widgets', 'startbox' ) . '</a>'
 		);
 		$output .= '</p>';
@@ -262,9 +262,9 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 		// Concatenate our output
 		$output = '';
 		$output .= '<p class="description">';
-		$output .= __( 'Paste this shortcode anywhere you want this sidebar to appear:', 'startbox' );
+		$output .= __( 'Paste this shortcode anywhere you want this widget area to appear:', 'startbox' );
 		$output .= '</p>';
-		$output .= '<input class="text urlfield widefat" readonly="readonly" value="[sidebar id=&quot;' . $post->post_name . '&quot;]" type="text">';
+		$output .= '<input class="text urlfield widefat" readonly="readonly" value="[widget_area id=&quot;' . $post->post_name . '&quot;]" type="text">';
 
 		// Display out output
 		echo $output;
@@ -308,7 +308,7 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 
 		// Generate our output
 	?>
-		<p><?php printf( __('Select which %s should use this sidebar:', 'startbox'), $post_type['args']->labels->name ); ?></p>
+		<p><?php printf( __('Select which %s should use this widget area:', 'startbox'), $post_type['args']->labels->name ); ?></p>
 		<div id="posttype-<?php echo $post_type_name; ?>" class="posttypediv">
 			<div id="<?php echo esc_attr( $post_type_name ); ?>-all" class="tabs-panel tabs-panel-view-all tabs-panel-active">
 				<ul id="<?php echo esc_attr( $post_type_name ); ?>checklist" class="list:<?php echo $post_type_name?> categorychecklist form-no-clear">
@@ -378,7 +378,7 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 
 		// Generate our output
 	?>
-		<p><?php printf( __('Select which %s should use this sidebar:', 'startbox'), $taxonomy['args']->label ); ?></p>
+		<p><?php printf( __('Select which %s should use this widget area:', 'startbox'), $taxonomy['args']->label ); ?></p>
 		<div id="taxonomy-<?php echo esc_attr( $taxonomy_name ); ?>" class="taxonomydiv">
 			<div id="tabs-panel-<?php echo esc_attr( $taxonomy_name ); ?>-all" class="tabs-panel tabs-panel-view-all tabs-panel-active">
 				<ul id="<?php echo esc_attr( $taxonomy_name ); ?>checklist" class="list:<?php echo esc_attr( $taxonomy_name ) ?> categorychecklist form-no-clear">
@@ -402,10 +402,10 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 	function save_sidebar( $post_id ) {
 		// Verify we should actually be saving any data
 		if (
-			'sidebar' !== get_post_type( $post_id )              // If it's not a sidebar post type,
+			'widget_area' !== get_post_type( $post_id )          // If it's not a widget area post type,
 			|| ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) // OR it's an autosave,
-			|| ! isset($_POST['sidebar_replaced'])               // OR we don't have some postdata,
-			|| ! current_user_can('edit_theme_options')          // OR the current user can't edit themes,
+			|| ! isset( $_POST['sidebar_replaced'] )             // OR we don't have some postdata,
+			|| ! current_user_can( 'edit_theme_options' )        // OR the current user can't edit themes,
 			|| ! isset( $_POST['_sb_sidebars_nonce'] )           // OR the NONCE is not set,
 			|| ! wp_verify_nonce( $_POST['_sb_sidebars_nonce'], 'sb-sidebar-update' ) // or the NONCE is invalid
 		)
@@ -463,8 +463,7 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 		}
 
 		// Delete transient data (used to cache all sidebars for front-end display)
-		delete_transient( 'sb_custom_sidebars' );
-		delete_transient( 'sb_custom_sidebar_replacements' );
+		$this->dump_sidebar_cache( $post_id );
 
 		return $post_id;
 	}
@@ -476,7 +475,7 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 	 */
 	function dump_sidebar_cache( $post_id ) {
 		// Verify we're actually deleting a sidebar
-		if ( 'sidebar' == get_post_type( $post_id ) ) {
+		if ( 'widget_area' == get_post_type( $post_id ) ) {
 	        delete_transient( 'sb_custom_sidebars' );
 	    	delete_transient( 'sb_custom_sidebar_replacements' );
 	    }
@@ -488,7 +487,7 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 	 * @since 2.5.0
 	 */
 	function sidebar_update_messages( $messages ) {
-		$messages['sidebar']['1'] = $messages['sidebar']['6'] = sprintf( __( 'Sidebar saved. %s', 'startbox' ), '<a href="' . esc_url( admin_url( 'widgets.php' ) ) . '">' . __( 'Give it some widgets', 'startbox' ) . '</a>' );
+		$messages['widget_area']['1'] = $messages['widget_area']['6'] = sprintf( __( 'Widget Area saved. %s', 'startbox' ), '<a href="' . esc_url( admin_url( 'widgets.php' ) ) . '">' . __( 'Give it some widgets!', 'startbox' ) . '</a>' );
 		return $messages;
 	}
 
@@ -511,7 +510,7 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 
 			// Get all sidebar posts
 			$sidebars = get_posts( array(
-				'post_type' => 'sidebar',
+				'post_type' => 'widget_area',
 				'nopaging'  => true,
 				'orderby'   => 'date',
 				'order'     => 'ASC',
