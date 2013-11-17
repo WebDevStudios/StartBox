@@ -38,7 +38,7 @@ class sb_custom_feed_settings extends SB_Settings {
 	}
 
 
-	function output( $output, $feed ) {
+	function feed_output( $output, $feed ) {
 
 		$rss_url = sb_get_option( 'custom_rss_feed' );
 
@@ -64,7 +64,7 @@ class sb_custom_feed_settings extends SB_Settings {
 
 	function hooks() {
 
-		add_filter( 'feed_link', array( $this, 'output' ), 10, 2 );
+		add_filter( 'feed_link', array( $this, 'feed_output' ), 10, 2 );
 
 	}
 
