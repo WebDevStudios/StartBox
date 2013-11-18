@@ -52,8 +52,9 @@ class SBX_Sidebars {
 	 */
 	function register_default_sidebars() {
 
+
 		// Grab the default supported sidebars
-		$supported_sidebars = get_theme_support( 'sb-sidebars' );
+		$supported_sidebars = get_theme_support( 'sbx-sidebars' );
 
 		// If there aren't any sidebars, skip the rest
 		if ( empty( $supported_sidebars ) )
