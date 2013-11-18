@@ -18,7 +18,7 @@
 if ( ! current_theme_supports( 'sb-customizer' ) ) return;
 
 /**
- * Base class for supplimenting theme customizer
+ * Base class for extending the theme customizer.
  *
  * @subpackage Classes
  * @since 3.0.0
@@ -26,7 +26,7 @@ if ( ! current_theme_supports( 'sb-customizer' ) ) return;
 class SB_Customizer {
 
 	/**
-	 * Instantiation method
+	 * Instantiation method.
 	 *
 	 * @since 3.0.0
 	 */
@@ -41,7 +41,7 @@ class SB_Customizer {
 	}
 
 	/**
-	 * Register an admin menu item for the theme customizer
+	 * Register menu item for theme customizer.
 	 *
 	 * @since 3.0.0
 	 */
@@ -50,27 +50,28 @@ class SB_Customizer {
 	}
 
 	/**
-	 * Displays customizer options
+	 * Display customizer options.
 	 *
 	 * Creates customizer options based on the customizer array,
 	 * usually set in the theme's functions.php file.
 	 *
 	 * @since 3.0.0
-	 * @param object $wp_customize The WordPress theme customizer object.
+	 *
+	 * @param object $wp_customize Theme customizer object.
 	 */
 	public function customize_register( $wp_customize = null ) {
 
 		// Grab the currently registered sections
 		$sections = $wp_customize->sections();
 
-		// Pull back our registered settings
+		// Pull back all registered settings
 		$customizer_settings = apply_filters( 'sb_customizer_settings', array() );
 
-		// If we have any settings, loop through and register each
+		// Loop through each registered setting
 		if ( is_array( $customizer_settings ) && ! empty( $customizer_settings ) ) {
 			foreach ( $customizer_settings as $section_id => $section ) {
 
-				// Add the customizer section, if it doesn't exist already
+				// If customizer section doesn't exist, add it
 				if ( ! isset( $sections[$section_id] ) )
 					$this->add_section( $wp_customize, $section_id, $section );
 
@@ -86,16 +87,17 @@ class SB_Customizer {
 	}
 
 	/**
-	 * Add a customizer section to the theme customizer
+	 * Add a single customizer section.
 	 *
 	 * @since 3.0.0
-	 * @param object $wp_customize The WordPress theme customizer object.
-	 * @param string $section_id   The unique name for this section
-	 * @param array  $section      Section specific data used to add the section to the customizer.
+	 *
+	 * @param object $wp_customize Theme customizer object.
+	 * @param string $section_id   Unique section name.
+	 * @param array  $section      Additional section data.
 	 */
 	public function add_section( $wp_customize = null, $section_id = '', $section = array() ) {
 
-		// Setup our section details with basic sanitization
+		// Sanitize section details
 		$section_details                   = array();
 		$section_details['title']          = sanitize_text_field( $section['title'] );
 		$section_details['description']    = ! empty( $section['description'] ) ? esc_html( $section['description'] ) : '';
@@ -103,22 +105,23 @@ class SB_Customizer {
 		$section_details['capability']     = ! empty( $section['capability'] ) ? sanitize_text_field( $section['capability'] ) : 'edit_theme_options';
 		$section_details['theme_supports'] = ! empty( $section['theme_supports'] ) ? sanitize_text_field( $section['theme_supports'] ) : null;
 
-		// Adds settings section to theme customizer.
+		// Add this section to the theme customizer
 		$wp_customize->add_section( $section_id, $section_details );
 
 	}
 
 	/**
-	 * Adds individual settings and controls to the theme customizer
+	 * Add a single setting to the customizer.
 	 *
 	 * @since 3.0.0
-	 * @param object $wp_customize    The WordPress theme customizer object
-	 * @param string $section_id      The section in which this setting belongs
-	 * @param array  $setting_details The setting details
+	 *
+	 * @param object $wp_customize    Theme customizer object.
+	 * @param string $section_id      Parent section ID.
+	 * @param array  $setting_details Additional setting details.
 	 */
 	public function add_setting( $wp_customize = null, $section_id = '', $setting_details = array() ) {
 
-		// Setup our setting details with basic sanitization
+		// Sanitize setting details
 		$setting                         = array();
 		$setting['default']              = ! empty( $setting_details['default'] ) ? $setting_details['default'] : null;
 		$setting['capability']           = ! empty( $setting_details['capability'] ) ? $setting_details['capability'] : 'edit_theme_options';
@@ -126,13 +129,15 @@ class SB_Customizer {
 		$setting['transport']            = ! empty( $setting_details['transport'] ) ? $setting_details['transport'] : 'refresh';
 		$setting['sanitize_js_callback'] = ! empty( $setting_details['sanitize_js_callback'] ) ? $setting_details['sanitize_js_callback'] : null;
 
-		// Setup the setting sanitization callback
+		// Setup setting sanitization
 		if ( ! empty( $setting_details['sanitize_callback'] ) ) {
 			$setting['sanitize_callback'] = $setting_details['sanitize_callback'];
+
+		// If sanitize callback was unspecified, select a
+		// good sanatization callback based on data type
 		} else {
 
-			// If we don't specify what kind of data
-			// is valid, use the setting's type
+			// If valid data type is empty, use setting type
 			if ( empty( $setting_details['valid'] ) )
 				$setting_details['valid'] = $setting_details['type'];
 
@@ -168,29 +173,30 @@ class SB_Customizer {
 			}
 		}
 
-		// Adds setting to theme customizer.
+		// Add this setting to the theme customizer
 		$wp_customize->add_setting( $setting_details['id'], $setting );
 
 	}
 
 	/**
-	 * Add a controller for a given setting
+	 * Add a controller for a given setting.
 	 *
 	 * @since 3.0.0
-	 * @param object $wp_customize    The WordPress theme customizer object
-	 * @param string $section_id      The section in which this control belongs
-	 * @param array  $setting_details The setting details
+	 *
+	 * @param object $wp_customize    Theme customizer object.
+	 * @param string $section_id      Parent section ID.
+	 * @param array  $setting_details Additional setting details.
 	 */
 	public function add_control( $wp_customize = null, $section_id = '', $setting_details = array() ) {
 
-		// Defines array to pass to add_control().
+		// Sanitize control details
 		$control = array();
 		$control['section']  = sanitize_text_field( $section_id );
 		$control['label']    = isset( $setting_details['label'] ) ? sanitize_text_field( $setting_details['label'] ) : '';
 		$control['type']     = isset( $setting_details['type'] ) ? sanitize_text_field( $setting_details['type'] ) : 'text';
 		$control['priority'] = isset( $setting_details['priority'] ) ? absint( $setting_details['priority'] ) : 10;
 
-		// Set setting choices if they exist and this is a multiple choice setting
+		// If dealing with a multiple-choice setting, register all choices
 		if (
 			isset( $setting_details['choices'] )
 			&& is_array( $setting_details['choices'] )
@@ -199,7 +205,7 @@ class SB_Customizer {
 			$control['choices'] = $setting_details['choices'];
 		}
 
-		// Register the setting control
+		// Add this controller to the theme customizer
 		if ( in_array( $control['type'], array( 'text', 'checkbox', 'radio', 'select', 'dropdown-pages' ) ) ) {
 			$wp_customize->add_control( $setting_details['id'], $control );
 		} else {
