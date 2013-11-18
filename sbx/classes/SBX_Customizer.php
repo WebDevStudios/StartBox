@@ -32,24 +32,12 @@ class SBX_Customizer {
 	 */
 	function __construct() {
 
-		// Register a customizer menu under Appearance
-		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
-
 		// Render all of our customizer settings and sections
 		add_action( 'customize_register', array( $this, 'customize_register' ) );
 
 		// Bind JS handlers so customizer preview reloads asynchronously.
 		add_action( 'customize_preview_init', array( $this, 'customize_preview_int' ) );
 
-	}
-
-	/**
-	 * Register menu item for theme customizer.
-	 *
-	 * @since 3.0.0
-	 */
-	function admin_menu() {
-	    add_theme_page( __( 'Customize', 'startbox' ), __( 'Customize', 'startbox' ), 'edit_theme_options', 'customize.php' );
 	}
 
 	/**
