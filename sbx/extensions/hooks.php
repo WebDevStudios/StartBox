@@ -11,7 +11,7 @@
 ////////////////////////////////////////////////// Body, Post and Comment class filters //////////////////////////////////////////////////
 
 // Filter body_class to include user browser, category, and date classes
-function sb_body_classes($classes) {
+function sbx_body_classes($classes) {
 	global $wp_query;
 
 	// Determine user's browser and adds appropriate class
@@ -50,11 +50,11 @@ function sb_body_classes($classes) {
 			$classes[] = 's-category-' . $cat->slug;
 
 	// Applies the time- and date-based classes
-    sb_date_classes( time(), $classes, $p = null );
+    sbx_date_classes( time(), $classes, $p = null );
 
 	// Adds classes for the month, day, and hour when the post was published
 	if ( is_single() )
-		sb_date_classes( mysql2date( 'U', $wp_query->post->post_date ), $classes, 's-' );
+		sbx_date_classes( mysql2date( 'U', $wp_query->post->post_date ), $classes, 's-' );
 
 	// Adds post and page slug class, prefixed by 'post-' or 'page-', respectively
 	if ( is_single() )
@@ -68,22 +68,22 @@ function sb_body_classes($classes) {
 	// return the $classes array
 	return $classes;
 }
-add_filter('body_class','sb_body_classes');
+add_filter('body_class','sbx_body_classes');
 
 
 // Filter post_class to include an author class
-function sb_post_classes($classes) {
+function sbx_post_classes($classes) {
 	// Author for the post queried
 	$classes[] = 'author-' . sanitize_title_with_dashes( strtolower( get_the_author() ) );
 
 	// return the $classes array
 	return $classes;
 }
-add_filter('post_class','sb_post_classes');
+add_filter('post_class','sbx_post_classes');
 
 
 // Generates time- and date-based classes relative to GMT (UTC)
-function sb_date_classes($t, &$classes, $p) {
+function sbx_date_classes($t, &$classes, $p) {
 	$t = $t + ( get_option('gmt_offset') * 3600 );
 	$classes[] = $p . 'y' . gmdate( 'Y', $t ); // Year
 	$classes[] = $p . 'm' . gmdate( 'm', $t ); // Month
@@ -95,20 +95,20 @@ function sb_date_classes($t, &$classes, $p) {
 ////////////////////////////////////////////////// Items To Hook into Header //////////////////////////////////////////////////
 
 // Header Wrap
-function sb_header_wrap() {
+function sbx_header_wrap() {
 	if ( !did_action( 'sb_header') )
 		echo '<div id="header_wrap">'."\n";
 	else
 		echo '</div><!-- #header_wrap -->'."\n";
 }
-add_action( 'before_header', 'sb_header_wrap', 999 );
-add_action( 'after_header', 'sb_header_wrap', 9 );
+add_action( 'before_header', 'sbx_header_wrap', 999 );
+add_action( 'after_header', 'sbx_header_wrap', 9 );
 
 /**
  * Filter the site title to be more dynamic.
  *
  */
-function sb_default_title( $title, $sep, $seplocation) {
+function sbx_default_title( $title, $sep, $seplocation) {
 	$site_name = get_bloginfo('name');
 	$sep = ' | ';
 
@@ -116,7 +116,7 @@ function sb_default_title( $title, $sep, $seplocation) {
 	elseif ( is_singular() || is_page() ) { $title = single_post_title( '', false ); }
 	elseif ( is_search() ) { $title = sprintf( __('Search Results for: %s', 'startbox'), esc_html(stripslashes(get_search_query())) ); }
     elseif ( is_category() ) { $title = sprintf( __('Category Archives: %s', 'startbox'), single_cat_title( '', false )); }
-    elseif ( is_tag() ) { $title = sprintf( __('Tag Archives: %s', 'startbox'), sb_tag_query() ); }
+    elseif ( is_tag() ) { $title = sprintf( __('Tag Archives: %s', 'startbox'), sbx_tag_query() ); }
 	elseif ( is_404() ) { $title = __( 'Not Found', 'startbox' ); }
 	else { $title = get_bloginfo('description'); }
 
@@ -145,16 +145,16 @@ function sb_default_title( $title, $sep, $seplocation) {
 
 	return $title;
 }
-add_filter( 'wp_title', 'sb_default_title', 9, 3 );
+add_filter( 'wp_title', 'sbx_default_title', 9, 3 );
 
 // Filter the RSS title to return nothing, otherwise RSS shows dupilicate title
 add_filter( 'wp_title_rss', create_function( '$a', 'return "";' ) );
 
 // Insert #top anchor at beginning of page
-function sb_topofpage() {
+function sbx_topofpage() {
 	echo '<a name="top"></a>'."\n";
 }
-add_action( 'before', 'sb_topofpage', 1);
+add_action( 'before', 'sbx_topofpage', 1);
 
 // Insert skip-to-content link for screen reader users
 function sb_skip_to_content() {
@@ -162,16 +162,16 @@ function sb_skip_to_content() {
 }
 
 // Insert Yoast Breadcrumbs if Active
-function sb_breadcrumb_output() {
+function sbx_breadcrumb_output() {
 	if ( function_exists( 'yoast_breadcrumb' ) ) { yoast_breadcrumb('<div id="yoastbreadcrumb">','</div>'); }
 }
-add_action( 'before_content', 'sb_breadcrumb_output', 15 );
+add_action( 'before_content', 'sbx_breadcrumb_output', 15 );
 
 
 ////////////////////////////////////////////////// Items To Hook into home page //////////////////////////////////////////////////
 
 // Add additional hooks to the front page
-function sb_front_page_hooks() {
+function sbx_front_page_hooks() {
 	// Only include these hooks on the front page,
 	// and when NOT using a custom template
 	if ( is_front_page() && ! is_page_template() ) {
@@ -180,18 +180,18 @@ function sb_front_page_hooks() {
 		do_action( 'after_featured' );
 	}
 }
-add_action( 'before_content', 'sb_front_page_hooks' );
+add_action( 'before_content', 'sbx_front_page_hooks' );
 
 // Add a featured widget area to sb_featrued on the home page
-function sb_home_featured_sidebar() {
-	sb_do_sidebar( 'featured_aside', 'home_featured', 'featured-aside' );
+function sbx_home_featured_sidebar() {
+	sbx_do_sidebar( 'featured_aside', 'home_featured', 'featured-aside' );
 }
-add_action( 'featured','sb_home_featured_sidebar');
+add_action( 'featured','sbx_home_featured_sidebar');
 
 ////////////////////////////////////////////////// Items To Hook into content areas //////////////////////////////////////////////////
 
 // Filter the page title based on the template (credit: Ian Stewart)
-function sb_default_page_title() {
+function sbx_default_page_title() {
 	global $post;
 	$container = apply_filters( 'sb_page_title_container', 'h1' );
 
@@ -221,7 +221,7 @@ function sb_default_page_title() {
 		$content .= esc_html(stripslashes($_GET['s']), true);
 		$content .= '</span>';
 	} elseif (is_tag()) {
-		$content .= '<span>' . __('Tag Archives:', 'startbox') . '</span> ' . sb_tag_query();
+		$content .= '<span>' . __('Tag Archives:', 'startbox') . '</span> ' . sbx_tag_query();
 	} elseif (is_tax()) {
 		$term = get_term_by('slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
 		$content .= '<span>' . __('Archives:', 'startbox') . '</span> ' . $term->name;
@@ -241,20 +241,20 @@ function sb_default_page_title() {
 	$content .= '</' . $container . '>';
 	$content .= "\n";
 
-	echo apply_filters('sb_default_page_title', $content, $container, $post );
+	echo apply_filters( 'sbx_default_page_title', $content, $container, $post );
 }
-add_action( 'page_title', 'sb_default_page_title' );
+add_action( 'page_title', 'sbx_default_page_title' );
 
 // Hook archive meta after page title for archive pages
-function sb_archive_meta() {
+function sbx_archive_meta() {
 	if ( ( is_category() || is_tag() || is_tax() ) && term_description() != '' ) {
 		$content = '<div class="archive-meta">';
-		$content .= apply_filters( 'sb_archive_meta', term_description() );
+		$content .= apply_filters( 'sbx_archive_meta', term_description() );
 		$content .= '</div>';
 		echo $content;
 	}
 }
-add_action( 'page_title', 'sb_archive_meta' );
+add_action( 'page_title', 'sbx_archive_meta' );
 
 // Add content filters for the description/meta content
 add_filter( 'archive_meta', 'wptexturize' );
@@ -263,35 +263,35 @@ add_filter( 'archive_meta', 'convert_chars' );
 add_filter( 'archive_meta', 'wpautop' );
 
 // Default 404 Page
-function sb_404_content() {
+function sbx_404_content() {
 	echo '<p>' . __('Sorry, but we were unable to find what you were looking for. Try searching or browsing our content below.', 'startbox' ) . '</p>';
 	get_template_part( 'searchform' );
 	echo '<br/>';
 	sb_sitemap();
 }
-add_action( '404', 'sb_404_content' );
+add_action( '404', 'sbx_404_content' );
 
 // Dynamically create hook for the very first post in a loop
-function sb_before_first_post() { global $firstpost; if ( !isset( $firstpost ) ) { do_action( 'before_first_post' ); } } // Just before the post
-function sb_after_first_post() { global $firstpost; if ( !isset( $firstpost ) ) { do_action( 'after_first_post' ); $firstpost = 1; } } // Just after the post
-add_action( 'before_post', 'sb_before_first_post' );
-add_action( 'after_post', 'sb_after_first_post' );
+function sbx_before_first_post() { global $firstpost; if ( !isset( $firstpost ) ) { do_action( 'before_first_post' ); } } // Just before the post
+function sbx_after_first_post() { global $firstpost; if ( !isset( $firstpost ) ) { do_action( 'after_first_post' ); $firstpost = 1; } } // Just after the post
+add_action( 'before_post', 'sbx_before_first_post' );
+add_action( 'after_post', 'sbx_after_first_post' );
 
 ////////////////////////////////////////////////// Items To Hook into Footer //////////////////////////////////////////////////
 
 // Include our footer widgets
-function sb_footer_widgets() {
+function sbx_footer_widgets() {
 	get_sidebar('footer');
 }
-add_action( 'footer_widgets', 'sb_footer_widgets' );
+add_action( 'footer_widgets', 'sbx_footer_widgets' );
 
 // Auto-hide the address bar in mobile Safari (iPhone)
-function sb_iphone() { echo '<script type="text/javascript">window.scrollTo(0, 1);</script>'; }
-add_action( 'after','sb_iphone');
+function sbx_iphone() { echo '<script type="text/javascript">window.scrollTo(0, 1);</script>'; }
+add_action( 'after','sbx_iphone');
 
 // Add left/right footer hooks
-function sb_footer_left_right() {
+function sbx_footer_left_right() {
 	if ( has_action( 'sb_footer_left' ) ) { echo '<div id="footer_left" class="left">'; do_action( 'footer_left' ); echo '</div><!-- #footer_left -->'; }
 	if ( has_action( 'sb_footer_right' ) ) { echo '<div id="footer_right" class="right">'; do_action( 'footer_right' ); echo '</div><!-- #footer_right -->'; }
 }
-add_action( 'footer', 'sb_footer_left_right', 15 );
+add_action( 'footer', 'sbx_footer_left_right', 15 );

@@ -12,7 +12,11 @@
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
-class SB_Updater {
+// Check to see if current theme supports updates, skip the rest if not
+if ( ! current_theme_supports( 'sbx-updates' ) )
+	return;
+
+class SBX_Updater {
 
 	public function __construct() {
 
@@ -41,7 +45,7 @@ class SB_Updater {
 		            'Referer' => home_url()
 				)
 			);
-			$sb = SB_VERSION;
+			$sb = SBX_VERSION;
 			$wp = get_bloginfo("version") ;
 			$php = phpversion();
 			$mysql = $wpdb->db_version();
@@ -53,7 +57,7 @@ class SB_Updater {
 			// If an error occurred, return false and store transient for 1 hour
 			// Else, unserialize and store transient for 12hrs
 			if ( is_wp_error($sb_update) || $sb_update == 'error' || !is_serialized($sb_update) ) {
-				set_transient('sb_update', array('new_version' => SB_VERSION), 3600); // cache for 1hr (3600)
+				set_transient('sb_update', array('new_version' => SBX_VERSION), 3600); // cache for 1hr (3600)
 				return false;
 			} else {
 				$sb_update = maybe_unserialize($sb_update);
@@ -62,7 +66,7 @@ class SB_Updater {
 		}
 
 		// If we're already using the latest version, return false
-		if ( version_compare(SB_VERSION, $sb_update['new_version'], '>=') )
+		if ( version_compare(SBX_VERSION, $sb_update['new_version'], '>=') )
 			return false;
 
 		return $sb_update;
@@ -105,4 +109,4 @@ class SB_Updater {
 	}
 
 }
-$GLOBALS['startbox']->updater = new SB_Updater;
+$GLOBALS['startbox']->updater = new SBX_Updater;

@@ -18,8 +18,7 @@
  * @uses in_category() Passes $_post (can be empty)
  * @link http://codex.wordpress.org/Function_Reference/in_category#Testing_if_a_post_is_in_a_descendant_category
  */
-function sb_in_descendant_category( $cats, $_post = null )
-{
+function sbx_in_descendant_category( $cats, $_post = null ) {
 	foreach ( (array) $cats as $cat ) {
 		// get_term_children() accepts integer ID only
 		$descendants = get_term_children( (int) $cat, 'category');
@@ -36,7 +35,7 @@ function sb_in_descendant_category( $cats, $_post = null )
  *
  * @param string $pagetemplate is the template filename
 */
-function sb_is_pagetemplate_active($pagetemplate = '') {
+function sbx_is_pagetemplate_active( $pagetemplate = '' ) {
 	global $wpdb;
 	if ( $wpdb->get_var( $wpdb->prepare( "SELECT meta_key FROM $wpdb->postmeta WHERE meta_key LIKE '_wp_page_template' AND meta_value = %s", $pagetemplate ) ) ) {
 		return TRUE;
@@ -53,7 +52,7 @@ function sb_is_pagetemplate_active($pagetemplate = '') {
  * @param integer $page_id the page ID to test
  * @param integer $parent_id (optional) check if page is child of specific parent
 */
-function sb_is_child_page( $parent_id = null, $page_id = null ) {
+function sbx_is_child_page( $parent_id = null, $page_id = null ) {
 	global $post;
 	$pid = ($page_id) ? $page_id : $post->ID;
 
@@ -72,7 +71,7 @@ function sb_is_child_page( $parent_id = null, $page_id = null ) {
  * @since 2.5
  * @param string $type the post type to verify against
  */
-function sb_verify_post_type( $type ) {
+function sbx_verify_post_type( $type ) {
 	global $post_type;
 
 	if ( ( isset( $_GET['post_type'] ) && $_GET['post_type'] == $type ) || ( isset( $post_type ) && $post_type == $type ) )

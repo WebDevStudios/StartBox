@@ -19,11 +19,11 @@ require_once( get_template_directory() . '/sbx/sbx.php' );
 function startbox_setup_theme() {
 
 	// StartBox Core Features
-	add_theme_support( 'sb-breadcrumbs' );
-	add_theme_support( 'sb-customizer' );
-	add_theme_support( 'sb-shortcodes' );
-	add_theme_support( 'sb-options' );
-	add_theme_support( 'sb-sidebars',
+	add_theme_support( 'sbx-breadcrumbs' );
+	add_theme_support( 'sbx-customizer' );
+	add_theme_support( 'sbx-shortcodes' );
+	add_theme_support( 'sbx-options' );
+	add_theme_support( 'sbx-sidebars',
 		array(
 			array(
 				'id'          => 'primary_widget_area',
@@ -57,11 +57,9 @@ function startbox_setup_theme() {
 				),
 		)
 	);
-	add_theme_support( 'sb-custom-sidebars' );
-	add_theme_support( 'sb-updates' );
+	add_theme_support( 'sbx-custom-sidebars' );
+	add_theme_support( 'sbx-updates' );
 	add_theme_support( 'automatic-feed-links' );
-	add_theme_support( 'custom-header' );
-	add_theme_support( 'custom-background' );
 
 	register_nav_menu( 'main-navigation',__( 'Primary Navigation' ) );
 
@@ -297,7 +295,7 @@ if ( ! isset( $content_width ) )
 /**
  * Add Google Font
  */
-function sbx_google_webfonts() {
+function startbox_google_webfonts() {
 
 	$protocol = is_ssl() ? 'https' : 'http';
 	$query_args = array(
@@ -308,7 +306,7 @@ function sbx_google_webfonts() {
 	wp_enqueue_style( 'open-sans', add_query_arg( $query_args, "$protocol://fonts.googleapis.com/css" ), array(), null );
 
 }
-add_action( 'wp_enqueue_scripts', 'sbx_google_webfonts' );
+add_action( 'wp_enqueue_scripts', 'startbox_google_webfonts' );
 
 
 /**

@@ -1,15 +1,15 @@
 <?php
 /**
- * StartBox - Main class
+ * SBX Main class
  *
  * Loads all includes, theme constants, adds/removes filters, etc.
  *
- * @package StartBox
+ * @package SBX
  * @subpackage Functions
  * @since 2.4.5
  */
-if ( ! class_exists('StartBox') ) {
-	class StartBox {
+if ( ! class_exists('SBX') ) {
+	class SBX {
 
 		/**
 		 * Initialization constructor for SBX
@@ -43,8 +43,8 @@ if ( ! class_exists('StartBox') ) {
 		public function constants() {
 
 			// Setup version and option constants
-			define( 'SB_VERSION',      '3.0.0' );
-			define( 'THEME_OPTIONS',   'startbox' );
+			define( 'SBX_VERSION',      '3.0.0' );
+			define( 'SBX_OPTIONS',   'startbox' );
 			define( 'THEME_PREFIX',    'sb' );
 			define( 'THEME_NAME',      wp_get_theme() );
 
@@ -53,15 +53,15 @@ if ( ! class_exists('StartBox') ) {
 			define( 'THEME_URI',       get_template_directory_uri() );
 			define( 'CHILD_THEME_DIR', get_stylesheet_directory() );
 			define( 'CHILD_THEME_URI', get_stylesheet_directory_uri() );
-			define( 'SB_DIR',          trailingslashit( THEME_DIR ) . basename( dirname( __FILE__ ) ) );
-			define( 'SB_URI',          trailingslashit( THEME_URI ) . basename( dirname( __FILE__ ) ) );
-			define( 'SB_ADMIN',        trailingslashit( SB_DIR ) . 'admin' );
-			define( 'SB_CLASSES',      trailingslashit( SB_DIR ) . 'classes' );
-			define( 'SB_CSS',          trailingslashit( SB_URI ) . 'css' );
-			define( 'SB_EXTENSIONS',   trailingslashit( SB_DIR ) . 'extensions' );
-			define( 'SB_IMAGES',       trailingslashit( SB_DIR ) . 'images' );
-			define( 'SB_JS',           trailingslashit( SB_URI ) . 'js' );
-			define( 'SB_LANGUAGES',    trailingslashit( SB_DIR ) . 'languages' );
+			define( 'SBX_DIR',         trailingslashit( THEME_DIR ) . basename( dirname( __FILE__ ) ) );
+			define( 'SBX_URI',         trailingslashit( THEME_URI ) . basename( dirname( __FILE__ ) ) );
+			define( 'SBX_ADMIN',       trailingslashit( SBX_DIR ) . 'admin' );
+			define( 'SBX_CLASSES',     trailingslashit( SBX_DIR ) . 'classes' );
+			define( 'SBX_CSS',         trailingslashit( SBX_URI ) . 'css' );
+			define( 'SBX_EXTENSIONS',  trailingslashit( SBX_DIR ) . 'extensions' );
+			define( 'SBX_IMAGES',      trailingslashit( SBX_DIR ) . 'images' );
+			define( 'SBX_JS',          trailingslashit( SBX_URI ) . 'js' );
+			define( 'SBX_LANGUAGES',   trailingslashit( SBX_DIR ) . 'languages' );
 
 		}
 
@@ -71,10 +71,10 @@ if ( ! class_exists('StartBox') ) {
 		 * @since 3.0.0
 		 */
 		public function core() {
-			require_once( SB_EXTENSIONS . '/conditionals.php' );
-			require_once( SB_EXTENSIONS . '/template-tags.php' );
-			require_once( SB_EXTENSIONS . '/hooks.php' );
-			require_once( SB_EXTENSIONS . '/images.php' );
+			require_once( SBX_EXTENSIONS . '/conditionals.php' );
+			require_once( SBX_EXTENSIONS . '/template-tags.php' );
+			require_once( SBX_EXTENSIONS . '/hooks.php' );
+			require_once( SBX_EXTENSIONS . '/images.php' );
 		}
 
 		/**
@@ -83,22 +83,19 @@ if ( ! class_exists('StartBox') ) {
 		 * @since 3.0.0
 		 */
 		public function extensions() {
-			require_if_theme_supports( 'sb-breadcrumbs',     SB_CLASSES . '/SB_Breadcrumbs.php' );
-			require_if_theme_supports( 'sb-customizer',      SB_CLASSES . '/SB_Customizer.php' );
-			require_if_theme_supports( 'sb-layouts',         SB_CLASSES . '/SB_Layouts.php' );
-			require_if_theme_supports( 'sb-sidebars',        SB_CLASSES . '/SB_Sidebars.php' );
-			require_if_theme_supports( 'sb-custom-sidebars', SB_CLASSES . '/SB_Custom_Sidebars.php' );
-			require_if_theme_supports( 'sb-updates',         SB_CLASSES . '/SB_Updater.php' );
-			require_if_theme_supports( 'sb-shortcodes',      SB_EXTENSIONS . '/shortcodes.php' );
-			require_if_theme_supports( 'sb-options',		 SB_CLASSES . '/SB_Options_API.php' );
+			require_if_theme_supports( 'sbx-breadcrumbs',     SBX_CLASSES . '/SBX_Breadcrumbs.php' );
+			require_if_theme_supports( 'sbx-customizer',      SBX_CLASSES . '/SBX_Customizer.php' );
+			require_if_theme_supports( 'sbx-layouts',         SBX_CLASSES . '/SBX_Layouts.php' );
+			require_if_theme_supports( 'sbx-sidebars',        SBX_CLASSES . '/SBX_Sidebars.php' );
+			require_if_theme_supports( 'sbx-custom-sidebars', SBX_CLASSES . '/SBX_Custom_Sidebars.php' );
+			require_if_theme_supports( 'sbx-updates',         SBX_CLASSES . '/SBX_Updater.php' );
+			require_if_theme_supports( 'sbx-shortcodes',      SBX_EXTENSIONS . '/shortcodes.php' );
+			require_if_theme_supports( 'sbx-options',		  SBX_CLASSES . '/SBX_Options_API.php' );
 
-			// Include all setting metaboxes
-			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/admin.php' );
-			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/feeds.php' );
-			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/header_scripts.php' );
-			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/footer_scripts.php' );
-			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/help.php' );
-			require_if_theme_supports( 'sb-customizer', SB_ADMIN .'/upgrade.php' );
+			// Include all admin settings
+			foreach ( glob( SBX_ADMIN . '/*.php') as $sb_admin ) {
+				require_if_theme_supports( 'sbx-options', $sb_admin );
+			}
 		}
 
 		/**
@@ -109,7 +106,7 @@ if ( ! class_exists('StartBox') ) {
 		public function i18n() {
 
 			// Translate, if applicable
-			load_theme_textdomain( 'sbx', SB_LANGUAGES );
+			load_theme_textdomain( 'sbx', SBX_LANGUAGES );
 
 		}
 
@@ -121,12 +118,12 @@ if ( ! class_exists('StartBox') ) {
 		public function register_scripts_and_styles() {
 
 			// Register Default Scripts
-			wp_register_script( 'sbx', SB_JS . '/sbx.js', array( 'jquery' ), SB_VERSION );
+			wp_register_script( 'sbx', SBX_JS . '/sbx.js', array( 'jquery' ), SBX_VERSION );
 			wp_enqueue_script( 'sbx' );
 
 			// Register Default Styles
-			wp_register_style( 'sbx', SB_CSS . '/sbx.css', null, SB_VERSION );
-			wp_register_style( 'default', CHILD_THEME_URI . '/style.css', null, SB_VERSION );
+			wp_register_style( 'sbx', SBX_CSS . '/sbx.css', null, SBX_VERSION );
+			wp_register_style( 'default', CHILD_THEME_URI . '/style.css', null, SBX_VERSION );
 
 			// Enqueue Default Styles
 			if ( ! is_admin() ) {
@@ -143,12 +140,12 @@ if ( ! class_exists('StartBox') ) {
 		 */
 		public function admin_register_scripts_and_styles() {
 
-			wp_register_script( 'sb-admin', SB_JS . '/admin.js', array( 'jquery' ), SB_VERSION );
+			wp_register_script( 'sb-admin', SBX_JS . '/admin.js', array( 'jquery' ), SBX_VERSION );
 			wp_enqueue_script( 'sb-admin' );
 
 		}
 	}
 }
-$GLOBALS['startbox'] = new StartBox;
+$GLOBALS['startbox'] = new SBX;
 
 // "God opposes the proud, but gives grace to the humble." - James 4:6b (ESV)

@@ -9,34 +9,33 @@
  * @subpackage Shortcodes
  */
 
-add_shortcode( 'widget_area', 'sb_widget_area_shortcode' );
-add_shortcode( 'sitemap', 'sb_get_sitemap' );
+add_shortcode( 'widget_area', 'sbx_widget_area_shortcode' );
+add_shortcode( 'sitemap', 'sbx_get_sitemap' );
 
-add_shortcode( 'hr', 'sb_divider' );
-add_shortcode( 'divider', 'sb_divider' );
-add_shortcode( 'rtt', 'sb_rtt' );
-add_shortcode( 'toggle', 'sb_toggle' );
+add_shortcode( 'hr', 'sbx_divider' );
+add_shortcode( 'divider', 'sbx_divider' );
+add_shortcode( 'rtt', 'sbx_rtt' );
+add_shortcode( 'toggle', 'sbx_toggle' );
 
-add_shortcode( 'title', 'sb_entry_title' );
-add_shortcode( 'author_bio', 'sb_author_bio' );
-add_shortcode( 'author', 'sb_entry_author' );
-add_shortcode( 'categories', 'sb_entry_categories' );
-add_shortcode( 'comments', 'sb_entry_comments' );
-add_shortcode( 'date', 'sb_entry_date' );
-add_shortcode( 'tags', 'sb_entry_tags' );
-add_shortcode( 'time', 'sb_entry_time' );
-add_shortcode( 'edit', 'sb_entry_edit' );
-add_shortcode( 'more', 'sb_readmore' );
+add_shortcode( 'title', 'sbx_entry_title' );
+add_shortcode( 'author_bio', 'sbx_author_bio' );
+add_shortcode( 'author', 'sbx_entry_author' );
+add_shortcode( 'categories', 'sbx_entry_categories' );
+add_shortcode( 'comments', 'sbx_entry_comments' );
+add_shortcode( 'date', 'sbx_entry_date' );
+add_shortcode( 'tags', 'sbx_entry_tags' );
+add_shortcode( 'time', 'sbx_entry_time' );
+add_shortcode( 'edit', 'sbx_entry_edit' );
+add_shortcode( 'more', 'sbx_readmore' );
 
-add_shortcode( 'protected', 'sb_protected' );
-add_shortcode( 'expires', 'sb_expires' );
-add_shortcode( 'show_after', 'sb_show_after' );
+add_shortcode( 'protected', 'sbx_protected' );
+add_shortcode( 'expires', 'sbx_expires' );
+add_shortcode( 'show_after', 'sbx_show_after' );
 
-add_shortcode( 'copyright', 'sb_copyright' );
-add_shortcode( 'site_link', 'sb_site_link' );
-add_shortcode( 'WordPress', 'sb_wp_link' );
-add_shortcode( 'StartBox', 'sb_footer_link' );
-
+add_shortcode( 'copyright', 'sbx_copyright' );
+add_shortcode( 'site_link', 'sbx_site_link' );
+add_shortcode( 'WordPress', 'sbx_wp_link' );
+add_shortcode( 'StartBox', 'sbx_footer_link' );
 
 /**
  * Enable Shortcodes in widget areas
@@ -45,24 +44,22 @@ add_shortcode( 'StartBox', 'sb_footer_link' );
  */
 add_filter( 'widget_text', 'do_shortcode' );
 
-
 /**
  * Shortcode to display Return To Top link
  *
  * @since 2.4.3
  */
-function sb_rtt() {
-	$link = '<span class="rtt"><a href="#top" class="cb" title="Return to top of page">' . apply_filters( 'sb_rtt_text', __( 'Return to Top', 'startbox' ) ) . '</a></span>';
+function sbx_rtt() {
+	$link = '<span class="rtt"><a href="#top" class="cb" title="Return to top of page">' . apply_filters( 'sbx_rtt_text', __( 'Return to Top', 'startbox' ) ) . '</a></span>';
 	return $link;
 }
-
 
 /**
  * Shortcode to display a widget_area virtually anywhere.
  *
  * @since 2.5
  */
-function sb_widget_area_shortcode ( $atts ) {
+function sbx_widget_area_shortcode ( $atts ) {
 
 	// Setup default attributes
 	$atts = shortcode_atts(
@@ -80,22 +77,20 @@ function sb_widget_area_shortcode ( $atts ) {
 	// Otherwise, return the sidebar
 	} else {
 		ob_start();
-		sb_do_sidebar( $atts['id'], $$atts['classes'] );
+		sbx_do_sidebar( $atts['id'], $$atts['classes'] );
 		return ob_get_clean();
 	}
 }
-
 
 /**
  * Displays an Edit link for admins
  *
  * @since 2.4.6
  */
-function sb_entry_edit() {
+function sbx_entry_edit() {
 	if ( current_user_can( 'edit_posts' ) )
 		return '<span class="edit-link">&nbsp;(<a href="' . get_edit_post_link() . '">' . __( 'Edit', 'startbox' ) . '</a>)</span>';
 }
-
 
 /**
  * Displays the current post date, if time since is installed, it will use that instead.
@@ -106,7 +101,7 @@ function sb_entry_edit() {
  * @uses sb_time_since
  *
  */
-function sb_entry_date( $atts ) {
+function sbx_entry_date( $atts ) {
 	global $post;
 	extract ( shortcode_atts ( array (
 		'format' => get_option( 'date_format' ),
@@ -122,16 +117,14 @@ function sb_entry_date( $atts ) {
 		return '<time class="entry-date published updated" itemprop="datePublished" datetime="' . esc_attr( $isodate ) . '">' . esc_attr( $date ) . '</time>';
 }
 
-
 /**
  * Displays the current post time
  *
  * @since 2.4.6
  */
-function sb_entry_time() {
+function sbx_entry_time() {
 	return '<span class="entry-time">' . get_the_time() . '</span>';
 }
-
 
 /**
  * Displays a Read More link
@@ -141,10 +134,9 @@ function sb_entry_time() {
  * @uses get_permalink
  *
  */
-function sb_readmore() {
+function sbx_readmore() {
 	return '<a href="' . get_permalink() . '" title="' . sprintf( __( 'Continue Reading %s', 'startbox' ), esc_html( get_the_title(), 1 ) ) . '" rel="nofollow" class="more-link">' . apply_filters( 'sb_read_more', 'Read &amp; Discuss &raquo;' ) . '</a>';
 }
-
 
 /**
  * Displays the current post title.
@@ -152,10 +144,9 @@ function sb_readmore() {
  * @since 2.5.4
  *
  */
-function sb_entry_title() {
+function sbx_entry_title() {
 	return get_the_title();
 }
-
 
 /**
  * Displays the current post author.
@@ -164,7 +155,7 @@ function sb_entry_title() {
  * @since 2.4.6
  *
  */
-function sb_entry_author() {
+function sbx_entry_author() {
 
 	$output = '<span class="vcard author entry-author" itemprop="author" itemscope itemptype="http://schema.org/Person">';
 	$output .= '<a class="url fn n" itemprop="url" rel="author" href="' . get_author_posts_url( get_the_author_meta( 'ID' ) ) . '" title="' . sprintf( __( 'View all posts by %s', 'startbox' ), esc_attr( get_the_author() ) ) .'">';
@@ -175,7 +166,6 @@ function sb_entry_author() {
 	return $output;
 }
 
-
 /**
  * Displays the current post categories
  *
@@ -184,10 +174,9 @@ function sb_entry_author() {
  * @uses get_the_category_list
  *
  */
-function sb_entry_categories() {
+function sbx_entry_categories() {
 	return '<span class="entry-categories">' . get_the_category_list( ', ' ) . '</span>';
 }
-
 
 /**
  * Displays the current post tags or blank if none.
@@ -195,11 +184,10 @@ function sb_entry_categories() {
  * @since 2.4.6
  *
  */
-function sb_entry_tags() {
+function sbx_entry_tags() {
 	if ( $tags = get_the_tag_list( '', ', ' ) )
 		return '<span class="entry-tags">' . $tags . '</span>';
 }
-
 
 /**
  * Displays the number of comments in current post as a link to the comments, wrapped in a <span>.
@@ -207,19 +195,18 @@ function sb_entry_tags() {
  * @since 2.4.6
  *
  */
-function sb_entry_comments() {
+function sbx_entry_comments() {
 	ob_start();
 	comments_popup_link(__( 'No Comments', 'startbox' ), __( '1 Comment', 'startbox' ), __( '% Comments', 'startbox' ) );
 	return '<span class="entry-comments">' . ob_get_clean() . '</span>';
 }
-
 
 /**
  * Shortcode to create a content box
  *
  * @since 2.4.8
  */
-function sb_author_bio( $atts, $content = null ) {
+function sbx_author_bio( $atts, $content = null ) {
 
 	$output = '';
 	$output .= '<div id="entry-author-info">';
@@ -234,20 +221,18 @@ function sb_author_bio( $atts, $content = null ) {
 	return $output;
 }
 
-
 /**
  * Shortcode for creating a divider
  *
  * @since 2.4.8
  *
  */
-function sb_divider( $atts, $content = null ) {
+function sbx_divider( $atts, $content = null ) {
 	extract( shortcode_atts( array( 'show_top' => false, 'align' => 'center' ), $atts ) );
 
 	$top = ( $show_top ) ? do_shortcode( '[rtt]' ) : '' ;
 	return '<div class="hr divider" style="text-align:' . $align . ';">' . $top . '</div>';
 }
-
 
 /**
  * Shortcode for creating a jQuery toggle link
@@ -255,7 +240,7 @@ function sb_divider( $atts, $content = null ) {
  * @since 2.4.8
  *
  */
-function sb_toggle( $atts, $content = null ) {
+function sbx_toggle( $atts, $content = null ) {
 	extract( shortcode_atts( array(
 		'title' => 'Show More',
 		'class' => '',
@@ -275,14 +260,13 @@ function sb_toggle( $atts, $content = null ) {
 	return $output;
 }
 
-
 /**
  * Protect member-only content
  *
  * @since 2.4.8
  *
  */
-function sb_protected( $atts, $content = null ) {
+function sbx_protected( $atts, $content = null ) {
 	extract( shortcode_atts( array(
 		'show_login' => 'false',
 		'class' => ''
@@ -292,21 +276,20 @@ function sb_protected( $atts, $content = null ) {
 	if ( is_user_logged_in() ) { return do_shortcode( $content ); }
 	else {
 		$output = '<div class="protected ' . $class . '">';
-		$output .= apply_filters( 'sb_protected_text', __( 'Sorry, you must be logged in to view this content.', 'startbox' ) );
+		$output .= apply_filters( 'sbx_protected_text', __( 'Sorry, you must be logged in to view this content.', 'startbox' ) );
 		if ($show_login == 'true') { $output .= wp_login_form( array( 'echo' => 0 ) ); }
 		$output .= '</div>';
 
-		return apply_filters( 'sb_protected', $output );
+		return apply_filters( 'sbx_protected', $output );
 	}
 }
-
 
 /**
  * Hide content after specific expiration date
  *
  * @since 2.6
  */
-function sb_expires( $atts, $content = null ) {
+function sbx_expires( $atts, $content = null ) {
 	extract( shortcode_atts( array(
 		'date' => '',
 		'expired_message' => '',
@@ -322,13 +305,12 @@ function sb_expires( $atts, $content = null ) {
 		return do_shortcode( $content );
 }
 
-
 /**
  * Show content after specific teaser date
  *
  * @since 2.6
  */
-function sb_show_after( $atts, $content = null ) {
+function sbx_show_after( $atts, $content = null ) {
 	extract( shortcode_atts( array(
 		'date' => '',
 		'teaser' => '',
@@ -344,7 +326,6 @@ function sb_show_after( $atts, $content = null ) {
 		return do_shortcode( $content );
 }
 
-
 /**
  * Function for producing a sitemap.
  *
@@ -358,9 +339,9 @@ function sb_show_after( $atts, $content = null ) {
  *
  */
 function sb_sitemap( $args = '' ) {
-	echo sb_get_sitemap( $args );
+	echo sbx_get_sitemap( $args );
 }
-function sb_get_sitemap( $args = '' ) {
+function sbx_get_sitemap( $args = '' ) {
 	global $wp_query, $post;
 	$cached_query = $wp_query;
 	$cached_post = $post;
@@ -458,13 +439,12 @@ function sb_get_sitemap( $args = '' ) {
 	return $output;
 }
 
-
 /**
  * Shortcode to insert link to current site
  *
  * @since 2.6
  */
-function sb_site_link( $atts ) {
+function sbx_site_link( $atts ) {
 	extract( shortcode_atts( array(
 		'url' => site_url(),
 		'target' => '_blank',
@@ -474,37 +454,34 @@ function sb_site_link( $atts ) {
 	return '<a href="' . $url . '" target="' . $target . '">' . $text . '</a>';
 }
 
-
 /**
  * Shortcode to insert WordPress link
  *
  * @since 2.6
  */
-function sb_wp_link( $atts ) {
+function sbx_wp_link( $atts ) {
 	extract( shortcode_atts( array( 'target' => '_blank' ), $atts ) );
 
 	return '<a href="http://wordpress.org/" target="' . $target . '">WordPress</a>';
 }
-
 
 /**
  * Shortcode to insert StartBox link
  *
  * @since 2.6
  */
-function sb_footer_link( $atts ) {
+function sbx_footer_link( $atts ) {
 	extract( shortcode_atts( array( 'target' => '_blank', 'affiliate_link' => '' ), $atts ) );
 
 	return '<a href="http://wpstartbox.com/" target="' . $target . '">StartBox</a>';
 }
-
 
 /**
  * Shortcode to insert copyright date(s)
  *
  * @since 2.6
  */
-function sb_copyright( $atts ) {
+function sbx_copyright( $atts ) {
 	extract( shortcode_atts( array( 'year' => date('Y') ), $atts ) );
 
 	$current_year = date('Y');

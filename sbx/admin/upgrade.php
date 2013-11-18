@@ -12,7 +12,7 @@ class sb_upgrade_settings extends SB_Settings {
 		$this->options = array(
 			'sb_version_info' => array(
 				'type'	=> 'intro',
-				'desc'	=> sprintf( __( 'StartBox Version: %s', 'startbox' ), SB_VERSION )
+				'desc'	=> sprintf( __( 'StartBox Version: %s', 'startbox' ), SBX_VERSION )
 			)
 		);
 

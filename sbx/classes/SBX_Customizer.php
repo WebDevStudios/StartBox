@@ -15,7 +15,7 @@
  */
 
 // Check to see if current theme supports the customizer, skip the rest if not
-if ( ! current_theme_supports( 'sb-customizer' ) ) return;
+if ( ! current_theme_supports( 'sbx-customizer' ) ) return;
 
 /**
  * Base class for extending the theme customizer.
@@ -23,7 +23,7 @@ if ( ! current_theme_supports( 'sb-customizer' ) ) return;
  * @subpackage Classes
  * @since 3.0.0
  */
-class SB_Customizer {
+class SBX_Customizer {
 
 	/**
 	 * Instantiation method.
@@ -156,16 +156,16 @@ class SB_Customizer {
 					break;
 				case 'radio':
 				case 'select':
-					$setting['sanitize_callback'] = array( new SB_Sanitization( $setting_details['choices'] ), 'sanitize_multiple_choice' );
+					$setting['sanitize_callback'] = array( new SBX_Sanitization( $setting_details['choices'] ), 'sanitize_multiple_choice' );
 					break;
 				case 'checkbox':
-					$setting['sanitize_callback'] = array( new SB_Sanitization(), 'sanitize_html' );
+					$setting['sanitize_callback'] = array( new SBX_Sanitization(), 'sanitize_html' );
 					break;
 				case 'html':
-					$setting['sanitize_callback'] = array( new SB_Sanitization(), 'sanitize_html' );
+					$setting['sanitize_callback'] = array( new SBX_Sanitization(), 'sanitize_html' );
 					break;
 				case 'integer':
-					$setting['sanitize_callback'] = array( new SB_Sanitization(), 'sanitize_integer' );
+					$setting['sanitize_callback'] = array( new SBX_Sanitization(), 'sanitize_integer' );
 					break;
 				case 'color':
 					$setting['sanitize_callback'] = 'sanitize_hex_color';
@@ -223,7 +223,7 @@ class SB_Customizer {
 					$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, $setting_details['id'], $control ) );
 					break;
 				case 'textarea':
-					$wp_customize->add_control( new SB_Customize_Textarea_Control( $wp_customize, $setting_details['id'], $control ) );
+					$wp_customize->add_control( new SBX_Customize_Textarea_Control( $wp_customize, $setting_details['id'], $control ) );
 					break;
 			}
 		}
@@ -236,7 +236,7 @@ class SB_Customizer {
 	 * @since  3.0.0
 	 */
 	function customize_preview_int() {
-		wp_enqueue_script( 'sb_customizer', SB_JS . '/customizer.js', array( 'customize-preview' ), SB_VERSION, true );
+		wp_enqueue_script( 'sb_customizer', SBX_JS . '/customizer.js', array( 'customize-preview' ), SBX_VERSION, true );
 		wp_localize_script( 'sb_customizer', 'sb_customizer', $this->get_settings_js() );
 	}
 
@@ -272,7 +272,7 @@ class SB_Customizer {
 	}
 
 }
-$GLOBALS['startbox']->customizer = new SB_Customizer;
+$GLOBALS['startbox']->customizer = new SBX_Customizer;
 
 // Make sure WP_Customize_Control is available
 if ( class_exists( 'WP_Customize_Control' ) ) {
@@ -284,7 +284,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @link http://ottopress.com/2012/making-a-custom-control-for-the-theme-customizer
 	 * @since 3.0.0
 	 */
-	class SB_Customize_Textarea_Control extends WP_Customize_Control {
+	class SBX_Customize_Textarea_Control extends WP_Customize_Control {
 
 		/**
 		 * @access public
@@ -315,7 +315,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
  * @subpackage Classes
  * @since 3.0.0
  */
-class SB_Sanitization {
+class SBX_Sanitization {
 
 	/**
 	 * Allowed inputs
@@ -401,7 +401,7 @@ class SB_Sanitization {
  * @param  string $default A specific default to use if no data exists
  * @return string          The setting data, or a default
  */
-function sb_get_theme_mod( $setting = '', $default = '' ) {
+function sbx_get_theme_mod( $setting = '', $default = '' ) {
 
 	// Attempt to grab the setting from the DB
 	$output = get_theme_mod( $setting, $default );

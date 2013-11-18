@@ -13,12 +13,12 @@ function sb_admin_init() {
 		$sb_admin = add_menu_page( __( 'StartBox Options', 'startbox' ), __( 'SBX', 'startbox'), 'edit_theme_options', 'sb_admin', 'sb_admin_page', 'div', '59' );
 
 		// Register our custom settings field
-		register_setting( 'sb_admin', THEME_OPTIONS, 'sb_sanitize');
+		register_setting( 'sb_admin', SBX_OPTIONS, 'sb_sanitize');
 
 		// Reset our theme options back to default
-		if ( sb_get_option( 'reset' ) ) { 
-			sb_set_default_options(); 
-			wp_redirect( admin_url( 'themes.php?page=sb_admin&reset=true' ) ); 
+		if ( sb_get_option( 'reset' ) ) {
+			sb_set_default_options();
+			wp_redirect( admin_url( 'themes.php?page=sb_admin&reset=true' ) );
 		}
 
 		// Load in our custom JS and help content
@@ -36,8 +36,8 @@ function sb_admin_scripts() {
 	global $sb_admin;
 
 	// Admin styles
-	wp_enqueue_style( 'sb-admin', SB_CSS . '/admin.css' );
-	//wp_enqueue_style( 'sb-admin', SB_CSS . '/admin.min.css' );
+	wp_enqueue_style( 'sb-admin', SBX_CSS . '/admin.css' );
+	//wp_enqueue_style( 'sb-admin', SBX_CSS . '/admin.min.css' );
 
 	// Required scripts
 	wp_enqueue_script( 'common' );
@@ -87,7 +87,7 @@ function sb_admin_help() {
 
 		// Grab our theme options
 		global $sb_settings_factory;
-		$defaults = $theme_options = get_option( THEME_OPTIONS );
+		$defaults = $theme_options = get_option( SBX_OPTIONS );
 		$settings = $sb_settings_factory->settings;
 
 		// Add our generic helper text no matter what
@@ -145,7 +145,7 @@ function sb_screen_options( $columns, $screen ) {
 /**
  * Admin Metaboxes
  */
-function sb_admin_page() { 
+function sb_admin_page() {
 
 	global $sb_admin;
 	global $screen_layout_columns; ?>
@@ -155,7 +155,7 @@ function sb_admin_page() {
 		<?php wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false ); ?>
 		<?php wp_nonce_field( 'meta-box-order', 'meta-box-order-nonce', false ); ?>
 		<?php settings_fields( 'sb_admin' ); ?>
-		<?php 
+		<?php
 			// Notification nag
 			if ( isset( $_REQUEST['settings-updated'] ) && $_REQUEST['settings-updated'] == true ) {
 				echo '<div id="message" class="updated fade"><p>' . THEME_NAME . ' ' . __( 'Options Updated.', 'startbox' ) . '</p></div>';
@@ -197,7 +197,7 @@ function sb_admin_page() {
  */
 function sb_admin_buttons() { ?>
 	<input type="submit" name="Submit" value="<?php _e( 'Save All Settings', 'startbox' ) ?>" class="button-primary" />
-	<input type="submit" name="<?php echo esc_attr( THEME_OPTIONS . '[reset]' ); ?>" value="<?php _e( 'Reset All Settings', 'startbox' ); ?>" class="button" onclick="if( confirm( 'Reset All Theme Settings?' ) ) return true; else return false;" />
+	<input type="submit" name="<?php echo esc_attr( SBX_OPTIONS . '[reset]' ); ?>" value="<?php _e( 'Reset All Settings', 'startbox' ); ?>" class="button" onclick="if( confirm( 'Reset All Theme Settings?' ) ) return true; else return false;" />
 <?php }
 
 

@@ -11,7 +11,7 @@
 		<h1 class="entry-title" itemprop="headline"><?php the_title(); ?></h1>
 
 		<div class="entry-meta">
-			<?php echo do_shortcode( sb_get_theme_mod( 'sb_post_header_meta' ) ); ?>
+			<?php echo do_shortcode( sbx_get_theme_mod( 'sb_post_header_meta' ) ); ?>
 		</div><!-- .entry-meta -->
 	</header><!-- .entry-header -->
 
@@ -27,7 +27,7 @@
 
 	<footer class="entry-footer">
 		<div class="entry-meta">
-			<?php echo do_shortcode( sb_get_theme_mod( 'sb_post_footer_meta' ) ); ?>
+			<?php echo do_shortcode( sbx_get_theme_mod( 'sb_post_footer_meta' ) ); ?>
 		</div>
 	</footer><!-- .entry-meta -->
 	<?php do_action( 'entry_bottom' ); ?>

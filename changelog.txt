@@ -48,7 +48,7 @@
 	* Made comments responsive
 	* Rename "Sidebars" to "Widget Areas"
 	* Rename all span_X to span-X
-	* Refactored all Widget Areas to use sb_do_sidebar();
+	* Refactored all Widget Areas to use sbx_do_sidebar();
 	* Added Header Widget Area
 	* Added custom menu support to Header Widget Area
 
@@ -102,8 +102,8 @@
 
 2013.03.29 - version 2.7
 	* Added: Language support for British English, German, French, Italian, Spanish, Russian, Brazilian Portuguese, and Japanese
-	* Added: Filter ‘sb_register_sidebar_defaults’ to allow easy override of default sidebar markup
-	* Added: sb_image_crop_dimensions() for properly determining the crop coordinates for any image
+	* Added: Filter ‘sbx_register_sidebar_defaults’ to allow easy override of default sidebar markup
+	* Added: sbx_image_crop_dimensions() for properly determining the crop coordinates for any image
 	* Fixed: Multiple custom sidebars can now appear on a single page (e.g. replacing both Primary and Footer Aside 1 is possible).
 	* Fixed: Author template now properly displays entire author archive.
 	* Fixed: Replaced post content pagination to loop.php and single.php.
@@ -113,12 +113,12 @@
 	* Updated: Removed automatic add_theme_support of StartBox Slideshows (unless a site already has one or more slideshows)
 	* Updated: Updated startbox.css to better style heading elements (h1, h2, etc) for handling line-height and bottom margin.
 	* Updated: Updated the Options API uploader to use media manager.
-	* Updated: Improved inline documentation for sb_get_post_image, sb_post_image and sb_get_post_image_url
-	* Updated: Updated sb_get_post_image, sb_post_image and sb_get_post_image_url to not use extract()
+	* Updated: Improved inline documentation for sbx_get_post_image, sbx_post_image and sbx_get_post_image_url
+	* Updated: Updated sbx_get_post_image, sbx_post_image and sbx_get_post_image_url to not use extract()
 	* Updated: Added StartBox Support link to Help metabox in Theme Options
 	* Removed: Eliminated AJAXUpload scripts and all references
 	* Removed: Timthumb.php and dependence on Timthumb entirely. \o/
-	* Removed: Deprecated sb_post_image_url
+	* Removed: Deprecated sbx_post_image_url
 
 2012.10.13 - version 2.6
 	* Added: hook "sb_author_before_posts" on author.php after the author's meta information, before their posts are inserted
@@ -170,10 +170,10 @@
 	* Updated: updated how admin menu items were registered per WP 3.3 changes
 	* Updated: updated when all defaults scripts and styles were registered to better follow WP standards
 	* Updated: updated footer settings to load the current year as the default setting
-	* Updated: slideshows now use sb_post_image_url() instead of sb_post_image()
+	* Updated: slideshows now use sbx_post_image_url() instead of sbx_post_image()
 	* Updated: updated Nivo Slider from 2.3 to 2.7.1
 	* Fixed: minor CSS tweaks to Theme Options page to better match WP3.3 style
-	* Fixed: bug in attribute output for sb_post_image()
+	* Fixed: bug in attribute output for sbx_post_image()
 	* Fixed: bug where layout would not apply to posts page if set to static page via Settings > Reading
 	* Fixed: bug where correct sidebar would not apply to posts page if set to static page via Settings > Reading
 	* Fixed: annoying bug that would recheck slideshow control settings
@@ -200,7 +200,7 @@
 
 2011.07.30 - version 2.5.2
 	* Added: custom sidebars can now be set to appear on just the homepage
-	* Added: sb_register_sidebar helper function for easily registering new sidebar within theme/plugin
+	* Added: sbx_register_sidebar helper function for easily registering new sidebar within theme/plugin
 	* Added: sb_unregister_sidebar helper function for easily unregistering a default sidebar within theme/plugin
 	* Added: Slideshows can now be used to output a single random image (credit: Lee Doel)
 	* Updated: added check for is_post_type_archive() to the sb_page_title hook
@@ -215,7 +215,7 @@
 2011.06.24 - version 2.5.1
 	* Added: added sb_before/after_{sidebar}_aside to appear outside of opening/closing div for given sidebar
 	* Updated: moved sb_before/after_{sidebar}_widgets to appear inside of opening/closing div for for given sidebar
-	* Fixed: removed extra double quote output at end of sb_post_image_url()
+	* Fixed: removed extra double quote output at end of sbx_post_image_url()
 	* Fixed: hooked style.css to wp_enqueue_scripts, instead of template_redirect, preventing layout override
 	* Fixed: JS bug in Slideshows that prevented admin UI from working in IE, FF5 and Safari
 	* Fixed: bug that prevented thumbnails from being disabled via Theme Options
@@ -229,8 +229,8 @@
 	* Added: filter get_post_layout_default to override default layout
 	* Added: filter get_theme_layout to alter body class output for layouts
 	* Added: several more hooks before and after each individual widget area. maintained legacy hooks, too.
-	* Added: sb_post_image_url() to output just the image URI for cropped images
-	* Added: conditional sb_verify_post_type($type)
+	* Added: sbx_post_image_url() to output just the image URI for cropped images
+	* Added: conditional sbx_verify_post_type($type)
 	* Added: shortcode [sidebar id="the-sidebar-id"] for adding sidebars virtually anywhere
 	* Added: SB_Sidebar class, can be extended by child theme to redefine StartBox sidebar defaults
 	* Updated: added several more theme options for controlling post thumbnails
@@ -239,13 +239,13 @@
 	* Updated: deleted /includes/styles/layouts/
 	* Updated: edited SB Featured widget to include all public post types as selectable content types
 	* Updated: updated "Display A Category" page template (page_category.php) to optionally display CPT's and parse more variables set via custom fields
-	* Updated: updated sb_post_image to use TimThumb's new align arguments (NOTE: this breaks the old arguments)
+	* Updated: updated sbx_post_image to use TimThumb's new align arguments (NOTE: this breaks the old arguments)
 	* Updated: updated facebook shortcode to include new "send" button
 	* Updated: added post_format and custom loop support to the Display a Category page template
 	* Updated: hooked Google Analytics option into wp_head instead of sb_after
 	* Updated: added custom taxonomy archives to sb_page_title output
 	* Updated: added Caption Opacity option for Slideshows
-	* Fixed: minor bug in sb_post_image that improperly applied class .nophoto when use_attachments was set to true and post had attachments
+	* Fixed: minor bug in sbx_post_image that improperly applied class .nophoto when use_attachments was set to true and post had attachments
 	* Fixed: minor bug that prevented "THEMENAME Options Updated" from appearing after saving theme options
 	* Fixed: minor bug that broke smooth scrolling in "Return to Top" links
 
@@ -259,7 +259,7 @@
 
 2011.03.07 - version 2.4.9.3
 	* Added: Added Theme Options menu item to Appearance menu in admin bar (introduced in WP 3.1)
-	* Fixed: removed the non-validating attributes from the image tag generated via sb_post_image()
+	* Fixed: removed the non-validating attributes from the image tag generated via sbx_post_image()
 	* Fixed: corrected the hooks for including post thumbnails via RSS
 	* Fixed: corrected a bug with SB Social widget where twitter would always show
 	* Updated: upgraded Colorbox to 1.3.16
@@ -269,15 +269,15 @@
 	* added "Links To" option to slides so they can now be linked to pages/posts
 	* added theme option to Content Settings to selectively include post thumbnails in RSS feed
 	* added .ico to list of allowed file types for uploader theme options
-	* changed sb_post_image() and sb_get_post_image() to not fallback to post attachments if no featured image is specified (by default)
-	* added sb_post_image_use_attachments filter to optionally enable post attachments as fallback if no featured image is specified
+	* changed sbx_post_image() and sbx_get_post_image() to not fallback to post attachments if no featured image is specified (by default)
+	* added sbx_post_image_use_attachments filter to optionally enable post attachments as fallback if no featured image is specified
 	* bugfix: changed Featured Posts widget to filter post excerpts when limiting content to specific number of characters
 	* bugfix: added filter to wp_title_rss to prevent RSS feed from displaying double title
 
 2011.01.19 - version 2.4.9.1
 	* added default comment-reply script to queue for singular items (posts/pages)
 	* added wp_kses() filter to all text-based inputs in theme options (security)
-	* fixed bug with sb_get_post_image that was overriding a specified image_id with post's featured image
+	* fixed bug with sbx_get_post_image that was overriding a specified image_id with post's featured image
 	* fixed bug with slideshows (see above)
 	* moved slideshow size controls to the top of the options stack
 	* several other minor tweaks to comply with WP Theme Development Standards
@@ -295,7 +295,7 @@
 	* added [more] shortcode for displaying Read More permalink
 	* added filter for sb_doctitle
 	* added Tag Descriptions to Tag Archive pages
-	* fixed a minor bug with sb_tag_query
+	* fixed a minor bug with sbx_tag_query
 	* fixed a major bug with widget logic integration
 	* completely overhauled sb_nav_menu function
 	* moved /includes/admin/admin_settings.php to /includes/functions/
@@ -313,7 +313,7 @@
 	* added filter sb_logo_container, uses h2 by default
 	* added .mo and .po files in /includes/languages/
 	* changed Display Author Bio to a select box for displaying above or below post content
-	* changed sb_dropdown_posts to handle custom post types
+	* changed sbx_dropdown_posts to handle custom post types
 	* changed all unlocalized strings to be localized
 	* fixed bug with Display Author Bio theme option
 	* fixed a bug with the comment formats and default gravatar
@@ -362,8 +362,8 @@
 		- set sb_comment_gravatar_default filter to use sb_avatar_defaults
 	* /includes/functions/custom.php
 		- added sb_nav_menu() helper function, filterable via 'sb_nav_menu' filter.
-		- added $attr parameter to sb_post_image()
-		- added a TON of fliters to sb_post_image()
+		- added $attr parameter to sbx_post_image()
+		- added a TON of fliters to sbx_post_image()
 	* /includes/functions/hooks.php
 		- changed the default stylesheet to hook into template_redirect via wp_enqueue_style instead of directly to wp_head
 		- added hooks for primary and secondary widget areas
@@ -408,8 +408,8 @@
 	* /includes/admin/footer.php - Added a link to Widgets for admin links
 	* /includes/admin/admin_settings.php - Added 'posts' as an available option for 'select' type settings
 	* /includes/functions/custom.php
-		- Added sb_dropdown_posts() for creating a select input of posts
-		- Added sb_tag_query() for handling titles on tag archives
+		- Added sbx_dropdown_posts() for creating a select input of posts
+		- Added sbx_tag_query() for handling titles on tag archives
 	* /includes/widgets/featuredposts.php - Completely overhauled widget to handle featured pages and posts, renamed to SB Featured Content
 	* loop.php - updated conditional statement for displaying content. commented to make it clearer.
 
@@ -574,13 +574,13 @@
 	* /includes/styles/defaults/startbox.css
 		- updated style for Recent Posts widget
 	* added filters for
-		- sb_copyright
+		- sbx_copyright
 		- sb_design_credit
-		- sb_post_image_none
-		- sb_post_image_width
-		- sb_post_image_height
-		- sb_post_image_cropfrom
-		- sb_post_image_zc
+		- sbx_post_image_none
+		- sbx_post_image_width
+		- sbx_post_image_height
+		- sbx_post_image_cropfrom
+		- sbx_post_image_zc
 		- sb_comment_gravatar_size
 		- sb_comment_gravatar_default
 		- sb_author_gravatar_size
@@ -588,7 +588,7 @@
 		- sb_social_images_url
 		- sb_scocial_images_size
 		- sb_theme_docs
-		- sb_rtt_text
+		- sbx_rtt_text
 
 2010.06.19 - version 2.4.2
 	* added /includes/admin/admin_settings.php
@@ -644,9 +644,9 @@
 	* header.php - added additional conditionals to <title> tag for better SEO
 	* /includes/admin/logo_options.php - fixed the broken first-attempt upload
 	* /includes/functions/custom.php
-		- updated sb_get_post_image for multisite compatibility
+		- updated sbx_get_post_image for multisite compatibility
 		- added "nophoto" class to image tag if no photo is available, provides ability to style away if desired
-		- added sb_post_image_feeds to include thumbnail in feed
+		- added sbx_post_image_feeds to include thumbnail in feed
 	* /includes/functions/hooks.php - replaced $article.php variable with new get_template_part() function
 	* /includes/styles/defaults/startbox.css - added styles for calendar widget
 	* index.php - replaced $article.php variable with new get_template_part() function
@@ -767,7 +767,7 @@
 	* added page_fullwidth.php - a full-width page template
 	* /includes/styles/defaults/startbox.css - updated to include style for full-width template
 	* /includes/scripts/timthumb.php - replaced with modified version to allow crop location
-	* /includes/functions/custom - updated sb_post_image() to include cropfrom variable
+	* /includes/functions/custom - updated sbx_post_image() to include cropfrom variable
 	* started using git for versioning
 
 2010.04.16 - version 2.2.9
@@ -812,7 +812,7 @@
 	* removed /includes/scripts/menu.js
 
 2010.04.07 - version 2.2.7
-	* includes/functions/custom.php - revised sb_the_post_image() and sb_get_post_image() functions to better reference the_post_image
+	* includes/functions/custom.php - revised sb_the_post_image() and sbx_get_post_image() functions to better reference the_post_image
 
 2010.04.05 - version 2.2.6
 	* added /includes/widgets/connected.php
@@ -827,13 +827,13 @@
 		- added thumbnail size of 60x60
 		- added reference to new comments stylesheet
 	* includes/functions/custom.php
-		- updated sb_get_post_image function to reference IMAGES_URL
-		- updated sb_post_image to pass W and H variables for the_post_image
+		- updated sbx_get_post_image function to reference IMAGES_URL
+		- updated sbx_post_image to pass W and H variables for the_post_image
 
 2010.03.03 - version 2.2.5
 	* added /includes/functions/custom_metaboxes.php
 	* custom.php
-		- added support to sb_post_image() for WP's the_post_thumbnail()
+		- added support to sbx_post_image() for WP's the_post_thumbnail()
 		- removed all references to custom_metaboxes
 	* includes/functions/widgets/stories.php
 		- renamed widget to Recent Posts

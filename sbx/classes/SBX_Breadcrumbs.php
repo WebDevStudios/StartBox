@@ -9,7 +9,7 @@
  */
 
 // Check to see if current theme supports sidebars, skip the rest if not
-if ( ! current_theme_supports( 'sb-breadcrumbs' ) )
+if ( ! current_theme_supports( 'sbx-breadcrumbs' ) )
 	return;
 
 /**
@@ -18,7 +18,7 @@ if ( ! current_theme_supports( 'sb-breadcrumbs' ) )
  * @subpackage Classes
  * @since 3.0.0
  */
-class SB_Breadcrumbs {
+class SBX_Breadcrumbs {
 
 	/**
 	 * Settings array, a merge of provided values and defaults. Private.
@@ -343,14 +343,14 @@ class SB_Breadcrumbs {
 }
 
 /**
- * Helper function for the SB_Breadcrumbs Class output
+ * Helper function for the SBX_Breadcrumbs Class output
  *
  * @since 3.0.0
  * @param array $args Breadcrumb arguments
  */
-function sb_breadcrumbs( $args = array() ) {
+function sbx_breadcrumbs( $args = array() ) {
 	global $startbox;
-	$startbox->breadcrumbs = new SB_Breadcrumbs;
+	$startbox->breadcrumbs = new SBX_Breadcrumbs;
 	echo $startbox->breadcrumbs->get_output( $args );
 }
 
@@ -358,11 +358,11 @@ function sb_breadcrumbs( $args = array() ) {
  * Render breadcrumbs across the site
  *
  * This function grants preference to 3rd-party
- * plugins before attempting sb_breadcrumbs()
+ * plugins before attempting sbx_breadcrumbs()
  *
  * @since 3.0.0
  */
-function sb_do_breadcrumbs() {
+function sbx_do_breadcrumbs() {
 
 	// Breadcrumb NavXT
 	if ( function_exists( 'bcn_display' ) )
@@ -375,7 +375,7 @@ function sb_do_breadcrumbs() {
 		breadcrumbs();
 	// SB Breadcrumbs
 	else
-		sb_breadcrumbs();
+		sbx_breadcrumbs();
 
 }
-add_action( 'content_top', 'sb_do_breadcrumbs' );
+add_action( 'content_top', 'sbx_do_breadcrumbs' );

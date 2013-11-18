@@ -8,7 +8,7 @@
  */
 
 
-if ( ! function_exists( 'sb_time_since' ) ) :
+if ( ! function_exists( 'sbx_time_since' ) ) :
 /**
  * Display Relative Timestamps
  *
@@ -16,15 +16,15 @@ if ( ! function_exists( 'sb_time_since' ) ) :
  * @link http://www.1976design.com/blog/archive/2004/07/23/redesign-time-presentation/
  *
  * Usage:
- * For posts: echo time_since(abs(strtotime($post->post_date_gmt . " GMT")), time()) . ' ago';
- * For comments: echo time_since(abs(strtotime($comment->comment_date_gmt . " GMT")), time()) . ' ago';
+ * For posts: echo sbx_time_since(abs(strtotime($post->post_date_gmt . " GMT")), time()) . ' ago';
+ * For comments: echo sbx_time_since(abs(strtotime($comment->comment_date_gmt . " GMT")), time()) . ' ago';
  *
  * @since 2.4.6
  * @param integer $older_date The original date in question
  * @param integer $newer_date Specify a known date to determine elapsed time. Will use current time if false Default: false
  * @return string Time since
 */
-function sb_time_since($older_date, $newer_date = false) {
+function sbx_time_since($older_date, $newer_date = false) {
 
 	// array of time period chunks
 	$chunks = array(
@@ -81,7 +81,7 @@ function sb_time_since($older_date, $newer_date = false) {
 endif;
 
 
-if ( ! function_exists( 'sb_dropdown_posts' ) ) :
+if ( ! function_exists( 'sbx_dropdown_posts' ) ) :
 /**
  * Retrieve or display list of posts as a dropdown (select list).
  *
@@ -90,7 +90,7 @@ if ( ! function_exists( 'sb_dropdown_posts' ) ) :
  * @param array|string $args Optional. Override default arguments.
  * @return string HTML content, if not displaying.
  */
-function sb_dropdown_posts($args = '') {
+function sbx_dropdown_posts($args = '') {
 
 	$defaults = array(
 		'post_type' => 'post',
@@ -151,7 +151,7 @@ function sb_dropdown_posts($args = '') {
 endif;
 
 
-if ( ! function_exists( 'sb_tag_query' ) ) :
+if ( ! function_exists( 'sbx_tag_query' ) ) :
 /**
  * Create a nice multi-tag title
  *
@@ -159,7 +159,7 @@ if ( ! function_exists( 'sb_tag_query' ) ) :
  *
  * @since 2.4.7
  */
-function sb_tag_query() {
+function sbx_tag_query() {
 	$nice_tag_query = get_query_var('tag'); // tags in current query
 	$nice_tag_query = str_replace(' ', '+', $nice_tag_query); // get_query_var returns ' ' for AND, replace by +
 	$tag_slugs = preg_split('%[,+]%', $nice_tag_query, -1, PREG_SPLIT_NO_EMPTY); // create array of tag slugs
@@ -277,11 +277,11 @@ add_filter( 'comment_text', 'capital_B_dangit', 31 );
  * @param	array	$page_columns	The array of columns rendering page meta data./
  * @return	array					The update array of page columns.
  */
-function sb_add_template_column( $page_columns ) {
+function sbx_add_template_column( $page_columns ) {
 	$page_columns['template'] = __( 'Page Template', 'startbox' );
 	return $page_columns;
 }
-add_filter( 'manage_edit-page_columns', 'sb_add_template_column' );
+add_filter( 'manage_edit-page_columns', 'sbx_add_template_column' );
 
 
 /**
@@ -293,7 +293,7 @@ add_filter( 'manage_edit-page_columns', 'sb_add_template_column' );
  * @since	2.7
  * @param	string	$column_name	The name of the column being rendered
  */
-function sb_add_template_data( $column_name ) {
+function sbx_add_template_data( $column_name ) {
 
 	// Grab a reference to the post that's currently being rendered
 	global $post;
@@ -324,121 +324,7 @@ function sb_add_template_data( $column_name ) {
 	echo $template_name;
 
 }
-add_action( 'manage_page_posts_custom_column', 'sb_add_template_data' );
-
-
-if ( ! function_exists( 'sb_get_image_id' ) ) :
-/**
- * Pull an attachment ID from a post, if one exists.
- *
- * @since    3.0.0
- * @global   WP_Post   $post      Post object.
- * @param    integer   $index     Optional. Index of which image to return from a post. Default is 0.
- * @return   integer   boolean    Returns image ID, or false if image with given index does not exist.
- */
-function sbx_get_image_id( $index = 0 ) {
-
-	global $post;
-
-	$ids = array_keys(
-		get_children(
-			array(
-				'post_parent'    => $post->ID,
-				'post_type'	     => 'attachment',
-				'post_mime_type' => 'image',
-				'orderby'        => 'menu_order',
-				'order'	         => 'ASC',
-			)
-		)
-	);
-
-	if ( isset( $ids[$index] ) )
-		return $ids[$index];
-
-	return false;
-
-}
-endif;
-
-
-if ( ! function_exists( 'sbx_get_image' ) ) :
-/**
- * Return an image pulled from the media gallery.
- *
- * Supported $args keys are:
- *
- *  - format   - string, default is 'html'
- *  - size     - string, default is 'full'
- *  - num      - integer, default is 0
- *  - attr     - string, default is ''
- *  - fallback - mixed, default is 'first-attached'
- *
- * @since    3.0.0
- * @uses     sb_get_image_id()  Pull an attachment ID from a post, if one exists.
- * @global   WP_Post  $post     Post object.
- * @param    array    string    $args Optional. Image query arguments. Default is empty array.
- * @return   string   boolean   Return image element HTML, URL of image, or false.
- */
-function sbx_get_image( $args = array() ) {
-
-	global $post;
-
-	$defaults = apply_filters( 'sbx_get_image_default_args', array(
-		'format'   => 'html',
-		'size'     => 'full',
-		'num'      => 0,
-		'attr'     => '',
-		'fallback' => 'first-attached'
-	) );
-
-	$args = wp_parse_args( $args, $defaults );
-
-	// Check for post image
-	if ( has_post_thumbnail() && ( 0 === $args['num'] ) ) {
-		$id = get_post_thumbnail_id();
-		$html = wp_get_attachment_image( $id, $args['size'], false, $args['attr'] );
-		list( $url ) = wp_get_attachment_image_src( $id, $args['size'], false, $args['attr'] );
-	}
-
-	// Else if first-attached, pull the first image attachment
-	elseif ( 'first-attached' === $args['fallback'] ) {
-		$id = sb_get_image_id( $args['num'] );
-		$html = wp_get_attachment_image( $id, $args['size'], false, $args['attr'] );
-		list( $url ) = wp_get_attachment_image_src( $id, $args['size'], false, $args['attr'] );
-	}
-
-	// Else if fallback array exists
-	elseif ( is_array( $args['fallback'] ) ) {
-		$id   = 0;
-		$html = $args['fallback']['html'];
-		$url  = $args['fallback']['url'];
-	}
-
-	// Else, return false
-	else {
-		return false;
-	}
-
-	// Source path, relative to the root
-	$src = str_replace( home_url(), '', $url );
-
-	// Determine output
-	if ( 'html' === mb_strtolower( $args['format'] ) )
-		$output = $html;
-	elseif ( 'url' === mb_strtolower( $args['format'] ) )
-		$output = $url;
-	else
-		$output = $src;
-
-	// Return false if $url is blank
-	if ( empty( $url ) ) $output = false;
-
-	// Return data, filtered
-	return apply_filters( 'sbx_get_image', $output, $args, $id, $html, $url, $src );
-
-}
-endif;
-
+add_action( 'manage_page_posts_custom_column', 'sbx_add_template_data' );
 
 if ( ! function_exists( 'sbx_content_nav' ) ) :
 /**
@@ -559,60 +445,6 @@ function sbx_comment( $comment, $args, $depth ) {
 	endif;
 }
 endif;
-
-
-if ( ! function_exists( 'sbx_the_attached_image' ) ) :
-/**
- * Prints the attached image with a link to the next attached image.
- */
-function sbx_the_attached_image() {
-	$post                = get_post();
-	$attachment_size     = apply_filters( 'sbx_attachment_size', array( 1200, 1200 ) );
-	$next_attachment_url = wp_get_attachment_url();
-
-	/**
-	 * Grab the IDs of all the image attachments in a gallery so we can get the
-	 * URL of the next adjacent image in a gallery, or the first image (if
-	 * we're looking at the last image in a gallery), or, in a gallery of one,
-	 * just the link to that image file.
-	 */
-	$attachment_ids = get_posts( array(
-		'post_parent'    => $post->post_parent,
-		'fields'         => 'ids',
-		'numberposts'    => -1,
-		'post_status'    => 'inherit',
-		'post_type'      => 'attachment',
-		'post_mime_type' => 'image',
-		'order'          => 'ASC',
-		'orderby'        => 'menu_order ID'
-	) );
-
-	// If there is more than 1 attachment in a gallery...
-	if ( count( $attachment_ids ) > 1 ) {
-		foreach ( $attachment_ids as $attachment_id ) {
-			if ( $attachment_id == $post->ID ) {
-				$next_id = current( $attachment_ids );
-				break;
-			}
-		}
-
-		// get the URL of the next image attachment...
-		if ( $next_id )
-			$next_attachment_url = get_attachment_link( $next_id );
-
-		// or get the URL of the first image attachment.
-		else
-			$next_attachment_url = get_attachment_link( array_shift( $attachment_ids ) );
-	}
-
-	printf( '<a href="%1$s" title="%2$s" rel="attachment" itemprop="thumbnailUrl">%3$s</a>',
-		esc_url( $next_attachment_url ),
-		the_title_attribute( array( 'echo' => false ) ),
-		wp_get_attachment_image( $post->ID, $attachment_size )
-	);
-}
-endif;
-
 
 /**
  * Returns true if a blog has more than 1 category

@@ -20,31 +20,31 @@
  * @param  string $context The page context to use
  * @return array           An array of registered layouts
  */
-function sb_get_registered_layouts( $context = 'default' ) {
+function sbx_get_registered_layouts( $context = 'default' ) {
 	return apply_filters( "sb_get_{$context}_layouts", array(
 		'one-col' => array(
 			'label' => '1 Column (no sidebars)',
-			'img'   => SB_IMAGES . '/layouts/one-col.png'
+			'img'   => SBX_IMAGES . '/layouts/one-col.png'
 			),
 		'two-col-left' => array(
 			'label' => '2 Columns, sidebar on left',
-			'img'   => SB_IMAGES . '/layouts/two-col-left.png'
+			'img'   => SBX_IMAGES . '/layouts/two-col-left.png'
 			),
 		'two-col-right' => array(
 			'label' => '2 Columns, sidebar on right',
-			'img'   => SB_IMAGES . '/layouts/two-col-right.png'
+			'img'   => SBX_IMAGES . '/layouts/two-col-right.png'
 			),
 		'three-col-left' => array(
 			'label' => '3 Columns, sidebar on left',
-			'img'   => SB_IMAGES . '/layouts/three-col-left.png'
+			'img'   => SBX_IMAGES . '/layouts/three-col-left.png'
 			),
 		'three-col-right' => array(
 			'label' => '3 Columns, sidebar on right',
-			'img'   => SB_IMAGES . '/layouts/three-col-right.png'
+			'img'   => SBX_IMAGES . '/layouts/three-col-right.png'
 			),
 		'three-col-both' => array(
 			'label' => '3 Columns, sidebar on each side',
-			'img'   => SB_IMAGES . '/layouts/three-col-both.png'
+			'img'   => SBX_IMAGES . '/layouts/three-col-both.png'
 			)
 	) );
 }
@@ -55,11 +55,11 @@ function sb_get_registered_layouts( $context = 'default' ) {
  * @since 2.5
  * @return string The layout for the given page.
  */
-function sb_get_layout() {
+function sbx_get_layout() {
 	global $wp_query;
 
 	/* Get the available post layouts and store them in an array */
-	foreach ( get_theme_support( 'sb-layouts' ) as $layout => $key ) {
+	foreach ( get_theme_support( 'sbx-layouts' ) as $layout => $key ) {
 		$layouts[] = $layout;
 	}
 
@@ -74,7 +74,7 @@ function sb_get_layout() {
 		$post_id = $wp_query->get_queried_object_id();
 
 		/* Get the post layout. */
-		$layout = sb_get_post_layout( $post_id );
+		$layout = sbx_get_post_layout( $post_id );
 	}
 
 	/* If viewing a taxonomy, check if a layout has been specified */
@@ -85,7 +85,7 @@ function sb_get_layout() {
 
 	/* Make sure the given layout is in the array of available post layouts for the theme. */
 	if ( empty( $layout ) || !in_array( $layout, $layouts ) || $layout == 'default' )
-		$layout = apply_filters( 'sb_get_post_layout_default', 'default' );
+		$layout = apply_filters( 'sbx_get_post_layout_default', 'default' );
 
 	/* Return the layout and allow plugin/theme developers to override it. */
 	return esc_attr( apply_filters( 'get_theme_layout', "layout-{$layout}" ) );
@@ -96,7 +96,7 @@ function sb_get_layout() {
  *
  * @since 2.5
  */
-function sb_get_post_layout( $post_id ) {
+function sbx_get_post_layout( $post_id ) {
 	$post_layout = get_post_meta( $post_id, '_sb_layout', true );
 	return ( !empty( $post_layout ) ? $post_layout : 'default' );
 }
@@ -106,7 +106,7 @@ function sb_get_post_layout( $post_id ) {
  *
  * @since 2.5
  */
-function sb_set_post_layout( $post_id, $layout ) {
+function sbx_set_post_layout( $post_id, $layout ) {
 	update_post_meta( $post_id, '_sb_layout', $layout );
 }
 
@@ -115,7 +115,7 @@ function sb_set_post_layout( $post_id, $layout ) {
  *
  * @since 2.5
  */
-function sb_supported_layouts($instance) {
+function sbx_supported_layouts($instance) {
 
 	/* Get theme-supported theme layouts. */
 	$supported_layouts = get_theme_support( $instance );
@@ -130,23 +130,23 @@ function sb_supported_layouts($instance) {
  *
  * @since 2.5
  */
-function sb_layouts_admin_setup() {
+function sbx_layouts_admin_setup() {
 
 	// For each available post type, create a meta box on its edit page if 'public' is set to true
 	foreach ( get_post_types( array( 'public' => true ), 'objects' ) as $type ) {
 		if ($type->name != 'slideshow')
-			add_meta_box( 'theme-layouts-post-meta-box', __( 'Layout', 'startbox' ), 'sb_layouts_post_meta_box', $type->name, 'side', 'default' );
+			add_meta_box( 'theme-layouts-post-meta-box', __( 'Layout', 'startbox' ), 'sbx_layouts_post_meta_box', $type->name, 'side', 'default' );
 	}
 
 	// For each available taxonomy, add meta information if it supports 'show_ui'
 	foreach ( get_taxonomies( array( 'show_ui' => true ) ) as $tax_name) {
-        add_action($tax_name . '_edit_form', 'sb_layouts_term_meta_box', 10, 2);
+        add_action($tax_name . '_edit_form', 'sbx_layouts_term_meta_box', 10, 2);
     }
 
 	/* Saves the post format on the post editing page. */
-	add_action( 'save_post', 'sb_layouts_save_post', 10, 2 );
+	add_action( 'save_post', 'sbx_layouts_save_post', 10, 2 );
 }
-add_action( 'admin_menu', 'sb_layouts_admin_setup' );
+add_action( 'admin_menu', 'sbx_layouts_admin_setup' );
 
 /**
  * Adds the post layout class to the WordPress body class in the form of "layout-$layout"
@@ -154,15 +154,15 @@ add_action( 'admin_menu', 'sb_layouts_admin_setup' );
  * @since 2.5
  * @param array $classes all the set classes
  */
-function sb_layouts_body_class( $classes ) {
+function sbx_layouts_body_class( $classes ) {
 
 	/* Adds the layout to array of body classes. */
-	$classes[] = sanitize_html_class( sb_get_layout() );
+	$classes[] = sanitize_html_class( sbx_get_layout() );
 
 	/* Return the $classes array. */
 	return $classes;
 }
-add_filter( 'body_class', 'sb_layouts_body_class' );
+add_filter( 'body_class', 'sbx_layouts_body_class' );
 
 /**
  * Displays a meta box of radio selectors on the post editing screen, which allows theme users to select
@@ -170,18 +170,18 @@ add_filter( 'body_class', 'sb_layouts_body_class' );
  *
  * @since 2.5
  */
-function sb_layouts_post_meta_box( $post, $box ) {
+function sbx_layouts_post_meta_box( $post, $box ) {
 
 	/* Get theme-supported theme layouts. */
-	$layouts = get_theme_support( 'sb-layouts' );
+	$layouts = get_theme_support( 'sbx-layouts' );
 	$post_layouts = $layouts[0];
 
 	/* Get the current post's layout. */
-	$post_layout = sb_get_post_layout( $post->ID ); ?>
+	$post_layout = sbx_get_post_layout( $post->ID ); ?>
 
 	<div class="post-layout">
 
-		<input type="hidden" name="sb_layouts_post_meta_box_nonce" value="<?php echo esc_attr( wp_create_nonce( basename( __FILE__ ) ) ); ?>" />
+		<input type="hidden" name="sbx_layouts_post_meta_box_nonce" value="<?php echo esc_attr( wp_create_nonce( basename( __FILE__ ) ) ); ?>" />
 
 		<p><?php _e( 'Specify a custom page layout for this content.', 'startbox' ); ?></p>
 
@@ -207,21 +207,21 @@ function sb_layouts_post_meta_box( $post, $box ) {
  *
  * @since 2.5
  */
-function sb_layouts_save_post( $post_id, $post ) {
+function sbx_layouts_save_post( $post_id, $post ) {
 
 	/* Verify the nonce for the post formats meta box. */
-	if ( !isset( $_POST['sb_layouts_post_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['sb_layouts_post_meta_box_nonce'], basename( __FILE__ ) ) )
+	if ( !isset( $_POST['sbx_layouts_post_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['sbx_layouts_post_meta_box_nonce'], basename( __FILE__ ) ) )
 		return $post_id;
 
 	/* Get the previous post layout. */
-	$old_layout = sb_get_post_layout( $post_id );
+	$old_layout = sbx_get_post_layout( $post_id );
 
 	/* Get the submitted post layout. */
 	$new_layout = esc_attr( $_POST['post_layout'] );
 
 	/* If the old layout doesn't match the new layout, update the post layout meta. */
 	if ( $old_layout !== $new_layout )
-		sb_set_post_layout( $post_id, $new_layout );
+		sbx_set_post_layout( $post_id, $new_layout );
 }
 
 /**
@@ -229,10 +229,10 @@ function sb_layouts_save_post( $post_id, $post ) {
  *
  * @since 2.5
  */
-function sb_layouts_term_meta_box($tag, $taxonomy) {
+function sbx_layouts_term_meta_box($tag, $taxonomy) {
 
 	$tax = get_taxonomy( $taxonomy ); // create an object from the given taxonomy
-	$layouts = get_theme_support( 'sb-layouts' ); // Get theme-supported layouts
+	$layouts = get_theme_support( 'sbx-layouts' ); // Get theme-supported layouts
 	$post_layouts = $layouts[0]; // Grab the first item in the layouts array (which is the array of supported layouts)
 
 ?>
@@ -268,7 +268,7 @@ function sb_layouts_term_meta_box($tag, $taxonomy) {
  *
  * @since 2.5
  */
-function sb_layouts_term_meta_save($term_id, $tt_id, $taxonomy) {
+function sbx_layouts_term_meta_save( $term_id, $tt_id, $taxonomy ) {
 
 	// Grab the saved meta from the stored option
 	$term_meta = (array) get_option( 'startbox_termmeta' );
@@ -280,14 +280,14 @@ function sb_layouts_term_meta_save($term_id, $tt_id, $taxonomy) {
 	update_option( 'startbox_termmeta', $term_meta );
 
 }
-add_action('edit_term', 'sb_layouts_term_meta_save', 10, 3);
+add_action( 'edit_term', 'sbx_layouts_term_meta_save', 10, 3 );
 
 /**
  * Delete the taxonomy layout meta when the taxonomy is deleted (hat tip to Nathan Rice of Genesis! and Joost DeValk)
  *
  * @since 2.5
  */
-function sb_layouts_term_meta_delete($term_id, $tt_id, $taxonomy) {
+function sbx_layouts_term_meta_delete( $term_id, $tt_id, $taxonomy ) {
 
 	// Grab the saved meta from the stored option
 	$term_meta = (array) get_option( 'startbox_termmeta' );
@@ -299,14 +299,14 @@ function sb_layouts_term_meta_delete($term_id, $tt_id, $taxonomy) {
 	update_option( 'startbox_termmeta', (array) $term_meta );
 
 }
-add_action('delete_term', 'sb_layouts_term_meta_delete', 10, 3);
+add_action( 'delete_term', 'sbx_layouts_term_meta_delete', 10, 3 );
 
 /**
  * Filter get_term to attach the layout meta to each taxonomy (hat tip to Nathan Rice of Genesis! and Joost DeValk)
  *
  * @since 2.5
  */
-function sb_layouts_term_meta_filter($term, $taxonomy) {
+function sbx_layouts_term_meta_filter( $term, $taxonomy ) {
 
 	// Grab the saved meta from the stored option
 	$meta = get_option( 'startbox_termmeta' );
@@ -328,4 +328,4 @@ function sb_layouts_term_meta_filter($term, $taxonomy) {
 	return $term;
 
 }
-add_filter('get_term', 'sb_layouts_term_meta_filter', 10, 2);
+add_filter( 'get_term', 'sbx_layouts_term_meta_filter', 10, 2 );

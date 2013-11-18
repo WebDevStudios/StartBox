@@ -9,7 +9,7 @@
  */
 
 // Check to see if current theme supports sidebars, skip the rest if not
-if ( ! current_theme_supports( 'sb-custom-sidebars' ) )
+if ( ! current_theme_supports( 'sbx-custom-sidebars' ) )
 	return;
 
 /**
@@ -23,7 +23,7 @@ if ( ! current_theme_supports( 'sb-custom-sidebars' ) )
  * @subpackage Classes
  * @since 3.0.0
  */
-class SB_Custom_Sidebars extends SB_Sidebars {
+class SBX_Custom_Sidebars extends SBX_Sidebars {
 
 	/**
 	 * Hook everything where it belongs and fire up the engine
@@ -45,7 +45,7 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 
 		// Register and render custom sidebars
 		add_action( 'init', array( $this, 'register_custom_sidebars'), 11 );
-		add_filter( 'sb_do_sidebar', array( $this, 'maybe_replace_current_sidebar' ), 10, 2 );
+		add_filter( 'sbx_do_sidebar', array( $this, 'maybe_replace_current_sidebar' ), 10, 2 );
 
 	}
 
@@ -216,7 +216,7 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 		// Loop through all registered sidebars, add them to the list
 		foreach ( $startbox->sidebars->registered_sidebars as $sidebar ) {
 			// Only include replaceable sidebars in our list
-			if ( sb_is_sidebar_replaceable( $sidebar['id'] ) )
+			if ( sbx_is_sidebar_replaceable( $sidebar['id'] ) )
 				$output .= '<option value="' . $sidebar['id'] . '"' . selected( $selected, $sidebar['id'], false) . ' >' . $sidebar['name'] . '</option>';
 		}
 		$output .= '</select>';
@@ -374,7 +374,7 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 		}
 
 		// Use a custom walker for displaying the taxonomy list
-		$walker = new SB_Sidebars_Checklist;
+		$walker = new SBX_Sidebars_Checklist;
 
 		// Generate our output
 	?>
@@ -606,7 +606,7 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 		global $post, $wp_query;
 
 		// If the sidebar is not replaceable, bail early
-		if ( ! sb_is_sidebar_replaceable( $sidebar ) )
+		if ( ! sbx_is_sidebar_replaceable( $sidebar ) )
 			return $sidebar;
 
 		// Grab our assigned locations
@@ -643,7 +643,7 @@ class SB_Custom_Sidebars extends SB_Sidebars {
 		return $sidebar;
 	}
 }
-$sb_custom_sidebars = new SB_Custom_Sidebars;
+$sbx_custom_sidebars = new SBX_Custom_Sidebars;
 
 /**
  * Custom walker class for taxonomy lists
@@ -651,7 +651,7 @@ $sb_custom_sidebars = new SB_Custom_Sidebars;
  * @since 2.5.0
  * @uses Walker_Nav_Menu
  */
-class SB_Sidebars_Checklist extends Walker_Nav_Menu  {
+class SBX_Sidebars_Checklist extends Walker_Nav_Menu  {
 
 	/**
 	 * @see Walker::start_el()

@@ -12,7 +12,7 @@
  */
 
 // Check to see if current theme supports sidebars, skip the rest if not
-if ( ! current_theme_supports( 'sb-sidebars' ) )
+if ( ! current_theme_supports( 'sbx-sidebars' ) )
 	return;
 
 /**
@@ -23,7 +23,7 @@ if ( ! current_theme_supports( 'sb-sidebars' ) )
  * @subpackage Classes
  * @since 2.5.0
  */
-class SB_Sidebars {
+class SBX_Sidebars {
 
 	/**
 	 * Variable for storing all registered sidebars, don't override this.
@@ -113,7 +113,7 @@ class SB_Sidebars {
 		$location = $sidebar;
 
 		// Maybe replace the default sidebar with a custom sidebar
-		$sidebar = apply_filters( 'sb_do_sidebar', $sidebar );
+		$sidebar = apply_filters( 'sbx_do_sidebar', $sidebar );
 
 		// If the sidebar has widgets, or an action attached to it, commence output
 		if ( is_active_sidebar( $sidebar ) || has_action( "sb_no_{$location}_widgets" ) ) {
@@ -132,27 +132,27 @@ class SB_Sidebars {
 	}
 
 }
-$GLOBALS['startbox']->sidebars = new SB_Sidebars;
+$GLOBALS['startbox']->sidebars = new SBX_Sidebars;
 
 /**
- * Wrapper Function for SB_Sidebars::register_sidebar()
+ * Wrapper Function for SBX_Sidebars::register_sidebar()
  *
  * @since 2.5.2
  * @param array $args An array of sidebar registration arguments (id, name, description, replaceable)
  */
-function sb_register_sidebar( $args = array() ) {
+function sbx_register_sidebar( $args = array() ) {
 	global $startbox;
 	$startbox->sidebars->register_sidebar( $args );
 }
 
 /**
- * Wrapper Function for SB_Sidebars::do_sidebar()
+ * Wrapper Function for SBX_Sidebars::do_sidebar()
  *
  * @since 2.5.0
  * @param string $sidebar The default sidebar to render
  * @param string $classes Additional CSS classes to apply to the container
  */
-function sb_do_sidebar( $sidebar = null, $classes = null ) {
+function sbx_do_sidebar( $sidebar = null, $classes = null ) {
 	global $startbox;
 	$startbox->sidebars->do_sidebar( $sidebar, $classes );
 }
@@ -164,7 +164,7 @@ function sb_do_sidebar( $sidebar = null, $classes = null ) {
  * @param  string $sidebar The sidebar to check
  * @return bool            True if sidebar is replaceable, false otherwise
  */
-function sb_is_sidebar_replaceable( $sidebar = null ) {
+function sbx_is_sidebar_replaceable( $sidebar = null ) {
 	global $startbox;
 
 	// If the replaceable field is empty, it is not replaceable
