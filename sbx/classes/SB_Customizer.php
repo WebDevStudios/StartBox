@@ -38,6 +38,9 @@ class SB_Customizer {
 		// Render all of our customizer settings and sections
 		add_action( 'customize_register', array( $this, 'customize_register' ) );
 
+		// Bind JS handlers so customizer preview reloads asynchronously.
+		add_action( 'customize_preview_init', array( $this, 'customize_preview_int' ) );
+
 	}
 
 	/**
@@ -224,7 +227,50 @@ class SB_Customizer {
 					break;
 			}
 		}
+
 	}
+
+	/**
+	 * Enqueue Customizer JS.
+	 *
+	 * @since  3.0.0
+	 */
+	function customize_preview_int() {
+		wp_enqueue_script( 'sb_customizer', SB_JS . '/customizer.js', array( 'customize-preview' ), SB_VERSION, true );
+		wp_localize_script( 'sb_customizer', 'sb_customizer', $this->get_settings_js() );
+	}
+
+	/**
+	 * Build array of JS-specific options.
+	 *
+	 * @since  3.0.0
+	 *
+	 * @return array Settings data for customizer javascript.
+	 */
+	function get_settings_js() {
+
+		// Initialize JS settings array
+		$js_settings = array();
+
+		// Pull back all registered settings
+		$customizer_settings = apply_filters( 'sb_customizer_settings', array() );
+
+		// Extract the JS-specific data
+		foreach ( $customizer_settings as $section ) {
+			foreach ( $section['settings'] as $setting ) {
+				// Only include a setting if it has a js_callback and css_selector
+				if ( isset( $setting['js_callback'] ) && isset( $setting['css_selector'] ) ) {
+					$js_settings[ $setting['id'] ]['control']     = $setting['id'];
+					$js_settings[ $setting['id'] ]['js_callback'] = $setting['js_callback'];
+					$js_settings[ $setting['id'] ]['selector']    = $setting['css_selector'];
+				}
+			}
+		}
+
+		// Return all JS settings
+		return $js_settings;
+	}
+
 }
 $GLOBALS['startbox']->customizer = new SB_Customizer;
 

@@ -99,30 +99,30 @@ function startbox_customizer_settings( $sections = array() ) {
 		'priority'    => 1,
 		'settings'    => array(
 			array(
-				'id'      => $prefix . 'favicon',
-				'label'   => 'Favicon (32x32 .ico)',
-				'type'    => 'image',
-				'priority' => 10
-			),
+				'id'       => $prefix . 'favicon',
+				'label'    => 'Favicon (32x32 .ico)',
+				'type'     => 'image',
+				'priority' => 10,
+				),
 			array(
-				'id'      => $prefix . 'touch_icon',
-				'label'   => 'Touch Icon (152x152 .png)',
-				'type'    => 'image',
-				'priority' => 20
-			),
+				'id'       => $prefix . 'touch_icon',
+				'label'    => 'Touch Icon (152x152 .png)',
+				'type'     => 'image',
+				'priority' => 20,
+				),
 			array(
-				'id'      => $prefix . 'tile_icon',
-				'label'   => 'Tile Icon (144x144 .png)',
-				'type'    => 'image',
-				'priority' => 30
-			),
+				'id'       => $prefix . 'tile_icon',
+				'label'    => 'Tile Icon (144x144 .png)',
+				'type'     => 'image',
+				'priority' => 30,
+				),
 			array(
-				'id'      => $prefix . 'tile_bg',
-				'label'   => 'Tile Icon Background',
-				'type'    => 'color',
-				'default' => '#fff',
-				'priority' => 40
-			),
+				'id'       => $prefix . 'tile_bg',
+				'label'    => 'Tile Icon Background',
+				'type'     => 'color',
+				'default'  => '#fff',
+				'priority' => 40,
+				),
 		)
 	);
 
@@ -133,25 +133,31 @@ function startbox_customizer_settings( $sections = array() ) {
 		'priority'    => 200,
 		'settings'    => array(
 			array(
-				'id'      => $prefix . 'post_header_meta',
-				'label'   => 'Post Header Meta',
-				'type'    => 'textarea',
-				'default' => 'Published by [author] on [date] at [time] in [categories]',
-				'priority' => 10
-			),
+				'id'           => $prefix . 'post_header_meta',
+				'label'        => 'Post Header Meta',
+				'type'         => 'textarea',
+				'default'      => 'Published by [author] on [date] at [time] in [categories]',
+				'priority'     => 10,
+				'js_callback'  => 'sbx_change_text',
+				'css_selector' => '.entry-header .entry-meta',
+				),
 			array(
-				'id'      => $prefix . 'post_footer_meta',
-				'label'   => 'Post Footer Meta',
-				'type'    => 'textarea',
-				'default' => 'Categories: [categories], Tags: [tags] [edit]',
-				'priority' => 20
-			),
+				'id'           => $prefix . 'post_footer_meta',
+				'label'        => 'Post Footer Meta',
+				'type'         => 'textarea',
+				'default'      => 'Categories: [categories], Tags: [tags] [edit]',
+				'priority'     => 20,
+				'js_callback'  => 'sbx_change_text',
+				'css_selector' => '.entry-footer .entry-meta',
+				),
 			array(
-				'id'    => $prefix . 'show_author_box',
-				'label' => 'Display Author Box',
-				'type'  => 'checkbox',
-				'priority' => 30
-			),
+				'id'           => $prefix . 'show_author_box',
+				'label'        => 'Display Author Box',
+				'type'         => 'checkbox',
+				'priority'     => 30,
+				'js_callback'  => '',
+				'css_selector' => '',
+				),
 		)
 	);
 
@@ -162,18 +168,22 @@ function startbox_customizer_settings( $sections = array() ) {
 		'priority'    => 300,
 		'settings'    => array(
 			array(
-				'id'    => $prefix . 'rtt_link',
-				'label' => 'Return to Top Link',
-				'type'  => 'checkbox',
-				'priority' => 10
-			),
+				'id'           => $prefix . 'rtt_link',
+				'label'        => 'Return to Top Link',
+				'type'         => 'checkbox',
+				'priority'     => 10,
+				'js_callback'  => '',
+				'css_selector' => '',
+				),
 			array(
-				'id'      => $prefix . 'credits',
-				'label'   => 'Site Credits',
-				'type'    => 'textarea',
-				'default' => '[copyright year="2013"] [site_link]. Proudly powered by [WordPress] and [StartBox].',
-				'priority' => 30
-			),
+				'id'           => $prefix . 'credits',
+				'label'        => 'Site Credits',
+				'type'         => 'textarea',
+				'default'      => '[copyright year="2013"] [site_link]. Proudly powered by [WordPress] and [StartBox].',
+				'priority'     => 30,
+				'js_callback'  => 'sbx_change_text',
+				'css_selector' => '.site-info .credits',
+				),
 		)
 	);
 
@@ -184,74 +194,92 @@ function startbox_customizer_settings( $sections = array() ) {
 		'priority'    => 999,
 		'settings'    => array(
 			array(
-				'id'      => $prefix . 'text',
-				'label'   => 'Text',
-				'type'    => 'text',
-				'default' => 'Default content',
-				'priority' => 10
-			),
+				'id'           => $prefix . 'text',
+				'label'        => 'Text',
+				'type'         => 'text',
+				'default'      => 'Default content',
+				'priority'     => 10,
+				'js_callback'  => 'sbx_change_text',
+				'css_selector' => '',
+				),
 			array(
-				'id'      => $prefix . 'textarea',
-				'label'   => 'Textarea',
-				'type'    => 'textarea',
-				'default' => 'Some sample content...',
-				'priority' => 20
-			),
+				'id'           => $prefix . 'textarea',
+				'label'        => 'Textarea',
+				'type'         => 'textarea',
+				'default'      => 'Some sample content...',
+				'priority'     => 20,
+				'js_callback'  => 'sbx_change_text',
+				'css_selector' => '',
+				),
 			array(
-				'id'    => $prefix . 'checkbox',
-				'label' => 'Checkbox',
-				'type'  => 'checkbox',
-				'priority' => 30
-			),
+				'id'           => $prefix . 'checkbox',
+				'label'        => 'Checkbox',
+				'type'         => 'checkbox',
+				'priority'     => 30,
+				'js_callback'  => '',
+				'css_selector' => '',
+				),
 			array(
-				'id'      => $prefix . 'radio_buttons',
-				'label'   => 'Radio Buttons',
-				'type'    => 'radio',
-				'default' => 'left',
-				'choices' => array(
+				'id'           => $prefix . 'radio_buttons',
+				'label'        => 'Radio Buttons',
+				'type'         => 'radio',
+				'default'      => 'left',
+				'choices'      => array(
 					'left'   => 'Left',
 					'right'  => 'Right',
 					'center' => 'Center',
+					),
+				'priority'     => 40,
+				'js_callback'  => '',
+				'css_selector' => '',
 				),
-				'priority' => 40
-			),
 			array(
-				'id'      => $prefix . 'select_list',
-				'label'   => 'Select list',
-				'type'    => 'select',
-				'default' => 'two',
-				'choices' => array(
+				'id'          => $prefix . 'select_list',
+				'label'       => 'Select list',
+				'type'        => 'select',
+				'default'     => 'two',
+				'choices'     => array(
 					'one'   => 'Option 1',
 					'two'   => 'Option 2',
 					'three' => 'Option 3',
+					),
+				'priority'     => 50,
+				'js_callback'  => '',
+				'css_selector' => '',
 				),
-				'priority' => 50
-			),
 			array(
-				'id'      => $prefix . 'page',
-				'label'   => 'Page',
-				'type'    => 'dropdown-pages',
-				'priority' => 60
-			),
+				'id'           => $prefix . 'page',
+				'label'        => 'Page',
+				'type'         => 'dropdown-pages',
+				'priority'     => 60,
+				'js_callback'  => '',
+				'css_selector' => '',
+				),
 			array(
-				'id'      => $prefix . 'color',
-				'label'   => 'Color',
-				'type'    => 'color',
-				'default' => '#f70',
-				'priority' => 70
-			),
+				'id'           => $prefix . 'color',
+				'label'        => 'Color',
+				'type'         => 'color',
+				'default'      => '#f70',
+				'priority'     => 70,
+				'js_callback'  => 'sbx_change_text_color',
+				'css_selector' => '',
+				),
 			array(
-				'id'      => $prefix . 'upload',
-				'label'   => 'Upload',
-				'type'    => 'upload',
-				'priority' => 80
-			),
+				'id'           => $prefix . 'upload',
+				'label'        => 'Upload',
+				'type'         => 'upload',
+				'priority'     => 80,
+				'js_callback'  => '',
+				'css_selector' => '',
+				),
 			array(
-				'id'      => $prefix . 'image',
-				'label'   => 'Image',
-				'type'    => 'image',
-				'priority' => 90
-			),
+				'id'           => $prefix . 'image',
+				'label'        => 'Image',
+				'type'         => 'image',
+				'priority'     => 90,
+				'js_callback'  => '',
+				'css_selector' => '',
+				),
 		)
 	);
 
