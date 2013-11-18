@@ -266,7 +266,7 @@ class SBX_Breadcrumbs {
 	function get_post_term_crumbs( $term_id = 0, $taxonomy = '' ) {
 
 		// Grab the term object (suppress errors)
-		$term = &get_term( absint( $term_id ), $taxonomy );
+		$term = @get_term( absint( $term_id ), $taxonomy );
 
 		// Setup our empty trail
 		$trail = array();
