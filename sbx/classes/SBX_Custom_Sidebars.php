@@ -678,3 +678,32 @@ class SBX_Sidebars_Checklist extends Walker_Nav_Menu  {
 		return $output;
 	}
 }
+
+/**
+ * Shortcode to display a widget_area virtually anywhere.
+ *
+ * @since 2.5.0
+ */
+function sbx_widget_area_shortcode ( $atts ) {
+
+	// Setup default attributes
+	$atts = shortcode_atts(
+		array(
+			'id'      => null,
+			'classes' => null,
+		),
+		$atts
+	);
+
+	// If no ID is set, bail here
+	if ( is_null( $atts['id'] ) ) {
+		return false;
+
+	// Otherwise, return the sidebar
+	} else {
+		ob_start();
+		sbx_do_sidebar( $atts['id'], $$atts['classes'] );
+		return ob_get_clean();
+	}
+}
+add_shortcode( 'widget_area', 'sbx_widget_area_shortcode' );

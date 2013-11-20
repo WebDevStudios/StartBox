@@ -76,6 +76,10 @@ function startbox_setup_theme() {
 	add_theme_support( 'post-thumbnails' );
 	set_post_thumbnail_size( 200, 200, true );
 
+	// Enable Shortcodes in widget areas
+	add_filter( 'widget_text', 'do_shortcode' );
+
+	// Include customizer settings
 	add_filter( 'sb_customizer_settings', 'startbox_customizer_settings' );
 
 }

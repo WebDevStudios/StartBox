@@ -544,3 +544,14 @@ function sbx_category_transient_flusher() {
 }
 add_action( 'edit_category', 'sbx_category_transient_flusher' );
 add_action( 'save_post',     'sbx_category_transient_flusher' );
+
+/**
+ * Render a "Return to Top" link.
+ *
+ * @since  2.4.3
+ *
+ * @return string Anchor tag that points to #top, wrapped in span.
+ */
+function sbx_rtt() {
+	return '<span class="rtt"><a href="#top" class="cb" title="Return to top of page">' . apply_filters( 'sbx_rtt_text', __( 'Return to Top', 'startbox' ) ) . '</a></span>';
+}

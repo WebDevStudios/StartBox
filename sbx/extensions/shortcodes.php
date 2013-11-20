@@ -1,89 +1,122 @@
 <?php
-
 /**
- * StartBox Shortcodes
+ * SBX Shortcodes
  *
- * This file contains all the definitions for the default StartBox shortcodes.
+ * This file contains definitions for core SBX shortcodes.
  *
- * @package StartBox
+ * @package SBX
  * @subpackage Shortcodes
  */
 
-add_shortcode( 'widget_area', 'sbx_widget_area_shortcode' );
-add_shortcode( 'sitemap', 'sbx_get_sitemap' );
-
-add_shortcode( 'hr', 'sbx_divider' );
-add_shortcode( 'divider', 'sbx_divider' );
-add_shortcode( 'rtt', 'sbx_rtt' );
-add_shortcode( 'toggle', 'sbx_toggle' );
-
+/**
+ * Render title for current post.
+ *
+ * @since 2.5.4
+ */
+function sbx_entry_title() {
+	return get_the_title();
+}
 add_shortcode( 'title', 'sbx_entry_title' );
-add_shortcode( 'author_bio', 'sbx_author_bio' );
-add_shortcode( 'author', 'sbx_entry_author' );
-add_shortcode( 'categories', 'sbx_entry_categories' );
-add_shortcode( 'comments', 'sbx_entry_comments' );
-add_shortcode( 'date', 'sbx_entry_date' );
-add_shortcode( 'tags', 'sbx_entry_tags' );
-add_shortcode( 'time', 'sbx_entry_time' );
-add_shortcode( 'edit', 'sbx_entry_edit' );
-add_shortcode( 'more', 'sbx_readmore' );
-
-add_shortcode( 'protected', 'sbx_protected' );
-add_shortcode( 'expires', 'sbx_expires' );
-add_shortcode( 'show_after', 'sbx_show_after' );
-
-add_shortcode( 'copyright', 'sbx_copyright' );
-add_shortcode( 'site_link', 'sbx_site_link' );
-add_shortcode( 'WordPress', 'sbx_wp_link' );
-add_shortcode( 'StartBox', 'sbx_footer_link' );
 
 /**
- * Enable Shortcodes in widget areas
+ * Render hAtom-formatted author link for current post.
+ *
+ * @since 2.4.6
+ */
+function sbx_entry_author() {
+
+	$output = '<span class="vcard author entry-author" itemprop="author" itemscope itemptype="http://schema.org/Person">';
+	$output .= '<a class="url fn n" itemprop="url" rel="author" href="' . get_author_posts_url( get_the_author_meta( 'ID' ) ) . '">';
+	$output .= '<span class="entry-author-name" itemprop="name">' . get_the_author() . '</span>';
+	$output .= '</a>';
+	$output .= '</span>';
+
+	return $output;
+}
+add_shortcode( 'author', 'sbx_entry_author' );
+
+/**
+ * Render author box for current post.
  *
  * @since 2.4.8
  */
-add_filter( 'widget_text', 'do_shortcode' );
-
-/**
- * Shortcode to display Return To Top link
- *
- * @since 2.4.3
- */
-function sbx_rtt() {
-	$link = '<span class="rtt"><a href="#top" class="cb" title="Return to top of page">' . apply_filters( 'sbx_rtt_text', __( 'Return to Top', 'startbox' ) ) . '</a></span>';
-	return $link;
+function sbx_entry_author_box() {
+	return sbx_get_author_box();
 }
+add_shortcode( 'author_box', 'sbx_entry_author_box' );
 
 /**
- * Shortcode to display a widget_area virtually anywhere.
+ * Render category list for current post.
  *
- * @since 2.5
+ * @since 2.4.6
  */
-function sbx_widget_area_shortcode ( $atts ) {
+function sbx_entry_categories() {
+	if ( $categories = get_the_category_list( ', ' ) )
+		return '<span class="entry-categories">' . $categories . '</span>';
+}
+add_shortcode( 'categories', 'sbx_entry_categories' );
 
-	// Setup default attributes
+/**
+ * Render tag list for current post.
+ *
+ * @since 2.4.6
+ */
+function sbx_entry_tags() {
+	if ( $tags = get_the_tag_list( '', ', ' ) )
+		return '<span class="entry-tags">' . $tags . '</span>';
+}
+add_shortcode( 'tags', 'sbx_entry_tags' );
+
+/**
+ * Render comments link for current post.
+ *
+ * @since 2.4.6
+ */
+function sbx_entry_comments() {
+	ob_start();
+	comments_popup_link(__( 'No Comments', 'startbox' ), __( '1 Comment', 'startbox' ), __( '% Comments', 'startbox' ) );
+	return '<span class="entry-comments">' . ob_get_clean() . '</span>';
+}
+add_shortcode( 'comments', 'sbx_entry_comments' );
+
+/**
+ * Render hAtom-formatted date stamp for current post.
+ *
+ * @since 2.4.6
+ */
+function sbx_entry_date( $atts ) {
+
 	$atts = shortcode_atts(
 		array(
-			'id'      => null,
-			'classes' => null,
-		),
+			'format'   => get_option( 'date_format' ),
+			'relative' => false
+			),
 		$atts
 	);
 
-	// If no ID is set, bail here
-	if ( is_null( $atts['id'] ) ) {
-		return false;
+	$date        = get_the_time( $atts['format'] );
+	$isodate     = get_the_time( 'c' );
+	$output_date = $atts['relative']
+		? sprintf( __( '%s ago', 'startbox' ), sbx_time_since( absint( strtotime( $date ) ), time() ) )
+		: esc_attr( $date );
 
-	// Otherwise, return the sidebar
-	} else {
-		ob_start();
-		sbx_do_sidebar( $atts['id'], $$atts['classes'] );
-		return ob_get_clean();
-	}
+	return '<time class="entry-date published updated" itemprop="datePublished" datetime="' . esc_attr( $isodate ) . '">' . $output_date . '</time>';
+
 }
+add_shortcode( 'date', 'sbx_entry_date' );
 
 /**
- * Displays an Edit link for admins
+ * Render time stamp for current post.
+ *
+ * @since 2.4.6
+ */
+function sbx_entry_time() {
+	return '<span class="entry-time">' . get_the_time() . '</span>';
+}
+add_shortcode( 'time', 'sbx_entry_time' );
+
+/**
+ * Render "Edit" link for current post for authorized users.
  *
  * @since 2.4.6
  */
@@ -91,403 +124,36 @@ function sbx_entry_edit() {
 	if ( current_user_can( 'edit_posts' ) )
 		return '<span class="edit-link">&nbsp;(<a href="' . get_edit_post_link() . '">' . __( 'Edit', 'startbox' ) . '</a>)</span>';
 }
+add_shortcode( 'edit', 'sbx_entry_edit' );
 
 /**
- * Displays the current post date, if time since is installed, it will use that instead.
- * Formatted for hAtom microformat.
- *
- * @since 2.4.6
- *
- * @uses sb_time_since
- *
- */
-function sbx_entry_date( $atts ) {
-	global $post;
-	extract ( shortcode_atts ( array (
-		'format' => get_option( 'date_format' ),
-		'relative' => false
-	), $atts ) );
-
-	$date = get_the_time( $format );
-	$isodate = get_the_date( 'c' );
-
-	if ( true == $relative )
-		return '<time class="entry-date published updated" itemprop="datePublished" datetime="' . esc_attr( $isodate ) . '">' . sb_time_since( abs( strtotime( $post->post_date_gmt . " GMT" ) ), time() ) . ' ago</time>';
-	else
-		return '<time class="entry-date published updated" itemprop="datePublished" datetime="' . esc_attr( $isodate ) . '">' . esc_attr( $date ) . '</time>';
-}
-
-/**
- * Displays the current post time
- *
- * @since 2.4.6
- */
-function sbx_entry_time() {
-	return '<span class="entry-time">' . get_the_time() . '</span>';
-}
-
-/**
- * Displays a Read More link
+ * Render "Read More" link for current post.
  *
  * @since 2.4.9
- *
- * @uses get_permalink
- *
  */
-function sbx_readmore() {
-	return '<a href="' . get_permalink() . '" title="' . sprintf( __( 'Continue Reading %s', 'startbox' ), esc_html( get_the_title(), 1 ) ) . '" rel="nofollow" class="more-link">' . apply_filters( 'sb_read_more', 'Read &amp; Discuss &raquo;' ) . '</a>';
+function sbx_entry_readmore() {
+	return '<a href="' . get_permalink() . '" rel="nofollow" class="more-link">' . apply_filters( 'sb_read_more', 'Read &amp; Discuss &raquo;' ) . '</a>';
 }
+add_shortcode( 'more', 'sbx_entry_readmore' );
 
 /**
- * Displays the current post title.
+ * Render copyright date(s).
  *
- * @since 2.5.4
- *
- */
-function sbx_entry_title() {
-	return get_the_title();
-}
-
-/**
- * Displays the current post author.
- * Formatted for hAtom microformat.
- *
- * @since 2.4.6
- *
- */
-function sbx_entry_author() {
-
-	$output = '<span class="vcard author entry-author" itemprop="author" itemscope itemptype="http://schema.org/Person">';
-	$output .= '<a class="url fn n" itemprop="url" rel="author" href="' . get_author_posts_url( get_the_author_meta( 'ID' ) ) . '" title="' . sprintf( __( 'View all posts by %s', 'startbox' ), esc_attr( get_the_author() ) ) .'">';
-	$output .= '<span class="entry-author-name" itemprop="name">' . get_the_author() . '</span>';
-	$output .= '</a>';
-	$output .= '</span>';
-
-	return $output;
-}
-
-/**
- * Displays the current post categories
- *
- * @since 2.4.6
- *
- * @uses get_the_category_list
- *
- */
-function sbx_entry_categories() {
-	return '<span class="entry-categories">' . get_the_category_list( ', ' ) . '</span>';
-}
-
-/**
- * Displays the current post tags or blank if none.
- *
- * @since 2.4.6
- *
- */
-function sbx_entry_tags() {
-	if ( $tags = get_the_tag_list( '', ', ' ) )
-		return '<span class="entry-tags">' . $tags . '</span>';
-}
-
-/**
- * Displays the number of comments in current post as a link to the comments, wrapped in a <span>.
- *
- * @since 2.4.6
- *
- */
-function sbx_entry_comments() {
-	ob_start();
-	comments_popup_link(__( 'No Comments', 'startbox' ), __( '1 Comment', 'startbox' ), __( '% Comments', 'startbox' ) );
-	return '<span class="entry-comments">' . ob_get_clean() . '</span>';
-}
-
-/**
- * Shortcode to create a content box
- *
- * @since 2.4.8
- */
-function sbx_author_bio( $atts, $content = null ) {
-
-	$output = '';
-	$output .= '<div id="entry-author-info">';
-	$output .= '<h2>' . sprintf( esc_attr__( 'About %s', 'startbox' ), get_the_author() ) . '</h2>';
-	$output .= '<div id="author-avatar">' . get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'sb_author_article_gavatar_size', 60 ) ) . '</div><!-- #author-avatar -->';
-	$output .= '<div id="author-description">' . get_the_author_meta( 'description' ) . '<div id="author-link">';
-	$output .= '<a href="' . get_author_posts_url( get_the_author_meta( 'ID' ) ). '">' . sprintf( __( 'View all posts by %s &raquo;', 'startbox' ), get_the_author() ) . '</a>';
-	$output .= '</div><!-- #author-link	-->';
-	$output .= '</div><!-- #author-description -->';
-	$output .= '</div><!-- #entry-author-info -->';
-
-	return $output;
-}
-
-/**
- * Shortcode for creating a divider
- *
- * @since 2.4.8
- *
- */
-function sbx_divider( $atts, $content = null ) {
-	extract( shortcode_atts( array( 'show_top' => false, 'align' => 'center' ), $atts ) );
-
-	$top = ( $show_top ) ? do_shortcode( '[rtt]' ) : '' ;
-	return '<div class="hr divider" style="text-align:' . $align . ';">' . $top . '</div>';
-}
-
-/**
- * Shortcode for creating a jQuery toggle link
- *
- * @since 2.4.8
- *
- */
-function sbx_toggle( $atts, $content = null ) {
-	extract( shortcode_atts( array(
-		'title' => 'Show More',
-		'class' => '',
-		'id' => '',
-		'container' => 'div',
-		'container_class' => '',
-		'position' => 'before' ), $atts )
-	);
-
-	STATIC $i = 1;
-	if (!$id) { $id = 'toggle-' . $i; $i++; }
-
-	$output = '';
-	if ($position == 'before') { $output .= '<a href="#' . $id . '" class="toggle ' . esc_attr( $class ) . '">' . $title . '</a>'; }
-	$output .= '<' . $container . ' id="' . esc_attr( $id ) . '" class="toggled ' . esc_attr( $container_class ) . '">' . do_shortcode( $content ) . '</' . $container . '>';
-	if ($position != 'before') { $output .= '<a href="#' . esc_attr( $id ) . '" class="toggle ' . esc_attr( $class ) . '">' . $title . '</a>'; }
-	return $output;
-}
-
-/**
- * Protect member-only content
- *
- * @since 2.4.8
- *
- */
-function sbx_protected( $atts, $content = null ) {
-	extract( shortcode_atts( array(
-		'show_login' => 'false',
-		'class' => ''
-		), $atts )
-	);
-
-	if ( is_user_logged_in() ) { return do_shortcode( $content ); }
-	else {
-		$output = '<div class="protected ' . $class . '">';
-		$output .= apply_filters( 'sbx_protected_text', __( 'Sorry, you must be logged in to view this content.', 'startbox' ) );
-		if ($show_login == 'true') { $output .= wp_login_form( array( 'echo' => 0 ) ); }
-		$output .= '</div>';
-
-		return apply_filters( 'sbx_protected', $output );
-	}
-}
-
-/**
- * Hide content after specific expiration date
- *
- * @since 2.6
- */
-function sbx_expires( $atts, $content = null ) {
-	extract( shortcode_atts( array(
-		'date' => '',
-		'expired_message' => '',
-		), $atts )
-	);
-
-	$today = time();
-	$expiration = strtotime($date);
-
-	if ( $today >= $expiration )
-		return do_shortcode( $expired_message );
-	else
-		return do_shortcode( $content );
-}
-
-/**
- * Show content after specific teaser date
- *
- * @since 2.6
- */
-function sbx_show_after( $atts, $content = null ) {
-	extract( shortcode_atts( array(
-		'date' => '',
-		'teaser' => '',
-		), $atts )
-	);
-
-	$today = time();
-	$teaser_date = strtotime($date);
-
-	if ( $today < $teaser_date )
-		return do_shortcode( $teaser );
-	else
-		return do_shortcode( $content );
-}
-
-/**
- * Function for producing a sitemap.
- *
- * @since 2.4.9
- *
- * @uses apply_filters() to pass new 'sb_sitemap_defaults'
- * @uses wp_list_pages()
- * @uses wp_list_categories()
- *
- * @param array $args array of all configurable options
- *
- */
-function sb_sitemap( $args = '' ) {
-	echo sbx_get_sitemap( $args );
-}
-function sbx_get_sitemap( $args = '' ) {
-	global $wp_query, $post;
-	$cached_query = $wp_query;
-	$cached_post = $post;
-	$output = '';
-
-	$defaults = array(
-		'show_pages'          => true,	// Include Pages in output
-		'show_categories'     => true,	// Include Categories in output
-		'show_posts'          => true,	// Include Posts (sorted by category) in output
-		'show_cpts'           => true,	// Include Custom Post Types in output
-		'exclude_pages'       => '',		// Comma-separated list of pages to exclude
-		'exclude_categories'  => '',		// Comma-separated list of categories to exclude
-		'exclude_post_types'  => apply_filters( 'sb_sitemap_exclude_post_types', array('attachment', 'revision', 'nav_menu_item', 'slideshow', 'page', 'post') ), // Array of post-types to exclude
-		'class'               => 'sitemap',// Custom class(es) to use in ul elements
-		'container_class'     => 'sitemap-container', // Custom class(es) to use in div wrappers
-		'header_container'    => 'h3',	// Element type to use for wrapping primary headings
-		'subheader_container' => 'h4'	// Element type to use for wrapping secondary headings
-	);
-	$r = wp_parse_args( $args, apply_filters( 'sb_sitemap_defaults', $defaults ) );
-	extract( $r, EXTR_SKIP );
-
-	if ( $show_pages ) {
-		$output .= '<div class="' . $container_class . ' ' . $container_class . '-page">' . "\n";
-		$output .= "\t" . '<' . $header_container . '>' . __( 'Pages', 'startbox' ) . '</' . $header_container . '>' . "\n";
-		$output .= "\t" . '<ul id="pagelist" class="' . $class . '">' . "\n";
-		$output .= "\t\t" . wp_list_pages('title_li=&exclude=' . $exclude_pages . '&depth=0&echo=0') . "\n";
-		$output .= "\t" . '</ul>' . "\n";
-		$output .= '</div><!-- ' . $container_class . ' ' . $container_class . '-page -->' . "\n";
-	} if ($show_cpts) {
-		$post_types = get_post_types( array('public'=>true),'objects');
-		foreach ( $post_types as $cpt ) {
-			if ( !in_array( $cpt->name, $exclude_post_types ) ) {
-
-        		$posts = new WP_query( array(
-					'posts_per_page' => 500,
-					'post_type'	=> $cpt->name
-					) );
-
-				if ( $posts->have_posts() ) {
-					$output .= '<div class="' . $container_class . ' ' . $container_class . '-cpt ' . $container_class . '-' . $cpt->name . '">' . "\n";
-					$output .= "\t" . '<' . $header_container . '>' . $cpt->label . '</' . $header_container . '>' . "\n";
-					$output .= "\t" . '<ul id="cptlist" class="' . $class . '">' . "\n";
-					while ( $posts->have_posts()) : $posts->the_post();
-						$output .= "\t\t" . '<li><a href="' . get_permalink() . '">' . get_the_title() . '</a> (' . get_comments_number() . ')</li>' . "\n";
-					endwhile;
-					$output .= "\t" . '</ul>' . "\n";
-					$output .= '</div><!-- ' . $container_class . ' ' . $container_class . '-cpt ' . $container_class . '-' . $cpt->name . ' -->' . "\n";
-				}
-
-				wp_reset_postdata();
-			}
-		}
-	} if ( $show_categories ) {
-		$output .= '<div class="' . $container_class . ' ' . $container_class . '-category">' . "\n";
-		$output .= "\t" . '<' . $header_container . '>' . __( 'Categories', 'startbox' ) . '</' . $header_container . '>' . "\n";
-		$output .= "\t" . '<ul id="catlist" class="' . $class . '">' . "\n";
-		$output .= "\t\t" . wp_list_categories('title_li=&exclude=' . $exclude_categories . '&depth=0&echo=0') . "\n";
-		$output .= "\t" . '</ul>' . "\n";
-		$output .= '</div><!-- ' . $container_class . ' ' . $container_class . '-category -->' . "\n";
-	} if ( $show_posts ) {
-
-        $categories = get_categories( 'exclude=' . $exclude_categories );
-
-		$output .= '<div class="' . $container_class . ' ' . $container_class . '-post">' . "\n";
-		$output .= "\t" . '<' . $header_container . '>' . __( 'Posts by Category', 'startbox' ) . '</' . $header_container . '>' . "\n";
-		foreach ( $categories as $cat ) {
-
-			$args = array(
-				'cat' => $cat->cat_ID
-			);
-
-			$cat_posts = new WP_Query( $args );
-
-			if ( $cat_posts->have_posts() ) {
-
-	            $output .= "\t" . '<' . $subheader_container . '>' . $cat->cat_name . '</' . $subheader_container . '>' . "\n";
-	            $output .= "\t" . '<ul id="postlist" class="' . esc_attr( $class ) . '">' . "\n";
-				while ( $cat_posts->have_posts()) : $cat_posts->the_post();
-					$output .= "\t\t" . '<li><a href="' . get_permalink() . '">' . get_the_title() . '</a> (' . get_comments_number() . ')</li>' . "\n";
-				endwhile;
-				$output .= "\t" . '</ul>' . "\n";
-
-			}
-
-			wp_reset_postdata();
-
-
-		}
-		$output .= '</div><!-- ' . $container_class . ' ' . $container_class . '-post -->' . "\n";
-	}
-
-	$wp_query = $cached_query;
-	$post = $cached_post;
-
-	return $output;
-}
-
-/**
- * Shortcode to insert link to current site
- *
- * @since 2.6
- */
-function sbx_site_link( $atts ) {
-	extract( shortcode_atts( array(
-		'url' => site_url(),
-		'target' => '_blank',
-		'text' => get_bloginfo('title')
-		), $atts ) );
-
-	return '<a href="' . $url . '" target="' . $target . '">' . $text . '</a>';
-}
-
-/**
- * Shortcode to insert WordPress link
- *
- * @since 2.6
- */
-function sbx_wp_link( $atts ) {
-	extract( shortcode_atts( array( 'target' => '_blank' ), $atts ) );
-
-	return '<a href="http://wordpress.org/" target="' . $target . '">WordPress</a>';
-}
-
-/**
- * Shortcode to insert StartBox link
- *
- * @since 2.6
- */
-function sbx_footer_link( $atts ) {
-	extract( shortcode_atts( array( 'target' => '_blank', 'affiliate_link' => '' ), $atts ) );
-
-	return '<a href="http://wpstartbox.com/" target="' . $target . '">StartBox</a>';
-}
-
-/**
- * Shortcode to insert copyright date(s)
- *
- * @since 2.6
+ * @since 2.6.0
  */
 function sbx_copyright( $atts ) {
-	extract( shortcode_atts( array( 'year' => date('Y') ), $atts ) );
+	$atts = shortcode_atts(
+		array(
+			'year' => date( 'Y' ),
+			),
+		$atts
+	);
 
 	$current_year = date('Y');
-	if ( $year == $current_year )
-		return '&copy;' . $current_year;
-	else
-		return '&copy;' . $year . '-' . $current_year;
+
+	return ( $atts['year'] == $current_year )
+		? sprintf( __( '&copy; %d', 'startbox' ), $current_year )
+		: sprintf( __( '&copy; %1$d-%2$d', 'startbox' ), $atts['year'], $current_year );
 
 }
+add_shortcode( 'copyright', 'sbx_copyright' );

@@ -264,10 +264,8 @@ add_filter( 'archive_meta', 'wpautop' );
 
 // Default 404 Page
 function sbx_404_content() {
-	echo '<p>' . __('Sorry, but we were unable to find what you were looking for. Try searching or browsing our content below.', 'startbox' ) . '</p>';
+	echo '<p>' . __('Sorry, but we were unable to find what you were looking for. Try searching our content below.', 'startbox' ) . '</p>';
 	get_template_part( 'searchform' );
-	echo '<br/>';
-	sb_sitemap();
 }
 add_action( '404', 'sbx_404_content' );
 
