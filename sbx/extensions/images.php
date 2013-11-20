@@ -6,7 +6,6 @@
  * @subpackage Functions
  */
 
-
 if ( ! function_exists( 'sb_get_image_id' ) ) :
 /**
  * Pull an attachment ID from a post, if one exists.
@@ -39,7 +38,6 @@ function sbx_get_image_id( $index = 0 ) {
 
 }
 endif;
-
 
 if ( ! function_exists( 'sbx_get_image' ) ) :
 /**
@@ -179,28 +177,14 @@ endif;
  * to use the latest attached image. If no images can be found it will default
  * to a custom "no preview available" image.
  *
- * @since 1.5
+ * @since 1.5.0
  * @param  array  $args  An array of possible args to use for finding our image
  * @return string        The URL of our desired image
  */
-function sbx_get_post_image( $args = array(), $deprecated_post_id = null, $deprecated_use_attachments = null ) {
+function sbx_get_post_image( $args = array() ) {
 
 	// Grab our global $post object, incase we aren't given an explicit post ID
 	global $id;
-
-	// Back compat
-	if ( !is_array( $args ) || $deprecated_post_id || $deprecated_use_attachments ) {
-
-		// Throw a warning for anyone using the old format
-		_deprecated_argument( __FUNCTION__, '2.6', 'Please pass all parameters in a single array.' );
-
-		// Create an array of attributes from the deprecated fields
-		$args = array(
-			'image_id'        => absint( $args ),
-			'post_id'         => absint( $deprecated_post_id ),
-			'use_attachments' => $deprecated_use_attachments
-		);
-	}
 
 	// Setup our defaults
 	$defaults = array(
@@ -243,46 +227,31 @@ function sbx_get_post_image( $args = array(), $deprecated_post_id = null, $depre
  * Uses sbx_get_post_image_url to resize and crop the image to any specified
  * dimension on-the-fly, using entirely naitive WP functionality.
  *
- * @since  1.5
+ * @since  1.5.0
  * @param  sarray  $args  Specify additional attributes for the image tag
  * @return string         An <img> tag containing image path and all parameters
  */
-function sbx_post_image( $args = array(), $depricated_height = null, $depricated_align = null, $depricated_crop = null, $depricated_atts = array() ) {
+function sbx_post_image( $args = array() ) {
 
 	// Grab our global $post object, incase we aren't given an explicit post ID
 	global $post;
-
-	// Back compat
-	if ( !is_array($args) || $depricated_height || $depricated_align || $depricated_crop || $depricated_atts ) {
-
-		// Throw a warning for anyone using the old format
-		_deprecated_argument( __FUNCTION__, '2.6', 'Please pass all parameters in a single array.' );
-
-		// Create an array of attributes from the deprecated fields
-		$args = array_merge( array(
-			'width'  => absint( $args ),
-			'height' => absint( $depricated_height ),
-			'align'  => $depricated_align,
-			'crop'   => $depricated_crop,
-		), $depricated_atts );
-	}
 
 	// Setup our defaults and merge them with the passed arguments
 	$defaults = array(
 		'post_id'         => $post->ID,
 		'image_id'        => null,
-		'use_attachments' => apply_filters( 'sbx_post_image_use_attachments', false ),
-		'width'           => apply_filters( 'sbx_post_image_width', 200 ),
-		'height'          => apply_filters( 'sbx_post_image_height', 200 ),
-		'crop'            => apply_filters( 'sbx_post_image_crop', 1 ),
-		'align'           => apply_filters( 'sbx_post_image_align', 't' ),
-		'class'           => apply_filters( 'sbx_post_image_class', 'post-image' ),
-		'alt'             => apply_filters( 'sbx_post_image_alt', get_the_title() ),
-		'title'           => apply_filters( 'sbx_post_image_alt', get_the_title() ),
+		'use_attachments' => false,
+		'width'           => 200,
+		'height'          => 200,
+		'crop'            => 1,
+		'align'           => 't',
+		'class'           => 'post-image',
+		'alt'             => get_the_title(),
+		'title'           => get_the_title(),
 		'nophoto_url'     => apply_filters( 'sbx_post_image_none', SBX_IMAGES . '/nophoto.jpg' ),
-		'hide_nophoto'    => apply_filters( 'sbx_post_image_hide_nophoto', false ),
-		'enabled'         => apply_filters( 'sbx_post_image_enabled', true ),
-		'echo'            => apply_filters( 'sbx_post_image_echo', true )
+		'hide_nophoto'    => false,
+		'enabled'         => true,
+		'echo'            => true,
 	);
 	$args = wp_parse_args( $args, apply_filters( 'sbx_post_image_settings', $defaults ) );
 
@@ -309,9 +278,10 @@ function sbx_post_image( $args = array(), $depricated_height = null, $depricated
  * Uses wp_get_image_editor, introduced in WP3.5, to resize and save a
  * new cropped image on-the-fly.
  *
- * @since  2.6
- * @param  array  $args  An array of all our sizing arguments
- * @return string        URI of our final image
+ * @since  2.6.0
+ *
+ * @param  array  $args An array of all our sizing arguments
+ * @return string       URI of our final image
  */
 function sbx_get_post_image_url( $args = null ) {
 
@@ -381,7 +351,8 @@ function sbx_get_post_image_url( $args = null ) {
  *
  * Credit for calculating our alignment and ratios goes to TimThumb (http://code.google.com/p/timthumb/).
  *
- * @since  2.7
+ * @since  2.7.0
+ *
  * @param  integer $original_width  The original width of the given image
  * @param  integer $original_height The original height of the given image
  * @param  integer $new_width       The desired width of the final image
