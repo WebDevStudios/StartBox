@@ -59,6 +59,7 @@ function startbox_setup_theme() {
 	);
 	add_theme_support( 'sbx-custom-sidebars' );
 	add_theme_support( 'sbx-updates' );
+	add_theme_support( 'sbx-plugins' );
 	add_theme_support( 'automatic-feed-links' );
 
 	register_nav_menu( 'main-navigation',__( 'Primary Navigation' ) );
@@ -81,6 +82,9 @@ function startbox_setup_theme() {
 
 	// Include customizer settings
 	add_filter( 'sb_customizer_settings', 'startbox_customizer_settings' );
+
+	// Include required plugins for this theme
+	add_action( 'sbx_register_plugins', 'startbox_theme_required_plugins' );
 
 }
 add_action( 'after_setup_theme', 'startbox_setup_theme' );
@@ -288,6 +292,30 @@ function startbox_customizer_settings( $sections = array() ) {
 	return $sections;
 }
 
+/**
+ * Registers required plugins for this theme
+ *
+ * Allows you to easily require or recommend
+ * plugins for your WordPress themes
+ *
+ * @since 3.0.0
+ */
+function startbox_theme_required_plugins() {
+
+	$plugins = array(
+
+		// This is an example of how to include a plugin from the WordPress Plugin Repository
+		array(
+			'name' 		=> 'Custom Post Type UI',
+			'slug' 		=> 'custom-post-type-ui',
+			'required' 	=> false,
+		),
+
+	);
+
+	sbx_register_theme_plugins( $plugins );
+
+}
 
 /**
  * Set the content width based on the theme's design and stylesheet.
