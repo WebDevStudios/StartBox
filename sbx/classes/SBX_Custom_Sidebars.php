@@ -77,7 +77,7 @@ class SBX_Custom_Sidebars extends SBX_Sidebars {
 			'rewrite'              => false,
 			'query_var'            => false,
 			'supports'             => array( 'title' ),
-			'show_in_menu'         => 'themes.php',
+			'show_in_menu'         => 'sb_admin',
 			'capability_type'      => 'post',
 			'show_in_nav_menus'    => false,
 			'register_meta_box_cb' => array( $this, 'metabox_setup' )

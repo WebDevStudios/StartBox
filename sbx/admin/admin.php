@@ -10,7 +10,7 @@ function sb_admin_init() {
 		global $sb_admin;
 
 		// Create our settings page and add it to the menu
-		$sb_admin = add_menu_page( __( 'StartBox Options', 'startbox' ), __( 'SBX', 'startbox'), 'edit_theme_options', 'sb_admin', 'sb_admin_page', 'div', '59' );
+		$sb_admin = add_menu_page( __( 'StartBox Options', 'startbox' ), __( 'SBX', 'startbox' ), 'edit_theme_options', 'sb_admin', 'sb_admin_page', 'div', '59' );
 
 		// Register our custom settings field
 		register_setting( 'sb_admin', SBX_OPTIONS, 'sb_sanitize');
@@ -25,7 +25,7 @@ function sb_admin_init() {
 		add_action( 'load-' . $sb_admin, 'sb_admin_help' );
 
 }
-add_action( 'admin_menu', 'sb_admin_init' );
+add_action( 'admin_menu', 'sb_admin_init', 9 );
 
 
 /**
