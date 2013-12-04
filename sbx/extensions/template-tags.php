@@ -187,6 +187,7 @@ function sbx_tag_query() {
 endif;
 
 
+if ( !function_exists( 'sbx_get_taxonomy_term_type' ) ) :
 /**
  * Function for retrieving taxonomy meta information
  *
@@ -197,13 +198,13 @@ endif;
  * @param string $term_id the desired meta information name
  *
  */
-if ( !function_exists( 'get_taxonomy_term_type' ) ) {
-	function get_taxonomy_term_type($taxonomy,$term_id) {
-		return get_option("_term_type_{$taxonomy}_{$term->term_id}");
-	}
+function sbx_get_taxonomy_term_type($taxonomy,$term_id) {
+	return get_option("_term_type_{$taxonomy}_{$term->term_id}");
 }
+endif;
 
 
+if ( !function_exists( 'update_taxonomy_term_type' ) ) :
 /**
  * Function for updating taxonomy meta information
  *
@@ -215,13 +216,13 @@ if ( !function_exists( 'get_taxonomy_term_type' ) ) {
  * @param mixed $value the new value
  *
  */
-if ( !function_exists( 'update_taxonomy_term_type' ) ) {
-	function update_taxonomy_term_type($taxonomy,$term_id,$value) {
-		update_option("_term_type_{$taxonomy}_{$term_id}",$value);
-	}
+function update_taxonomy_term_type($taxonomy,$term_id,$value) {
+	update_option("_term_type_{$taxonomy}_{$term_id}",$value);
 }
+endif;
 
 
+if ( !function_exists( 'delete_taxonomy_term_type' ) ) :
 /**
  * Function for deleting taxonomy meta information
  *
@@ -232,11 +233,10 @@ if ( !function_exists( 'update_taxonomy_term_type' ) ) {
  * @param string $term_id the desired meta information name
  *
  */
-if ( !function_exists( 'delete_taxonomy_term_type' ) ) {
-	function delete_taxonomy_term_type($taxonomy,$term_id ) {
-		delete_option("_term_type_{$taxonomy}_{$term_id}");
-	}
+function delete_taxonomy_term_type($taxonomy,$term_id ) {
+	delete_option("_term_type_{$taxonomy}_{$term_id}");
 }
+endif;
 
 
 /**
