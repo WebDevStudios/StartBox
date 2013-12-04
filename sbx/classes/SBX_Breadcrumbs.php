@@ -40,8 +40,8 @@ class SBX_Breadcrumbs {
 			'before_crumbs'           => '<div class="breadcrumbs">',
 			'after_crumbs'            => '</div>',
 			'separator'               => ' / ',
-			'heirarchial_attachments' => true,
-			'heirarchial_categories'  => true,
+			'hierarchial_attachments' => true,
+			'hierarchial_categories'  => true,
 			'labels' => array(
 				'prefix'    => __( 'You are here: ', 'startbox' ),
 				'home'      => __( 'Home', 'startbox' ),
