@@ -35,7 +35,7 @@ function sbx_in_descendant_category( $cats, $_post = null ) {
  *
  * @param string $pagetemplate is the template filename
 */
-function sbx_is_pagetemplate_active( $pagetemplate = '' ) {
+function sbx_is_page_template_active( $pagetemplate = '' ) {
 	global $wpdb;
 	if ( $wpdb->get_var( $wpdb->prepare( "SELECT meta_key FROM $wpdb->postmeta WHERE meta_key LIKE '_wp_page_template' AND meta_value = %s", $pagetemplate ) ) ) {
 		return TRUE;
