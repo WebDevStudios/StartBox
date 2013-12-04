@@ -222,7 +222,7 @@ function sbx_update_taxonomy_term_type($taxonomy,$term_id,$value) {
 endif;
 
 
-if ( !function_exists( 'delete_taxonomy_term_type' ) ) :
+if ( !function_exists( 'sbx_delete_taxonomy_term_type' ) ) :
 /**
  * Function for deleting taxonomy meta information
  *
@@ -233,7 +233,7 @@ if ( !function_exists( 'delete_taxonomy_term_type' ) ) :
  * @param string $term_id the desired meta information name
  *
  */
-function delete_taxonomy_term_type($taxonomy,$term_id ) {
+function sbx_delete_taxonomy_term_type($taxonomy,$term_id ) {
 	delete_option("_term_type_{$taxonomy}_{$term_id}");
 }
 endif;
