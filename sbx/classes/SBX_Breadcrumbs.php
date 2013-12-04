@@ -223,7 +223,7 @@ class SBX_Breadcrumbs {
 
 		// If this is an attachment, and we support attachment hierarcy
 		if ( 'attachment' == $post_type ) {
-			if ( $this->args['heirarchial_attachments'] )
+			if ( $this->args['hierarchial_attachments'] )
 				$trail[] = $this->get_singular_crumb( $post->post_parent );
 
 		// Or, we're on another hierarchical post type with ancestors
@@ -272,8 +272,8 @@ class SBX_Breadcrumbs {
 		$trail = array();
 
 		// If the term has a parent, and we support
-		// category heirarchy, loop back and get it
-		if ( ! empty( $term->parent ) && $this->args['heirarchial_categories'] )
+		// category hierarchy, loop back and get it
+		if ( ! empty( $term->parent ) && $this->args['hierarchial_categories'] )
 			$trail[] = $this->get_post_term_crumbs( $term->parent, $taxonomy );
 
 		// Include our current term
