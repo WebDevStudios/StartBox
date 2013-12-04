@@ -204,7 +204,7 @@ function sbx_get_taxonomy_term_type($taxonomy,$term_id) {
 endif;
 
 
-if ( !function_exists( 'update_taxonomy_term_type' ) ) :
+if ( !function_exists( 'sbx_update_taxonomy_term_type' ) ) :
 /**
  * Function for updating taxonomy meta information
  *
@@ -216,7 +216,7 @@ if ( !function_exists( 'update_taxonomy_term_type' ) ) :
  * @param mixed $value the new value
  *
  */
-function update_taxonomy_term_type($taxonomy,$term_id,$value) {
+function sbx_update_taxonomy_term_type($taxonomy,$term_id,$value) {
 	update_option("_term_type_{$taxonomy}_{$term_id}",$value);
 }
 endif;
