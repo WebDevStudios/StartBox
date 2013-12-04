@@ -13,7 +13,7 @@ if ( ! current_theme_supports( 'sbx-breadcrumbs' ) )
 	return;
 
 /**
- * Base class for hanling breadcrumb navigation
+ * Base class for handling breadcrumb navigation
  *
  * @subpackage Classes
  * @since 3.0.0
