@@ -13,7 +13,7 @@
 class StartBox {
 
 	// Initialize StartBox -- Available action: sb_init
-	public function init() {
+	public static function init() {
 
 		// If we're on on 3.4, use the handy wp_get_theme function
 		if ( function_exists('wp_get_theme') ) {
@@ -90,7 +90,7 @@ class StartBox {
 	}
 
 	// Register all of the included scripts and styles
-	public function register_scripts_and_styles() {
+	public static function register_scripts_and_styles() {
 
 		// Register Default Scripts
 		wp_register_script( 'startbox',		SCRIPTS_URL . '/startbox.js', array('jquery', 'md5', 'smoothScroll') );
@@ -112,7 +112,7 @@ class StartBox {
 	}
 
 	// Setup the environment and register support for various WP features.
-	public function environment() {
+	public static function environment() {
 
 		// Add theme support for various WP-specific features
 		register_nav_menus( array( 'primary' => __( 'Primary Navigation', 'startbox' ), 'secondary' => __( 'Secondary Navigation', 'startbox' ) ) );  // Enables custom menus in the Appearance menu, since WP3.0
@@ -164,7 +164,7 @@ class StartBox {
 	}
 
 	// Include all Widgets, Plugins and Theme Options
-	public function sb_includes() {
+	public static function sb_includes() {
 
 		require_if_theme_supports( 'sb-updates',			FUNCTIONS_PATH . '/upgrade.php' );									// Update Manager
 		require_if_theme_supports( 'sb-sidebars',			EXTENSIONS_PATH . '/sidebars.php' );								// Sidebar manager
@@ -178,7 +178,7 @@ class StartBox {
 	}
 
 	// Setup default scripts and styles
-	public function sb_default_scripts() {
+	public static function sb_default_scripts() {
 		if ( is_admin() ) { return; }
 		if ( is_singular() ) {
 			wp_enqueue_style( 'print' );

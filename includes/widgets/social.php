@@ -26,14 +26,14 @@ class SB_Widget_Social extends WP_Widget {
 	 *
 	 * @var array
 	 */
-	protected $defaults;
+	public $defaults;
 
 	/**
 	 * Holds details of available services, populated in constructor.
 	 *
 	 * @var array
 	 */
-	protected $services;
+	public $services;
 
 	/**
 	 * Constructor. Set the default widget options and create widget.
@@ -71,7 +71,7 @@ class SB_Widget_Social extends WP_Widget {
 	 * @param array $args Display arguments including before_title, after_title, before_widget, and after_widget.
 	 * @param array $instance The settings for the particular instance of the widget
 	 */
-	public function widget( array $args, array $instance ) {
+	public function widget( $args, $instance ) {
 		extract($args);
 		$instance  = wp_parse_args( $instance, $this->defaults );
 		$linksopen = $instance['linksopen'] ? ' target="_blank"' : '' ;
@@ -129,7 +129,7 @@ class SB_Widget_Social extends WP_Widget {
 
 			printf(
 				'<li class="%s">',
-				esc_attr( 'listing ' . sanitize_class_html( 'listing-' . $service_id ) )
+				esc_attr( 'listing listing-' . $service_id )
 			);
 			printf(
 				'<a href="%s" title="%s"%s>',
@@ -169,7 +169,7 @@ class SB_Widget_Social extends WP_Widget {
 	 *
 	 * @return array Settings to save or bool false to cancel saving
 	 */
-	public function update( array $new_instance, array $old_instance ) {
+	public function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 
 		$instance['title']       = esc_html( $new_instance['title'] );
@@ -185,7 +185,7 @@ class SB_Widget_Social extends WP_Widget {
 		$instance['vimeo']       = esc_html( $new_instance['vimeo'] );
 		$instance['digg']        = esc_html( $new_instance['digg'] );
 		$instance['linkedin']    = esc_html( $new_instance['linkedin'] );
-		$instance['linksopen']   =  $new_instance['linksopen'];
+		$instance['linksopen']   = $new_instance['linksopen'];
 		$instance['display']     = $new_instance['display'];
 
 		return $instance;
@@ -196,7 +196,7 @@ class SB_Widget_Social extends WP_Widget {
 	 *
 	 * @param array $instance Current settings
 	 */
-	public function form( array $instance ) {
+	public function form( $instance ) {
 		$instance = wp_parse_args( $instance, $this->defaults );
 		?>
 		<p>

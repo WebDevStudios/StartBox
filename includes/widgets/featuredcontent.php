@@ -70,7 +70,7 @@ class SB_Widget_Featured_Content extends WP_Widget {
 	 * @param array $args Display arguments including before_title, after_title, before_widget, and after_widget.
 	 * @param array $instance The settings for the particular instance of the widget
 	 */
-	public function widget( array $args, array $instance ) {
+	public function widget( $args, $instance ) {
 		extract( $args );
 
 		global $post;
@@ -251,7 +251,7 @@ class SB_Widget_Featured_Content extends WP_Widget {
 	 *
 	 * @return array Settings to save or bool false to cancel saving
 	 */
-	public function update( array $new_instance, array $old_instance ) {
+	public function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 
 		$instance['content_type']        = $new_instance['content_type'];
@@ -322,7 +322,7 @@ class SB_Widget_Featured_Content extends WP_Widget {
 	 *
 	 * @param array $instance Current settings
 	 */
-	public function form( array $instance ) {
+	public function form( $instance ) {
 		$instance = wp_parse_args( $instance, $this->defaults );
 		$post_types = get_post_types( array( 'public' => true, ), 'objects' );
 		$dropdown_category_args = array(

@@ -356,7 +356,7 @@ class SB_Sidebars_Checklist extends Walker_Nav_Menu  {
 	 * @param int $depth Depth of menu item. Used for padding.
 	 * @param object $args
 	 */
-	function start_el(&$output, $item, $depth, $args) {
+	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
 		global $post_id;
 
 		$selected = (array) maybe_unserialize( get_post_meta( $post_id, '_tax', true ) );

@@ -61,7 +61,7 @@ class SB_Widget_Tag_Cloud extends WP_Widget {
 	 * @param array $args Display arguments including before_title, after_title, before_widget, and after_widget.
 	 * @param array $instance The settings for the particular instance of the widget
 	 */
-	public function widget( array $args, array $instance ) {
+	public function widget( $args, $instance ) {
 		extract( $args );
 
 		$tag_cloud_args = $instance;
@@ -92,7 +92,7 @@ class SB_Widget_Tag_Cloud extends WP_Widget {
 	 *
 	 * @return array Settings to save or bool false to cancel saving
 	 */
-	public function update( array $new_instance, array $old_instance ) {
+	public function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 
 		$instance['title']     = esc_html( $new_instance['title'] );
@@ -115,7 +115,7 @@ class SB_Widget_Tag_Cloud extends WP_Widget {
 	 *
 	 * @param array $instance Current settings
 	 */
-	public function form( array $instance ) {
+	public function form( $instance ) {
 		$instance = wp_parse_args( $instance, $this->defaults );
 		?>
 		<p>
