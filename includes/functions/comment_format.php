@@ -67,7 +67,7 @@ function sb_insert_comment_form() { ?>
 		<div class="comment-meta">
 			<div class="comment-author vcard">
 				<?php global $user_ID; if ( $user_ID ) {$user_info = get_userdata($user_ID); echo get_avatar( $user_info->user_email, apply_filters( 'sb_comment_gravatar_size', 60 ) ); } else { ?><a href="http://gravatar.com/" title="<?php _e('Get a Gravatar!', 'startbox'); ?>" target="_blank"><img class="avatar" width="<?php echo apply_filters( 'sb_comment_gravatar_size', 60 ); ?>" height="<?php echo apply_filters( 'sb_comment_gravatar_size', 60 ); ?>" src="<?php echo IMAGES_URL . '/comments/gravatar.png'; ?>" alt="<?php _e('Get a Gravatar!', 'startbox'); ?>"/></a><?php } ?>
-				<cite id="authorname" class="fn n comment-author-name"><?php if ( $user_ID ) {$user_info = get_userdata($user_ID); echo esc_html( $user_info->display_name ); } else { echo __('Your Name', 'startbox'); } ?></cite>
+				<cite id="authorname" class="fn n comment-author-name"><?php if ( $user_ID ) {$user_info = get_userdata($user_ID); echo esc_html( $user_info->display_name ); } else { _e('Your Name', 'startbox'); } ?></cite>
 			</div>
 			<div class="comment-date comment-permalink"><?php echo date('M jS, Y'); ?><br/><?php echo date('g:ia'); ?></div>
 
