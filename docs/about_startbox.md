@@ -1,6 +1,6 @@
 # About StartBox
 
->Startbox is a dynamic, feature-rich WordPress theme framework that helps developers and designers build better themes more quickly and easily. Startbox is perfect for personal or professional WP theme design and has been thoroughly tested and approved by well know developers. You can use Startbox to create themes for client projects or to create and sell your own Child Themes on popular marketplaces like ThemeGarden or your own site!
+>Startbox is a dynamic, feature-rich WordPress theme framework that helps developers and designers build better themes more quickly and easily. Startbox is perfect for personal or professional WP theme design and has been thoroughly tested and approved by well know developers. You can use Startbox to create themes for client projects or to create and sell your own themes on popular marketplaces like ThemeForest or your own site!
 
 ## Features
 
@@ -51,8 +51,6 @@ In version 2.5, StartBox introduced the ability to register custom sidebars from
 
 ## Easy to Customize
 
-StartBox is extremely easy to customize via Child Themes. In fact, StartBox comes with a blank child theme, dummy content and an Out-of-the-Box guide to make rapid development even faster.
-
 StartBox uses modular scripts and stylesheets (so you only include the ones you need) and a dynamic CSS class structure (so you transform the look without changing the markup) and has over 50 hooks and filters (so you can inject any kind of code wherever you need it). Combine that with the easy-to-use Options API and you’re golden!
 
 ### StartBox Easy Hooks
@@ -63,7 +61,7 @@ To make the hooks even more accessible to end-users we also have our very own [S
 
 ### Getting Started
 
-We know how frustrating or frightening it can be getting started with a new system. To help offset that we’ve produced a helpful Out-of-the-Box manual that will help you with installation and setup as well as get you started with the basics of child theme development.
+We know how frustrating or frightening it can be getting started with a new system. To help offset that we’ve produced a helpful Out-of-the-Box manual that will help you with installation and setup as well as get you started with the basics of theme development.
 
 ### Always Up-to-Date
 
