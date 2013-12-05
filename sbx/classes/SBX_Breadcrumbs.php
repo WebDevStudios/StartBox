@@ -221,7 +221,7 @@ class SBX_Breadcrumbs {
 		if ( 'post' == $post_type && $this->get_blog_crumb() )
 			$trail[] = $this->get_blog_crumb();
 
-		// If this is an attachment, and we support attachment hierarcy
+		// If this is an attachment, and we support attachment hierarchy
 		if ( 'attachment' == $post_type ) {
 			if ( $this->args['hierarchial_attachments'] )
 				$trail[] = $this->get_singular_crumb( $post->post_parent );
