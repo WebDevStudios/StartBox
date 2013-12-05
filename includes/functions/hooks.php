@@ -183,9 +183,10 @@ function sb_front_page_hooks() {
 		do_action( 'sb_before_featured' );
 		do_action( 'sb_featured' );
 		do_action( 'sb_after_featured' );
+		do_action( 'sb_home' );
 	}
 }
-add_action( 'sb_before_content', 'sb_front_page_hooks' );
+add_action( 'sb_before_content', 'sb_front_page_hooks', 99 );
 
 // Add a featured widget area to sb_featrued on the home page
 function sb_home_featured_sidebar() {
