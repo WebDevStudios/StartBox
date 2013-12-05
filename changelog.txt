@@ -1,6 +1,9 @@
-2013.07.17 - version 2.7.3
+2013.12.04 - version 2.7.3
+	* Updated: Refreshed entire icon set for social icons (note: these are still overridable via plugin or child theme)
+	* Updated: Removed a number of PHP Strict warnings
+	* Fixed: Added i18n to a string in comment_format.php
 	* Fixed: Eliminated erroneous function call from the SB Social widget
-	* Removed: front-page.php, reintroduced custom front-page hooks via hooks.php
+	* Removed: front-page.php, moved custom front-page hooks to hooks.php
 
 2013.06.14 - version 2.7.2
 	* Added: New filters for controling SB's post image functions
