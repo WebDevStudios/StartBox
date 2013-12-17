@@ -239,6 +239,38 @@ function sbx_delete_taxonomy_term_type($taxonomy,$term_id ) {
 endif;
 
 
+if ( !function_exists( 'sb_nav_menu_fallback' ) ) :
+/**
+ * Fallback function for building menus in the event no custom menus exist -- copied mostly from wp_nav_menu()
+ *
+ * @since 2.4.9
+*/
+function sb_nav_menu_fallback( $args = array() ) {
+
+	$args = apply_filters( 'wp_nav_menu_args', $args );
+	$args = (object) $args;
+
+	$id = $args->container_id ? ' id="' . esc_attr( $args->container_id ) . '"' : '';
+	$class = $args->container_class ? ' class="' . esc_attr( $args->container_class ) . '"' : ' class="menu-'. $menu->slug .'-container"';
+
+	$nav_menu = $items = '';
+	$nav_menu .= '<'. $args->container . $id . $class . '>';
+	$nav_menu .= '<ul id="' . $args->menu_id . '">';
+	$nav_menu .= apply_filters( 'wp_nav_menu_items', $items, $args );
+	$nav_menu .= '</ul>';
+	$nav_menu .= '</' . $args->container . '>';
+	$nav_menu = apply_filters( 'wp_nav_menu', $nav_menu, $args );
+
+	if ( $args->echo )
+		echo $nav_menu;
+	else
+		return $nav_menu;
+
+}
+endif;
+
+
+
 /**
  * Forever eliminate "Startbox" from the planet (or at least the little bit we can influence).
  *
