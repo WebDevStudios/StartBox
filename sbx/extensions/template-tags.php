@@ -241,30 +241,30 @@ endif;
 
 if ( !function_exists( 'sb_nav_menu_fallback' ) ) :
 /**
- * Fallback function for building menus in the event no custom menus exist -- copied mostly from wp_nav_menu()
+ * Fallback function for building menus in the event no custom menus exist.
  *
- * @since 2.4.9
+ * @since 3.0
 */
-function sb_nav_menu_fallback( $args = array() ) {
+function sb_nav_menu_fallback() {
 
-	$args = apply_filters( 'wp_nav_menu_args', $args );
-	$args = (object) $args;
+	$args = array(
+		'depth'       => 1,
+		'sort_column' => 'menu_order, post_title',
+		'menu_class'  => 'menu',
+		'include'     => '',
+		'exclude'     => '',
+		'echo'        => true,
+		'show_home'   => true,
+		'link_before' => '',
+		'link_after'  => ''
+	);
 
-	$id = $args->container_id ? ' id="' . esc_attr( $args->container_id ) . '"' : '';
-	$class = $args->container_class ? ' class="' . esc_attr( $args->container_class ) . '"' : ' class="menu-'. $menu->slug .'-container"';
+	$nav_menu = '';
+	$nav_menu = '<ul>';
+	$nav_menu = wp_page_menu( $args );
+	$nav_menu = '</ul>';
 
-	$nav_menu = $items = '';
-	$nav_menu .= '<'. $args->container . $id . $class . '>';
-	$nav_menu .= '<ul id="' . $args->menu_id . '">';
-	$nav_menu .= apply_filters( 'wp_nav_menu_items', $items, $args );
-	$nav_menu .= '</ul>';
-	$nav_menu .= '</' . $args->container . '>';
-	$nav_menu = apply_filters( 'wp_nav_menu', $nav_menu, $args );
-
-	if ( $args->echo )
-		echo $nav_menu;
-	else
-		return $nav_menu;
+	return $nav_menu;
 
 }
 endif;
