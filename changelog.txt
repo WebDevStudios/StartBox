@@ -1,3 +1,10 @@
+2013.12.17 - version 3.0.0-Experimental
+	* Added main navigation fallback
+	* Added official Normalize.css
+	* Wrapped sbx_get_theme_mod(); in do_shortcode();
+	* Upgraded to latest respond.js
+	* Responsive fixes and tweaks
+
 2013.11.05 - version 3.0.0-Experimental
 	* Added Author Box Markup and filters
 	* Added Author Box to Theme Customizer
