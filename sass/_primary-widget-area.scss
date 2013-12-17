@@ -2,11 +2,11 @@
 --------------------------------------------- */
 
 .primary-widget-area {
-	
+
 	.widget {
 		background-color: $color-bg-widget;
 		@include rem(margin-bottom, 24px);
-		@include rem(padding, 40px);
+		@include rem(padding, 48px);
 
 	}
 
@@ -49,7 +49,7 @@
 		width: 66%;
 	}
 
-	.gform_wrapper .top_label input.medium, 
+	.gform_wrapper .top_label input.medium,
 	.gform_wrapper .top_label select.medium {
 		width: 100%;
 	}

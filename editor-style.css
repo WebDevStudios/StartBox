@@ -531,6 +531,11 @@ Content
   border: 1px solid #e5dba1;
 }
 
+.entry-title {
+  -ms-word-wrap: break-word;
+  word-break: break-word;
+}
+
 .entry-title a {
   color: #111111;
   text-decoration: none;
@@ -538,6 +543,11 @@ Content
 
 .entry-title a:hover {
   color: #999999;
+}
+
+.entry-content {
+  -ms-word-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .entry-meta {

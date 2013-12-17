@@ -1,12 +1,12 @@
 /* Grid
-	12 column - http://responsive.gs 
+	12 column - http://responsive.gs
 --------------------------------------------- */
 
 .row {
 	padding-bottom: 0;
 }
 
-.col { 
+.col {
 	float: left;
 	width: 100%;
 }
@@ -16,19 +16,17 @@
 	.gutters .col {
 		margin-left: 2%;
 
-		&:first-child { 
-			margin-left: 0; 
+		&:first-child {
+			margin-left: 0;
 		}
 	}
-	
+
 	.no-gutters {
 		&.col {
 			margin-left: 0;
 		}
 	}
-}
 
-@media ( min-width : 768px ) {
 	.span-1 { width: 8.33333333333%; }
 	.span-2 { width: 16.6666666667%; }
 	.span-3 { width: 25%; }
@@ -41,7 +39,7 @@
 	.span-10 { width: 83.3333333333%; }
 	.span-11 { width: 91.6666666667%; }
 	.span-12 { width: 100%; }
-	
+
 	.gutters {
 		.span-1 { width: 6.5%; }
 		.span-2 { width: 15.0%; }

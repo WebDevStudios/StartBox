@@ -1363,6 +1363,11 @@ Content
   color: #999999;
 }
 
+.entry-content {
+  -ms-word-wrap: break-word;
+  word-wrap: break-word;
+}
+
 .entry-meta {
   color: #888888;
   border-top: 1px solid #999999;

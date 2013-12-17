@@ -8,19 +8,15 @@
 }
 
 .post-navigation {
-	@include rem(margin-bottom, 48px);
-}
-
-.content-area [class*="navigation"] {
 	overflow: hidden;
 }
 
-[class*="navigation"] .nav-previous {
+.nav-previous {
 	float: left;
 	width: 50%;
 }
 
-[class*="navigation"] .nav-next {
+.nav-next {
 	float: right;
 	text-align: right;
 	width: 50%;

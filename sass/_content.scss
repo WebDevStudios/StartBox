@@ -15,7 +15,7 @@
 }
 
 .post,
-.site-inner .page{
+.site-inner .page {
 	background-color: $color-bg-posts;
 	@include rem(margin-bottom, 24px);
 	@include rem(padding, 48px);
@@ -26,6 +26,11 @@
 	border: 1px solid $color-border-sticky;
 }
 
+.entry-title {
+	-ms-word-wrap: break-word;
+	word-break: break-word;
+}
+
 .entry-title a {
 	color: $color-headlines-primary;
 	text-decoration: none;
@@ -33,6 +38,11 @@
 
 .entry-title a:hover {
 	color: $color-link-hover;
+}
+
+.entry-content {
+	-ms-word-wrap: break-word;
+	word-wrap: break-word;
 }
 
 .entry-meta {

@@ -4,15 +4,19 @@
 @media only screen and (max-width: 768px) {
 
 	.site-branding,
+	.site-title,
+	.site-description,
+	.site-info,
+	.header_widget_area,
 	h1.menu-toggle,
 	.main-navigation,
 	.main-navigation ul,
 	.main-navigation li,
 	.main-navigation a,
 	.main-navigation ul.sub-menu,
-	.site-title,
-	.site-description,
-	.site-info {
+	.breadcrumbs,
+	.nav-previous,
+	.nav-next {
 		clear: both;
 		float: none;
 		margin: 0;
@@ -28,10 +32,6 @@
 
 	.site-description {
 		@include rem(font-size, 24px);
-	}
-
-	.header_widget_area {
-		padding: 0;
 	}
 
 	.main-navigation {
@@ -69,6 +69,7 @@
 	.header_widget_area {
 		.widget_nav_menu {
 			ul {
+				display: inline-block;
 				float: none;
 			}
 		}
@@ -80,9 +81,29 @@
 		@include rem(padding, 12px 0 0);
 	}
 
+	.site-inner,
+	.site-main {
+		@include rem(margin, 12px 0);
+		@include rem(padding, 12px 0);
+	}
+
 	.hentry {
-		padding-left: 5%;
-		padding-right: 5%;
+		@include rem(padding, 24px);
+	}
+
+	.primary-widget-area,
+	.footer-widgets {
+		.widget {
+			@include rem(padding, 24px);
+		}
+	}
+
+}
+
+@media only screen and (max-width: 480px) {
+
+	.comments-area {
+		@include rem(padding, 12px)
 	}
 
 }
