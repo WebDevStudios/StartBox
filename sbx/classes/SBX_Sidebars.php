@@ -92,8 +92,8 @@ class SBX_Sidebars {
 			'description'   => esc_attr( $sidebar['description'] ),
 			'before_widget' => apply_filters( 'sb_sidebars_before_widget', '<aside id="%1$s" class="widget %2$s">', $sidebar['id'], $sidebar ),
 			'after_widget'  => apply_filters( 'sb_sidebars_after_widget', '</aside><!-- #%1$s -->', $sidebar['id'], $sidebar ),
-			'before_title'  => apply_filters( 'sb_sidebars_before_title', '<h1 class="widget-title">', $sidebar['id'], $sidebar ),
-			'after_title'   => apply_filters( 'sb_sidebars_after_title', '</h1>', $sidebar['id'], $sidebar )
+			'before_title'  => apply_filters( 'sb_sidebars_before_title', '<h3 class="widget-title">', $sidebar['id'], $sidebar ),
+			'after_title'   => apply_filters( 'sb_sidebars_after_title', '</h3>', $sidebar['id'], $sidebar )
 		), $sidebar ) );
 
 		// Add the sidebar to our registered array
