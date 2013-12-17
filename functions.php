@@ -185,7 +185,7 @@ function startbox_customizer_settings( $sections = array() ) {
 				'id'           => $prefix . 'credits',
 				'label'        => 'Site Credits',
 				'type'         => 'textarea',
-				'default'      => '[copyright year="2013"] [site_link]. Proudly powered by [WordPress] and [StartBox].',
+				'default'      => '[copyright year="2013"] <a href="' . site_url() . '">' . get_bloginfo( 'name' ) . '</a>. Proudly powered by [WordPress] and [StartBox].',
 				'priority'     => 30,
 				'js_callback'  => 'sbx_change_text',
 				'css_selector' => '.site-info .credits',
