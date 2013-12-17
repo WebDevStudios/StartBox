@@ -11,7 +11,7 @@
 <head>
 <?php do_action( 'head_top' ); ?>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title><?php wp_title( '|', true, 'right' ); ?></title>
 
@@ -51,7 +51,7 @@
 	<nav id="site-navigation" class="main-navigation" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
 		<div class="wrap">
 			<h1 class="menu-toggle"><?php _e( 'Menu', 'sbx' ); ?></h1>
-				<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'startbox' ); ?></a>
+			<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'startbox' ); ?></a>
 			<?php wp_nav_menu( array( 'theme_location' => 'main-navigation', 'fallback_cb' => 'sb_nav_menu_fallback' ) ); ?>
 		</div>
 	</nav><!-- #site-navigation -->

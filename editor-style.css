@@ -16,11 +16,6 @@ a:active {
 
 /* Typography
 --------------------------------------------- */
-html {
-  font-size: 62.5%;
-  /* 10px browser default */
-}
-
 body {
   background-color: #f0f0f0;
   color: #111111;
@@ -409,7 +404,7 @@ input::-moz-focus-inner {
 
 /* buttons */
 button,
-html input[type="button"],
+input[type="button"],
 input[type="reset"],
 input[type="submit"],
 .gform_wrapper input[type="submit"],
@@ -433,7 +428,7 @@ input[type="submit"],
 }
 
 button:hover,
-html input[type="button"]:hover,
+input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover,
 .gform_wrapper input[type="submit"]:hover {
@@ -446,7 +441,7 @@ input[type="submit"]:hover,
 }
 
 button:focus,
-html input[type="button"]:focus,
+input[type="button"]:focus,
 input[type="reset"]:focus,
 input[type="submit"]:focus,
 .gform_wrapper input[type="submit"]:focus,

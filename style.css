@@ -1,11 +1,11 @@
 /*
 THEME NAME: StartBox
-THEME URI: http://wpstartbox.com
+THEME URI: http://wpstartbox.com/
 DESCRIPTION: StartBox is a flexible, customizable theme framework. All modifications should be made using a <a href="http://docs.wpstartbox.com/Child_Themes/" target="_blank">child theme</a> to maintain forward compatibility.
 TAGS: one-column, two-columns, three-columns, left-sidebar, right-sidebar, fixed-width, white, light, custom-menu, editor-style, featured-images, full-width-template, microformats, sticky-post, theme-options, threaded-comments, translation-ready
 VERSION: 3.0-experimental
 AUTHOR: WebDevStudios
-AUTHOR URI: http://wpstartbox.com
+AUTHOR URI: http://wpstartbox.com/
 LICENSE: GNU General Public License
 LICENSE URI: license.txt
 
@@ -53,187 +53,46 @@ HTML5 Reset
 /* Normalize
 	normalize.css v2.1.3 | MIT License | git.io/normalize
 --------------------------------------------- */
-article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
-  display: block;
-}
-
-audio, canvas, video {
-  display: inline-block;
-}
-
-audio:not([controls]) {
-  display: none;
-  height: 0;
-}
-
-[hidden], template {
-  display: none;
-}
-
-html {
-  font-family: sans-serif;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-}
-
-body {
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  border: 0;
+  font-family: inherit;
+  font-size: 100%;
+  font-style: inherit;
+  font-weight: inherit;
   margin: 0;
-}
-
-a {
-  background: transparent;
-}
-
-a:focus {
-  outline: thin dotted;
-}
-
-a:active, a:hover {
   outline: 0;
-}
-
-h1 {
-  font-size: 2em;
-  margin: .67em 0;
-}
-
-abbr[title] {
-  border-bottom: 1px dotted;
-}
-
-b, strong {
-  font-weight: 700;
-}
-
-dfn {
-  font-style: italic;
-}
-
-hr {
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-  height: 0;
-}
-
-mark {
-  background: #ff0;
-  color: #000;
-}
-
-code, kbd, pre, samp {
-  font-family: monospace,serif;
-  font-size: 1em;
-}
-
-pre {
-  white-space: pre-wrap;
-}
-
-q {
-  quotes: "\201C" "\201D" "\2018" "\2019";
-}
-
-small {
-  font-size: 80%;
-}
-
-sub, sup {
-  font-size: 75%;
-  line-height: 0;
-  position: relative;
+  padding: 0;
   vertical-align: baseline;
 }
 
-sup {
-  top: -.5em;
-}
-
-sub {
-  bottom: -.25em;
-}
-
-img {
-  border: 0;
-}
-
-svg:not(:root) {
-  overflow: hidden;
-}
-
-figure {
-  margin: 0;
-}
-
-fieldset {
-  border: 1px solid silver;
-  margin: 0 2px;
-  padding: .35em .625em .75em;
-}
-
-legend {
-  border: 0;
-  padding: 0;
-}
-
-button, input, select, textarea {
-  font-family: inherit;
-  font-size: 100%;
-  margin: 0;
-}
-
-button, input {
-  line-height: normal;
-}
-
-button, select {
-  text-transform: none;
-}
-
-button, html input[type=button], input[type=reset], input[type=submit] {
-  -webkit-appearance: button;
-  cursor: pointer;
-}
-
-button[disabled], html input[disabled] {
-  cursor: default;
-}
-
-input[type=checkbox], input[type=radio] {
-  box-sizing: border-box;
-  padding: 0;
-}
-
-input[type=search] {
-  -webkit-appearance: textfield;
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
-  box-sizing: content-box;
-}
-
-input[type=search]::-webkit-search-cancel-button, input[type=search]::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
-
-button::-moz-focus-inner, input::-moz-focus-inner {
-  border: 0;
-  padding: 0;
-}
-
-textarea {
-  overflow: auto;
-  vertical-align: top;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
+/* Fonts
+--------------------------------------------- */
+html {
+  font-size: 62.5%;
+  /* Corrects text resizing oddly in IE6/7 when body font-size is set using em units http://clagnut.com/blog/348/#c790 */
+  overflow-y: scroll;
+  /* Keeps page centered in all browsers regardless of content height */
+  -webkit-text-size-adjust: 100%;
+  /* Prevents iOS text size adjust after orientation change, without disabling user zoom */
+  -ms-text-size-adjust: 100%;
+  /* www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/ */
 }
 
 /* Box Sizing
+	Apply a natural box layout model to all elements; see http://www.paulirish.com/2012/box-sizing-border-box-ftw/
 --------------------------------------------- */
-* {
-  -webkit-box-sizing: border-box;
+*,
+*:before,
+*:after {
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -311,11 +170,6 @@ a:active {
 
 /* Typography
 --------------------------------------------- */
-html {
-  font-size: 62.5%;
-  /* 10px browser default */
-}
-
 body {
   background-color: #f0f0f0;
   color: #111111;
@@ -704,7 +558,7 @@ input::-moz-focus-inner {
 
 /* buttons */
 button,
-html input[type="button"],
+input[type="button"],
 input[type="reset"],
 input[type="submit"],
 .gform_wrapper input[type="submit"],
@@ -728,7 +582,7 @@ input[type="submit"],
 }
 
 button:hover,
-html input[type="button"]:hover,
+input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover,
 .gform_wrapper input[type="submit"]:hover {
@@ -741,7 +595,7 @@ input[type="submit"]:hover,
 }
 
 button:focus,
-html input[type="button"]:focus,
+input[type="button"]:focus,
 input[type="reset"]:focus,
 input[type="submit"]:focus,
 .gform_wrapper input[type="submit"]:focus,
@@ -818,7 +672,7 @@ Structure and Layout
 }
 
 /* Grid
-	12 column - http://responsive.gs 
+	12 column - http://responsive.gs
 --------------------------------------------- */
 .row {
   padding-bottom: 0;
@@ -831,7 +685,7 @@ Structure and Layout
 
 @media (min-width: 768px) {
   .gutters .col {
-    margin-left: 2%;
+    margin-left: 1%;
   }
   .gutters .col:first-child {
     margin-left: 0;
@@ -840,8 +694,7 @@ Structure and Layout
   .no-gutters.col {
     margin-left: 0;
   }
-}
-@media (min-width: 768px) {
+
   .span-1 {
     width: 8.33333333333%;
   }
@@ -1481,15 +1334,17 @@ Media Queries
 --------------------------------------------- */
 @media only screen and (max-width: 768px) {
   .site-branding,
+  .site-title,
+  .site-description,
+  .site-info,
+  .header_widget_area,
   h1.menu-toggle,
   .main-navigation,
   .main-navigation ul,
   .main-navigation li,
   .main-navigation a,
   .main-navigation ul.sub-menu,
-  .site-title,
-  .site-description,
-  .site-info {
+  .breadcrumbs {
     clear: both;
     float: none;
     margin: 0;
@@ -1508,10 +1363,6 @@ Media Queries
   .site-description {
     font-size: 24px;
     font-size: 2.4rem;
-  }
-
-  .header_widget_area {
-    padding: 0;
   }
 
   .main-navigation ul {
@@ -1540,6 +1391,7 @@ Media Queries
   }
 
   .header_widget_area .widget_nav_menu ul {
+    display: inline-block;
     float: none;
   }
 
@@ -1554,5 +1406,16 @@ Media Queries
   .hentry {
     padding-left: 5%;
     padding-right: 5%;
+  }
+
+  .footer-widgets .widget {
+    padding: 48px;
+    padding: 4.8rem;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .comments-area {
+    padding: 12px;
+    padding: 1.2rem;
   }
 }
