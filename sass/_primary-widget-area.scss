@@ -39,14 +39,17 @@
 	input[type="password"]:focus,
 	input[type="search"]:focus,
 	textarea:focus  {
+		-webkit-appearance: none;
+		-webkit-border-radius: 0;
 		color: $color-input-form;
+		border-radius:0;
 		border: 1px solid $color-border-form;
 		@include rem(font-size, 14px);
 		@include rem(padding, 10px);
 	}
 
 	.search-field {
-		width: 66%;
+		width: 65%;
 	}
 
 	.gform_wrapper .top_label input.medium,
