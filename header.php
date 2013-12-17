@@ -52,7 +52,7 @@
 		<div class="wrap">
 			<h1 class="menu-toggle"><?php _e( 'Menu', 'sbx' ); ?></h1>
 				<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'startbox' ); ?></a>
-			<?php wp_nav_menu( array( 'theme_location' => 'main-navigation' ) ); ?>
+			<?php wp_nav_menu( array( 'theme_location' => 'main-navigation', 'fallback_cb' => 'sb_nav_menu_fallback' ) ); ?>
 		</div>
 	</nav><!-- #site-navigation -->
 	<div id="content" class="site-inner">
