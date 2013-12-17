@@ -23,7 +23,8 @@
 		<div class="wrap">
 			<?php do_action( 'footer_top' ); ?>
 			<div class="site-info">
-				<?php do_shortcode( sbx_get_theme_mod( 'sbx_credits' ) ); ?>
+				<?php sbx_get_theme_mod( 'sb_credits' ); ?>
+				<?php sbx_get_theme_mod( 'sb_rtt' ); ?>
 			</div><!-- .site-info -->
 			<?php do_action( 'footer_bottom' ); ?>
 		</div><!-- .wrap -->
