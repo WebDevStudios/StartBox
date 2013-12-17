@@ -413,5 +413,5 @@ function sbx_get_theme_mod( $setting = '', $default = '' ) {
 
 	}
 
-	return $output;
+	echo do_shortcode( $output );
 }
