@@ -331,7 +331,7 @@ function startbox_google_webfonts() {
 
 	$protocol = is_ssl() ? 'https' : 'http';
 	$query_args = array(
-		'family' => 'Open+Sans:400italic,700italic,400,700',
+		'family' => 'Open+Sans:300italic,700italic,300,700',
 		'subset' => 'latin,latin-ext',
 	);
 
