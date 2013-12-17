@@ -23,21 +23,7 @@
 		<div class="wrap">
 			<?php do_action( 'footer_top' ); ?>
 			<div class="site-info">
-				<?php
-
-				/**
-				 * THIS IS SUPER SLOPPY. These will be moved.
-				 */
-
-				// Credits
-				echo '<span class="credits">' . do_shortcode( sbx_get_theme_mod( 'sb_credits' ) ) . '</span>';
-
-				// Return To Top Link
-				if ( sbx_get_theme_mod( 'sbx_rtt_link' ) ) {
-					echo sbx_rtt();
-				}
-
-				?>
+				<?php do_shortcode( sbx_get_theme_mod( 'sbx_credits' ) ); ?>
 			</div><!-- .site-info -->
 			<?php do_action( 'footer_bottom' ); ?>
 		</div><!-- .wrap -->
