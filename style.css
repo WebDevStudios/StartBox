@@ -1726,6 +1726,11 @@ Media Queries
     font-size: 2.4rem;
   }
 
+  .header_widget_area {
+    margin-top: 48px;
+    margin-top: 4.8rem;
+  }
+
   .main-navigation {
     float: none;
     text-align: center;

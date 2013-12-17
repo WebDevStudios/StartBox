@@ -29,6 +29,10 @@
 		@include rem(font-size, 24px);
 	}
 
+	.header_widget_area {
+		@include rem(margin-top, 48px);
+	}
+
 	.main-navigation {
 		float: none;
 		text-align: center;
