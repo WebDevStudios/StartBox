@@ -405,7 +405,7 @@ function sbx_get_theme_mod( $setting = '', $default = '' ) {
 		$setting_fields = wp_list_pluck( $customizer_settings, 'settings' );
 		foreach ( $setting_fields as $section ) {
 			foreach ( $section as $field ) {
-				if ( $setting == $field['id'] ) {
+				if ( $setting == $field['id'] && isset( $field['default'] ) ) {
 					$output = $field['default'];
 				}
 			}
@@ -413,5 +413,5 @@ function sbx_get_theme_mod( $setting = '', $default = '' ) {
 
 	}
 
-	echo do_shortcode( $output );
+	return do_shortcode( $output );
 }
