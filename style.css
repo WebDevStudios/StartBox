@@ -575,25 +575,38 @@ i {
   font-style: italic;
 }
 
-blockquote {
-  background: #eeeeee;
-  border-left: 10px solid #cccccc;
-  margin: 24px 10px 24px;
-  margin: 2.4rem 1rem 2.4rem;
-  padding: 5px 10px;
-  padding: 0.5rem 1rem;
-  quotes: "\201C" "\201D" "\2018" "\2019";
-}
-
 blockquote:before {
   color: #111111;
-  content: open-quote;
+  content: "\201C";
   font-size: 48px;
   font-size: 4.8rem;
   line-height: 10px;
   margin-right: 5px;
   margin-right: 0.5rem;
   vertical-align: -23px;
+}
+
+blockquote {
+  background: #eeeeee;
+  border-left: 10px solid #cccccc;
+  margin: 24px 0;
+  margin: 2.4rem 0;
+  padding: 5px 10px;
+  padding: 0.5rem 1rem;
+  quotes: "\201C" "\201D" "\2018" "\2019";
+}
+
+blockquote cite {
+  color: #999999;
+  display: block;
+  float: right;
+  font-size: 13px;
+  font-size: 1.3rem;
+  margin-top: 5px;
+}
+
+blockquote cite:before {
+  content: "\2014 \2009";
 }
 
 blockquote p {

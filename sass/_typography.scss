@@ -45,21 +45,33 @@ i {
 	font-style: italic;
 }
 
-blockquote {
-	background: $color-bg-blockquote;
-	border-left: 10px solid $color-border-blockquote;
-	@include rem(margin, 24px 10px 24px);
-	@include rem(padding, 5px 10px);
-	quotes: "\201C""\201D""\2018""\2019";
-}
-
 blockquote:before {
 	color: $color-text-blockquote;
-	content: open-quote;
+	content: "\201C";
 	@include rem(font-size, 48px);
 	line-height: 10px;
 	@include rem(margin-right, 5px);
 	vertical-align: -23px;
+}
+
+blockquote {
+	background: $color-bg-blockquote;
+	border-left: 10px solid $color-border-blockquote;
+	@include rem(margin, 24px 0);
+	@include rem(padding, 5px 10px);
+	quotes: "\201C""\201D""\2018""\2019";
+}
+
+blockquote cite {
+	color: #999999;
+	display: block;
+	float: right;
+	@include rem(font-size, 13px);
+	margin-top: 5px;
+}
+
+blockquote cite:before {
+	content: "\2014 \2009";
 }
 
 blockquote p {
