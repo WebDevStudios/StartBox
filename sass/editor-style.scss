@@ -1,30 +1,202 @@
-// Import variables and mixins
+/*
+ * editor-style.scss
+ *
+ * We'll pull in some of the theme's default styling. This will help
+ * users see what the content will really look like before publishing.
+ */
+
+
+/*
+Import
+------------------------------------------------------------------------- */
 @import "variables"; // Modify this for custom colors, font-sizes, etc
 @import "mixins"; // Modify this for custom functions and actions etc
+
 
 /*
 Defaults
 ------------------------------------------------------------------------- */
-@import "hyperlinks";
-@import "typography";
-@import "objects";
-@import "alignment";
-@import "screen-readers";
-@import "tables";
-@import "forms";
 
-/*
-Content
-------------------------------------------------------------------------- */
-@import "content";
+html {
+	font-size: 62.5%; /* Corrects text resizing oddly in IE6/7 when body font-size is set using em units http://clagnut.com/blog/348/#c790 */
+	overflow-y: scroll; /* Keeps page centered in all browsers regardless of content height */
+	-webkit-text-size-adjust: 100%; /* Prevents iOS text size adjust after orientation change, without disabling user zoom */
+	-ms-text-size-adjust:     100%; /* www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/ */
+}
 
-
-/*
-Overide so the content of the editor field is attractive and not broken
-------------------------------------------------------------------------- */
 body.mceContentBody {
-	background-color: #ffffff;
-	@include rem(font-size, 13px); // WordPress default
-	margin: 8px;
+	font-family: $font-stack-sans;
+	@include rem(font-size, 16px);
+}
+
+embed,
+iframe,
+img,
+object,
+video,
+.wp-caption {
+	max-width: 100%;
+}
+
+img {
+	height: auto;
+	width: auto; /* IE8 */
+}
+
+
+p {
+	@include rem(margin-bottom, 24px);
+}
+
+ul,
+ol {
+	@include rem(padding-left, 24px);
+}
+
+li > ul,
+li > ol {
+	margin-bottom: 0;
+	@include rem(margin-left, 24px);
+}
+
+dt {
+	font-weight: 700;
+}
+
+dd {
+	@include rem(margin, 0 24px 24px);
+}
+
+b,
+strong {
+	font-weight: 700;
+}
+
+dfn,
+cite,
+em,
+i {
+	font-style: italic;
+}
+
+blockquote {
+	background: $color-bg-blockquote;
+	border-left: 10px solid $color-border-blockquote;
+	@include rem(margin, 24px 0);
+	@include rem(padding, 5px 10px);
+	quotes: '\201C' '\201D' '\2018' '\2019';
+}
+
+blockquote p {
+	display: inline;
+}
+
+address {
+	@include rem(margin, 0 0 24px);
+}
+
+pre {
+	background: $color-pre;
+	font-family: $font-stack-mono;
+	@include rem(font-size, 8px);
+	@include rem(margin-bottom, 25px);
+	@include rem(padding, 12px);
+	overflow: auto;
+	max-width: 100%;
+}
+
+code,
+kbd,
+tt,
+var {
+	font-family: $font-stack-mono;
+	@include rem(font-size, 10px);
+}
+
+abbr,
+acronym {
+	border-bottom: 1px dotted $color-border;
+	cursor: help;
+}
+
+mark,
+ins {
+	background: $color-highlight;
+	text-decoration: none;
+}
+
+sup,
+sub {
+	font-size: 75%;
+	height: 0;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+
+sup {
+	bottom: 1ex;
+}
+
+sub {
+	top: .5ex;
+}
+
+small {
+	font-size: 75%;
+}
+
+big {
+	font-size: 125%;
+}
+
+figure {
+	margin: 0;
+}
+
+th {
+	font-weight: 700;
+}
+
+/* Headlines
+--------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	clear: both;
+	color: $color-headlines-primary;
+	font-family: $font-stack-headlines;
+	font-weight: 700;
+	line-height: 1.2;
+	margin: 0;
+	@include rem(margin-bottom, 24px);
 	padding: 0;
+}
+
+h1 {
+	@include rem(font-size, 36px);
+}
+
+h2 {
+	@include rem(font-size, 30px);
+}
+
+h3 {
+	@include rem(font-size, 24px);
+}
+
+h4 {
+	@include rem(font-size, 20px);
+}
+
+h5 {
+	@include rem(font-size, 18px);
+}
+
+h6 {
+	@include rem(font-size, 16px);
 }
