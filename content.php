@@ -10,7 +10,7 @@
 
 		<?php if ( 'post' == get_post_type() ) : ?>
 		<div class="entry-meta">
-			<?php sbx_get_theme_mod( 'sb_post_header_meta' ); ?>
+			<?php echo sbx_get_theme_mod( 'sb_post_header_meta' ); ?>
 		</div><!-- .entry-meta -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
@@ -33,7 +33,7 @@
 
 	<footer class="entry-footer">
 		<div class="entry-meta">
-			<?php sbx_get_theme_mod( 'sb_post_footer_meta' ); ?>
+			<?php echo sbx_get_theme_mod( 'sb_post_footer_meta' ); ?>
 		</div>
 	</footer><!-- .entry-meta -->
 	<?php do_action( 'entry_bottom' ); ?>
