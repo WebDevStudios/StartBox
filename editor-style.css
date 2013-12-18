@@ -600,8 +600,13 @@ Content
   margin-right: 1.5rem;
 }
 
-body {
-  padding: 0;
-  background: #ffffff;
+/*
+Overide so the content of the editor field is attractive and not broken
+------------------------------------------------------------------------- */
+body.mceContentBody {
+  background-color: #ffffff;
+  font-size: 13px;
+  font-size: 1.3rem;
   margin: 8px;
+  padding: 0;
 }

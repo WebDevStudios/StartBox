@@ -18,9 +18,13 @@ Content
 ------------------------------------------------------------------------- */
 @import "content";
 
-// Add overwrites as needed so that the content of the editor field is attractive and not broken
-body { 
-    padding: 0; 
-    background: #ffffff;
-    margin: 8px;
+
+/*
+Overide so the content of the editor field is attractive and not broken
+------------------------------------------------------------------------- */
+body.mceContentBody {
+	background-color: #ffffff;
+	@include rem(font-size, 13px); // WordPress default
+	margin: 8px;
+	padding: 0;
 }
