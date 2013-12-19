@@ -72,7 +72,7 @@ if ( ! class_exists('SBX') ) {
 		 */
 		public function core() {
 			require_once( SBX_EXTENSIONS . '/conditionals.php' );
-			require_once( SBX_EXTENSIONS . '/template-tags.php' );
+			require_once( SBX_EXTENSIONS . '/utility.php' );
 			require_once( SBX_EXTENSIONS . '/hooks.php' );
 			require_once( SBX_EXTENSIONS . '/images.php' );
 		}
