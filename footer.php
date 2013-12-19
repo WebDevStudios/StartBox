@@ -23,8 +23,8 @@
 		<div class="wrap">
 			<?php do_action( 'footer_top' ); ?>
 			<div class="site-info">
-				<?php echo sbx_get_theme_mod( 'sb_credits' ); ?>
-				<?php echo sbx_get_theme_mod( 'sb_rtt' ); ?>
+				<p class="alignleft"><?php echo sbx_get_theme_mod( 'sb_credits' ); ?></p>
+				<?php $rtt = sbx_get_theme_mod( 'sb_rtt_link' ); if ( $rtt ) { echo '<p class="alignright"><a href="#page">' . __( 'Return to Top', 'startbox' ) .'</a></p>'; } ?>
 			</div><!-- .site-info -->
 			<?php do_action( 'footer_bottom' ); ?>
 		</div><!-- .wrap -->
