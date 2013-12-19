@@ -1,3 +1,8 @@
+2013.12.19 - version 3.0.0-Experimental
+	* Added footer credits
+	* Added return to top link
+	* Added color options to Theme Customizer
+
 2013.12.17 - version 3.0.0-Experimental
 	* Added main navigation fallback
 	* Added official Normalize.css
