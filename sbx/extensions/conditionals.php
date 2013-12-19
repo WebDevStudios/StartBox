@@ -1,81 +1,91 @@
 <?php
 /**
- * StartBox Conditional Functions
+ * SBX Conditional Functions
  *
- * @package StartBox
+ * @package SBX
  * @subpackage Functions
+ * @since 1.0.0
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
 /**
- * Tests if any of a post's assigned categories are descendants of specified categories
+ * Check if a post is in a category or any of its a descendents.
  *
- * @since Unknown
- *
- * @param int|array $cats The target categories. Integer ID or array of integer IDs
- * @param int|object $_post The post. Omit to test the current post in the Loop or main query
- * @return bool True if at least 1 of the post's categories is a descendant of any of the target categories
- * @uses get_term_children() Passes $cats
- * @uses in_category() Passes $_post (can be empty)
  * @link http://codex.wordpress.org/Function_Reference/in_category#Testing_if_a_post_is_in_a_descendant_category
+ *
+ * @since  1.0.0
+ *
+ * @param  int|array  $cats  Target category (ID), or categories (array of IDs).
+ * @param  int|object $_post Post object or ID.
+ * @return bool              True if at least 1 of the post's categories is a descendant of any of the target categories.
  */
 function sbx_in_descendant_category( $cats, $_post = null ) {
 	foreach ( (array) $cats as $cat ) {
-		// get_term_children() accepts integer ID only
-		$descendants = get_term_children( (int) $cat, 'category');
-		if ( $descendants && in_category( $descendants, $_post ) )
+		// If post is in the given category, stop here
+		if ( in_category( $cat, $_post ) ) {
 			return true;
+		// Otherwise, look through this category's decendants
+		} else {
+			// get_term_children() accepts integer ID only
+			$descendants = get_term_children( (int) $cat, 'category');
+			if ( $descendants && in_category( $descendants, $_post ) ) {
+				return true;
+			}
+		}
 	}
 	return false;
 }
 
 /**
- * Tests to see if a specific page template is active.
+ * Check if a given page template file is in use anywhere.
  *
- * @since Unknown
+ * @since  1.0.0
  *
- * @param string $pagetemplate is the template filename
+ * @param  string $filename Template filename.
+ * @return bool             True if active, otherwise false.
 */
-function sbx_is_page_template_active( $pagetemplate = '' ) {
+function sbx_is_page_template_active( $filename = '' ) {
 	global $wpdb;
-	if ( $wpdb->get_var( $wpdb->prepare( "SELECT meta_key FROM $wpdb->postmeta WHERE meta_key LIKE '_wp_page_template' AND meta_value = %s", $pagetemplate ) ) ) {
-		return TRUE;
-	} else {
-		return FALSE;
-	}
-}
-
-/**
- * Tests to see if current page has a parent.
- *
- * @since 2.4.9
- *
- * @param integer $page_id the page ID to test
- * @param integer $parent_id (optional) check if page is child of specific parent
-*/
-function sbx_is_child_page( $parent_id = null, $page_id = null ) {
-	global $post;
-	$pid = ($page_id) ? $page_id : $post->ID;
-
-	if ( is_page($pid) && $post->post_parent ) { // Verify we're working with a page and it has a parent
-		if ( isset( $parent_id ) && !in_array( $parent_id, get_post_ancestors($pid) ) ) { return false; }// If the specified parent_id is not an ancestor of the current page, return false
-		else { return true; } // Otherwise, it has a parent and the specified parent id match. Return true.
-	} else {
-		return false; // if it's not a page or has no parent, return false.
-	}
-
-}
-
-/**
- * Utility: Verify a given post type
- *
- * @since 2.5
- * @param string $type the post type to verify against
- */
-function sbx_verify_post_type( $type ) {
-	global $post_type;
-
-	if ( ( isset( $_GET['post_type'] ) && $_GET['post_type'] == $type ) || ( isset( $post_type ) && $post_type == $type ) )
+	if ( $wpdb->get_var( $wpdb->prepare( "SELECT meta_key FROM $wpdb->postmeta WHERE meta_key LIKE '_wp_page_template' AND meta_value = %s", $filename ) ) ) {
 		return true;
-	else
+	} else {
 		return false;
+	}
+}
+
+/**
+ * Check if current page has a parent.
+ *
+ * Optionally check if page is child of a specific parent page ID.
+ *
+ * @since 1.0.0
+ *
+ * @param integer $page_id   Page ID.
+ * @param integer $parent_id Specific parent page ID.
+*/
+function sbx_is_child_page( $page_id = 0, $parent_id = 0 ) {
+	global $post;
+
+	// If no $page_id specified, use current page
+	if ( empty( $page_id ) )
+		$page_id = $post->ID;
+
+	// Get object from ID
+	$page = get_post( $page_id );
+
+	// If not working with a page, bail here
+	if ( 'page' !== $page->post_type )
+		return false;
+
+	// If page has has no parent, bail here
+	if ( empty( $page->post_parent ) )
+		return false;
+
+	// If looking for a specific parent, and we have no match, bail here
+	if ( ! empty( $parent_id ) && ! in_array( $parent_id, get_post_ancestors( $page_id ) ) )
+		return false;
+
+	// Otherwise, object is a page, and it has a (matching) parent
+	return true;
+
 }
