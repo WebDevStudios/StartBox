@@ -97,14 +97,14 @@ function startbox_customizer_settings( $sections = array() ) {
 
 	// Defines theme cusotmizer sections and settings
 	$sections['branding_settings'] = array(
-		'title'       => 'Branding Settings',
+		'title'       => 'Branding',
 		'description' => 'Upload a favicon, touch icon (iOS), and a tile icon (Windows 8).',
 		'priority'    => 1,
 		'settings'    => array(
 			array(
 				'id'                => $prefix . 'favicon',
 				'label'             => 'Favicon (32x32 .ico)',
-				'type'              => 'image',
+				'type'              => 'upload',
 				'priority'          => 10,
 				'sanitize_callback' => 'esc_url',
 				),
@@ -132,12 +132,96 @@ function startbox_customizer_settings( $sections = array() ) {
 				),
 		)
 	);
-
-	// Defines theme cusotmizer sections and settings
-	$sections['content_settings'] = array(
-		'title'       => 'Post Content Settings',
-		'description' => 'Customize the post content area.',
+	$sections['color_settings'] = array(
+		'title'       => 'Theme Colors',
+		'description' => 'Customize theme colors.',
 		'priority'    => 200,
+		'settings'    => array(
+			array(
+				'id'                => $prefix . 'override_colors',
+				'label'             => 'Use custom colors below',
+				'type'              => 'checkbox',
+				'priority'          => 10,
+				'sanitize_callback' => 'esc_attr',
+				'js_callback'       => '',
+				'css_selector'      => '',
+				),
+			array(
+				'id'                => $prefix . 'primary_text_color',
+				'label'             => 'Primary Text',
+				'type'              => 'color',
+				'default'           => '#111111',
+				'priority'          => 30,
+				'sanitize_callback' => 'esc_attr',
+				'js_callback'       => 'sbx_change_text_color',
+				'css_selector'      => '',
+				),
+			array(
+				'id'                => $prefix . 'secondary_text_color',
+				'label'             => 'Secondary Text',
+				'type'              => 'color',
+				'default'           => '#888888',
+				'priority'          => 31,
+				'sanitize_callback' => 'esc_attr',
+				'js_callback'       => 'sbx_change_text_color',
+				'css_selector'      => '',
+				),
+			array(
+				'id'                => $prefix . 'nav_footer_bg_color',
+				'label'             => 'Nav and Footer Background',
+				'type'              => 'color',
+				'default'           => '#111111',
+				'priority'          => 32,
+				'sanitize_callback' => 'esc_attr',
+				'js_callback'       => 'sbx_change_text_color',
+				'css_selector'      => '',
+				),
+			array(
+				'id'                => $prefix . 'border_hover_color',
+				'label'             => 'Borders, Hovers, and Highlights',
+				'type'              => 'color',
+				'default'           => '#999999',
+				'priority'          => 33,
+				'sanitize_callback' => 'esc_attr',
+				'js_callback'       => 'sbx_change_text_color',
+				'css_selector'      => '',
+				),
+			array(
+				'id'                => $prefix . 'url_color',
+				'label'             => 'Links',
+				'type'              => 'color',
+				'default'           => '#777777',
+				'priority'          => 34,
+				'sanitize_callback' => 'esc_attr',
+				'js_callback'       => 'sbx_change_text_color',
+				'css_selector'      => '',
+				),
+			array(
+				'id'                => $prefix . 'content_bg_color',
+				'label'             => 'Content and Sidebar Background',
+				'type'              => 'color',
+				'default'           => '#ffffff',
+				'priority'          => 35,
+				'sanitize_callback' => 'esc_attr',
+				'js_callback'       => 'sbx_change_text_color',
+				'css_selector'      => '',
+				),
+			array(
+				'id'                => $prefix . 'site_bg_color',
+				'label'             => 'Site Background',
+				'type'              => 'color',
+				'default'           => '#f0f0f0',
+				'priority'          => 36,
+				'sanitize_callback' => 'esc_attr',
+				'js_callback'       => 'sbx_change_text_color',
+				'css_selector'      => '',
+				),
+		)
+	);
+	$sections['content_settings'] = array(
+		'title'       => 'Post Content and Meta',
+		'description' => 'Customize the post content area.',
+		'priority'    => 300,
 		'settings'    => array(
 			array(
 				'id'                => $prefix . 'post_header_meta',
@@ -170,12 +254,10 @@ function startbox_customizer_settings( $sections = array() ) {
 				),
 		)
 	);
-
-	// Defines theme cusotmizer sections and settings
 	$sections['footer_settings'] = array(
-		'title'       => 'Footer Settings',
+		'title'       => 'Footer',
 		'description' => 'Customize the credits area of the Footer.',
-		'priority'    => 300,
+		'priority'    => 400,
 		'settings'    => array(
 			array(
 				'id'                => $prefix . 'rtt_link',
@@ -196,30 +278,8 @@ function startbox_customizer_settings( $sections = array() ) {
 				'js_callback'       => 'sbx_change_text',
 				'css_selector'      => '.site-info .credits',
 				),
-			array(
-				'id'                => $prefix . 'primary_text_color',
-				'label'             => 'Primary Text Color',
-				'type'              => 'color',
-				'default'           => '#111',
-				'priority'          => 70,
-				'sanitize_callback' => 'esc_attr',
-				'js_callback'       => 'sbx_change_text_color',
-				'css_selector'      => '',
-				),
-			array(
-				'id'                => $prefix . 'secondary_text_color',
-				'label'             => 'Secondary Text Color',
-				'type'              => 'color',
-				'default'           => '#333',
-				'priority'          => 70,
-				'sanitize_callback' => 'esc_attr',
-				'js_callback'       => 'sbx_change_text_color',
-				'css_selector'      => '',
-				),
 		)
 	);
-
-	// Defines theme cusotmizer sections and settings
 	$sections['example_settings'] = array(
 		'title'       => 'Example Settings',
 		'description' => 'Section description...',
@@ -375,6 +435,51 @@ function startbox_google_webfonts() {
 }
 add_action( 'wp_enqueue_scripts', 'startbox_google_webfonts' );
 
+/**
+ * Theme color override
+ */
+function startbox_color_override() {
+
+	// Check for override setting
+	$override = sbx_get_theme_mod( 'sb_override_colors' );
+
+	// If enabled, print CSS
+	if ( $override ) { ?>
+<style type="text/css" media="screen">
+	body,
+	.site-header,
+	.site-inner,
+	.site-footer {
+		background-color: <?php echo sbx_get_theme_mod( 'sb_site_bg_color' ); ?>;
+	}
+	body {
+		color: <?php echo sbx_get_theme_mod( 'sb_primary_text_color' ); ?>;
+	}
+	a,
+	a:active,
+	a:visited {
+		color:  <?php echo sbx_get_theme_mod( 'sb_url_color' ); ?>;
+	}
+	a:hover {
+		color:  <?php echo sbx_get_theme_mod( 'sb_border_hover_color' ); ?>;
+	}
+	.main-navigation,
+	.footer-widgets {
+		background-color: <?php echo sbx_get_theme_mod( 'sb_nav_footer_bg_color' ); ?>;
+	}
+	.entry-meta {
+		color: <?php echo sbx_get_theme_mod( 'sb_secondary_text_color' ); ?>;
+		border-color:  <?php echo sbx_get_theme_mod( 'sb_border_hover_color' ); ?>;
+	}
+	.post,
+	.site-inner .page,
+	.primary-widget-area .widget {
+		background-color: <?php echo sbx_get_theme_mod( 'sb_content_bg_color' ); ?>;
+	}
+</style>
+
+<?php } }
+add_action( 'wp_head', 'startbox_color_override', 999 );
 
 /**
  * In his grace, God has given us different gifts for doing certain things well.
