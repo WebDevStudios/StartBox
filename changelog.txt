@@ -1,3 +1,6 @@
+2013.12.20 - version 2.7.4
+	* Updated: Updated Colorbox to 1.4.32
+
 2013.12.04 - version 2.7.3
 	* Updated: Refreshed entire icon set for social icons (note: these are still overridable via plugin or child theme)
 	* Updated: Removed a number of PHP Strict warnings
