@@ -261,3 +261,37 @@ function capital_B_dangit( $text ) {
 add_filter( 'the_content', 'capital_B_dangit', 11 );
 add_filter( 'the_title', 'capital_B_dangit', 11 );
 add_filter( 'comment_text', 'capital_B_dangit', 31 );
+
+/**
+ * Wrap an embedded video with a container for simpler styling.
+ *
+ * @since  1.0.0
+ *
+ * @param  string $output HTML Markup.
+ * @param  string $url    oEmbed URL.
+ * @return string         Potentially modified HTML markup.
+ */
+function sbx_oembed_video_wrapper( $output, $url ) {
+
+	// Setup list of providers to filter
+	$video_providers = array(
+		'youtu\.?be',
+		'vimeo',
+		'hulu',
+		'viddler',
+		'wordpress\.tv',
+		'funnyordie',
+		'slideshare',
+		'dailymotion',
+	);
+
+	// If oembed is from a provider, wrap it
+	if ( preg_match( '/' . implode( '|', $video_providers ) . '/', $url ) ) {
+		$output = '<div class="video-wrapper">' . $output . '</div>';
+	}
+
+	// Return output
+	return $output;
+
+}
+add_filter( 'embed_oembed_html', 'sbx_oembed_video_wrapper', 10, 2 );
