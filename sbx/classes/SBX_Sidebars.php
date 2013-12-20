@@ -7,7 +7,7 @@
  *
  * @package StartBox
  * @subpackage Sidebars
- * @since 3.0.0
+ * @since 1.0.0
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
@@ -18,17 +18,17 @@ if ( ! current_theme_supports( 'sbx-sidebars' ) )
 /**
  * This is the main SB Sidebars class.
  *
- * You can extend this within your theme to alter the widget markup
+ * You can extend this within your theme to alter the widget markup.
  *
  * @subpackage Classes
- * @since 2.5.0
+ * @since 1.0.0
  */
 class SBX_Sidebars {
 
 	/**
 	 * Variable for storing all registered sidebars, don't override this.
 	 *
-	 * @since 2.5.0
+	 * @since 1.0.0
 	 * @var array
 	 */
 	public $registered_sidebars = array();
@@ -36,7 +36,7 @@ class SBX_Sidebars {
 	/**
 	 * Auto-load default and custom sidebars. Don't override this.
 	 *
-	 * @since 2.5.0
+	 * @since 1.0.0
 	 */
 	function __construct() {
 
@@ -46,9 +46,9 @@ class SBX_Sidebars {
 	}
 
 	/**
-	 * Registers all default sidebars (don't override this)
+	 * Registers all default sidebars (don't override this).
 	 *
-	 * @since 2.5.0
+	 * @since 1.0.0
 	 */
 	function register_default_sidebars() {
 
@@ -68,10 +68,10 @@ class SBX_Sidebars {
 	}
 
 	/**
-	 * Register a sidebar (don't override this)
+	 * Register a sidebar (don't override this).
 	 *
-	 * @since 2.5.0
-	 * @param array $args an array of arguments for naming and identifying a sidebar
+	 * @since 1.0.0
+	 * @param array  $args  An array of arguments for naming and identifying a sidebar.
 	 */
 	function register_sidebar( $args = '' ) {
 
@@ -102,11 +102,12 @@ class SBX_Sidebars {
 	}
 
 	/**
-	 * Render markup and action hooks for a given sidebar (override this to customize your markup)
+	 * Render markup and action hooks for a given sidebar
+	 * (override this to customize your markup).
 	 *
-	 * @since 2.5.0
-	 * @param string $sidebar  The default sidebar to render
-	 * @param string $class    Additional CSS classes to apply to the container
+	 * @since 1.0.0
+	 * @param string  $sidebar  The default sidebar to render.
+	 * @param string  $class    Additional CSS classes to apply to the container.
 	 */
 	function do_sidebar( $sidebar = null, $classes = null ) {
 
@@ -136,10 +137,10 @@ class SBX_Sidebars {
 $GLOBALS['startbox']->sidebars = new SBX_Sidebars;
 
 /**
- * Wrapper Function for SBX_Sidebars::register_sidebar()
+ * Wrapper Function for SBX_Sidebars::register_sidebar().
  *
- * @since 2.5.2
- * @param array $args An array of sidebar registration arguments (id, name, description, replaceable)
+ * @since 1.0.0
+ * @param array  $args  An array of sidebar registration arguments (id, name, description, replaceable).
  */
 function sbx_register_sidebar( $args = array() ) {
 	global $startbox;
@@ -147,11 +148,11 @@ function sbx_register_sidebar( $args = array() ) {
 }
 
 /**
- * Wrapper Function for SBX_Sidebars::do_sidebar()
+ * Wrapper Function for SBX_Sidebars::do_sidebar().
  *
- * @since 2.5.0
- * @param string $sidebar The default sidebar to render
- * @param string $classes Additional CSS classes to apply to the container
+ * @since 1.0.0
+ * @param string  $sidebar  The default sidebar to render.
+ * @param string  $classes  Additional CSS classes to apply to the container.
  */
 function sbx_do_sidebar( $sidebar = null, $classes = null ) {
 	global $startbox;
@@ -159,11 +160,11 @@ function sbx_do_sidebar( $sidebar = null, $classes = null ) {
 }
 
 /**
- * Check if a sidebar is replaceable
+ * Check if a sidebar is replaceable.
  *
- * @since  3.0.0
- * @param  string $sidebar The sidebar to check
- * @return bool            True if sidebar is replaceable, false otherwise
+ * @since  1.0.0
+ * @param  string  $sidebar  The sidebar to check.
+ * @return bool              True if sidebar is replaceable, false otherwise.
  */
 function sbx_is_sidebar_replaceable( $sidebar = null ) {
 	global $startbox;

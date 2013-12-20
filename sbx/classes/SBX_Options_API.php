@@ -13,25 +13,25 @@
  */
 
 /**
- * Create an options panel and register new options
+ * Create an options panel and register new options.
  *
  * This is the base settings class. When adding your own options panel to a child theme
  * you should extended this class and override the default settings. Note: Do NOT override
  * the __contstruct or _init methods.
  *
- * @since 2.4.2
+ * @since 1.0.0
  *
  * @uses sb_get_option()
  * @uses sb_add_option()
  * @uses add_meta_box()
  * @uses add_action()
  *
- * @param string $name Name of the options panel for use as metabox title
- * @param string $slug Nice-name of options panel, used for identifying when creating metabox
- * @param string $location The column in which to add the metabox, primary or secondary. Default is secondary
- * @param string $priority Priority for displaying the metabox, high, default or low. Default is default.
- * @param array $options The options to be added. See http://docs.wpstartbox.com/child-themes/theme-options/ Using Theme Options
- * @param string $hide_ui_if_cannot Lowest capability a user must have in order to see this metabox
+ * @param string $name               Name of the options panel for use as metabox title.
+ * @param string $slug               Nice-name of options panel, used for identifying when creating metabox.
+ * @param string $location           The column in which to add the metabox, primary or secondary. Default is secondary.
+ * @param string $priority           Priority for displaying the metabox, high, default or low. Default is default.
+ * @param array  $options            The options to be added.
+ * @param string $hide_ui_if_cannot  Lowest capability a user must have in order to see this metabox.
  */
 class SB_Settings {
 
@@ -135,33 +135,33 @@ class SB_Settings {
  *
  * Generates markup for various option input types.
  *
- * @since 2.4.4
+ * @since 1.0.0
  */
 class SB_Input {
 
 	/**
-	 * Helper function for outputting descriptive text for each option
+	 * Helper function for outputting descriptive text for each option.
 	 *
-	 * @param  string $desc The descriptive text
-	 * @return string       The concatenated descriptive text
+	 * @param  string $desc The descriptive text.
+	 * @return string       The concatenated descriptive text.
 	 */
 	public static function descriptive_text( $desc ) {
 		return '<span class="description"> ' . $desc . ' </span>'."\n";
 	}
 
 	/**
-	 * Introduction setting
+	 * Introduction setting.
 	 *
-	 * @param  array $args The array of arguments for building this input
-	 * @return string        The concatenated introduction output
+	 * @param  array  $args  The array of arguments for building this input.
+	 * @return string        The concatenated introduction output.
 	 */
 	public static function intro( $args ='' ) {
 
 		// Setup our defaults
 		$defaults = array(
-			'id'		=> '',			// Unique ID for this option
-			'label'		=> '',			// The content to display as the input label
-			'desc'		=> '',			// Descriptive text
+			'id'		=> '',  // Unique ID for this option
+			'label'		=> '',  // The content to display as the input label
+			'desc'		=> '',  // Descriptive text
 		);
 
 		// Get our variables ready to go
@@ -178,24 +178,24 @@ class SB_Input {
 	}
 
 	/**
-	 * Text Input
+	 * Text Input.
 	 *
-	 * @param  array $args The array of arguments for building this input
-	 * @return string      The concatenated text option output
+	 * @param  array  $args The array of arguments for building this input.
+	 * @return string       The concatenated text option output.
 	 */
 	public static function text( $args = '' ) {
 
 		// Setup our defaults
 		$defaults = array(
-			'id'		=> '',			// Unique ID for this option
-			'class'		=> '',			// Optional CSS classes for input
-			'label'		=> '',			// The content to display as the input label
-			'value'		=> '',			// The option value
-			'desc'		=> '',			// Descriptive text
-			'size'		=> 'default',	// The size of the input (small, default, large; default: default)
-			'align'		=> '',		    // The alignment of the input (left, right; default: left)
-			'before'	=> '', 			// Custom content to place before the input
-			'after'		=> ''			// Custom content to place after the input
+			'id'		=> '',          // Unique ID for this option
+			'class'		=> '',          // Optional CSS classes for input
+			'label'		=> '',          // The content to display as the input label
+			'value'		=> '',          // The option value
+			'desc'		=> '',          // Descriptive text
+			'size'		=> 'default',   // The size of the input (small, default, large; default: default)
+			'align'		=> '',          // The alignment of the input (left, right; default: left)
+			'before'	=> '',          // Custom content to place before the input
+			'after'		=> ''           // Custom content to place after the input
 		);
 
 		// Get our variables ready to go
@@ -216,21 +216,21 @@ class SB_Input {
 	}
 
 	/**
-	 * Textarea Input
+	 * Textarea Input.
 	 *
-	 * @param  array $args  The array of arguments for building this input
-	 * @return string       The concatenated textarea option output
+	 * @param  array  $args  The array of arguments for building this input.
+	 * @return string        The concatenated textarea option output.
 	 */
 	public static function textarea( $args = '' ) {
 
 		// Setup our defaults
 		$defaults = array(
-			'id'		=> '',			// Unique ID for this option
-			'label'		=> '',			// The content to display as the input label
-			'value'		=> '',			// The option value
-			'desc'		=> '',			// Descriptive text
-			'before'	=> '', // Custom content to place before the input
-			'after'		=> ''."\n"	// Custom content to place after the input
+			'id'		=> '',      // Unique ID for this option
+			'label'		=> '',      // The content to display as the input label
+			'value'		=> '',      // The option value
+			'desc'		=> '',      // Descriptive text
+			'before'	=> '',      // Custom content to place before the input
+			'after'		=> ''."\n"  // Custom content to place after the input
 		);
 
 		// Get our variables ready to go
@@ -251,22 +251,22 @@ class SB_Input {
 	}
 
 	/**
-	 * Checkbox Input
+	 * Checkbox Input.
 	 *
-	 * @param  array $args  The array of arguments for building this input
-	 * @return string       The concatenated checkbox option output
+	 * @param  array  $args  The array of arguments for building this input.
+	 * @return string        The concatenated checkbox option output.
 	 */
 	public static function checkbox( $args = '' ) {
 
 		// Setup our defaults
 		$defaults = array(
-			'id'		=> '',			// Unique ID for this option
-			'label'		=> '',			// The content to display as the input label
-			'value'		=> '',			// The option value
-			'desc'		=> '',			// Descriptive text
-			'align'		=> '',			// Alignment for input
-			'before'	=> '',          // Custom content to place before the input
-			'after'		=> ''."\n"	    // Custom content to place after the input
+			'id'		=> '',      // Unique ID for this option
+			'label'		=> '',      // The content to display as the input label
+			'value'		=> '',      // The option value
+			'desc'		=> '',      // Descriptive text
+			'align'		=> '',      // Alignment for input
+			'before'	=> '',      // Custom content to place before the input
+			'after'		=> ''."\n"  // Custom content to place after the input
 		);
 
 		// Get our variables ready to go
@@ -291,20 +291,20 @@ class SB_Input {
 	}
 
 	/**
-	 * Radio Input
+	 * Radio Input.
 	 *
-	 * @param  array $args  The array of arguments for building this input
-	 * @return string         The concatenated radio option output
+	 * @param  array  $args   The array of arguments for building this input.
+	 * @return string         The concatenated radio option output.
 	 */
 	public static function radio( $args = '' ) {
 
 		// Setup our defaults
 		$defaults = array(
-			'id'		=> '',		// Unique ID for this option
-			'label'		=> '',		// The content to display as the input label
-			'value'		=> '',		// The option value
-			'desc'		=> '',		// Descriptive text
-			'options'	=> array(),	// Array of radio options ('id' => 'value')
+			'id'		=> '',      // Unique ID for this option
+			'label'		=> '',      // The content to display as the input label
+			'value'		=> '',      // The option value
+			'desc'		=> '',      // Descriptive text
+			'options'	=> array(), // Array of radio options ('id' => 'value')
 		);
 
 		// Get our variables ready to go
@@ -328,27 +328,27 @@ class SB_Input {
 	}
 
 	/**
-	 * Select Input
+	 * Select Input.
 	 *
-	 * @param  array $args An array of arguments
-	 * @return string      The concatenated select option output
+	 * @param  array  $args  An array of arguments.
+	 * @return string        The concatenated select option output.
 	 */
 	public static function select( $args = '' ) {
 
 		// Setup our defaults
 		$defaults = array(
-			'id'		=> 'option-select',	// The unique ID for this input
-			'label'		=> 'Select',		// The content to use as the input label
-			'value'		=> '',				// The option value
-			'desc'		=> '',				// The content to display as a small descriptive text
-			'options'	=> '',				// String: pages, posts, categories: returns a dropdown for common WordPress content; Array: An array of selectable options
-			'size'		=> 'large',			// The size of this input (small, default, large; default: large)
-			'align'		=> 'right',			// The alignment for this input (left, right; default: right)
-			'order_by'	=> 'post_date',		// For post options: how posts should be ordered
-			'order'		=> 'DESC',			// For post options: the order to display the results
-			'limit'		=> 30, 				// For post and page options: how many results to retrieve
-			'before'	=> '', // Custom content to place before the input
-			'after'		=> ''."\n"	// Custom content to place after the input
+			'id'		=> 'option-select', // The unique ID for this input
+			'label'		=> 'Select',        // The content to use as the input label
+			'value'		=> '',              // The option value
+			'desc'		=> '',              // The content to display as a small descriptive text
+			'options'	=> '',              // String: pages, posts, categories: returns a dropdown for common WordPress content; Array: An array of selectable options
+			'size'		=> 'large',         // The size of this input (small, default, large; default: large)
+			'align'		=> 'right',         // The alignment for this input (left, right; default: right)
+			'order_by'	=> 'post_date',     // For post options: how posts should be ordered
+			'order'		=> 'DESC',          // For post options: the order to display the results
+			'limit'		=> 30,              // For post and page options: how many results to retrieve
+			'before'	=> '',              // Custom content to place before the input
+			'after'		=> ''."\n"          // Custom content to place after the input
 		);
 
 		// Get our variables ready to go
@@ -405,27 +405,27 @@ class SB_Input {
 	}
 
 	/**
-	 * Enable Select Input - a select input with a checkbox input
+	 * Enable Select Input - a select input with a checkbox input.
 	 *
-	 * @param  array $args An array of arguments
-	 * @return string      The concatenated select option output
+	 * @param  array  $args  An array of arguments.
+	 * @return string        The concatenated select option output.
 	 */
 	public static function enable_select( $args = '' ) {
 
 		// Setup our defaults
 		$defaults = array(
-			'id'		=> 'option-select',	// The unique ID for this input
-			'label'		=> 'Select',		// The content to use as the input label
-			'value'		=> '',				// The option value
-			'desc'		=> '',				// The content to display as a small descriptive text
-			'options'	=> '',				// String: pages, posts, categories: returns a dropdown for common WordPress content; Array: An array of selectable options
-			'size'		=> 'large',			// The size of this input (small, default, large; default: large)
-			'align'		=> 'right',			// The alignment for this input (left, right; default: right)
+			'id'		=> 'option-select',         // The unique ID for this input
+			'label'		=> 'Select',                // The content to use as the input label
+			'value'		=> '',                      // The option value
+			'desc'		=> '',                      // The content to display as a small descriptive text
+			'options'	=> '',                      // String: pages, posts, categories: returns a dropdown for common WordPress content; Array: An array of selectable options
+			'size'		=> 'large',                 // The size of this input (small, default, large; default: large)
+			'align'		=> 'right',                 // The alignment for this input (left, right; default: right)
 			'before'	=> '<span class="right">',	// Custom content to include before the input
-			'after'		=> '</span>',		// Custom costent to include after the input
-			'order_by'	=> 'post_date',		// For post options: how posts should be ordered
-			'order'		=> 'DESC',			// For post options: the order to display the results
-			'limit'		=> 30 				// For post and page options: how many results to retrieve
+			'after'		=> '</span>',               // Custom costent to include after the input
+			'order_by'	=> 'post_date',             // For post options: how posts should be ordered
+			'order'		=> 'DESC',                  // For post options: the order to display the results
+			'limit'		=> 30                       // For post and page options: how many results to retrieve
 		);
 
 		// Get our variables ready to go
@@ -450,10 +450,10 @@ class SB_Input {
 	}
 
 	/**
-	 * Upload Input
+	 * Upload Input.
 	 *
-	 * @param  array $args An array of arguments
-	 * @return string      The concatenated upload option output
+	 * @param  array  $args  An array of arguments.
+	 * @return string        The concatenated upload option output.
 	 */
 	public static function upload( $args = '' ) {
 
@@ -489,20 +489,20 @@ class SB_Input {
 	}
 
 	/**
-	 * WYSIWYG Options
+	 * WYSIWYG Options.
 	 *
-	 * @param  array $args An array of arguments
-	 * @return string      The concatenated WYSIWYG option output
+	 * @param  array  $args  An array of arguments.
+	 * @return string        The concatenated WYSIWYG option output.
 	 */
 	public static function wysiwyg( $args = '' ) {
 
 		// Setup our defaults
 		$defaults = array(
-			'id'		=> '',		// Unique ID for this option
-			'label'		=> '',		// The content to display as the input label
-			'value'		=> '',		// The option value
-			'desc'		=> '',		// Descriptive text
-			'options'	=> array(	// Options specific to the wp_editor() function
+			'id'		=> '',      // Unique ID for this option
+			'label'		=> '',      // The content to display as the input label
+			'value'		=> '',      // The option value
+			'desc'		=> '',      // Descriptive text
+			'options'	=> array(   // Options specific to the wp_editor() function
 				'textarea_name'	=> SBX_OPTIONS . '[' . esc_attr( $args['id'] ) . ']',
 				'media_buttons'	=> false,
 				'teeny'			=> true
@@ -526,10 +526,10 @@ class SB_Input {
 	}
 
 	/**
-	 * Color Input
+	 * Color Input.
 	 *
-	 * @param  array $args An array of arguments
-	 * @return string      The concatenated color option output
+	 * @param  array  $args  An array of arguments.
+	 * @return string        The concatenated color option output.
 	 */
 	public static function color( $args = '' ) {
 
@@ -557,11 +557,11 @@ class SB_Input {
 $sb_input = new sb_input;
 
 /**
- * SB Settings Factory
+ * SB Settings Factory.
  *
  * The processor for adding/removing option panels with the Theme Options page.
  *
- * @since 2.4.2
+ * @since 1.0.0
  */
 class sb_settings_factory {
 
@@ -617,9 +617,9 @@ function sb_unregister_settings($class_name) {
 }
 
 /**
- * Remove all default StartBox option panels
+ * Remove all default StartBox option panels.
  *
- * @since 2.4.8
+ * @since 1.0.0
  */
 function sb_remove_default_settings() {
 	global $sb_settings_factory;
@@ -628,9 +628,9 @@ function sb_remove_default_settings() {
 if ( defined('SB_REMOVE_DEFAULT_SETTINGS') ) { sb_remove_default_settings(); }
 
 /**
- * Sets the Default settings for all StartBox options
+ * Sets the Default settings for all StartBox options.
  *
- * @since 2.4.6
+ * @since 1.0.0
  */
 function sb_set_default_options() {
 
@@ -667,15 +667,15 @@ add_action( 'sb_install', 'sb_set_default_options' );
 /**
  * Adds an option to the options db.
  *
- * @since 2.4.4
+ * @since 1.0.0
  * @link http://bit.ly/ptahoptions Thanks ptahdunbar!
  *
  * @uses get_option()
  * @uses update_option()
  *
  * @param string $name Option Name. Must be unique.
- * @param mixed $value Option Value.
- * @return bool True on success, false if the option already exists.
+ * @param mixed  $value Option Value.
+ * @return bool  True on success, false if the option already exists.
  */
 function sb_add_option( $name, $value ) {
 	$options = get_option( SBX_OPTIONS );
@@ -690,15 +690,15 @@ function sb_add_option( $name, $value ) {
 /**
  * Updates an option to the options db.
  *
- * @since 2.4.4
+ * @since 1.0.0
  * @link http://bit.ly/ptahoptions Thanks ptahdunbar!
  *
  * @uses get_option()
  * @uses update_option()
  *
- * @param string $name Option Name. Must be unique.
- * @param mixed $value Option Value.
- * @return bool true|false
+ * @param string $name  Option Name. Must be unique.
+ * @param mixed  $value Option Value.
+ * @return bool  true|false
  */
 function sb_update_option( $name, $value ) {
 	$options = get_option( SBX_OPTIONS );
@@ -713,7 +713,7 @@ function sb_update_option( $name, $value ) {
 /**
  * Returns the value of an option from the db if it exists.
  *
- * @since 2.4.4
+ * @since 1.0.0
  * @link http://bit.ly/ptahoptions Thanks ptahdunbar!
  *
  * @uses get_option()
@@ -734,14 +734,14 @@ function sb_get_option( $name ) {
 /**
  * Deletes an option from the options db.
  *
- * @since 2.4.4
+ * @since 1.0.0
  * @link http://bit.ly/ptahoptions Thanks ptahdunbar!
  *
  * @uses get_option()
  * @uses update_option()
  *
  * @param string $name Option Name. Must be unique.
- * @return bool true|false
+ * @return bool  true|false
  */
 function sb_delete_option( $name ) {
 	$options = get_option( SBX_OPTIONS );
@@ -754,15 +754,15 @@ function sb_delete_option( $name ) {
 }
 
 /**
- * Add a new option to an existing metabox
+ * Add a new option to an existing metabox.
  *
  * @link http://docs.wpstartbox.com/child-themes/theme-options/ Using Theme Options
  *
- * @since 2.4.9
+ * @since 1.0.0
  *
- * @param string $metabox the name of the metabox where the option will appear
- * @param string $option_name the name of the option to add
- * @param array $args the arguments to pass through the Options API
+ * @param string $metabox the name of the metabox where the option will appear.
+ * @param string $option_name the name of the option to add.
+ * @param array  $args the arguments to pass through the Options API.
  *
  */
 function sb_register_option( $metabox, $option_name, $args ) {
@@ -770,15 +770,15 @@ function sb_register_option( $metabox, $option_name, $args ) {
 	$sb_settings_factory->settings[$metabox]->options[$option_name] = $args ;
 }
 /**
- * Remove an existing option
+ * Remove an existing option.
  *
  * @link http://docs.wpstartbox.com/child-themes/theme-options/ Using Theme Options
  *
  * @since 2.4.9
  *
- * @param string $metabox the name of the metabox where the option exists
- * @param string $option the name of the option to remove
- * @param mixed $new_value Optional. Store a new, permanent value to the options table
+ * @param string $metabox the name of the metabox where the option exists.
+ * @param string $option the name of the option to remove.
+ * @param mixed  $new_value Optional. Store a new, permanent value to the options table.
  *
  * @uses sb_update_option()
  *
@@ -796,17 +796,17 @@ function sb_unregister_option( $metabox, $option, $new_value = '') {
 }
 
 /**
- * Helper function for easily removing actions hooked in via classes
+ * Helper function for easily removing actions hooked in via classes.
  *
- * @since 2.4.4
+ * @since 1.0.0
  *
  * @uses remove_action()
  *
- * @param string $tag Hook name
- * @param string $class_name Name of class where $function_to_remove resides
- * @param string $function_to_remove The function to remove
- * @param integer $priority Level of priority (default: 10)
- * @return bool True on success, false if the function does not exist.
+ * @param string  $tag Hook name.
+ * @param string  $class_name Name of class where $function_to_remove resides.
+ * @param string  $function_to_remove The function to remove.
+ * @param integer $priority Level of priority (default: 10).
+ * @return bool   True on success, false if the function does not exist.
  */
 //
 function sb_remove_action( $tag, $class_name, $function_to_remove, $priority = 10 ) {
@@ -818,17 +818,17 @@ function sb_remove_action( $tag, $class_name, $function_to_remove, $priority = 1
 }
 
 /**
- * Helper function for easily re-inserting actions hooked-in via classes
+ * Helper function for easily re-inserting actions hooked-in via classes.
  *
- * @since 2.4.4
+ * @since 1.0.0
  *
  * @uses add_action()
  *
- * @param string $tag Hook name
- * @param string $class_name Name of class where $function_to_add resides
- * @param string $function_to_add The function to add
- * @param integer $priority Level of priority (default: 10)
- * @return bool True on success, false if the option already exists.
+ * @param string  $tag Hook name.
+ * @param string  $class_name Name of class where $function_to_add resides.
+ * @param string  $function_to_add The function to add.
+ * @param integer $priority Level of priority (default: 10).
+ * @return bool   True on success, false if the option already exists.
  */
 function sb_add_action( $tag, $class_name, $function_to_add, $priority = 10 ) {
 	if ($class_name) {

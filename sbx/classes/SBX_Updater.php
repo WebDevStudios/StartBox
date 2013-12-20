@@ -8,7 +8,7 @@
  *
  * @package StartBox
  * @subpackage Classes
- * @since 3.0.0
+ * @since 1.0.0
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 

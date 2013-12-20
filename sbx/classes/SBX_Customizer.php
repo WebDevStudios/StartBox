@@ -2,7 +2,7 @@
 /**
  * StartBox Theme Customizer Settings
  *
- * Base extensions for the theme customizer introduced in WP3.4
+ * Base extensions for the theme customizer introduced in WP 3.4
  * Many props to Alex Mansfield (@alexmansfield) for his work
  * with Theme Foundation and Theme Toolkit.
  *
@@ -10,7 +10,7 @@
  *
  * @package StartBox
  * @subpackage Customizer
- * @since 3.0.0
+ * @since 1.0.0
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
@@ -21,14 +21,14 @@ if ( ! current_theme_supports( 'sbx-customizer' ) ) return;
  * Base class for extending the theme customizer.
  *
  * @subpackage Classes
- * @since 3.0.0
+ * @since 1.0.0
  */
 class SBX_Customizer {
 
 	/**
 	 * Instantiation method.
 	 *
-	 * @since 3.0.0
+	 * @since 1.0.0
 	 */
 	function __construct() {
 
@@ -46,7 +46,7 @@ class SBX_Customizer {
 	 * Creates customizer options based on the customizer array,
 	 * usually set in the theme's functions.php file.
 	 *
-	 * @since 3.0.0
+	 * @since 1.0.0
 	 *
 	 * @param object $wp_customize Theme customizer object.
 	 */
@@ -80,7 +80,7 @@ class SBX_Customizer {
 	/**
 	 * Add a single customizer section.
 	 *
-	 * @since 3.0.0
+	 * @since 1.0.0
 	 *
 	 * @param object $wp_customize Theme customizer object.
 	 * @param string $section_id   Unique section name.
@@ -104,7 +104,7 @@ class SBX_Customizer {
 	/**
 	 * Add a single setting to the customizer.
 	 *
-	 * @since 3.0.0
+	 * @since 1.0.0
 	 *
 	 * @param object $wp_customize    Theme customizer object.
 	 * @param string $section_id      Parent section ID.
@@ -172,7 +172,7 @@ class SBX_Customizer {
 	/**
 	 * Add a controller for a given setting.
 	 *
-	 * @since 3.0.0
+	 * @since 1.0.0
 	 *
 	 * @param object $wp_customize    Theme customizer object.
 	 * @param string $section_id      Parent section ID.
@@ -221,7 +221,7 @@ class SBX_Customizer {
 	/**
 	 * Enqueue Customizer JS.
 	 *
-	 * @since  3.0.0
+	 * @since  1.0.0
 	 */
 	function customize_preview_int() {
 		wp_enqueue_script( 'sb_customizer', SBX_JS . '/customizer.js', array( 'customize-preview' ), SBX_VERSION, true );
@@ -231,7 +231,7 @@ class SBX_Customizer {
 	/**
 	 * Build array of JS-specific options.
 	 *
-	 * @since  3.0.0
+	 * @since  1.0.0
 	 *
 	 * @return array Settings data for customizer javascript.
 	 */
@@ -266,17 +266,17 @@ $GLOBALS['startbox']->customizer = new SBX_Customizer;
 if ( class_exists( 'WP_Customize_Control' ) ) {
 
 	/**
-	 * Register textarea controller for the theme customizer
+	 * Register textarea controller for the theme customizer.
 	 *
 	 * @subpackage Classes
 	 * @link http://ottopress.com/2012/making-a-custom-control-for-the-theme-customizer
-	 * @since 3.0.0
+	 * @since 1.0.0
 	 */
 	class SBX_Customize_Textarea_Control extends WP_Customize_Control {
 
 		/**
 		 * @access public
-		 * @since 3.0.0
+		 * @since 1.0.0
 		 * @var string The type of form element being generated.
 		 */
 		public $type = 'textarea';
@@ -284,7 +284,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		/**
 		 * Overrides the render_content() function in the parent class
 		 *
-		 * @since 3.0.0
+		 * @since 1.0.0
 		 */
 		public function render_content() {
 			?>
@@ -298,39 +298,39 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 }
 
 /**
- * Base class for handling input sanitization
+ * Base class for handling input sanitization.
  *
  * @subpackage Classes
- * @since 3.0.0
+ * @since 1.0.0
  */
 class SBX_Sanitization {
 
 	/**
-	 * Allowed inputs
+	 * Allowed inputs.
 	 *
-	 * @since 3.0.0
+	 * @since 1.0.0
 	 * @var array
 	 */
 	private $valid;
 
 	/**
-	 * Instantiation method, sets up valid inputs
+	 * Instantiation method, sets up valid inputs.
 	 *
-	 * @since 3.0.0
-	 * @param array $valid An array of valid inputs
+	 * @since 1.0.0
+	 * @param array $valid An array of valid inputs.
 	 */
 	function __construct( $valid = array() ) {
 		$this->valid = is_array( $valid ) ? $valid : array();
 	}
 
 	/**
-	 * Sanitizes multiple choice inputs
+	 * Sanitizes multiple choice inputs.
 	 *
 	 * Sanitizes select and radio inputs based on the valid
-	 * "options" array set in the original options array
+	 * "options" array set in the original options array.
 	 *
-	 * @since  3.0.0
-	 * @param  string $input Input data to be sanitized
+	 * @since  1.0.0
+	 * @param  string $input Input data to be sanitized.
 	 * @param  array  $valid Array of allowed values.
 	 * @return string        Valid option from $valid array matching $input, otherwise null.
 	 */
@@ -344,10 +344,10 @@ class SBX_Sanitization {
 	}
 
 	/**
-	 * Sanitizes checkbox (boolean) inputs
+	 * Sanitizes checkbox (boolean) inputs.
 	 *
-	 * @since  3.0.0
-	 * @param  string $input Input data to be sanitized
+	 * @since  1.0.0
+	 * @param  string $input Input data to be sanitized.
 	 * @return string        Returns the $valid string if equal to $input, otherwise null.
 	 */
 	public function sanitize_checkbox( $input = '' ) {
@@ -355,21 +355,21 @@ class SBX_Sanitization {
 	}
 
 	/**
-	 * Sanitizes HTML input
+	 * Sanitizes HTML input.
 	 *
-	 * @since  3.0.0
-	 * @param  string $input Input data to be sanitized
-	 * @return string        Sanitized HTML
+	 * @since  1.0.0
+	 * @param  string $input Input data to be sanitized.
+	 * @return string        Sanitized HTML.
 	 */
 	public function sanitize_html( $input = '' ) {
 		return wp_kses_post( force_balance_tags( $input ) );
 	}
 
 	/**
-	 * Sanitizes integer input
+	 * Sanitizes integer input.
 	 *
-	 * @since  3.0.0
-	 * @param  string $input Input data to be sanitized
+	 * @since  1.0.0
+	 * @param  string $input Input data to be sanitized.
 	 * @return integer       Returns the $valid string after sanitization.
 	 */
 	public function sanitize_integer( $input = '' ) {
@@ -379,15 +379,15 @@ class SBX_Sanitization {
 }
 
 /**
- * Helper for get_theme_mod() to automatically retrieve defaults
+ * Helper for get_theme_mod() to automatically retrieve defaults.
  *
  * Looks first for the setting, then for the passed default,
- * finally for a default set in sb_customizer_settings
+ * finally for a default set in sb_customizer_settings.
  *
- * @since  3.0.0
- * @param  string $setting The setting to retrieve
- * @param  string $default A specific default to use if no data exists
- * @return string          The setting data, or a default
+ * @since  1.0.0
+ * @param  string $setting The setting to retrieve.
+ * @param  string $default A specific default to use if no data exists.
+ * @return string          The setting data, or a default.
  */
 function sbx_get_theme_mod( $setting = '', $default = '' ) {
 

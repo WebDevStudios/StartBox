@@ -4,7 +4,7 @@
  *
  * @package StartBox
  * @subpackage Breadcrumbs
- * @since 3.0.0
+ * @since 1.0.0
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
@@ -13,25 +13,25 @@ if ( ! current_theme_supports( 'sbx-breadcrumbs' ) )
 	return;
 
 /**
- * Base class for handling breadcrumb navigation
+ * Base class for handling breadcrumb navigation.
  *
  * @subpackage Classes
- * @since 3.0.0
+ * @since 1.0.0
  */
 class SBX_Breadcrumbs {
 
 	/**
 	 * Settings array, a merge of provided values and defaults. Private.
 	 *
-	 * @since 3.0.0
-	 * @var array Holds the breadcrumb arguments
+	 * @since 1.0.0
+	 * @var array Holds the breadcrumb arguments.
 	 */
 	public $args = array();
 
 	/**
 	 * Constructor. Set up cacheable values and settings.
 	 *
-	 * @since 3.0.0
+	 * @since 1.0.0
 	 */
 	function __construct() {
 
@@ -55,10 +55,10 @@ class SBX_Breadcrumbs {
 	/**
 	 * Return the final completed breadcrumb in markup wrapper. Public.
 	 *
-	 * @since 3.0.0
+	 * @since 1.0.0
 	 *
-	 * @param  array  $args Breadcrumb arguments
-	 * @return string       Concatenated HTML markup
+	 * @param  array  $args  Breadcrumb arguments.
+	 * @return string        Concatenated HTML markup.
 	 */
 	function get_output( $args = array() ) {
 
@@ -84,10 +84,10 @@ class SBX_Breadcrumbs {
 	/**
 	 * Return anchor link for a single crumb. Private.
 	 *
-	 * @since  3.0.0
-	 * @param  string $url  The link URL for the crumb
-	 * @param  string $text The link text for the crumb
-	 * @return string       Concatenated HTML markup
+	 * @since  1.0.0
+	 * @param  string  $url   The link URL for the crumb.
+	 * @param  string  $text  The link text for the crumb.
+	 * @return string         Concatenated HTML markup.
 	 */
 	function get_breadcrumb_link( $url = '', $text = '' ) {
 		$link = sprintf( '<a href="%1$s">%2$s</a>', esc_attr( $url ), esc_html( $text ) );
@@ -95,10 +95,10 @@ class SBX_Breadcrumbs {
 	}
 
 	/**
-	 * Return home (front) page breadcrumb
+	 * Return home (front) page breadcrumb.
 	 *
-	 * @since  3.0.0
-	 * @return string Concatenated HTML markup
+	 * @since  1.0.0
+	 * @return string Concatenated HTML markup.
 	 */
 	function get_home_crumb() {
 
@@ -111,10 +111,10 @@ class SBX_Breadcrumbs {
 	}
 
 	/**
-	 * Return blog page breadcrumb
+	 * Return blog page breadcrumb.
 	 *
-	 * @since  3.0.0
-	 * @return string Concatenated HTML markup
+	 * @since  1.0.0
+	 * @return string Concatenated HTML markup.
 	 */
 	function get_blog_crumb() {
 
@@ -132,10 +132,10 @@ class SBX_Breadcrumbs {
 	}
 
 	/**
-	 * Return search results page breadcrumb
+	 * Return search results page breadcrumb.
 	 *
-	 * @since 3.0.0
-	 * @return string HTML markup
+	 * @since 1.0.0
+	 * @return string HTML markup.
 	 */
 	function get_search_crumb() {
 		$search_query = esc_html( apply_filters( 'the_search_query', get_search_query() ) );
@@ -144,20 +144,20 @@ class SBX_Breadcrumbs {
 	}
 
 	/**
-	 * Return 404 page breadcrumb
+	 * Return 404 page breadcrumb.
 	 *
-	 * @since  3.0.0
-	 * @return string Concatenated HTML markup
+	 * @since  1.0.0
+	 * @return string Concatenated HTML markup.
 	 */
 	function get_404_crumb() {
 		return apply_filters( 'sb_get_404_crumb', $this->args['labels']['404'], $this->args );
 	}
 
 	/**
-	 * Return archive breadcrumb
+	 * Return archive breadcrumb.
 	 *
-	 * @since  3.0.0
-	 * @return string Concatenated HTML markup
+	 * @since  1.0.0
+	 * @return string Concatenated HTML markup.
 	 */
 	function get_archive_crumb() {
 		global $wp_query, $wp_locale;
@@ -199,11 +199,11 @@ class SBX_Breadcrumbs {
 	}
 
 	/**
-	 * Return single post type breadcrumb
+	 * Return single post type breadcrumb.
 	 *
-	 * @since  3.0.0
-	 * @param  $integer $post_id A specific post ID to render
-	 * @return string            Concatenated HTML markup
+	 * @since  1.0.0
+	 * @param  $integer $post_id  Post ID.
+	 * @return string             Concatenated HTML markup.
 	 */
 	function get_singular_crumb( $post_id = 0 ) {
 
@@ -260,8 +260,8 @@ class SBX_Breadcrumbs {
 	 * Return recursive linked crumbs of category,
 	 * tag or custom taxonomy parents.
 	 *
-	 * @since  3.0.0
-	 * @return string Concatenated HTML Markup
+	 * @since  1.0.0
+	 * @return string Concatenated HTML Markup.
 	 */
 	function get_post_term_crumbs( $term_id = 0, $taxonomy = '' ) {
 
@@ -295,10 +295,10 @@ class SBX_Breadcrumbs {
 	}
 
 	/**
-	 * Return the combined breadcrumb trail
+	 * Return the combined breadcrumb trail.
 	 *
-	 * @since  3.0.0
-	 * @return string Concatenated HTML markup
+	 * @since  1.0.0
+	 * @return string Concatenated HTML markup.
 	 */
 	function build_crumb_trail() {
 
@@ -332,9 +332,9 @@ class SBX_Breadcrumbs {
 	 * Glues individual crumbs together with separator
 	 * and drops duplicates.
 	 *
-	 * @since  3.0.0
-	 * @param  array  $crumbs The array of crumbs
-	 * @return string         Flattened, unique list of crumbs
+	 * @since  1.0.0
+	 * @param  array  $crumbs The array of crumbs.
+	 * @return string         Flattened, unique list of crumbs.
 	 */
 	function glue_crumbs_together( array $crumbs ) {
 		return implode( $this->args['separator'], array_unique( $crumbs ) );
@@ -343,10 +343,10 @@ class SBX_Breadcrumbs {
 }
 
 /**
- * Helper function for the SBX_Breadcrumbs Class output
+ * Helper function for the SBX_Breadcrumbs Class output.
  *
- * @since 3.0.0
- * @param array $args Breadcrumb arguments
+ * @since 1.0.0
+ * @param array $args Breadcrumb arguments.
  */
 function sbx_breadcrumbs( $args = array() ) {
 	global $startbox;
@@ -355,12 +355,12 @@ function sbx_breadcrumbs( $args = array() ) {
 }
 
 /**
- * Render breadcrumbs across the site
+ * Render breadcrumbs across the site.
  *
  * This function grants preference to 3rd-party
- * plugins before attempting sbx_breadcrumbs()
+ * plugins before attempting sbx_breadcrumbs().
  *
- * @since 3.0.0
+ * @since 1.0.0
  */
 function sbx_do_breadcrumbs() {
 

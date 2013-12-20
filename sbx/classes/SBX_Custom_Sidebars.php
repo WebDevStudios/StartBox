@@ -4,7 +4,7 @@
  *
  * @package StartBox
  * @subpackage Sidebars
- * @since 3.0.0
+ * @since 1.0.0
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
@@ -13,7 +13,7 @@ if ( ! current_theme_supports( 'sbx-custom-sidebars' ) )
 	return;
 
 /**
- * Main Custom Sidebars class
+ * Main Custom Sidebars class.
  *
  * Create additional sidebars to replace any default sidebars
  * in StartBox for any post-type or taxonomy. Uses Custom Post
@@ -21,14 +21,14 @@ if ( ! current_theme_supports( 'sbx-custom-sidebars' ) )
  * originally lifted from WP's Custom Menu admin functions.
  *
  * @subpackage Classes
- * @since 3.0.0
+ * @since 1.0.0
  */
 class SBX_Custom_Sidebars extends SBX_Sidebars {
 
 	/**
-	 * Hook everything where it belongs and fire up the engine
+	 * Hook everything where it belongs and fire up the engine.
 	 *
-	 * @since 3.0.0
+	 * @since 1.0.0
 	 */
 	public function __construct() {
 
@@ -50,9 +50,9 @@ class SBX_Custom_Sidebars extends SBX_Sidebars {
 	}
 
 	/**
-	 * Creates Sidebar post type
+	 * Creates Sidebar post type.
 	 *
-	 * @since 2.5.0
+	 * @since 1.0.0
 	 */
 	function register_cpt() {
 		register_post_type( 'widget_area', array(
@@ -86,16 +86,16 @@ class SBX_Custom_Sidebars extends SBX_Sidebars {
 	}
 
 	/**
-	 * Set our base slug for new sidebars to "custom-sidebar"
+	 * Set our base slug for new sidebars to "custom-sidebar".
 	 *
 	 * This is to correct an issue where no widgets can be added to the sidebar
 	 * if it's slug is numeric only (e.g. 586), which is the default slug for
 	 * new sidebars that have no title during autosave.
 	 *
-	 * @since  2.7.0
-	 * @param  array $data    An array of sanitized post data
-	 * @param  array $postarr An array of the raw post data
-	 * @return array          An array of our modified, sanitized post data
+	 * @since  1.0.0
+	 * @param  array $data    An array of sanitized post data.
+	 * @param  array $postarr An array of the raw post data.
+	 * @return array          An array of our modified, sanitized post data.
 	 */
 	function default_post_slug( $data , $postarr ) {
 
@@ -117,9 +117,9 @@ class SBX_Custom_Sidebars extends SBX_Sidebars {
 	}
 
 	/**
-	 * Include scripts to make sidebar editor run smoothly
+	 * Include scripts to make sidebar editor run smoothly.
 	 *
-	 * @since 2.5.0
+	 * @since 1.0.0
 	 */
 	function enqueue_scripts() {
 		wp_enqueue_script( 'common' );
@@ -128,9 +128,9 @@ class SBX_Custom_Sidebars extends SBX_Sidebars {
 	}
 
 	/**
-	 * Adds Sidebar link to Appearance menu in admin nav bar
+	 * Adds Sidebar link to Appearance menu in admin nav bar.
 	 *
-	 * @since 2.5.0
+	 * @since 1.0.0
 	 */
 	function admin_bar() {
 		global $wp_admin_bar;
@@ -143,9 +143,9 @@ class SBX_Custom_Sidebars extends SBX_Sidebars {
 	}
 
 	/**
-	 * Add a link on the Widgets page to the Sidebars page
+	 * Add a link on the Widgets page to the Sidebars page.
 	 *
-	 * @since 2.5.0
+	 * @since 1.0.0
 	 */
 	function widget_page_output() {
 		// Only display this link if the user can edit theme options
@@ -154,9 +154,9 @@ class SBX_Custom_Sidebars extends SBX_Sidebars {
 	}
 
 	/**
-	 * Register all metaboxes on sidebar post editor
+	 * Register all metaboxes on sidebar post editor.
 	 *
-	 * @since 2.5.0
+	 * @since 1.0.0
 	 **/
 	function metabox_setup() {
 
@@ -193,9 +193,9 @@ class SBX_Custom_Sidebars extends SBX_Sidebars {
 	}
 
 	/**
-	 * Creates metabox for selecting a sidebar
+	 * Creates metabox for selecting a sidebar.
 	 *
-	 * @since 2.5.0
+	 * @since 1.0.0
 	 */
 	function sidebar_select_metabox() {
 		global $post_id, $startbox;
@@ -230,9 +230,9 @@ class SBX_Custom_Sidebars extends SBX_Sidebars {
 	}
 
 	/**
-	 * Creates metabox for describing a sidebar
+	 * Creates metabox for describing a sidebar.
 	 *
-	 * @since 2.5.0
+	 * @since 1.0.0
 	 */
 	function sidebar_description_metabox($post) {
 
@@ -253,9 +253,9 @@ class SBX_Custom_Sidebars extends SBX_Sidebars {
 	}
 
 	/**
-	 * Creates metabox for displaying sidebar shortcode
+	 * Creates metabox for displaying sidebar shortcode.
 	 *
-	 * @since 2.5.0
+	 * @since 1.0.0
 	 */
 	function sidebar_shortcode_metabox( $post ) {
 
@@ -271,11 +271,11 @@ class SBX_Custom_Sidebars extends SBX_Sidebars {
 	}
 
 	/**
-	 * Create post type metaboxes
+	 * Create post type metaboxes.
 	 *
-	 * Note: This logic was lifted directly from WP's custom menus
+	 * Note: This logic was lifted directly from WP's custom menus.
 	 *
-	 * @since 2.5.0
+	 * @since 1.0.0
 	 *
 	 * @param string $object    Not used.
 	 * @param string $post_type The post type object.
@@ -340,11 +340,11 @@ class SBX_Custom_Sidebars extends SBX_Sidebars {
 	}
 
 	/**
-	 * Displays taxonomy metaboxes
+	 * Displays taxonomy metaboxes.
 	 *
-	 * @since 2.5.0
+	 * @since 1.0.0
 	 *
-	 * @param string $object Not used.
+	 * @param string $object   Not used.
 	 * @param string $taxonomy The taxonomy object.
 	 */
 	function taxonomy_metabox( $post, $taxonomy ) {
@@ -395,9 +395,9 @@ class SBX_Custom_Sidebars extends SBX_Sidebars {
 	}
 
 	/**
-	 * Save all the post data
+	 * Save all the post data.
 	 *
-	 * @since 2.5.0
+	 * @since 1.0.0
 	 */
 	function save_sidebar( $post_id ) {
 		// Verify we should actually be saving any data
@@ -411,13 +411,13 @@ class SBX_Custom_Sidebars extends SBX_Sidebars {
 		)
 			return $post_id;									// skip the rest...
 
-		// update post meta for the sidebar we're replacing
+		// Update post meta for the sidebar we're replacing
 		update_post_meta( $post_id, '_sidebar_replaced', $_POST['sidebar_replaced'] );
 
-		// update post meta for the sidebar we're replacing
+		// Update post meta for the sidebar we're replacing
 		update_post_meta( $post_id, '_sidebar_description', $_POST['description'] );
 
-		// save checked status for all post types
+		// Save checked status for all post types
 		delete_post_meta( $post_id, '_post' );
 		if ( ! empty( $_POST['post'] ) ) {
 			foreach( $_POST['post'] as $post => $value ) {
@@ -440,7 +440,7 @@ class SBX_Custom_Sidebars extends SBX_Sidebars {
 			}
 		}
 
-		// save checked status for all taxonomies
+		// Save checked status for all taxonomies
 		delete_post_meta( $post_id, '_tax' );
 		if ( ! empty( $_POST['tax'] ) ) {
 			foreach( $_POST['tax'] as $tax => $value ) {
@@ -469,9 +469,9 @@ class SBX_Custom_Sidebars extends SBX_Sidebars {
 	}
 
 	/**
-	 * Delete cached sidebars when a sidebar is deleted
+	 * Delete cached sidebars when a sidebar is deleted.
 	 *
-	 * @since 2.5.0
+	 * @since 1.0.0
 	 */
 	function dump_sidebar_cache( $post_id ) {
 		// Verify we're actually deleting a sidebar
@@ -482,9 +482,9 @@ class SBX_Custom_Sidebars extends SBX_Sidebars {
 	}
 
 	/**
-	 * Filter the "post updated" messages for sidebars
+	 * Filter the "post updated" messages for sidebars.
 	 *
-	 * @since 2.5.0
+	 * @since 1.0.0
 	 */
 	function sidebar_update_messages( $messages ) {
 		$messages['widget_area']['1'] = $messages['widget_area']['6'] = sprintf( __( 'Widget Area saved. %s', 'startbox' ), '<a href="' . esc_url( admin_url( 'widgets.php' ) ) . '">' . __( 'Give it some widgets!', 'startbox' ) . '</a>' );
@@ -492,13 +492,13 @@ class SBX_Custom_Sidebars extends SBX_Sidebars {
 	}
 
 	/**
-	 * Get all custom sidebars
+	 * Get all custom sidebars.
 	 *
 	 * This is just a wrapper for get_posts() that
 	 * caches the query for 30 days.
 	 *
-	 * @since  2.5.0
-	 * @return array An array of registered sidebars
+	 * @since  1.0.0
+	 * @return array An array of registered sidebars.
 	 */
 	function get_custom_sidebars() {
 
@@ -527,9 +527,9 @@ class SBX_Custom_Sidebars extends SBX_Sidebars {
 
 
 	/**
-	 * Registers all custom sidebars
+	 * Registers all custom sidebars.
 	 *
-	 * @since 2.5.0
+	 * @since 1.0.0
 	 */
 	function register_custom_sidebars() {
 
@@ -549,13 +549,13 @@ class SBX_Custom_Sidebars extends SBX_Sidebars {
 	}
 
 	/**
-	 * Get each assigned sidebar location
+	 * Get each assigned sidebar location.
 	 *
 	 * Return an array keyed with post/term ID containing
 	 * each location that has a custom assigned sidebar.
 	 *
-	 * @since  3.0.0
-	 * @return array Keyed location array
+	 * @since  1.0.0
+	 * @return array Keyed location array.
 	 */
 	function get_replaced_sidebars() {
 
@@ -596,11 +596,11 @@ class SBX_Custom_Sidebars extends SBX_Sidebars {
 	}
 
 	/**
-	 * Potentialy replace the default sidebar for a given location
+	 * Potentialy replace the default sidebar for a given location.
 	 *
-	 * @since  2.5.0
-	 * @param  string $sidebar  The sidebar being rendered
-	 * @return string           The sidebar to rendered
+	 * @since  1.0.0
+	 * @param  string $sidebar  The sidebar being rendered.
+	 * @return string           The sidebar to rendered.
 	 */
 	function maybe_replace_current_sidebar( $sidebar ) {
 		global $post, $wp_query;
@@ -646,16 +646,16 @@ class SBX_Custom_Sidebars extends SBX_Sidebars {
 $sbx_custom_sidebars = new SBX_Custom_Sidebars;
 
 /**
- * Custom walker class for taxonomy lists
+ * Custom walker class for taxonomy lists.
  *
- * @since 2.5.0
+ * @since 1.0.0
  * @uses Walker_Nav_Menu
  */
 class SBX_Sidebars_Checklist extends Walker_Nav_Menu  {
 
 	/**
 	 * @see Walker::start_el()
-	 * @since 2.5.0
+	 * @since 1.0.0
 	 *
 	 * @param string $output Passed by reference. Used to append additional content.
 	 * @param object $item Menu item data object.
@@ -682,7 +682,7 @@ class SBX_Sidebars_Checklist extends Walker_Nav_Menu  {
 /**
  * Shortcode to display a widget_area virtually anywhere.
  *
- * @since 2.5.0
+ * @since 1.0.0
  */
 function sbx_widget_area_shortcode ( $atts ) {
 
