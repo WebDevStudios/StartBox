@@ -21,10 +21,8 @@
 	color: $color-link-footer-hover;
 }
 
-.admin-links,
-.credits {
+.site-credits {
 	float: left;
-	@include rem(margin-right, 24px);
 }
 
 .rtt {

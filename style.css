@@ -1604,11 +1604,8 @@ Footer
   color: #999999;
 }
 
-.admin-links,
-.credits {
+.site-credits {
   float: left;
-  margin-right: 24px;
-  margin-right: 2.4rem;
 }
 
 .rtt {
@@ -1734,7 +1731,7 @@ Media Queries
   .breadcrumbs,
   .nav-previous,
   .nav-next,
-  .site-info {
+  .site-credits {
     clear: both;
     float: none;
     margin: 0;
@@ -1757,7 +1754,8 @@ Media Queries
 
   .site-branding,
   .header_widget_area,
-  .comments-title {
+  .comments-title,
+  .site-credits {
     margin-top: 24px;
     margin-top: 2.4rem;
   }
@@ -1769,7 +1767,8 @@ Media Queries
   .comment-reply-title,
   .logged-in-as,
   .comment-form-comment,
-  .form-submit {
+  .form-submit,
+  .rtt {
     float: none;
     text-align: center;
   }

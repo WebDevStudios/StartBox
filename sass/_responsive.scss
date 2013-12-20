@@ -27,7 +27,7 @@
 	.breadcrumbs,
 	.nav-previous,
 	.nav-next,
-	.site-info {
+	.site-credits {
 		clear: both;
 		float: none;
 		margin: 0;
@@ -47,7 +47,8 @@
 
 	.site-branding,
 	.header_widget_area,
-	.comments-title {
+	.comments-title,
+	.site-credits {
 		@include rem(margin-top, 24px);
 	}
 
@@ -58,7 +59,8 @@
 	.comment-reply-title,
 	.logged-in-as,
 	.comment-form-comment,
-	.form-submit {
+	.form-submit,
+	.rtt {
 		float: none;
 		text-align: center;
 	}
