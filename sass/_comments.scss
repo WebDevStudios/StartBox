@@ -2,6 +2,7 @@
 --------------------------------------------- */
 
 /* comment reset */
+.comments-area,
 .comment-content,
 .comment-list,
 .ping-list,
@@ -21,13 +22,12 @@ ul.children,
 }
 
 ol.comment-list {
-	@include rem(padding, 12px 12px 24px);
-
-	li li {
-		@include rem(padding, 12px);
-	}
 
 	.comment {
+		@include rem(padding, 12px 0 0 6px);
+	}
+
+	.comment-body {
 		@include rem(padding, 12px);
 	}
 
@@ -50,7 +50,6 @@ ol.comment-list {
 
 /* comment children */
 ul.children {
-	margin-left: 3%;
 	@include rem(padding, 12px 0 0);
 }
 
@@ -76,4 +75,8 @@ ul.children {
 	background-color: $blackLighter;
 	@include rem(font-size, 14px);
 	@include rem(padding, 24px);
+}
+
+.comment-reply-title {
+	@include rem(margin-top, 24px);
 }

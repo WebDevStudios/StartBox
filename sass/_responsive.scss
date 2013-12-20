@@ -26,7 +26,8 @@
 	.page-header,
 	.breadcrumbs,
 	.nav-previous,
-	.nav-next {
+	.nav-next,
+	.site-info {
 		clear: both;
 		float: none;
 		margin: 0;
@@ -45,11 +46,19 @@
 	}
 
 	.site-branding,
-	.header_widget_area {
+	.header_widget_area,
+	.comments-title {
 		@include rem(margin-top, 24px);
 	}
 
-	.main-navigation {
+	.main-navigation,
+	.entry-title,
+	.widget-title,
+	.comments-title,
+	.comment-reply-title,
+	.logged-in-as,
+	.comment-form-comment,
+	.form-submit {
 		float: none;
 		text-align: center;
 	}
@@ -74,19 +83,25 @@
 		@include rem(padding, 24px);
 	}
 
-	.comments-area,
-	ol.comment-list,
-	ol.comment-list li li,
-	ol.comment-list .comment {
-		@include rem(margin, 12px 0 0);
-		@include rem(padding, 12px 0 12px 12px);
-	}
-
 	.primary-widget-area,
 	.footer-widgets {
 		.widget {
 			@include rem(padding, 24px);
 		}
+	}
+
+}
+
+@media only screen and (max-width: 480px) {
+
+	#comments,
+	ol.comment-list,
+	.comment-content {
+		padding: 0;
+	}
+
+	ul.children .comment {
+		@include rem(padding, 6px 0 0 6px);
 	}
 
 }

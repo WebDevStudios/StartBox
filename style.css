@@ -474,6 +474,7 @@ html {
 .comment-list:before,
 .comment:before,
 .comment-respond:before,
+.comment-body:before,
 .site-info:before,
 .widget:before,
 .wrap:before {
@@ -500,6 +501,7 @@ html {
 .comment-list:after,
 .comment:after,
 .comment-respond:after,
+.comment-body:after,
 .site-info:after,
 .widget:after,
 .wrap:after {
@@ -1495,6 +1497,7 @@ Comments
 /* Comments
 --------------------------------------------- */
 /* comment reset */
+.comments-area,
 .comment-content,
 .comment-list,
 .ping-list,
@@ -1514,15 +1517,11 @@ ul.children,
   padding: 4.8rem;
 }
 
-ol.comment-list {
-  padding: 12px 12px 24px;
-  padding: 1.2rem 1.2rem 2.4rem;
-}
-ol.comment-list li li {
-  padding: 12px;
-  padding: 1.2rem;
-}
 ol.comment-list .comment {
+  padding: 12px 0 0 6px;
+  padding: 1.2rem 0 0 0.6rem;
+}
+ol.comment-list .comment-body {
   padding: 12px;
   padding: 1.2rem;
 }
@@ -1543,7 +1542,6 @@ ol.comment-list .bypostauthor {
 
 /* comment children */
 ul.children {
-  margin-left: 3%;
   padding: 12px 0 0;
   padding: 1.2rem 0 0;
 }
@@ -1571,6 +1569,11 @@ ul.children {
   font-size: 1.4rem;
   padding: 24px;
   padding: 2.4rem;
+}
+
+.comment-reply-title {
+  margin-top: 24px;
+  margin-top: 2.4rem;
 }
 
 /*
@@ -1730,7 +1733,8 @@ Media Queries
   .page-header,
   .breadcrumbs,
   .nav-previous,
-  .nav-next {
+  .nav-next,
+  .site-info {
     clear: both;
     float: none;
     margin: 0;
@@ -1752,12 +1756,20 @@ Media Queries
   }
 
   .site-branding,
-  .header_widget_area {
+  .header_widget_area,
+  .comments-title {
     margin-top: 24px;
     margin-top: 2.4rem;
   }
 
-  .main-navigation {
+  .main-navigation,
+  .entry-title,
+  .widget-title,
+  .comments-title,
+  .comment-reply-title,
+  .logged-in-as,
+  .comment-form-comment,
+  .form-submit {
     float: none;
     text-align: center;
   }
@@ -1785,19 +1797,21 @@ Media Queries
     padding: 2.4rem;
   }
 
-  .comments-area,
-  ol.comment-list,
-  ol.comment-list li li,
-  ol.comment-list .comment {
-    margin: 12px 0 0;
-    margin: 1.2rem 0 0;
-    padding: 12px 0 12px 12px;
-    padding: 1.2rem 0 1.2rem 1.2rem;
-  }
-
   .primary-widget-area .widget,
   .footer-widgets .widget {
     padding: 24px;
     padding: 2.4rem;
+  }
+}
+@media only screen and (max-width: 480px) {
+  #comments,
+  ol.comment-list,
+  .comment-content {
+    padding: 0;
+  }
+
+  ul.children .comment {
+    padding: 6px 0 0 6px;
+    padding: 0.6rem 0 0 0.6rem;
   }
 }
