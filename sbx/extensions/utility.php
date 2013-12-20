@@ -87,6 +87,9 @@ function sbx_get_page_title( $title = '', $include_label = true ) {
 		} elseif ( $paged >= 2 || $page >= 2 ) {
 			$label = __( 'Blog Archives: ', 'sbx' );
 			$title = sprintf( __( 'Page %d', 'sbx' ), max( $paged, $page ) );
+		} else {
+			$label = '';
+			$title = get_the_title();
 		}
 
 		// If prefix is not explicitly false, include the prefix.
