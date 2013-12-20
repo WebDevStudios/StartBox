@@ -52,7 +52,7 @@ add_shortcode( 'author_box', 'sbx_entry_author_box' );
  */
 function sbx_entry_categories() {
 	if ( $categories = get_the_category_list( ', ' ) )
-		return '<span class="entry-categories">' . $categories . '</span>';
+		return '<span class="entry-categories">' . __( 'Categories: ', 'sbx' ) . $categories . '</span>';
 }
 add_shortcode( 'categories', 'sbx_entry_categories' );
 
@@ -63,7 +63,7 @@ add_shortcode( 'categories', 'sbx_entry_categories' );
  */
 function sbx_entry_tags() {
 	if ( $tags = get_the_tag_list( '', ', ' ) )
-		return '<span class="entry-tags">' . $tags . '</span>';
+		return '<span class="entry-tags">' . __( 'Tags: ', 'sbx' ) . $tags . '</span>';
 }
 add_shortcode( 'tags', 'sbx_entry_tags' );
 
