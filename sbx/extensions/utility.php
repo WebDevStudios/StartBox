@@ -510,7 +510,7 @@ if ( ! function_exists( 'sbx_rtt' ) ) :
  */
 function sbx_rtt() {
 	return apply_filters( 'sbx_rtt', sprintf(
-		'<span class="rtt"><a href="#top" class="cb">%s</a></span>',
+		'<p class="rtt"><a href="#top" class="cb">%s</a></p>',
 		apply_filters( 'sbx_rtt_text', __( 'Return to Top', 'startbox' ) )
 		)
 	);
