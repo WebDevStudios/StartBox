@@ -1,28 +1,34 @@
 <?php
 /**
- * StartBox Image Functions
+ * SBX Image Functions
  *
- * @package StartBox
- * @subpackage Functions
+ * @package SBX
+ * @subpackage Extensions
+ * @since 1.0.0
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
-if ( ! function_exists( 'sb_get_image_id' ) ) :
+if ( ! function_exists( 'sbx_get_attached_image_id' ) ) :
 /**
- * Pull an attachment ID from a post, if one exists.
+ * Get image ID for a given post attached at a given index.
  *
- * @since    3.0.0
- * @global   WP_Post   $post      Post object.
- * @param    integer   $index     Optional. Index of which image to return from a post. Default is 0.
- * @return   integer   boolean    Returns image ID, or false if image with given index does not exist.
+ * @since  1.0.0
+ *
+ * @param  integer  $post_id Post ID.
+ * @param  integer  $index   Specific attached image to return (default: 0, first image).
+ * @return int|bool          Attachment ID if found, otherwise false.
  */
-function sbx_get_image_id( $index = 0 ) {
-
+function sbx_get_attached_image_id( $post_id = 0, $index = 0 ) {
 	global $post;
+
+	// If no $post_id set, use current post
+	if ( empty( $post_id ) )
+		$post_id = $post->ID;
 
 	$ids = array_keys(
 		get_children(
 			array(
-				'post_parent'    => $post->ID,
+				'post_parent'    => $post_id,
 				'post_type'	     => 'attachment',
 				'post_mime_type' => 'image',
 				'orderby'        => 'menu_order',
@@ -31,8 +37,8 @@ function sbx_get_image_id( $index = 0 ) {
 		)
 	);
 
-	if ( isset( $ids[$index] ) )
-		return $ids[$index];
+	if ( isset( $ids[ $index ] ) )
+		return $ids[ $index ];
 
 	return false;
 
@@ -41,75 +47,88 @@ endif;
 
 if ( ! function_exists( 'sbx_get_image' ) ) :
 /**
- * Return an image pulled from the media gallery.
+ * Return the desired output for any image attachment.
  *
- * Supported $args keys are:
+ * This function intelligently looks for the current post (if none specified)
+ * and looks first for a featured image, then any attached image, then a custom
+ * fallback. Alternatively, a specific image ID can be set to bypass the above.
  *
- *  - format   - string, default is 'html'
- *  - size     - string, default is 'full'
- *  - num      - integer, default is 0
- *  - attr     - string, default is ''
- *  - fallback - mixed, default is 'first-attached'
+ * This function can return either the relative source to an image, its full
+ * URL, or a complete <img> tag, based on 'output' parameter.
  *
- * @since    3.0.0
- * @uses     sb_get_image_id()  Pull an attachment ID from a post, if one exists.
- * @global   WP_Post  $post     Post object.
- * @param    array    string    $args Optional. Image query arguments. Default is empty array.
- * @return   string   boolean   Return image element HTML, URL of image, or false.
+ * @since  1.0.0
+ *
+ * @param  array|string  $args {
+ *     Image output args.
+ *
+ *     @type integer 'post_id'          Specific post ID to fetch. Default: current post ID.
+ *     @type integer 'image_id'         Specific image ID to fetch. Default: 0.
+ *     @type string  'output'           Output format. Accepts: 'html', 'url', 'path'. Default: 'html'.
+ *     @type mixed   'size'             Attachment size. Accepts size name (e.g. 'thumbnail') or dimension array. Default: 'full'.
+ *     @type mixed   'attr'             Query string or array of additional <img> tag attributes.
+ *     @type mixed   'fallback'         Custom fallback parameters. Accepts false, 'use_attachments', or array( 'html' => '', 'url' => '' ). Default: 'use_attachments'.
+ *     @type integer 'attachment_index' Sepcific attached image index to retrieve. Default: 0.
+ * }
+ * @return string boolean Return image element HTML, URL of image, or false.
  */
 function sbx_get_image( $args = array() ) {
-
 	global $post;
 
-	$defaults = apply_filters( 'sbx_get_image_default_args', array(
-		'format'   => 'html',
-		'size'     => 'full',
-		'num'      => 0,
-		'attr'     => '',
-		'fallback' => 'first-attached'
+	// Parse filterable defaults
+	$defaults = apply_filters( 'sbx_get_image_defaults', array(
+		'post_id'          => $post->ID,
+		'image_id'         => 0,
+		'output'           => 'html',
+		'size'             => 'full',
+		'attr'             => '',
+		'fallback'         => 'use_attachments',
+		'attachment_index' => 0,
 	) );
-
 	$args = wp_parse_args( $args, $defaults );
 
-	// Check for post image
-	if ( has_post_thumbnail() && ( 0 === $args['num'] ) ) {
-		$id = get_post_thumbnail_id();
-		$html = wp_get_attachment_image( $id, $args['size'], false, $args['attr'] );
-		list( $url ) = wp_get_attachment_image_src( $id, $args['size'], false, $args['attr'] );
+	// If given an explicit image ID, use that
+	// Otherwise, try to pull back the featured image
+	// Finally, attempt to pull back any attached image
+	if ( ! empty( $args['image_id'] ) ) {
+		$id = absint( $args['image_id'] );
+	} elseif ( has_post_thumbnail( $args['post_id'] ) && ( 0 === $args['attachment_index'] ) ) {
+		$id = get_post_thumbnail_id( $args['post_id'] );
+	} elseif ( 'use_attachments' === $args['fallback'] ) {
+		$id = sbx_get_attached_image_id( $args['post_id'], $args['attachment_index'] );
 	}
 
-	// Else if first-attached, pull the first image attachment
-	elseif ( 'first-attached' === $args['fallback'] ) {
-		$id = sb_get_image_id( $args['num'] );
+	// If an image ID was found, retrieve image details
+	if ( ! empty( $id ) ) {
 		$html = wp_get_attachment_image( $id, $args['size'], false, $args['attr'] );
 		list( $url ) = wp_get_attachment_image_src( $id, $args['size'], false, $args['attr'] );
-	}
 
-	// Else if fallback array exists
-	elseif ( is_array( $args['fallback'] ) ) {
+	// Otherwise, attempt to use fallback array
+	} elseif ( is_array( $args['fallback'] ) ) {
 		$id   = 0;
 		$html = $args['fallback']['html'];
 		$url  = $args['fallback']['url'];
 	}
 
-	// Else, return false
-	else {
-		return false;
+	// If no image was found, set output to false
+	if ( empty( $url ) ) {
+		$output = false;
+
+	// Otherwise, setup the correct output
+	} else {
+
+		// Source path, relative to the root
+		$src = str_replace( home_url(), '', $url );
+
+		// Determine output
+		if ( 'html' === mb_strtolower( $args['output'] ) ) {
+			$output = $html;
+		} elseif ( 'url' === mb_strtolower( $args['output'] ) ) {
+			$output = $url;
+		} else {
+			$output = $src;
+		}
+
 	}
-
-	// Source path, relative to the root
-	$src = str_replace( home_url(), '', $url );
-
-	// Determine output
-	if ( 'html' === mb_strtolower( $args['format'] ) )
-		$output = $html;
-	elseif ( 'url' === mb_strtolower( $args['format'] ) )
-		$output = $url;
-	else
-		$output = $src;
-
-	// Return false if $url is blank
-	if ( empty( $url ) ) $output = false;
 
 	// Return data, filtered
 	return apply_filters( 'sbx_get_image', $output, $args, $id, $html, $url, $src );
@@ -117,21 +136,37 @@ function sbx_get_image( $args = array() ) {
 }
 endif;
 
+if ( ! function_exists( 'sbx_image' ) ) :
+/**
+ * Output contents of sbx_get_image().
+ *
+ * @since 1.0.0
+ *
+ * @param array  $args Image output args.
+ */
+function sbx_image( $args = array() ) {
+	echo sbx_get_image( $args );
+}
+endif;
+
 if ( ! function_exists( 'sbx_the_attached_image' ) ) :
 /**
- * Prints the attached image with a link to the next attached image.
+ * Output attached image and link to the next attached image.
+ *
+ * Grabs all images attached to the same parent to find the
+ * next adjacent image (or first image, if viewing the very
+ * last image). If image is alone, link points to itself.
+ *
+ * @since 1.0.0
  */
 function sbx_the_attached_image() {
+
+	// Setup base variables
 	$post                = get_post();
 	$attachment_size     = apply_filters( 'sbx_attachment_size', array( 1200, 1200 ) );
 	$next_attachment_url = wp_get_attachment_url();
 
-	/**
-	 * Grab the IDs of all the image attachments in a gallery so we can get the
-	 * URL of the next adjacent image in a gallery, or the first image (if
-	 * we're looking at the last image in a gallery), or, in a gallery of one,
-	 * just the link to that image file.
-	 */
+	// Get all images attached to the same parent post
 	$attachment_ids = get_posts( array(
 		'post_parent'    => $post->post_parent,
 		'fields'         => 'ids',
@@ -143,8 +178,10 @@ function sbx_the_attached_image() {
 		'orderby'        => 'menu_order ID'
 	) );
 
-	// If there is more than 1 attachment in a gallery...
+	// If more than one image was found
 	if ( count( $attachment_ids ) > 1 ) {
+
+		// Get the next image ID
 		foreach ( $attachment_ids as $attachment_id ) {
 			if ( $attachment_id == $post->ID ) {
 				$next_id = current( $attachment_ids );
@@ -152,244 +189,24 @@ function sbx_the_attached_image() {
 			}
 		}
 
-		// get the URL of the next image attachment...
-		if ( $next_id )
+		// If found, get the URL for the next image
+		if ( ! empty( $next_id ) ) {
 			$next_attachment_url = get_attachment_link( $next_id );
 
-		// or get the URL of the first image attachment.
-		else
+		// Otherwise, the the URL for the very first image
+		} else {
 			$next_attachment_url = get_attachment_link( array_shift( $attachment_ids ) );
+		}
 	}
 
-	printf( '<a href="%1$s" title="%2$s" rel="attachment" itemprop="thumbnailUrl">%3$s</a>',
+	// Generate output
+	$output = sprintf(
+		'<a href="%1$s" title="%2$s" rel="attachment" itemprop="thumbnailUrl">%3$s</a>',
 		esc_url( $next_attachment_url ),
 		the_title_attribute( array( 'echo' => false ) ),
 		wp_get_attachment_image( $post->ID, $attachment_size )
 	);
+
+	echo apply_filters( 'sbx_the_attached_image', $output, wp_get_attachment_image( $post->ID, $attachment_size ), esc_url( $next_attachment_url ), $post );
 }
 endif;
-
-/**
- * Returns an image URI for any given post ID or attachment ID.
- *
- * This function will intelligently select a photo to use for the post based
- * on its featured image setting. If no featured image is set it will attempt
- * to use the latest attached image. If no images can be found it will default
- * to a custom "no preview available" image.
- *
- * @since 1.5.0
- * @param  array  $args  An array of possible args to use for finding our image
- * @return string        The URL of our desired image
- */
-function sbx_get_post_image( $args = array() ) {
-
-	// Grab our global $post object, incase we aren't given an explicit post ID
-	global $id;
-
-	// Setup our defaults
-	$defaults = array(
-		'post_id'         => $id,
-		'image_id'        => null,
-		'use_attachments' => false,
-		'nophoto_url'     => apply_filters( 'sbx_post_image_none', SBX_IMAGES . '/nophoto.jpg' )
-	);
-	$args = wp_parse_args( $args, $defaults );
-
-	// If we have an explicit image ID, let's use it
-	if ( $args['image_id'] ) {
-		$attachment = wp_get_attachment_image_src( $args['image_id'], 'full' );
-
-	// Otherwise, let's use our post's featured image
-	} elseif ( has_post_thumbnail( $args['post_id'] ) ) {
-		$attachment = wp_get_attachment_image_src( get_post_thumbnail_id( $args['post_id'] ), 'full' );
-
-	// If we have no featured image, and we've elected to use ANY attached image, grab the newest image
-	} elseif ( true == $args['use_attachments'] ) {
-		$images = get_children( array(
-			'post_parent'    => $args['post_id'],
-			'post_type'      => 'attachment',
-			'post_mime_type' => 'image',
-			'numberposts'    => 1
-		) );
-		foreach ( $images as $image ) { $attachment = wp_get_attachment_image_src( $image->ID, 'full' ); }
-	}
-
-	// If we have no attachment image, fallback to our 'sbx_post_image_none' image
-	$post_image_uri = isset( $attachment[0] ) ? $attachment[0] : $args['nophoto_url'];
-
-	// Finally, return the URI for our image
-	return $post_image_uri;
-}
-
-/**
- * Generates an <img> tag for use as post thumbnail.
- *
- * Uses sbx_get_post_image_url to resize and crop the image to any specified
- * dimension on-the-fly, using entirely naitive WP functionality.
- *
- * @since  1.5.0
- * @param  sarray  $args  Specify additional attributes for the image tag
- * @return string         An <img> tag containing image path and all parameters
- */
-function sbx_post_image( $args = array() ) {
-
-	// Grab our global $post object, incase we aren't given an explicit post ID
-	global $post;
-
-	// Setup our defaults and merge them with the passed arguments
-	$defaults = array(
-		'post_id'         => $post->ID,
-		'image_id'        => null,
-		'use_attachments' => false,
-		'width'           => 200,
-		'height'          => 200,
-		'crop'            => 1,
-		'align'           => 't',
-		'class'           => 'post-image',
-		'alt'             => get_the_title(),
-		'title'           => get_the_title(),
-		'nophoto_url'     => apply_filters( 'sbx_post_image_none', SBX_IMAGES . '/nophoto.jpg' ),
-		'hide_nophoto'    => false,
-		'enabled'         => true,
-		'echo'            => true,
-	);
-	$args = wp_parse_args( $args, apply_filters( 'sbx_post_image_settings', $defaults ) );
-
-	// If post thumbnails are disabled, or we're electing to hide our "no photo" fallback image, bail here.
-	if ( false == $args['enabled'] || ( $args['hide_nophoto'] && sbx_get_post_image( $args ) === $args['nophoto_url'] ) )
-		return false;
-
-	// Available filters to both bypass sbx_get_post_image_url() and override final output
-	if ( ! is_string( $image = apply_filters( 'sb_pre_post_image', null, $args ) ) )
-		$image = apply_filters( 'sbx_post_image', '<img src="' . sbx_get_post_image_url( $args ) . '" width="' . $args['width'] . '" height="' . $args['height'] . '" class="' . $args['class'] . '" alt="' . $args['alt'] . '" title="' . $args['title'] . '" />', $args );
-
-	// Echo our image if applicable
-	if ( $args['echo'] )
-		echo $image;
-
-	return $image;
-}
-
-
-/**
- * Grab the URL for an image to use for a given post and dimensions
- *
- * Uses sbx_get_post_image to intelligently determine which image to show.
- * Uses wp_get_image_editor, introduced in WP3.5, to resize and save a
- * new cropped image on-the-fly.
- *
- * @since  2.6.0
- *
- * @param  array  $args An array of all our sizing arguments
- * @return string       URI of our final image
- */
-function sbx_get_post_image_url( $args = null ) {
-
-	// Grab our global $post object, incase we aren't given an explicit post ID
-	global $post;
-
-	// Setup our default args
-	$defaults = array(
-		'post_id'           => $post->ID,
-		'image_id'          => null,
-		'use_attachments'   => apply_filters( 'sbx_post_image_use_attachments', false ),
-		'width'             => absint( apply_filters( 'sbx_post_image_width', 200 ) ),
-		'height'            => absint( apply_filters( 'sbx_post_image_height', 200 ) ),
-		'crop'              => apply_filters( 'sbx_post_image_crop', true ),
-		'align'             => apply_filters( 'sbx_post_image_align', 't' ),
-		'override_existing' => apply_filters( 'sbx_post_image_override_existing', false )
-	);
-	$args = wp_parse_args($args, apply_filters( 'sbx_post_image_settings', $defaults ) );
-
-	// Setup our image details
-	$current_image  = sbx_get_post_image( $args );
-	$current_size   = getimagesize( $current_image );
-	$current_width  = $current_size[0];
-	$current_height = $current_size[1];
-
-	// Setup our location and filename details
-	$uploads_dir    = wp_upload_dir( get_the_time( 'Y/m', $args['post_id'] ) );
-	$image_info     = pathinfo( $current_image );
-	$filename       = $image_info['filename'];
-	$ext            = $image_info['extension'];
-	$suffix         = $args['width'] . 'x' . $args['height'] . ( $args['crop'] ? '-' . $args['align'] : '' );
-	$file           = trailingslashit( $uploads_dir['path'] ) . "{$filename}-{$suffix}.{$ext}";
-	$image_url      = trailingslashit( $uploads_dir['url'] ) . "{$filename}-{$suffix}.{$ext}";
-
-	// If we don't already have a file for our desired dimensions and alignment...
-	if ( ! file_exists( $file ) || true == $args['override_existing'] ) {
-
-		// Fire up the WP Image editor to generate our correctly sized image
-		$image = wp_get_image_editor( $current_image );
-		if ( ! is_wp_error( $image ) ) {
-
-			// If crop is true, then we want to fill our new width and height
-			if ( $args['crop'] ) {
-				$crop_dimensions = sbx_image_crop_dimensions( $current_width, $current_height, $args['width'], $args['height'], $args['align'] );
-				$image->crop( $crop_dimensions['start_x'], $crop_dimensions['start_y'], $crop_dimensions['max_width'], $crop_dimensions['max_height'], $args['width'], $args['height'] );
-
-			// Otherwise, just resize to a maximum height or width
-			} else {
-				$image->resize( $args['width'], $args['height'], false );
-			}
-
-			// Save our newly resized image
-			$image->save( $file );
-
-		}
-
-	}
-
-	// Finally, return the image URL for our correctly sized image
-	return apply_filters( 'sbx_post_image_url', $image_url, $args );
-
-}
-
-/**
- * Determine the starting coordinates and maximum dimensions of an image
- * given its original dimensions and a desired final size and alignment.
- *
- * Credit for calculating our alignment and ratios goes to TimThumb (http://code.google.com/p/timthumb/).
- *
- * @since  2.7.0
- *
- * @param  integer $original_width  The original width of the given image
- * @param  integer $original_height The original height of the given image
- * @param  integer $new_width       The desired width of the final image
- * @param  integer $new_height      The desired height of the final image
- * @param  string  $alignment       The alignment position for our cropped image (accepts: t, b, l, r, c, or any combination thereof)
- * @return array                    An associative array of our relevant data (start_x, start_y, max_width, max_height)
- */
-function sbx_image_crop_dimensions( $original_width = 0, $original_height = 0, $new_width = 0, $new_height = 0, $alignment = '' ) {
-
-	// Setup our Image Dimesnions
-	$start_x      = $start_y = 0;
-	$max_width    = absint( $original_width );
-	$max_height   = absint( $original_height );
-	$width_ratio  = absint( $original_width ) / absint( $new_width );
-	$height_ratio = absint( $original_height ) / absint( $new_height );
-
-	// calculate x or y coordinate and width or height of source
-	if ($width_ratio > $height_ratio) {
-		$max_width = round ($original_width / $width_ratio * $height_ratio);
-		$start_x = round (($original_width - ($original_width / $width_ratio * $height_ratio)) / 2);
-	} else if ($height_ratio > $width_ratio) {
-		$max_height = round ($original_height / $height_ratio * $width_ratio);
-		$start_y = round (($original_height - ($original_height / $height_ratio * $width_ratio)) / 2);
-	}
-
-	// Setup our starting coordinates based on our alignment
-	if ( !empty( $alignment ) ) {
-		if ( strstr($alignment, 't') )
-			$start_y = 0;
-		if ( strstr($alignment, 'b') )
-			$start_y = $original_height - $max_height;
-		if ( strstr($alignment, 'l') )
-			$start_x = 0;
-		if ( strstr($alignment, 'r') )
-			$start_x = $original_width - $max_width;
-	}
-
-	// Return all our relevant data
-	return array( 'start_x' => absint( $start_x ), 'start_y' => absint( $start_y ), 'max_width' => absint( $max_width ), 'max_height' => absint( $max_height ) );
-}
