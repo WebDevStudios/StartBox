@@ -1,7 +1,22 @@
 /* Responsive
 --------------------------------------------- */
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1180px) {
+
+	.wrap {
+		max-width: 90%;
+	}
+
+}
+
+@media only screen and (max-width: 1024px) {
+
+	body,
+	.site-header,
+	.site-inner,
+	.site-footer {
+		background-color: #fff;
+	}
 
 	.site-branding,
 	.site-title,
@@ -29,6 +44,7 @@
 		@include rem(font-size, 24px);
 	}
 
+	.site-branding,
 	.header_widget_area {
 		@include rem(margin-top, 24px);
 	}
@@ -50,8 +66,20 @@
 		@include rem(padding, 12px 0);
 	}
 
+	.gutters .span-8 {
+		width: 100%;
+	}
+
 	.hentry {
 		@include rem(padding, 24px);
+	}
+
+	.comments-area,
+	ol.comment-list,
+	ol.comment-list li li,
+	ol.comment-list .comment {
+		@include rem(margin, 12px 0 0);
+		@include rem(padding, 12px 0 12px 12px);
 	}
 
 	.primary-widget-area,
@@ -59,14 +87,6 @@
 		.widget {
 			@include rem(padding, 24px);
 		}
-	}
-
-}
-
-@media only screen and (max-width: 480px) {
-
-	.comments-area {
-		@include rem(padding, 12px)
 	}
 
 }
