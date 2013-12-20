@@ -3,7 +3,7 @@
  * SBX Conditional Functions
  *
  * @package SBX
- * @subpackage Functions
+ * @subpackage Extensions
  * @since 1.0.0
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
