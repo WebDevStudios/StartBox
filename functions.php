@@ -74,9 +74,6 @@ function startbox_setup_theme() {
 	// Post Thumbnail support
 	add_theme_support( 'post-thumbnails' );
 
-	// Enable Shortcodes in widget areas
-	add_filter( 'widget_text', 'do_shortcode' );
-
 	// Include customizer settings
 	add_filter( 'sb_customizer_settings', 'startbox_customizer_settings' );
 
@@ -480,6 +477,35 @@ function startbox_color_override() {
 
 <?php } }
 add_action( 'wp_head', 'startbox_color_override', 999 );
+
+/**
+ * Conditionally add the author box after single posts.
+ *
+ * @since  3.0.0
+ */
+function sb_do_author_box() {
+
+	// Output if theme setting warrants it
+	if ( is_single() && get_theme_mod( 'sb_show_author_box' ) ) {
+		sbx_author_box();
+	}
+
+}
+add_action( 'entry_after', 'sb_do_author_box', 10 );
+
+/**
+ * Add additional custom body classes.
+ *
+ * @since  3.0.0
+ *
+ * @param  array $classes Body CSS classes.
+ * @return array          Modified CSS classes.
+ */
+function sb_custom_body_classes( $classes ) {
+	$classes[] = 'gutters';
+	return $classes;
+}
+add_filter( 'body_class', 'sb_custom_body_classes' );
 
 /**
  * In his grace, God has given us different gifts for doing certain things well.
