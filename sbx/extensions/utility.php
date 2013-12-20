@@ -1,82 +1,215 @@
 <?php
 /**
- * Custom template tags and helper functions for this theme.
+ * SBX Utility Functions
  *
- * Eventually, some of the functionality here could be replaced by core features
- *
- * @package sbx
+ * @package SBX
+ * @subpackage Extensions
+ * @since 1.0.0
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
+if ( ! function_exists( 'sbx_get_page_title' ) ) :
+/**
+ * Build a smarter page title.
+ *
+ * @since  1.0.0
+ *
+ * @param  string $title         Default title.
+ * @param  bool   $include_label True to include title label, otherwise false.
+ * @return string                Filtered title.
+ */
+function sbx_get_page_title( $title = '', $include_label = true ) {
+	global $post, $page, $paged;
+
+	// Cache the original title
+	$original_title = $title;
+
+	// Filter for short-circuiting this function
+	$title = apply_filters( 'sbx_pre_get_page_title', $title, $include_label, $post );
+
+	// If no title was specified, try to build one
+	if ( empty( $title ) ) {
+		if ( is_singular() ) {
+			$label = is_attachment()
+				? sprintf(
+					'<a href="%1$s" rev="attachment"><span class="meta-nav">&laquo; %2$s</span></a>',
+					get_permalink( $post->post_parent ),
+					get_the_title( $post->post_parent )
+					)
+				: '';
+			$title = get_the_title();
+		} elseif ( is_category() ) {
+			$label = __( 'Category Archives: ', 'sbx' );
+			$title = single_term_title( '', false );
+		} elseif ( is_tag() ) {
+			$label = __( 'Tag Archives: ', 'sbx' );
+			$title = single_term_title( '', false );
+		} elseif ( is_tax() ) {
+			$taxonomy = get_query_var( 'taxonomy' );
+			$label = sprintf( __( '%s Archives: ', 'sbx' ), $taxonomy->singular_label );
+			$title = single_term_title( '', false );
+		} elseif ( is_post_type_archive() ) {
+			$label = __( 'Content Archives: ', 'sbx' );
+			$title = post_type_archive_title( '', false );
+		} elseif ( is_day() ) {
+			$label = __( 'Daily Archives: ', 'sbx' );
+			$title = get_the_time( get_option('date_format') );
+		} elseif ( is_month() ) {
+			$label = __( 'Monthly Archives: ', 'sbx' );
+			$title = get_the_time( 'F Y' );
+		} elseif ( is_year() ) {
+			$label = __( 'Yearly Archives: ', 'sbx' );
+			$title = get_the_time( 'Y' );
+		} elseif ( is_tax( 'post_format' ) ) {
+			$label = __( 'Format Archives: ', 'sbx' );
+			if ( is_tax( 'post_format', 'post-format-aside' ) ) {
+				$title = __( 'Asides', 'sbx' );
+			} elseif ( is_tax( 'post_format', 'post-format-image' ) )  {
+				$title = __( 'Images', 'sbx');
+			} elseif ( is_tax( 'post_format', 'post-format-video' ) )  {
+				$title = __( 'Videos', 'sbx' );
+			} elseif ( is_tax( 'post_format', 'post-format-quote' ) )  {
+				$title = __( 'Quotes', 'sbx' );
+			} elseif ( is_tax( 'post_format', 'post-format-link' ) )  {
+				$title = __( 'Links', 'sbx' );
+			}
+		} elseif ( is_author() ) {
+			$label = __( 'Author Archives: ', 'sbx' );
+			the_post();
+			$title = esc_html( get_the_author() );
+			rewind_posts();
+		} elseif ( is_search() ) {
+			$label = __( 'Search Results for: ', 'sbx' );
+			$title = esc_html( stripslashes( $_GET['s'] ), true );
+		}  elseif ( is_404() ) {
+			$label = '';
+			$title = __( '404 - File Not Found', 'sbx' );
+		} elseif ( $paged >= 2 || $page >= 2 ) {
+			$label = __( 'Blog Archives: ', 'sbx' );
+			$title = sprintf( __( 'Page %d', 'sbx' ), max( $paged, $page ) );
+		}
+
+		// If prefix is not explicitly false, include the prefix.
+		if ( false !== $include_label ) {
+			$title = sprintf(
+				'<span class="label">%1$s</span> %2$s',
+				$label,
+				$title
+				);
+		}
+
+	}
+
+	return apply_filters( 'sbx_get_page_title', $title, $original_title, $include_label, $post );
+}
+endif;
+
+if ( ! function_exists( 'sbx_page_title' ) ) :
+/**
+ * Output contents of sbx_get_page_title().
+ *
+ * @since 1.0.0
+ *
+ * @param string $title         Default title.
+ * @param bool   $include_label True to include title label, otherwise false.
+ */
+function sbx_page_title( $title = '', $include_label = true ) {
+	echo sbx_get_page_title( $title, $include_label );
+}
+endif;
+
+if ( ! function_exists( 'sbx_date_classes' ) ) :
+/**
+ * Generates time- and date-based classes relative to GMT (UTC).
+ *
+ * @since  1.0.0
+ *
+ * @param  integer $timestamp Timestamp.
+ * @param  array   $classes   Original classes array.
+ * @param  string  $prefix    Optional prefix string.
+ * @return array              Updated classes array.
+ */
+function sbx_date_classes( $timestamp = 0, $classes = array(), $prefix = '' ) {
+
+	// Relativise the timestamp
+	$timestamp = $timestamp + ( get_option('gmt_offset') * 3600 );
+
+	// Add a class for each major division of time
+	$classes[] = $prefix . 'y' . gmdate( 'Y', $timestamp ); // Year
+	$classes[] = $prefix . 'm' . gmdate( 'm', $timestamp ); // Month
+	$classes[] = $prefix . 'd' . gmdate( 'd', $timestamp ); // Day
+	$classes[] = $prefix . 'h' . gmdate( 'H', $timestamp ); // Hour
+
+	return $classes;
+}
+endif;
 
 if ( ! function_exists( 'sbx_time_since' ) ) :
 /**
- * Display Relative Timestamps
+ * Generate a Relative Timestamp (alternative to human_time_diff()).
  *
- * This plugin is based on code from Dunstan Orchard's Blog. Pluginiffied by Michael Heilemann:
- * @link http://www.1976design.com/blog/archive/2004/07/23/redesign-time-presentation/
+ * Render a human-readable time difference between any
+ * two timestamps. Difference will be displayed in the
+ * two largest chunks of time, e.g.
+ *   2 years, 5 months
+ *   1 day, 14 hours
  *
- * Usage:
- * For posts: echo sbx_time_since(abs(strtotime($post->post_date_gmt . " GMT")), time()) . ' ago';
- * For comments: echo sbx_time_since(abs(strtotime($comment->comment_date_gmt . " GMT")), time()) . ' ago';
+ * Sample Usage: sbx_time_since( get_the_time( 'U' ) )
  *
- * @since 2.4.6
- * @param integer $older_date The original date in question
- * @param integer $newer_date Specify a known date to determine elapsed time. Will use current time if false Default: false
- * @return string Time since
+ * @since  1.0.0
+ *
+ * @param  integer $older_date Original timestamp.
+ * @param  integer $newer_date Known future date (Default: current timestamp).
+ * @return string              Human-readable time difference.
 */
-function sbx_time_since($older_date, $newer_date = false) {
+function sbx_get_time_since( $older_date = 0, $newer_date = 0 ) {
 
-	// array of time period chunks
+	// Get current time if no newer date specified
+	$newer_date = empty( $newer_date )
+		? ( time() + HOUR_IN_SECONDS * get_option( 'gmt_offset' ) )
+		: $newer_date;
+
+	// Calculate the time difference
+	$elapsed = $newer_date - $older_date;
+
+	// Define time chunks with labels
 	$chunks = array(
-	array(60 * 60 * 24 * 365 , 'year'),
-	array(60 * 60 * 24 * 30 , 'month'),
-	array(60 * 60 * 24 * 7, 'week'),
-	array(60 * 60 * 24 , 'day'),
-	array(60 * 60 , 'hour'),
-	array(60 , 'minute'),
+		array( 'chunk' => YEAR_IN_SECONDS,     'label' => _n_noop( '%s year',   '%s years' ) ),
+		array( 'chunk' => 30 * DAY_IN_SECONDS, 'label' => _n_noop( '%s month',  '%s months' ) ),
+		array( 'chunk' => WEEK_IN_SECONDS,     'label' => _n_noop( '%s week',   '%s weeks' ) ),
+		array( 'chunk' => DAY_IN_SECONDS,      'label' => _n_noop( '%s day',    '%s days' ) ),
+		array( 'chunk' => HOUR_IN_SECONDS,     'label' => _n_noop( '%s hour',   '%s hours' ) ),
+		array( 'chunk' => MINUTE_IN_SECONDS,   'label' => _n_noop( '%s minute', '%s minutes' ) ),
 	);
+	$total_chunks = count( $chunks );
 
-	// Newer Date (false to use current time)
-	$newer_date = ($newer_date == false) ? (time()+(60*60*get_settings("gmt_offset"))) : $newer_date;
+	// Initialize output
+	$output = array();
 
-	// difference in seconds
-	$since = $newer_date - $older_date;
-
-	// we only want to output two chunks of time here, eg:
-	// x years, xx months
-	// x days, xx hours
-	// so there's only two bits of calculation below:
-
-	// step one: the first chunk
-	for ($i = 0, $j = count($chunks); $i < $j; $i++)
-		{
-		$seconds = $chunks[$i][0];
-		$name = $chunks[$i][1];
-
-		// finding the biggest chunk (if the chunk fits, break)
-		if (($count = floor($since / $seconds)) != 0)
-			{
+	// First Chunk
+	for ( $i = 0; $i < $total_chunks; $i++ ) {
+		// Break at the biggest chunk
+		$count1 = floor( $elapsed / $chunks[ $i ]['chunk'] );
+		if ( 0 != $count1 ) {
+			$output[] = sprintf( translate_nooped_plural( $chunks[ $i ]['label'], $count1, 'sbx' ), $count1 );
+			$i++;
 			break;
-			}
 		}
+	}
 
-	// set output var
-	$output = ($count == 1) ? '1 '.$name : "$count {$name}s";
-
-	// step two: the second chunk
-	if ($i + 1 < $j)
-		{
-		$seconds2 = $chunks[$i + 1][0];
-		$name2 = $chunks[$i + 1][1];
-
-		if (($count2 = floor(($since - ($seconds * $count)) / $seconds2)) != 0)
-			{
-			// add to output var
-			$output .= ($count2 == 1) ? ', 1 '.$name2 : ", $count2 {$name2}s";
-			}
+	// Second Chunk
+	if ( $i < $total_chunks ) {
+		$count2 = floor( ( $elapsed - $chunks[ $i-1 ]['chunk'] * $count1 ) / $chunks[ $i ]['chunk'] );
+		if ( 0 != $count2 ) {
+			$output[] = sprintf( translate_nooped_plural( $chunks[ $i ]['label'], $count2, 'sbx' ), $count2 );
 		}
+	}
 
-	return $output;
+	// Flatten output
+	$output = sprintf( __( '%s ago', 'sbx' ), implode( ', ', $output ) );
+
+	// Return filterable output
+	return apply_filters( 'sbx_get_time_since', $output, $older_date, $newer_date );
 }
 endif;
 
@@ -85,169 +218,82 @@ if ( ! function_exists( 'sbx_dropdown_posts' ) ) :
 /**
  * Retrieve or display list of posts as a dropdown (select list).
  *
- * @since 2.4.7
+ * @since 1.0.0
  *
- * @param array|string $args Optional. Override default arguments.
- * @return string HTML content, if not displaying.
+ * @param  array  $args Configuration args.
+ * @return string       HTML markup.
  */
-function sbx_dropdown_posts($args = '') {
+function sbx_dropdown_posts( $args = '' ) {
+	global $wpdb;
 
+	// Setup default args
 	$defaults = array(
-		'post_type' => 'post',
-		'post_status' => 'publish',
-		'order_by' => 'post_date',
-		'order' => 'DESC',
-		'limit' => 30,
-		'selected' => 0,
-		'echo' => 1,
-		'name' => '',
-		'id' => '',
-		'class' => 'postlist',
-		'show_option_none' => true,
-		'option_none_value' => 'Select a Post'
+		'post_type'         => 'post',
+		'post_status'       => 'publish',
+		'order_by'          => 'post_date',
+		'order'             => 'DESC',
+		'limit'             => 30,
+		'selected'          => 0,
+		'echo'              => 1,
+		'name'              => '',
+		'id'                => '',
+		'class'             => 'postlist',
+		'show_option_none'  => __( 'Select a Post', 'sbx' ),
 	);
-
-	$r = wp_parse_args( $args, $defaults );
-	extract( $r, EXTR_SKIP );
+	$args = wp_parse_args( $args, $defaults );
 
 	// Query the Posts
-	global $wpdb;
-	$table_prefix = $wpdb->prefix;
-	$limit = ( $limit ) ? ' LIMIT '.absint( $limit ) : '';
-	$id = esc_attr($id);
-	$name = esc_attr($name);
-	$output = '';
-	$order_by = sanitize_sql_orderby( $order_by . ' ' . $order );
+	$order_by  = sanitize_sql_orderby( $args['order_by'] . ' ' . $args['order'] );
+	$post_list = $wpdb->get_results(
+		$wpdb->prepare(
+			"
+			SELECT ID, post_title, post_date
+			FROM $wpdb->posts
+			WHERE post_type = %s
+			AND post_status = %s
+			ORDER BY {$order_by}
+			LIMIT %d
+			",
+			$args['post_type'],
+			$args['post_status'],
+			$args['limit']
+		),
+		'ARRAY_N'
+	);
 
-	$post_list = (array)$wpdb->get_results(
-		$wpdb->prepare("
-		SELECT ID, post_title, post_date
-		FROM $wpdb->posts
-		WHERE post_type = %s
-		AND post_status = %s
-		ORDER BY {$order_by}
-		{$limit}
-	", $post_type, $post_status ) );
-
-	$output .= "\t" . "\t" . '<select style="width:100%;" id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '" class="' . esc_attr( $class ) . '">'."\n";
-	if ( !empty($post_list) ) {
-		if ( $show_option_none ) $output .= "\t" . "\t" . "\t" . '<option value="">' . $option_none_value . '</option>';
-		foreach ($post_list as $posts) {
-			if ($selected == $posts->ID) { $select = 'selected="selected"'; } else { $select = ''; }
-			$output .= "\t" . "\t" . "\t" . '<option value="' . $posts->ID . '"' . $select . '>' . $posts->post_title . '</option>';
-		}
-	} else {
-		$output .= "\t" . "\t" . "\t" . '<option value="">Nothing to Display</option>';
+	// Build Output
+	$output = "\n\t\t" . '<select style="width:100%;" id="' . esc_attr( $args['id'] ) . '" name="' . esc_attr( $args['name'] ) . '" class="' . esc_attr( $args['class'] ) . '">';
+	if ( $args['show_option_none'] ) {
+		$output .= "\n\t\t\t" . '<option value="">' . $args['show_option_none'] . '</option>';
 	}
-	$output .= '</select>';
+	if ( ! empty( $post_list ) ) {
+		foreach ( $post_list as $post ) {
+			$output .= "\n\t\t\t" . '<option value="' . $post->ID . '"' . selected( $post->ID, $args['selected'], false ) . '>' . $post->post_title . '</option>';
+		}
+	}
+	$output .= "\n\t\t" . '</select>';
 
-	$output = apply_filters('wp_dropdown_posts', $output);
+	$output = apply_filters( 'sbx_dropdown_posts', $output, $args );
 
 	if ( $echo )
 		echo $output;
-	else
-		return $output;
+
+	return $output;
 }
 endif;
-
-
-if ( ! function_exists( 'sbx_tag_query' ) ) :
-/**
- * Create a nice multi-tag title
- *
- * Credits: Ian Stewart and Martin Kopischke for providing this code
- *
- * @since 2.4.7
- */
-function sbx_tag_query() {
-	$nice_tag_query = get_query_var('tag'); // tags in current query
-	$nice_tag_query = str_replace(' ', '+', $nice_tag_query); // get_query_var returns ' ' for AND, replace by +
-	$tag_slugs = preg_split('%[,+]%', $nice_tag_query, -1, PREG_SPLIT_NO_EMPTY); // create array of tag slugs
-	$tag_ops = preg_split('%[^,+]*%', $nice_tag_query, -1, PREG_SPLIT_NO_EMPTY); // create array of operators
-
-	$tag_ops_counter = 0;
-	$nice_tag_query = '';
-
-	foreach ($tag_slugs as $tag_slug) {
-		$tag = get_term_by('slug', $tag_slug ,'post_tag');
-		// prettify tag operator, if any
-		if ( isset( $tag_ops[$tag_ops_counter] ) &&  $tag_ops[$tag_ops_counter] == ',') {
-			$tag_ops[$tag_ops_counter] = ', ';
-		} elseif ( isset( $tag_ops[$tag_ops_counter] ) && $tag_ops[$tag_ops_counter] == '+') {
-			$tag_ops[$tag_ops_counter] = ' + ';
-		} else {
-			$tag_ops[$tag_ops_counter] = '';
-		}
-		// concatenate display name and prettified operators
-		$nice_tag_query = $nice_tag_query . $tag->name . $tag_ops[$tag_ops_counter];
-		$tag_ops_counter += 1;
-	}
-	 return $nice_tag_query;
-}
-endif;
-
-
-if ( !function_exists( 'sbx_get_taxonomy_term_type' ) ) :
-/**
- * Function for retrieving taxonomy meta information
- *
- * @since 2.5
- *
- * @uses get_option()
- * @param string $taxonomy the desired taxonomy name
- * @param string $term_id the desired meta information name
- *
- */
-function sbx_get_taxonomy_term_type($taxonomy,$term_id) {
-	return get_option("_term_type_{$taxonomy}_{$term->term_id}");
-}
-endif;
-
-
-if ( !function_exists( 'sbx_update_taxonomy_term_type' ) ) :
-/**
- * Function for updating taxonomy meta information
- *
- * @since 2.5
- *
- * @uses get_option()
- * @param string $taxonomy the desired taxonomy name
- * @param string $term_id the desired meta information name
- * @param mixed $value the new value
- *
- */
-function sbx_update_taxonomy_term_type($taxonomy,$term_id,$value) {
-	update_option("_term_type_{$taxonomy}_{$term_id}",$value);
-}
-endif;
-
-
-if ( !function_exists( 'sbx_delete_taxonomy_term_type' ) ) :
-/**
- * Function for deleting taxonomy meta information
- *
- * @since 2.5
- *
- * @uses get_option()
- * @param string $taxonomy the desired taxonomy name
- * @param string $term_id the desired meta information name
- *
- */
-function sbx_delete_taxonomy_term_type($taxonomy,$term_id ) {
-	delete_option("_term_type_{$taxonomy}_{$term_id}");
-}
-endif;
-
 
 if ( !function_exists( 'sb_nav_menu_fallback' ) ) :
 /**
- * Fallback function for building menus in the event no custom menus exist.
+ * Fallback menu function if custom menus exist.
  *
- * @since 3.0
+ * @since  1.0.0
+ *
+ * @param  array $args Output args.
+ * @return string      HTML Markup.
 */
-function sb_nav_menu_fallback() {
+function sb_nav_menu_fallback( $args = array() ) {
 
-	$args = array(
+	$defaults = array(
 		'depth'       => 1,
 		'sort_column' => 'menu_order, post_title',
 		'menu_class'  => 'menu',
@@ -258,111 +304,24 @@ function sb_nav_menu_fallback() {
 		'link_before' => '',
 		'link_after'  => ''
 	);
+	$args = wp_parse_args( $args, $defaults );
 
-	$nav_menu = '';
-	$nav_menu = '<ul>';
-	$nav_menu = wp_page_menu( $args );
-	$nav_menu = '</ul>';
+	$output = '<ul>' . wp_page_menu( $args ) . '</ul>';
 
-	return $nav_menu;
+	return apply_filters( 'sb_nav_menu_fallback', $output, $args );
 
 }
 endif;
 
-
-
-/**
- * Forever eliminate "Startbox" from the planet (or at least the little bit we can influence).
- *
- * Violating our coding standards for a good function name.
- *
- * @since 2.7.0
- */
-function capital_B_dangit( $text ) {
-
-	// Simple replacement for titles
-	if ( 'the_title' === current_filter() )
-		return str_replace( 'Startbox', 'StartBox', $text );
-
-	// Still here? Use the more judicious replacement
-	static $dblq = false;
-	if ( false === $dblq )
-		$dblq = _x( '&#8220;', 'opening curly quote' );
-	return str_replace(
-		array( ' Startbox', '&#8216;Startbox', $dblq . 'Startbox', '>Startbox', '(Startbox' ),
-		array( ' StartBox', '&#8216;StartBox', $dblq . 'StartBox', '>StartBox', '(StartBox' ),
-	$text );
-
-}
-add_filter( 'the_content', 'capital_B_dangit', 11 );
-add_filter( 'the_title', 'capital_B_dangit', 11 );
-add_filter( 'comment_text', 'capital_B_dangit', 31 );
-
-
-/**
- * Introduces a new column to the 'Page' dashboard that will be used to render the page template
- * for the given page.
- *
- * Credit: @tommcfarlin, http://tommcfarlin.com/view-page-templates/
- *
- * @since	2.7
- * @param	array	$page_columns	The array of columns rendering page meta data./
- * @return	array					The update array of page columns.
- */
-function sbx_add_template_column( $page_columns ) {
-	$page_columns['template'] = __( 'Page Template', 'startbox' );
-	return $page_columns;
-}
-add_filter( 'manage_edit-page_columns', 'sbx_add_template_column' );
-
-
-/**
- * Renders the name of the template applied to the current page. Will use 'Default' if no
- * template is used, but will use the friendly name of the template if one is applied.
- *
- * Credit: @tommcfarlin, http://tommcfarlin.com/view-page-templates/
- *
- * @since	2.7
- * @param	string	$column_name	The name of the column being rendered
- */
-function sbx_add_template_data( $column_name ) {
-
-	// Grab a reference to the post that's currently being rendered
-	global $post;
-
-	// If we're looking at our custom column, then let's get ready to render some information.
-	if( 'template' == $column_name ) {
-
-		// First, the get name of the template
-		$template_name = get_post_meta( $post->ID, '_wp_page_template', true );
-
-		// If the file name is empty or the template file doesn't exist (because, say, meta data is left from a previous theme)...
-		if( 0 == strlen( trim( $template_name ) ) || ! file_exists( get_template_directory() . '/' . $template_name ) ) {
-
-			// ...then we'll set it as default
-			$template_name = __( 'Default', 'startbox' );
-
-		// Otherwise, let's actually get the friendly name of the file rather than the name of the file itself
-		// by using the WordPress `get_file_description` function
-		} else {
-
-			$template_name = get_file_description( get_template_directory() . '/' . $template_name );
-
-		}
-
-	}
-
-	// Finally, render the template name
-	echo $template_name;
-
-}
-add_action( 'manage_page_posts_custom_column', 'sbx_add_template_data' );
-
 if ( ! function_exists( 'sbx_content_nav' ) ) :
 /**
- * Display navigation to next/previous pages when applicable
+ * Output next/previous navigation when applicable.
+ *
+ * @since 1.0.0
+ *
+ * @param string $container_id Container CSS ID.
  */
-function sbx_content_nav( $nav_id ) {
+function sbx_content_nav( $container_id ) {
 	global $wp_query, $post;
 
 	// Don't print empty markup on single pages if there's nowhere to navigate.
@@ -379,9 +338,8 @@ function sbx_content_nav( $nav_id ) {
 		return;
 
 	$nav_class = ( is_single() ) ? 'post-navigation' : 'paging-navigation';
-
 	?>
-	<nav id="<?php echo esc_attr( $nav_id ); ?>" class="<?php echo $nav_class; ?>" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+	<nav id="<?php echo esc_attr( $container_id ); ?>" class="<?php echo $nav_class; ?>" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
 		<h1 class="screen-reader-text"><?php _e( 'Post navigation', 'sbx' ); ?></h1>
 
 	<?php if ( is_single() ) : // navigation links for single posts ?>
@@ -401,19 +359,24 @@ function sbx_content_nav( $nav_id ) {
 
 	<?php endif; ?>
 
-	</nav><!-- #<?php echo esc_html( $nav_id ); ?> -->
+	</nav><!-- #<?php echo esc_html( $container_id ); ?> -->
 	<?php
 }
 endif;
 
-
 if ( ! function_exists( 'sbx_comment' ) ) :
 /**
- * Template for comments and pingbacks.
+ * Output template for comments and pingbacks.
  *
  * Used as a callback by wp_list_comments() for displaying the comments.
+ *
+ * @since 1.0.0
+ *
+ * @param object  $comment Comment object.
+ * @param array   $args    Formatting args.
+ * @param integer $depth   Threaded comment depth.
  */
-function sbx_comment( $comment, $args, $depth ) {
+function sbx_comment( $comment = null, $args = array(), $depth = 0 ) {
 	$GLOBALS['comment'] = $comment;
 
 	if ( 'pingback' == $comment->comment_type || 'trackback' == $comment->comment_type ) : ?>
@@ -478,38 +441,14 @@ function sbx_comment( $comment, $args, $depth ) {
 }
 endif;
 
+if ( ! function_exists( 'sbx_get_author_box' ) ) :
 /**
- * Returns true if a blog has more than 1 category
- */
-function sbx_categorized_blog() {
-	if ( false === ( $all_the_cool_cats = get_transient( 'all_the_cool_cats' ) ) ) {
-		// Create an array of all the categories that are attached to posts
-		$all_the_cool_cats = get_categories( array(
-			'hide_empty' => 1,
-		) );
-
-		// Count the number of categories that are attached to the posts
-		$all_the_cool_cats = count( $all_the_cool_cats );
-
-		set_transient( 'all_the_cool_cats', $all_the_cool_cats );
-	}
-
-	if ( '1' != $all_the_cool_cats ) {
-		// This blog has more than 1 category so sbx_categorized_blog should return true
-		return true;
-	} else {
-		// This blog has only 1 category so sbx_categorized_blog should return false
-		return false;
-	}
-}
-
-/**
- * Generate makrup for an Author Box
+ * Render an Author Box.
  *
- * @since  3.0.0
+ * @since  1.0.0
  *
- * @param  array  $args Parameters used for output.
- * @return string       Concatenated markup.
+ * @param  array  $args Output args.
+ * @return string       HTML markup.
  */
 function sbx_get_author_box( $args = array() ) {
 
@@ -541,49 +480,36 @@ function sbx_get_author_box( $args = array() ) {
 	// Return our filterable markup
 	return apply_filters( 'sbx_author_box', $output, $args );
 }
+endif;
 
+if ( ! function_exists( 'sbx_author_box' ) ) :
 /**
- * Output an Author Box
+ * Output an Author Box.
  *
- * @since 3.0.0
+ * @since 1.0.0
  *
- * @param array $args Parameters used for output.
+ * @param array $args Output args.
  */
 function sbx_author_box( $args = array() ) {
 	echo sbx_get_author_box( $args );
 }
+endif;
 
-/**
- * Conditionally add the author box after single posts
- */
-function sbx_do_author_box() {
-
-	// Return early if not a post
-	if ( ! is_single() )
-		return;
-
-	if ( get_theme_mod( 'sb_show_author_box' ) ) { sbx_author_box(); }
-
-}
-add_action( 'entry_after', 'sbx_do_author_box', 10 );
-
-/**
- * Flush out the transients used in sbx_categorized_blog
- */
-function sbx_category_transient_flusher() {
-	// Like, beat it. Dig?
-	delete_transient( 'all_the_cool_cats' );
-}
-add_action( 'edit_category', 'sbx_category_transient_flusher' );
-add_action( 'save_post',     'sbx_category_transient_flusher' );
-
+if ( ! function_exists( 'sbx_rtt' ) ) :
 /**
  * Render a "Return to Top" link.
  *
- * @since  2.4.3
+ * Renders an anchor tag, wrapped in a span, pointing to #top.
  *
- * @return string Anchor tag that points to #top, wrapped in span.
+ * @since  1.0.0
+ *
+ * @return string HTML output.
  */
 function sbx_rtt() {
-	return '<span class="rtt"><a href="#top" class="cb" title="Return to top of page">' . apply_filters( 'sbx_rtt_text', __( 'Return to Top', 'startbox' ) ) . '</a></span>';
+	return apply_filters( 'sbx_rtt', sprintf(
+		'<span class="rtt"><a href="#top" class="cb">%s</a></span>',
+		apply_filters( 'sbx_rtt_text', __( 'Return to Top', 'startbox' ) )
+		)
+	);
 }
+endif;
