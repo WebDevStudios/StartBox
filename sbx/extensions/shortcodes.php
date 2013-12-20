@@ -1,6 +1,6 @@
 <?php
 /**
- * SBX Shortcodes.
+ * SBX Shortcodes
  *
  * @package SBX
  * @subpackage Extensions

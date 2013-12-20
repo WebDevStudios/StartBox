@@ -1,6 +1,6 @@
 <?php
 /**
- * SBX Common Actions and Filters.
+ * SBX Common Actions and Filters
  *
  * @package SBX
  * @subpackage Extensions
