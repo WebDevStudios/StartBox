@@ -1054,7 +1054,7 @@ Structure and Layout
   width: 100%;
 }
 
-@media (min-width: 769px) {
+@media (min-width: 1025px) {
   .gutters .col {
     margin-left: 2%;
   }
@@ -1366,6 +1366,8 @@ Content
 
 .entry-title {
   -ms-word-wrap: break-word;
+  font-size: 48px;
+  font-size: 4.8rem;
   word-break: break-word;
 }
 
@@ -1612,15 +1614,6 @@ Footer
   float: right;
 }
 
-.admin-links ul {
-  margin: 0;
-  padding: 0;
-}
-
-.admin-links li {
-  display: inline-block;
-}
-
 /* Footer Widget Area
 --------------------------------------------- */
 .footer-widgets {
@@ -1762,7 +1755,6 @@ Media Queries
 
   .main-navigation,
   .entry-title,
-  .widget-title,
   .comments-title,
   .comment-reply-title,
   .logged-in-as,
@@ -1787,8 +1779,8 @@ Media Queries
     padding: 1.2rem 0;
   }
 
-  .gutters .span-8 {
-    width: 100%;
+  .widget-area .search-field {
+    width: 84%;
   }
 
   .hentry {
@@ -1803,6 +1795,10 @@ Media Queries
   }
 }
 @media only screen and (max-width: 480px) {
+  .widget-title {
+    text-align: center;
+  }
+
   #comments,
   ol.comment-list,
   .comment-content {

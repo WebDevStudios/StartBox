@@ -54,7 +54,6 @@
 
 	.main-navigation,
 	.entry-title,
-	.widget-title,
 	.comments-title,
 	.comment-reply-title,
 	.logged-in-as,
@@ -77,8 +76,8 @@
 		@include rem(padding, 12px 0);
 	}
 
-	.gutters .span-8 {
-		width: 100%;
+	.widget-area .search-field {
+		width: 84%;
 	}
 
 	.hentry {
@@ -95,6 +94,10 @@
 }
 
 @media only screen and (max-width: 480px) {
+
+	.widget-title {
+		text-align: center;
+	}
 
 	#comments,
 	ol.comment-list,

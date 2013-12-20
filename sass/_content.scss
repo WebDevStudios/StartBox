@@ -28,6 +28,7 @@
 
 .entry-title {
 	-ms-word-wrap: break-word;
+	@include rem(font-size, $font-size-post-title);
 	word-break: break-word;
 }
 
