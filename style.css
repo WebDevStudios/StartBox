@@ -1527,10 +1527,10 @@ ol.comment-list .comment {
   padding: 1.2rem;
 }
 ol.comment-list .even {
-  background-color: white;
+  background-color: #f0f0f0;
 }
 ol.comment-list .odd {
-  background-color: #f0f0f0;
+  background-color: white;
 }
 ol.comment-list .bypostauthor {
   background-color: #fffadb;
@@ -1709,7 +1709,19 @@ Media Queries
 }
 /* Responsive
 --------------------------------------------- */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1180px) {
+  .wrap {
+    max-width: 90%;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  body,
+  .site-header,
+  .site-inner,
+  .site-footer {
+    background-color: #fff;
+  }
+
   .site-branding,
   .site-title,
   .site-description,
@@ -1739,6 +1751,7 @@ Media Queries
     font-size: 2.4rem;
   }
 
+  .site-branding,
   .header_widget_area {
     margin-top: 24px;
     margin-top: 2.4rem;
@@ -1763,20 +1776,28 @@ Media Queries
     padding: 1.2rem 0;
   }
 
+  .gutters .span-8 {
+    width: 100%;
+  }
+
   .hentry {
     padding: 24px;
     padding: 2.4rem;
+  }
+
+  .comments-area,
+  ol.comment-list,
+  ol.comment-list li li,
+  ol.comment-list .comment {
+    margin: 12px 0 0;
+    margin: 1.2rem 0 0;
+    padding: 12px 0 12px 12px;
+    padding: 1.2rem 0 1.2rem 1.2rem;
   }
 
   .primary-widget-area .widget,
   .footer-widgets .widget {
     padding: 24px;
     padding: 2.4rem;
-  }
-}
-@media only screen and (max-width: 480px) {
-  .comments-area {
-    padding: 12px;
-    padding: 1.2rem;
   }
 }
