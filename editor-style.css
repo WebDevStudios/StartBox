@@ -22,7 +22,7 @@ html {
 }
 
 body.mceContentBody {
-  font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 16px;
   font-size: 1.6rem;
 }
@@ -177,7 +177,7 @@ h5,
 h6 {
   clear: both;
   color: #111111;
-  font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 700;
   line-height: 1.2;
   margin: 0;
