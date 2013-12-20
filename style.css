@@ -1076,7 +1076,7 @@ Structure and Layout
   width: 100%;
 }
 
-@media (min-width: 1025px) {
+@media (min-width: 960px) {
   .gutters .col {
     margin-left: 2%;
   }
@@ -1729,7 +1729,7 @@ Media Queries
     max-width: 96%;
   }
 }
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 960px) {
   body,
   .site-header,
   .site-inner,
