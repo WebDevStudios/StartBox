@@ -11,66 +11,12 @@ get_header(); ?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main col span-8" role="main" itemscope itemprop="mainContentOfPage" itemtype="http://schema.org/Blog">
-		
+
 		<?php if ( have_posts() ) : ?>
 			<?php do_action( 'entry_before' ); ?>
 			<header class="page-header">
 				<h1 class="page-title" itemprop="headline">
-					<?php
-						if ( is_category() ) :
-							single_cat_title();
-
-						elseif ( is_tag() ) :
-							single_tag_title();
-
-						elseif ( is_post_type_archive() ) :
-							post_type_archive_title();
-
-						elseif ( is_tax() ) :
-							$term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); 
-							echo $term->name;
-
-						elseif ( is_author() ) :
-							/* Queue the first post, that way we know
-							 * what author we're dealing with (if that is the case).
-							*/
-							the_post();
-							printf( __( 'Author: %s', 'startbox' ), '<span class="vcard author"><span class="fn">' . get_the_author() . '</span></span>' );
-							/* Since we called the_post() above, we need to
-							 * rewind the loop back to the beginning that way
-							 * we can run the loop properly, in full.
-							 */
-							rewind_posts();
-
-						elseif ( is_day() ) :
-							printf( __( 'Day: %s', 'startbox' ), '<span>' . get_the_date() . '</span>' );
-
-						elseif ( is_month() ) :
-							printf( __( 'Month: %s', 'startbox' ), '<span>' . get_the_date( 'F Y' ) . '</span>' );
-
-						elseif ( is_year() ) :
-							printf( __( 'Year: %s', 'startbox' ), '<span>' . get_the_date( 'Y' ) . '</span>' );
-
-						elseif ( is_tax( 'post_format', 'post-format-aside' ) ) :
-							_e( 'Asides', 'startbox' );
-
-						elseif ( is_tax( 'post_format', 'post-format-image' ) ) :
-							_e( 'Images', 'startbox');
-
-						elseif ( is_tax( 'post_format', 'post-format-video' ) ) :
-							_e( 'Videos', 'startbox' );
-
-						elseif ( is_tax( 'post_format', 'post-format-quote' ) ) :
-							_e( 'Quotes', 'startbox' );
-
-						elseif ( is_tax( 'post_format', 'post-format-link' ) ) :
-							_e( 'Links', 'startbox' );
-
-						else :
-							_e( 'Archives', 'startbox' );
-
-						endif;
-					?>
+					<?php sbx_page_title(); ?>
 				</h1>
 				<?php
 					// Show an optional term description.

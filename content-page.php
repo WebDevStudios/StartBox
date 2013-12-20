@@ -9,7 +9,7 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemscope itemtype="http://schema.org/CreativeWork">
 	<?php do_action( 'entry_top' ); ?>
 	<header class="entry-header">
-		<h1 class="entry-title" itemprop="headline"><?php the_title(); ?></h1>
+		<h1 class="entry-title" itemprop="headline"><?php sbx_page_title(); ?></h1>
 	</header><!-- .entry-header -->
 
 	<div class="entry-content" itemprop="text">

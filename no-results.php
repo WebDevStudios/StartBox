@@ -10,7 +10,9 @@
 <?php do_action( 'entry_before' ); ?>
 <section class="no-results not-found">
 	<header class="page-header">
-		<h1 class="page-title" itemprop="headline"><?php _e( 'Nothing Found', 'startbox' ); ?></h1>
+		<h1 class="page-title" itemprop="headline">
+			<?php sbx_page_title( __( 'Nothing found', 'startbox' ) ); ?>
+		</h1>
 	</header><!-- .page-header -->
 
 	<div class="page-content" itemprop="text">

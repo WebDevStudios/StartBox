@@ -3,6 +3,7 @@
  * @package sbx
  */
 ?>
+<?php do_action( 'before_post' ); ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
 	<?php do_action( 'entry_top' ); ?>
 	<header class="entry-header">
@@ -38,3 +39,4 @@
 	</footer><!-- .entry-meta -->
 	<?php do_action( 'entry_bottom' ); ?>
 </article><!-- #post-## -->
+<?php do_action( 'after_post' ); ?>

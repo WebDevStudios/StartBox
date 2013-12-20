@@ -16,7 +16,7 @@ get_header();
 			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<?php do_action( 'entry_top' ); ?>
 				<header class="entry-header">
-					<h1 class="entry-title" itemprop="headline"><?php _e( 'Attachment:', 'startbox' ); ?> <?php the_title(); ?></h1>
+					<h1 class="entry-title" itemprop="headline"><?php sbx_page_title(); ?></h1>
 
 					<div class="entry-meta">
 						<?php
@@ -58,7 +58,7 @@ get_header();
 
 					<?php
 						the_content();
-						wp_link_pages( array 
+						wp_link_pages( array(
 							'before' => '<div class="page-links">' . __( 'Pages:', 'startbox' ),
 							'after'  => '</div>',
 						) );

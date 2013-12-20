@@ -16,7 +16,7 @@ get_header(); ?>
 		<?php do_action( 'entry_before' ); ?>
 		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
 			<header class="entry-header">
-				<h1 class="entry-title" itemprop="headline"><?php the_title(); ?></h1>
+				<h1 class="entry-title" itemprop="headline"><?php sbx_page_title(); ?></h1>
 
 				<div class="entry-meta">
 					<?php echo sbx_get_theme_mod( 'sb_post_header_meta' ); ?>

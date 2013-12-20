@@ -13,7 +13,9 @@ get_header(); ?>
 			<section class="error-404 not-found">
 				<?php do_action( 'entry_top' ); ?>
 				<header class="page-header">
-					<h1 class="page-title" itemprop="headline"><?php _e( 'Oops! That page can&rsquo;t be found.', 'startbox' ); ?></h1>
+					<h1 class="page-title" itemprop="headline">
+						<?php sbx_page_title( __( 'Oops! That page can&rsquo;t be found.', 'startbox' ) ); ?>
+					</h1>
 				</header><!-- .page-header -->
 
 				<div class="page-content" itemprop="text">
