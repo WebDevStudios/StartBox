@@ -154,7 +154,7 @@ function sbx_entry_readmore( $atts = array() ) {
 	$atts = shortcode_atts(
 		array(
 			'text'   => __( 'Read &amp; Discuss &raquo;', 'sbx' ),
-			'class' => more-link
+			'class' => 'more-link'
 			),
 		$atts
 	);
