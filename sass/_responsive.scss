@@ -84,6 +84,11 @@
 		@include rem(padding, 24px);
 	}
 
+	.comments-area {
+		margin: 0;
+		@include rem(padding-top, 24px);
+	}
+
 	.primary-widget-area,
 	.footer-widgets {
 		.widget {

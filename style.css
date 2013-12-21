@@ -987,21 +987,6 @@ input[type="submit"]:hover,
   color: #111111;
 }
 
-button:focus,
-input[type="button"]:focus,
-input[type="reset"]:focus,
-input[type="submit"]:focus,
-.gform_wrapper input[type="submit"]:focus,
-button:active,
-html input[type="button"]:active,
-input[type="reset"]:active,
-input[type="submit"]:active,
-.gform_wrapper input[type="submit"]:active {
-  border: 1px solid #999999;
-  border-radius: 0;
-  background: #111111;
-}
-
 /* inputs */
 input[type="text"],
 input[type="email"],
@@ -1336,6 +1321,8 @@ Navigation
 .paging-navigation,
 .page-links {
   clear: both;
+  margin: 0 0 24px;
+  margin: 0 0 2.4rem;
 }
 
 .post-navigation {
@@ -1808,6 +1795,12 @@ Media Queries
   .hentry {
     padding: 24px;
     padding: 2.4rem;
+  }
+
+  .comments-area {
+    margin: 0;
+    padding-top: 24px;
+    padding-top: 2.4rem;
   }
 
   .primary-widget-area .widget,
