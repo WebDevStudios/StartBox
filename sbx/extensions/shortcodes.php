@@ -92,7 +92,7 @@ add_shortcode( 'tags', 'sbx_entry_tags' );
  */
 function sbx_entry_comments() {
 	ob_start();
- 	comments_popup_link( __( 'Post a comment', 'sbx' ), __( '1 Comment', 'sbx' ), __( '% Comments', 'sbx' ), 'comments-link', __( 'Comments are closed', 'sbx' ) );
+ 	comments_popup_link( __( 'Post a comment', 'sbx' ), __( '1 Comment', 'sbx' ), __( '% Comments', 'sbx' ), 'comments-link', __( 'Comments closed', 'sbx' ) );
 	return '<span class="entry-comments">' . ob_get_clean() . '</span>';
 }
 add_shortcode( 'comments', 'sbx_entry_comments' );
