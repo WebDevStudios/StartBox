@@ -46,6 +46,7 @@ input::-moz-focus-inner { /* Corrects inner padding and border displayed oddly i
 
 /* buttons */
 button,
+button:active,
 input[type="button"],
 input[type="reset"],
 input[type="submit"],
@@ -77,21 +78,6 @@ input[type="submit"]:hover,
 	box-shadow: none;
 	-webkit-box-shadow: none;
 	color: $color-text-button-hover;
-}
-
-button:focus,
-input[type="button"]:focus,
-input[type="reset"]:focus,
-input[type="submit"]:focus,
-.gform_wrapper input[type="submit"]:focus,
-button:active,
-html input[type="button"]:active,
-input[type="reset"]:active,
-input[type="submit"]:active,
-.gform_wrapper input[type="submit"]:active {
-	border: 1px solid $color-border-form;
-	border-radius: 0;
-	background: $color-text-button-hover;
 }
 
 /* inputs */
