@@ -287,7 +287,7 @@ endif;
 
 if ( !function_exists( 'sb_nav_menu_fallback' ) ) :
 /**
- * Fallback menu function if custom menus exist.
+ * Fallback menu function if no custom menus exist.
  *
  * @since  1.0.0
  *
