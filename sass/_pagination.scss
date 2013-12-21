@@ -5,6 +5,7 @@
 .paging-navigation,
 .page-links {
 	clear: both;
+	@include rem(margin, 0 0 24px);
 }
 
 .post-navigation {
