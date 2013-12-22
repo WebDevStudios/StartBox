@@ -7,7 +7,7 @@
  * and that other 'pages' on your WordPress site will use a
  * different template.
  *
- * @package sbx
+ * @package StartBox
  */
 
 get_header(); ?>

@@ -7,7 +7,7 @@
  * handled by a callback to sbx_comment() which is
  * located in the inc/template-tags.php file.
  *
- * @package sbx
+ * @package StartBox
  */
 
 /*
@@ -30,7 +30,7 @@ if ( post_password_required() )
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
 		<nav id="comment-nav-above" class="comment-navigation" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
-			<h1 class="screen-reader-text"><?php _e( 'Comment navigation', 'sbx' ); ?></h1>
+			<h1 class="screen-reader-text"><?php _e( 'Comment navigation', 'startbox' ); ?></h1>
 			<div class="nav-previous" itemprop="name"><?php previous_comments_link( __( '&larr; Older Comments', 'startbox' ) ); ?></div>
 			<div class="nav-next" itemprop="name"><?php next_comments_link( __( 'Newer Comments &rarr;', 'startbox' ) ); ?></div>
 		</nav><!-- #comment-nav-above -->

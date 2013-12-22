@@ -2,7 +2,7 @@
 /**
  * The Sidebar containing the main widget areas.
  *
- * @package sbx
+ * @package StartBox
  */
 
 sbx_do_sidebar( 'primary_widget_area', 'primary-widget-area col span-4' );

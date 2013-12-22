@@ -2,7 +2,7 @@
 /**
  * The template for displaying 404 pages (Not Found).
  *
- * @package sbx
+ * @package StartBox
  */
 
 get_header(); ?>

@@ -4,7 +4,7 @@
  *
  * Contains the closing of the id=main div and all content after
  *
- * @package sbx
+ * @package StartBox
  */
 ?>
 		<?php do_action( 'content_bottom' ); ?>

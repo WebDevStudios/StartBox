@@ -2,7 +2,7 @@
 /**
  * The template for displaying Search Results pages.
  *
- * @package sbx
+ * @package StartBox
  */
 
 get_header(); ?>

@@ -2,7 +2,7 @@
 /**
  * The template used for displaying post content
  *
- * @package sbx
+ * @package StartBox
  */
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">

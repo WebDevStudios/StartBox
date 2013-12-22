@@ -2,7 +2,7 @@
 /**
  * The Template for displaying all single posts.
  *
- * @package sbx
+ * @package StartBox
  */
 
 get_header(); ?>

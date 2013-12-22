@@ -1,6 +1,6 @@
 <?php
 /**
- * @package sbx
+ * @package StartBox
  */
 ?>
 <?php do_action( 'before_post' ); ?>

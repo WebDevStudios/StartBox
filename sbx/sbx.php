@@ -6,7 +6,7 @@
  *
  * @package SBX
  * @subpackage Functions
- * @since 2.4.5
+ * @since 1.0.0
  */
 if ( ! class_exists('SBX') ) {
 	class SBX {

@@ -2,9 +2,9 @@
 /**
  * The Template for displaying single custom post type entries.
  *
- * CHANGE THE NAME OF THIS FILE TO MATCH YOUR CPT
+ * FOR EXAMPLE USE ONLY! CHANGE THE NAME OF THIS FILE TO MATCH YOUR CPT
  *
- * @package sbx
+ * @package StartBox
  */
 
 get_header(); ?>

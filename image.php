@@ -2,7 +2,7 @@
 /**
  * The template for displaying image attachments.
  *
- * @package sbx
+ * @package StartBox
  */
 
 get_header();
