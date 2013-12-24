@@ -1,3 +1,13 @@
+2013.12.23 - version 3.0.0-Experimental
+	* Remove inline width declarations
+	* New screenshot.png
+	* Form refinements
+
+2013.12.21 - version 3.0.0-Experimental
+	* Comment style refinements
+	* Pagination style refinements
+	* Update @package declarations
+
 2013.12.19 - version 3.0.0-Experimental
 	* Added footer credits
 	* Added return to top link

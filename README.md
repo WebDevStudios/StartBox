@@ -37,3 +37,7 @@ Want to contribute? That's great! Patches are always welcome. Open an Issue and 
 5. Push to the branch (`git push origin MyBox`).
 6. Open a [Pull Request](https://github.com/WebDevStudios/StartBox/pulls).
 7. Enjoy a refreshing beverage and wait.
+
+Credits
+------------
+Screenshot: http://www.flickr.com/photos/jasonmurphyphotography/
