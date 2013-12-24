@@ -1,3 +1,10 @@
+2013.12.24 - version 3.0.0-Experimental
+	* Added default favicons
+	* Fixed breadcrumb error
+	* Further docblocks
+	* Screenshot refinement
+	* Merge in updates from _s
+
 2013.12.23 - version 3.0.0-Experimental
 	* Remove inline width declarations
 	* New screenshot.png
