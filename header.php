@@ -19,7 +19,7 @@
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
 <link rel="apple-touch-icon-precomposed" sizes="152x152" href="<?php echo sbx_get_theme_mod( 'sb_touch_icon' ); ?>">
-<link rel="icon" href="<?php echo sbx_get_theme_mod( 'sb_favicon' ); ?>">
+<link rel="icon" href="<?php echo sbx_get_theme_mod( 'sb_touch_icon' ); ?>">
 <!--[if IE]><link rel="shortcut icon" href="<?php echo sbx_get_theme_mod( 'sb_favicon' ); ?>"><![endif]-->
 <meta name="msapplication-TileColor" content="<?php echo sbx_get_theme_mod( 'sb_tile_bg' ); ?>">
 <meta name="msapplication-TileImage" content="<?php echo sbx_get_theme_mod( 'sb_tile_icon' ); ?>">
