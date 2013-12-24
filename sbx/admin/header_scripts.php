@@ -5,12 +5,19 @@
  * Creates an input for header script code that gets hooked into wp_head.
  *
  * @package SBX
- * @subpackage Options
+ * @subpackage Admin
  * @since 1.0.0
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 class sb_header_scripts_settings extends SB_Settings {
 
+
+	/**
+	 * Settings
+	 *
+	 * @since  1.0.0
+	 * @return [type] [description]
+	 */
 	function sb_header_scripts_settings() {
 
 		$this->name = __( 'Header Scripts', 'sbx' );
@@ -35,6 +42,12 @@ class sb_header_scripts_settings extends SB_Settings {
 	}
 
 
+	/**
+	 * Output
+	 *
+	 * @since  1.0.0
+	 * @return [type] [description]
+	 */
 	function output() {
 
 		if ( sb_get_option( 'header_scripts' ) ) {
@@ -47,6 +60,12 @@ class sb_header_scripts_settings extends SB_Settings {
 
 	}
 
+	/**
+	 * Hooks
+	 *
+	 * @since  1.0.0
+	 * @return [type] [description]
+	 */
 	function hooks() {
 		add_action( 'wp_head', array( $this, 'output' ) );
 	}

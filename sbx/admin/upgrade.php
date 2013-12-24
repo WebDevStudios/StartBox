@@ -5,12 +5,18 @@
  * Settings for controlling automatic upgrades.
  *
  * @package SBX
- * @subpackage Options
+ * @subpackage Admin
  * @since 1.0.0
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 class sb_upgrade_settings extends SB_Settings {
 
+	/**
+	 * Settings
+	 *
+	 * @since  1.0.0
+	 * @return [type] [description]
+	 */
 	function sb_upgrade_settings() {
 		$this->name = __( 'SBX Information', 'sbx' );
 		$this->slug = 'sb_upgrade_settings';

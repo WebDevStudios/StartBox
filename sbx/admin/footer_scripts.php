@@ -5,13 +5,19 @@
  * Creates an input for footer script code that gets hooked into wp_footert.
  *
  * @package SBX
- * @subpackage Options
+ * @subpackage Admin
  * @since 1.0.0
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
 class sb_footer_scripts_settings extends SB_Settings {
 
+	/**
+	 * Settings
+	 *
+	 * @since  1.0.0
+	 * @return [type] [description]
+	 */
 	function sb_footer_scripts_settings() {
 
 		$this->name = __( 'Footer Scripts', 'sbx' );
@@ -36,6 +42,12 @@ class sb_footer_scripts_settings extends SB_Settings {
 	}
 
 
+	/**
+	 * Output
+	 *
+	 * @since  1.0.0
+	 * @return [type] [description]
+	 */
 	function output() {
 
 		if ( sb_get_option( 'footer_scripts' ) ) {
@@ -48,6 +60,12 @@ class sb_footer_scripts_settings extends SB_Settings {
 
 	}
 
+	/**
+	 * Hooks
+	 *
+	 * @since  1.0.0
+	 * @return [type] [description]
+	 */
 	function hooks() {
 		add_action( 'wp_footer', array( $this, 'output' ) );
 	}

@@ -5,7 +5,7 @@
  * Creates Theme Options page and enqueues all necessary scripts.
  *
  * @package SBX
- * @subpackage Options
+ * @subpackage Admin
  * @since 1.0.0
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
@@ -22,7 +22,7 @@ function sb_admin_init() {
 		global $sb_admin;
 
 		// Create our settings page and add it to the menu
-		$sb_admin = add_menu_page( __( 'StartBox Options', 'sbx' ), __( 'SBX', 'sbx' ), 'edit_theme_options', 'sb_admin', 'sb_admin_page', 'div', '59' );
+		$sb_admin = add_menu_page( __( 'SBX Options', 'sbx' ), __( 'SBX', 'sbx' ), 'edit_theme_options', 'sb_admin', 'sb_admin_page', 'div', '59' );
 
 		// Register our custom settings field
 		register_setting( 'sb_admin', SBX_OPTIONS, 'sb_sanitize');

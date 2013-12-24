@@ -5,12 +5,18 @@
  * Creates a redirect for RSS feeds based on the user input.
  *
  * @package SBX
- * @subpackage Options
+ * @subpackage Admin
  * @since 1.0.0
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 class sb_custom_feed_settings extends SB_Settings {
 
+	/**
+	 * Settings
+	 *
+	 * @since  1.0.0
+	 * @return [type] [description]
+	 */
 	function sb_custom_feed_settings() {
 
 		$this->name = __( 'Custom Feeds', 'sbx' );
@@ -44,6 +50,14 @@ class sb_custom_feed_settings extends SB_Settings {
 	}
 
 
+	/**
+	 * Output
+	 *
+	 * @since  1.0.0
+	 * @param  [type] $output [description]
+	 * @param  [type] $feed   [description]
+	 * @return [type]         [description]
+	 */
 	function feed_output( $output, $feed ) {
 
 		$rss_url = sb_get_option( 'custom_rss_feed' );
@@ -68,6 +82,12 @@ class sb_custom_feed_settings extends SB_Settings {
 
 	}
 
+	/**
+	 * Hook
+	 *
+	 * @since  1.0.0
+	 * @return [type] [description]
+	 */
 	function hooks() {
 		add_filter( 'feed_link', array( $this, 'feed_output' ), 10, 2 );
 	}

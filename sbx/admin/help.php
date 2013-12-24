@@ -5,12 +5,18 @@
  * Creates a settings metabox to direct users to the help tab and resources.
  *
  * @package SBX
- * @subpackage Options
+ * @subpackage Admin
  * @since 1.0.0
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 class sb_settings_help extends SB_Settings {
 
+	/**
+	 * Settings
+	 *
+	 * @since  1.0.0
+	 * @return [type] [description]
+	 */
 	function sb_settings_help() {
 		$this->name = __( 'Need Help?', 'sbx' );
 		$this->slug = 'sb_settings_help';
@@ -19,6 +25,14 @@ class sb_settings_help extends SB_Settings {
 		parent::__construct();
 	}
 
+
+	/**
+	 * Admin Form
+	 *
+	 * @since  1.0.0
+	 * @param  array  $options [description]
+	 * @return [type]          [description]
+	 */
 	function admin_form( $options = array() ) {
 		echo '<p>' . sprintf( __( 'Start customzing your theme with the <a href="%s">Theme Customizer.</a>', 'sbx' ), admin_url( 'customize.php' ) ) . __( ' Find out more by clicking on the "Help" tab above.', 'sbx' ) . '</p>';
 		echo '<p>' . sprintf( __( 'You can also visit the StartBox <a href="%s" target="_blank">support forum.</a>', 'sbx' ), 'http://wpstartbox.com/support/' ) . '</p>';
