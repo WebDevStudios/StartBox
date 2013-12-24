@@ -1,5 +1,7 @@
 <?php
 /**
+ * The fallback template used for displaying post content
+ *
  * @package StartBox
  */
 ?>
