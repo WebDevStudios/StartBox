@@ -75,9 +75,7 @@ function sbx_get_page_title( $title = '', $include_label = true ) {
 			}
 		} elseif ( is_author() ) {
 			$label = __( 'Author Archives: ', 'sbx' );
-			the_post();
-			$title = esc_html( get_the_author() );
-			rewind_posts();
+			$title = '<span class="vcard">' . get_the_author() . '</span>';
 		} elseif ( is_search() ) {
 			$label = __( 'Search Results for: ', 'sbx' );
 			$title = esc_html( stripslashes( $_GET['s'] ), true );
@@ -584,3 +582,25 @@ function sbx_rtt() {
 	);
 }
 endif;
+
+
+/**
+ * Sets the authordata global when viewing an author archive.
+ *
+ * This provides backwards compatibility with
+ * http://core.trac.wordpress.org/changeset/25574
+ *
+ * It removes the need to call the_post() and rewind_posts() in an author
+ * template to print information about the author.
+ *
+ * @global WP_Query $wp_query WordPress Query object.
+ * @return void
+ */
+function sbx_setup_author() {
+	global $wp_query;
+
+	if ( $wp_query->is_author() && isset( $wp_query->post ) ) {
+		$GLOBALS['authordata'] = get_userdata( $wp_query->post->post_author );
+	}
+}
+add_action( 'wp', 'sbx_setup_author' );
