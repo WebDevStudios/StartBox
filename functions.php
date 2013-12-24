@@ -102,6 +102,7 @@ function startbox_customizer_settings( $sections = array() ) {
 				'id'                => $prefix . 'favicon',
 				'label'             => 'Favicon (32x32 .ico)',
 				'type'              => 'upload',
+				'default'           => SBX_URI .'/images/favicon.ico',
 				'priority'          => 10,
 				'sanitize_callback' => 'esc_url',
 				),
@@ -109,6 +110,7 @@ function startbox_customizer_settings( $sections = array() ) {
 				'id'                => $prefix . 'touch_icon',
 				'label'             => 'Touch Icon (152x152 .png)',
 				'type'              => 'image',
+				'default'           => SBX_URI .'/images/favicon.png',
 				'priority'          => 20,
 				'sanitize_callback' => 'esc_url',
 				),
@@ -116,6 +118,7 @@ function startbox_customizer_settings( $sections = array() ) {
 				'id'                => $prefix . 'tile_icon',
 				'label'             => 'Tile Icon (144x144 .png)',
 				'type'              => 'image',
+				'default'           => SBX_URI .'/images/favicon.png',
 				'priority'          => 30,
 				'sanitize_callback' => 'esc_url',
 				),
@@ -413,7 +416,7 @@ function startbox_theme_required_plugins() {
  * Set the content width based on the theme's design and stylesheet.
  */
 if ( ! isset( $content_width ) )
-	$content_width = 644; /* pixels */
+	$content_width = 656; /* pixels */
 
 
 /**
