@@ -463,10 +463,10 @@ function sbx_comment( $comment = null, $args = array(), $depth = 0 ) {
 		<article id="div-comment-<?php comment_ID(); ?>" class="comment-body" itemprop="comment" itemscope itemtype="http://schema.org/UserComments">
 
 			<header class="comment-meta">
-				<div class="comment-gravatar col span-2">
+				<div class="comment-gravatar">
 					<?php if ( 0 != $args['avatar_size'] ) echo get_avatar( $comment, $args['avatar_size'] ); ?>
 				</div>
-				<div class="comment-metadata col no-gutters span-10">
+				<div class="comment-metadata">
 					<div class="comment-author vcard" itemprop="creator" itemscope itemtype="http://schema.org/Person">
 						<?php printf( __( '%s <span class="says">says:</span>', 'sbx' ), sprintf( '<cite class="fn" itemprop="name">%s</cite>', get_comment_author_link() ) ); ?>
 					</div><!-- .comment-author -->
@@ -484,11 +484,11 @@ function sbx_comment( $comment = null, $args = array(), $depth = 0 ) {
 				<?php endif; ?>
 			</header><!-- .comment-meta -->
 
-			<div class="comment-content col span-12" itemprop="commentText">
+			<div class="comment-content" itemprop="commentText">
 				<?php comment_text(); ?>
 			</div><!-- .comment-content -->
 
-			<footer class="comment-reply col span-12">
+			<footer class="comment-reply">
 				<?php
 					// Comment reply link
 					comment_reply_link( array_merge( $args,

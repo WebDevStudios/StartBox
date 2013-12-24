@@ -1044,9 +1044,33 @@ Structure and Layout
   margin-bottom: 4.8rem;
 }
 
+.site-inner,
 .wrap {
   margin: 0 auto;
   max-width: 1140px;
+}
+
+.layout-two-col .content-area {
+  float: left;
+}
+.layout-two-col .content-area:first-child {
+  margin-left: 0;
+}
+
+.layout-two-col .primary-widget-area {
+  float: right;
+}
+
+.layout-one-col .content-area {
+  width: 100%;
+}
+
+.content-area {
+  width: 66%;
+}
+
+.primary-widget-area {
+  width: 32%;
 }
 
 /* Grid
@@ -1527,14 +1551,20 @@ ul.children,
   padding: 48px;
   padding: 4.8rem;
 }
+.comments-area .comment-gravatar {
+  float: left;
+  margin: 0 6px 0 0;
+  margin: 0 0.6rem 0 0;
+  width: 25%;
+}
+.comments-area .comment-body {
+  padding: 12px;
+  padding: 1.2rem;
+}
 
 ol.comment-list .comment {
   padding: 12px 0 0 6px;
   padding: 1.2rem 0 0 0.6rem;
-}
-ol.comment-list .comment-body {
-  padding: 12px;
-  padding: 1.2rem;
 }
 ol.comment-list .even {
   background-color: #f0f0f0;
@@ -1625,6 +1655,14 @@ Footer
 
 /* Footer Widget Area
 --------------------------------------------- */
+.footer-widget-area {
+  float: left;
+  width: 32%;
+}
+.footer-widget-area:first-child {
+  margin-left: 0;
+}
+
 .footer-widgets {
   background-color: #111111;
   border-top: 10px solid #999999;
@@ -1762,6 +1800,14 @@ Media Queries
     margin-top: 2.4rem;
   }
 
+  .content-area,
+  .primary-widget-area,
+  .footer-widget-area {
+    clear: both;
+    float: none;
+    width: 100%;
+  }
+
   .main-navigation,
   .entry-title,
   .comments-title,
@@ -1801,6 +1847,9 @@ Media Queries
     margin: 0;
     padding-top: 24px;
     padding-top: 2.4rem;
+  }
+  .comments-area .comment-gravatar {
+    width: 17%;
   }
 
   .primary-widget-area .widget,

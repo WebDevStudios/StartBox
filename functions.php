@@ -413,7 +413,7 @@ function startbox_theme_required_plugins() {
  * Set the content width based on the theme's design and stylesheet.
  */
 if ( ! isset( $content_width ) )
-	$content_width = 656; /* pixels */
+	$content_width = 644; /* pixels */
 
 
 /**
@@ -502,7 +502,7 @@ add_action( 'entry_after', 'sb_do_author_box', 10 );
  * @return array          Modified CSS classes.
  */
 function sb_custom_body_classes( $classes ) {
-	$classes[] = 'gutters';
+	$classes[] = 'layout-two-col';
 	return $classes;
 }
 add_filter( 'body_class', 'sb_custom_body_classes' );

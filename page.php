@@ -13,7 +13,7 @@
 get_header(); ?>
 
 	<div id="primary" class="content-area">
-		<main id="main" class="site-main col span-8" role="main" itemprop="mainContentOfPage">
+		<main id="main" class="site-main" role="main" itemprop="mainContentOfPage">
 
 			<?php while ( have_posts() ) : the_post(); ?>
 				<?php do_action( 'entry_before' ); ?>

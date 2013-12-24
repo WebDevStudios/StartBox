@@ -13,9 +13,9 @@
 	<?php do_action( 'content_after' ); ?>
 	<div class="footer-widgets">
 		<div class="wrap">
-			<?php sbx_do_sidebar( 'footer_widget_area_1', 'footer-widget-area-1 col span-4' ); ?>
-			<?php sbx_do_sidebar( 'footer_widget_area_2', 'footer-widget-area-1 col span-4' ); ?>
-			<?php sbx_do_sidebar( 'footer_widget_area_3', 'footer-widget-area-1 col span-4' ); ?>
+			<?php sbx_do_sidebar( 'footer_widget_area_1', 'footer-widget-area' ); ?>
+			<?php sbx_do_sidebar( 'footer_widget_area_2', 'footer-widget-area' ); ?>
+			<?php sbx_do_sidebar( 'footer_widget_area_3', 'footer-widget-area' ); ?>
 		</div>
 	</div><!-- .footer-widgets -->
 	<?php do_action( 'footer_before' ); ?>

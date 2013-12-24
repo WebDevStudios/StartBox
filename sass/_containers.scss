@@ -9,7 +9,33 @@
 	@include rem(margin-bottom, 48px);
 }
 
+.site-inner,
 .wrap {
 	margin: 0 auto;
 	max-width: $width-site-wrap;
 }
+
+.layout-two-col .content-area {
+	float: left;
+
+	&:first-child {
+		margin-left: 0;
+	}
+}
+
+.layout-two-col .primary-widget-area {
+	float: right;
+}
+
+.layout-one-col .content-area {
+	width: 100%;
+}
+
+.content-area {
+	width: 66%;
+}
+
+.primary-widget-area {
+	width: 32%;
+}
+

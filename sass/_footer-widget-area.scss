@@ -1,6 +1,15 @@
 /* Footer Widget Area
 --------------------------------------------- */
 
+.footer-widget-area {
+	float: left;
+	width: 32%;
+
+	&:first-child {
+		margin-left: 0;
+	}
+}
+
 .footer-widgets {
 	background-color: $color-bg-footer;
 	border-top: 10px solid $color-border-footer;
@@ -8,7 +17,7 @@
 	color: $color-widget-text-footer;
 	clear: both;
 	@include rem(padding, 48px 0);
-	
+
 	.widget {
 		background-color: $color-bg-widgets-footer;
 		padding: 0;
@@ -32,4 +41,5 @@
 	a:hover {
 		color: $color-widget-link-hover-footer;
 	}
+
 }

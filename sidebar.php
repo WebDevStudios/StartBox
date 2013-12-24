@@ -5,5 +5,5 @@
  * @package StartBox
  */
 
-sbx_do_sidebar( 'primary_widget_area', 'primary-widget-area col span-4' );
-sbx_do_sidebar( 'secondary_widget_area', 'primary-widget-area col span-4' );
+sbx_do_sidebar( 'primary_widget_area', 'primary-widget-area' );
+sbx_do_sidebar( 'secondary_widget_area', 'primary-widget-area' );

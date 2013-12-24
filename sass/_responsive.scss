@@ -52,6 +52,14 @@
 		@include rem(margin-top, 24px);
 	}
 
+	.content-area,
+	.primary-widget-area,
+	.footer-widget-area {
+		clear: both;
+		float: none;
+		width: 100%;
+	}
+
 	.main-navigation,
 	.entry-title,
 	.comments-title,
@@ -87,6 +95,10 @@
 	.comments-area {
 		margin: 0;
 		@include rem(padding-top, 24px);
+
+		.comment-gravatar {
+			width: 17%;
+		}
 	}
 
 	.primary-widget-area,
