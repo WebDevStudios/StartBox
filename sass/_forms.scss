@@ -23,13 +23,6 @@ input[type="radio"] {
 	padding: 0; /* Addresses excess padding in IE8/9 */
 }
 
-input[type="search"] {
-	-webkit-appearance: textfield; /* Addresses appearance set to searchfield in S5, Chrome */
-	-webkit-box-sizing: content-box; /* Addresses box sizing set to border-box in S5, Chrome (include -moz to future-proof) */
-	-moz-box-sizing:    content-box;
-	box-sizing:         content-box;
-}
-
 input[type="search"]::-webkit-search-decoration { /* Corrects inner padding displayed oddly in S5, Chrome on OSX */
 	-webkit-appearance: none;
 }
@@ -54,7 +47,7 @@ input[type="submit"],
 .gform_wrapper .gform_footer input[type="submit"] {
 	background: $color-bg-button;
 	border: 1px solid $color-border-form;
-	border-radius: 0;
+	border-radius: 2px;
 	color: $color-text-button;
 	cursor: pointer; /* Improves usability and consistency of cursor style between image-type 'input' and others */
 	-webkit-appearance: button; /* Corrects inability to style clickable 'input' types in iOS */
@@ -71,11 +64,9 @@ input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover,
 .gform_wrapper input[type="submit"]:hover {
-	background: $color-bg-button-hover;
-	border: 1px solid $color-border-form;
-	border-radius: 0;
-	box-shadow: none;
 	-webkit-box-shadow: none;
+	background: $color-bg-button-hover;
+	box-shadow: none;
 	color: $color-text-button-hover;
 }
 
@@ -105,7 +96,7 @@ input[type="search"]:focus,
 textarea:focus  {
 	color: $color-input-form;
 	border: 1px solid $color-border-form;
-	border-radius: 0;
+	border-radius: 2px;
 	font-size: 14px !important;
 	font-size: 1.4rem !important;
 	outline-style: none;

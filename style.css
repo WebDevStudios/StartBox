@@ -924,15 +924,6 @@ input[type="radio"] {
   /* Addresses excess padding in IE8/9 */
 }
 
-input[type="search"] {
-  -webkit-appearance: textfield;
-  /* Addresses appearance set to searchfield in S5, Chrome */
-  -webkit-box-sizing: content-box;
-  /* Addresses box sizing set to border-box in S5, Chrome (include -moz to future-proof) */
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-}
-
 input[type="search"]::-webkit-search-decoration {
   /* Corrects inner padding displayed oddly in S5, Chrome on OSX */
   -webkit-appearance: none;
@@ -959,7 +950,7 @@ input[type="submit"],
 .gform_wrapper .gform_footer input[type="submit"] {
   background: #111111;
   border: 1px solid #999999;
-  border-radius: 0;
+  border-radius: 2px;
   color: white;
   cursor: pointer;
   /* Improves usability and consistency of cursor style between image-type 'input' and others */
@@ -979,11 +970,9 @@ input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover,
 .gform_wrapper input[type="submit"]:hover {
-  background: #999999;
-  border: 1px solid #999999;
-  border-radius: 0;
-  box-shadow: none;
   -webkit-box-shadow: none;
+  background: #999999;
+  box-shadow: none;
   color: #111111;
 }
 
@@ -1013,7 +1002,7 @@ input[type="search"]:focus,
 textarea:focus {
   color: #111111;
   border: 1px solid #999999;
-  border-radius: 0;
+  border-radius: 2px;
   font-size: 14px !important;
   font-size: 1.4rem !important;
   outline-style: none;
@@ -1052,9 +1041,6 @@ Structure and Layout
 
 .layout-two-col .content-area {
   float: left;
-}
-.layout-two-col .content-area:first-child {
-  margin-left: 0;
 }
 
 .layout-two-col .primary-widget-area {
@@ -1470,9 +1456,6 @@ Content
 
 /* Primary Widget Area
 --------------------------------------------- */
-.primary-widget-area {
-  /* Widget Forms */
-}
 .primary-widget-area .widget {
   background-color: white;
   margin-bottom: 24px;
@@ -1485,38 +1468,6 @@ Content
   font-family: "Open Sans", sans-serif;
   font-size: 24px;
   font-size: 2.4rem;
-}
-.primary-widget-area input[type="text"],
-.primary-widget-area input[type="email"],
-.primary-widget-area input[type="url"],
-.primary-widget-area input[type="tel"],
-.primary-widget-area input[type="password"],
-.primary-widget-area input[type="search"],
-.primary-widget-area select,
-.primary-widget-area textarea,
-.primary-widget-area .gform_fields input[type="text"],
-.primary-widget-area .gform_fields input[type="email"],
-.primary-widget-area .gform_fields input[type="url"],
-.primary-widget-area .gform_fields input[type="tel"],
-.primary-widget-area .gform_fields input[type="password"],
-.primary-widget-area .gform_fields input[type="search"],
-.primary-widget-area .gform_fields select,
-.primary-widget-area .gform_fields textarea,
-.primary-widget-area input[type="text"]:focus,
-.primary-widget-area input[type="email"]:focus,
-.primary-widget-area input[type="url"]:focus,
-.primary-widget-area input[type="password"]:focus,
-.primary-widget-area input[type="search"]:focus,
-.primary-widget-area textarea:focus {
-  -webkit-appearance: none;
-  -webkit-border-radius: 0;
-  color: #111111;
-  border-radius: 0;
-  border: 1px solid #999999;
-  font-size: 14px;
-  font-size: 1.4rem;
-  padding: 10px;
-  padding: 1rem;
 }
 .primary-widget-area .search-field {
   width: 65%;
