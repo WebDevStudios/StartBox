@@ -1,14 +1,14 @@
 <?php
 
 /**
- * StartBox Options API
+ * SBX Options API
  *
  * The Options API is what allows the Theme Options page to be easily extended and altered.
  * This file contains the necessary helper classes for building your own Theme Options.
  *
  * @link http://docs.wpstartbox.com/child-themes/theme-options/ Using Theme Options
  *
- * @package StartBox
+ * @package SBX
  * @subpackage Options
  */
 

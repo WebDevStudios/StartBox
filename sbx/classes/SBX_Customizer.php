@@ -1,6 +1,6 @@
 <?php
 /**
- * StartBox Theme Customizer Settings
+ * SBX Theme Customizer Settings
  *
  * Base extensions for the theme customizer introduced in WP 3.4
  * Many props to Alex Mansfield (@alexmansfield) for his work
@@ -8,7 +8,7 @@
  *
  * @link http://themefoundation.com/wordpress-theme-customizer/
  *
- * @package StartBox
+ * @package SBX
  * @subpackage Customizer
  * @since 1.0.0
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html

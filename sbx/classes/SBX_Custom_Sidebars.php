@@ -1,8 +1,8 @@
 <?php
 /**
- * StartBox Custom Sidebar Manager
+ * SBX Custom Sidebar Manager
  *
- * @package StartBox
+ * @package SBX
  * @subpackage Sidebars
  * @since 1.0.0
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html

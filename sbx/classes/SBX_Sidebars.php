@@ -1,11 +1,11 @@
 <?php
 /**
- * StartBox Sidebars
+ * SBX Sidebars
  *
  * A class structure for handling sidebar registration,
  * output, markup, the works.
  *
- * @package StartBox
+ * @package SBX
  * @subpackage Sidebars
  * @since 1.0.0
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
