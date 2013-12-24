@@ -1,31 +1,37 @@
 <?php
-
 /**
- * These settings create an input for header script code that gets hooked into wp_head
+ * SBX Header Scripts
+ *
+ * Creates an input for header script code that gets hooked into wp_head.
+ *
+ * @package SBX
+ * @subpackage Options
+ * @since 1.0.0
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 class sb_header_scripts_settings extends SB_Settings {
 
 	function sb_header_scripts_settings() {
 
-		$this->name = __( 'Header Scripts', 'startbox' );
+		$this->name = __( 'Header Scripts', 'sbx' );
 		$this->slug = 'sb_header_scripts_settings';
-		$this->description = __( 'Allows you to include scripts in the header of your website (like Google Analytics, jQuery, etc).', 'startbox' );
+		$this->description = __( 'Allows you to include scripts in the header of your website (like Google Analytics, jQuery, etc).', 'sbx' );
 		$this->location = 'primary';
 		$this->priority = 'low';
 		$this->hide_ui_if_cannot = 'unfiltered_html';
 		$this->options = array(
 			'header_scripts' => array(
 					'type'		=> 'textarea',
-					'label'		=> __( 'Enter your header scripts below:', 'startbox' ),
-					'desc'      => __( 'Allows you to include scripts in the header of your website (like Google Analytics, jQuery, etc).', 'startbox' ),
+					'label'		=> __( 'Enter your header scripts below:', 'sbx' ),
+					'desc'      => __( 'Allows you to include scripts in the header of your website (like Google Analytics, jQuery, etc).', 'sbx' ),
 					'sanitize'	=> false,
 					'kses'		=> 'unfiltered_html',
-					'help'		=> __( 'You can paste any code here that you would like to add to the &lt;head&gt; section of all your pages.', 'startbox' )
+					'help'		=> __( 'You can paste any code here that you would like to add to the &lt;head&gt; section of all your pages.', 'sbx' )
 				)
 		);
 
 		parent::__construct();
-		
+
 	}
 
 
@@ -42,9 +48,7 @@ class sb_header_scripts_settings extends SB_Settings {
 	}
 
 	function hooks() {
-
 		add_action( 'wp_head', array( $this, 'output' ) );
-
 	}
 
 }

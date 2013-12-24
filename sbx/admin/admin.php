@@ -1,8 +1,20 @@
 <?php
 /**
- * Creates Theme Options page and enqueues all necessary scripts
+ * SBX Theme Options
  *
- * @since 2.2.8
+ * Creates Theme Options page and enqueues all necessary scripts.
+ *
+ * @package SBX
+ * @subpackage Options
+ * @since 1.0.0
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ */
+
+
+/**
+ * Intialize options
+ *
+ * @since 1.0.0
  */
 function sb_admin_init() {
 
@@ -10,7 +22,7 @@ function sb_admin_init() {
 		global $sb_admin;
 
 		// Create our settings page and add it to the menu
-		$sb_admin = add_menu_page( __( 'StartBox Options', 'startbox' ), __( 'SBX', 'startbox' ), 'edit_theme_options', 'sb_admin', 'sb_admin_page', 'div', '59' );
+		$sb_admin = add_menu_page( __( 'StartBox Options', 'sbx' ), __( 'SBX', 'sbx' ), 'edit_theme_options', 'sb_admin', 'sb_admin_page', 'div', '59' );
 
 		// Register our custom settings field
 		register_setting( 'sb_admin', SBX_OPTIONS, 'sb_sanitize');
@@ -30,6 +42,8 @@ add_action( 'admin_menu', 'sb_admin_init', 9 );
 
 /**
  * Styles & Scripts
+ *
+ * @since  1.0.0
  */
 function sb_admin_scripts() {
 
@@ -53,6 +67,8 @@ add_action( 'admin_enqueue_scripts', 'sb_admin_scripts' );
 
 /**
  * Add a menu item for Theme Options to the admin bar
+ *
+ * @since  1.0.0
  */
 function sb_admin_bar_init() {
 
@@ -62,7 +78,7 @@ function sb_admin_bar_init() {
 		array(
 			'id' => 'theme-options',
 			'parent' => 'appearance',
-			'title' => __( 'SBX Settings', 'startbox' ),
+			'title' => __( 'SBX Settings', 'sbx' ),
 			'href' => admin_url( 'admin.php?page=sb_admin' )
 			)
 	);
@@ -73,6 +89,8 @@ add_action( 'wp_before_admin_bar_render', 'sb_admin_bar_init' );
 
 /**
  * Adds contextual help for all StartBox Options
+ *
+ * @since  1.0.0
  */
 function sb_admin_help() {
 
@@ -93,8 +111,8 @@ function sb_admin_help() {
 		// Add our generic helper text no matter what
 		$screen->add_help_tab( array(
 			'id'		=> 'sb_need_help',
-			'title'		=> __( 'Theme Customizer', 'startbox' ),
-			'content'	=> __( '<h3>Theme Customizer</h3>', 'startbox' ) . '<p>' . sprintf( __( 'The <a href="%s">Theme Customizer</a> is where you can really make this theme your own!</p><p>There, you will find settings for the <em>Logo</em>, <em>Favicon</em>, <em>Site Title</em>, <em>Footer</em>, and more. Changing these settings is as easy as point-and-click and require no programming knowledge. Use can use <em>shortcodes</em> and basic <em>HTML</em>, plus you can watch the changes happen in real time.</p><p><strong>Note:</strong> <em>Edits won\'t be published on your site until you press "Save &amp; Publish".</em></p>', 'startbox' ), admin_url( 'customize.php' ) ) . '</p><p>' . sprintf( __( ' For more information, try the %s or %s.', 'startbox' ), '<a href="' . apply_filters( 'sb_theme_docs', 'http://docs.wpstartbox.com' ) . '" target="_blank">' . __( 'Theme Documentation', 'startbox') . '</a>',  '<a href="' . apply_filters( 'sb_theme_support', 'http://wpstartbox.com/support/' ) . '" target="_blank" >' . __( 'Support Forum', 'startbox' ) . '</a>' ) . '</p>'
+			'title'		=> __( 'Theme Customizer', 'sbx' ),
+			'content'	=> __( '<h3>Theme Customizer</h3>', 'sbx' ) . '<p>' . sprintf( __( 'The <a href="%s">Theme Customizer</a> is where you can really make this theme your own!</p><p>There, you will find settings for the <em>Logo</em>, <em>Favicon</em>, <em>Site Title</em>, <em>Footer</em>, and more. Changing these settings is as easy as point-and-click and require no programming knowledge. Use can use <em>shortcodes</em> and basic <em>HTML</em>, plus you can watch the changes happen in real time.</p><p><strong>Note:</strong> <em>Edits won\'t be published on your site until you press "Save &amp; Publish".</em></p>', 'sbx' ), admin_url( 'customize.php' ) ) . '</p><p>' . sprintf( __( ' For more information, try the %s or %s.', 'sbx' ), '<a href="' . apply_filters( 'sb_theme_docs', 'http://docs.wpstartbox.com' ) . '" target="_blank">' . __( 'Theme Documentation', 'sbx') . '</a>',  '<a href="' . apply_filters( 'sb_theme_support', 'http://wpstartbox.com/support/' ) . '" target="_blank" >' . __( 'Support Forum', 'sbx' ) . '</a>' ) . '</p>'
 		) );
 
 		// Loop through each option panel
@@ -128,6 +146,8 @@ function sb_admin_help() {
 
 /**
  * Adds two columns option
+ *
+ * @since  1.0.0
  */
 function sb_screen_options( $columns, $screen ) {
 
@@ -144,6 +164,8 @@ function sb_screen_options( $columns, $screen ) {
 
 /**
  * Admin Metaboxes
+ *
+ * @since  1.0.0
  */
 function sb_admin_page() {
 
@@ -158,7 +180,7 @@ function sb_admin_page() {
 		<?php
 			// Notification nag
 			if ( isset( $_REQUEST['settings-updated'] ) && $_REQUEST['settings-updated'] == true ) {
-				echo '<div id="message" class="updated fade"><p>' . THEME_NAME . ' ' . __( 'Options Updated.', 'startbox' ) . '</p></div>';
+				echo '<div id="message" class="updated fade"><p>' . THEME_NAME . ' ' . __( 'Options Updated.', 'sbx' ) . '</p></div>';
 			}
 		?>
 		<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
@@ -194,15 +216,19 @@ function sb_admin_page() {
 
 /**
  * Save & Reset Buttons
+ *
+ * @since  1.0.0
  */
 function sb_admin_buttons() { ?>
-	<input type="submit" name="Submit" value="<?php _e( 'Save All Settings', 'startbox' ) ?>" class="button-primary" />
-	<input type="submit" name="<?php echo esc_attr( SBX_OPTIONS . '[reset]' ); ?>" value="<?php _e( 'Reset All Settings', 'startbox' ); ?>" class="button" onclick="if( confirm( 'Reset All Theme Settings?' ) ) return true; else return false;" />
+	<input type="submit" name="Submit" value="<?php _e( 'Save All Settings', 'sbx' ) ?>" class="button-primary" />
+	<input type="submit" name="<?php echo esc_attr( SBX_OPTIONS . '[reset]' ); ?>" value="<?php _e( 'Reset All Settings', 'sbx' ); ?>" class="button" onclick="if( confirm( 'Reset All Theme Settings?' ) ) return true; else return false;" />
 <?php }
 
 
 /**
  * Perform some basic sanitization to our options on save
+ *
+ * @since  1.0.0
  */
 function sb_sanitize($inputs) {
 
