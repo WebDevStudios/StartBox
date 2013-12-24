@@ -43,10 +43,10 @@ class SBX_Breadcrumbs {
 			'hierarchial_attachments' => true,
 			'hierarchial_categories'  => true,
 			'labels' => array(
-				'prefix'    => __( 'You are here: ', 'startbox' ),
-				'home'      => __( 'Home', 'startbox' ),
-				'search'    => __( 'Search for ', 'startbox' ),
-				'404'       => __( 'Link Not Found', 'startbox' )
+				'prefix'    => __( 'You are here: ', 'sbx' ),
+				'home'      => __( 'Home', 'sbx' ),
+				'search'    => __( 'Search for ', 'sbx' ),
+				'404'       => __( 'Link Not Found', 'sbx' )
 			)
 		);
 
@@ -188,9 +188,9 @@ class SBX_Breadcrumbs {
 			$trail[] = $this->get_breadcrumb_link( get_month_link( get_query_var( 'year' ), get_query_var( 'monthnum' ) ), $wp_locale->get_month( get_query_var( 'monthnum' ) ) );
 			$trail[] = get_query_var( 'day' ) . date( 'S', mktime( 0, 0, 0, 1, get_query_var( 'day' ) ) );
 		} elseif ( is_author() ) {
-			$trail[] = $this->args['labels']['author'] . esc_html( $wp_query->queried_object->display_name );
+			$trail[] = isset( $this->args['labels']['author'] ) . esc_html( $wp_query->queried_object->display_name );
 		} elseif ( is_post_type_archive() ) {
-			$trail[] = $this->args['labels']['post_type'] . esc_html( post_type_archive_title( '', false ) );
+			$trail[] = isset( $this->args['labels']['post_type'] ) . esc_html( post_type_archive_title( '', false ) );
 		}
 
 		// Return filterable output
@@ -289,7 +289,7 @@ class SBX_Breadcrumbs {
 	function get_paged_crumb() {
 		if ( get_query_var( 'page' ) || get_query_var( 'paged' ) ) {
 			$page = get_query_var( 'page' ) ? get_query_var( 'page' ) : get_query_var( 'paged' );
-			$trail = sprintf( __( 'Page %d', 'startbox' ), absint( $page ) );
+			$trail = sprintf( __( 'Page %d', 'sbx' ), absint( $page ) );
 			return apply_filters( 'sb_get_paged_crumb', $trail, $this->args );
 		}
 	}
