@@ -45,7 +45,7 @@ class SBX_Updater {
 		            'Referer' => home_url()
 				)
 			);
-			$sb = SBX_VERSION;
+			$sb = SBX::$version;
 			$wp = get_bloginfo("version") ;
 			$php = phpversion();
 			$mysql = $wpdb->db_version();
@@ -57,7 +57,7 @@ class SBX_Updater {
 			// If an error occurred, return false and store transient for 1 hour
 			// Else, unserialize and store transient for 12hrs
 			if ( is_wp_error($sb_update) || $sb_update == 'error' || !is_serialized($sb_update) ) {
-				set_transient('sb_update', array('new_version' => SBX_VERSION), 3600); // cache for 1hr (3600)
+				set_transient('sb_update', array('new_version' => SBX::$version), 3600); // cache for 1hr (3600)
 				return false;
 			} else {
 				$sb_update = maybe_unserialize($sb_update);
@@ -66,7 +66,7 @@ class SBX_Updater {
 		}
 
 		// If we're already using the latest version, return false
-		if ( version_compare(SBX_VERSION, $sb_update['new_version'], '>=') )
+		if ( version_compare(SBX::$version, $sb_update['new_version'], '>=') )
 			return false;
 
 		return $sb_update;
@@ -109,4 +109,4 @@ class SBX_Updater {
 	}
 
 }
-$GLOBALS['startbox']->updater = new SBX_Updater;
+$GLOBALS['sbx']->updater = new SBX_Updater;

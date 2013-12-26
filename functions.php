@@ -20,7 +20,6 @@ function startbox_setup_theme() {
 
 	// StartBox Core Features
 	add_theme_support( 'sbx-customizer' );
-	add_theme_support( 'sbx-shortcodes' );
 	add_theme_support( 'sbx-options' );
 	add_theme_support( 'sbx-sidebars',
 		array(
@@ -100,7 +99,7 @@ function startbox_customizer_settings( $sections = array() ) {
 				'id'                => $prefix . 'favicon',
 				'label'             => 'Favicon (32x32 .ico)',
 				'type'              => 'upload',
-				'default'           => SBX_URI .'/images/favicon.ico',
+				'default'           => SBX::$sbx_uri .'/images/favicon.ico',
 				'priority'          => 10,
 				'sanitize_callback' => 'esc_url',
 				),
@@ -108,7 +107,7 @@ function startbox_customizer_settings( $sections = array() ) {
 				'id'                => $prefix . 'touch_icon',
 				'label'             => 'Touch Icon (152x152 .png)',
 				'type'              => 'image',
-				'default'           => SBX_URI .'/images/favicon-152x152.png',
+				'default'           => SBX::$sbx_uri .'/images/favicon-152x152.png',
 				'priority'          => 20,
 				'sanitize_callback' => 'esc_url',
 				),
@@ -116,7 +115,7 @@ function startbox_customizer_settings( $sections = array() ) {
 				'id'                => $prefix . 'tile_icon',
 				'label'             => 'Tile Icon (144x144 .png)',
 				'type'              => 'image',
-				'default'           => SBX_URI .'/images/favicon-144x144.png',
+				'default'           => SBX::$sbx_uri .'/images/favicon-144x144.png',
 				'priority'          => 30,
 				'sanitize_callback' => 'esc_url',
 				),

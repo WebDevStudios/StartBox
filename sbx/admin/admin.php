@@ -25,7 +25,7 @@ function sb_admin_init() {
 		$sb_admin = add_menu_page( __( 'SBX Options', 'sbx' ), __( 'SBX', 'sbx' ), 'edit_theme_options', 'sb_admin', 'sb_admin_page', 'div', '59' );
 
 		// Register our custom settings field
-		register_setting( 'sb_admin', SBX_OPTIONS, 'sb_sanitize');
+		register_setting( 'sb_admin', SBX::$options_prefix, 'sb_sanitize');
 
 		// Reset our theme options back to default
 		if ( sb_get_option( 'reset' ) ) {
@@ -50,8 +50,8 @@ function sb_admin_scripts() {
 	global $sb_admin;
 
 	// Admin styles
-	wp_enqueue_style( 'sb-admin', SBX_CSS . '/admin.css' );
-	//wp_enqueue_style( 'sb-admin', SBX_CSS . '/admin.min.css' );
+	wp_enqueue_style( 'sb-admin', SBX::$sbx_uri . '/css/admin.css' );
+	//wp_enqueue_style( 'sb-admin', SBX::$sbx_uri . '/css/admin.min.css' );
 
 	// Required scripts
 	wp_enqueue_script( 'common' );
@@ -105,7 +105,7 @@ function sb_admin_help() {
 
 		// Grab our theme options
 		global $sb_settings_factory;
-		$defaults = $theme_options = get_option( SBX_OPTIONS );
+		$defaults = $theme_options = get_option( SBX::$options_prefix );
 		$settings = $sb_settings_factory->settings;
 
 		// Add our generic helper text no matter what
@@ -180,7 +180,7 @@ function sb_admin_page() {
 		<?php
 			// Notification nag
 			if ( isset( $_REQUEST['settings-updated'] ) && $_REQUEST['settings-updated'] == true ) {
-				echo '<div id="message" class="updated fade"><p>' . THEME_NAME . ' ' . __( 'Options Updated.', 'sbx' ) . '</p></div>';
+				echo '<div id="message" class="updated fade"><p>' . __( 'Theme Options Updated.', 'sbx' ) . '</p></div>';
 			}
 		?>
 		<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
@@ -221,7 +221,7 @@ function sb_admin_page() {
  */
 function sb_admin_buttons() { ?>
 	<input type="submit" name="Submit" value="<?php _e( 'Save All Settings', 'sbx' ) ?>" class="button-primary" />
-	<input type="submit" name="<?php echo esc_attr( SBX_OPTIONS . '[reset]' ); ?>" value="<?php _e( 'Reset All Settings', 'sbx' ); ?>" class="button" onclick="if( confirm( 'Reset All Theme Settings?' ) ) return true; else return false;" />
+	<input type="submit" name="<?php echo esc_attr( SBX::$options_prefix . '[reset]' ); ?>" value="<?php _e( 'Reset All Settings', 'sbx' ); ?>" class="button" onclick="if( confirm( 'Reset All Theme Settings?' ) ) return true; else return false;" />
 <?php }
 
 

@@ -3,7 +3,7 @@
  * SBX Utility Functions
  *
  * @package SBX
- * @subpackage Extensions
+ * @subpackage Core
  * @since 1.0.0
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
