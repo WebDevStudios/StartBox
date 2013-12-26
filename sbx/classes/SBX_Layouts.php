@@ -178,7 +178,7 @@ class SBX_Layouts {
 	 */
 	public function post_metabox_add() {
 		foreach ( get_post_types( array( 'public' => true ), 'objects' ) as $type ) {
-			add_meta_box( 'theme-layouts-post-meta-box', __( 'Layout', 'sbx' ), array( $this, 'post_metabox_render' ), $type->name, 'side', 'default' );
+			add_meta_box( 'theme-layouts-post-meta-box', __( 'Layout', 'sbx' ), array( $this, 'post_metabox_render' ), $type->name, 'normal', 'default' );
 		}
 	} /* post_metabox_add() */
 
