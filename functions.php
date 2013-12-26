@@ -19,7 +19,6 @@ require_once( get_template_directory() . '/sbx/sbx.php' );
 function startbox_setup_theme() {
 
 	// StartBox Core Features
-	add_theme_support( 'sbx-breadcrumbs' );
 	add_theme_support( 'sbx-customizer' );
 	add_theme_support( 'sbx-shortcodes' );
 	add_theme_support( 'sbx-options' );
@@ -57,7 +56,6 @@ function startbox_setup_theme() {
 				),
 		)
 	);
-	add_theme_support( 'sbx-custom-sidebars' );
 	add_theme_support( 'sbx-updates' );
 	add_theme_support( 'sbx-plugins' );
 	add_theme_support( 'automatic-feed-links' );

@@ -83,11 +83,9 @@ if ( ! class_exists('SBX') ) {
 		 * @since 3.0.0
 		 */
 		public function extensions() {
-			require_if_theme_supports( 'sbx-breadcrumbs',     SBX_CLASSES . '/SBX_Breadcrumbs.php' );
 			require_if_theme_supports( 'sbx-customizer',      SBX_CLASSES . '/SBX_Customizer.php' );
 			require_if_theme_supports( 'sbx-layouts',         SBX_CLASSES . '/SBX_Layouts.php' );
 			require_if_theme_supports( 'sbx-sidebars',        SBX_CLASSES . '/SBX_Sidebars.php' );
-			require_if_theme_supports( 'sbx-custom-sidebars', SBX_CLASSES . '/SBX_Custom_Sidebars.php' );
 			require_if_theme_supports( 'sbx-updates',         SBX_CLASSES . '/SBX_Updater.php' );
 			require_if_theme_supports( 'sbx-shortcodes',      SBX_EXTENSIONS . '/shortcodes.php' );
 			require_if_theme_supports( 'sbx-options',		  SBX_CLASSES . '/SBX_Options_API.php' );
