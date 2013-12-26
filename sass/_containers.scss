@@ -15,18 +15,6 @@
 	max-width: $width-site-wrap;
 }
 
-.layout-two-col .content-area {
-	float: left;
-}
-
-.layout-two-col .primary-widget-area {
-	float: right;
-}
-
-.layout-one-col .content-area {
-	width: 100%;
-}
-
 .content-area {
 	width: 66%;
 }
@@ -35,3 +23,99 @@
 	width: 32%;
 }
 
+// Full Width
+.layout-one-col {
+
+	.content-area {
+		width: 100%;
+	}
+
+}
+
+// Content | Sidebar
+.layout-two-col-left {
+
+	.content-area {
+		float: left;
+	}
+
+	.primary-widget-area {
+		float: right;
+	}
+
+}
+
+// Sidebar | Content
+.layout-two-col-right {
+
+	.content-area {
+		float: right;
+	}
+
+	.primary-widget-area {
+		float: left;
+	}
+
+}
+
+// Sidebar | Sidebar | Content
+.layout-three-col-left {
+
+	.content-area {
+		float: right;
+		width: 50%;
+	}
+
+	.primary-widget-area {
+		float: left;
+		margin-right: 2%;
+		width: 23%;
+	}
+
+	.secondary-widget-area {
+		float: left;
+		width: 23%;
+	}
+
+}
+
+// Content | Sidebar | Sidebar
+.layout-three-col-right {
+
+	.content-area {
+		float: left;
+		width: 50%;
+	}
+
+	.primary-widget-area {
+		float: right;
+		margin-left: 2%;
+		width: 23%;
+	}
+
+	.secondary-widget-area {
+		float: right;
+		width: 23%;
+	}
+
+}
+
+// Sidebar | Content | Sidebar
+.layout-three-col-both {
+
+	.content-area {
+		float: right;
+		width: 50%;
+	}
+
+	.primary-widget-area {
+		float: right;
+		width: 23%;
+	}
+
+	.secondary-widget-area {
+		float: left;
+		width: 23%;
+	}
+
+}

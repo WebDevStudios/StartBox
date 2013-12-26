@@ -1040,24 +1040,71 @@ Structure and Layout
   max-width: 1140px;
 }
 
-.layout-two-col .content-area {
-  float: left;
-}
-
-.layout-two-col .primary-widget-area {
-  float: right;
-}
-
-.layout-one-col .content-area {
-  width: 100%;
-}
-
 .content-area {
   width: 66%;
 }
 
 .primary-widget-area {
   width: 32%;
+}
+
+.layout-one-col .content-area {
+  width: 100%;
+}
+
+.layout-two-col-left .content-area {
+  float: left;
+}
+.layout-two-col-left .primary-widget-area {
+  float: right;
+}
+
+.layout-two-col-right .content-area {
+  float: right;
+}
+.layout-two-col-right .primary-widget-area {
+  float: left;
+}
+
+.layout-three-col-left .content-area {
+  float: right;
+  width: 50%;
+}
+.layout-three-col-left .primary-widget-area {
+  float: left;
+  margin-right: 2%;
+  width: 23%;
+}
+.layout-three-col-left .secondary-widget-area {
+  float: left;
+  width: 23%;
+}
+
+.layout-three-col-right .content-area {
+  float: left;
+  width: 50%;
+}
+.layout-three-col-right .primary-widget-area {
+  float: right;
+  margin-left: 2%;
+  width: 23%;
+}
+.layout-three-col-right .secondary-widget-area {
+  float: right;
+  width: 23%;
+}
+
+.layout-three-col-both .content-area {
+  float: right;
+  width: 50%;
+}
+.layout-three-col-both .primary-widget-area {
+  float: right;
+  width: 23%;
+}
+.layout-three-col-both .secondary-widget-area {
+  float: left;
+  width: 23%;
 }
 
 /* Grid
