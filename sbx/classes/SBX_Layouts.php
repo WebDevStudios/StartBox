@@ -14,324 +14,282 @@
  */
 
 /**
- * Get the registered layouts for a given context.
+ * This is the main SB Sidebars class.
  *
- * @since  1.0.0
- * @param  string $context The page context to use.
- * @return array           An array of registered layouts.
+ * You can extend this within your theme to alter the widget markup.
+ *
+ * @subpackage Classes
+ * @since 1.0.0
  */
-function sbx_get_registered_layouts( $context = 'default' ) {
-	return apply_filters( "sb_get_{$context}_layouts", array(
-		'one-col' => array(
-			'label' => '1 Column (no sidebars)',
-			'img'   => SBX_IMAGES . '/layouts/one-col.png'
-			),
-		'two-col-left' => array(
-			'label' => '2 Columns, sidebar on left',
-			'img'   => SBX_IMAGES . '/layouts/two-col-left.png'
-			),
-		'two-col-right' => array(
-			'label' => '2 Columns, sidebar on right',
-			'img'   => SBX_IMAGES . '/layouts/two-col-right.png'
-			),
-		'three-col-left' => array(
-			'label' => '3 Columns, sidebar on left',
-			'img'   => SBX_IMAGES . '/layouts/three-col-left.png'
-			),
-		'three-col-right' => array(
-			'label' => '3 Columns, sidebar on right',
-			'img'   => SBX_IMAGES . '/layouts/three-col-right.png'
-			),
-		'three-col-both' => array(
-			'label' => '3 Columns, sidebar on each side',
-			'img'   => SBX_IMAGES . '/layouts/three-col-both.png'
-			)
-	) );
+class SBX_Layouts {
+
+	function __construct() {
+		// Post Meta
+		add_action( 'admin_menu', array( $this, 'post_metabox_add' ) );
+		add_action( 'save_post', array( $this, 'save_layout_meta' ) );
+
+		// Term Meta
+		add_action( 'admin_menu', array( $this, 'term_meta_add' ) );
+		add_action( 'edit_term', array( $this, 'save_layout_meta' ) );
+		add_filter( 'sbx_get_term_meta_defaults', array( $this, 'get_term_meta_defaults' ) );
+
+		// Body class filter
+		add_filter( 'body_class', array( $this, 'body_class' ) );
+	}
+
+	/**
+	 * Get supported layouts for the current theme.
+	 *
+	 * Returns a filterable, multi-dimensional array keyed with the
+	 * layout's slug. Values include layout image and image. e.g.:
+	 * 'layout-one-col' => array(
+	 *     'label' => 'One column (no sidebars)',
+	 *     'image' => 'images/layouts/one-col.png',
+	 * )
+	 *
+	 * @since  1.0.0
+	 *
+	 * @return array Supported theme layouts.
+	 */
+	public static function get_supported_layouts() {
+		// Only the first item in the supported layouts array is relevant
+		$supported_layouts = get_theme_support( 'sbx-layouts' );
+		$layouts = is_array( $supported_layouts ) ? array_shift( $supported_layouts ) : array();
+		return apply_filters( 'sbx_get_supported_layouts', $layouts );
+	} /* get_supported_layouts() */
+
+	/**
+	 * Get layout for a specifc post or term, or currently viewed object.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @param  integer $post_id Post ID.
+	 * @return string           Page layout.
+	 */
+	public static function get_layout( $post_id = 0 ) {
+		global $wp_query;
+
+		// If not given an explicit ID, and viewing a singular post
+		// get post ID from query object
+		if ( empty( $post_id ) && is_singular() ) {
+			$post_id = $wp_query->get_queried_object_id();
+		}
+
+		// Get page/post layout from postmeta
+		if ( ! empty( $post_id ) ) {
+			$layout = esc_html( get_post_meta( $post_id, '_sbx_layout', true ) );
+
+		// Get taxonomy artive layouts from custom term meta
+		} elseif ( is_category() || is_tag() || is_tax() || is_archive() ) {
+			$term = $wp_query->get_queried_object();
+			if ( isset( $term->meta['layout'] ) ) {
+				$layout = $term->meta['layout'];
+			}
+		}
+
+		// If layout is not set, or is not supported, set to a filterable default
+		if ( empty( $layout ) || ! array_key_exists( $layout, self::get_supported_layouts() ) ) {
+			$layout = apply_filters( 'sbx_get_layout_default', 'default', $post_id );
+		}
+
+		// Return the filterable layout
+		return esc_attr( apply_filters( 'sbx_get_layout', $layout ) );
+
+	} /* get_layout() */
+
+	/**
+	 * Update layout for a post or term.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @param  integer $object_id Post or term ID.
+	 * @param  string  $layout    Layout slug.
+	 * @return mixed              Meta ID on success for posts, true on success for terms, otherwise false.
+	 */
+	public static function update_layout( $object_id = 0, $layout = 'default' ) {
+
+		// Attempt to get a post object
+		$post = get_post( $object_id );
+
+		// If object is a post, update postmeta
+		if ( is_object( $post ) ) {
+			return update_post_meta( $object_id, '_sbx_layout', esc_attr( $layout ) );
+
+		// Otherwise, object is a term, update options
+		} else {
+			return sbx_update_term_meta( $object_id, 'layout', esc_attr( $layout ) );
+		}
+
+	} /* update_layout() */
+
+	/**
+	 * Save layout meta on post and taxonomy save.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param integer $object_id Post or Term ID.
+	 */
+	public function save_layout_meta( $object_id ) {
+
+		// If nonce doesn't match, bail here
+		if ( ! isset( $_POST['sbx_layout_options_nonce'] ) || ! wp_verify_nonce( $_POST['sbx_layout_options_nonce'], 'update_layout' ) )
+			return;
+
+		// Get the submitted post layout
+		if ( ! empty( $_POST['sbx_layout'] ) ) {
+			$this->update_layout( $object_id, esc_attr( $_POST['sbx_layout'] ) );
+		}
+
+	} /* save_layout_meta() */
+
+	/**
+	 * Render layout radio options for use in WP admin.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $selected_layout Currently selected layout.
+	 */
+	private function render_layout_options( $selected_layout = 'default' ) {
+		wp_nonce_field( 'update_layout', 'sbx_layout_options_nonce' );
+	?>
+		<ul style="overflow:hidden;">
+			<li>
+				<label for="sbx_layout_default">
+					<input type="radio" name="sbx_layout" id="sbx_layout_default" value="default" <?php checked( $selected_layout, 'default' );?> />
+					<?php printf( __( 'Default (set in %s)', 'sbx' ), '<a href="' . admin_url( 'themes.php?page=sb_admin' ) . '">' . __( 'Theme Customizer', 'sbx' ). '</a>' ); ?>
+				</label>
+			</li>
+			<?php foreach ( $this->get_supported_layouts() as $slug => $layout ) { ?>
+				<li style="float:left; margin-right:15px; margin-bottom:10px">
+					<label for="sbx_layout_<?php echo esc_attr( $slug ); ?>">
+						<input type="radio" name="sbx_layout" id="sbx_layout_<?php echo esc_attr( $slug ); ?>" value="<?php echo esc_attr( $slug ); ?>" <?php checked( $selected_layout, $slug ); ?>  style="float:left; margin-right:5px; margin-top:20px"/>
+						<img src="<?php echo esc_url( apply_filters( 'sbx_layout_image', $layout['image'], $slug ) ); ?>" alt="<?php echo esc_attr( apply_filters( 'sbx_layout_label', $layout['label'], $slug ) ); ?>" width="40" height="40" />
+					</label>
+				</li>
+			<?php } ?>
+		</ul>
+	<?php
+	}
+
+	/**
+	 * Add a metabox for each publicly viewable post type.
+	 *
+	 * @since 1.0.0
+	 */
+	public function post_metabox_add() {
+		foreach ( get_post_types( array( 'public' => true ), 'objects' ) as $type ) {
+			add_meta_box( 'theme-layouts-post-meta-box', __( 'Layout', 'sbx' ), array( $this, 'post_metabox_render' ), $type->name, 'side', 'default' );
+		}
+	} /* post_metabox_add() */
+
+	/**
+	 * Render the layout metabox for a given post.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param object $post Post object.
+	 */
+	public function post_metabox_render( $post ) {
+	?>
+		<div class="post-layout">
+			<p><?php _e( 'Specify a custom page layout for this content.', 'startbox' ); ?></p>
+			<div class="post-layout-wrap">
+				<?php $this->render_layout_options( $this->get_layout( $post->ID ) ); ?>
+			</div>
+		</div>
+	<?php
+	} /* post_metabox_render() */
+
+	/**
+	 * Add layout settings for each registered taxonomy with admin UI.
+	 *
+	 * @since 1.0.0
+	 */
+	public function term_meta_add() {
+		foreach ( get_taxonomies( array( 'show_ui' => true ) ) as $tax_name) {
+			add_action( $tax_name . '_edit_form', array( $this, 'term_meta_render' ), 10, 2 );
+		}
+	} /* term_meta_add() */
+
+	/**
+	 * Render layout options for taxonomy editor.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param object $term     Term object.
+	 * @param string $taxonomy Taxonomy slug.
+	 */
+	public function term_meta_render( $term, $taxonomy ) {
+		$tax_object = get_taxonomy( $taxonomy );
+	?>
+		<table class="form-table">
+			<tr>
+				<th scope="row" valign="top"><label><?php _e('Custom Layout', 'sbx'); ?></label></th>
+				<td>
+					<?php $this->render_layout_options( $term->meta['layout'] ); ?>
+					<p class="description"><?php printf( __( 'Select a custom layout for this %s.', 'sbx' ), strtolower( $tax_object->labels->singular_name ) ); ?></p>
+				</td>
+			</tr>
+		</table>
+
+	<?php
+	} /* term_meta_render() */
+
+	/**
+	 * Add 'layout' as a default term meta key.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @param  array $meta Term meta defaults array.
+	 * @return array       Updated term meta array.
+	 */
+	public function get_term_meta_defaults( $meta ) {
+		$meta['layout'] = 'default';
+		return $meta;
+	} /* get_term_meta_defaults() */
+
+	/**
+	 * Add layout class to page body in form of "layout-$layout".
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $classes all the set classes.
+	 */
+	public function body_class( $classes ) {
+
+		// Adds the layout to array of body classes
+		$classes[] = sanitize_html_class( 'layout-' . $this->get_layout() );
+
+		// Return the $classes array
+		return $classes;
+	}
+
 }
+$GLOBALS['sbx']->layouts = new SBX_Layouts;
 
 /**
- * Gets the layout for the current post, page or taxonomy. If none is specified, use 'layout-default'.
+ * Get layout for a specifc post or term, or currently viewed object.
+ *
+ * Wrapper for SBX_Layouts::get_layout().
  *
  * @since 1.0.0
  * @return string The layout for the given page.
  */
-function sbx_get_layout() {
-	global $wp_query;
-
-	// Get the available post layouts and store them in an array
-	foreach ( get_theme_support( 'sbx-layouts' ) as $layout => $key ) {
-		$layouts[] = $layout;
-	}
-
-
-	// Set the layout to an empty string
-	$layout = '';
-
-	// If viewing a singular post/page, check if a layout has been specified
-	if ( is_home() || is_singular() ) {
-
-		// Get the current post ID
-		$post_id = $wp_query->get_queried_object_id();
-
-		// Get the post layout
-		$layout = sbx_get_post_layout( $post_id );
-	}
-
-	// If viewing a taxonomy, check if a layout has been specified
-	if ( is_category() || is_tag() || is_tax() || is_archive() ) {
-		$term = $wp_query->get_queried_object();
-		$layout = isset( $term->meta['layout'] ) ? $term->meta['layout'] : '';
-	}
-
-	// Make sure the given layout is in the array of available post layouts for the theme
-	if ( empty( $layout ) || !in_array( $layout, $layouts ) || $layout == 'default' )
-		$layout = apply_filters( 'sbx_get_post_layout_default', 'default' );
-
-	// Return the layout and allow plugin/theme developers to override it
-	return esc_attr( apply_filters( 'get_theme_layout', "layout-{$layout}" ) );
+function sbx_get_layout( $post_id = 0 ) {
+	return SBX_Layouts::get_layout( $post_id );
 }
 
 /**
- * Get the post layout based on the given post ID.
+ * Update layout for a post or term.
  *
- * @since 1.0.0
- */
-function sbx_get_post_layout( $post_id ) {
-	$post_layout = get_post_meta( $post_id, '_sb_layout', true );
-	return ( !empty( $post_layout ) ? $post_layout : 'default' );
-}
-
-/**
- * Update/set the post layout based on the given post ID and layout.
+ * Wrapper for SBX_Layouts::update_layout().
  *
- * @since 1.0.0
- */
-function sbx_set_post_layout( $post_id, $layout ) {
-	update_post_meta( $post_id, '_sb_layout', $layout );
-}
-
-/**
- * Generate an array of supported layouts with their text string.
+ * @since  1.0.0
  *
- * @since 1.0.0
+ * @param  integer $object_id Post or term ID.
+ * @param  string  $layout    Layout slug.
+ * @return mixed              Meta ID on success for posts, true on success for terms, otherwise false.
  */
-function sbx_supported_layouts($instance) {
-
-	// Get theme-supported theme layouts
-	$supported_layouts = get_theme_support( $instance );
-	$post_layouts = $supported_layouts[0];
-
-	return $post_layouts;
+function sbx_update_layout( $object_id = 0, $layout = 'default' ) {
+	return SBX_Layouts::update_layout( $object_id, $layout );
 }
-
-/**
- * Post layouts admin setup. Registers the post layouts meta box for
- * the post editing screen. Adds the metadata save function to the
- * 'save_post' hook.
- *
- * @since 1.0.0
- */
-function sbx_layouts_admin_setup() {
-
-	// For each available post type, create a meta box on its edit page if 'public' is set to true
-	foreach ( get_post_types( array( 'public' => true ), 'objects' ) as $type ) {
-		if ($type->name != 'slideshow')
-			add_meta_box( 'theme-layouts-post-meta-box', __( 'Layout', 'startbox' ), 'sbx_layouts_post_meta_box', $type->name, 'side', 'default' );
-	}
-
-	// For each available taxonomy, add meta information if it supports 'show_ui'
-	foreach ( get_taxonomies( array( 'show_ui' => true ) ) as $tax_name) {
-        add_action($tax_name . '_edit_form', 'sbx_layouts_term_meta_box', 10, 2);
-    }
-
-	// Saves the post format on the post editing page
-	add_action( 'save_post', 'sbx_layouts_save_post', 10, 2 );
-}
-add_action( 'admin_menu', 'sbx_layouts_admin_setup' );
-
-/**
- * Adds the post layout class to the WordPress body class in the
- * form of "layout-$layout".
- *
- * @since 1.0.0
- * @param array $classes all the set classes.
- */
-function sbx_layouts_body_class( $classes ) {
-
-	// Adds the layout to array of body classes
-	$classes[] = sanitize_html_class( sbx_get_layout() );
-
-	// Return the $classes array
-	return $classes;
-}
-add_filter( 'body_class', 'sbx_layouts_body_class' );
-
-/**
- * Displays a meta box of radio selectors on the post editing screen,
- * which allows theme users to select the layout they wish to use for
- * the specific post.
- *
- * @since 1.0.0
- */
-function sbx_layouts_post_meta_box( $post, $box ) {
-
-	// Get theme-supported theme layouts
-	$layouts = get_theme_support( 'sbx-layouts' );
-	$post_layouts = $layouts[0];
-
-	// Get the current post's layout
-	$post_layout = sbx_get_post_layout( $post->ID ); ?>
-
-	<div class="post-layout">
-
-		<input type="hidden" name="sbx_layouts_post_meta_box_nonce" value="<?php echo esc_attr( wp_create_nonce( basename( __FILE__ ) ) ); ?>" />
-
-		<p><?php _e( 'Specify a custom page layout for this content.', 'startbox' ); ?></p>
-
-		<div class="post-layout-wrap">
-			<ul style="overflow:hidden;">
-				<li><input type="radio" name="post_layout" id="post_layout_default" value="default" <?php checked( $post_layout, 'default' );?> /> <label for="post_layout_default"><?php _e( 'Default', 'startbox' ); ?> (Set in <a href="<?php echo esc_url( admin_url( 'themes.php?page=sb_admin' ) ); ?>"><?php _e('Theme Options','startbox');?></a>)</label></li>
-
-				<?php foreach ( $post_layouts as $layout => $key ) { ?>
-					<li style="float:left; margin-right:15px; margin-bottom:10px">
-						<label for="post_layout_<?php echo esc_attr( $layout ); ?>">
-							<input type="radio" name="post_layout" id="post_layout_<?php echo esc_attr( $layout ); ?>" value="<?php echo esc_attr( $layout ); ?>" <?php checked( $post_layout, $layout ); ?>  style="float:left; margin-right:5px; margin-top:20px"/>
-							<img src="<?php echo esc_url( $key['img'] ); ?>" alt="<?php echo esc_attr( $key['label'] ); ?>"  width="50" height="40" />
-						</label>
-					</li>
-				<?php } ?>
-			</ul>
-		</div>
-	</div><?php
-}
-
-/**
- * Saves the post layout metadata if on the post editing screen in the admin.
- *
- * @since 1.0.0
- */
-function sbx_layouts_save_post( $post_id, $post ) {
-
-	// Verify the nonce for the post formats meta box
-	if ( !isset( $_POST['sbx_layouts_post_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['sbx_layouts_post_meta_box_nonce'], basename( __FILE__ ) ) )
-		return $post_id;
-
-	// Get the previous post layout
-	$old_layout = sbx_get_post_layout( $post_id );
-
-	// Get the submitted post layout
-	$new_layout = esc_attr( $_POST['post_layout'] );
-
-	// If the old layout doesn't match the new layout, update the post layout meta
-	if ( $old_layout !== $new_layout )
-		sbx_set_post_layout( $post_id, $new_layout );
-}
-
-/**
- * Displays the layout selector form.
- *
- * @since 1.0.0
- */
-function sbx_layouts_term_meta_box( $tag, $taxonomy ) {
-
-	$tax = get_taxonomy( $taxonomy ); // create an object from the given taxonomy
-	$layouts = get_theme_support( 'sbx-layouts' ); // Get theme-supported layouts
-	$post_layouts = $layouts[0]; // Grab the first item in the layouts array (which is the array of supported layouts)
-
-?>
-
-	<table class="form-table">
-
-	<tr>
-		<th scope="row" valign="top"><label><?php _e('Custom Layout', 'startbox'); ?></label></th>
-		<td>
-			<ul style="overflow:hidden;">
-				<li><input type="radio" name="meta[layout]" id="post_layout_default" value="" <?php checked( $tag->meta['layout'], '' ); ?> /> <label for="post_layout_default"><?php _e( 'Default', 'startbox' ); ?> (Set in <a href="<?php echo esc_url( admin_url( 'themes.php?page=sb_admin' ) ); ?>">Theme Options</a>)</label></li>
-
-				<?php foreach ( $post_layouts as $layout => $key ) { ?>
-					<li style="float:left; margin-right:15px; margin-bottom:10px">
-						<label for="post_layout_<?php echo esc_attr( $layout ); ?>">
-							<input type="radio" name="meta[layout]" id="post_layout_<?php echo esc_attr( $layout ); ?>" value="<?php echo esc_attr( $layout ); ?>" <?php checked( $tag->meta['layout'], $layout ); ?>  style="float:left; margin-right:5px; margin-top:20px"/>
-							<img src="<?php echo esc_url( $key[img] ); ?>" alt="<?php echo esc_attr( $key[label] ); ?>"  width="50" height="40" />
-						</label>
-					</li>
-				<?php } ?>
-			</ul>
-			<p class="description">Select a custom layout for this <?php echo $taxonomy; ?>.</p>
-		</td>
-	</tr>
-
-	</table>
-
-<?php
-}
-
-/**
- * Save the taxonomy layout meta when the taxonomy is saved
- * (hat tip to Nathan Rice of Genesis and Joost DeValk).
- *
- * @since 1.0.0
- */
-function sbx_layouts_term_meta_save( $term_id, $tt_id, $taxonomy ) {
-
-	// Grab the saved meta from the stored option
-	$term_meta = (array) get_option( 'startbox_termmeta' );
-
-	// If meta is already stored for the given term, use it. Else, use an empty array
-	$term_meta[$term_id] = isset( $_POST['meta'] ) ? (array) $_POST['meta'] : array();
-
-	// Update the saved meta with the new values
-	update_option( 'startbox_termmeta', $term_meta );
-
-}
-add_action( 'edit_term', 'sbx_layouts_term_meta_save', 10, 3 );
-
-/**
- * Delete the taxonomy layout meta when the taxonomy is deleted
- * (hat tip to Nathan Rice of Genesis and Joost DeValk).
- *
- * @since 1.0.0
- */
-function sbx_layouts_term_meta_delete( $term_id, $tt_id, $taxonomy ) {
-
-	// Grab the saved meta from the stored option
-	$term_meta = (array) get_option( 'startbox_termmeta' );
-
-	// Unset the meta for the given term ID
-	unset( $term_meta[$term_id] );
-
-	// Update the saved meta, now one value lighter
-	update_option( 'startbox_termmeta', (array) $term_meta );
-
-}
-add_action( 'delete_term', 'sbx_layouts_term_meta_delete', 10, 3 );
-
-/**
- * Filter get_term to attach the layout meta to each taxonomy
- * (hat tip to Nathan Rice of Genesis and Joost DeValk).
- *
- * @since 1.0.0
- */
-function sbx_layouts_term_meta_filter( $term, $taxonomy ) {
-
-	// Grab the saved meta from the stored option
-	$meta = get_option( 'startbox_termmeta' );
-
-	// If meta is already stored for the given term, use it. Else, use an empty array
-	$term_meta = isset( $meta[$term->term_id] ) ? $meta[$term->term_id] : array();
-
-	// Parse all the meta items, stacked against a null default
-	$term->meta = wp_parse_args( $term_meta, array(
-			'layout' => ''
-	) );
-
-	// Sanitize each term meta with a simple kses
-	foreach ( $term->meta as $field => $value ) {
-		$term->meta[$field] = stripslashes( wp_kses_decode_entities( $value ) );
-	}
-
-	// Return the meta (but you already knew that)
-	return $term;
-
-}
-add_filter( 'get_term', 'sbx_layouts_term_meta_filter', 10, 2 );

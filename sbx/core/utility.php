@@ -604,3 +604,111 @@ function sbx_setup_author() {
 	}
 }
 add_action( 'wp', 'sbx_setup_author' );
+
+/**
+ * Update term meta.
+ *
+ * @since  1.0.0
+ *
+ * @param  integer $term_id    Term ID.
+ * @param  string  $meta_key   Meta key.
+ * @param  string  $meta_value Meta value.
+ * @return bool                True on success, otherwise false.
+ */
+function sbx_update_term_meta( $term_id = 0, $meta_key = '', $meta_value = '' ) {
+
+	// Grab term meta from site options
+	$term_meta = (array) get_option( 'sbx_term_meta' );
+
+	// Add new meta to term meta array
+	$term_meta[ $term_id ][ $meta_key ] = stripslashes( wp_kses_decode_entities( $meta_value ) );
+
+	// Update site options
+	return update_option( 'sbx_term_meta', $term_meta );
+}
+
+/**
+ * Delete term meta when a term is deleted.
+ *
+ * @since  1.0.0
+ *
+ * @param  integer $term_id    Term ID.
+ * @param  string  $meta_key   Meta key.
+ * @param  string  $meta_value Meta value.
+ */
+function sbx_delete_term_meta( $term_id = 0, $meta_key = '', $meta_value = '' ) {
+
+	// Grab term meta from site options
+	$term_meta = (array) get_option( 'sbx_term_meta' );
+
+	// Remove the stored meta, if exists
+	if ( isset( $term_meta[ $term_id ] ) ) {
+
+		// If looking to unset a specific key
+		if ( isset( $meta_key ) && isset( $term_meta[ $term_id ][ $meta_key ] ) ) {
+			// If not looking for a specific meta value, or meta value matches
+			if ( empty( $meta_value ) || $term_meta[ $term_id ][ $meta_key ] == $meta_value ) {
+				// Unset meta key
+				unset( $term_meta[ $term_id ][ $meta_key ] );
+			}
+
+		// Otherwise, unset all meta for term
+		} else {
+			unset( $term_meta[ $term_id ] );
+		}
+
+		// Update options
+		update_option( 'sbx_term_meta', $term_meta );
+	}
+
+} /* term_meta_delete() */
+
+/**
+ * Filter get_term (singular) to include custom meta.
+ *
+ * @since  1.0.0
+ *
+ * @param  object $term Term object.
+ * @return object       Updated term object.
+ */
+function sbx_get_term_filter( $term ) {
+
+	// Get term meta from site options
+	$meta = (array) get_option( 'sbx_term_meta' );
+
+	// Pull back meta for only this term
+	$term_meta = isset( $meta[ $term->term_id ] )
+		? $meta[ $term->term_id ]
+		: array();
+
+	// Use wp_parse_args() to ensure supported, filterable defaults are always set.
+	$term->meta = wp_parse_args( $term_meta, apply_filters( 'sbx_get_term_meta_defaults', array(), $term ) );
+
+	// Sanitize each term meta with a simple kses
+	foreach ( $term->meta as $field => $value ) {
+		$term->meta[$field] = apply_filters( 'sbx_get_term_meta_' . $field, stripslashes( wp_kses_decode_entities( $value ) ), $term );
+	}
+
+	// Make entire meta array filterable
+	$term->meta = apply_filters( 'sbx_get_term_meta', $term->meta, $term );
+
+	return $term;
+
+}
+add_filter( 'get_term', 'sbx_get_term_filter' );
+
+/**
+ * Filter get_terms (plural) to include custom meta.
+ *
+ * @since  1.0.0
+ *
+ * @param  array $terms Term objects.
+ * @return array $terms Updated term objects.
+ */
+function sbx_get_terms_filter( $terms ) {
+	foreach( $terms as $term ) {
+		$term = sbx_get_term_filter( $term);
+	}
+	return $terms;
+}
+add_filter( 'get_terms', 'sbx_get_terms_filter' );

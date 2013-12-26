@@ -20,6 +20,34 @@ function startbox_setup_theme() {
 
 	// StartBox Core Features
 	add_theme_support( 'sbx-customizer' );
+	add_theme_support( 'sbx-layouts',
+		array(
+			'one-col' => array(
+				'label' => '1 Column (no sidebars)',
+				'image' => SBX::$sbx_uri . '/images/layouts/one-col.png'
+				),
+			'two-col-left' => array(
+				'label' => '2 Columns, sidebar on left',
+				'image' => SBX::$sbx_uri . '/images/layouts/two-col-left.png'
+				),
+			'two-col-right' => array(
+				'label' => '2 Columns, sidebar on right',
+				'image' => SBX::$sbx_uri . '/images/layouts/two-col-right.png'
+				),
+			'three-col-left' => array(
+				'label' => '3 Columns, sidebar on left',
+				'image' => SBX::$sbx_uri . '/images/layouts/three-col-left.png'
+				),
+			'three-col-right' => array(
+				'label' => '3 Columns, sidebar on right',
+				'image' => SBX::$sbx_uri . '/images/layouts/three-col-right.png'
+				),
+			'three-col-both' => array(
+				'label' => '3 Columns, sidebar on each side',
+				'image' => SBX::$sbx_uri . '/images/layouts/three-col-both.png'
+				)
+		)
+	);
 	add_theme_support( 'sbx-options' );
 	add_theme_support( 'sbx-sidebars',
 		array(
