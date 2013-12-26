@@ -89,7 +89,7 @@ if ( ! class_exists('SBX') ) {
 			require_if_theme_supports( 'sbx-updates',         SBX_CLASSES . '/SBX_Updater.php' );
 			require_if_theme_supports( 'sbx-shortcodes',      SBX_EXTENSIONS . '/shortcodes.php' );
 			require_if_theme_supports( 'sbx-options',		  SBX_CLASSES . '/SBX_Options_API.php' );
-			require_if_theme_supports( 'sbx-plugins',		  SBX_CLASSES . '/SBX_TGM_Plugin_Activation.php' );
+			require_if_theme_supports( 'sbx-plugins',		  SBX_CLASSES . '/TGM_Plugin_Activation.php' );
 
 			// Include all admin settings
 			foreach ( glob( SBX_ADMIN . '/*.php') as $sb_admin ) {
