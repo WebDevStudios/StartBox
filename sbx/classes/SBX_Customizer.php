@@ -224,7 +224,7 @@ class SBX_Customizer {
 	 * @since  1.0.0
 	 */
 	function customize_preview_int() {
-		wp_enqueue_script( 'sb_customizer', SBX_JS . '/customizer.js', array( 'customize-preview' ), SBX_VERSION, true );
+		wp_enqueue_script( 'sb_customizer', SBX::$sbx_uri . '/js/customizer.js', array( 'customize-preview' ), SBX::$version, true );
 		wp_localize_script( 'sb_customizer', 'sb_customizer', $this->get_settings_js() );
 	}
 
@@ -260,7 +260,7 @@ class SBX_Customizer {
 	}
 
 }
-$GLOBALS['startbox']->customizer = new SBX_Customizer;
+$GLOBALS['sbx']->customizer = new SBX_Customizer;
 
 // Make sure WP_Customize_Control is available
 if ( class_exists( 'WP_Customize_Control' ) ) {

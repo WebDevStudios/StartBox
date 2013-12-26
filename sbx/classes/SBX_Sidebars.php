@@ -134,7 +134,7 @@ class SBX_Sidebars {
 	}
 
 }
-$GLOBALS['startbox']->sidebars = new SBX_Sidebars;
+$GLOBALS['sbx']->sidebars = new SBX_Sidebars;
 
 /**
  * Wrapper Function for SBX_Sidebars::register_sidebar().
@@ -143,8 +143,7 @@ $GLOBALS['startbox']->sidebars = new SBX_Sidebars;
  * @param array  $args  An array of sidebar registration arguments (id, name, description, replaceable).
  */
 function sbx_register_sidebar( $args = array() ) {
-	global $startbox;
-	$startbox->sidebars->register_sidebar( $args );
+	$GLOBALS['sbx']->sidebars->register_sidebar( $args );
 }
 
 /**
@@ -155,8 +154,7 @@ function sbx_register_sidebar( $args = array() ) {
  * @param string  $classes  Additional CSS classes to apply to the container.
  */
 function sbx_do_sidebar( $sidebar = null, $classes = null ) {
-	global $startbox;
-	$startbox->sidebars->do_sidebar( $sidebar, $classes );
+	$GLOBALS['sbx']->sidebars->do_sidebar( $sidebar, $classes );
 }
 
 /**
@@ -167,10 +165,8 @@ function sbx_do_sidebar( $sidebar = null, $classes = null ) {
  * @return bool              True if sidebar is replaceable, false otherwise.
  */
 function sbx_is_sidebar_replaceable( $sidebar = null ) {
-	global $startbox;
-
 	// If the replaceable field is empty, it is not replaceable
-	if ( empty( $startbox->sidebars->registered_sidebars[$sidebar]['replaceable'] ) )
+	if ( empty( $GLOBALS['sbx']->sidebars->registered_sidebars[$sidebar]['replaceable'] ) )
 		return false;
 	else
 		return true;

@@ -25,7 +25,7 @@ class sb_upgrade_settings extends SB_Settings {
 		$this->options = array(
 			'sb_version_info' => array(
 				'type'	=> 'intro',
-				'desc'	=> sprintf( __( 'SBX Version: %s', 'sbx' ), SBX_VERSION )
+				'desc'	=> sprintf( __( 'SBX Version: %s', 'sbx' ), SBX::$version )
 			)
 		);
 

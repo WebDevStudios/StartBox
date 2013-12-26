@@ -201,7 +201,7 @@ class SB_Input {
 		// Get our variables ready to go
 		$r = wp_parse_args( $args, $defaults );
 		extract( $r, EXTR_OVERWRITE );
-		$sb_id = SBX_OPTIONS . '[' . esc_attr( $id ) . ']';
+		$sb_id = SBX::$options_prefix . '[' . esc_attr( $id ) . ']';
 		$output = '';
 
 		// Concatenate our output
@@ -236,7 +236,7 @@ class SB_Input {
 		// Get our variables ready to go
 		$r = wp_parse_args( $args, $defaults );
 		extract( $r, EXTR_OVERWRITE );
-		$sb_id = SBX_OPTIONS . '[' . esc_attr( $id ) . ']';
+		$sb_id = SBX::$options_prefix . '[' . esc_attr( $id ) . ']';
 		$output = '';
 
 		// Concatenate our output
@@ -272,7 +272,7 @@ class SB_Input {
 		// Get our variables ready to go
 		$r = wp_parse_args( $args, $defaults );
 		extract( $r, EXTR_OVERWRITE );
-		$sb_id = SBX_OPTIONS . '[' . esc_attr( $id ) . ']';
+		$sb_id = SBX::$options_prefix . '[' . esc_attr( $id ) . ']';
 		$output = '';
 
 		// Concatenate our output
@@ -310,7 +310,7 @@ class SB_Input {
 		// Get our variables ready to go
 		$r = wp_parse_args( $args, $defaults );
 		extract( $r, EXTR_OVERWRITE );
-		$sb_id = SBX_OPTIONS . '[' . esc_attr( $id ) . ']';
+		$sb_id = SBX::$options_prefix . '[' . esc_attr( $id ) . ']';
 		$output = '';
 
 		// Concatenate our output
@@ -354,7 +354,7 @@ class SB_Input {
 		// Get our variables ready to go
 		$r = wp_parse_args( $args, $defaults );
 		extract( $r, EXTR_OVERWRITE );
-		$sb_id = SBX_OPTIONS . '[' . esc_attr( $id ) . ']';
+		$sb_id = SBX::$options_prefix . '[' . esc_attr( $id ) . ']';
 		$output = '';
 
 		// Concatenate our output
@@ -468,7 +468,7 @@ class SB_Input {
 		// Get our variables ready to go
 		$r = wp_parse_args( $args, $defaults );
 		extract( $r, EXTR_OVERWRITE );
-		$sb_id = SBX_OPTIONS . '[' . esc_attr( $id ) . ']';
+		$sb_id = SBX::$options_prefix . '[' . esc_attr( $id ) . ']';
 		$output = '';
 
 		// Load up the dependinces for WP's media browser, if they're not already loaded
@@ -503,7 +503,7 @@ class SB_Input {
 			'value'		=> '',      // The option value
 			'desc'		=> '',      // Descriptive text
 			'options'	=> array(   // Options specific to the wp_editor() function
-				'textarea_name'	=> SBX_OPTIONS . '[' . esc_attr( $args['id'] ) . ']',
+				'textarea_name'	=> SBX::$options_prefix . '[' . esc_attr( $args['id'] ) . ']',
 				'media_buttons'	=> false,
 				'teeny'			=> true
 			)
@@ -636,7 +636,7 @@ function sb_set_default_options() {
 
 	// Grab our various settings
 	global $sb_settings_factory;
-	$defaults = $current = get_option( SBX_OPTIONS );
+	$defaults = $current = get_option( SBX::$options_prefix );
 	$settings = $sb_settings_factory->settings;
 
 	// Loop through all settings panels
@@ -659,7 +659,7 @@ function sb_set_default_options() {
 		$defaults['reset'] = false;
 
 	// Save the options to the database, Allow child themes to filter what defaults are returned
-	update_option( SBX_OPTIONS, apply_filters( 'sb_option_defaults', $defaults ) );
+	update_option( SBX::$options_prefix, apply_filters( 'sb_option_defaults', $defaults ) );
 
 }
 add_action( 'sb_install', 'sb_set_default_options' );
@@ -678,10 +678,10 @@ add_action( 'sb_install', 'sb_set_default_options' );
  * @return bool  True on success, false if the option already exists.
  */
 function sb_add_option( $name, $value ) {
-	$options = get_option( SBX_OPTIONS );
+	$options = get_option( SBX::$options_prefix );
 	if ( $options and !isset($options[$name]) ) {
 		$options[$name] = $value;
-		return update_option( SBX_OPTIONS, $options );
+		return update_option( SBX::$options_prefix, $options );
 	} else {
 		return false;
 	}
@@ -701,10 +701,10 @@ function sb_add_option( $name, $value ) {
  * @return bool  true|false
  */
 function sb_update_option( $name, $value ) {
-	$options = get_option( SBX_OPTIONS );
+	$options = get_option( SBX::$options_prefix );
 	if ( !isset($options[$name]) || $value != $options[$name] ) {
 		$options[$name] = $value;
-		return update_option( SBX_OPTIONS, $options );
+		return update_option( SBX::$options_prefix, $options );
 	} else {
 		return false;
 	}
@@ -723,7 +723,7 @@ function sb_update_option( $name, $value ) {
  * @return mixed Returns the option's value if it exists, false if it doesn't.
  */
 function sb_get_option( $name ) {
-	$options = get_option( SBX_OPTIONS );
+	$options = get_option( SBX::$options_prefix );
 	if ( is_array($options) && isset($options[$name]) ) {
 		return $options[$name];
 	} else {
@@ -744,10 +744,10 @@ function sb_get_option( $name ) {
  * @return bool  true|false
  */
 function sb_delete_option( $name ) {
-	$options = get_option( SBX_OPTIONS );
+	$options = get_option( SBX::$options_prefix );
 	if ( $options[$name] ) {
 		unset( $options[$name] );
-		return update_option( SBX_OPTIONS, $options );
+		return update_option( SBX::$options_prefix, $options );
 	} else {
 		return false;
 	}
