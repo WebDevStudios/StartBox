@@ -1099,11 +1099,11 @@ Structure and Layout
   width: 50%;
 }
 .layout-three-col-both .primary-widget-area {
-  float: right;
+  float: left;
   width: 23%;
 }
 .layout-three-col-both .secondary-widget-area {
-  float: left;
+  float: right;
   width: 23%;
 }
 
@@ -1504,24 +1504,29 @@ Content
 
 /* Primary Widget Area
 --------------------------------------------- */
-.primary-widget-area .widget {
+.primary-widget-area .widget,
+.secondary-widget-area .widget {
   background-color: white;
   margin-bottom: 24px;
   margin-bottom: 2.4rem;
   padding: 48px;
   padding: 4.8rem;
 }
-.primary-widget-area .widget-title {
+.primary-widget-area .widget-title,
+.secondary-widget-area .widget-title {
   color: #111111;
   font-family: "Open Sans", sans-serif;
   font-size: 24px;
   font-size: 2.4rem;
 }
-.primary-widget-area .search-field {
+.primary-widget-area .search-field,
+.secondary-widget-area .search-field {
   width: 65%;
 }
 .primary-widget-area .gform_wrapper .top_label input.medium,
-.primary-widget-area .gform_wrapper .top_label select.medium {
+.primary-widget-area .gform_wrapper .top_label select.medium,
+.secondary-widget-area .gform_wrapper .top_label input.medium,
+.secondary-widget-area .gform_wrapper .top_label select.medium {
   width: 100%;
 }
 
