@@ -517,8 +517,7 @@ Defaults
 ------------------------------------------------------------------------- */
 /* Hyperlinks
 --------------------------------------------- */
-a,
-a:visited {
+a {
   color: #777777;
 }
 
@@ -975,7 +974,7 @@ input[type="submit"]:hover,
   -webkit-box-shadow: none;
   background: #999999;
   box-shadow: none;
-  color: #111111;
+  color: white;
 }
 
 /* inputs */

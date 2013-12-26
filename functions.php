@@ -450,15 +450,24 @@ function startbox_color_override() {
 	.site-footer {
 		background-color: <?php echo sbx_get_theme_mod( 'sb_site_bg_color' ); ?>;
 	}
-	body {
+	body,
+	.site-title a,
+	.entry-title a,
+	.primary-widget-area .widget-title,
+	h1, h2, h3, h4, h5, h6,
+	blockquote:before,
+	.site-info {
 		color: <?php echo sbx_get_theme_mod( 'sb_primary_text_color' ); ?>;
 	}
 	a,
 	a:active,
-	a:visited {
+	.main-navigation a,
+	.header_widget_area .widget_nav_menu a {
 		color:  <?php echo sbx_get_theme_mod( 'sb_url_color' ); ?>;
 	}
-	a:hover {
+	a:hover,
+	.main-navigation a:hover,
+	.header_widget_area .widget_nav_menu a:hover {
 		color:  <?php echo sbx_get_theme_mod( 'sb_border_hover_color' ); ?>;
 	}
 	.main-navigation,
