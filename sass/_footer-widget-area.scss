@@ -11,7 +11,7 @@
 }
 
 .footer-widgets {
-	background-color: $color-bg-footer;
+	background-color: $color-bg-widgets-footer;
 	border-top: 10px solid $color-border-footer;
 	border-bottom: 10px solid $color-border-footer;
 	color: $color-widget-text-footer;
@@ -19,7 +19,6 @@
 	@include rem(padding, 48px 0);
 
 	.widget {
-		background-color: $color-bg-widgets-footer;
 		padding: 0;
 	}
 

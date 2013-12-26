@@ -460,23 +460,35 @@ function startbox_color_override() {
 		color: <?php echo sbx_get_theme_mod( 'sb_primary_text_color' ); ?>;
 	}
 	a,
-	a:active,
 	.main-navigation a,
 	.header_widget_area .widget_nav_menu a {
 		color:  <?php echo sbx_get_theme_mod( 'sb_url_color' ); ?>;
 	}
 	a:hover,
+	a:focus,
+	a:active,
 	.main-navigation a:hover,
-	.header_widget_area .widget_nav_menu a:hover {
+	.header_widget_area .widget_nav_menu a:hover,
+	.site-info a:hover,
+	.entry-title a:hover,
+	.footer-widgets a:hover,{
 		color:  <?php echo sbx_get_theme_mod( 'sb_border_hover_color' ); ?>;
 	}
 	.main-navigation,
-	.footer-widgets {
+	.footer-widgets,
+	button,
+	input[type="button"],
+	input[type="reset"],
+	input[type="submit"],
+	.gform_wrapper input[type="submit"],
+	.gform_wrapper .gform_footer input.button,
+	.gform_wrapper .gform_footer input[type="submit"]  {
 		background-color: <?php echo sbx_get_theme_mod( 'sb_nav_footer_bg_color' ); ?>;
+		border-color: <?php echo sbx_get_theme_mod( 'sb_border_hover_color' ); ?>;
 	}
 	.entry-meta {
 		color: <?php echo sbx_get_theme_mod( 'sb_secondary_text_color' ); ?>;
-		border-color:  <?php echo sbx_get_theme_mod( 'sb_border_hover_color' ); ?>;
+		border-color: <?php echo sbx_get_theme_mod( 'sb_border_hover_color' ); ?>;
 	}
 	.post,
 	.site-inner .page,
