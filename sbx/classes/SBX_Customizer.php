@@ -56,7 +56,7 @@ class SBX_Customizer {
 		$sections = $wp_customize->sections();
 
 		// Pull back all registered settings
-		$customizer_settings = apply_filters( 'sb_customizer_settings', array() );
+		$customizer_settings = apply_filters( 'sbx_customizer_settings', array() );
 
 		// Loop through each registered setting
 		if ( is_array( $customizer_settings ) && ! empty( $customizer_settings ) ) {
@@ -241,7 +241,7 @@ class SBX_Customizer {
 		$js_settings = array();
 
 		// Pull back all registered settings
-		$customizer_settings = apply_filters( 'sb_customizer_settings', array() );
+		$customizer_settings = apply_filters( 'sbx_customizer_settings', array() );
 
 		// Extract the JS-specific data
 		foreach ( $customizer_settings as $section ) {
@@ -382,7 +382,7 @@ class SBX_Sanitization {
  * Helper for get_theme_mod() to automatically retrieve defaults.
  *
  * Looks first for the setting, then for the passed default,
- * finally for a default set in sb_customizer_settings.
+ * finally for a default set in sbx_customizer_settings.
  *
  * @since  1.0.0
  * @param  string $setting The setting to retrieve.
@@ -394,11 +394,11 @@ function sbx_get_theme_mod( $setting = '', $default = '' ) {
 	// Attempt to grab the setting from the DB
 	$output = get_theme_mod( $setting, $default );
 
-	// If we have no output, attempt to pull back the default from sb_customizer_settings
+	// If we have no output, attempt to pull back the default from sbx_customizer_settings
 	if ( empty( $output ) ) {
 
 		// Pull back our customizer settings array
-		$customizer_settings = apply_filters( 'sb_customizer_settings', array() );
+		$customizer_settings = apply_filters( 'sbx_customizer_settings', array() );
 
 		// Get only the settings from our array,
 		// and loop through until we find this setting

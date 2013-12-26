@@ -100,7 +100,7 @@ function startbox_setup_theme() {
 	add_theme_support( 'post-thumbnails' );
 
 	// Include customizer settings
-	add_filter( 'sb_customizer_settings', 'startbox_customizer_settings' );
+	add_filter( 'sbx_customizer_settings', 'startbox_customizer_settings' );
 
 	// Include required plugins for this theme
 	add_action( 'sbx_register_plugins', 'startbox_theme_required_plugins' );
