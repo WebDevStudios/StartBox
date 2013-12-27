@@ -207,7 +207,7 @@ class SB_Input {
 		$output = '';
 
 		// Concatenate our output
-		if ($label) $output .= '<label for="' . esc_attr( $sb_id ) . '">' . $label . ':</label>';
+		if ($label) $output .= '<p><label for="' . esc_attr( $sb_id ) . '">' . $label . ':</label></p>';
 		$output .= $before;
 		$output .= '<p class="' . esc_attr( $args['id'] ) . ' ' . esc_attr( $align ) . '"><input type="text" value="' . esc_attr( $value ) . '" name="' . esc_attr( $sb_id ) . '" id="' . esc_attr( $sb_id ) . '" class="' . esc_attr( 'option-field-' . esc_attr( $size ) . ' ' . $class ) . '" /></p>';
 		$output .= $after;

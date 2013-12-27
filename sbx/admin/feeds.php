@@ -19,28 +19,27 @@ class sb_custom_feed_settings extends SB_Settings {
 	 */
 	function sb_custom_feed_settings() {
 
-		$this->name = __( 'Custom Feeds', 'sbx' );
-		$this->slug = 'sb_custom_feed_settings';
-		$this->description = __( 'Allows you to replace the default WordPress RSS URLs with a custom URL, such as Feedburner.', 'sbx' );
-		$this->location = 'primary';
-		$this->priority = 'core';
+		$this->name              = __( 'Custom Feeds', 'sbx' );
+		$this->slug              = 'sb_custom_feed_settings';
+		$this->description       = __( 'Allows you to replace the default WordPress RSS URLs with a custom URL or service.', 'sbx' );
+		$this->location          = 'primary';
+		$this->priority          = 'core';
 		$this->hide_ui_if_cannot = 'unfiltered_html';
-		$this->options = array(
+		$this->options           = array(
 			'custom_rss_feed' => array(
-					'type'		=> 'text',
-					'label'		=> __( 'Enter your custom RSS feed URL', 'sbx' ),
-					'sanitize'	=> false,
-					'help'		=> __( 'You can override the default WordPress RSS feed URL here.', 'sbx' ),
-					'align'		=> '',
-					'size'		=> 'large',
+					'type'     => 'text',
+					'label'    => __( 'Custom RSS feed URL', 'sbx' ),
+					'sanitize' => false,
+					'desc'     => __( 'Override the default WordPress RSS feed URL.', 'sbx' ),
+					'help'     => __( 'Override the default WordPress RSS feed URL.', 'sbx' ),
+					'size'     => 'large',
 				),
 			'custom_comment_rss_feed' => array(
 					'type'		=> 'text',
-					'label'		=> __( 'Enter your custom comment RSS feed URL', 'sbx' ),
-					'desc'      => __( 'Allows you to replace the default WordPress RSS URLs with a custom URL, such as Feedburner.', 'sbx' ),
+					'label'		=> __( 'Custom comment RSS feed URL', 'sbx' ),
 					'sanitize'	=> false,
-					'help'		=> __( 'You can override the default WordPress comment RSS feed URL here.', 'sbx' ),
-					'align'		=> '',
+					'desc'      => __( 'Override the default Comment RSS feed URL.', 'sbx' ),
+					'help'      => __( 'Override the default Comment RSS feed URL.', 'sbx' ),
 					'size'		=> 'large',
 				)
 		);
