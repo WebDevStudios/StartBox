@@ -38,4 +38,8 @@
 		$( element ).css( 'border-color', value );
 	}
 
+	function sbx_change_layout( element, value ) {
+		$( element ).addClass( 'layout-' + value );
+	}
+
 } )( jQuery );

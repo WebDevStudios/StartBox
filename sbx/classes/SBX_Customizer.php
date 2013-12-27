@@ -200,7 +200,7 @@ class SBX_Customizer {
 		if ( in_array( $control['type'], array( 'text', 'checkbox', 'radio', 'select', 'dropdown-pages' ) ) ) {
 			$wp_customize->add_control( $setting_details['id'], $control );
 		} else {
-			switch ( $setting_details['type'] ) {
+			switch ( $control['type'] ) {
 				case 'color':
 					$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $setting_details['id'], $control ) );
 					break;
@@ -212,6 +212,9 @@ class SBX_Customizer {
 					break;
 				case 'textarea':
 					$wp_customize->add_control( new SBX_Customize_Textarea_Control( $wp_customize, $setting_details['id'], $control ) );
+					break;
+				default :
+					$wp_customize->add_control( new $control['type']( $wp_customize, $setting_details['id'], $control ) );
 					break;
 			}
 		}

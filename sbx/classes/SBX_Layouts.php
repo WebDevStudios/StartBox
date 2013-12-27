@@ -33,6 +33,10 @@ class SBX_Layouts {
 		add_action( 'edit_term', array( $this, 'save_layout_meta' ) );
 		add_filter( 'sbx_get_term_meta_defaults', array( $this, 'get_term_meta_defaults' ) );
 
+		// Customizer settings
+		add_filter( 'sbx_customizer_settings', array( $this, 'customizer_settings' ) );
+		add_filter( 'sbx_get_layout', array( $this, 'customizer_defaults' ) );
+
 		// Body class filter
 		add_filter( 'body_class', array( $this, 'body_class' ) );
 	}
@@ -148,18 +152,21 @@ class SBX_Layouts {
 	 * @since 1.0.0
 	 *
 	 * @param string $selected_layout Currently selected layout.
+	 * @param bool   $show_default    Show option for "use default" when true.
 	 */
-	private function render_layout_options( $selected_layout = 'default' ) {
+	public static function render_layout_options( $selected_layout = 'default', $show_default = true ) {
 		wp_nonce_field( 'update_layout', 'sbx_layout_options_nonce' );
 	?>
 		<ul style="overflow:hidden;">
-			<li>
-				<label for="sbx_layout_default">
-					<input type="radio" name="sbx_layout" id="sbx_layout_default" value="default" <?php checked( $selected_layout, 'default' );?> />
-					<?php printf( __( 'Default (set in %s)', 'sbx' ), '<a href="' . admin_url( 'themes.php?page=sb_admin' ) . '">' . __( 'Theme Customizer', 'sbx' ). '</a>' ); ?>
-				</label>
-			</li>
-			<?php foreach ( $this->get_supported_layouts() as $slug => $layout ) { ?>
+			<?php if ( $show_default ) { ?>
+				<li>
+					<label for="sbx_layout_default">
+						<input type="radio" name="sbx_layout" id="sbx_layout_default" value="default" <?php checked( $selected_layout, 'default' );?> />
+						<?php printf( __( 'Default (set in %s)', 'sbx' ), '<a href="' . admin_url( 'customize.php' ) . '">' . __( 'Theme Customizer', 'sbx' ). '</a>' ); ?>
+					</label>
+				</li>
+			<?php } ?>
+			<?php foreach ( self::get_supported_layouts() as $slug => $layout ) { ?>
 				<li style="float:left; margin-right:15px; margin-bottom:10px">
 					<label for="sbx_layout_<?php echo esc_attr( $slug ); ?>">
 						<input type="radio" name="sbx_layout" id="sbx_layout_<?php echo esc_attr( $slug ); ?>" value="<?php echo esc_attr( $slug ); ?>" <?php checked( $selected_layout, $slug ); ?>  style="float:left; margin-right:5px; margin-top:20px"/>
@@ -177,8 +184,9 @@ class SBX_Layouts {
 	 * @since 1.0.0
 	 */
 	public function post_metabox_add() {
-		foreach ( get_post_types( array( 'public' => true ), 'objects' ) as $type ) {
-			add_meta_box( 'theme-layouts-post-meta-box', __( 'Layout', 'sbx' ), array( $this, 'post_metabox_render' ), $type->name, 'normal', 'default' );
+		$public_types = get_post_types( array( 'public' => true ), 'objects' );
+		foreach ( $public_types as $type => $object ) {
+			add_meta_box( 'sbx-layouts-metabox', __( 'Layout', 'sbx' ), array( $this, 'post_metabox_render' ), $type, 'normal', 'default' );
 		}
 	} /* post_metabox_add() */
 
@@ -249,6 +257,86 @@ class SBX_Layouts {
 	} /* get_term_meta_defaults() */
 
 	/**
+	 * Add layout controls to the theme customizer.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @param  array $sections Registered settings.
+	 * @return array           Updated settings.
+	 */
+	public function customizer_settings( $sections ) {
+		$sections['layout_settings'] = array(
+			'title'       => __( 'Layout', 'sbx' ),
+			'description' => __( 'Set default layouts based on content.', 'sbx' ),
+			'priority'    => 10,
+			'settings'    => array(
+				array(
+					'id'                => SBX::$options_prefix . 'home_layout',
+					'label'             => 'Home Layout',
+					'type'              => 'SBX_Customize_Layout_Control',
+					'theme_supports'    => 'sbx-layouts',
+					'default'           => 'two-col-right',
+					'priority'          => 10,
+					'sanitize_callback' => 'sanitize_html_class',
+					'js_callback'       => 'sbx_change_layout',
+					'css_selector'      => 'body.home',
+					),
+				array(
+					'id'                => SBX::$options_prefix . 'singular_layout',
+					'label'             => 'Single Content Layout',
+					'type'              => 'SBX_Customize_Layout_Control',
+					'theme_supports'    => 'sbx-layouts',
+					'default'           => 'two-col-right',
+					'priority'          => 10,
+					'sanitize_callback' => 'sanitize_html_class',
+					'js_callback'       => 'sbx_change_layout',
+					'css_selector'      => 'body.single',
+					),
+				array(
+					'id'                => SBX::$options_prefix . 'archive_layout',
+					'label'             => 'Archive Layout',
+					'type'              => 'SBX_Customize_Layout_Control',
+					'theme_supports'    => 'sbx-layouts',
+					'default'           => 'two-col-right',
+					'priority'          => 10,
+					'sanitize_callback' => 'sanitize_html_class',
+					'js_callback'       => 'sbx_change_layout',
+					'css_selector'      => 'body.archive',
+					),
+			)
+		);
+
+		return $sections;
+	} /* customizer_settings() */
+
+	/**
+	 * Filter SBX_Layouts::get_layout() with defaults set in Customizer.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @param  string $layout Current layout.
+	 * @return string         Potentially modified layout.
+	 */
+	public function customizer_defaults( $layout ) {
+
+		// If a layout has been set, bail here
+		if ( 'default' !== $layout )
+			return $layout;
+
+		// Otherwise, use the default set via the customizer
+		if ( is_front_page() ) {
+			$layout = sanitize_html_class( sbx_get_theme_mod( SBX::$options_prefix . 'home_layout' ) );
+		} elseif ( is_singular() ) {
+			$layout = sanitize_html_class( sbx_get_theme_mod( SBX::$options_prefix . 'singular_layout' ) );
+		} elseif ( is_category() || is_tag() || is_tax() || is_archive() ) {
+			$layout = sanitize_html_class( sbx_get_theme_mod( SBX::$options_prefix . 'archive_layout' ) );
+		}
+
+		// Return the new layout
+		return $layout;
+	} /* customizer_defaults() */
+
+	/**
 	 * Add layout class to page body in form of "layout-$layout".
 	 *
 	 * @since 1.0.0
@@ -292,4 +380,46 @@ function sbx_get_layout( $post_id = 0 ) {
  */
 function sbx_update_layout( $object_id = 0, $layout = 'default' ) {
 	return SBX_Layouts::update_layout( $object_id, $layout );
+}
+
+// Make sure WP_Customize_Control is available
+if ( class_exists( 'WP_Customize_Control' ) ) {
+
+	/**
+	 * Register textarea controller for the theme customizer.
+	 *
+	 * @subpackage Classes
+	 * @link http://ottopress.com/2012/making-a-custom-control-for-the-theme-customizer
+	 * @since 1.0.0
+	 */
+	class SBX_Customize_Layout_Control extends WP_Customize_Control {
+
+		/**
+		 * @access public
+		 * @since 1.0.0
+		 * @var string The type of form element being generated.
+		 */
+		public $type = 'layout';
+
+		/**
+		 * Overrides the render_content() function in the parent class
+		 *
+		 * @since 1.0.0
+		 */
+		public function render_content() {
+		?>
+			<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+			<ul style="overflow:hidden;">
+				<?php foreach ( SBX_Layouts::get_supported_layouts() as $slug => $layout ) { ?>
+					<li style="float:left; margin-right:15px; margin-bottom:10px">
+						<label>
+							<input type="radio" value="<?php echo esc_attr( $slug ); ?>" name="<?php echo esc_attr( "sbx_layout_{$this->id}" ); ?>" <?php $this->link(); checked( $this->value(), $slug ); ?> />
+							<img src="<?php echo esc_url( apply_filters( 'sbx_layout_image', $layout['image'], $slug ) ); ?>" alt="<?php echo esc_attr( apply_filters( 'sbx_layout_label', $layout['label'], $slug ) ); ?>" width="40" height="40" />
+						</label>
+					</li>
+				<?php } ?>
+			</ul>
+		<?php
+		}
+	}
 }
