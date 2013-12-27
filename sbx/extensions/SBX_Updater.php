@@ -16,97 +16,186 @@
 if ( ! current_theme_supports( 'sbx-updates' ) )
 	return;
 
-class SBX_Updater {
+/**
+ * SBX Updates, Primary class.
+ *
+ * @subpackage Classes
+ * @since 1.0.0
+ */
+class SBX_Updates {
+
+	/**
+	 * Updater args.
+	 *
+	 * @since 1.0.0
+	 * @var   array
+	 */
+	var $args = array();
 
 	public function __construct() {
 
-		// Hook everything where it belongs so upgrades will work
-		add_filter('site_transient_update_themes', array( $this, 'update_include') );
-		add_filter('transient_update_themes', array( $this, 'update_include') );
-		add_action('admin_notices', array( $this, 'update_notification') );
-		add_action('load-update.php', array( $this, 'clear_update_transient') );
-		add_action('load-themes.php', array( $this, 'clear_update_transient') );
+		// Populate args
+		$this->populate_args();
 
-	}
+		// Check for updates
+		add_filter( 'site_transient_update_themes', array( $this, 'check_for_updates' ) );
+		add_filter( 'transient_update_themes', array( $this, 'check_for_updates' ) );
 
-	// Check to see if a new version of StartBox is available.
-	function update_check() {
-		global $wpdb;
+		// Flush transients
+		add_action( 'load-update.php', array( $this, 'flush_transient' ) );
+		add_action( 'load-themes.php', array( $this, 'flush_transient' ) );
 
-		$sb_update = get_transient('sb_update');
+		// Update notifiactions
+		add_action( 'admin_notices', array( $this, 'update_notification' ) );
 
-		if ( !$sb_update ) {
+	} /* __construct() */
+
+	/**
+	 * Populate $this->args.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @return array Updater args.
+	 */
+	private function populate_args() {
+		global $wpdb, $wp_version;
+
+		// Establish filterable defaults
+		$defaults = apply_filters( 'sbx_updater_defaults', array(
+			'url'             => 'http://wpstartbox.com/updates/',
+			'product_name'    => 'SBX',
+			'product_slug'    => 'sbx',
+			'product_version' => SBX::$version,
+			'wp_version'      => $wp_version,
+			'php_version'     => phpversion(),
+			'mysql_version'   => $wpdb->db_version(),
+			'use_betas'       => false,
+		) );
+
+		// Get args passed via add_theme_support()
+		$theme_support = get_theme_support( 'sbx-updates' );
+		$theme_support_args = is_array( $theme_support ) ? array_shift( $theme_support ) : array();
+
+		// Parse theme support args against defaults
+		$this->args = wp_parse_args( $theme_support_args, $defaults );
+
+		return $this->args;
+
+	} /* populate_args() */
+
+	/**
+	 * Check for remote updates whenever WP makes a request.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @param  object $updates Update handler object.
+	 * @return object          Modified update object.
+	 */
+	function check_for_updates( $updates ) {
+		$sbx_update = $this->remote_request();
+
+		if ( $sbx_update ) {
+			$updates->response[ $this->args['product_slug'] ] = $sbx_update;
+		}
+
+		return $updates;
+
+	} /* check_for_updates() */
+
+	/**
+	 * Delete SBX updates transient.
+	 *
+	 * @since 1.0.0
+	 */
+	function flush_transient() {
+		delete_transient( 'sbx_updates' );
+	} /* flush_transient() */
+
+	/**
+	 * Make a remote request for update information.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @return array|bool Update information array, or false if no update available.
+	 */
+	private function remote_request() {
+		global $wp_version;
+
+		// Attempt to pull update data from transient
+		$sbx_updates = get_transient( 'sbx_updates' );
+
+		// If no transient found, make a new request
+		if ( 1==1 || ! $sbx_updates ) {
+
+			// Setup remote request options
 			$options = array(
-				'method' => 'POST',
-				'timeout' => 3,
 				'headers' => array(
-					'Content-Type' => 'application/x-www-form-urlencoded; charset=' . get_option('blog_charset'),
-		            'User-Agent' => 'WordPress/' . get_bloginfo("version"),
-		            'Referer' => home_url()
-				)
+					'Content-Type' => 'application/x-www-form-urlencoded; charset=' . get_option( 'blog_charset' ),
+					'User-Agent'   => "WordPress/$wp_version;",
+					'Referer'      => home_url()
+				),
+				'body' => $this->args,
 			);
-			$sb = SBX::$version;
-			$wp = get_bloginfo("version") ;
-			$php = phpversion();
-			$mysql = $wpdb->db_version();
-			$use_beta = "false";
-			$url = 'http://wpstartbox.com/updates/index.php?product=StartBox&sb_version=' . urlencode($sb) . '&wp_version=' . urlencode($wp) . '&php_version=' . urlencode($php) . '&mysql_version=' . urlencode($mysql) . '&use_beta=' . $use_beta;
-			$raw_response = wp_remote_request($url, $options);
-			$sb_update = wp_remote_retrieve_body($raw_response);
 
-			// If an error occurred, return false and store transient for 1 hour
-			// Else, unserialize and store transient for 12hrs
-			if ( is_wp_error($sb_update) || $sb_update == 'error' || !is_serialized($sb_update) ) {
-				set_transient('sb_update', array('new_version' => SBX::$version), 3600); // cache for 1hr (3600)
-				return false;
+			// Make remote request
+			$response = wp_remote_post( $this->args['url'], $options );
+			$response_body = wp_remote_retrieve_body( $response );
+
+			// wp_die( '<pre>' . var_export( $response_body, 1 ) . '</pre>' );
+
+			// Cache errors for 1hr, successful responses for 12 hours
+			if ( is_wp_error( $response_body ) || 'Error' == $response_body || ! is_serialized( $response_body ) ) {
+				$sbx_updates = false;
+				set_transient( 'sbx_updates', array( 'new_version' => $this->args['product_version'] ), HOUR_IN_SECONDS );
 			} else {
-				$sb_update = maybe_unserialize($sb_update);
-				set_transient('sb_update', $sb_update, 43200); // cache for 12hrs (43200)
+				$sbx_updates = maybe_unserialize( $response_body );
+				set_transient( 'sbx_updates', $sbx_updates, 12 * HOUR_IN_SECONDS );
 			}
 		}
 
-		// If we're already using the latest version, return false
-		if ( version_compare(SBX::$version, $sb_update['new_version'], '>=') )
-			return false;
-
-		return $sb_update;
-	}
-
-	// Adds upgrade notification to WP's built-in check
-	function update_include($value) {
-		if ( $sb_update = $this->update_check() ) {
-			$value->response['startbox'] = $sb_update;
+		// If we're already using the latest version, bail here
+		if ( ! isset( $sbx_updates['new_version'] ) || version_compare( $this->args['product_version'], $sbx_updates['new_version'], '>=' ) ) {
+			$sbx_updates = false;
 		}
-		return $value;
-	}
+
+		return apply_filters( 'sbx_updates_remote_request', $sbx_updates, $this->args );
+
+	} /* remote_request() */
 
 	// Add an update alert to the dashboard when upgrade is available
 	function update_notification() {
 
-		// Don't bother checking if updates are disabled
-		if (!sb_get_option('enable_updates') || sb_get_option('disable_update_notifications') )
-			return;
-
-		$sb_update = $this->update_check();
-
-		if ( !is_super_admin() || !$sb_update )
+		// If user cannot install themes, bail here
+		if ( ! current_user_can( 'install_themes' ) ) {
 			return false;
+		}
 
-		$update_url = wp_nonce_url('update.php?action=upgrade-theme&amp;theme=startbox', 'upgrade-theme_startbox');
-		$update_onclick = __('Upgrading will overwrite the currently installed version of StartBox. Are you sure you want to upgrade?', 'startbox');
+		// If no updates are available, bail here
+		$sbx_update = $this->remote_request();
+		if ( empty( $sbx_update ) ) {
+			return false;
+		}
 
+		// Setup variables
+		$update_url          = esc_url( $sbx_update['url'] );
+		$update_version      = esc_html( $sbx_update['new_version'] );
+		$nonce_url           = wp_nonce_url( 'update.php?action=upgrade-theme&amp;theme=' . $this->args['product_slug'], 'upgrade-theme_' . $this->args['product_slug'] );
+		$changelog_link_text = sprintf( __( 'Check out what\'s new in %s', 'sbx' ), $update_version );
+		$prompt_text         = __( 'Upgrading will overwrite the currently installed version of StartBox. Are you sure you want to upgrade?', 'sbx' );
+		$update_text         = __( 'upgrade now', 'sbx' );
+
+		// Generate output
 		$output = '<div class="update-nag">';
-		$output .= sprintf( __('An update to StartBox is available. <a href="%s?KeepThis=true&TB_iframe=true" class="thickbox thickbox-preview">Check out what\'s new in %s</a> or <a href="%s" onclick="return sb_confirm(\'%s\');">upgrade now</a>.', 'startbox'), esc_url( $sb_update['url'] ), esc_html( $sb_update['new_version'] ), $update_url, esc_js( $update_onclick ) );
+		$output .= sprintf(
+			__( 'An update to %1$s is available. %2$s or %3$s.', 'startbox' ),
+			$this->args['product_name'],
+			'<a href="' . $update_url . '?KeepThis=true&TB_iframe=true" class="thickbox thickbox-preview">' . $changelog_link_text . '</a>',
+			'<a href="' . $nonce_url . '" onclick="return sb_confirm(\'' . esc_js( $prompt_text ) . '\');">' . $update_text . '</a>'
+		);
 		$output .= '</div>';
 
-		echo $output;
-	}
-
-	// Delete the update transient and disable the update notification.
-	function clear_update_transient() {
-		delete_transient('sb_update');
-		remove_action('admin_notices', 'sb_update_notification');
+		echo apply_filters( 'sbx_update_update_notification', $output, $sbx_update, $nonce_url );
 	}
 
 }
-$GLOBALS['sbx']->updater = new SBX_Updater;
+$GLOBALS['sbx']->updates = new SBX_Updates;

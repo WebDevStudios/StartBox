@@ -83,7 +83,13 @@ function startbox_setup_theme() {
 				),
 		)
 	);
-	add_theme_support( 'sbx-updates' );
+	add_theme_support( 'sbx-updates', array(
+		'url'             => 'http://wpstartbox.com/updates/temp.php',
+		'product_name'    => 'StartBox',
+		'product_slug'    => 'startbox',
+		'product_version' => '3.0.0',
+		'use_beta'        => true,
+	) );
 	add_theme_support( 'sbx-plugins' );
 	add_theme_support( 'automatic-feed-links' );
 
