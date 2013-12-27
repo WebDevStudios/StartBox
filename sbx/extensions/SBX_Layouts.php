@@ -14,9 +14,7 @@
  */
 
 /**
- * This is the main SB Sidebars class.
- *
- * You can extend this within your theme to alter the widget markup.
+ * SBX Theme Layouts, Primary class.
  *
  * @subpackage Classes
  * @since 1.0.0
