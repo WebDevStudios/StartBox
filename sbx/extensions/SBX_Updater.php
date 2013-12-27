@@ -42,7 +42,7 @@ class SBX_Updates {
 		add_filter( 'transient_update_themes', array( $this, 'check_for_updates' ) );
 
 		// Flush transients
-		add_action( 'load-update.php', array( $this, 'flush_transient' ) );
+		add_action( 'load-update-core.php', array( $this, 'flush_transient' ) );
 		add_action( 'load-themes.php', array( $this, 'flush_transient' ) );
 
 		// Update notifiactions
