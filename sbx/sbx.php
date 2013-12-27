@@ -50,7 +50,7 @@ if ( ! class_exists('SBX') ) {
 		 * @since 1.0.0
 		 * @var   string
 		 */
-		public static $options_prefix = 'sbx';
+		public static $options_prefix = 'sbx_';
 
 		/**
 		 * SBX Initialization.
