@@ -3,10 +3,10 @@
  * SBX Sidebars
  *
  * A class structure for handling sidebar registration,
- * output, markup, the works.
+ * output, and markup.
  *
  * @package SBX
- * @subpackage Sidebars
+ * @subpackage Extensions
  * @since 1.0.0
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */

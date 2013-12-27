@@ -1,14 +1,14 @@
 <?php
 /**
- * SBX Layout Class
+ * SBX Theme Layouts
  *
  * Theme Layouts was originally created by Justin Tadlock for use with Hybrid Core.
  * This allows developers to easily add/remove support for multiple layout structures.
  * It gives users the ability to control how each post type is displayed on the
- * front end of the site.  The layout can also be filtered for any page of a WordPress site.
+ * front end of the site, with conveniently placed filters for overriding.
  *
  * @package SBX
- * @subpackage Classes
+ * @subpackage Extensions
  * @since 1.0.0
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */

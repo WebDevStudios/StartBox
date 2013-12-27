@@ -1,15 +1,17 @@
 <?php
-
 /**
  * SBX Options API
  *
- * The Options API is what allows the Theme Options page to be easily extended and altered.
- * This file contains the necessary helper classes for building your own Theme Options.
+ * The Options API is what allows the Theme Options page to be easily extended
+ * and altered. This file contains the necessary helper classes for building
+ * your own Theme Options based on the WordPress Settings API.
  *
  * @link http://docs.wpstartbox.com/child-themes/theme-options/ Using Theme Options
  *
  * @package SBX
- * @subpackage Options
+ * @subpackage Extensions
+ * @since 1.0.0
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
 /**

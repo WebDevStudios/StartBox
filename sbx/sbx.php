@@ -98,14 +98,14 @@ if ( ! class_exists('SBX') ) {
 		 * @since 1.0.0
 		 */
 		public function extensions() {
-			require_if_theme_supports( 'sbx-customizer', SBX::$sbx_dir . '/classes/SBX_Customizer.php' );
-			require_if_theme_supports( 'sbx-layouts',    SBX::$sbx_dir . '/classes/SBX_Layouts.php' );
-			require_if_theme_supports( 'sbx-plugins',    SBX::$sbx_dir . '/classes/TGM_Plugin_Activation.php' );
-			require_if_theme_supports( 'sbx-sidebars',   SBX::$sbx_dir . '/classes/SBX_Sidebars.php' );
-			require_if_theme_supports( 'sbx-updates',    SBX::$sbx_dir . '/classes/SBX_Updater.php' );
+			require_if_theme_supports( 'sbx-customizer', SBX::$sbx_dir . '/extensions/SBX_Customizer.php' );
+			require_if_theme_supports( 'sbx-layouts',    SBX::$sbx_dir . '/extensions/SBX_Layouts.php' );
+			require_if_theme_supports( 'sbx-plugins',    SBX::$sbx_dir . '/extensions/TGM_Plugin_Activation.php' );
+			require_if_theme_supports( 'sbx-sidebars',   SBX::$sbx_dir . '/extensions/SBX_Sidebars.php' );
+			require_if_theme_supports( 'sbx-updates',    SBX::$sbx_dir . '/extensions/SBX_Updater.php' );
 
 			// Include all SBX Options files
-			require_if_theme_supports( 'sbx-options',    SBX::$sbx_dir . '/classes/SBX_Options_API.php' );
+			require_if_theme_supports( 'sbx-options',    SBX::$sbx_dir . '/extensions/SBX_Options_API.php' );
 			foreach ( glob( SBX::$sbx_dir . '/admin/*.php') as $sb_admin ) {
 				require_if_theme_supports( 'sbx-options', $sb_admin );
 			}

@@ -9,7 +9,7 @@
  * @link http://themefoundation.com/wordpress-theme-customizer/
  *
  * @package SBX
- * @subpackage Customizer
+ * @subpackage Extensions
  * @since 1.0.0
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */

@@ -1,13 +1,13 @@
 <?php
 /**
- * SBX Update Class
+ * SBX Automatic Updates
  *
  * Handles all upgrade checks, notifications and updates.
  * Major props to Carl Hancock and the Gravity Forms team
  * for helping piece this one together.
  *
  * @package SBX
- * @subpackage Classes
+ * @subpackage Extensions
  * @since 1.0.0
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
