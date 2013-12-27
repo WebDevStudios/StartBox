@@ -167,13 +167,23 @@ class SBX_Updates {
 
 		// If user cannot install themes, bail here
 		if ( ! current_user_can( 'install_themes' ) ) {
-			return false;
+			return;
 		}
 
 		// If no updates are available, bail here
 		$sbx_update = $this->remote_request();
 		if ( empty( $sbx_update ) ) {
-			return false;
+			return;
+		}
+
+		// If user has already dismissed this notice, bail here
+		if ( $sbx_update['new_version'] == get_user_meta( get_current_user_id(), 'sbx_dismissed_update_notice', true ) ) {
+			return;
+		}
+
+		if ( isset( $_GET['sbx-update-dismiss'] ) ) {
+			update_user_meta( get_current_user_id(), 'sbx_dismissed_update_notice', $sbx_update['new_version'] );
+			return;
 		}
 
 		// Setup variables
@@ -187,10 +197,11 @@ class SBX_Updates {
 		// Generate output
 		$output = '<div class="update-nag">';
 		$output .= sprintf(
-			__( 'An update to %1$s is available. %2$s or %3$s.', 'startbox' ),
+			__( 'An update to %1$s is available. %2$s or %3$s. %4$s', 'startbox' ),
 			$this->args['product_name'],
 			'<a href="' . $update_url . '?KeepThis=true&TB_iframe=true" class="thickbox thickbox-preview">' . $changelog_link_text . '</a>',
-			'<a href="' . $nonce_url . '" onclick="return sb_confirm(\'' . esc_js( $prompt_text ) . '\');">' . $update_text . '</a>'
+			'<a href="' . $nonce_url . '" onclick="return sb_confirm(\'' . esc_js( $prompt_text ) . '\');">' . $update_text . '</a>',
+			'&nbsp;&nbsp;&nbsp;[<a href="' . add_query_arg( 'sbx-update-dismiss', true ) . '">' . __( 'Dismiss', 'sbx' ) . '</a>]'
 		);
 		$output .= '</div>';
 
