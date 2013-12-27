@@ -413,5 +413,6 @@ function sbx_get_theme_mod( $setting = '', $default = '' ) {
 
 	}
 
-	return do_shortcode( $output );
+	// Return filterable value
+	return apply_filters( 'sbx_get_theme_mod', $output, $setting, $default );
 }

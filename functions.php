@@ -566,6 +566,19 @@ function sb_maybe_hide_sidebar( $sidebar ) {
 add_filter( 'sbx_do_sidebar', 'sb_maybe_hide_sidebar' );
 
 /**
+ * Run sbx_get_theme_mod() through do_shortcode() before returning.
+ *
+ * @since  3.0.0
+ *
+ * @param  string $output Original setting output.
+ * @return string         Modified setting output.
+ */
+function sb_theme_mod_do_shortcode( $output ) {
+	return do_shortcode( $output );
+}
+add_filter( 'sbx_get_theme_mod', 'sb_theme_mod_do_shortcode' );
+
+/**
  * In his grace, God has given us different gifts for doing certain things well.
  * So if God has given you the ability to prophesy, speak out with as much faith as
  * God has given you. If your gift is serving others, serve them well. If you are
