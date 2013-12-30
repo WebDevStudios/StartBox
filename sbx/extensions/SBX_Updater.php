@@ -32,6 +32,14 @@ class SBX_Updates {
 	 */
 	var $args = array();
 
+	/**
+	 * Success/Error text strings
+	 *
+	 * @since 1.0.0
+	 * @var   array
+	 */
+	var $strings = array();
+
 	public function __construct() {
 
 		// Populate args
@@ -42,11 +50,11 @@ class SBX_Updates {
 		add_filter( 'transient_update_themes', array( $this, 'check_for_updates' ) );
 
 		// Flush transients
-		add_action( 'load-update-core.php', array( $this, 'flush_transient' ) );
-		add_action( 'load-themes.php', array( $this, 'flush_transient' ) );
+		add_action( 'load-update-core.php', array( $this, 'flush_transients' ) );
+		add_action( 'load-themes.php', array( $this, 'flush_transients' ) );
 
 		// Update notifiactions
-		add_action( 'admin_notices', array( $this, 'update_notification' ) );
+		add_action( 'admin_notices', array( $this, 'theme_update_notification' ) );
 
 	} /* __construct() */
 
@@ -61,15 +69,29 @@ class SBX_Updates {
 		global $wpdb, $wp_version;
 
 		// Establish filterable defaults
-		$defaults = apply_filters( 'sbx_updater_defaults', array(
-			'url'             => 'http://wpstartbox.com/updates/',
-			'product_name'    => 'SBX',
-			'product_slug'    => 'sbx',
-			'product_version' => SBX::$version,
-			'wp_version'      => $wp_version,
-			'php_version'     => phpversion(),
-			'mysql_version'   => $wpdb->db_version(),
-			'use_betas'       => false,
+		$defaults = apply_filters( 'sbx_updater_populate_args', array(
+			'url'               => 'http://wpstartbox.com/updates/',
+			'product_name'      => 'SBX',
+			'product_slug'      => 'sbx',
+			'product_version'   => SBX::$version,
+			'wp_version'        => $wp_version,
+			'php_version'       => phpversion(),
+			'mysql_version'     => $wpdb->db_version(),
+			'use_betas'         => false,
+			'framework_update'  => true,
+			'framework_url'     => 'http://wpstartbox.com/updates/framework.php',
+			'framework_name'    => 'SBX',
+			'framework_slug'    => 'sbx',
+			'framework_version' => SBX::$version,
+			'framework_strings' => apply_filters( 'sbx_updater_populate_strings', array(
+				'upload_failed'        => __( 'SBX Update Failed. Upload resulted in the following error: %s', 'sbx' ),
+				'filesystem_error'     => __( 'SBX Update Failed: filesystem is preventing downloads. (%s)', 'sbx' ),
+				'empty_archive'        => __( 'SBX Update Failed: downloaded archive was empty.', 'sbx' ),
+				'incompatible_archive' => __( 'SBX Update Failed: incompatible archive file.', 'sbx' ),
+				'mkdir_failed'         => __( 'SBX Update Failed: unable to create empty directory.', 'sbx' ),
+				'copy_failed'          => __( 'SBX Update Failed: unable to copy extracted files.', 'sbx' ),
+				'update_success'       => __( 'SBX was successfully updated.', 'sbx' ),
+			) )
 		) );
 
 		// Get args passed via add_theme_support()
@@ -91,11 +113,20 @@ class SBX_Updates {
 	 * @param  object $updates Update handler object.
 	 * @return object          Modified update object.
 	 */
-	function check_for_updates( $updates ) {
-		$sbx_update = $this->remote_request();
+	public function check_for_updates( $updates ) {
 
-		if ( $sbx_update ) {
-			$updates->response[ $this->args['product_slug'] ] = $sbx_update;
+		// If a theme update exists, include it
+		$theme_update = $this->remote_request_theme();
+		if ( $theme_update ) {
+			$updates->response[ $this->args['product_slug'] ] = $theme_update;
+		}
+
+		// If framework updates are enabled, check for those, too
+		if ( true === $this->args['framework_update'] ) {
+			$framework_update = $this->remote_request_framework();
+			if ( $framework_update ) {
+				$updates->response[ $this->args['framework_slug'] ] = $framework_update;
+			}
 		}
 
 		return $updates;
@@ -103,67 +134,11 @@ class SBX_Updates {
 	} /* check_for_updates() */
 
 	/**
-	 * Delete SBX updates transient.
+	 * Output an update notification when updates are available.
 	 *
 	 * @since 1.0.0
 	 */
-	function flush_transient() {
-		delete_transient( 'sbx_updates' );
-	} /* flush_transient() */
-
-	/**
-	 * Make a remote request for update information.
-	 *
-	 * @since  1.0.0
-	 *
-	 * @return array|bool Update information array, or false if no update available.
-	 */
-	private function remote_request() {
-		global $wp_version;
-
-		// Attempt to pull update data from transient
-		$sbx_updates = get_transient( 'sbx_updates' );
-
-		// If no transient found, make a new request
-		if ( 1==1 || ! $sbx_updates ) {
-
-			// Setup remote request options
-			$options = array(
-				'headers' => array(
-					'Content-Type' => 'application/x-www-form-urlencoded; charset=' . get_option( 'blog_charset' ),
-					'User-Agent'   => "WordPress/$wp_version;",
-					'Referer'      => home_url()
-				),
-				'body' => $this->args,
-			);
-
-			// Make remote request
-			$response = wp_remote_post( $this->args['url'], $options );
-			$response_body = wp_remote_retrieve_body( $response );
-
-			// wp_die( '<pre>' . var_export( $response_body, 1 ) . '</pre>' );
-
-			// Cache errors for 1hr, successful responses for 12 hours
-			if ( is_wp_error( $response_body ) || 'Error' == $response_body || ! is_serialized( $response_body ) ) {
-				$sbx_updates = false;
-				set_transient( 'sbx_updates', array( 'new_version' => $this->args['product_version'] ), HOUR_IN_SECONDS );
-			} else {
-				$sbx_updates = maybe_unserialize( $response_body );
-				set_transient( 'sbx_updates', $sbx_updates, 12 * HOUR_IN_SECONDS );
-			}
-		}
-
-		// If we're already using the latest version, bail here
-		if ( ! isset( $sbx_updates['new_version'] ) || version_compare( $this->args['product_version'], $sbx_updates['new_version'], '>=' ) ) {
-			$sbx_updates = false;
-		}
-
-		return apply_filters( 'sbx_updates_remote_request', $sbx_updates, $this->args );
-
-	} /* remote_request() */
-
-	// Add an update alert to the dashboard when upgrade is available
-	function update_notification() {
+	public function theme_update_notification() {
 
 		// If user cannot install themes, bail here
 		if ( ! current_user_can( 'install_themes' ) ) {
@@ -171,24 +146,22 @@ class SBX_Updates {
 		}
 
 		// If no updates are available, bail here
-		$sbx_update = $this->remote_request();
-		if ( empty( $sbx_update ) ) {
+		$theme_update = $this->remote_request_theme();
+		if ( empty( $theme_update ) ) {
 			return;
 		}
 
-		// If user has already dismissed this notice, bail here
-		if ( $sbx_update['new_version'] == get_user_meta( get_current_user_id(), 'sbx_dismissed_update_notice', true ) ) {
-			return;
-		}
-
+		// If user has dismissed this notice, bail here
 		if ( isset( $_GET['sbx-update-dismiss'] ) ) {
-			update_user_meta( get_current_user_id(), 'sbx_dismissed_update_notice', $sbx_update['new_version'] );
+			update_user_meta( get_current_user_id(), 'sbx_dismissed_update_notice', $theme_update['new_version'] );
+			return;
+		} elseif ( $theme_update['new_version'] == get_user_meta( get_current_user_id(), 'sbx_dismissed_update_notice', true ) ) {
 			return;
 		}
 
 		// Setup variables
-		$update_url          = esc_url( $sbx_update['url'] );
-		$update_version      = esc_html( $sbx_update['new_version'] );
+		$update_url          = esc_url( $theme_update['url'] );
+		$update_version      = esc_html( $theme_update['new_version'] );
 		$nonce_url           = wp_nonce_url( 'update.php?action=upgrade-theme&amp;theme=' . $this->args['product_slug'], 'upgrade-theme_' . $this->args['product_slug'] );
 		$changelog_link_text = sprintf( __( 'Check out what\'s new in %s', 'sbx' ), $update_version );
 		$prompt_text         = __( 'Upgrading will overwrite the currently installed version of StartBox. Are you sure you want to upgrade?', 'sbx' );
@@ -205,8 +178,220 @@ class SBX_Updates {
 		);
 		$output .= '</div>';
 
-		echo apply_filters( 'sbx_update_update_notification', $output, $sbx_update, $nonce_url );
-	}
+		echo apply_filters( 'sbx_update_update_notification', $output, $theme_update, $nonce_url );
+
+	} /* theme_update_notification() */
+
+	/**
+	 * Delete SBX updates transients.
+	 *
+	 * @since 1.0.0
+	 */
+	public function flush_transients() {
+		delete_transient( 'sbx_theme_update' );
+		delete_transient( 'sbx_framework_update' );
+	} /* flush_transients() */
+
+	/**
+	 * Make a remote request for update information.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @return mixed Array of update data on success, otherwise WP_Error object or error string.
+	 */
+	private function remote_request( $url = '', $options = array() ) {
+		global $wp_version;
+
+		// If no url provided, use url from args
+		if ( empty( $url ) ) {
+			$url = $this->args['url'];
+		}
+
+		// Setup remote request options
+		if ( empty( $options ) || ! is_array( $options ) ) {
+			$options = array(
+				'headers' => array(
+					'Content-Type' => 'application/x-www-form-urlencoded; charset=' . get_option( 'blog_charset' ),
+					'User-Agent'   => "WordPress/$wp_version;",
+					'Referer'      => home_url()
+				),
+				'body' => $this->args,
+			);
+		}
+
+		// Make remote request
+		$response = wp_remote_post( $url, $options );
+		$response_body = wp_remote_retrieve_body( $response );
+		$unserialized_response = maybe_serialize( $response_body );
+
+		// Return filterable response
+		return apply_filters( 'sbx_updates_remote_request', $unserialized_response, $this->args );
+
+	} /* remote_request() */
+
+	/**
+	 * Check for theme updates.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @return mixed Array of update data on success, otherwise false.
+	 */
+	private function remote_request_theme() {
+
+		// Attempt to pull update data from transient
+		$theme_update = get_transient( 'sbx_theme_update' );
+
+		// If no transient data exists, make a new remote request
+		if ( ! $theme_update ) {
+			$theme_update = $this->remote_request();
+
+			// Cache errors for 1hr, successful responses for 12 hours
+			if ( is_wp_error( $theme_update ) || 'Error' == $response_body ) {
+				$theme_update = false;
+				set_transient( 'sbx_theme_update', array( 'new_version' => $this->args['product_version'] ), HOUR_IN_SECONDS );
+			} else {
+				set_transient( 'sbx_theme_update', $theme_update, 12 * HOUR_IN_SECONDS );
+			}
+		}
+
+		// If we're already using the latest version, there is nothing to update
+		if ( ! isset( $theme_update['new_version'] ) || version_compare( $this->args['product_version'], $theme_update['new_version'], '>=' ) ) {
+			$theme_update = false;
+		}
+
+		return $theme_update;
+
+	} /* remote_request_theme() */
+
+	/**
+	 * Check for framework updates.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @return mixed Array of update data on success, otherwise false.
+	 */
+	private function remote_request_framework() {
+
+		// Attempt to pull update data from transient
+		$framework_update = get_transient( 'sbx_framework_update' );
+
+		// If no transient data exists, make a new remote request
+		if ( ! $framework_update ) {
+			$framework_update = $this->remote_request( $this->args['framework_url'] );
+
+			// Cache errors for 1hr, successful responses for 12 hours
+			if ( is_wp_error( $framework_update ) || 'Error' == $response_body ) {
+				$framework_update = false;
+				set_transient( 'sbx_framework_update', array( 'new_version' => $this->args['product_version'] ), HOUR_IN_SECONDS );
+			} else {
+				set_transient( 'sbx_framework_update', $framework_update, 12 * HOUR_IN_SECONDS );
+			}
+		}
+
+		// If we're already using the latest version, there is nothing to update
+		if ( ! isset( $framework_update['new_version'] ) || version_compare( $this->args['framework_version'], $framework_update['new_version'], '>=' ) ) {
+			$framework_update = false;
+		}
+
+		return $framework_update;
+
+	} /* remote_request_framework() */
+
+	/**
+	 * Run framework update routine.
+	 *
+	 * This function will pull back the framework update data and
+	 * run the update through the WP_Filesystem API to download,
+	 * unzip, and replace the contents of SBX::$sbx_dir. After
+	 * completion, an admin notification will be output on success
+	 * or failure.
+	 *
+	 * @TODO Connect this function to something and test it.
+	 *
+	 * @since 1.0.0
+	 */
+	public function update_framework() {
+		global $wp_filesystem;
+
+		// Get framework update data
+		$framework_update = $this->remote_request_framework();
+
+		// If there is no update available, bail here
+		if ( empty( $framework_update ) ) {
+			return;
+		}
+
+		// Setup Filesystem
+		$filesystem = WP_Filesystem();
+
+		// If filesystem access failed, output notice
+		if ( false == $filesystem ) {
+			apply_filters( 'sbx_updates_framework_notification', sprintf( $this->args['framework_strings']['filesystem_error'], get_filesystem_method() ) );
+			add_action( 'admin_notices', array( $this, 'framework_update_notification' ) );
+			return;
+		}
+
+		// Download framework package
+		$temp_file = download_url( $framework_update['package'] );
+
+		// If download failed, output notice
+		if ( is_wp_error( $temp_file ) ) {
+			apply_filters( 'sbx_updates_framework_notification', sprintf( $this->args['framework_strings']['upload_failed'], $temp_file->get_error_code() ) );
+			add_action( 'admin_notices', array( $this, 'framework_update_notification' ) );
+			return;
+		}
+
+		// Unzip and delete temp file
+		$unzipped_file = unzip_file( $temp_file, SBX::$sbx_dir );
+		unlink( $temp_file );
+
+		// If file resulted in error object
+		if ( is_wp_error( $unzipped_file ) ) {
+
+			// Get error data
+			$error = $unzipped_file->get_error_code();
+			$data  = $unzipped_file->get_error_data( $error );
+
+			// Render an admin notice
+			switch( $error ) {
+				case 'incompatible_archive' :
+				case 'empty_archive' :
+				case 'mkdir_failed' :
+				case 'copy_failed' :
+					apply_filters( 'sbx_updates_framework_notification', $this->args['framework_strings'][ $error ] );
+					add_action( 'admin_notices', array( $this, 'framework_update_notification' ) );
+					break;
+				default :
+					apply_filters( 'sbx_updates_framework_notification', sprintf( $this->args['framework_strings']['upload_failed'], $error ) );
+					add_action( 'admin_notices', array( $this, 'framework_update_notification' ) );
+					break;
+			}
+			return;
+
+		}
+
+		apply_filters( 'sbx_updates_framework_notification', $this->args['framework_strings']['update_success'] );
+		add_action( 'admin_notices', array( $this, 'framework_update_notification' ) );
+
+	} /* update_framework() */
+
+	/**
+	 * Variable update notice for framework messages.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $string String to output in notice
+	 */
+	public function framework_update_notification( $string = '' ) {
+
+		// If user cannot install themes, bail here
+		if ( ! current_user_can( 'install_themes' ) ) {
+			return;
+		}
+
+		echo '<div class="updated fade"><p>' . apply_filters( 'sbx_updates_framework_notification', $string ) . '</p></div>';
+
+	} /* framework_update_notification() */
 
 }
 $GLOBALS['sbx']->updates = new SBX_Updates;
