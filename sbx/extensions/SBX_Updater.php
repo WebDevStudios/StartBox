@@ -55,6 +55,8 @@ class SBX_Updates {
 
 		// Update notifiactions
 		add_action( 'admin_notices', array( $this, 'theme_update_notification' ) );
+		add_action( 'admin_notices', array( $this, 'framework_update_notification' ) );
+		add_action( 'admin_init', array( $this, 'update_framework' ) );
 
 	} /* __construct() */
 
@@ -70,10 +72,10 @@ class SBX_Updates {
 
 		// Establish filterable defaults
 		$defaults = apply_filters( 'sbx_updater_populate_args', array(
-			'url'               => 'http://wpstartbox.com/updates/',
-			'product_name'      => 'SBX',
-			'product_slug'      => 'sbx',
-			'product_version'   => SBX::$version,
+			'url'               => '',
+			'product_name'      => '',
+			'product_slug'      => '',
+			'product_version'   => '',
 			'wp_version'        => $wp_version,
 			'php_version'       => phpversion(),
 			'mysql_version'     => $wpdb->db_version(),
@@ -119,14 +121,6 @@ class SBX_Updates {
 		$theme_update = $this->remote_request_theme();
 		if ( $theme_update ) {
 			$updates->response[ $this->args['product_slug'] ] = $theme_update;
-		}
-
-		// If framework updates are enabled, check for those, too
-		if ( true === $this->args['framework_update'] ) {
-			$framework_update = $this->remote_request_framework();
-			if ( $framework_update ) {
-				$updates->response[ $this->args['framework_slug'] ] = $framework_update;
-			}
 		}
 
 		return $updates;
@@ -183,6 +177,66 @@ class SBX_Updates {
 	} /* theme_update_notification() */
 
 	/**
+	 * Output an update notification when updates are available.
+	 *
+	 * @since 1.0.0
+	 */
+	public function framework_update_notification() {
+
+		// If user cannot install themes, bail here
+		if ( ! current_user_can( 'install_themes' ) ) {
+			return;
+		}
+
+		// If framework updates are disabled, bail here
+		if ( true !== $this->args['framework_update'] ) {
+			return;
+		}
+
+		// If the theme has an update available, bail here
+		$theme_update = $this->remote_request_theme();
+		if ( false !== $theme_update ) {
+			return;
+		}
+
+		// If no updates are available, bail here
+		$framework_update = $this->remote_request_framework();
+		if ( empty( $framework_update ) ) {
+			return;
+		}
+
+		// If user has dismissed this notice, bail here
+		if ( isset( $_GET['sbx-update-framework-dismiss'] ) ) {
+			update_user_meta( get_current_user_id(), 'sbx_dismissed_framework_update_notice', $framework_update['new_version'] );
+			return;
+		} elseif ( $framework_update['new_version'] == get_user_meta( get_current_user_id(), 'sbx_dismissed_framework_update_notice', true ) ) {
+			return;
+		}
+
+		// Setup variables
+		$update_url          = esc_url( $framework_update['url'] );
+		$update_version      = esc_html( $framework_update['new_version'] );
+		$nonce_url           = wp_nonce_url( add_query_arg( 'update_framework', true ), 'update_framework', '_update_framework_nonce' );
+		$changelog_link_text = sprintf( __( 'Check out what\'s new in %s', 'sbx' ), $update_version );
+		$prompt_text         = __( 'Upgrading will overwrite the currently installed version of SBX. Are you sure you want to upgrade?', 'sbx' );
+		$update_text         = __( 'upgrade now', 'sbx' );
+
+		// Generate output
+		$output = '<div class="update-nag">';
+		$output .= sprintf(
+			__( 'An update to %1$s is available. %2$s or %3$s. %4$s', 'startbox' ),
+			$this->args['framework_name'],
+			'<a href="' . $update_url . '?KeepThis=true&TB_iframe=true" class="thickbox thickbox-preview">' . $changelog_link_text . '</a>',
+			'<a href="' . $nonce_url . '" onclick="return sb_confirm(\'' . esc_js( $prompt_text ) . '\');">' . $update_text . '</a>',
+			'&nbsp;&nbsp;&nbsp;[<a href="' . add_query_arg( 'sbx-update-framework-dismiss', true ) . '">' . __( 'Dismiss', 'sbx' ) . '</a>]'
+		);
+		$output .= '</div>';
+
+		echo apply_filters( 'sbx_update_update_notification', $output, $framework_update, $nonce_url );
+
+	} /* framework_update_notification() */
+
+	/**
 	 * Delete SBX updates transients.
 	 *
 	 * @since 1.0.0
@@ -222,7 +276,7 @@ class SBX_Updates {
 		// Make remote request
 		$response = wp_remote_post( $url, $options );
 		$response_body = wp_remote_retrieve_body( $response );
-		$unserialized_response = maybe_serialize( $response_body );
+		$unserialized_response = maybe_unserialize( $response_body );
 
 		// Return filterable response
 		return apply_filters( 'sbx_updates_remote_request', $unserialized_response, $this->args );
@@ -242,11 +296,11 @@ class SBX_Updates {
 		$theme_update = get_transient( 'sbx_theme_update' );
 
 		// If no transient data exists, make a new remote request
-		if ( ! $theme_update ) {
+		if ( 1==1 || ! $theme_update ) {
 			$theme_update = $this->remote_request();
 
 			// Cache errors for 1hr, successful responses for 12 hours
-			if ( is_wp_error( $theme_update ) || 'Error' == $response_body ) {
+			if ( is_wp_error( $theme_update ) || 'Error' == $theme_update ) {
 				$theme_update = false;
 				set_transient( 'sbx_theme_update', array( 'new_version' => $this->args['product_version'] ), HOUR_IN_SECONDS );
 			} else {
@@ -276,11 +330,11 @@ class SBX_Updates {
 		$framework_update = get_transient( 'sbx_framework_update' );
 
 		// If no transient data exists, make a new remote request
-		if ( ! $framework_update ) {
+		if ( 1==1 || ! $framework_update ) {
 			$framework_update = $this->remote_request( $this->args['framework_url'] );
 
 			// Cache errors for 1hr, successful responses for 12 hours
-			if ( is_wp_error( $framework_update ) || 'Error' == $response_body ) {
+			if ( is_wp_error( $framework_update ) || 'Error' == $framework_update ) {
 				$framework_update = false;
 				set_transient( 'sbx_framework_update', array( 'new_version' => $this->args['product_version'] ), HOUR_IN_SECONDS );
 			} else {
@@ -306,12 +360,22 @@ class SBX_Updates {
 	 * completion, an admin notification will be output on success
 	 * or failure.
 	 *
-	 * @TODO Connect this function to something and test it.
+	 * @TODO make add_filter/add_action magic work
 	 *
 	 * @since 1.0.0
 	 */
 	public function update_framework() {
 		global $wp_filesystem;
+
+		// If nonce is not set, or does not match, bail here
+		if ( ! isset( $_GET['update_framework'] ) ) {
+			return;
+		}
+
+		// If nonce is not set, or does not match, bail here
+		if ( ! check_admin_referer( 'update_framework', '_update_framework_nonce' ) ) {
+			return;
+		}
 
 		// Get framework update data
 		$framework_update = $this->remote_request_framework();
@@ -327,7 +391,7 @@ class SBX_Updates {
 		// If filesystem access failed, output notice
 		if ( false == $filesystem ) {
 			apply_filters( 'sbx_updates_framework_notification', sprintf( $this->args['framework_strings']['filesystem_error'], get_filesystem_method() ) );
-			add_action( 'admin_notices', array( $this, 'framework_update_notification' ) );
+			add_action( 'admin_notices', array( $this, 'framework_update_status_notification' ) );
 			return;
 		}
 
@@ -337,12 +401,12 @@ class SBX_Updates {
 		// If download failed, output notice
 		if ( is_wp_error( $temp_file ) ) {
 			apply_filters( 'sbx_updates_framework_notification', sprintf( $this->args['framework_strings']['upload_failed'], $temp_file->get_error_code() ) );
-			add_action( 'admin_notices', array( $this, 'framework_update_notification' ) );
+			add_action( 'admin_notices', array( $this, 'framework_update_status_notification' ) );
 			return;
 		}
 
 		// Unzip and delete temp file
-		$unzipped_file = unzip_file( $temp_file, SBX::$sbx_dir );
+		$unzipped_file = unzip_file( $temp_file, dirname( SBX::$sbx_dir ) );
 		unlink( $temp_file );
 
 		// If file resulted in error object
@@ -359,11 +423,11 @@ class SBX_Updates {
 				case 'mkdir_failed' :
 				case 'copy_failed' :
 					apply_filters( 'sbx_updates_framework_notification', $this->args['framework_strings'][ $error ] );
-					add_action( 'admin_notices', array( $this, 'framework_update_notification' ) );
+					add_action( 'admin_notices', array( $this, 'framework_update_status_notification' ) );
 					break;
 				default :
 					apply_filters( 'sbx_updates_framework_notification', sprintf( $this->args['framework_strings']['upload_failed'], $error ) );
-					add_action( 'admin_notices', array( $this, 'framework_update_notification' ) );
+					add_action( 'admin_notices', array( $this, 'framework_update_status_notification' ) );
 					break;
 			}
 			return;
@@ -371,27 +435,27 @@ class SBX_Updates {
 		}
 
 		apply_filters( 'sbx_updates_framework_notification', $this->args['framework_strings']['update_success'] );
-		add_action( 'admin_notices', array( $this, 'framework_update_notification' ) );
+		add_action( 'admin_notices', array( $this, 'framework_update_status_notification' ) );
 
 	} /* update_framework() */
 
 	/**
-	 * Variable update notice for framework messages.
+	 * Output framework update susccess/failure status.
 	 *
 	 * @since 1.0.0
 	 *
 	 * @param string $string String to output in notice
 	 */
-	public function framework_update_notification( $string = '' ) {
+	public function framework_update_status_notification( $string = '' ) {
 
 		// If user cannot install themes, bail here
 		if ( ! current_user_can( 'install_themes' ) ) {
 			return;
 		}
 
-		echo '<div class="updated fade"><p>' . apply_filters( 'sbx_updates_framework_notification', $string ) . '</p></div>';
+		echo '<div class="update-nag"><p>' . apply_filters( 'sbx_updates_framework_notification', $string ) . '</p></div>';
 
-	} /* framework_update_notification() */
+	} /* framework_update_status_notification() */
 
 }
 $GLOBALS['sbx']->updates = new SBX_Updates;
