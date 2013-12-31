@@ -3,7 +3,7 @@ Title: SBX Customizer
 Description: Details on the available settings in SBX for the WordPress Customizer
 Author: Michael Beckwith
 Date: 12-20-2013
-Last Updated: 12-30-2013
+Last Edited: 12-31-2013
  */
 
 # Enabling and Using SBX Customizer
