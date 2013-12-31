@@ -3,7 +3,7 @@ Title: SBX Required/Recommended Plugins
 Description: Details on how to add required/recommended plugins page to an SBX powered theme.
 Author: Michael Beckwith
 Date: 12-30-2013
-Last Updated: 12-30-2013
+Last Edited: 12-31-2013
  */
 
 # Required/recommended plugins.
