@@ -1,5 +1,9 @@
 /*
 Title: SBX Updates
+Description: Details on enabling auto-updates for the SBX framework.
+Author: Michael Beckwith
+Date: 12-20-2013
+Last Updated: 12-30-2013
  */
 
 EDITOR NOTE: Fatal error on current version.
