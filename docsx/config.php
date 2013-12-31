@@ -38,7 +38,8 @@ $config['topnav'] = array(
 $config['topnav_exclude'] = array(
 	'extension_hooks',
 	'shortcodes',
-	'tutorials'
+	'tutorials',
+	'functions'
 );
 //Messy, but gets rid of links for the time being.
 $config['mcb_toc_top_txt'] = '';
@@ -46,5 +47,5 @@ $config['mcb_toc_caption'] = 'Table of contents';
 
 //Custom header meta data.
 $config['custom_meta_values'] = array(
-	'modified_date' => 'Modified Date'
+	'edited' => 'Last Edited'
 );
