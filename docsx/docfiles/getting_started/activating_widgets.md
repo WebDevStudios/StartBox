@@ -3,7 +3,7 @@ Title: Activating Widgets
 Description: Details on how to use SBX provided widgets.
 Author: Michael Beckwith
 Date: 12-20-2013
-Last Updated: 12-30-2013
+Last Edited: 12-31-2013
  */
 
 # Activating Widgets
