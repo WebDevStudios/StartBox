@@ -1,240 +1,305 @@
+/*
+Title: SBX Filters
+Description: List of filters available in SBX
+Author: Michael Beckwith
+Date: 12-30-2013
+Last Edited: 12-30-2013
+ */
+
+> Pending: Layouts, Options API, Sidebars.
+
 # Filters
 
-Below is a list of all the filters along with their default values and defining location. Learn how to tap into these filters via [add_filter()](http://codex.wordpress.org/Function_Reference/add_filter).
+Below is a list of all the filters along with their default values and defining location. Learn how to tap into these filters via [add_filter()](http://codex.wordpress.org/Function_Reference/add_filter/).
 
-## Theme Option Filters
+## Admin
 
-* sb_option_defaults
-	* Default: $defaults
-	* Location: /startbox/includes/functions/admin_settings.php
-* sb_child_option_defaults
-	* Default: $defaults
-	* Location: /startbox/includes/functions/startbox.php
-* sb_theme_docs
+* **sb_theme_docs**
+	* URL for the SBX Documentation
 	* Default: [http://docs.wpstartbox.com/](http://docs.wpstartbox.com/)
-	* Location: /startbox/includes/functions/admin_settings.php
-* sb_theme_support
-	* Default: [http://wpstartbox.com/support/forum](http://wpstartbox.com/support/forum)
-	* Location: /startbox/includes/functions/admin_settings.php}}
+	* Location: /sbx/admin/admin.php
+* **sb_theme_support**
+	* URL for the SBX Support forum.
+	* Default: [http://wpstartbox.com/support/](http://wpstartbox.com/support/)
+	* Location: /sbx/admin/admin.php
 
-### Header Settings
+## Images
 
-* sb_logo_container
-	* Default: h2
-	* Location: /startbox/includes/admin/header.php
-* sb_description_container
-	* Default: div
-	* Location: /startbox/includes/admin/header.php
+* **sbx_get_image_defaults**
+	* Default arguments to be used with the sb_get_image function output.
+	* Default:
 
-### Content Settings
+			array(
+				'post_id'          => $post->ID,
+				'image_id'         => 0,
+				'output'           => 'html',
+				'size'             => 'full',
+				'attr'             => '',
+				'fallback'         => 'use_attachments',
+				'attachment_index' => 0,
+			)
+	* Location: /sbx/core/images.php
 
-* sb_header_meta
-	* Default: do_shortcode($content)
-	* Location: /startbox/includes/admin/content.php
-* sb_footer_meta
-	* Default: do_shortcode($content)
-	* Location: /startbox/includes/admin/content.php
-* sb_read_more
-	* Default: 'Read & Discuss »'
-	* Location: /startbox/includes/functions/shortcodes.php
-* sb_previous_post_link
-	* Default: <span class="meta-nav">«</span> %title
-	* Location: /startbox/includes/admin/content.php
-* sb_next_post_link
-	* Default: %title <span class="meta-nav">»</span>
-	* Location: /startbox/includes/admin/content.php
+* **sbx_get_image**
+	* Final output of the sbx_get_image function, right before returned.
+	* Default:
 
-### Footer Settings
+			$output
 
-* sb_copyright
-	* Default: $sb_copyright
-	* Location: /startbox/includes/admin/footer.php
-* sb_design_credit
-	* Default: $design_credit
-	* Location: /startbox/includes/admin/footer.php}
+	* Extra parameters:
 
-### SEO Settings
+			$args,
+			$id,
+			$html,
+			$url,
+			$src
 
-* sb_description
-	* Default: esc_attr( $description )
-	* Location: /startbox/includes/admin/seo.php
+	* Location: /sbx/core/images.php
 
-## Menu Filters
+* **sbx_attachment_size**
+	* Attachment size to be used with sbx_the_attached_image
+	* Default:
 
-* sb_{$menu_id}_menu
-	* Default: $output
-	* Location: /startbox/includes/functions/custom.php
-* sb_{$menu_id}_positions
-	* Default: array()
-	* Location: /startbox/includes/functions/admin_settings.php
-* sb_{$menu_id}_extras
-	* Default: array()
-	* Location: /startbox/includes/functions/admin_settings.php
-* sb_nav_depth
-	* Default: array()
-	* Location: /startbox/includes/functions/admin_settings.php
-* sb_nav_menu_defaults
-	* Default: $defaults
-	* Location: /startbox/includes/functions/custom.php
-* sb_nav_social_images_size
-	* Default: 24
-	* Location: /startbox/includes/functions/custom.php
-* sb_nav_social_images_url
-	* Default: IMAGES_URL . '/social/'
-	* Location: /startbox/includes/functions/custom.php
-* sb_nav_social_services
-	* Default: array()
-	* Location: /startbox/includes/functions/admin_settings.php
-* sb_nav_social_{$service}
-	* Default: sprintf(__('Connect on %s','startbox'), $service)
-	* Location: /startbox/includes/functions/custom.php
-* sb_nav_types
-	* Default: array()
-	* Location: /startbox/includes/functions/admin_settings.php
-* sb_footer_nav_position
-	* Default: array()
-	* Location: /startbox/includes/admin/navigation.php
+			array( 1200, 1200 )
 
-## Post Image Filters
+	* Location: /sbx/core/images.php
 
-* sb_post_image_alt
-	* Default: get_the_title()
-	* Location: /startbox/includes/functions/custom.php
-* sb_post_image_class
-	* Default: 'post-image'
-	* Location: /startbox/includes/functions/custom.php
-* sb_post_image_crop
-	* Default: topcenter
-	* Location: /startbox/includes/functions/custom.php
-* sb_post_image_echo
-	* Default: true
-	* Location: /startbox/includes/functions/custom.php
-* sb_post_image_height
-	* Default: 200
-	* Location: /startbox/includes/functions/custom.php
-* sb_post_image_none
-	* Default: IMAGES_URL . '/nophoto.jpg'
-	* Location: /startbox/includes/functions/custom.php
-* sb_post_image_settings
-	* Default: $defaults
-	* Location: /startbox/includes/functions/custom.php
-* sb_post_image_use_attachments
-	* Default: false
-	* Location: /startbox/includes/functions/custom.php
-* sb_post_image_width
-	* Default: 200
-	* Location: /startbox/includes/functions/custom.php
-* sb_post_image_zoom
-	* Default: 1
-	* Location: /startbox/includes/functions/custom.php
+* **sbx_the_attached_image**
+	* Final output of the sbx_the_attached_image function, right before echoed
+	* Default:
 
-## Gravatar Filters
+			$output
 
-* sb_author_article_gravatar_size
-	* Default: 60
-	* Location: /startbox/includes/functions/shortcodes.php
-* sb_author_page_gravatar_size
-	* Default: 120
-	* Location: /startbox/author.php
-* sb_comment_gravatar_default
-	* Default: get_option('avatar_default')
-	* Location: /startbox/includes/functions/comment_format.php
-* sb_comment_gravatar_size
-	* Default: 60
-	* Location: /startbox/includes/functions/comment_format.php
+	* Extra parameters:
 
-## Page Filters
+			wp_get_attachment_image( $post->ID, $attachment_size ),
+			esc_url( $next_attachment_url ),
+			$post //Post object
 
-* sb_doctitle
-	* Default: $title
-	* Location: /startbox/includes/functions/hooks.php
-* sb_default_page_title
-	* Default: $content
-	* Location: /startbox/includes/functions/hooks.php
-* sb_page_title_container
-	* Default: h1
-	* Location: /startbox/includes/functions/hooks.php
-* sb_archive_meta
-	* Default: category_description() (or tag_description(), for tag-based archives)
-	* Location: /startbox/includes/functions/hooks.php
-* sb_attachment_size
-	* Default: 900
-	* Location: /startbox/attachment.php
-* sb_sitemap_defaults
-	* Default: $defaults
-	* Location: /startbox/includes/functions/custom.php
+	* Location: /sbx/core/images.php
 
-## Shortcode Filters
+## Utility
 
-* sb_protected_text
-	* Default: __( 'Sorry, you must be logged in to view this content', 'startbox' )
-	* Location: /startbox/includes/functions/shortcodes.php
-* sb_protected
-	* Default: $output
-	* Location: /startbox/includes/functions/shortcodes.php
-* sb_rtt_text
-	* Default: __( 'Return to Top', 'startbox' )
-	* Location: /startbox/includes/functions/shortcodes.php
+* **sbx_pre_get_page_title**
+	* Lets you set the custom title, else one will be auto-generated for you based on the current post or page.
+	* Default:
 
-## Slideshow Filters
+			$title //Empty string unless one is passed into sbx_get_page_title()
 
-* sb_slideshow_interface
-	* Default: array()
-	* Location: /startbox/includes/plugins/slideshows.php
-* sb_slideshow_result
-	* Default: $result, $id, $dimensions, $control, $slides
-	* Location: /startbox/includes/plugins/slideshows.php
+	* Extra parameters:
 
-## Sidebar Filters
+			$include_label,
+			$post //Post object
 
-* sb_home_featured_description
-	* Default: __( 'This is the.', 'startbox' )
-	* Location: /startbox/includes/functions/sidebars.php
-* sb_primary_widget_area_description
-	* Default: __( 'This is the primary sidebar when using two- or three-conumn layouts.', 'startbox' )
-	* Location: /startbox/includes/functions/sidebars.php
-* sb_secondary_widget_area_description
-	* Default: __( 'This is the secondary sidebar for three-column layouts. It appears beneath the primary sidebar on two-column layouts.', 'startbox' )
-	* Location: /startbox/includes/functions/sidebars.php
-* sb_tertiary_widget_area_description
-	* Default: __( 'This sidebar replaces both the Primary and Secondary sidebars on any pages using the Tertiary Aside layout.', 'startbox' )
-	* Location: /startbox/includes/functions/sidebars.php
-* sb_footer_widget_area_1_description
-	* Default: __( 'This is the first footer column. Use this before using any other footer columns.', 'startbox' )
-	* Location: /startbox/includes/functions/sidebars.php
-* sb_footer_widget_area_2_description
-	* Default: __( 'This is the second footer column. Use this before using Footer Aside Column 3.', 'startbox' )
-	* Location: /startbox/includes/functions/sidebars.php
-* sb_footer_widget_area_3_description
-	* Default: __( 'This is the third footer column. Use this before using Footer Aside Column 4.', 'startbox' )
-	* Location: /startbox/includes/functions/sidebars.php
-* sb_footer_widget_area_4_description
-	* Default: __( 'This is the fourth footer column. Use this only after using Columns 1-3.', 'startbox' )
-	* Location: /startbox/includes/functions/sidebars.php
+	* Location: /sbx/core/utility.php
 
-### SB Search Widget Filters
+* **sbx_get_page_title**
+	* Final output of the sbx_get_page_title function, right before returned.
+	* Default:
 
-* sb_search_text
-	* Default: 'Type your search and press Enter.'
-	* Location: /startbox/includes/functions/custom.php
+			$title //Empty string unless one is passed into sbx_get_page_title()
 
-### SB Social Widget Filters
+	* Extra parameters:
 
-* sb_social_comment_rss
-	* Default: __('Subscribe to Comments RSS', 'startbox' )
-	* Location: /startbox/includes/widgets/social.php
-* sb_social_images_size
-	* Default: 24
-	* Location: /startbox/includes/widgets/social.php
-* sb_social_images_url
-	* Default: IMAGES_URL . '/social/'
-	* Location: /startbox/includes/widgets/social.php
-* sb_social_rss
-	* Default: __( 'Sibscribe via RSS', 'startbox' )
-	* Location: /startbox/includes/widgets/social.php
-* sb_social_rss
-	* Default: __('Subscribe via RSS', 'startbox')
-	* Location: /startbox/includes/functions/custom.php
-* sb_social_{$service}
-	* Default: sprintf( __( 'Connect on %s', 'startbox' ), $service )
-	* Location: /startbox/includes/widgets/social.php
+			$original_title,
+			$include_label,
+			$post //Post object
+
+	* Location: /sbx/core/utility.php
+
+* **sbx_get_time_since**
+	* Final output of the sbx_get_time_since function, right before returned.
+	* Default:
+
+			$output
+
+	* Extra parameters:
+
+			$older_date,
+			$newer_date,
+
+	* Location: /sbx/core/utility.php
+
+* **sbx_dropdown_posts**
+	* Final output of the sbx_dropdown_posts function, right before return or echo.
+	* Default:
+
+			$output
+
+	* Extra parameters:
+
+			$args
+
+	* Location: /sbx/core/utility.php
+
+* **sbx_page_menu_args**
+	* Args used in the sb_nav_menu_fallback function
+	* Default:
+
+			$args
+
+	* Location: /sbx/core/utility.php
+
+* **sb_nav_menu_fallback**
+	* The final `<li>` menu list before put in the `<ul>` and echoed or returned.
+	* Default:
+
+			$menu
+
+	* Extra parameters;
+
+			$args
+
+	* Location: /sbx/core/utility.php
+
+* **sbx_author_box_defaults**
+	* Default arguments to be used with the sbx_get_author_box function output.
+	* Default:
+
+			array(
+				'gravatar_size' => 96,
+				'title'         => __( 'About', 'startbox' ),
+				'name'          => get_the_author_meta( 'display_name' ),
+				'email'         => get_the_author_meta( 'email' ),
+				'description'   => get_the_author_meta( 'description' ),
+				'user_id'       => get_the_author_meta( 'ID' ),
+			)
+	* Extra parameters:
+
+			$args
+
+	* Location: /sbx/core/images.php
+
+* **sbx_author_box**
+	* Final output of the sbx_author_box function, right before return
+	* Default:
+
+			$output
+
+	* Extra parameters:
+
+			$args
+
+	* Location: /sbx/core/utility.php
+
+* **sbx_rtt**
+	* Final markup for the "Return to top" html
+	* Default:
+
+			sprintf(
+				'<p class="rtt"><a href="#top" class="cb">%s</a></p>',
+				apply_filters( 'sbx_rtt_text', __( 'Return to Top', 'startbox' ) )
+			)
+
+	* Location: /sbx/core/utility.php
+
+* **sbx_rtt_text**
+	* Text to use with the "Return to top" `<a>` link
+	* Default:
+
+			__( 'Return to Top', 'startbox' )
+
+	* Location: /sbx/core/utility.php
+
+* **sbx_get_term_meta_defaults**
+	* Parsed array of term meta to be used in the sbx_get_term_filter function
+	* Default:
+
+			array()
+
+	* Extra parameters:
+
+			$term
+
+	* Location: /sbx/core/utility.php
+
+* **sbx_get_term_meta_{$field}**
+	* Variable filter used with term meta values
+	* Default:
+
+			stripslashes( wp_kses_decode_entities( $value ) )
+
+	* Extra parameters:
+
+			$term
+
+	* Location: /sbx/core/utility.php
+
+* **sbx_get_term_meta**
+	* Final output of the $term->meta before the $term object is returned.
+	* Default:
+
+			$term->meta
+
+	* Extra parameters:
+
+			$term
+
+	* Location: /sbx/core/utility.php
+
+## Customizer
+
+* **sbx_customizer_settings**
+	* Filter to add Customizer settings.
+	* Default:
+
+			array()
+
+	* Location: /sbx/extensions/SBX_Customizer.php
+
+* **sbx_get_theme_mod**
+	* Final output of the sbx_get_theme_mod function, before return
+	* Default:
+
+			$output
+
+	* Extra parameters:
+
+			$setting,
+			$default
+
+	* Location: /sbx/extensions/SBX_Customizer.php
+
+## Updater
+
+* **sbx_updater_defaults**
+	* Default arguments to be used with the SBX Updater class
+	* Default:
+
+			array(
+				'url'             => 'http://wpstartbox.com/updates/',
+				'product_name'    => 'SBX',
+				'product_slug'    => 'sbx',
+				'product_version' => SBX::$version,
+				'wp_version'      => $wp_version,
+				'php_version'     => phpversion(),
+				'mysql_version'   => $wpdb->db_version(),
+				'use_betas'       => false,
+			)
+
+	* Location: /sbx/extensions/SBX_Updater.php
+
+* **sbx_updates_remote_request**
+	* Headers and properties to be used with the remote request and the update.
+	* Default:
+
+			$sbx_updates
+
+	* Extra parameters:
+
+			$this->args
+
+	* Location: /sbx/extensions/SBX_Updater.php
+
+* **sbx_update_update_notification**
+	* Final output for the update_notification method
+	* Default:
+
+			$output
+
+	* Extra parameters:
+
+			$sbx_update,
+			$nonce_url
+
+	* Location: /sbx/extensions/SBX_Updater.php
