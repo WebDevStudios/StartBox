@@ -19,10 +19,10 @@ To get started, check out the quick start guide below, or explore all of the ava
 
 ## Working with SBX
 
-* [SBX Features]()
+* [SBX Features](./getting_started/enable_sbx_features/)
 * [Custom Functions]()
-* [Hooks]()
-* [Filters]()
+* [Hooks](./api/hooks/)
+* [Filters](./api/filters/)
 * [Constants]()
 * [Shortcodes]()
 * [Widgets]()
