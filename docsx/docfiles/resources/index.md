@@ -6,8 +6,10 @@ Date: 12-20-2013
 Last Modified: 12-30-2013
  */
 
-* [WordPress Theme Development]()
-* [WordPress Child Themes]()
-* [WordPress Codex]()
+# Resources for theme development
+
+* [WordPress Theme Development](http://codex.wordpress.org/Theme_Development)
+* [WordPress Child Themes](http://codex.wordpress.org/Child_Themes) * If you are using the StartBox theme as a parent.
+* [WordPress Codex](http://codex.wordpress.org/)
 * [Common WordPress hooks in themes]()
 * [Common WordPress functions or classes for themes]()
