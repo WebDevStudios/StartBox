@@ -9,6 +9,5 @@ Last Edited: 2013-11-30
 
 * [SBX Actions](./actions/)
 * [SBX Filters](./filters/)
-* [SBX Functions]()
+* [SBX Functions](./functions/)
 * [SBX Classes]()
-
