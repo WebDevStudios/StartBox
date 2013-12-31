@@ -10,7 +10,6 @@ Last Updated: 12-30-2013
 
 SBX has many many features available for you to enable for use within your SBX powered theme. These features include:
 
-* [Breadcrumb navigation](../sbx_breadcrumbs/)
 * [WordPress Customizer support](../sbx_customizer/)
 * [Content-focused shortcodes](../sbx_shortcodes/)
 * [Options page](../sbx_options_page/)
