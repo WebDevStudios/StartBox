@@ -8,7 +8,9 @@ Last Updated: 12-30-2013
 
 # Adding SBX To Your Theme.
 
-## Download and Integrate Into Your Current Theme
+## Download and Integrate Into Your Desired Theme.
+
+> SBX is intended to be used in parent themes, and not inside a child theme.
 
 1. Extract the sbx folder from the acquired zip file, into your root theme directory.
 2. Open your theme's functions.php and add the following line, then save.
