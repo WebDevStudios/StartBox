@@ -3,7 +3,7 @@ Title: Adding SBX
 Description: Details on how to get started with SBX by adding it to your theme.
 Author: Michael Beckwith
 Date: 12-20-2013
-Last Updated: 12-30-2013
+Last Edited: 12-31-2013
  */
 
 # Adding SBX To Your Theme.
