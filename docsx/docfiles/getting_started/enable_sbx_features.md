@@ -15,7 +15,7 @@ SBX has many many features available for you to enable for use within your SBX p
 * [Options page](../sbx_options_page/)
 * [Easy widget sidebar creation](../sbx_sidebars/)
 * [SBX Auto-update support](../sbx_autoupdates/)
-* [SBX-Approved Extension Browsing.](../sbx_extensions/)
+* [SBX Plugin Browsing.](../sbx_plugins/)
 
 Enabling any of these features is as simple as adding `add_theme_support()` function calls within your functions.php
 
