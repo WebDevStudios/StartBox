@@ -1,5 +1,9 @@
 /*
 Title: SBX Shortcodes
+Description: details on available content-based shortcodes in SBX
+Author: Michael Beckwith
+Date: 12-20-2013
+Last Updated: 12-30-2013
  */
 
 # Enabling and Using SBX Shortcodes.
