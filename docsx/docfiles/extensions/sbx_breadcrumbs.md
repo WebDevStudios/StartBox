@@ -1,5 +1,10 @@
 /*
 Title: Enabling and Using SBX Breadcrumbs
+Description: Parameters and examples regarding SBX Breadcrumbs
+Author: Michael Beckwith
+Date: 12-20-13
+Last Edited: 12-31-13
+ */
  */
 
 # Enabling and Using SBX Breadcrumbs.
