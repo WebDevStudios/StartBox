@@ -6,8 +6,6 @@ Date: 12-20-2013
 Last Updated: 12-30-2013
  */
 
-EDITOR NOTE: Fatal error on current version.
-
 # Enabling SBX Updates.
 
 Built in to SBX, is the ability for it to check for updates to itself. This is a transient powered feature that uses the built in notification system to let you know when there is a new version available, and help you download the updated files. To enable updates, add the following line of code to your `my_sbx_theme_setup` function.
