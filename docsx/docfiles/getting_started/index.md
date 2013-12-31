@@ -12,4 +12,4 @@ Last Updated: 12-30-2013
 * [Enabling SBX Features](./enable_sbx_features/)
 * [Using the Options Page](.//)
 * [Using the Widgets Page](.//)
-* [Using StartBox theme as a base theme]()
+* [Using StartBox theme as a base theme](./startbox_as_base_theme/)
