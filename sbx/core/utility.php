@@ -145,7 +145,7 @@ function sbx_date_classes( $timestamp = 0, $classes = array(), $prefix = '' ) {
 }
 endif;
 
-if ( ! function_exists( 'sbx_time_since' ) ) :
+if ( ! function_exists( 'sbx_get_time_since' ) ) :
 /**
  * Generate a Relative Timestamp (alternative to human_time_diff()).
  *
