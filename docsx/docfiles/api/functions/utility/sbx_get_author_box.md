@@ -6,37 +6,64 @@ Date: 12-20-13
 Last Edited: 12-31-13
  */
 
-# Functions: sbx_get_author_box
+# sbx_get_author_box
 
 ## Description
 
-Display a relative timestamp.
+Returns html markup for a semantic data rich author box sbx_get_author_box() function.
 
 ## Usage
 
-	<?php sb_time_since($older_date, $newer_date ); ?>
+	<?php $authorbox = sbx_get_author_box( $args ); ?>
+
+or
+
+	<?php echo sbx_get_author_box( $args ); ?>
 
 ## Parameters
 
-* **$older_date**
+* **gravatar_size**
 
-	(integer) (required) The original date
+	(integer) (optional) Pixel size for the gravatar dimensions
 
-	* Default: None
+	* Default: 96
 
-* **$newer_date**
+* **title**
 
-	(integer) (optional) Specify a known date to determine elapsed time. Will use current time if false
+	(string) (optional) Title to use with the author box
 
-	* Default: false
+	* Default: __( 'About', 'startbox' )
+
+* **name**
+
+	(string) (optional) Name to use with the author
+
+	* Default: get_the_author_meta( 'display_name' )
+
+* **email**
+
+	(string) (optional) Email to use with the author
+
+	* Default: get_the_author_meta( 'email' )
+
+* **description**
+
+	(string) (optional) Description to use with the author
+
+	* Default: get_the_author_meta( 'description' )
+
+* **user_id**
+
+	(integer) (optional) User ID to display
+
+	* Default: get_the_author_meta( 'ID' )
 
 ## Examples
 
-## Notes
-## Change Log
+Changes the gravatar size and title text
 
-Since: 2.4.6
-
-## Source File
-
-sb_time_since() is located in /startbox/includes/functions/custom.php
+	$args = array(
+		'gravatar_size' => 192,
+		'title' => 'About Me',
+	);
+	echo sbx_get_author_box( $args );
