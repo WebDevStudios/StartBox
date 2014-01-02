@@ -19,10 +19,8 @@ To get started, check out the quick start guide below, or explore all of the ava
 
 ## Working with SBX
 
-* [SBX Features](./getting_started/enable_sbx_features/)
-* [Custom Functions]()
-* [Hooks](./api/hooks/)
+* [Enabling SBX Features](./getting_started/enable_sbx_features/)
+* [Functions](./api/functions/)
+* [Actions](./api/actions/)
 * [Filters](./api/filters/)
-* [Constants]()
-* [Shortcodes]()
-* [Widgets]()
+* [Shortcodes](./getting_started/sbx_shortcodes/)
