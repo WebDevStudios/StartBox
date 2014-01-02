@@ -6,7 +6,7 @@ Date: 12-20-13
 Last Edited: 12-31-13
  */
 
-# Functions: sb_in_descendant_category
+# sb_in_descendant_category
 
 ## Description
 
