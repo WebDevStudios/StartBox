@@ -5,7 +5,6 @@ Author: Michael Beckwith
 Date: 12-20-13
 Last Edited: 12-31-13
  */
- */
 
 * [Available extensions]()
 * [Creating your own extension]()
