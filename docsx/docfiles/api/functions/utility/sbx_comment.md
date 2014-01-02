@@ -3,40 +3,57 @@ Title: sbx_comment
 Description: Parameters and examples of the sbx_comment function
 Author: Michael Beckwith
 Date: 12-20-13
-Last Edited: 12-31-13
+Last Edited: 01-02-14
  */
 
-# Functions: sbx_comment
+# sbx_comment
+
+> Editor's note: Pending possible changes with arguments options and overriding.
 
 ## Description
 
-Display a relative timestamp.
+Display template for comments and pingbacks.
+
+This function is used as a callback for wp_list_comments() in the comments.php template file.
+
+To override and modify, you'll want to consider defining your own sbx_comment function.
 
 ## Usage
 
-	<?php sb_time_since($older_date, $newer_date ); ?>
+	<?php sbx_comment(); ?>
 
 ## Parameters
 
-* **$older_date**
+* **comment**
 
-	(integer) (required) The original date
+	(object) (optional) Comment object
 
-	* Default: None
+	* Default: null
 
-* **$newer_date**
+* **args**
 
-	(integer) (optional) Specify a known date to determine elapsed time. Will use current time if false
+	(array) (optional) Array of arguments to use with formatting output
 
-	* Default: false
+	* Default: array()
+
+		Available parameters for $args array
+
+		* add_below
+			* Used for the JavaScript addComment.moveForm() method parameters.
+		* depth
+			* Threaded comment depth. Provided by the primary parameter in the function.
+		* before
+			* the html or text to add before the reply link
+		* after
+			* the html or text to add after the reply link
+		* has_children
+
+		* avatar_size
+
+* **depth**
+
+	(integer) (optional) Threaded comment depth
+
+	* Default: array()
 
 ## Examples
-
-## Notes
-## Change Log
-
-Since: 2.4.6
-
-## Source File
-
-sb_time_since() is located in /startbox/includes/functions/custom.php
