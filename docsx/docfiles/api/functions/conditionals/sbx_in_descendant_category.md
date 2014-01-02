@@ -18,13 +18,13 @@ Tests if the current post (or any specified post) is assigned to any descendants
 
 ## Parameters
 
-* **$category**
+* **category**
 
 	(mixed) (required) One or more categories specified by ID (integer), name or slug (string), or an array of these
 
 	* Default: None
 
-* **$_post**
+* **_post**
 
 	(mixed) (optional) The post (integer ID or object). Defaults to the current post in the Loop or the post in the main query.
 
