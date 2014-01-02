@@ -6,7 +6,7 @@ Date: 12-20-13
 Last Edited: 12-31-13
  */
 
-# Functions: sbx_dropdown_posts
+# sbx_dropdown_posts
 
 ## Description
 
