@@ -11,3 +11,8 @@ Last Edited: 01-02-2014
 * [SBX Filters](./filters/)
 * [SBX Functions](./functions/)
 * [SBX Classes]()
+
+## External Resources
+
+* [TGM Plugin Activation on GitHub](https://github.com/thomasgriffin/TGM-Plugin-Activation)
+* [Custom Metaboxes and Fields for WordPress on GitHub](https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress)
