@@ -29,8 +29,7 @@ Display or retrieve the HTML dropdown list of posts.
 		'name' => '',
 		'id' => '',
 		'class' => 'postlist',
-		'show_option_none' => true,
-		'option_none_value' => 'Select a Post'
+		'option_none_value' => __( 'Select a Post', 'sbx' )
 	); ?>
 
 By default, this usage shows:
@@ -41,16 +40,15 @@ By default, this usage shows:
 * Ordered in descending order
 * Limited to 30 posts
 * No item selected by default
+* Echoing the full HTML output
 * No name attribute in HTML
 * No id attribute in HTML
 * Class name of "postlist"
-* Include an option for selecting no posts
 * Set the "none" options display text to "Select a Post"
-* Echoing the full HTML output
 
 ## Parameters
 
-* **$args**
+* **args**
 
 	(string|array) (optional) Override default arguments. See Notes.
 
@@ -64,17 +62,23 @@ By default, this usage shows:
 
 * **post_type**
 
-	(integer) (optional) The type of post to display.
+	(string) (optional) The type of post to display.
 
 	* Default: post
 
 * **post_status**
 
-	(string) (optional) The status type of posts to dispalay. Valid values are 'published', 'draft', 'private'.
+	(string) (optional) The status type of posts to dispalay. Valid values are 'publish', 'draft', 'private'.
 
-	* Default: 'published'
+	* Default: 'publish'
 
 * **order_by**
+
+	(string) (optional) Column to sort the posts by
+
+	* Default: "post_date"
+
+* **order**
 
 	(string) (optional) Direction to sort posts. Valid values are 'ASC' and 'DESC'.
 
@@ -100,42 +104,24 @@ By default, this usage shows:
 
 * **name**
 
-	(string) (optional) The name attribute for the HTML <select> element.
+	(string) (optional) The name attribute for the HTML `<select>` element.
 
 	* Default: None
 
 * **id**
 
-	(string) (optional) The CSS id for the <select> list.
+	(string) (optional) The CSS id for the `<select>` list.
 
 	* Default: None
 
 * **class**
 
-	(string) (optional) The CSS class name for the <select> element.
+	(string) (optional) The CSS class name for the `<select>` element.
 
 	* Default: postlist
-
-* **show_option_none**
-
-	(boolean) (optional) Show (1/true) or Hide (0/false) an option for selecting no posts.
-
-	* Default: true
 
 * **option_none_value**
 
 	(integer) (optional) The label for the "none" select option.
 
 	* Default: "Select a Post"
-
-## Examples
-
-## Notes
-
-## Change Log
-
-Since: 2.4.7
-
-## Source File
-
-sb_dropdown_posts() is located in /startbox/includes/functions/custom.php
