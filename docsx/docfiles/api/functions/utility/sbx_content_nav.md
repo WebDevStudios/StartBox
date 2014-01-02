@@ -3,40 +3,27 @@ Title: sbx_content_nav
 Description: Parameters and examples of the sbx_content_nav function
 Author: Michael Beckwith
 Date: 12-20-13
-Last Edited: 12-31-13
+Last Edited: 01-02-14
  */
 
-# Functions: sbx_content_nav
+# sbx_content_nav
 
 ## Description
 
-Display a relative timestamp.
+Display, when applicable, "next" and "previous" navigation links to users so they can read more content.
 
 ## Usage
 
-	<?php sb_time_since($older_date, $newer_date ); ?>
+	<?php sbx_content_nav( $container_id ); ?>
 
 ## Parameters
 
-* **$older_date**
+* **container_id**
 
-	(integer) (required) The original date
+	(string) (required) text for container's ID attribute
 
 	* Default: None
 
-* **$newer_date**
-
-	(integer) (optional) Specify a known date to determine elapsed time. Will use current time if false
-
-	* Default: false
-
 ## Examples
 
-## Notes
-## Change Log
-
-Since: 2.4.6
-
-## Source File
-
-sb_time_since() is located in /startbox/includes/functions/custom.php
+	<?php sbx_content_nav( 'content_nav' ); ?>
