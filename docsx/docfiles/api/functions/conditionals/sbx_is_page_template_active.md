@@ -18,7 +18,7 @@ Tests if the specified page template is active on any page.
 
 ## Parameters
 
-* **$pagetemplate**
+* **pagetemplate**
 
 	(string) (required) The page template filename.
 
