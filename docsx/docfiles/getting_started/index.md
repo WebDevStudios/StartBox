@@ -11,5 +11,4 @@ Last Edited: 12-31-2013
 * [Adding SBX To Your Theme](./adding_sbx/)
 * [Enabling SBX Features](./enable_sbx_features/)
 * [Using the Options Page](.//)
-* [Using the Widgets Page](.//)
 * [Using StartBox theme as a base theme](./startbox_as_base_theme/)
