@@ -9,5 +9,5 @@ Last Edited: 01-02-2014
 # SBX and StartBox Extensibility and Extensions.
 
 * [Available extensions](./available_extensions/)
-* [Creating your own extension]()
+* [Creating your own extension](./creating_your_own/)
 * [Submitting your extension for inclusion]()
