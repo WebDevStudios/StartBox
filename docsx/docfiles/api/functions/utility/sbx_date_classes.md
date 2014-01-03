@@ -2,8 +2,8 @@
 Title: sbx_date_classes
 Description: Parameters and examples of the sbx_date_classes function
 Author: Michael Beckwith
-Date: 01-02-14
-Last Edited: 01-02-14
+Date: 01-02-2014
+Last Edited: 01-02-2014
  */
 
 # sbx_date_classes
