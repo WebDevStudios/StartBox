@@ -2,8 +2,8 @@
 Title: sbx_content_nav
 Description: Parameters and examples of the sbx_content_nav function
 Author: Michael Beckwith
-Date: 12-20-13
-Last Edited: 01-02-14
+Date: 12-20-2013
+Last Edited: 01-02-2014
  */
 
 # sbx_content_nav
