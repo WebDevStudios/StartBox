@@ -2,8 +2,8 @@
 Title: sbx_get_time_since
 Description: Parameters and examples of the sbx_get_time_since function
 Author: Michael Beckwith
-Date: 01-02-14
-Last Edited: 01-02-14
+Date: 01-02-2014
+Last Edited: 01-02-2014
  */
 
 # sbx_get_time_since
