@@ -2,8 +2,8 @@
 Title: Customizer
 Description: Understanding the settings that StarBox provides in the WordPress Customizer
 Author: Michael Beckwith, Brian Richards
-Date: 2013-11-21
-Last Edited: 2013-11-22
+Date: 11-21-2013
+Last Edited: 11-22-2013
  */
 
 # StartBox Customizer
