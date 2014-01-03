@@ -2,11 +2,11 @@
 Title: sb_register_settings
 Description: Parameters and examples of the sb_register_settings function
 Author: Michael Beckwith
-Date: 12-20-13
-Last Edited: 12-31-13
+Date: 12-20-2013
+Last Edited: 12-31-2013
  */
 
-# Functions: sb_register_settings
+# sb_register_settings
 
 ## Description
 
@@ -18,7 +18,7 @@ Register a new metabox to the Theme Options page. This function also requires th
 
 ## Parameters
 
-* **$class_name**
+* **class_name**
 
 	(string) (required) The name of the new metabox to register.
 
