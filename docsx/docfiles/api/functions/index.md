@@ -1,7 +1,8 @@
 /*
 Title: SBX Functions
-Date: 2013-11-22
-Last Edited: 2013-12-31
+Description: List of available functions in SBX
+Date: 11-22-2013
+Last Edited: 12-31-2013
  */
 
 # SBX Functions
@@ -76,13 +77,13 @@ All of the following are defined in /sbx/core/utility.php
 
 * **[sbx_get_time_since](./utility/sbx_get_time_since/)**
 
-* **[sbx_rtt](./utility/sbx_rtt/)** NOT
+* **[sbx_rtt](./utility/sbx_rtt/)**
 
-* **[sbx_setup_author](./utility/sbx_setup_author/)** NOT
+* **[sbx_setup_author](./utility/sbx_setup_author/)**
 
-* **[sbx_update_term_meta](./utility/sbx_update_term_meta/)** NOT
+* **[sbx_update_term_meta](./utility/sbx_update_term_meta/)**
 
-* **[sbx_delete_term_meta](./utility/sbx_delete_term_meta/)** NOT
+* **[sbx_delete_term_meta](./utility/sbx_delete_term_meta/)**
 
 * **[sbx_get_term_filter](./utility/sbx_get_term_filter/)** NOT
 
