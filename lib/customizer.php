@@ -1,7 +1,19 @@
 <?php
 /**
- * Hook into WordPress theme customizer
+ * Add Customizer settings and handlers for our theme.
+ *
+ * @package StartBox
+ */
+
+/**
+ * Filter sbx_customizer_settings to include custom sections and settings.
+ *
  * @link( /wp-admin/customize.php, link)
+ *
+ * @since 3.0.0
+ *
+ * @param  array $sections Default customizer sections.
+ * @return array           Modified customizer sections.
  */
 function startbox_customizer_settings( $sections = array() ) {
 
@@ -305,7 +317,9 @@ function startbox_customizer_settings( $sections = array() ) {
 add_filter( 'sbx_customizer_settings', 'startbox_customizer_settings' );
 
 /**
- * Theme color override
+ * Include inline stiles in <head> if set via customizer.
+ *
+ * @since 3.0.0
  */
 function startbox_color_override() {
 
@@ -313,68 +327,70 @@ function startbox_color_override() {
 	$override = sbx_get_theme_mod( 'sb_override_colors' );
 
 	// If enabled, print CSS
-	if ( $override ) { ?>
-<style type="text/css" media="screen">
-	body,
-	.site-header,
-	.site-inner,
-	.site-footer {
-		background-color: <?php echo sbx_get_theme_mod( 'sb_site_bg_color' ); ?>;
+	if ( $override ) {
+	?>
+	<style type="text/css" media="screen">
+		body,
+		.site-header,
+		.site-inner,
+		.site-footer {
+			background-color: <?php echo sbx_get_theme_mod( 'sb_site_bg_color' ); ?>;
+		}
+		body,
+		.site-title a,
+		.entry-title a,
+		.primary-widget-area .widget-title,
+		h1, h2, h3, h4, h5, h6,
+		blockquote:before,
+		.site-info {
+			color: <?php echo sbx_get_theme_mod( 'sb_primary_text_color' ); ?>;
+		}
+		a,
+		.main-navigation a,
+		.header_widget_area .widget_nav_menu a {
+			color:  <?php echo sbx_get_theme_mod( 'sb_url_color' ); ?>;
+		}
+		a:hover,
+		a:focus,
+		a:active,
+		.main-navigation a:hover,
+		.header_widget_area .widget_nav_menu a:hover,
+		.site-info a:hover,
+		.entry-title a:hover,
+		.footer-widgets a:hover,{
+			color:  <?php echo sbx_get_theme_mod( 'sb_border_hover_color' ); ?>;
+		}
+		.main-navigation,
+		.footer-widgets,
+		button,
+		input[type="button"],
+		input[type="reset"],
+		input[type="submit"],
+		.gform_wrapper input[type="submit"],
+		.gform_wrapper .gform_footer input.button,
+		.gform_wrapper .gform_footer input[type="submit"]  {
+			background-color: <?php echo sbx_get_theme_mod( 'sb_nav_footer_bg_color' ); ?>;
+			border-color: <?php echo sbx_get_theme_mod( 'sb_border_hover_color' ); ?>;
+		}
+		.entry-meta {
+			color: <?php echo sbx_get_theme_mod( 'sb_secondary_text_color' ); ?>;
+			border-color: <?php echo sbx_get_theme_mod( 'sb_border_hover_color' ); ?>;
+		}
+		.post,
+		.site-inner .page,
+		.primary-widget-area .widget {
+			background-color: <?php echo sbx_get_theme_mod( 'sb_content_bg_color' ); ?>;
+		}
+	</style>
+	<?php
 	}
-	body,
-	.site-title a,
-	.entry-title a,
-	.primary-widget-area .widget-title,
-	h1, h2, h3, h4, h5, h6,
-	blockquote:before,
-	.site-info {
-		color: <?php echo sbx_get_theme_mod( 'sb_primary_text_color' ); ?>;
-	}
-	a,
-	.main-navigation a,
-	.header_widget_area .widget_nav_menu a {
-		color:  <?php echo sbx_get_theme_mod( 'sb_url_color' ); ?>;
-	}
-	a:hover,
-	a:focus,
-	a:active,
-	.main-navigation a:hover,
-	.header_widget_area .widget_nav_menu a:hover,
-	.site-info a:hover,
-	.entry-title a:hover,
-	.footer-widgets a:hover,{
-		color:  <?php echo sbx_get_theme_mod( 'sb_border_hover_color' ); ?>;
-	}
-	.main-navigation,
-	.footer-widgets,
-	button,
-	input[type="button"],
-	input[type="reset"],
-	input[type="submit"],
-	.gform_wrapper input[type="submit"],
-	.gform_wrapper .gform_footer input.button,
-	.gform_wrapper .gform_footer input[type="submit"]  {
-		background-color: <?php echo sbx_get_theme_mod( 'sb_nav_footer_bg_color' ); ?>;
-		border-color: <?php echo sbx_get_theme_mod( 'sb_border_hover_color' ); ?>;
-	}
-	.entry-meta {
-		color: <?php echo sbx_get_theme_mod( 'sb_secondary_text_color' ); ?>;
-		border-color: <?php echo sbx_get_theme_mod( 'sb_border_hover_color' ); ?>;
-	}
-	.post,
-	.site-inner .page,
-	.primary-widget-area .widget {
-		background-color: <?php echo sbx_get_theme_mod( 'sb_content_bg_color' ); ?>;
-	}
-</style>
-
-<?php } }
+}
 add_action( 'wp_head', 'startbox_color_override', 999 );
 
 /**
- * Conditionally add the author box after single posts.
+ * Add the author box to single posts if customizer supports it.
  *
- * @since  3.0.0
+ * @since 3.0.0
  */
 function sb_do_author_box() {
 
@@ -387,7 +403,7 @@ function sb_do_author_box() {
 add_action( 'entry_after', 'sb_do_author_box', 10 );
 
 /**
- * Run sbx_get_theme_mod() through do_shortcode() before returning.
+ * Run all sbx_get_theme_mod() settings through do_shortcode().
  *
  * @since  3.0.0
  *
