@@ -2,11 +2,11 @@
 Title: sb_update_option
 Description: Parameters and examples of the sb_update_option function
 Author: Michael Beckwith
-Date: 12-20-13
-Last Edited: 12-31-13
+Date: 12-20-2013
+Last Edited: 12-31-2013
  */
 
-# Functions: sb_update_option
+# sb_update_option
 
 ## Description
 
@@ -18,13 +18,13 @@ Update an existing option in the database.
 
 ## Parameters
 
-* **$name**
+* **name**
 
 	(string) (required) The name of the option to update
 
 	* Default: None
 
-* **$value**
+* **value**
 
 	(mixed) (required) The new value of the option being updated
 
