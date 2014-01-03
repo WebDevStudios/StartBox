@@ -2,11 +2,11 @@
 Title: sb_unregister_option
 Description: Parameters and examples of the sb_unregister_option function
 Author: Michael Beckwith
-Date: 12-20-13
-Last Edited: 12-31-13
+Date: 12-20-2013
+Last Edited: 12-31-2013
  */
 
-# Functions: sb_unregister_option
+# sb_unregister_option
 
 ## Description
 
@@ -18,19 +18,19 @@ Remove a single option from a metabox on the Theme Options Page.
 
 ## Parameters
 
-* **$metabox**
+* **metabox**
 
 	(string) (required) The name of the metabox where the option will appear.
 
 	* Default: None
 
-* **$option_name**
+* **option_name**
 
 	(string) (required) The name of the option to add.
 
 	* Default: None
 
-* **$new_value**
+* **new_value**
 
 	(mixed) (required) A new value to save to the database after removing the option.
 
