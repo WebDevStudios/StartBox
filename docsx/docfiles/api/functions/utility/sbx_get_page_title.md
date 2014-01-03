@@ -2,8 +2,8 @@
 Title: sbx_get_page_title
 Description: Parameters and examples of the sbx_get_page_title function
 Author: Michael Beckwith
-Date: 12-31-13
-Last Edited: 12-31-13
+Date: 12-31-2013
+Last Edited: 12-31-2013
  */
 
 # sbx_get_page_title
