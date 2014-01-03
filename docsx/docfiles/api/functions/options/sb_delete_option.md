@@ -2,11 +2,11 @@
 Title: sb_delete_option
 Description: Parameters and examples of the sb_delete_option function
 Author: Michael Beckwith
-Date: 12-20-13
-Last Edited: 12-31-13
+Date: 12-20-2013
+Last Edited: 12-31-2013
  */
 
-# Functions: sb_delete_option
+# sb_delete_option
 
 ## Description
 
@@ -18,7 +18,7 @@ Delete an option from the database.
 
 ## Parameters
 
-* **$name**
+* **name**
 
     (string) (required) The name of the option to remove
 
