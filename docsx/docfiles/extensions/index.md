@@ -3,7 +3,7 @@ Title: Extensions
 Description: Details on extensions with SBX and StartBox
 Author: Michael Beckwith
 Date: 12-20-2013
-Last Edited: 12-31-2013
+Last Edited: 01-02-2014
  */
 
 # SBX and StartBox Extensibility and Extensions.
