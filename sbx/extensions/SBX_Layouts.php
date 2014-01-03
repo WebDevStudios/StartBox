@@ -45,12 +45,16 @@ class SBX_Layouts {
 	/**
 	 * Get supported layouts for the current theme.
 	 *
-	 * Returns a filterable, multi-dimensional array keyed with the
-	 * layout's slug. Values include layout image and image. e.g.:
-	 * 'layout-one-col' => array(
-	 *     'label'           => 'One column (no sidebars)',
-	 *     'image'           => 'images/layouts/one-col.png',
-	 *     'hidden_sidebars' => array( 'primary_widget_area' ),
+	 * Returns a filterable, multi-dimensional array of all layouts
+	 * registered via add_theme_support(), e.g.:
+	 * array(
+	 *     array(
+	 *         'id'    => 'one-col'
+	 *         'name'  => 'One column (no sidebars)',
+	 *         'image' => 'images/layouts/one-col.png',
+	 *         'hidden_sidebars' => array( 'primary_widget_area' ),
+	 *     ),
+	 *     ...
 	 * )
 	 *
 	 * @since  1.0.0
@@ -59,46 +63,9 @@ class SBX_Layouts {
 	 */
 	public static function get_supported_layouts() {
 
-		// Setup layout defaults
-		$defaults = apply_filters( 'sbx_get_supported_layouts_defaults', array(
-			'one-col' => array(
-				'label'               => __( '1 Column (no sidebars)', 'sbx' ),
-				'image'               => SBX::$sbx_uri . '/images/layouts/one-col.png',
-				'hidden_widget_areas' => array( 'primary_widget_area', 'secondary_widget_area' ),
-				),
-			'two-col-left' => array(
-				'label'               => __( '2 Columns, sidebar on left', 'sbx' ),
-				'image'               => SBX::$sbx_uri . '/images/layouts/two-col-left.png',
-				'hidden_widget_areas' => array( 'secondary_widget_area' ),
-				),
-			'two-col-right' => array(
-				'label'               => __( '2 Columns, sidebar on right', 'sbx' ),
-				'image'               => SBX::$sbx_uri . '/images/layouts/two-col-right.png',
-				'hidden_widget_areas' => array( 'secondary_widget_area' ),
-				),
-			'three-col-left' => array(
-				'label'               => __( '3 Columns, sidebar on left', 'sbx' ),
-				'image'               => SBX::$sbx_uri . '/images/layouts/three-col-left.png',
-				'hidden_widget_areas' => array(),
-				),
-			'three-col-right' => array(
-				'label'               => __( '3 Columns, sidebar on right', 'sbx' ),
-				'image'               => SBX::$sbx_uri . '/images/layouts/three-col-right.png',
-				'hidden_widget_areas' => array(),
-				),
-			'three-col-both' => array(
-				'label'               => __( '3 Columns, sidebar on each side', 'sbx' ),
-				'image'               => SBX::$sbx_uri . '/images/layouts/three-col-both.png',
-				'hidden_widget_areas' => array(),
-				),
-		) );
-
 		// Grab layouts passed via add_theme_support()
 		$supported_layouts = get_theme_support( 'sbx-layouts' );
-		$supported_layouts = is_array( $supported_layouts ) ? array_shift( $supported_layouts ) : array();
-
-		// Parse defaults against supported layouts
-		$layouts = wp_parse_args( $supported_layouts, $defaults );
+		$layouts = is_array( $supported_layouts ) ? array_shift( $supported_layouts ) : array();
 
 		// Return the finally supported layouts
 		return apply_filters( 'sbx_get_supported_layouts', $layouts );
@@ -135,7 +102,7 @@ class SBX_Layouts {
 		}
 
 		// If layout is not set, or is not supported, set to a filterable default
-		if ( empty( $layout ) || ! array_key_exists( $layout, self::get_supported_layouts() ) ) {
+		if ( empty( $layout ) || ! in_array( $layout, wp_list_pluck( self::get_supported_layouts(), 'id' ) ) ) {
 			$layout = apply_filters( 'sbx_get_layout_default', 'default', $post_id );
 		}
 
@@ -209,11 +176,11 @@ class SBX_Layouts {
 					</label>
 				</li>
 			<?php } ?>
-			<?php foreach ( self::get_supported_layouts() as $slug => $layout ) { ?>
+			<?php foreach ( self::get_supported_layouts() as $layout ) { ?>
 				<li style="float:left; margin-right:15px; margin-bottom:10px">
-					<label for="sbx_layout_<?php echo esc_attr( $slug ); ?>">
-						<input type="radio" name="sbx_layout" id="sbx_layout_<?php echo esc_attr( $slug ); ?>" value="<?php echo esc_attr( $slug ); ?>" <?php checked( $selected_layout, $slug ); ?>  style="float:left; margin-right:5px; margin-top:20px"/>
-						<img src="<?php echo esc_url( apply_filters( 'sbx_layout_image', $layout['image'], $slug ) ); ?>" alt="<?php echo esc_attr( apply_filters( 'sbx_layout_label', $layout['label'], $slug ) ); ?>" width="40" height="40" />
+					<label for="sbx_layout_<?php echo esc_attr( $layout['id'] ); ?>">
+						<input type="radio" name="sbx_layout" id="sbx_layout_<?php echo esc_attr( $layout['id'] ); ?>" value="<?php echo esc_attr( $layout['id'] ); ?>" <?php checked( $selected_layout, $layout['id'] ); ?>  style="float:left; margin-right:5px; margin-top:20px"/>
+						<img src="<?php echo esc_url( apply_filters( 'sbx_layout_image', $layout['image'], $layout['id'] ) ); ?>" alt="<?php echo esc_attr( apply_filters( 'sbx_layout_label', $layout['name'], $layout['id'] ) ); ?>" width="40" height="40" />
 					</label>
 				</li>
 			<?php } ?>
@@ -395,7 +362,7 @@ class SBX_Layouts {
 		$this_layout = sbx_get_layout();
 
 		// If the sidebar should be hidden for this layout, return nothing
-		if ( isset( $layouts[ $this_layout ]['hidden_widget_areas'] ) && in_array( $sidebar, $layouts[ $this_layout ]['hidden_widget_areas'] ) ) {
+		if ( isset( $layouts[ $this_layout ]['hidden_sidebars'] ) && in_array( $sidebar, $layouts[ $this_layout ]['hidden_sidebars'] ) ) {
 			$sidebar = null;
 		}
 
@@ -478,11 +445,11 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		?>
 			<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
 			<ul style="overflow:hidden;">
-				<?php foreach ( SBX_Layouts::get_supported_layouts() as $slug => $layout ) { ?>
+				<?php foreach ( SBX_Layouts::get_supported_layouts() as $layout ) { ?>
 					<li style="float:left; margin-right:15px; margin-bottom:10px">
 						<label>
-							<input type="radio" value="<?php echo esc_attr( $slug ); ?>" name="<?php echo esc_attr( "sbx_layout_{$this->id}" ); ?>" <?php $this->link(); checked( $this->value(), $slug ); ?> />
-							<img src="<?php echo esc_url( apply_filters( 'sbx_layout_image', $layout['image'], $slug ) ); ?>" alt="<?php echo esc_attr( apply_filters( 'sbx_layout_label', $layout['label'], $slug ) ); ?>" width="40" height="40" />
+							<input type="radio" value="<?php echo esc_attr( $layout['id'] ); ?>" name="<?php echo esc_attr( "sbx_layout_{$this->id}" ); ?>" <?php $this->link(); checked( $this->value(), $layout['id'] ); ?> />
+							<img src="<?php echo esc_url( apply_filters( 'sbx_layout_image', $layout['image'], $layout['id'] ) ); ?>" alt="<?php echo esc_attr( apply_filters( 'sbx_layout_label', $layout['name'], $layout['id'] ) ); ?>" width="40" height="40" />
 						</label>
 					</li>
 				<?php } ?>

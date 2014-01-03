@@ -42,7 +42,6 @@ function sb_setup_theme() {
 	// Include relevant SBX Features
 	add_theme_support( 'sbx-updates' );
 	add_theme_support( 'sbx-customizer' );
-	add_theme_support( 'sbx-layouts' );
 	add_theme_support( 'sbx-options' );
 	add_theme_support( 'sbx-sidebars',
 		array(
@@ -75,6 +74,43 @@ function sb_setup_theme() {
 				'id'          => 'footer_widget_area_3',
 				'name'        => __( 'Footer - Right Widget Area', 'startbox' ),
 				'description' => __( 'Appears on the right side of the footer.', 'startbox' ),
+				),
+		)
+	);
+	add_theme_support( 'sbx-layouts',
+		array(
+			array(
+				'id'    => 'one-col',
+				'name'  => __( '1 Column (no sidebars)', 'startbox' ),
+				'image' => SBX::$sbx_uri . '/images/layouts/one-col.png',
+				'hidden_sidebars' => array( 'primary_widget_area', 'secondary_widget_area' ),
+				),
+			array(
+				'id'    => 'two-col-left',
+				'name'  => __( '2 Columns, sidebar on left', 'startbox' ),
+				'image' => SBX::$sbx_uri . '/images/layouts/two-col-left.png',
+				'hidden_sidebars' => array( 'secondary_widget_area' ),
+				),
+			array(
+				'id'    => 'two-col-right',
+				'name'  => __( '2 Columns, sidebar on right', 'startbox' ),
+				'image' => SBX::$sbx_uri . '/images/layouts/two-col-right.png',
+				'hidden_sidebars' => array( 'secondary_widget_area' ),
+				),
+			array(
+				'id'    => 'three-col-left',
+				'name'  => __( '3 Columns, sidebar on left', 'startbox' ),
+				'image' => SBX::$sbx_uri . '/images/layouts/three-col-left.png',
+				),
+			array(
+				'id'    => 'three-col-right',
+				'name'  => __( '3 Columns, sidebar on right', 'startbox' ),
+				'image' => SBX::$sbx_uri . '/images/layouts/three-col-right.png',
+				),
+			array(
+				'id'    => 'three-col-both',
+				'name'  => __( '3 Columns, sidebar on each side', 'startbox' ),
+				'image' => SBX::$sbx_uri . '/images/layouts/three-col-both.png',
 				),
 		)
 	);
