@@ -707,7 +707,7 @@ add_filter( 'get_term', 'sbx_get_term_filter' );
  */
 function sbx_get_terms_filter( $terms ) {
 	foreach( $terms as $term ) {
-		$term = sbx_get_term_filter( $term);
+		$term = sbx_get_term_filter( $term );
 	}
 	return $terms;
 }
