@@ -2,11 +2,11 @@
 Title: sb_add_option
 Description: Parameters and examples of the sb_add_option function
 Author: Michael Beckwith
-Date: 12-20-13
-Last Edited: 12-31-13
+Date: 12-20-2013
+Last Edited: 12-31-2013
  */
 
-# Functions: sb_add_option
+# sb_add_option
 
 ## Description
 
@@ -18,13 +18,13 @@ Add an option to the database
 
 ## Parameters
 
-* **$name**
+* **name**
 
 	(string) (required) The name of the option to add
 
 	* Default: None
 
-* **$value**
+* **value**
 
 	(mixed) (required) The initial value of the option being added
 
