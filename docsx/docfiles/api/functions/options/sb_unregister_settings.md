@@ -2,11 +2,11 @@
 Title: sb_unregister_settings
 Description: Parameters and examples of the sb_unregister_settings function
 Author: Michael Beckwith
-Date: 12-20-13
-Last Edited: 12-31-13
+Date: 12-20-2013
+Last Edited: 12-31-2013
  */
 
-# Functions: sb_unregister_settings
+# sb_unregister_settings
 
 ## Description
 
@@ -18,7 +18,7 @@ Remove a single metabox from the Theme Options page. You can use sb_remove_defau
 
 ## Parameters
 
-* **$class_name**
+* **class_name**
 
 	(integer) (required) The name of the new metabox to remove.
 
