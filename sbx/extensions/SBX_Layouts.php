@@ -35,6 +35,9 @@ class SBX_Layouts {
 		add_filter( 'sbx_customizer_settings', array( $this, 'customizer_settings' ) );
 		add_filter( 'sbx_get_layout', array( $this, 'customizer_defaults' ) );
 
+		// Sidebar filter
+		add_filter( 'sbx_do_sidebar', array( $this, 'maybe_hide_sidebar' ) );
+
 		// Body class filter
 		add_filter( 'body_class', array( $this, 'body_class' ) );
 	}
@@ -45,8 +48,9 @@ class SBX_Layouts {
 	 * Returns a filterable, multi-dimensional array keyed with the
 	 * layout's slug. Values include layout image and image. e.g.:
 	 * 'layout-one-col' => array(
-	 *     'label' => 'One column (no sidebars)',
-	 *     'image' => 'images/layouts/one-col.png',
+	 *     'label'           => 'One column (no sidebars)',
+	 *     'image'           => 'images/layouts/one-col.png',
+	 *     'hidden_sidebars' => array( 'primary_widget_area' ),
 	 * )
 	 *
 	 * @since  1.0.0
@@ -334,6 +338,30 @@ class SBX_Layouts {
 		return $layout;
 	} /* customizer_defaults() */
 
+
+	/**
+	 * Hide primary and secondary sidebars based on layout setting.
+	 *
+	 * @since  3.0.0
+	 *
+	 * @param  string $sidebar Sidebar being rendered.
+	 * @return string          Sidebar to render.
+	 */
+	function maybe_hide_sidebar( $sidebar ) {
+
+		// Get layout information
+		$layouts = $this->get_supported_layouts();
+		$this_layout = sbx_get_layout();
+
+		// If the sidebar should be hidden for this layout, return nothing
+		if ( in_array( $sidebar, $layouts[ $this_layout ]['hidden_widget_areas'] ) ) {
+			$sidebar = null;
+		}
+
+		return $sidebar;
+
+	} /* maybe_hide_sidebar() */
+
 	/**
 	 * Add layout class to page body in form of "layout-$layout".
 	 *
@@ -348,7 +376,8 @@ class SBX_Layouts {
 
 		// Return the $classes array
 		return $classes;
-	}
+
+	} /* body_class() */
 
 }
 $GLOBALS['sbx']->layouts = new SBX_Layouts;

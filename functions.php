@@ -24,15 +24,18 @@ function startbox_setup_theme() {
 		array(
 			'one-col' => array(
 				'label' => '1 Column (no sidebars)',
-				'image' => SBX::$sbx_uri . '/images/layouts/one-col.png'
+				'image' => SBX::$sbx_uri . '/images/layouts/one-col.png',
+				'hidden_widget_areas' => array( 'primary_widget_area', 'secondary_widget_area' ),
 				),
 			'two-col-left' => array(
 				'label' => '2 Columns, sidebar on left',
-				'image' => SBX::$sbx_uri . '/images/layouts/two-col-left.png'
+				'image' => SBX::$sbx_uri . '/images/layouts/two-col-left.png',
+				'hidden_widget_areas' => array( 'secondary_widget_area' ),
 				),
 			'two-col-right' => array(
 				'label' => '2 Columns, sidebar on right',
-				'image' => SBX::$sbx_uri . '/images/layouts/two-col-right.png'
+				'image' => SBX::$sbx_uri . '/images/layouts/two-col-right.png',
+				'hidden_widget_areas' => array( 'secondary_widget_area' ),
 				),
 			'three-col-left' => array(
 				'label' => '3 Columns, sidebar on left',
@@ -547,29 +550,6 @@ function sb_do_author_box() {
 
 }
 add_action( 'entry_after', 'sb_do_author_box', 10 );
-
-/**
- * Hide primary and secondary sidebars based on layout setting.
- *
- * @since  3.0.0
- *
- * @param  string $sidebar Sidebar being rendered.
- * @return string          Sidebar to render.
- */
-function sb_maybe_hide_sidebar( $sidebar ) {
-
-	// When using a single column layout, do not render primary or secondary
-	if ( 'one-col' == sbx_get_layout() && in_array( $sidebar, array( 'primary_widget_area', 'secondary_widget_area' ) ) ) {
-		$sidebar = null;
-
-	// When using a two column layout, do not render secondary
-	} elseif ( in_array( sbx_get_layout(), array( 'two-col-left', 'two-col-right' ) ) && 'secondary_widget_area' == $sidebar ) {
-		$sidebar = null;
-	}
-
-	return $sidebar;
-}
-add_filter( 'sbx_do_sidebar', 'sb_maybe_hide_sidebar' );
 
 /**
  * Run sbx_get_theme_mod() through do_shortcode() before returning.
