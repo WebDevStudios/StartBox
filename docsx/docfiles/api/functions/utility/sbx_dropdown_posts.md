@@ -2,8 +2,8 @@
 Title: sbx_dropdown_posts
 Description: Parameters and examples of the sbx_dropdown_posts function
 Author: Michael Beckwith
-Date: 12-20-13
-Last Edited: 12-31-13
+Date: 12-20-2013
+Last Edited: 12-31-2013
  */
 
 # sbx_dropdown_posts
