@@ -965,9 +965,6 @@ if ( ! function_exists( 'sbx_register_theme_plugins' ) ) {
 	 */
 	function sbx_register_theme_plugins( $plugins, $config = array() ) {
 
-	// Change this to your theme text domain, used for internationalising strings
-	$theme_text_domain = apply_filters( 'sbx_plugins_text_domain', 'sbx' );
-
 	// Set default config values
 	$config = array(
 		'domain'       		=> $theme_text_domain,         	// Text domain - likely want to be the same as your theme.
