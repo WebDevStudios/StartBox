@@ -15,3 +15,7 @@ Last Edited: 01-02-2014
 * http://wordpress.org/plugins/startbox-easy-hooks/
 
 	> Needs redone due to changes in StartBox since last update.
+
+* Breadcrumbs
+* Widgets
+* Shortcodes
