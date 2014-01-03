@@ -2,7 +2,7 @@
 Title: SBX Functions
 Description: List of available functions in SBX
 Date: 11-22-2013
-Last Edited: 12-31-2013
+Last Edited: 01-02-2014
  */
 
 # SBX Functions
@@ -85,6 +85,6 @@ All of the following are defined in /sbx/core/utility.php
 
 * **[sbx_delete_term_meta](./utility/sbx_delete_term_meta/)**
 
-* **[sbx_get_term_filter](./utility/sbx_get_term_filter/)** NOT
+* **[sbx_get_term_filter](./utility/sbx_get_term_filter/)**
 
-* **[sbx_get_terms_filter](./utility/sbx_get_terms_filter/)** NOT
+* **[sbx_get_terms_filter](./utility/sbx_get_terms_filter/)**
