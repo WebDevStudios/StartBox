@@ -126,15 +126,10 @@ if ( ! class_exists('SBX') ) {
 		 * @since 1.0.0
 		 */
 		public function front_end_scripts() {
-			wp_register_script( 'sbx-js', SBX::$sbx_uri . '/js/sbx.js', array( 'jquery' ), SBX::$version );
-			wp_register_style( 'sbx-css', SBX::$sbx_uri . '/css/sbx.css', null, SBX::$version );
-			wp_register_style( 'default', get_stylesheet_uri(), null, SBX::$version );
 
 			// Enqueue for front-end only
 			if ( ! is_admin() ) {
-				wp_enqueue_script( 'sbx-js' );
-				wp_enqueue_style( 'sbx' );
-				wp_enqueue_style( 'default' );
+				wp_enqueue_style( 'default', get_stylesheet_uri(), null, SBX::$version );
 			}
 
 		} /* front_end_scripts() */

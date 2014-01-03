@@ -58,10 +58,51 @@ class SBX_Layouts {
 	 * @return array Supported theme layouts.
 	 */
 	public static function get_supported_layouts() {
-		// Only the first item in the supported layouts array is relevant
+
+		// Setup layout defaults
+		$defaults = apply_filters( 'sbx_get_supported_layouts_defaults', array(
+			'one-col' => array(
+				'label'               => __( '1 Column (no sidebars)', 'sbx' ),
+				'image'               => SBX::$sbx_uri . '/images/layouts/one-col.png',
+				'hidden_widget_areas' => array( 'primary_widget_area', 'secondary_widget_area' ),
+				),
+			'two-col-left' => array(
+				'label'               => __( '2 Columns, sidebar on left', 'sbx' ),
+				'image'               => SBX::$sbx_uri . '/images/layouts/two-col-left.png',
+				'hidden_widget_areas' => array( 'secondary_widget_area' ),
+				),
+			'two-col-right' => array(
+				'label'               => __( '2 Columns, sidebar on right', 'sbx' ),
+				'image'               => SBX::$sbx_uri . '/images/layouts/two-col-right.png',
+				'hidden_widget_areas' => array( 'secondary_widget_area' ),
+				),
+			'three-col-left' => array(
+				'label'               => __( '3 Columns, sidebar on left', 'sbx' ),
+				'image'               => SBX::$sbx_uri . '/images/layouts/three-col-left.png',
+				'hidden_widget_areas' => array(),
+				),
+			'three-col-right' => array(
+				'label'               => __( '3 Columns, sidebar on right', 'sbx' ),
+				'image'               => SBX::$sbx_uri . '/images/layouts/three-col-right.png',
+				'hidden_widget_areas' => array(),
+				),
+			'three-col-both' => array(
+				'label'               => __( '3 Columns, sidebar on each side', 'sbx' ),
+				'image'               => SBX::$sbx_uri . '/images/layouts/three-col-both.png',
+				'hidden_widget_areas' => array(),
+				),
+		) );
+
+		// Grab layouts passed via add_theme_support()
 		$supported_layouts = get_theme_support( 'sbx-layouts' );
-		$layouts = is_array( $supported_layouts ) ? array_shift( $supported_layouts ) : array();
+		$supported_layouts = is_array( $supported_layouts ) ? array_shift( $supported_layouts ) : array();
+
+		// Parse defaults against supported layouts
+		$layouts = wp_parse_args( $supported_layouts, $defaults );
+
+		// Return the finally supported layouts
 		return apply_filters( 'sbx_get_supported_layouts', $layouts );
+
 	} /* get_supported_layouts() */
 
 	/**
@@ -354,7 +395,7 @@ class SBX_Layouts {
 		$this_layout = sbx_get_layout();
 
 		// If the sidebar should be hidden for this layout, return nothing
-		if ( in_array( $sidebar, $layouts[ $this_layout ]['hidden_widget_areas'] ) ) {
+		if ( isset( $layouts[ $this_layout ]['hidden_widget_areas'] ) && in_array( $sidebar, $layouts[ $this_layout ]['hidden_widget_areas'] ) ) {
 			$sidebar = null;
 		}
 

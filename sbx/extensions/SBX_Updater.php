@@ -71,8 +71,8 @@ class SBX_Updates {
 		global $wpdb, $wp_version;
 
 		// Establish filterable defaults
-		$defaults = apply_filters( 'sbx_updater_populate_args', array(
-			'url'               => '',
+		$defaults = apply_filters( 'sbx_updater_args_defaults', array(
+			'url'               => 'http://wpstartbox.com/updates/',
 			'product_name'      => '',
 			'product_slug'      => '',
 			'product_version'   => '',
@@ -85,7 +85,7 @@ class SBX_Updates {
 			'framework_name'    => 'SBX',
 			'framework_slug'    => 'sbx',
 			'framework_version' => SBX::$version,
-			'framework_strings' => apply_filters( 'sbx_updater_populate_strings', array(
+			'framework_strings' => apply_filters( 'sbx_updater_framework_strings', array(
 				'upload_failed'        => __( 'SBX Update Failed. Upload resulted in the following error: %s', 'sbx' ),
 				'filesystem_error'     => __( 'SBX Update Failed: filesystem is preventing downloads. (%s)', 'sbx' ),
 				'empty_archive'        => __( 'SBX Update Failed: downloaded archive was empty.', 'sbx' ),
@@ -101,7 +101,7 @@ class SBX_Updates {
 		$theme_support_args = is_array( $theme_support ) ? array_shift( $theme_support ) : array();
 
 		// Parse theme support args against defaults
-		$this->args = wp_parse_args( $theme_support_args, $defaults );
+		$this->args = apply_filters( 'sbx_updater_args', wp_parse_args( $theme_support_args, $defaults ) );
 
 		return $this->args;
 
