@@ -2,11 +2,11 @@
 Title: sbx_is_sidebar_replaceable
 Description: Parameters and examples of the sbx_is_sidebar_replaceable function
 Author: Michael Beckwith
-Date: 12-20-13
-Last Edited: 12-31-13
+Date: 12-20-2013
+Last Edited: 12-31-2013
  */
 
-# Functions: sbx_is_sidebar_replaceable
+# sbx_is_sidebar_replaceable
 
 ## Description
 
@@ -14,7 +14,7 @@ Last Edited: 12-31-13
 
 ## Arguments
 
-* **$sidebar**
+* **sidebar**
 
 	(string) (required) The default sidebar ID (e.g. my_custom_sidebar).
 
