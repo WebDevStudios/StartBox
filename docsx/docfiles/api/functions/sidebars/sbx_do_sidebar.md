@@ -2,11 +2,11 @@
 Title: sbx_do_sidebar
 Description: Parameters and examples of the sbx_do_sidebar function
 Author: Michael Beckwith
-Date: 12-20-13
-Last Edited: 12-31-13
+Date: 12-20-2013
+Last Edited: 12-31-2013
  */
 
-# Functions: sbx_do_sidebar
+# sbx_do_sidebar
 
 ## Description
 
@@ -18,19 +18,19 @@ Output the markup for a sidebar, complete with relevant hooks and widgets.
 
 ## Arguments
 
-* **$location**
+* **location**
 
 	(string) (required) The unique id for this location (e.g. 'featured_aside'). This makes it possible for other (custom) sidebars to be used in this location.
 
 	* Default: None
 
-* **$sidebar**
+* **sidebar**
 
 	(string) (required) The default sidebar ID (e.g. my_custom_sidebar).
 
 	* Default: None
 
-* **$classes**
+* **classes**
 
 	(string) (optional) Additional classes to apply to the sidebar container.
 
