@@ -2,11 +2,11 @@
 Title: sb_register_option
 Description: Parameters and examples of the sb_register_option function
 Author: Michael Beckwith
-Date: 12-20-13
-Last Edited: 12-31-13
+Date: 12-20-2013
+Last Edited: 12-31-2013
  */
 
-# Functions: sb_register_option
+# sb_register_option
 
 ## Description
 
@@ -18,19 +18,19 @@ Add a new option to an existing metabox on the Theme Options Page. To remove an 
 
 ## Parameters
 
-* **$metabox**
+* **metabox**
 
 	(string) (required) The name of the metabox where the option will appear.
 
 	* Default: None
 
-* **$option_name**
+* **option_name**
 
 	(string) (required) The name of the option to add.
 
 	* Default: None
 
-* **$args**
+* **args**
 
 	(array) (required) The option's arguments to pass through the Options API.
 
