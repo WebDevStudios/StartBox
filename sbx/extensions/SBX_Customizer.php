@@ -398,7 +398,7 @@ function sbx_get_theme_mod( $setting = '', $default = '' ) {
 	$output = get_theme_mod( $setting, $default );
 
 	// If we have no output, attempt to pull back the default from sbx_customizer_settings
-	if ( empty( $output ) ) {
+	if ( empty( $output ) && false !== $output ) {
 
 		// Pull back our customizer settings array
 		$customizer_settings = apply_filters( 'sbx_customizer_settings', array() );
