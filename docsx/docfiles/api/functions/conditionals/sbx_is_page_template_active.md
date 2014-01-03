@@ -2,8 +2,8 @@
 Title: sb_is_page_template_active
 Description: Parameters and examples of the sb_is_page_template_active
 Author: Michael Beckwith
-Date: 12-20-13
-Last Edited: 12-31-13
+Date: 12-20-2013
+Last Edited: 12-31-2013
  */
 
 # sb_is_page_template_active
