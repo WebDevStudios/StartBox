@@ -2,11 +2,11 @@
 Title: sb_remove_default_settings
 Description: Parameters and examples of the sb_remove_default_settings function
 Author: Michael Beckwith
-Date: 12-20-13
-Last Edited: 12-31-13
+Date: 12-20-2013
+Last Edited: 12-31-2013
  */
 
-# Functions: sb_remove_default_settings
+# sb_remove_default_settings
 
 ## Description
 
