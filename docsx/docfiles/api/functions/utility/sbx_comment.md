@@ -2,8 +2,8 @@
 Title: sbx_comment
 Description: Parameters and examples of the sbx_comment function
 Author: Michael Beckwith
-Date: 12-20-13
-Last Edited: 01-02-14
+Date: 12-20-2013
+Last Edited: 01-02-2014
  */
 
 # sbx_comment
