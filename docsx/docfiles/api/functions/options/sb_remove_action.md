@@ -2,11 +2,11 @@
 Title: sb_remove_action
 Description: Parameters and examples of the sb_remove_action function
 Author: Michael Beckwith
-Date: 12-20-13
-Last Edited: 12-31-13
+Date: 12-20-2013
+Last Edited: 12-31-2013
  */
 
-# Functions: sb_remove_action
+# sb_remove_action
 
 ## Description
 
@@ -20,25 +20,25 @@ This function removes a function attached to a specified action hook. This metho
 
 ## Parameters
 
-* **$tag**
+* **tag**
 
 	(string) (required) The name of the action you wish to hook onto. (See Plugin API/Action Reference for a list of action hooks)
 
 	* Default: None
 
-* **$metabox_name**
+* **metabox_name**
 
 	(string) (required) The name of the class where the $function_to_add resides.
 
 	* Default: None
 
-* **$function_to_remove**
+* **function_to_remove**
 
 	(callback) (required) The name of the function you wish to be called. Note: any of the syntaxes explained in the PHP documentation for the 'callback' type are valid.
 
 	* Default: None
 
-* **$priority**
+* **priority**
 
 	(int) (optional) How important your function is. Alter this to make your function be called before or after other functions. The default is 10, so (for example) setting it to 5 would make it run earlier and setting it to 12 would make it run later.
 
