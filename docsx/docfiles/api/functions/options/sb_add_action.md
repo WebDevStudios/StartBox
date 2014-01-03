@@ -2,11 +2,11 @@
 Title: sb_add_action
 Description: Parameters and examples of the sb_add_action function
 Author: Michael Beckwith
-Date: 11-22-13
-Last Edited: 12-31-13
+Date: 11-22-2013
+Last Edited: 12-31-2013
  */
 
-# Functions: sb_add_action
+# sb_add_action
 
 ## Description
 
