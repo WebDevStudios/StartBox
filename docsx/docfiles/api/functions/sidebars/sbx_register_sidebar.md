@@ -2,11 +2,11 @@
 Title: sbx_register_sidebar
 Description: Parameters and examples of the sbx_register_sidebar function
 Author: Michael Beckwith
-Date: 12-20-13
-Last Edited: 12-31-13
+Date: 12-20-2013
+Last Edited: 12-31-2013
  */
 
-# Functions: sbx_register_sidebar
+# sbx_register_sidebar
 
 ## Description
 
@@ -18,25 +18,25 @@ Registers a sidebar within WordPress.
 
 ## Arguments
 
-* **$name**
+* **name**
 
     (string) (required) The display name for this sidebar (e.g. My Custom Sidebar).
 
 	* Default: None
 
-* **$id**
+* **id**
 
     (string) (required) The unique identifier for this sidebar (e.g. my_custom_sidebar).
 
 	* Default: None
 
-* **$description**
+* **description**
 
     (string) (optional) Descriptive text for this sidebar to display on the Widgets page.
 
 	* Default: None
 
-* **$editable**
+* **editable**
 
     (boolean) (optional) Whether or not this sidebar can be replaced via the custom Sidebars creator.
 
