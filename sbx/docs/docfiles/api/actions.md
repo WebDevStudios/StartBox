@@ -17,6 +17,8 @@ Last Edited: 01-02-2014
 
 Below is a list of some action hooks that are used in the StartBox theme, that you can use for your own theme as well. Some action hooks later in the page rely on these hooks. All locations are not required, just suggestions :)
 
+To add these to your own theme, you will need the hook name and the [do_action()](http://codex.wordpress.org/Function_Reference/do_action) function. To add callbacks to existing hooks, you will want [add_action()](http://codex.wordpress.org/Function_Reference/add_action)
+
 * **html_before**
 	* Put before the doctype
 
