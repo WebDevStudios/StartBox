@@ -3,15 +3,13 @@ Title: SBX Actions
 Description: List of actions available in SBX
 Author: Michael Beckwith
 Date: 12-30-2013
-Last Edited: 12-30-2013
+Last Edited: 01-02-2014
  */
 
 >Layouts, Options API, Sidebars
 >entry_before vs before_post
 >
 >entry_after vs after_post
->
->Do we want to document TGM/CMB hooks? Reference their own documentation?
 
 # Actions
 
