@@ -824,31 +824,32 @@ class sb_input {
 			'value'		=> '',		// The option value
 			'desc'		=> '',		// Descriptive text
 			'options'	=> array(	// Options specific to the wp_editor() function
-        		'textarea_name'	=> THEME_OPTIONS . '[' . esc_attr( $args['id'] ) . ']',
-	        	'media_buttons'	=> false,
-    	    	'teeny'			=> true
-        	)
+        			'textarea_name'	=> THEME_OPTIONS . '[' . esc_attr( $args['id'] ) . ']',
+	        		'media_buttons'	=> false,
+    	    			'teeny'		=> true
+        		)
 		);
 
 		// Get our variables ready to go
 		$r = wp_parse_args( $args, $defaults );
 		extract( $r, EXTR_OVERWRITE );
+		$sb_id = THEME_OPTIONS . '[' . esc_attr( $id ) . ']';
 		$output = '';
 
 		// Concatenate our output
-		$output .= '<p class=" . esc_attr( $id ) . ">'."\n";
-        $output .= '<label for="' . esc_attr( $sb_id ) . '">' . $label . '</label><br/>'."\n";
-        ob_start();
-        wp_editor( $value, $id, $options );
+		$output .= '<p class="' . esc_attr( $id ) . '">'."\n";
+	        $output .= '<label for="' . esc_attr( $sb_id ) . '">' . $label . '</label><br/>'."\n";
+	        ob_start();
+	        wp_editor( $value, $id, $options );
 		$output .= ob_get_clean();
-        if ($desc) $output .= sb_input::descriptive_text( $desc );
-        $output .= '</p>'."\n";
+	        if ($desc) $output .= sb_input::descriptive_text( $desc );
+	        $output .= '</p>'."\n";
+	
+	        // Return our output
+	        return $output;
+	    }
 
-        // Return our output
-        return $output;
-    }
-
-    /**
+    	/**
 	 * Color Input
 	 *
 	 * @param  array $args An array of arguments
