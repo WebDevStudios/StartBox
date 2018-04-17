@@ -2,6 +2,8 @@ About StartBox
 ============
 An incredibly powerful theme framework for WordPress. Official website: [WPStartBox.com](http://wpstartbox.com).
 
+<a href="https://webdevstudios.com/contact/"><img src="https://webdevstudios.com/wp-content/uploads/2018/04/wds-github-banner.png" alt="WebDevStudios. WordPress for big brands."></a>
+
 Download
 ------------
 Download here: [startbox.zip](http://wpstartbox.com/startbox.zip)
