@@ -206,8 +206,8 @@ class sb_content_settings extends sb_settings {
 			echo '<div id="nav-' . $position . '" class="navigation">';
 			if ( function_exists('wp_pagenavi') ) { wp_pagenavi(); }
 			else { ?>
-				<div class="nav-previous"><?php next_posts_link( sprintf( __('%s Older posts', 'startbox'), '<span class="meta-nav">&laquo;</span>' ) ); ?></div>
-				<div class="nav-next"><?php previous_posts_link( sprintf( __('Newer posts %s', 'startbox'), '<span class="meta-nav">&raquo;</span>' ) ); ?></div>
+				<div class="nav-previous"><?php next_posts_link( apply_filters( 'sb_next_posts_link', sprintf( __('%s Older posts', 'startbox'), '<span class="meta-nav">&laquo;</span>' ) ) ); ?></div>
+				<div class="nav-next"><?php previous_posts_link( apply_filters( 'sb_previous_posts_link', sprintf( __('Newer posts %s', 'startbox'), '<span class="meta-nav">&raquo;</span>' ) ) ); ?></div>
 			<?php }
 			echo '</div>';
 		} elseif ( is_single() && ( sb_get_option( 'post_navigation' ) == $position || sb_get_option( 'post_navigation' ) == 'both' ) ) { ?>
